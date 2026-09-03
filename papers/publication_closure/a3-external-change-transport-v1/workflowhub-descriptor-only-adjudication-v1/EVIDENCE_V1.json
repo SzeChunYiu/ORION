@@ -1,0 +1,930 @@
+{
+ "adjudication_id": "A3_DESCRIPTOR_ONLY_ADJUDICATION_V1",
+ "bound_v3_failure_result": {
+  "path": "papers/publication_closure/a3-external-change-transport-v1/workflowhub-member-manifest-freeze-v3/RESULT_V3.json",
+  "terminal": "CANNOT_CHECK_MEMBER_MANIFEST_V3_REPRODUCIBILITY",
+  "v3_content_only_before_after_equal_workflow_ids": [
+   "106",
+   "360",
+   "384"
+  ]
+ },
+ "comparison_method": "canonical JSON (sorted keys) path diff; volatility = paths differing within a version across its 3 fetches; version-pinned = paths differing in every one of the 9 cross-version fetch pairs and never within a version; the same construction order-free over @graph nodes keyed by @id",
+ "date": "2026-09-03",
+ "families": [
+  {
+   "after": {
+    "descriptor_canonical_stable_across_fetches": false,
+    "descriptor_raw_byte_stable_across_fetches": false,
+    "fetches": [
+     {
+      "descriptor_canonical_sha256": "e14c85d94a108670c8bed4ac74150f3ad5ac7c4699ae3b318a5acd1729577dcb",
+      "descriptor_raw_sha256": "5d51c9c23f7a6be42b643c97785f66a4a213cefedbcd0ddd1ab65077a61de608",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 1,
+      "preview_sha256": "88cb4d2bfec0e4fe810b3e1b7586c792a31369e4cd08dddcf22e921929f2b677",
+      "retained_member_n": 2,
+      "v2_aggregate": "e4e6633b81bca41b1bb55f6ea1604d1661372417da10da3d5e2439d398fb54d9",
+      "v3_aggregate": "e2a417328ddf07ea8d26fed904d74156cfb6be4bd7e9aebbaa87ea71ce8f546b"
+     },
+     {
+      "descriptor_canonical_sha256": "429d25d04c823ba6f4e7ae41f992f49acae9cf8211df070acb3f651626019200",
+      "descriptor_raw_sha256": "6c43791f721e2ee81677f568c9173876f75cec070171364701d7e126c5f60acd",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 2,
+      "preview_sha256": "49cd71858838d38a7e8145159cac99b0df2aa9a3a87e26e299d3e2ffba193dbc",
+      "retained_member_n": 2,
+      "v2_aggregate": "adf7a877dc70e70c38977ea08a0848a7d233da809ab3ec1929bb5be7ce3d4b61",
+      "v3_aggregate": "e2a417328ddf07ea8d26fed904d74156cfb6be4bd7e9aebbaa87ea71ce8f546b"
+     },
+     {
+      "descriptor_canonical_sha256": "2ccbff609c06ad54310508c052ce20b085c35da0951571584b4440773cb7b897",
+      "descriptor_raw_sha256": "a16d24f7752d7afcbd94c4c80aba694160fabbd98fd2f113884165af8171b258",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 3,
+      "preview_sha256": "3bf0e375733ea3e00329aad3284cfacc168434ed884d0dda3d4a1c70d329c34b",
+      "retained_member_n": 2,
+      "v2_aggregate": "545f6306c7431b6edf6620434fd3b1e81a0e7aab85a75df7a9e19612d05d758d",
+      "v3_aggregate": "e2a417328ddf07ea8d26fed904d74156cfb6be4bd7e9aebbaa87ea71ce8f546b"
+     }
+    ],
+    "v2_aggregate_reproduces_frozen_frame": false,
+    "v3_aggregate_stable_across_fetches": true,
+    "version": 3,
+    "volatile_canonical_paths_within_version": {
+     "$.@graph[2].sdDatePublished": {
+      "left": "'2026-09-03 15:29:49 +0100'",
+      "right": "'2026-09-03 15:29:50 +0100'"
+     }
+    }
+   },
+   "before": {
+    "descriptor_canonical_stable_across_fetches": false,
+    "descriptor_raw_byte_stable_across_fetches": false,
+    "fetches": [
+     {
+      "descriptor_canonical_sha256": "ad81e94d93b7e2c4126abc4bf94208eba80fc801f52b279763da038ca7519f13",
+      "descriptor_raw_sha256": "14b886794546ece411560ae02df9a0c681e2f3e6a628a59f228a63c37cc7b344",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 1,
+      "preview_sha256": "035bae5793812bc4ef9b4da22d75ac8fba26ca2453cbf20321fc4d2726ca5095",
+      "retained_member_n": 2,
+      "v2_aggregate": "f16ec506c50751341f5c132ff223573983e47521fd2ff28b4cbb89b6f6933053",
+      "v3_aggregate": "e2a417328ddf07ea8d26fed904d74156cfb6be4bd7e9aebbaa87ea71ce8f546b"
+     },
+     {
+      "descriptor_canonical_sha256": "ad2450694cd66b8fb0febe3d5fc3e7b2b5685b2daea5e4c28801a203694cbc11",
+      "descriptor_raw_sha256": "f27004af3417de32cd1f82b6212bf6494026ad8aa44a51e9d3ff6e1bee66d58f",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 2,
+      "preview_sha256": "90f09fcb92099171961d0be48aca57338f8721cb3cea22121e7de32a6ac342de",
+      "retained_member_n": 2,
+      "v2_aggregate": "194d9073e00a17b382f55ec3431421d4dd7850e80c92de3c052988cb0ad03786",
+      "v3_aggregate": "e2a417328ddf07ea8d26fed904d74156cfb6be4bd7e9aebbaa87ea71ce8f546b"
+     },
+     {
+      "descriptor_canonical_sha256": "f084dbf01cf89c1e0eab157a9a35ee772945b4055b7ebdbfb954df043486cf4a",
+      "descriptor_raw_sha256": "aa08ee2d30d5e7edf1f20f8f6fa9e182b782163758d4890a257675ca22fbfc31",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 3,
+      "preview_sha256": "4fac9e89cedaf5322db4bf77b39ee43f8cfa8ffbaa69270c2f21b0b27082bb4e",
+      "retained_member_n": 2,
+      "v2_aggregate": "2d208ca8600a930ed9d6a1b7cd7292c91140a45f3119aba0fd01ab9325b15a9b",
+      "v3_aggregate": "e2a417328ddf07ea8d26fed904d74156cfb6be4bd7e9aebbaa87ea71ce8f546b"
+     }
+    ],
+    "v2_aggregate_reproduces_frozen_frame": false,
+    "v3_aggregate_stable_across_fetches": true,
+    "version": 2,
+    "volatile_canonical_paths_within_version": {
+     "$.@graph[2].sdDatePublished": {
+      "left": "'2026-09-03 15:29:45 +0100'",
+      "right": "'2026-09-03 15:29:46 +0100'"
+     }
+    }
+   },
+   "collapse_reverified_in_run": true,
+   "cross_version_differing_paths_in_every_pair": {
+    "$.@graph#len": {
+     "left": "10",
+     "right": "11"
+    },
+    "$.@graph[2].datePublished": {
+     "left": "'2021-05-21 09:43:08 +0100'",
+     "right": "'2021-05-21 09:45:49 +0100'"
+    },
+    "$.@graph[2].hasPart#len": {
+     "left": "1",
+     "right": "2"
+    },
+    "$.@graph[2].identifier": {
+     "left": "'https://workflowhub.eu/workflows/106?version=2'",
+     "right": "'https://doi.org/10.48546/workflowhub.workflow.106.3'"
+    },
+    "$.@graph[2].sdDatePublished": {
+     "left": "'2026-09-03 15:29:43 +0100'",
+     "right": "'2026-09-03 15:29:48 +0100'"
+    },
+    "$.@graph[2].url": {
+     "left": "'https://workflowhub.eu/workflows/106/ro_crate?version=2'",
+     "right": "'https://workflowhub.eu/workflows/106/ro_crate?version=3'"
+    },
+    "$.@graph[3].dateCreated": {
+     "left": "'2021-05-21T08:43:08Z'",
+     "right": "'2021-05-21T08:45:49Z'"
+    },
+    "$.@graph[3].dateModified": {
+     "left": "'2021-05-21T08:43:08Z'",
+     "right": "'2026-05-13T13:00:33Z'"
+    },
+    "$.@graph[3].datePublished": {
+     "left": "<absent>",
+     "right": "'2021-12-16T15:03:03Z'"
+    },
+    "$.@graph[3].identifier": {
+     "left": "<absent>",
+     "right": "'https://doi.org/10.48546/workflowhub.workflow.106.3'"
+    },
+    "$.@graph[3].image": {
+     "left": "<absent>",
+     "right": "{\"@id\":\"rd_connect-initial_cwl.jpg\"}"
+    },
+    "$.@graph[3].url": {
+     "left": "'https://workflowhub.eu/workflows/106?version=2'",
+     "right": "'https://workflowhub.eu/workflows/106?version=3'"
+    },
+    "$.@graph[3].version": {
+     "left": "2",
+     "right": "3"
+    },
+    "$.@graph[4].@id": {
+     "left": "'https://orcid.org/0000-0002-4806-5140'",
+     "right": "'rd_connect-initial_cwl.jpg'"
+    },
+    "$.@graph[4].@type": {
+     "left": "'Person'",
+     "right": "[\"File\",\"ImageObject\"]"
+    },
+    "$.@graph[4].contentSize": {
+     "left": "<absent>",
+     "right": "83411"
+    },
+    "$.@graph[4].identifier": {
+     "left": "'https://orcid.org/0000-0002-4806-5140'",
+     "right": "<absent>"
+    },
+    "$.@graph[4].name": {
+     "left": "'Jos\u00e9 M\u00aa Fern\u00e1ndez'",
+     "right": "<absent>"
+    },
+    "$.@graph[5].@id": {
+     "left": "'https://workflowhub.eu/people/110'",
+     "right": "'https://orcid.org/0000-0002-4806-5140'"
+    },
+    "$.@graph[5].identifier": {
+     "left": "<absent>",
+     "right": "'https://orcid.org/0000-0002-4806-5140'"
+    },
+    "$.@graph[6].@id": {
+     "left": "'https://workflowhub.eu/people/4'",
+     "right": "'https://workflowhub.eu/people/110'"
+    },
+    "$.@graph[6].name": {
+     "left": "'Laura Rodriguez-Navas'",
+     "right": "'Jos\u00e9 M\u00aa Fern\u00e1ndez'"
+    },
+    "$.@graph[7].@id": {
+     "left": "'https://workflowhub.eu/projects/31'",
+     "right": "'https://workflowhub.eu/people/4'"
+    },
+    "$.@graph[7].@type": {
+     "left": "[\"Project\",\"Organization\"]",
+     "right": "'Person'"
+    },
+    "$.@graph[7].name": {
+     "left": "'EOSC-Life - Demonstrator 7: Rare Diseases'",
+     "right": "'Laura Rodriguez-Navas'"
+    },
+    "$.@graph[8].@id": {
+     "left": "'#nextflow'",
+     "right": "'https://workflowhub.eu/projects/31'"
+    },
+    "$.@graph[8].@type": {
+     "left": "'ComputerLanguage'",
+     "right": "[\"Project\",\"Organization\"]"
+    },
+    "$.@graph[8].identifier": {
+     "left": "{\"@id\":\"https://www.nextflow.io/\"}",
+     "right": "<absent>"
+    },
+    "$.@graph[8].name": {
+     "left": "'Nextflow'",
+     "right": "'EOSC-Life - Demonstrator 7: Rare Diseases'"
+    },
+    "$.@graph[8].url": {
+     "left": "{\"@id\":\"https://www.nextflow.io/\"}",
+     "right": "<absent>"
+    },
+    "$.@graph[9].@id": {
+     "left": "'https://about.workflowhub.eu/'",
+     "right": "'#nextflow'"
+    },
+    "$.@graph[9].@type": {
+     "left": "'Organization'",
+     "right": "'ComputerLanguage'"
+    },
+    "$.@graph[9].identifier": {
+     "left": "<absent>",
+     "right": "{\"@id\":\"https://www.nextflow.io/\"}"
+    },
+    "$.@graph[9].name": {
+     "left": "'WorkflowHub'",
+     "right": "'Nextflow'"
+    },
+    "$.@graph[9].url": {
+     "left": "'https://about.workflowhub.eu/'",
+     "right": "{\"@id\":\"https://www.nextflow.io/\"}"
+    }
+   },
+   "fetches_per_version": 3,
+   "license_after": "https://spdx.org/licenses/Apache-2.0",
+   "license_before": "https://spdx.org/licenses/Apache-2.0",
+   "verdict": "DESCRIPTOR_SHOWS_VERSION_PINNED_TRANSITION",
+   "verdict_basis": "canonical descriptor paths/@graph nodes differ between the frozen versions across every cross-version fetch pair and never within a version: a version-pinned descriptor-level transition invisible to the v3 aggregate",
+   "version_after": 3,
+   "version_before": 2,
+   "version_pinned_differing_paths": {
+    "$.@graph#len": {
+     "left": "10",
+     "right": "11"
+    },
+    "$.@graph[2].datePublished": {
+     "left": "'2021-05-21 09:43:08 +0100'",
+     "right": "'2021-05-21 09:45:49 +0100'"
+    },
+    "$.@graph[2].hasPart#len": {
+     "left": "1",
+     "right": "2"
+    },
+    "$.@graph[2].identifier": {
+     "left": "'https://workflowhub.eu/workflows/106?version=2'",
+     "right": "'https://doi.org/10.48546/workflowhub.workflow.106.3'"
+    },
+    "$.@graph[2].url": {
+     "left": "'https://workflowhub.eu/workflows/106/ro_crate?version=2'",
+     "right": "'https://workflowhub.eu/workflows/106/ro_crate?version=3'"
+    },
+    "$.@graph[3].dateCreated": {
+     "left": "'2021-05-21T08:43:08Z'",
+     "right": "'2021-05-21T08:45:49Z'"
+    },
+    "$.@graph[3].dateModified": {
+     "left": "'2021-05-21T08:43:08Z'",
+     "right": "'2026-05-13T13:00:33Z'"
+    },
+    "$.@graph[3].datePublished": {
+     "left": "<absent>",
+     "right": "'2021-12-16T15:03:03Z'"
+    },
+    "$.@graph[3].identifier": {
+     "left": "<absent>",
+     "right": "'https://doi.org/10.48546/workflowhub.workflow.106.3'"
+    },
+    "$.@graph[3].image": {
+     "left": "<absent>",
+     "right": "{\"@id\":\"rd_connect-initial_cwl.jpg\"}"
+    },
+    "$.@graph[3].url": {
+     "left": "'https://workflowhub.eu/workflows/106?version=2'",
+     "right": "'https://workflowhub.eu/workflows/106?version=3'"
+    },
+    "$.@graph[3].version": {
+     "left": "2",
+     "right": "3"
+    },
+    "$.@graph[4].@id": {
+     "left": "'https://orcid.org/0000-0002-4806-5140'",
+     "right": "'rd_connect-initial_cwl.jpg'"
+    },
+    "$.@graph[4].@type": {
+     "left": "'Person'",
+     "right": "[\"File\",\"ImageObject\"]"
+    },
+    "$.@graph[4].contentSize": {
+     "left": "<absent>",
+     "right": "83411"
+    },
+    "$.@graph[4].identifier": {
+     "left": "'https://orcid.org/0000-0002-4806-5140'",
+     "right": "<absent>"
+    },
+    "$.@graph[4].name": {
+     "left": "'Jos\u00e9 M\u00aa Fern\u00e1ndez'",
+     "right": "<absent>"
+    },
+    "$.@graph[5].@id": {
+     "left": "'https://workflowhub.eu/people/110'",
+     "right": "'https://orcid.org/0000-0002-4806-5140'"
+    },
+    "$.@graph[5].identifier": {
+     "left": "<absent>",
+     "right": "'https://orcid.org/0000-0002-4806-5140'"
+    },
+    "$.@graph[6].@id": {
+     "left": "'https://workflowhub.eu/people/4'",
+     "right": "'https://workflowhub.eu/people/110'"
+    },
+    "$.@graph[6].name": {
+     "left": "'Laura Rodriguez-Navas'",
+     "right": "'Jos\u00e9 M\u00aa Fern\u00e1ndez'"
+    },
+    "$.@graph[7].@id": {
+     "left": "'https://workflowhub.eu/projects/31'",
+     "right": "'https://workflowhub.eu/people/4'"
+    },
+    "$.@graph[7].@type": {
+     "left": "[\"Project\",\"Organization\"]",
+     "right": "'Person'"
+    },
+    "$.@graph[7].name": {
+     "left": "'EOSC-Life - Demonstrator 7: Rare Diseases'",
+     "right": "'Laura Rodriguez-Navas'"
+    },
+    "$.@graph[8].@id": {
+     "left": "'#nextflow'",
+     "right": "'https://workflowhub.eu/projects/31'"
+    },
+    "$.@graph[8].@type": {
+     "left": "'ComputerLanguage'",
+     "right": "[\"Project\",\"Organization\"]"
+    },
+    "$.@graph[8].identifier": {
+     "left": "{\"@id\":\"https://www.nextflow.io/\"}",
+     "right": "<absent>"
+    },
+    "$.@graph[8].name": {
+     "left": "'Nextflow'",
+     "right": "'EOSC-Life - Demonstrator 7: Rare Diseases'"
+    },
+    "$.@graph[8].url": {
+     "left": "{\"@id\":\"https://www.nextflow.io/\"}",
+     "right": "<absent>"
+    },
+    "$.@graph[9].@id": {
+     "left": "'https://about.workflowhub.eu/'",
+     "right": "'#nextflow'"
+    },
+    "$.@graph[9].@type": {
+     "left": "'Organization'",
+     "right": "'ComputerLanguage'"
+    },
+    "$.@graph[9].identifier": {
+     "left": "<absent>",
+     "right": "{\"@id\":\"https://www.nextflow.io/\"}"
+    },
+    "$.@graph[9].name": {
+     "left": "'WorkflowHub'",
+     "right": "'Nextflow'"
+    },
+    "$.@graph[9].url": {
+     "left": "'https://about.workflowhub.eu/'",
+     "right": "{\"@id\":\"https://www.nextflow.io/\"}"
+    }
+   },
+   "version_pinned_graph_nodes": {
+    "nextflow.nf": {
+     "nextflow.nf.dateCreated": {
+      "left": "'2021-05-21T08:43:08Z'",
+      "right": "'2021-05-21T08:45:49Z'"
+     },
+     "nextflow.nf.dateModified": {
+      "left": "'2021-05-21T08:43:08Z'",
+      "right": "'2026-05-13T13:00:33Z'"
+     },
+     "nextflow.nf.datePublished": {
+      "left": "<absent>",
+      "right": "'2021-12-16T15:03:03Z'"
+     },
+     "nextflow.nf.identifier": {
+      "left": "<absent>",
+      "right": "'https://doi.org/10.48546/workflowhub.workflow.106.3'"
+     },
+     "nextflow.nf.image": {
+      "left": "<absent>",
+      "right": "{\"@id\":\"rd_connect-initial_cwl.jpg\"}"
+     },
+     "nextflow.nf.url": {
+      "left": "'https://workflowhub.eu/workflows/106?version=2'",
+      "right": "'https://workflowhub.eu/workflows/106?version=3'"
+     },
+     "nextflow.nf.version": {
+      "left": "2",
+      "right": "3"
+     }
+    },
+    "rd_connect-initial_cwl.jpg": {
+     "rd_connect-initial_cwl.jpg": {
+      "left": "None",
+      "right": "{\"@id\":\"rd_connect-initial_cwl.jpg\",\"@type\":[\"File\",\"ImageObject\"],\"contentSize\":83411}"
+     }
+    }
+   },
+   "workflow_id": "106"
+  },
+  {
+   "after": {
+    "descriptor_canonical_stable_across_fetches": false,
+    "descriptor_raw_byte_stable_across_fetches": false,
+    "fetches": [
+     {
+      "descriptor_canonical_sha256": "5f42d06f61510bffda5082369cfa58bd90da44ccaf49f86a2197f525715ae9a1",
+      "descriptor_raw_sha256": "f093a4cd108c9b25d8815c2c99228894e97400abaf749a512b6299579ddb79d2",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 1,
+      "preview_sha256": "6d8f521b655de24412c62231bbfe53fbfd8ec1c67e5ea7ca78548b5673f80918",
+      "retained_member_n": 500,
+      "v2_aggregate": "9e9d226a82e88ccb8d5234f6a7c4faa22f368f41d56f931b2b1606cd3579367e",
+      "v3_aggregate": "d6f370b4250e1f7c66cc99f78dec4a1f282ea39984f8172c36623ee3e41c70ca"
+     },
+     {
+      "descriptor_canonical_sha256": "25d2f939240d6c9ce0a8d0371750661c4c6cf5f4a8411d25aadbaa39d959708a",
+      "descriptor_raw_sha256": "cd050e20dcdeb9d28e2fed490dcd5c308ba662151df15ba2c1ec4ffc48d48010",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 2,
+      "preview_sha256": "2f98bb05e2ed90a76da3ec4dd2bd15338d58afd6da4d1f4365adb4c320734e21",
+      "retained_member_n": 500,
+      "v2_aggregate": "0caf2dddfe5f9cf51c0bb990467661fe7910ea382411fe2607d784d6fb34b988",
+      "v3_aggregate": "d6f370b4250e1f7c66cc99f78dec4a1f282ea39984f8172c36623ee3e41c70ca"
+     },
+     {
+      "descriptor_canonical_sha256": "77c8dd7e5e8e9d517d780884fe2aadc28b900d2774b5b2a37c241ced425b702b",
+      "descriptor_raw_sha256": "d181a0b4c8ac8517b1b37ea824e06a9dd64d14bc592fa451b6d7b76777f4cc25",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 3,
+      "preview_sha256": "e4189a5dfd3636fd732581181a878dcde5da47a9ccdcf5f85672b00c3c8e368b",
+      "retained_member_n": 500,
+      "v2_aggregate": "1bd527e426d6047dc2e207f9591003bf0bf2351ac15d7c75e9bb5ccfcb7e4238",
+      "v3_aggregate": "d6f370b4250e1f7c66cc99f78dec4a1f282ea39984f8172c36623ee3e41c70ca"
+     }
+    ],
+    "v2_aggregate_reproduces_frozen_frame": false,
+    "v3_aggregate_stable_across_fetches": true,
+    "version": 2,
+    "volatile_canonical_paths_within_version": {
+     "$.@graph[2].sdDatePublished": {
+      "left": "'2026-09-03 15:32:53 +0100'",
+      "right": "'2026-09-03 15:33:26 +0100'"
+     }
+    }
+   },
+   "before": {
+    "descriptor_canonical_stable_across_fetches": false,
+    "descriptor_raw_byte_stable_across_fetches": false,
+    "fetches": [
+     {
+      "descriptor_canonical_sha256": "01d737050da5a68ad9edf99045810d5b9be675b8a3ebace03835028b28419d63",
+      "descriptor_raw_sha256": "e28da8c18f6d3e942a85e38704f92d4d9a9c523a463afe4ced7ca6fce4a41c25",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 1,
+      "preview_sha256": "94fb4f24678fb56b80928c708180d32c164c87bf6b954ed4c9c951759b800a76",
+      "retained_member_n": 500,
+      "v2_aggregate": "cd1d585d48323723f4abc4180a8896b0a1ec565c561cea87335c06a36b6ad3de",
+      "v3_aggregate": "d6f370b4250e1f7c66cc99f78dec4a1f282ea39984f8172c36623ee3e41c70ca"
+     },
+     {
+      "descriptor_canonical_sha256": "01d8d5f6d04570b8c334aca5d0e3f0be0421fc9af4b6622f04da778706f85fa6",
+      "descriptor_raw_sha256": "822673d152d2d4573ec7bb5a8eb85f7e8eb4d7f069380223b36a3e25989691f2",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 2,
+      "preview_sha256": "3da1f7cf930095faaa55e91f06bdcaf92b926c548ab6ee6c2ac83a908b54d3b1",
+      "retained_member_n": 500,
+      "v2_aggregate": "4211afab8240471c0dc9e2767a3da7c9c3b9bdf1334b2d251010fa42abc0a8fb",
+      "v3_aggregate": "d6f370b4250e1f7c66cc99f78dec4a1f282ea39984f8172c36623ee3e41c70ca"
+     },
+     {
+      "descriptor_canonical_sha256": "cf2a637012ba5ad95db778ccc3f6b07b2a015ae169264429c2d42d45053b57d5",
+      "descriptor_raw_sha256": "9100826ab06adadfa1962ae99741e51cbc3039a532cae688b74172ad06d595b8",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 3,
+      "preview_sha256": "637d3acc337ecc3c075d631a6f411bf79797ea810ee3db77d2a86e2a7a5fbbe4",
+      "retained_member_n": 500,
+      "v2_aggregate": "01633f0305223f734e278d90531fbe868a26dc00ee4d8e9ebc7cfde89bdeaa85",
+      "v3_aggregate": "d6f370b4250e1f7c66cc99f78dec4a1f282ea39984f8172c36623ee3e41c70ca"
+     }
+    ],
+    "v2_aggregate_reproduces_frozen_frame": false,
+    "v3_aggregate_stable_across_fetches": true,
+    "version": 1,
+    "volatile_canonical_paths_within_version": {
+     "$.@graph[2].sdDatePublished": {
+      "left": "'2026-09-03 15:30:40 +0100'",
+      "right": "'2026-09-03 15:31:15 +0100'"
+     }
+    }
+   },
+   "collapse_reverified_in_run": true,
+   "cross_version_differing_paths_in_every_pair": {
+    "$.@graph[2].description": {
+     "left": "\"MGnify (http://www.ebi.ac.uk/metagenomics) provides a free to use platform for the assembly, analysis and archiving of microbiome data derived from sequencing microbial populations that are present i...<+1297 chars>",
+     "right": "\"MGnify (http://www.ebi.ac.uk/metagenomics) provides a free to use platform for the assembly, analysis and archiving of microbiome data derived from sequencing microbial populations that are present i...<+1299 chars>"
+    },
+    "$.@graph[2].identifier": {
+     "left": "'https://workflowhub.eu/workflows/360?version=1'",
+     "right": "'https://workflowhub.eu/workflows/360?version=2'"
+    },
+    "$.@graph[2].sdDatePublished": {
+     "left": "'2026-09-03 15:29:53 +0100'",
+     "right": "'2026-09-03 15:32:05 +0100'"
+    },
+    "$.@graph[2].url": {
+     "left": "'https://workflowhub.eu/workflows/360/ro_crate?version=1'",
+     "right": "'https://workflowhub.eu/workflows/360/ro_crate?version=2'"
+    },
+    "$.@graph[3].dateCreated": {
+     "left": "'2022-06-07T07:41:18Z'",
+     "right": "'2022-06-07T08:03:35Z'"
+    },
+    "$.@graph[3].dateModified": {
+     "left": "'2022-06-07T08:00:07Z'",
+     "right": "'2026-05-13T13:05:02Z'"
+    },
+    "$.@graph[3].description": {
+     "left": "\"MGnify (http://www.ebi.ac.uk/metagenomics) provides a free to use platform for the assembly, analysis and archiving of microbiome data derived from sequencing microbial populations that are present i...<+1297 chars>",
+     "right": "\"MGnify (http://www.ebi.ac.uk/metagenomics) provides a free to use platform for the assembly, analysis and archiving of microbiome data derived from sequencing microbial populations that are present i...<+1299 chars>"
+    },
+    "$.@graph[3].url": {
+     "left": "'https://workflowhub.eu/workflows/360?version=1'",
+     "right": "'https://workflowhub.eu/workflows/360?version=2'"
+    },
+    "$.@graph[3].version": {
+     "left": "1",
+     "right": "2"
+    }
+   },
+   "fetches_per_version": 3,
+   "license_after": "https://spdx.org/licenses/Apache-2.0",
+   "license_before": "https://spdx.org/licenses/Apache-2.0",
+   "verdict": "DESCRIPTOR_SHOWS_VERSION_PINNED_TRANSITION",
+   "verdict_basis": "canonical descriptor paths/@graph nodes differ between the frozen versions across every cross-version fetch pair and never within a version: a version-pinned descriptor-level transition invisible to the v3 aggregate",
+   "version_after": 2,
+   "version_before": 1,
+   "version_pinned_differing_paths": {
+    "$.@graph[2].description": {
+     "left": "\"MGnify (http://www.ebi.ac.uk/metagenomics) provides a free to use platform for the assembly, analysis and archiving of microbiome data derived from sequencing microbial populations that are present i...<+1297 chars>",
+     "right": "\"MGnify (http://www.ebi.ac.uk/metagenomics) provides a free to use platform for the assembly, analysis and archiving of microbiome data derived from sequencing microbial populations that are present i...<+1299 chars>"
+    },
+    "$.@graph[2].identifier": {
+     "left": "'https://workflowhub.eu/workflows/360?version=1'",
+     "right": "'https://workflowhub.eu/workflows/360?version=2'"
+    },
+    "$.@graph[2].url": {
+     "left": "'https://workflowhub.eu/workflows/360/ro_crate?version=1'",
+     "right": "'https://workflowhub.eu/workflows/360/ro_crate?version=2'"
+    },
+    "$.@graph[3].dateCreated": {
+     "left": "'2022-06-07T07:41:18Z'",
+     "right": "'2022-06-07T08:03:35Z'"
+    },
+    "$.@graph[3].dateModified": {
+     "left": "'2022-06-07T08:00:07Z'",
+     "right": "'2026-05-13T13:05:02Z'"
+    },
+    "$.@graph[3].description": {
+     "left": "\"MGnify (http://www.ebi.ac.uk/metagenomics) provides a free to use platform for the assembly, analysis and archiving of microbiome data derived from sequencing microbial populations that are present i...<+1297 chars>",
+     "right": "\"MGnify (http://www.ebi.ac.uk/metagenomics) provides a free to use platform for the assembly, analysis and archiving of microbiome data derived from sequencing microbial populations that are present i...<+1299 chars>"
+    },
+    "$.@graph[3].url": {
+     "left": "'https://workflowhub.eu/workflows/360?version=1'",
+     "right": "'https://workflowhub.eu/workflows/360?version=2'"
+    },
+    "$.@graph[3].version": {
+     "left": "1",
+     "right": "2"
+    }
+   },
+   "version_pinned_graph_nodes": {
+    "workflows/assembly-wf--v.5-cond.cwl": {
+     "workflows/assembly-wf--v.5-cond.cwl.dateCreated": {
+      "left": "'2022-06-07T07:41:18Z'",
+      "right": "'2022-06-07T08:03:35Z'"
+     },
+     "workflows/assembly-wf--v.5-cond.cwl.dateModified": {
+      "left": "'2022-06-07T08:00:07Z'",
+      "right": "'2026-05-13T13:05:02Z'"
+     },
+     "workflows/assembly-wf--v.5-cond.cwl.description": {
+      "left": "\"MGnify (http://www.ebi.ac.uk/metagenomics) provides a free to use platform for the assembly, analysis and archiving of microbiome data derived from sequencing microbial populations that are present i...<+1297 chars>",
+      "right": "\"MGnify (http://www.ebi.ac.uk/metagenomics) provides a free to use platform for the assembly, analysis and archiving of microbiome data derived from sequencing microbial populations that are present i...<+1299 chars>"
+     },
+     "workflows/assembly-wf--v.5-cond.cwl.url": {
+      "left": "'https://workflowhub.eu/workflows/360?version=1'",
+      "right": "'https://workflowhub.eu/workflows/360?version=2'"
+     },
+     "workflows/assembly-wf--v.5-cond.cwl.version": {
+      "left": "1",
+      "right": "2"
+     }
+    }
+   },
+   "workflow_id": "360"
+  },
+  {
+   "after": {
+    "descriptor_canonical_stable_across_fetches": false,
+    "descriptor_raw_byte_stable_across_fetches": false,
+    "fetches": [
+     {
+      "descriptor_canonical_sha256": "f51bede0610e67c62a09c41a7f5dd158f4def60a2504dbb233a3ea05ecb734f7",
+      "descriptor_raw_sha256": "95d1fb55ac71ceddf37a25e70f343c04a558e0992704fb06b756acd7071c1c69",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 1,
+      "preview_sha256": "5fe0f34dc2c4f7ad47a151d2083ad7059985410760c116035dc9da7f6106ffe2",
+      "retained_member_n": 326,
+      "v2_aggregate": "dfad309ef9052e63a1cdba287056d9fc6e647f41cf9d7507b7a59503a108bc57",
+      "v3_aggregate": "ddbb73d87a2b3d2fe92b4af588058ae4df056b4c549675bf40ba4e29b28b8f21"
+     },
+     {
+      "descriptor_canonical_sha256": "005e19acdf6920e443a7801375fdcc6caeea34e06fa8f68a2874014119d7c7a2",
+      "descriptor_raw_sha256": "9bca967480c12a2947e9eec63df89e37e9d624cec2cc2d78457d97be685a30f8",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 2,
+      "preview_sha256": "f3468e2e1c02414a3feb0c1ac267f254048924d2340f30553fdddc7242dd42be",
+      "retained_member_n": 326,
+      "v2_aggregate": "290c010f9b426714d02fa14bbd247efc224221704e3181386704d20699d99d3f",
+      "v3_aggregate": "ddbb73d87a2b3d2fe92b4af588058ae4df056b4c549675bf40ba4e29b28b8f21"
+     },
+     {
+      "descriptor_canonical_sha256": "eb41dc79ef96ea5507adebe1eedec91117e21477701888d24b2f8217253a9239",
+      "descriptor_raw_sha256": "c38fa08ec84355075a99980c928170f05f9ba706efff555fa25b781b1de4c119",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 3,
+      "preview_sha256": "2452b1fded44003dd4d254df7386252a35049345150e0bc5e01b5bb1c813de1b",
+      "retained_member_n": 326,
+      "v2_aggregate": "43e2efe0d6905aa0c1fb0ea80b4878dea77d0ae41e17a49669640b1727816c55",
+      "v3_aggregate": "ddbb73d87a2b3d2fe92b4af588058ae4df056b4c549675bf40ba4e29b28b8f21"
+     }
+    ],
+    "v2_aggregate_reproduces_frozen_frame": false,
+    "v3_aggregate_stable_across_fetches": true,
+    "version": 3,
+    "volatile_canonical_paths_within_version": {
+     "$.@graph[2].sdDatePublished": {
+      "left": "'2026-09-03 15:35:03 +0100'",
+      "right": "'2026-09-03 15:35:14 +0100'"
+     }
+    }
+   },
+   "before": {
+    "descriptor_canonical_stable_across_fetches": false,
+    "descriptor_raw_byte_stable_across_fetches": false,
+    "fetches": [
+     {
+      "descriptor_canonical_sha256": "d4ec68209e6416d8b8a52be63143a5798a2d007905d7bcb5119d8aa3afc362fa",
+      "descriptor_raw_sha256": "9bd7ce84e5b2cbc1600937ce265cb302343e4e0e8d7855f16238496d91a30e2c",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 1,
+      "preview_sha256": "dbef95d39e054fe74323707746245e1c36a93be722fb8e0c49f364b5620af7fd",
+      "retained_member_n": 326,
+      "v2_aggregate": "3add93faf760793ece0e159c19257ce329166507b9cfa57de4b440fb2cacddbf",
+      "v3_aggregate": "ddbb73d87a2b3d2fe92b4af588058ae4df056b4c549675bf40ba4e29b28b8f21"
+     },
+     {
+      "descriptor_canonical_sha256": "20728be5f0868f5e4942fbb12da2c390a349e3bfd1628b6cb15257786f052c5f",
+      "descriptor_raw_sha256": "bfa4ddc5b130cd25b3885a6554387e00464ed83684e7d8b460ee4f48126e3c7e",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 2,
+      "preview_sha256": "5e439257fe223da0364de93f7a3ba081feaa7917866c212ec59ee9e75ea3224d",
+      "retained_member_n": 326,
+      "v2_aggregate": "8737a6b378035bdf6c36ba0162dba74255c9e4acfc9b508aeea5edd422ab8995",
+      "v3_aggregate": "ddbb73d87a2b3d2fe92b4af588058ae4df056b4c549675bf40ba4e29b28b8f21"
+     },
+     {
+      "descriptor_canonical_sha256": "ddc85ba84cca01f59fb01f63efd96f43fd80ad2ecab632b8c41bd14c6aea8d79",
+      "descriptor_raw_sha256": "e252e24e63ea5b149c65d92c64b46c65c051181c2b728616a071c796f750183b",
+      "excluded_paths": [
+       "ro-crate-metadata.json",
+       "ro-crate-preview.html"
+      ],
+      "fetch": 3,
+      "preview_sha256": "b0cb29833332a24a2676d53c5cf58d6d5d88f30a73296e22f9910fd1ca562933",
+      "retained_member_n": 326,
+      "v2_aggregate": "5b7dbc1581ba9d9efbba0abea728fa2f5438ec6d567f56cd6376559bea87b6c7",
+      "v3_aggregate": "ddbb73d87a2b3d2fe92b4af588058ae4df056b4c549675bf40ba4e29b28b8f21"
+     }
+    ],
+    "v2_aggregate_reproduces_frozen_frame": false,
+    "v3_aggregate_stable_across_fetches": true,
+    "version": 2,
+    "volatile_canonical_paths_within_version": {
+     "$.@graph[2].sdDatePublished": {
+      "left": "'2026-09-03 15:34:13 +0100'",
+      "right": "'2026-09-03 15:34:28 +0100'"
+     }
+    }
+   },
+   "collapse_reverified_in_run": true,
+   "cross_version_differing_paths_in_every_pair": {
+    "$.@graph[2].identifier": {
+     "left": "'https://workflowhub.eu/workflows/384?version=2'",
+     "right": "'https://doi.org/10.48546/workflowhub.workflow.384.3'"
+    },
+    "$.@graph[2].license": {
+     "left": "'https://spdx.org/licenses/GPL-3.0'",
+     "right": "'https://spdx.org/licenses/Apache-2.0'"
+    },
+    "$.@graph[2].sdDatePublished": {
+     "left": "'2026-09-03 15:33:54 +0100'",
+     "right": "'2026-09-03 15:34:42 +0100'"
+    },
+    "$.@graph[2].url": {
+     "left": "'https://workflowhub.eu/workflows/384/ro_crate?version=2'",
+     "right": "'https://workflowhub.eu/workflows/384/ro_crate?version=3'"
+    },
+    "$.@graph[3].dateCreated": {
+     "left": "'2023-05-16T20:38:36Z'",
+     "right": "'2023-05-16T20:41:04Z'"
+    },
+    "$.@graph[3].dateModified": {
+     "left": "'2023-05-16T20:38:36Z'",
+     "right": "'2026-05-13T13:05:29Z'"
+    },
+    "$.@graph[3].datePublished": {
+     "left": "<absent>",
+     "right": "'2023-05-16T22:01:12Z'"
+    },
+    "$.@graph[3].identifier": {
+     "left": "<absent>",
+     "right": "'https://doi.org/10.48546/workflowhub.workflow.384.3'"
+    },
+    "$.@graph[3].license": {
+     "left": "'https://spdx.org/licenses/GPL-3.0'",
+     "right": "'https://spdx.org/licenses/Apache-2.0'"
+    },
+    "$.@graph[3].url": {
+     "left": "'https://workflowhub.eu/workflows/384?version=2'",
+     "right": "'https://workflowhub.eu/workflows/384?version=3'"
+    },
+    "$.@graph[3].version": {
+     "left": "2",
+     "right": "3"
+    }
+   },
+   "fetches_per_version": 3,
+   "license_after": "https://spdx.org/licenses/Apache-2.0",
+   "license_before": "https://spdx.org/licenses/GPL-3.0",
+   "verdict": "DESCRIPTOR_SHOWS_VERSION_PINNED_TRANSITION",
+   "verdict_basis": "canonical descriptor paths/@graph nodes differ between the frozen versions across every cross-version fetch pair and never within a version: a version-pinned descriptor-level transition invisible to the v3 aggregate",
+   "version_after": 3,
+   "version_before": 2,
+   "version_pinned_differing_paths": {
+    "$.@graph[2].identifier": {
+     "left": "'https://workflowhub.eu/workflows/384?version=2'",
+     "right": "'https://doi.org/10.48546/workflowhub.workflow.384.3'"
+    },
+    "$.@graph[2].license": {
+     "left": "'https://spdx.org/licenses/GPL-3.0'",
+     "right": "'https://spdx.org/licenses/Apache-2.0'"
+    },
+    "$.@graph[2].url": {
+     "left": "'https://workflowhub.eu/workflows/384/ro_crate?version=2'",
+     "right": "'https://workflowhub.eu/workflows/384/ro_crate?version=3'"
+    },
+    "$.@graph[3].dateCreated": {
+     "left": "'2023-05-16T20:38:36Z'",
+     "right": "'2023-05-16T20:41:04Z'"
+    },
+    "$.@graph[3].dateModified": {
+     "left": "'2023-05-16T20:38:36Z'",
+     "right": "'2026-05-13T13:05:29Z'"
+    },
+    "$.@graph[3].datePublished": {
+     "left": "<absent>",
+     "right": "'2023-05-16T22:01:12Z'"
+    },
+    "$.@graph[3].identifier": {
+     "left": "<absent>",
+     "right": "'https://doi.org/10.48546/workflowhub.workflow.384.3'"
+    },
+    "$.@graph[3].license": {
+     "left": "'https://spdx.org/licenses/GPL-3.0'",
+     "right": "'https://spdx.org/licenses/Apache-2.0'"
+    },
+    "$.@graph[3].url": {
+     "left": "'https://workflowhub.eu/workflows/384?version=2'",
+     "right": "'https://workflowhub.eu/workflows/384?version=3'"
+    },
+    "$.@graph[3].version": {
+     "left": "2",
+     "right": "3"
+    }
+   },
+   "version_pinned_graph_nodes": {
+    "run_wf.sh": {
+     "run_wf.sh.dateCreated": {
+      "left": "'2023-05-16T20:38:36Z'",
+      "right": "'2023-05-16T20:41:04Z'"
+     },
+     "run_wf.sh.dateModified": {
+      "left": "'2023-05-16T20:38:36Z'",
+      "right": "'2026-05-13T13:05:29Z'"
+     },
+     "run_wf.sh.datePublished": {
+      "left": "<absent>",
+      "right": "'2023-05-16T22:01:12Z'"
+     },
+     "run_wf.sh.identifier": {
+      "left": "<absent>",
+      "right": "'https://doi.org/10.48546/workflowhub.workflow.384.3'"
+     },
+     "run_wf.sh.license": {
+      "left": "'https://spdx.org/licenses/GPL-3.0'",
+      "right": "'https://spdx.org/licenses/Apache-2.0'"
+     },
+     "run_wf.sh.url": {
+      "left": "'https://workflowhub.eu/workflows/384?version=2'",
+      "right": "'https://workflowhub.eu/workflows/384?version=3'"
+     },
+     "run_wf.sh.version": {
+      "left": "2",
+      "right": "3"
+     }
+    }
+   },
+   "workflow_id": "384"
+  }
+ ],
+ "flags": {
+  "candidate_predictions_computed": false,
+  "change_stratum_adjudicated": false,
+  "eligible_pool_modified": false,
+  "external_gold_accessed": false,
+  "protected_outcomes_accessed": false,
+  "successor_frame_rebound": false
+ },
+ "grants_scientific_authority": false,
+ "normalization": {
+  "id": "WORKFLOWHUB_MEMBER_MANIFEST_NORMALIZATION_V3",
+  "module": "papers/publication_closure/a3-external-change-transport-v1/normalize_member_manifests_v3.py",
+  "request_generated_root_members_excluded": [
+   "ro-crate-metadata.json",
+   "ro-crate-preview.html"
+  ],
+  "v2_normalization_imported_verbatim": true
+ },
+ "purpose": "Descriptor-only adjudication evidence for the three families that collapsed to equal before/after v3 aggregates under WORKFLOWHUB_MEMBER_MANIFEST_NORMALIZATION_V3: per family, fetch both versions three times through the frozen transport and compare the version descriptors (ro-crate metadata content) to decide, with recorded evidence, whether the version-pair change is a genuine descriptor-level content transition or an artifact of the request-generation mechanism. Evidence gathering only: no stratum, no gold, no candidate prediction, no protected outcome, no frame rebind, no pool mutation.",
+ "run_environment": "LUNARC sbatch 3571474 on cn050, account lu2026-2-51, partition lu48, staging /projects/hep/fs9/users/scyiu/orion-a3-v3/adjudication-20260903",
+ "schema": "ORION.A3.DescriptorOnlyAdjudicationEvidence.v1",
+ "scientific_authority_delta": "NONE__EVIDENCE_GATHERING_ONLY",
+ "successor_frame_sha256": "a47d9255aa37de056cb5cdd7c140bcccb487aa3285790655a48abb5e538c2993"
+}

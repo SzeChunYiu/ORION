@@ -1,0 +1,72 @@
+name: ORION A3 descriptor-only adjudication v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a3-descriptor-only-adjudication-v1.yml"
+      - "papers/publication_closure/a3-external-change-transport-v1/adjudicate_descriptor_only_families_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/validate_descriptor_only_adjudication_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/A3_DESCRIPTOR_ONLY_ADJUDICATION_V1.md"
+      - "papers/publication_closure/a3-external-change-transport-v1/A3_DESCRIPTOR_ONLY_ADJUDICATION_V1.json"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-descriptor-only-adjudication-v1/**"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-member-manifest-freeze-v3/**"
+      - "papers/publication_closure/a3-external-change-transport-v1/build_eligible_change_cluster_pool_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/allocate_change_clusters_v1.py"
+permissions:
+  contents: read
+jobs:
+  descriptor-only-adjudication-v1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Adjudicator self-test (networkless, mutation controls)
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/adjudicate_descriptor_only_families_v1.py --self-test
+      - name: Adjudication validator (record identity, digests, evidence mode, quota consequence)
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/validate_descriptor_only_adjudication_v1.py --self-test
+      - name: Decision-record flags and custody assertions
+        run: |
+          python - <<'PY'
+          import json
+          d = json.load(open('papers/publication_closure/a3-external-change-transport-v1/A3_DESCRIPTOR_ONLY_ADJUDICATION_V1.json'))
+          assert d['schema'] == 'ORION.A3.DescriptorOnlyAdjudication.v1'
+          assert d['artifact_class'] == 'FROZEN_GOVERNANCE_ADJUDICATION_OF_V3_DESCRIPTOR_ONLY_COLLAPSE'
+          assert all(v is False for v in d['flags'].values()), d['flags']
+          assert d['grants_scientific_authority'] is False
+          assert d['scientific_authority_delta'] == 'NONE__GOVERNANCE_ADJUDICATION_RECORD_ONLY'
+          ident = d['adjudication_identity']
+          assert ident['adjudication_id'] == 'A3_DESCRIPTOR_ONLY_ADJUDICATION_V1'
+          assert ident['families'] == ['106', '360', '384']
+          assert ident['fetches_per_family_version'] == 3
+          assert ident['free_parameters'] == []
+          assert ident['run_time_resolution'] == 'NONE'
+          assert sorted(ident['verdict_vocabulary']) == sorted([
+              'DESCRIPTOR_SHOWS_VERSION_PINNED_TRANSITION',
+              'REQUEST_GENERATION_ARTIFACT',
+              'CANNOT_DISTINGUISH',
+          ])
+          verdicts = d['per_family_verdicts']
+          assert sorted(verdicts) == ['106', '360', '384']
+          assert all(v['verdict'] == 'DESCRIPTOR_SHOWS_VERSION_PINNED_TRANSITION' for v in verdicts.values())
+          rebind = d['successor_frame_rebind_decision']
+          assert rebind['rebind_v3_aggregates'] is False
+          assert rebind['decision'] == 'NO_REBIND__V2_BOUND_FRAME_REMAINS_THE_ADMISSION_AUTHORITY'
+          chain = d['authority_chain']
+          assert chain['self_promotion_performed'] is False
+          assert chain['self_sign_off_performed'] is False
+          assert chain['sign_off']['required'] is True
+          assert 'external' in chain['sign_off']['nature']
+          print('A3_DESCRIPTOR_ONLY_ADJUDICATION_V1_FLAGS_GREEN')
+          PY
+      - name: Pool machinery re-run (gold never enters pool; partial coverage fails closed)
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/build_eligible_change_cluster_pool_v1.py --self-test
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
