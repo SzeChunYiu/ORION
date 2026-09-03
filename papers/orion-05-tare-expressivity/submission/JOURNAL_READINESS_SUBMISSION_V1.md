@@ -1,5 +1,19 @@
 # ORION-05 — submission readiness record
 
+> **SUPERSEDED by `JOURNAL_READINESS_SUBMISSION_V2.md`** (terminal
+> `PUBLICATION_PACKAGE_CLOSED__QUANTUM_FILING_METADATA_EXTERNAL`, 2026-08-31).
+> V2 retires this record's central blocker: rechecked Quantum author guidance
+> does **not** require `quantumarticle` at initial submission (encouraged, not
+> mandatory), so the "venue class/style file" conversion below is not a filing
+> gate. The real filing dependency — a public arXiv preprint in/cross-listed to
+> `quant-ph` — is packaged and hash-bound at `final-20260831/` (2-row package,
+> verified 2026-09-03 byte-audit). What remains open are portal/archive metadata
+> only (final arXiv identifier, ORCID if supplied, funding statement,
+> competing-interest declaration, licence/archive metadata). The
+> `READY_PENDING_TEMPLATE` label and the remaining-inputs list below are
+> historical. Supersession recorded 2026-09-03 (tier-B filing-surface closure
+> pass).
+
 **Terminal: `READY_PENDING_TEMPLATE`** (Wave-1 filing bar, defined in
 `WAVE1_UPGRADE_LANE_VENUE_DECISIONS_V1.md` — PR #1692, pending). A complete
 standalone manuscript exists and compiles with zero undefined references; it is
