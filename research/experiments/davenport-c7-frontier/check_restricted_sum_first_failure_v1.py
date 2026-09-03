@@ -89,12 +89,16 @@ def main() -> int:
         complement = N - atom_max
         assert complement > 2 * p + M  # target D_2
 
-        # The Griesmer first-failure level cap equals the eta-tail gate using
-        # eta <= coding_cap+1.
+        # The Griesmer short-free length cap L is equivalent to the eta upper
+        # bound eta <= L+1 for the recurrence tail gate. Its coding cutoff is
+        # exactly the eta-tail threshold. The final first-failure cap may be
+        # smaller because the independent algebraic bound m<=M+1 can bind.
         L = coding_cap(p)
-        coding_K = min(M + 1, (L - M - 1) // p)
-        eta_tail_K = tail_threshold(p, L + 1)
-        assert coding_K == eta_tail_K
+        coding_cutoff = (L - M - 1) // p
+        eta_tail = tail_threshold(p, L + 1)
+        assert coding_cutoff == eta_tail
+        first_failure_K = min(M + 1, coding_cutoff)
+        assert first_failure_K == min(M + 1, eta_tail)
 
     # p=5 exact eta control.
     assert tail_threshold(5, 33) == 4
@@ -144,6 +148,8 @@ def main() -> int:
         "p7_digest": digest,
         "p5_eta_tail_threshold": tail_threshold(5, 33),
         "p7_griesmer_tail_threshold": tail_threshold(7, coding_cap(7) + 1),
+        "p11_griesmer_tail_threshold": tail_threshold(11, coding_cap(11) + 1),
+        "p11_first_failure_cap": min((5 * 11 - 5) // 2 + 1, tail_threshold(11, coding_cap(11) + 1)),
     }, sort_keys=True))
     return 0
 

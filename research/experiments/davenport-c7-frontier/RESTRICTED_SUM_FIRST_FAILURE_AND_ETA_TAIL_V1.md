@@ -1,4 +1,4 @@
-# Restricted-sum first-failure front end and eta-tail propagation — V1
+# Restricted-sum first-failure front end and eta-tail propagation — V2
 
 Status: **proved analytic reduction with donor restricted-sum inputs and two independent arithmetic/signature checkers**. No new value of `D_k(C_p^3)` is asserted here.
 
@@ -122,7 +122,7 @@ so `B` contains a nonempty zero-sum subsequence of length at most `2p-2`. Becaus
 p+1\le|U|\le2p-2.
 \]
 
-We may insert `U` into a maximum factorization of `B`. For `m>=4`, the complement after deleting `U` has length strictly larger than `D_{m-2}`; for `m=3` it is strictly larger than `D_1=3p-2`. Hence the complement has enough zero-sum factors that any maximum factorization can be chosen to contain such a short atom.
+We may insert `U` into a maximum factorization of `B`. For `m>=4`, the complement after deleting `U` has length strictly larger than `D_{m-2}`; for `m=3` it is strictly larger than `D_1=3p-2`. Hence the complement has enough zero-sum factors that a maximum factorization can be chosen to contain such a short atom.
 
 Writing its excess as `e=|U|-p`, every first failure therefore has a maximum factorization with
 
@@ -165,7 +165,7 @@ D_{t+1}(C_p^3)=(t+1)p+M_p.
 
 The inequality remains true at the next level, so induction propagates equality for every `k>=t`.
 
-Thus **one exact level past the eta threshold determines the entire tail**.
+Thus **one exact level at or beyond the eta threshold determines the entire tail**.
 
 If only an upper bound
 
@@ -173,7 +173,7 @@ If only an upper bound
 \eta(C_p^3)\le E_p
 \]
 
-is known, it is sufficient to verify the target through
+is known, define the recurrence threshold
 
 \[
 \boxed{
@@ -184,7 +184,19 @@ T_p(E_p)=
 }
 \]
 
-The Griesmer-based p-short-free cap from `FINITE_FIRST_FAILURE_REDUCTION_V1.md` is exactly this mechanism with `E_p=L_p+1`: it gives `T_5=10`, `T_7=15`, and `T_p=(5p-3)/2` for `p>=11`.
+If the target is verified through level `T_p(E_p)`, the recurrence propagates it to every larger level. Independently, the first-failure excess grammar gives `m<=M_p+1`. Hence the combined finite verification range is
+
+\[
+\boxed{2\le k\le\min\{M_p+1,T_p(E_p)\}.}
+\]
+
+For the Griesmer short-free cap `L_p` from `FINITE_FIRST_FAILURE_REDUCTION_V1.md`, taking `E_p=L_p+1` makes the **coding cutoff** exactly `T_p(E_p)`. Numerically,
+
+\[
+T_5=10,\qquad T_7=15,\qquad T_p=3p-6\quad(p\ge11).
+\]
+
+For `p>=11`, the independent algebraic bound `M_p+1=(5p-3)/2` is smaller than `3p-6`, so the final first-failure cap remains `(5p-3)/2`. This distinction was exposed by CI and is the reason for this V2 correction.
 
 ## 6. The solved p=5 control
 
@@ -218,7 +230,7 @@ For general odd primes, the precise value of `eta(C_p^3)` is not known. The clas
 
 and `eta(C_p^3)=8p-7` is the expected rank-three value in the relevant conjectural picture. This conjecture is **not used** anywhere in the verified reductions.
 
-If an upper bound `eta(C_p^3)<=8p-7` were eventually proved, the eta-tail gate would reduce the all-`k` problem to only the first four or five levels (depending on `p`), rather than `O(p)` levels. This quantifies exactly why the rank-three short-zero problem is structurally coupled to immediate multiwise stabilization.
+If an upper bound `eta(C_p^3)<=8p-7` were eventually proved, then `T_p(8p-7)` would reduce the all-`k` problem to only the first few levels, rather than `O(p)` levels. This quantifies exactly why the rank-three short-zero problem is structurally coupled to immediate multiwise stabilization.
 
 ## 8. Exact p=7 signature refinement
 
@@ -256,7 +268,7 @@ D_k(C_p^3)=kp+M_p
 
 must now satisfy simultaneously:
 
-1. a finite factorization level `3<=m<=T_p(E_p)` for any verified eta upper bound `E_p`;
+1. a finite factorization level `3<=m<=min(M_p+1,T_p(E_p))` for any verified eta upper bound `E_p`;
 2. overshoot `1<=q<=(p-1)/2`;
 3. excess normal form `e_i=q+f_i` with `sum f_i=M_p-(m-1)q`;
 4. a maximum factorization containing an atom with excess at most `p-2`;
