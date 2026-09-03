@@ -298,14 +298,17 @@ def harvest(workers: int, fetches: int, note: str) -> dict[str, Any]:
 def write_outputs(result: dict[str, Any], output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     if result["terminal"] == SUCCESS_TERMINAL:
-        snapshot = result.pop("snapshot")
+        snapshot = result["snapshot"]
         for chunk in snapshot["chunks"]:
             payload = chunk.pop("payload")
             text = json.dumps(payload, indent=1, sort_keys=True) + "\n"
             (output_dir / Path(chunk["path"]).name).write_text(text, encoding="utf-8")
             chunk["sha256"] = hashlib.sha256((output_dir / Path(chunk["path"]).name).read_bytes()).hexdigest()
         (output_dir / "SNAPSHOT_V3.json").write_text(json.dumps(snapshot, indent=1, sort_keys=True) + "\n", encoding="utf-8")
-    (output_dir / "RESULT_V3.json").write_text(json.dumps(result, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    (output_dir / "RESULT_V3.json").write_text(
+        json.dumps({k: v for k, v in result.items() if k != "snapshot"}, indent=1, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
 
 def _self_test() -> dict[str, Any]:
