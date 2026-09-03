@@ -16,6 +16,10 @@ BUILDER = (
     ROOT
     / "papers/publication_closure/orion_all_submission_20260831/build_all_submission_materials.py"
 )
+VERIFIER = (
+    ROOT
+    / "papers/publication_closure/orion_all_submission_20260831/verify_all_submission_materials.py"
+)
 MIRROR = ROOT / "scripts/mirror_orion_papers_all.py"
 RENDER_RECONCILER = ROOT / "scripts/reconcile_ci_manuscript_renders.py"
 CI_WORKFLOW = ROOT / ".github/workflows/ci.yml"
@@ -317,3 +321,147 @@ def test_orion01_current_routes_have_one_back_matter_copy() -> None:
             "arxiv": {"data_and_code_availability": 1, "references": 1},
             "journal": {"data_and_code_availability": 1, "references": 1},
         }
+
+
+SKILLS_DOC = """# Academic-paper skill application
+
+`skills-applied: academic-paper-pipeline@{pipeline}, academic-writing@1.18.0, nature-polishing@7.5.0, nature-reviewer@3.5.0, publication-release-integrity, manuscript-element-justification`
+
+Skill authority: `SzeChunYiu/academic-paper-skills@{revision}`.
+"""
+
+OLD_RELEASE = "be335c630240cd5e73535e8f813594b227d736a8"
+NEW_RELEASE = "488fc5310b84e578431f4a9a176d55bf9a3f0b99"
+
+
+def skills_release(revision: str, pipeline: str) -> dict:
+    return {
+        "repository": "https://github.com/SzeChunYiu/academic-paper-skills",
+        "revision": revision,
+        "academic_paper_pipeline_version": pipeline,
+        "academic_writing_version": "1.18.0",
+        "nature_polishing_version": "7.5.0",
+        "nature_reviewer_version": "3.5.0",
+    }
+
+
+def skills_package(tmp_path: Path, revision: str, pipeline: str) -> Path:
+    root = tmp_path / "package"
+    root.mkdir(parents=True, exist_ok=True)
+    (root / "SKILLS_APPLIED.md").write_text(
+        SKILLS_DOC.format(revision=revision, pipeline=pipeline), encoding="utf-8"
+    )
+    return root
+
+
+def test_skills_release_expectation_is_per_paper(tmp_path: Path, monkeypatch) -> None:
+    """Two packages may legitimately be built from two different skills releases."""
+    module = load_module(VERIFIER, "orion_all_submission_verifier_per_paper")
+    monkeypatch.setattr(
+        module,
+        "closure_registry",
+        lambda: {
+            "papers": [
+                {"paper": "ORION-03", "academic_paper_skills": skills_release(OLD_RELEASE, "1.20.0")},
+                {"paper": "ORION-08", "academic_paper_skills": skills_release(NEW_RELEASE, "1.21.0")},
+            ]
+        },
+    )
+
+    old_root = skills_package(tmp_path / "old", OLD_RELEASE, "1.20.0")
+    new_root = skills_package(tmp_path / "new", NEW_RELEASE, "1.21.0")
+
+    assert module.verify_skills_release(
+        {"paper": "ORION-03"}, old_root, {"academic_paper_skills": skills_release(OLD_RELEASE, "1.20.0")}
+    ) == ["skills_release_registry_binding", "skills_release_document_consistency"]
+    assert module.verify_skills_release(
+        {"paper": "ORION-08"}, new_root, {"academic_paper_skills": skills_release(NEW_RELEASE, "1.21.0")}
+    ) == ["skills_release_registry_binding", "skills_release_document_consistency"]
+
+
+def test_skills_release_is_not_satisfied_by_self_consistent_declaration(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """A manifest that agrees with its own SKILLS_APPLIED.md is not sufficient.
+
+    Both move together to a release the registry does not record, which is exactly
+    what a single hardcoded constant used to catch and what a self-declared
+    expectation would let through.
+    """
+    module = load_module(VERIFIER, "orion_all_submission_verifier_self_declared")
+    monkeypatch.setattr(
+        module,
+        "closure_registry",
+        lambda: {"papers": [{"paper": "ORION-03", "academic_paper_skills": skills_release(OLD_RELEASE, "1.20.0")}]},
+    )
+    root = skills_package(tmp_path, NEW_RELEASE, "1.21.0")
+
+    with pytest.raises(RuntimeError, match="academic-paper-skills release authority mismatch"):
+        module.verify_skills_release(
+            {"paper": "ORION-03"}, root, {"academic_paper_skills": skills_release(NEW_RELEASE, "1.21.0")}
+        )
+
+
+def test_skills_release_rejects_manifest_document_disagreement(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """The defect class the single hardcoded dict could not express at all."""
+    module = load_module(VERIFIER, "orion_all_submission_verifier_document")
+    monkeypatch.setattr(
+        module,
+        "closure_registry",
+        lambda: {"papers": [{"paper": "ORION-08", "academic_paper_skills": skills_release(NEW_RELEASE, "1.21.0")}]},
+    )
+    root = skills_package(tmp_path, OLD_RELEASE, "1.20.0")
+
+    with pytest.raises(RuntimeError, match="SKILLS_APPLIED.md contradicts the manifest"):
+        module.verify_skills_release(
+            {"paper": "ORION-08"}, root, {"academic_paper_skills": skills_release(NEW_RELEASE, "1.21.0")}
+        )
+
+
+def test_skills_release_registry_record_fails_closed(tmp_path: Path, monkeypatch) -> None:
+    """A missing registry record must fail, never be read as 'checked and fine'."""
+    module = load_module(VERIFIER, "orion_all_submission_verifier_failclosed")
+    monkeypatch.setattr(module, "closure_registry", lambda: {"papers": [{"paper": "ORION-03"}]})
+    root = skills_package(tmp_path, OLD_RELEASE, "1.20.0")
+
+    with pytest.raises(RuntimeError, match="records no academic-paper-skills release for ORION-03"):
+        module.verify_skills_release(
+            {"paper": "ORION-03"}, root, {"academic_paper_skills": skills_release(OLD_RELEASE, "1.20.0")}
+        )
+
+
+def test_skills_release_rejects_unregistered_revision(tmp_path: Path, monkeypatch) -> None:
+    """The registry is not a blank cheque: the revision must be a registered release."""
+    module = load_module(VERIFIER, "orion_all_submission_verifier_allowlist")
+    invented = "deadbeef" * 5
+    monkeypatch.setattr(
+        module,
+        "closure_registry",
+        lambda: {"papers": [{"paper": "ORION-03", "academic_paper_skills": skills_release(invented, "1.20.0")}]},
+    )
+    root = skills_package(tmp_path, invented, "1.20.0")
+
+    with pytest.raises(RuntimeError, match="unregistered academic-paper-skills revision"):
+        module.verify_skills_release(
+            {"paper": "ORION-03"}, root, {"academic_paper_skills": skills_release(invented, "1.20.0")}
+        )
+
+
+def test_wrapped_tex_log_undefined_citation_is_caught() -> None:
+    """pdflatex wraps at column 79 mid-word; the raw scan reported a false clean."""
+    module = load_module(VERIFIER, "orion_all_submission_verifier_logwrap")
+    head = "Package natbib Warning: Citation `hendrycks2021measuringmassivemultitasklanguag"
+    assert len(head) == 79
+    wrapped = head + "\neunderstanding' on page 1 undefined on input line 4.\n"
+    clean = "Output written on main.pdf (7 pages, 291733 bytes).\n"
+
+    assert not re.findall(r"Citation .* undefined", wrapped, flags=re.I)
+    assert re.findall(module.UNDEFINED_CITATION_PATTERN, module.dewrap_tex_log(wrapped), flags=re.I)
+    assert not re.findall(module.UNDEFINED_CITATION_PATTERN, module.dewrap_tex_log(clean), flags=re.I)
+    assert re.findall(
+        module.UNDEFINED_CITATION_PATTERN,
+        module.dewrap_tex_log("Package natbib Warning: There were undefined citations.\n"),
+        flags=re.I,
+    )
