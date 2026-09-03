@@ -17,9 +17,18 @@ Receipt envelope (one JSON file per leg, glob MAX_R5H_LUNARC_RECEIPT_*.json):
 
 Payload rules (by leg):
     SUBJECT:<S>  payload.schema == ORIONQ.MAXR5H.SubjectFast.v1,
-                 payload.subject == <S>, payload.result a non-empty dict of
-                 arms; every arm a non-empty dict of variants with integer
-                 CNOT > 0 and 64-hex partition_sha256.
+                 payload.subject == <S>, and payload.result has the real frozen
+                 fast-runner shape (the earlier arms->variants reading never
+                 matched an actual SubjectFast.v1 result and would have
+                 rejected the first real receipt): scalars subject/source_blob/
+                 n_qubits/terms + stats leaves B0_Pauli_LCU and
+                 B1_R5G_pair_reference + frontier sizes + non-empty
+                 donor/mixed_window_meta lists + non-empty B2_donor_named /
+                 B3_mixed_named variant dicts (each value None or a stats leaf)
+                 + the three frozen booleans. A stats leaf is a dict with
+                 integer CNOT > 0 and 64-hex partition_sha256. The chunked
+                 instrument's extra top-level "chunked" provenance key is
+                 allowed alongside schema/subject/result.
     DEV          payload.schema == ORIONQ.MAXR5H.MixedCardinalityDevelopment.v1,
                  payload.subjects a non-empty dict keyed by frozen subject
                  names, payload.r5h_development_pass a bool.
@@ -50,6 +59,24 @@ FROZEN_SUBJECTS = ("H4", "N2")
 
 def _fail(path: Path, problems: list[str], msg: str) -> None:
     problems.append(f"{path.name}: {msg}")
+
+
+def _stats_leaf_ok(stats: object, problems: list[str], where: str) -> bool:
+    """A stats leaf (serialize() output) has integer CNOT > 0 and 64-hex
+    partition_sha256; the remaining keys (Lambda, histogram, ...) are the
+    engine's own and are not re-derived here."""
+    if not isinstance(stats, dict):
+        problems.append(f"{where}: stats leaf is not an object")
+        return False
+    cnot = stats.get("CNOT")
+    if not isinstance(cnot, int) or isinstance(cnot, bool) or cnot <= 0:
+        problems.append(f"{where}: CNOT {cnot!r} not a positive int")
+        return False
+    part = stats.get("partition_sha256")
+    if not isinstance(part, str) or not HEX64_RE.match(part):
+        problems.append(f"{where}: partition_sha256 {part!r} not 64-hex")
+        return False
+    return True
 
 
 def validate_receipt(path: Path, problems: list[str]) -> None:
@@ -99,21 +126,46 @@ def validate_receipt(path: Path, problems: list[str]) -> None:
         if not isinstance(result, dict) or not result:
             _fail(path, problems, "payload.result missing/empty")
             return
-        for arm, variants in result.items():
+        name = path.name
+        if not isinstance(result.get("subject"), str) or result["subject"] != subject:
+            _fail(path, problems, f"result.subject {result.get('subject')!r} != {subject!r}")
+            return
+        for key in ("n_qubits", "terms", "donor_direct_frontier_size", "mixed_frontier_size"):
+            val = result.get(key)
+            if not isinstance(val, int) or isinstance(val, bool) or val <= 0:
+                _fail(path, problems, f"result.{key} {val!r} not a positive int")
+                return
+        if not isinstance(result.get("source_blob"), str) or not result["source_blob"]:
+            _fail(path, problems, "result.source_blob missing/empty")
+            return
+        for key in ("mixed_balanced_uses_TARE",
+                    "mixed_balanced_distinct_from_all_donor_resources",
+                    "r5h_subject_development_pass"):
+            if not isinstance(result.get(key), bool):
+                _fail(path, problems, f"result.{key} not a bool")
+                return
+        for key in ("B0_Pauli_LCU", "B1_R5G_pair_reference"):
+            if not _stats_leaf_ok(result.get(key), problems, f"{name}: result.{key}"):
+                return
+        for key in ("donor_window_meta", "mixed_window_meta"):
+            meta = result.get(key)
+            if not isinstance(meta, list) or not meta:
+                _fail(path, problems, f"result.{key} not a non-empty list")
+                return
+            for i, w in enumerate(meta):
+                if not isinstance(w, dict) or not isinstance(w.get("start"), int) \
+                        or not isinstance(w.get("global_frontier_after"), int):
+                    _fail(path, problems, f"result.{key}[{i}] missing start/global_frontier_after ints")
+                    return
+        for key in ("B2_donor_named", "B3_mixed_named"):
+            variants = result.get(key)
             if not isinstance(variants, dict) or not variants:
-                _fail(path, problems, f"arm {arm!r} missing/empty variants")
+                _fail(path, problems, f"result.{key} missing/empty")
                 return
             for variant, stats in variants.items():
-                if not isinstance(stats, dict):
-                    _fail(path, problems, f"arm {arm!r} variant {variant!r} not an object")
-                    return
-                cnot = stats.get("CNOT")
-                if not isinstance(cnot, int) or isinstance(cnot, bool) or cnot <= 0:
-                    _fail(path, problems, f"arm {arm!r} variant {variant!r} CNOT not a positive int")
-                    return
-                part = stats.get("partition_sha256")
-                if not isinstance(part, str) or not HEX64_RE.match(part):
-                    _fail(path, problems, f"arm {arm!r} variant {variant!r} partition_sha256 not 64-hex")
+                if stats is None:
+                    continue  # a named variant the frontier does not contain is legal
+                if not _stats_leaf_ok(stats, problems, f"{name}: result.{key}[{variant!r}]"):
                     return
     else:  # DEV
         if payload.get("schema") != DEV_PAYLOAD_SCHEMA:
@@ -131,8 +183,8 @@ def validate_receipt(path: Path, problems: list[str]) -> None:
             _fail(path, problems, "payload.r5h_development_pass not a bool")
 
 
-def main() -> int:
-    receipts = sorted(HERE.glob("MAX_R5H_LUNARC_RECEIPT_*.json"))
+def run(directory: Path = HERE) -> int:
+    receipts = sorted(directory.glob("MAX_R5H_LUNARC_RECEIPT_*.json"))
     if not receipts:
         print("ORIONQ_MAX_R5H_RECEIPTS=PENDING reason=no-receipt-files-committed")
         return 0
@@ -154,6 +206,10 @@ def main() -> int:
         return 2
     print(f"ORIONQ_MAX_R5H_RECEIPTS=VALIDATED n={len(receipts)} legs={','.join(legs)}")
     return 0
+
+
+def main() -> int:
+    return run(HERE)
 
 
 if __name__ == "__main__":
