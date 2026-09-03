@@ -1,0 +1,80 @@
+name: shadow-davenport-c7-cycle4
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+    paths:
+      - .github/workflows/shadow-davenport-c7-cycle4.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  ingest-web-and-recurse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            packages/orion-research-harness/pyproject.toml
+      - name: Install canonical ORION and harness
+        run: |
+          set -euo pipefail
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Restore exact cycle-3 workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: davenport-c7-harness-cycle3
+          path: .cycle3
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: SzeChunYiu/ORION
+          run-id: 33759313310
+      - name: Ingest exact WEB_SEARCH response
+        run: |
+          set -euo pipefail
+          rm -rf .research .cycle4-logs
+          cp -a .cycle3/.research .research
+          mkdir -p .cycle4-logs
+          orion-harness show-request .research hostreq:90d6c666a2182df84b572b883f9644f58456f64fc655bea98df0aec8d5c16cc5 | tee .cycle4-logs/request.json
+          orion-harness ingest .research hostreq:90d6c666a2182df84b572b883f9644f58456f64fc655bea98df0aec8d5c16cc5 \
+            --file research/experiments/davenport-c7-frontier/host-results/cycle3-web-current-exact.json \
+            --executor 'chatgpt:web-search' | tee .cycle4-logs/ingest.json
+      - name: Re-run canonical recursive solver
+        shell: bash
+        run: |
+          set +e
+          orion-harness solve .research c7-d3 \
+            --max-iterations 2 \
+            --max-recursion-depth 5 \
+            --max-recursive-nodes 32 \
+            --max-children-per-residual 12 \
+            --max-children-per-problem 12 | tee .cycle4-logs/solve.json
+          rc=${PIPESTATUS[0]}
+          echo "$rc" > .cycle4-logs/solve-exit-code.txt
+          orion-harness pending .research | tee .cycle4-logs/pending.json
+          orion-harness handoff .research | tee .cycle4-logs/handoff.txt
+          exit 0
+      - name: Upload next immutable workspace
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: davenport-c7-harness-cycle4
+          include-hidden-files: true
+          path: |
+            .research
+            .cycle4-logs
+            research/experiments/davenport-c7-frontier/FRAME_V1.md
+            research/experiments/davenport-c7-frontier/host-results/cycle3-web-current-exact.json
+          if-no-files-found: error
+          retention-days: 14

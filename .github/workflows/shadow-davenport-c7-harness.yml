@@ -1,0 +1,85 @@
+name: shadow-davenport-c7-harness
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-c7-harness-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  harness-frame:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            packages/orion-research-harness/pyproject.toml
+      - name: Install canonical ORION and research harness
+        run: |
+          set -euo pipefail
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Verify harness mechanics surfaces
+        run: |
+          set -euo pipefail
+          mkdir -p .harness-logs
+          orion-harness mechanics-coverage | tee .harness-logs/mechanics-coverage.json
+          orion-harness execution-coverage | tee .harness-logs/execution-coverage.json
+          orion-harness navigate 'zero-sum extremal problem decomposition, counterexample-guided completion, bounded saturation' --limit 20 | tee .harness-logs/navigate.json
+          orion-harness atom-calculus | tee .harness-logs/atom-calculus.json
+          orion-harness saturation-surface | tee .harness-logs/saturation-surface.json
+      - name: Initialize frozen research problem
+        run: |
+          set -euo pipefail
+          rm -rf .research
+          orion-harness init .research --project-root . --allow-process-tools | tee .harness-logs/init.json
+          orion-harness problem-add .research c7-d3 \
+            'Determine whether D_3(C_7^3)=36; if equality holds identify a structural mechanism, otherwise produce and verify a smallest obstruction.' \
+            --scope 'Finite abelian group C_7^3=(Z/7Z)^3; sequences of length 36; three pairwise disjoint nonempty zero-sum subsequences. Preserve donor attribution and bounded evidence.' \
+            --domain additive-combinatorics \
+            --domain zero-sum-theory \
+            --domain finite-geometry \
+            --criterion 'Saturate exact/alias donor searches before novelty language.' \
+            --criterion 'Reconstruct the Freeze-Schmid lower bound and strongest known exact inputs with donor ownership.' \
+            --criterion 'Derive necessary conditions on any length-36 packing-number-at-most-two obstruction.' \
+            --criterion 'Test spectrum, multiplicity, projective-line and plane-occupancy mechanisms with exact bounded experiments.' \
+            --criterion 'Any result-bearing computation requires an independent checker where practical.' \
+            --criterion 'Preserve counterexamples, null results and CANNOT_CHECK terminals.' | tee .harness-logs/problem-add.json
+      - name: Run canonical recursive solver to next host boundary
+        shell: bash
+        run: |
+          set +e
+          orion-harness solve .research c7-d3 \
+            --max-iterations 2 \
+            --max-recursion-depth 5 \
+            --max-recursive-nodes 32 \
+            --max-children-per-residual 12 \
+            --max-children-per-problem 12 | tee .harness-logs/solve.json
+          rc=${PIPESTATUS[0]}
+          echo "$rc" > .harness-logs/solve-exit-code.txt
+          orion-harness pending .research | tee .harness-logs/pending.json
+          orion-harness handoff .research | tee .harness-logs/handoff.txt
+          exit 0
+      - name: Upload workspace and receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: davenport-c7-harness-workspace
+          include-hidden-files: true
+          path: |
+            .research
+            .harness-logs
+            research/experiments/davenport-c7-frontier/FRAME_V1.md
+          if-no-files-found: error
+          retention-days: 14
