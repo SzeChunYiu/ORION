@@ -152,12 +152,11 @@ def import_upstream(repo: Path):
         if not programs:
             orig_config()
             return
-        key = hashlib.sha256(
-            "\n".join(
-                sorted(top_level_imports(p.read_text(errors="ignore")))
-                for p in programs
-            ).encode()
-        ).hexdigest()
+        per_program = sorted(
+            ",".join(sorted(top_level_imports(p.read_text(errors="ignore"))))
+            for p in programs
+        )
+        key = hashlib.sha256("\n".join(per_program).encode()).hexdigest()
         if cache["key"] == key:
             print("[eval] config_conda_env: skipped (import set unchanged)", flush=True)
             return
@@ -307,7 +306,7 @@ def run_eval_phase(phase: str, parquet: Path, repo: Path, limit: int | None) -> 
                     print(f"[eval:{phase}] {model} {fid} inst={inst} {action} "
                           f"-> success_rate={out['success_rate']} "
                           f"({out['seconds']}s)", flush=True)
-                    if limit and done >= limit:
+                    if limit and done + failed >= limit:
                         break
                 else:
                     continue
@@ -395,6 +394,15 @@ def self_test() -> None:
     code = "import numpy\nimport pandas as pd\nfrom sklearn.metrics import r2_score\nfrom . import rel"
     assert top_level_imports(code) == frozenset({"numpy", "pandas", "sklearn"})
     assert top_level_imports("def f(:\n  pass") == frozenset({"<unparsable>"})
+    # cache-key join must consume STRINGS (smoke job 3570227: join over a
+    # generator of sorted-lists raised TypeError for all 68 cells)
+    per_program = sorted(
+        ",".join(sorted(top_level_imports(src)))
+        for src in (code, "import os\nimport numpy")
+    )
+    key = hashlib.sha256("\n".join(per_program).encode()).hexdigest()
+    assert isinstance(key, str) and len(key) == 64
+    assert per_program[0] == "numpy,os" and per_program[1] == "numpy,pandas,sklearn"
     # judge shim score parsing = upstream regex semantics
     sys.path.insert(0, str(SHIM_DIR))
     import openai as shim_openai  # noqa: E402  (the shim, first on path)
