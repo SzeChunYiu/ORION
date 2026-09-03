@@ -25,18 +25,37 @@ governed pipeline.
   `ARXIV_CC_BY_LIVE_SAMPLE_RECEIPT_V1.json` (8/8 license+version verified live),
   preflight `ARXIV_CC_BY_FULLTEXT_LIVE_PREFLIGHT_V1.json` + script dir.
 
-## Route R1 — arXiv full-text byte binding (V2, running on LUNARC)
+## Route R1 — arXiv full-text byte binding (V2, terminal)
 
-- Executor: `arxiv-cc-by-fulltext-pool-binding-v2/bind_arxiv_cc_by_fulltext_pool_v2.py`,
-  sbatch job 3569822 (cn001, partition lu48), probing job 3569325 preceded it.
-- Method: per candidate, resolve OAI `arXivRaw` record, require license==CC BY 4.0,
-  fetch exact `vN` PDF from `export.arxiv.org`, sha256 the bytes, append one receipt row
-  per candidate to `BINDING_V2_RECEIPTS.jsonl`; every HTTP request appended to
-  `ACCESS_LOG_V2.jsonl` (both append-only). Bytes stored outside the repository under
-  `/home/scyiu/orion-a5-sources/arxiv-fulltext/pdf/` — NOT committed.
-- Result: <!-- ARXIV_V2_FINAL --> pending job completion (placeholder: 225/1536 receipt
-  rows at 2026-09-03T13:5xZ, 696 MB fetched); final bound_n / non-CC-BY-excluded_n /
-  fetch-failure_n to be filled from `BINDING_V2_RESULT.json` before commit.
+- Executor: `arxiv-cc-by-fulltext-pool-binding-v2/bind_arxiv_cc_by_fulltext_pool_v2.py`
+  (script sha256 `447cd7…8feb1`), LUNARC sbatch: probe 3569325; binding 3569822 (FAILED
+  at 387 rows — `/home/scyiu` home quota exceeded, `Errno 122`); resubmitted 3570516
+  after moving the byte store to
+  `/projects/hep/fs9/users/scyiu/orion-a5-sources/arxiv-fulltext/pdf` (home `pdf` is a
+  symlink to it; home tree freed 1.3 GB).
+- Terminal state (run 2026-09-03T12:57:19Z→13:58:26Z, host lunarc-scyiu-sbatch):
+  **bound_n 1531/1536** (EARTH_ENVIRONMENT 384, LIFE_BIOMEDICAL 382,
+  PHYSICAL_ENGINEERING 382, SCIENTIFIC_SOFTWARE 383); resumed 387 previously-bound rows,
+  newly bound 1144. Terminal marker:
+  `…POOL_BINDING_INCOMPLETE__RESUME_REQUIRED` (bound_n != pool rows).
+- `cannot_check_n = 5` — exact-version PDF URLs return HTTP 404 after 3 retries each:
+  `1805.00393v4`, `1908.00285v3`, `2003.10750v3`, `1811.00003v2`, `1907.08612v2`.
+  Spot-verified live 2026-09-03: two of the five return 404 while a prior version of
+  the same paper returns 200 — genuine upstream absence, not a URL-construction defect.
+  Resume cannot help these; they stay unbound and recorded.
+- Preflight cross-check vs the durable preflight receipt (workflow artifact 9814382058):
+  6/8 matched; 2 ids (`1801.00636v1`, `2103.11013v1`) fetched byte-different PDFs from
+  the same exact-version URLs (pdf_sha256 drift at one character position each —
+  verified char-level, not a display artifact). Provenance caveat: arXiv's permanence
+  guarantee is identifier-level, not byte-level, for some PDFs; receipts keep the
+  run-time sha and flag the drift.
+- Append-only artifacts (sha256 in `BINDING_V2_SHA256SUMS`, transfer-verified):
+  `BINDING_V2_RECEIPTS.jsonl` `cb3902…930`, `ACCESS_LOG_V2.jsonl` `c1c49f…e24`
+  (a few marker rows appended after result-write, so it supersedes the in-JSON
+  provenance hash `65fd13…b6`), `BINDING_V2_RESULT.json` `8378e2…7bae`,
+  `RUN_STDOUT.log` `4d2778…1198`. 1159 access-log attempts, 6.5 GB PDF bytes on fs9,
+  NOT committed. Network policy: concurrency 1, 3.1 s min interval, hosts
+  arxiv.org/export.arxiv.org only, 64 MiB per-PDF cap, 3 retries.
 
 ## Route R2 — PMC OA linked records harvest (V1, complete)
 
