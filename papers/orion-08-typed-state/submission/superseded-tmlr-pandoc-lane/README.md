@@ -22,6 +22,14 @@ Why it is dead:
    `papers/publication_closure/tier_b_20260901/finalize_tier_b_package.py`,
    `submission/tier-b-final-20260901/`.
 
+**Relocated 2026-09-03 (second pass).** The lane's own 6-page render and its
+2026-08-28 manifests had been left behind at the `submission/` top level, where
+`manuscript.pdf` was the first PDF a filer would reach. They now live here as
+`manuscript.pdf` and `SUBMISSION_MANIFEST_20260828.{md,sha256}`. Those manifests
+are stale against the live sources on every entry checked and disagree with each
+other on `03-results.tex` and `06-limitations.tex`; they bind nothing. The only
+filing surface is named in `../FILING_SURFACE.md`.
+
 The current cover letter and availability statement governing the filing live
 in `submission/tier-b-final-20260901/journal/` (and its source in
 `submission/publication-ready-20260831/journal/`). Nothing in this directory

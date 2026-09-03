@@ -1,7 +1,28 @@
-# Submission manifest — orion-08-typed-state
+# SUPERSEDED submission manifest (2026-08-28) — orion-08-typed-state
+
+> **SUPERSEDED — HISTORICAL RECORD ONLY. NOT A FILING SURFACE.**
+> Relocated here from `submission/` on 2026-09-03 together with the PDF it
+> describes (now `superseded-tmlr-pandoc-lane/manuscript.pdf`), because both
+> sat at the `submission/` top level where a filer would reach them first.
+>
+> The manuscript it names is the retired pandoc lane's 6-page render, which
+> predates the V4 theorem correction, carries the superseded title
+> ("… Six Matched-Information Mechanism Studies"), is marked
+> "Working framework draft", and carries none of TMLR's double-blind
+> formatting — filing it would be a filing accident.
+>
+> Every digest below is also stale against the live sources as of 2026-09-03
+> (verified: `main.tex`, `01-introduction.tex`, `03-results.tex`,
+> `06-limitations.tex` all differ), and this file and its `.sha256` sibling
+> disagree with each other on `03-results.tex` and `06-limitations.tex`.
+> Nothing here binds anything; do not repair these digests.
+>
+> The only filing surface is `submission/tier-b-final-20260901/`
+> (`arxiv/` and `journal/`), whose own `SHA256SUMS` is checksum-closed.
+> See `submission/FILING_SURFACE.md`.
 
 Target venue: **TMLR (Transactions on Machine Learning Research)**  
-Compiled manuscript: `submission/manuscript.pdf` (6 pages)  
+Compiled manuscript: `superseded-tmlr-pandoc-lane/manuscript.pdf` (6 pages; was `submission/manuscript.pdf`)  
 Manifest generated: 2026-08-28
 
 Every file below is a byte-exact input to, or output of, the compiled
