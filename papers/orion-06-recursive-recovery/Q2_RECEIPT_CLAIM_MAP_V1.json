@@ -1,0 +1,1580 @@
+{
+  "claim_ledger_binding": {
+    "active_authority_sha256": "f40a73d8f70c08d26ea29739a66663f40d8709ba1df14d3a0baee65b77175b28",
+    "ledger": "papers/orion-06-recursive-recovery/CLAIM_LEDGER_V4.md",
+    "package_manifest": "papers/orion-06-recursive-recovery/submission/publication-ready-20260831/PACKAGE_MANIFEST.json",
+    "sha256": "f40a73d8f70c08d26ea29739a66663f40d8709ba1df14d3a0baee65b77175b28"
+  },
+  "claims": [
+    {
+      "claim_id": "O6-C01",
+      "coverage": "FULL",
+      "coverage_note": "The abstract's permitted-outcome set earlier in the same line is 'nulls, refutations, and donor absorptions'; one indexed receipt per category is cited as exemplar and the full terminal zoo is covered claim-by-claim in O6-C02..O6-C20.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P1",
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json",
+          "certifies": "authority MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_NEGATIVE__NOT_R6 (exact refutation terminal)",
+          "index": "V1",
+          "index_digest": "7ed1181c851add9c",
+          "role": "exemplar"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json",
+          "certifies": "authority MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_POSITIVE__ABSORB__NOT_R6 (donor absorption terminal)",
+          "index": "V1",
+          "index_digest": "29dbd12abf8c817d",
+          "role": "exemplar"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N2_F3_PARTIAL_EVIDENCE_RESULTS.json",
+          "certifies": "terminal N2_F3_PARTIAL_EVIDENCE_NO_RESIDUAL__EXACT_SYNTHETIC_ONLY (null/no-residual terminal)",
+          "index": "V1",
+          "index_digest": "8960e1c58a40da05",
+          "role": "exemplar"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N2_F4_ACCESS_EDITS_RESULTS.json",
+          "certifies": "terminal N2_F4_ACCESS_EDITS_NO_RESIDUAL__EXACT_SYNTHETIC_ONLY (null/no-residual terminal)",
+          "index": "V1",
+          "index_digest": "13472c2b5ddf5b9b",
+          "role": "exemplar"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/main.tex",
+        "line": 17,
+        "quote": "Across one end-to-end programme, this discipline produces all of the outcomes it is supposed to permit."
+      }
+    },
+    {
+      "claim_id": "O6-C02",
+      "coverage": "FULL",
+      "coverage_note": "See O6-C12..O6-C15 for the sentence-level anchors of the same R6 arc.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json",
+          "certifies": "exact rank-2 shared-Tag DP negative",
+          "index": "V1",
+          "index_digest": "7ed1181c851add9c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json",
+          "certifies": "exact rank-2 shared-Tag restore-factor DP negative",
+          "index": "V1",
+          "index_digest": "520f87f8630ee96c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json",
+          "certifies": "exact three-TARE2 shared-factor DP negative",
+          "index": "V1",
+          "index_digest": "5f182cd6fc66d3e1",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json",
+          "certifies": "three-TARE2 shared-factor donor absorption (POSITIVE__ABSORB)",
+          "index": "V1",
+          "index_digest": "29dbd12abf8c817d",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json",
+          "certifies": "support-dominance refuted; new regime found (structural turn)",
+          "index": "V1",
+          "index_digest": "95e2b4b1c8a943b3",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json",
+          "certifies": "family closure restored at support two on verified domains (bounded structural residual)",
+          "index": "V2",
+          "index_digest": "1562625a91d177d83c49fbfd32bc790871c323e8",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6Q_REGIME_PREDICATE_RESULTS.json",
+          "certifies": "exact regime predicate characterizing the residual on verified domains",
+          "index": "V2",
+          "index_digest": "b481958737c3ea5a3cff1db21b31fb6112536a08",
+          "role": "supporting"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/main.tex",
+        "line": 17,
+        "quote": "Several plausible R6 candidate families are exactly absorbed or refuted before a bounded structural residual is isolated"
+      }
+    },
+    {
+      "claim_id": "O6-C03",
+      "coverage": "FULL",
+      "coverage_note": "Donor closures: N1A-N1D parent-sufficient terminals and the N2-F5B absorption; positives: the N3 and N4 exact-synthetic families.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N1_A_PARAM_SCHEMA_RESULTS.json",
+          "certifies": "terminal N1A_SYMBOLIC_SYNTHESIS_PARENT_SUFFICIENT (donor/parent closure)",
+          "index": "V1",
+          "index_digest": "4d0cc565efa4bf2f",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N1_B_GRAMMAR_GROWTH_RESULTS.json",
+          "certifies": "terminal N1B_LIBRARY_LEARNING_SUFFICIENT (donor/parent closure)",
+          "index": "V1",
+          "index_digest": "ef23a08f8827a560",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N1_C_COSTLY_VERIFICATION_RESULTS.json",
+          "certifies": "terminal N1C_TYPED_FAILURE_STATE_VALUE__VOI_POLICY_PARENT_SUFFICIENT (donor closure)",
+          "index": "V1",
+          "index_digest": "f9579b01fa97bc0c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N1_D_REPRESENTATION_EDIT_RESULTS.json",
+          "certifies": "terminal N1D_CANONICAL_TRANSFORM_PARENT_SUFFICIENT (donor/parent closure)",
+          "index": "V1",
+          "index_digest": "361277ce5c58bde9",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N2_F5B_DONOR_COMPARISON_RESULTS.json",
+          "certifies": "f5 residual donor-absorbed on the original world; candidate ahead only on misspecified world",
+          "index": "V2",
+          "index_digest": "0d87f7f6a5d027a5a95363884bb5580dbf184721",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N3_A_SYMBOLIC_INDUCTION_RESULTS.json",
+          "certifies": "terminal N3A_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "2b5166b3d599dae2",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N3_B_OBLIGATION_EXPANSION_RESULTS.json",
+          "certifies": "terminal N3B_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "584ec0afdc5558f5",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N3_C_OPERATOR_INDUCTION_RESULTS.json",
+          "certifies": "terminal N3C_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "87f710436831fde9",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N3_D_REPRESENTATION_VARIABLES_RESULTS.json",
+          "certifies": "terminal N3D_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "684034bd5e27dfac",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_A_UNKNOWN_VOI_RESULTS.json",
+          "certifies": "terminal N4_A_TYPED_VOI_SUPPORTED__EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "942582f0c1dd89e5",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_B_STALE_RECEIPT_REOPENING_RESULTS.json",
+          "certifies": "terminal N4_B_SCOPED_REOPENING_SUPPORTED__EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "7bb105598eb480b3",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_C_INTERVAL_PARETO_RESULTS.json",
+          "certifies": "terminal N4_C_TARGETED_INTERVAL_PARETO_SUPPORTED__EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "1ed053be3f4c596d",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_D_LAUNDERING_DETECTION_RESULTS.json",
+          "certifies": "terminal N4_D_CHAIN_TRANSPORT_LAUNDERING_DETECTION_SUPPORTED__EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "aafc48b70bb98273",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_E_ACTIVE_EXPERIMENTS_RESULTS.json",
+          "certifies": "terminal N4_E_DECISION_COUPLED_SELECTION_SUPPORTED__EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "577d9cc09891e932",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json",
+          "certifies": "terminal N4_F3_TYPED_REMINT_TRANSPORT_SUPPORTED__EXACT_SYNTHETIC",
+          "index": "V2",
+          "index_digest": "bd26b547ff162100c6bd68d426f470489feb7e94",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/main.tex",
+        "line": 17,
+        "quote": "the N1--N4 recovery studies contain both donor closures and exact-synthetic positives"
+      }
+    },
+    {
+      "claim_id": "O6-C04",
+      "coverage": "PARTIAL",
+      "coverage_note": "The decisive sealed-reference evidence is committed (campaign state, sha256 recorded) but is NOT an entry of RECEIPT_INDEX.md or RECEIPT_INDEX_V2.md; only the supporting native-control states are indexed. Follow-up: index the harness campaign receipt/state in a V3 index.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [
+        {
+          "certifies": "campaign state protected_refs: FRESH:R6:STRETCHED_N2_DUCC2 released=false; observations R6_PROTECTED_SUBJECT_ACCESSED=NO, R6_EARNED=NO, R6_PROSPECTIVE_AUTHORITY=MAX_R6_NOT_EARNED__PROTECTED_SUBJECT_NOT_OPENED",
+          "path": "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-states/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000004.json",
+          "sha256": "31f57ee33836068b18dfa01799f0c62feee821218d1c5d3e235f9d800773ffd6"
+        }
+      ],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N0_STATE.json",
+          "certifies": "native-control state: authority BELOW_R6, fresh_r6_subject_coefficients_accessed=false",
+          "index": "V1",
+          "index_digest": "ed5a9fe41ce5165f",
+          "role": "supporting"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N1_STATE.json",
+          "certifies": "native-control state frozen after selected donor closure: authority BELOW_R6",
+          "index": "V1",
+          "index_digest": "4b29391c93a0fb9b",
+          "role": "supporting"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N2_STATE.json",
+          "certifies": "native-control state frozen after interface closure: authority BELOW_R6",
+          "index": "V1",
+          "index_digest": "13ea38944216fe63",
+          "role": "supporting"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_SELF_ORION_N0_RESULTS.json",
+          "certifies": "authority N0_NATIVE_SELF_ORION_CONTROL_GREEN__COMPUTATION_REQUIRED__NOT_R6; r6_authority=false",
+          "index": "V1",
+          "index_digest": "64115edca1e99757",
+          "role": "supporting"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/main.tex",
+        "line": 17,
+        "quote": "protected data remain sealed when a frozen gate does not license access"
+      }
+    },
+    {
+      "claim_id": "O6-C05",
+      "coverage": "FULL",
+      "coverage_note": "Mechanically audited: all 47 indexed receipts carry an authority or terminal scoping field (verification.receipt_authority_scope_audit), and the campaign receipt's decision objects all carry grants_*_authority=false.",
+      "evidence_class": "PROVENANCE",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [
+        {
+          "certifies": "every campaign decision cycle carries grants_scientific_authority=false, grants_promotion_authority=false, grants_novelty_authority=false",
+          "path": "development/orion-q-max-r0/harness-r6-drive-2026-08-21/CAMPAIGN_RUN_RECEIPT.json",
+          "sha256": "b8fa5e0acba9dab8a63da0215f09e89f4bb76f98cebbc5dd08b39417b46cade9"
+        }
+      ],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_SELF_ORION_N0_RESULTS.json",
+          "certifies": "r6_authority=false recorded on a green native self-orion control (control green, authority withheld)",
+          "index": "V1",
+          "index_digest": "64115edca1e99757",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json",
+          "certifies": "authority string terminates in __NOT_R6 (no self-granted R6 authority on a completed lane)",
+          "index": "V1",
+          "index_digest": "7ed1181c851add9c",
+          "role": "exemplar"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N1_A_PARAM_SCHEMA_RESULTS.json",
+          "certifies": "authority N1A_DIAGNOSTIC__NO_P10_AUTHORITY__NO_NOVELTY_AUTHORITY__EXACT_SYNTHETIC_ONLY",
+          "index": "V1",
+          "index_digest": "4d0cc565efa4bf2f",
+          "role": "exemplar"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/main.tex",
+        "line": 17,
+        "quote": "capability or orchestration success never self-grants scientific authority"
+      }
+    },
+    {
+      "claim_id": "O6-C06",
+      "coverage": "UNBACKED",
+      "coverage_note": "Design boundary asserted by the claim ledger (O6-P1/O6-P6); receipts are not the applicable evidence class for a scope restriction. No computational content to certify.",
+      "evidence_class": "BOUNDARY",
+      "ledger_claims": [
+        "O6-P1",
+        "O6-P6"
+      ],
+      "other_evidence": [],
+      "receipts": [],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/main.tex",
+        "line": 17,
+        "quote": "The evidence is a one-programme case study, not a statistical evaluation of research-methodology effectiveness."
+      }
+    },
+    {
+      "claim_id": "O6-C07",
+      "coverage": "UNBACKED",
+      "coverage_note": "Positioning claim certified by the submission-date literature subtraction (sections/05-related-work-boundary.tex), not by result receipts; ledger O6-P5 forbids first/unique priority wording.",
+      "evidence_class": "POSITIONING",
+      "ledger_claims": [
+        "O6-P5"
+      ],
+      "other_evidence": [],
+      "receipts": [],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/main.tex",
+        "line": 17,
+        "quote": "A submission-date literature review narrows the positioning residual to the prospective typed-terminal/authority and receipt-binding contract; no exhaustive priority claim is made."
+      }
+    },
+    {
+      "claim_id": "O6-C08",
+      "coverage": "UNBACKED",
+      "coverage_note": "Boundary claim. It governs the 10 UNUSED_FOR_CLAIMS companion-domain receipts (R2, R3B, R3E x2, R4A, R4B, R4C, R4D, R5B, R5_N2) in receipt_disposition: indexed programme provenance whose results the canonical manuscript deliberately does not assert.",
+      "evidence_class": "BOUNDARY",
+      "ledger_claims": [
+        "O6-P4"
+      ],
+      "other_evidence": [],
+      "receipts": [],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/main.tex",
+        "line": 17,
+        "quote": "Claims owned by the companion TARE, dual-instrument, and typed-state papers are treated only as outcomes generated under the common discipline."
+      }
+    },
+    {
+      "claim_id": "O6-C09",
+      "coverage": "UNBACKED",
+      "coverage_note": "Methodology definition (prospective freeze, donor first refusal, typed failure/authority, exactness with hostile controls, receipt/replay contract), elaborated in sections/02-methods.tex; definitional content is not receipt-certifiable. Its observed instantiation is the computational claim set O6-C10..O6-C24.",
+      "evidence_class": "DEFINITIONAL",
+      "ledger_claims": [
+        "O6-P2"
+      ],
+      "other_evidence": [],
+      "receipts": [],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/01-introduction.tex",
+        "line": 5,
+        "quote": "The discipline is built around five constraints."
+      }
+    },
+    {
+      "claim_id": "O6-C10",
+      "coverage": "FULL",
+      "coverage_note": "One indexed exemplar per terminal category named in the quote.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json",
+          "certifies": "donor absorption (POSITIVE__ABSORB__NOT_R6)",
+          "index": "V1",
+          "index_digest": "29dbd12abf8c817d",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json",
+          "certifies": "exact refutation (NEGATIVE__NOT_R6)",
+          "index": "V1",
+          "index_digest": "7ed1181c851add9c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N3_A_SYMBOLIC_INDUCTION_RESULTS.json",
+          "certifies": "bounded positive (N3A_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC, exact-synthetic-bounded authority)",
+          "index": "V1",
+          "index_digest": "2b5166b3d599dae2",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N2_F5B_DONOR_COMPARISON_RESULTS.json",
+          "certifies": "mixed result (MIXED__CANDIDATE_AHEAD_ON_MISSPECIFIED_ONLY)",
+          "index": "V2",
+          "index_digest": "0d87f7f6a5d027a5a95363884bb5580dbf184721",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_SELF_ORION_N0_RESULTS.json",
+          "certifies": "unresolved state (COMPUTATION_REQUIRED__NOT_R6; responsibility status UNRESOLVED)",
+          "index": "V1",
+          "index_digest": "64115edca1e99757",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/01-introduction.tex",
+        "line": 7,
+        "quote": "its history contains the outcomes that a non-gamed method should retain: donor absorptions, exact refutations, bounded positives, mixed results, and unresolved/cannot-check states"
+      }
+    },
+    {
+      "claim_id": "O6-C11",
+      "coverage": "FULL",
+      "coverage_note": "Non-monotonicity and outcome sensitivity are certified by the cited reversal/recovery chains; end-to-end breadth additionally rests on the complete 47-receipt index (RECEIPT_INDEX.md + V2), whose full disposition this map records.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P1",
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json",
+          "certifies": "frozen R6I two-block grammar negative opens the chain",
+          "index": "V1",
+          "index_digest": "7ed1181c851add9c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json",
+          "certifies": "negative converted into a structural regime discovery",
+          "index": "V1",
+          "index_digest": "95e2b4b1c8a943b3",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json",
+          "certifies": "closure attempt refuted (SECOND_NEW_REGIME_FOUND) - non-monotone step",
+          "index": "V2",
+          "index_digest": "fa546a20976721f6b9a0e8ef061e013362f109b0",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json",
+          "certifies": "closure restored at support two - recovery without rewriting parent terminals",
+          "index": "V2",
+          "index_digest": "1562625a91d177d83c49fbfd32bc790871c323e8",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json",
+          "certifies": "all-n composition theorem machine-checked - later upgrade",
+          "index": "V2",
+          "index_digest": "e7949b35e7010ae9b24d9f69a35f210fa7f55c13",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N2_F5_CROSSOVER_PREDICTION_RESULTS.json",
+          "certifies": "crossover prediction residual prospectively supported",
+          "index": "V1",
+          "index_digest": "bcd81b16105b0748",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N2_F5B_DONOR_COMPARISON_RESULTS.json",
+          "certifies": "...then donor-absorbed on the original world - direction reversal",
+          "index": "V2",
+          "index_digest": "0d87f7f6a5d027a5a95363884bb5580dbf184721",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N1_C_COSTLY_VERIFICATION_RESULTS.json",
+          "certifies": "typed failure-state value with VOI-donor closure - outcome-sensitive allocation",
+          "index": "V1",
+          "index_digest": "f9579b01fa97bc0c",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/01-introduction.tex",
+        "line": 9,
+        "quote": "this receipt-first negative-recovery workflow was instantiated end-to-end and behaved in a non-monotone, outcome-sensitive way under prospectively frozen rules"
+      }
+    },
+    {
+      "claim_id": "O6-C12",
+      "coverage": "FULL",
+      "coverage_note": "Three exact negatives + one absorption cited primarily; the donor floor they fail to beat is certified by the two supporting closure receipts.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json",
+          "certifies": "rank-2 shared-Tag DP exact negative",
+          "index": "V1",
+          "index_digest": "7ed1181c851add9c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json",
+          "certifies": "restore-factor DP exact negative",
+          "index": "V1",
+          "index_digest": "520f87f8630ee96c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json",
+          "certifies": "three-TARE2 shared-factor DP exact negative",
+          "index": "V1",
+          "index_digest": "5f182cd6fc66d3e1",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json",
+          "certifies": "donor absorption of the three-TARE2 family",
+          "index": "V1",
+          "index_digest": "29dbd12abf8c817d",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_DONOR_CLOSURE_H4_RESULTS.json",
+          "certifies": "native selected donor-closure evidence (GENERAL_M donor outcome) fixing the donor floor the families fail to beat",
+          "index": "V1",
+          "index_digest": "f19866b746f36be9",
+          "role": "supporting"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_FOQCS_INTERFACE_ENVELOPE_RESULTS.json",
+          "certifies": "INTERFACE_CANNOT_DOMINATE_EVEN_OPTIMISTIC - interface route also cannot beat the donor",
+          "index": "V1",
+          "index_digest": "51ca6f10a2a880a8",
+          "role": "supporting"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 4,
+        "quote": "The R6 chain first produces donor absorption and several exact negatives: progressively richer joint compiler families add no value beyond stronger donor constructions on the frozen open subjects"
+      }
+    },
+    {
+      "claim_id": "O6-C13",
+      "coverage": "FULL",
+      "coverage_note": "The R6O receipt (next claim) explicitly 'repairs R6N' at the declared gap, confirming the gap was left open by R6N.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json",
+          "certifies": "MAX_R6N_SUPPORT_DOMINANCE_REFUTED__NEW_REGIME_FOUND__NOT_R6; claim_boundary covers the frozen shared-Tag grammars and leaves the enlarged/Tag-coupled regimes to successors",
+          "index": "V1",
+          "index_digest": "95e2b4b1c8a943b3",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 4,
+        "quote": "A support-dominance audit then converts repeated collapse into a structural explanation while explicitly leaving a Tag-coupling gap"
+      }
+    },
+    {
+      "claim_id": "O6-C14",
+      "coverage": "FULL",
+      "coverage_note": "Single-receipt certification of both the failed first closure and the converse-coupling refutation of its repair.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json",
+          "certifies": "MAX_R6O_ENLARGED_TAG_DONOR_CLOSURE_REFUTED__SECOND_NEW_REGIME_FOUND__NOT_R6 (index V2 role: repairs R6N then discovers converse frame-for-Tag regime)",
+          "index": "V2",
+          "index_digest": "fa546a20976721f6b9a0e8ef061e013362f109b0",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 4,
+        "quote": "The first closure claim fails at that declared gap; its repair is later refuted by a converse coupling"
+      }
+    },
+    {
+      "claim_id": "O6-C15",
+      "coverage": "FULL",
+      "coverage_note": "The manuscript attributes the all-n theorem to a separate companion work; the certifying receipt is nevertheless committed and indexed (V2) in this repository, so the sentence is bound here rather than left unbacked.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json",
+          "certifies": "MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_VERIFIED__FAMILY_CLOSURE_RESTORED_AT_SUPPORT_TWO_ON_VERIFIED_DOMAINS__NOT_R6",
+          "index": "V2",
+          "index_digest": "1562625a91d177d83c49fbfd32bc790871c323e8",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6Q_REGIME_PREDICATE_RESULTS.json",
+          "certifies": "exact split/borrow predicate and three-family identity on the registered finite panels",
+          "index": "V2",
+          "index_digest": "b481958737c3ea5a3cff1db21b31fb6112536a08",
+          "role": "supporting"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_RESULTS.json",
+          "certifies": "prospectively frozen unseen-subject prediction confirmed (predicate held)",
+          "index": "V2",
+          "index_digest": "234b4ca1964ab4573d0dc25a550f7f5ea73982e4",
+          "role": "supporting"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json",
+          "certifies": "authority MAX_R6S_ALL_N_COMPOSITION_THEOREM_MACHINE_CHECKED__SUPPORT3_NEVER_PAYS__DXX_EQUALS_DP_ALL_N__NOT_R6 (the all-n upgrade itself)",
+          "index": "V2",
+          "index_digest": "e7949b35e7010ae9b24d9f69a35f210fa7f55c13",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 4,
+        "quote": "support-two enlargement restores exactness on the tested domains and is subsequently upgraded to an all-$n$ theorem in a separate companion work"
+      }
+    },
+    {
+      "claim_id": "O6-C16",
+      "coverage": "FULL",
+      "coverage_note": "Instantiates ledger O6-P2's operational recovery definition: adverse/absorbed terminal -> exposed residual -> separately frozen successor.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P2",
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json",
+          "certifies": "reported as negative, donor_novelty_credit scoped, no promotion",
+          "index": "V1",
+          "index_digest": "7ed1181c851add9c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json",
+          "certifies": "reported as negative; concurrent-lane clause recorded instead of promotion",
+          "index": "V1",
+          "index_digest": "520f87f8630ee96c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json",
+          "certifies": "reported as ABSORB (donor-equivalent), zero candidate novelty credit",
+          "index": "V1",
+          "index_digest": "29dbd12abf8c817d",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json",
+          "certifies": "reported as negative with donor protocols recorded",
+          "index": "V1",
+          "index_digest": "5f182cd6fc66d3e1",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json",
+          "certifies": "next question licensed by the structural residual",
+          "index": "V1",
+          "index_digest": "95e2b4b1c8a943b3",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json",
+          "certifies": "next question licensed by the declared Tag gap",
+          "index": "V2",
+          "index_digest": "fa546a20976721f6b9a0e8ef061e013362f109b0",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json",
+          "certifies": "next question licensed by the converse-coupling residual",
+          "index": "V2",
+          "index_digest": "1562625a91d177d83c49fbfd32bc790871c323e8",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 6,
+        "quote": "The workflow reports the early candidate families as donor-equivalent or refuted rather than promoting them as separate methods, yet it does not stop searching merely because several negatives accumulated"
+      }
+    },
+    {
+      "claim_id": "O6-C17",
+      "coverage": "FULL",
+      "coverage_note": "The other N1 lanes (A, B, D) are diagnostics and appear under O6-C03's donor-closure coverage, not this sentence.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N1_C_COSTLY_VERIFICATION_RESULTS.json",
+          "certifies": "terminal N1C_TYPED_FAILURE_STATE_VALUE__VOI_POLICY_PARENT_SUFFICIENT (typed-failure-state value; ideal VOI policy parent closes the allocation)",
+          "index": "V1",
+          "index_digest": "f9579b01fa97bc0c",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 9,
+        "quote": "N1 contains a bounded typed-failure-state benefit whose allocation policy is exactly closed by an ideal value-of-information donor"
+      }
+    },
+    {
+      "claim_id": "O6-C18",
+      "coverage": "FULL",
+      "coverage_note": "Donor absorption and the surviving misspecification-only edge are both recorded in the F5B receipt.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N2_F5_CROSSOVER_PREDICTION_RESULTS.json",
+          "certifies": "terminal N2_F5_CROSSOVER_PREDICTION_RESIDUAL_SUPPORTED__EXACT_SYNTHETIC_ONLY (prospective support)",
+          "index": "V1",
+          "index_digest": "bcd81b16105b0748",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N2_F5B_DONOR_COMPARISON_RESULTS.json",
+          "certifies": "receipt terminal N2_F5_CROSSOVER_PREDICTION_RESIDUAL_SUPPORTED__EXACT_SYNTHETIC_ONLY with f5_residual_disposition 'mixed: donor absorbs the residual on the original (partly well-specified) world; candidate ahead only on the misspecified world'",
+          "index": "V2",
+          "index_digest": "0d87f7f6a5d027a5a95363884bb5580dbf184721",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 9,
+        "quote": "N2 includes a prospectively supported crossover predictor that is subsequently donor-absorbed on the original world, leaving only a narrower misspecification result"
+      }
+    },
+    {
+      "claim_id": "O6-C19",
+      "coverage": "FULL",
+      "coverage_note": "All four registered N3 families confirmed against their donor comparisons under exact-synthetic-bounded authority.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N3_A_SYMBOLIC_INDUCTION_RESULTS.json",
+          "certifies": "N3A_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "2b5166b3d599dae2",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N3_B_OBLIGATION_EXPANSION_RESULTS.json",
+          "certifies": "N3B_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "584ec0afdc5558f5",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N3_C_OPERATOR_INDUCTION_RESULTS.json",
+          "certifies": "N3C_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "87f710436831fde9",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N3_D_REPRESENTATION_VARIABLES_RESULTS.json",
+          "certifies": "N3D_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC",
+          "index": "V1",
+          "index_digest": "684034bd5e27dfac",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 9,
+        "quote": "N3's registered synthesis families survive their donor comparisons on the stated exact-synthetic domains"
+      }
+    },
+    {
+      "claim_id": "O6-C20",
+      "coverage": "FULL",
+      "coverage_note": "Six families = the five V1-indexed N4 receipts plus the V2 N4_F3 standalone closure. Note: N4_F3 is V2-indexed and digest-verified but sits OUTSIDE the frozen 51-receipt Q2 publication denominator (see verification.denominator_reconciliation).",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_A_UNKNOWN_VOI_RESULTS.json",
+          "certifies": "typed VOI supported",
+          "index": "V1",
+          "index_digest": "942582f0c1dd89e5",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_B_STALE_RECEIPT_REOPENING_RESULTS.json",
+          "certifies": "scoped reopening supported",
+          "index": "V1",
+          "index_digest": "7bb105598eb480b3",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_C_INTERVAL_PARETO_RESULTS.json",
+          "certifies": "targeted interval Pareto supported",
+          "index": "V1",
+          "index_digest": "1ed053be3f4c596d",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_D_LAUNDERING_DETECTION_RESULTS.json",
+          "certifies": "chain-transport laundering detection supported",
+          "index": "V1",
+          "index_digest": "aafc48b70bb98273",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_E_ACTIVE_EXPERIMENTS_RESULTS.json",
+          "certifies": "decision-coupled selection supported",
+          "index": "V1",
+          "index_digest": "577d9cc09891e932",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json",
+          "certifies": "typed remint/transport supported (standalone family-3 closure; committed orion_committed_failures record the designed negative regimes)",
+          "index": "V2",
+          "index_digest": "bd26b547ff162100c6bd68d426f470489feb7e94",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 9,
+        "quote": "N4's six partial-knowledge families support typed/scoped state mechanisms against matched-information controls while retaining designed negative regimes"
+      }
+    },
+    {
+      "claim_id": "O6-C21",
+      "coverage": "PARTIAL",
+      "coverage_note": "The exact R6_EARNED=NO and sealed-discriminator bytes live in committed harness artifacts that are NOT in RECEIPT_INDEX/V2 (sha256 recorded here); the indexed native-control states carry the same gate chain. Follow-up: add the campaign receipt to a V3 index.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [
+        {
+          "certifies": "cycles[3] (phase P10_RESULT) evidence_updates: R6_EARNED='NO', R6_PROSPECTIVE_AUTHORITY='MAX_R6_NOT_EARNED__PROTECTED_SUBJECT_NOT_OPENED', R6_PROTECTED_SUBJECT_ACCESSED='NO'; terminal R6_PROSPECTIVE_VERDICT_RECORDED__NOT_SELF_AUTHORIZING",
+          "path": "development/orion-q-max-r0/harness-r6-drive-2026-08-21/CAMPAIGN_RUN_RECEIPT.json",
+          "sha256": "b8fa5e0acba9dab8a63da0215f09e89f4bb76f98cebbc5dd08b39417b46cade9"
+        },
+        {
+          "certifies": "protected_refs[0] FRESH:R6:STRETCHED_N2_DUCC2 released=false; authority_ceiling BELOW_R6_UNTIL_PROTECTED_PROMOTION",
+          "path": "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-states/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000004.json",
+          "sha256": "31f57ee33836068b18dfa01799f0c62feee821218d1c5d3e235f9d800773ffd6"
+        }
+      ],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N0_STATE.json",
+          "certifies": "native-control N0 state: authority BELOW_R6, frozen before native decision",
+          "index": "V1",
+          "index_digest": "ed5a9fe41ce5165f",
+          "role": "supporting"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N1_STATE.json",
+          "certifies": "native-control N1 state: authority BELOW_R6, frozen after selected donor closure",
+          "index": "V1",
+          "index_digest": "4b29391c93a0fb9b",
+          "role": "supporting"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N2_STATE.json",
+          "certifies": "native-control N2 state: authority BELOW_R6, frozen after interface closure",
+          "index": "V1",
+          "index_digest": "13ea38944216fe63",
+          "role": "supporting"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_SELF_ORION_N0_RESULTS.json",
+          "certifies": "N0 native self-orion control green, computation required, r6_authority=false",
+          "index": "V1",
+          "index_digest": "64115edca1e99757",
+          "role": "supporting"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 14,
+        "quote": "The R6 prospective gate records an honest `R6_EARNED = NO` outcome while the protected stretched-N2 discriminator remains sealed"
+      }
+    },
+    {
+      "claim_id": "O6-C22",
+      "coverage": "PARTIAL",
+      "coverage_note": "Primary certificates are the committed-but-unindexed campaign records; the indexed self-orion control receipt carries the same separation.",
+      "evidence_class": "PROVENANCE",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [
+        {
+          "certifies": "campaign decision/control objects separate orchestration state from scientific state; all grants_scientific_authority=false",
+          "path": "development/orion-q-max-r0/harness-r6-drive-2026-08-21/CAMPAIGN_RUN_RECEIPT.json",
+          "sha256": "b8fa5e0acba9dab8a63da0215f09e89f4bb76f98cebbc5dd08b39417b46cade9"
+        }
+      ],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_SELF_ORION_N0_RESULTS.json",
+          "certifies": "control/capability result scoped COMPUTATION_REQUIRED__NOT_R6 - a capability state, not scientific evidence",
+          "index": "V1",
+          "index_digest": "64115edca1e99757",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 14,
+        "quote": "The harness/campaign records also keep host or capability failures outside the scientific evidence channel"
+      }
+    },
+    {
+      "claim_id": "O6-C23",
+      "coverage": "PARTIAL",
+      "coverage_note": "Indexing and digest integrity are fully certified, but REPLAY_RECEIPT_V1.json re-executes only 2 generators (revival negative-coverage and revival successor); the remaining 45 indexed receipts are digest-verified, not re-executed. The next sentence's 'deterministic lanes reproduce canonical outputs' is therefore certified for the replayed targets only.",
+      "evidence_class": "PROVENANCE",
+      "ledger_claims": [
+        "O6-P1"
+      ],
+      "other_evidence": [
+        {
+          "certifies": "40 indexed result receipts with sha256[:16] of committed bytes (digest_matches=40 per REPLAY_RECEIPT_V1.json)",
+          "path": "papers/orion-06-recursive-recovery/RECEIPT_INDEX.md",
+          "sha256": "5101fd6e5d168ed7a0d3f017764eeda3e84062dc0d13f934b24fd2e5d264605d"
+        },
+        {
+          "certifies": "7 later result receipts bound by git blob sha",
+          "path": "papers/orion-06-recursive-recovery/RECEIPT_INDEX_V2.md",
+          "sha256": "209c95e8d630101a18f2142a53cf9bf22ffb8a3e7b48c8695241be2eae73b20e"
+        },
+        {
+          "certifies": "independent replay receipt: 2/2 targets matched, 0 differed, 0 cannot_check",
+          "path": "papers/orion-06-recursive-recovery/submission/independent-replay-v1/REPLAY_RECEIPT_V1.json",
+          "sha256": "7ffdea22cc1b0754f5bd8ff58ce4a185f726c217a90e69380f5a9492836a0aec"
+        },
+        {
+          "certifies": "programme closure packet: authoritative terminal-disposition map referenced by RECEIPT_INDEX_V2.md",
+          "path": "development/orion-q-max-r0/PROGRAMME_CLOSURE_PACKET_2026-08-21.md",
+          "sha256": "40c53e9819f516c6378c9566175dcc1813c3bb2c1000d0f4c1478a17368a23e1"
+        }
+      ],
+      "receipts": [],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/03-results.tex",
+        "line": 17,
+        "quote": "The publication packet indexes protocols, result receipts, and replay checks across the case studies"
+      }
+    },
+    {
+      "claim_id": "O6-C24",
+      "coverage": "FULL",
+      "coverage_note": "Discussion-level restatement of the R6 saturation-vs-explanation arc; same receipts as O6-C12/O6-C13.",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P3"
+      ],
+      "other_evidence": [],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json",
+          "certifies": "exact negative establishing no added value on its frozen scope",
+          "index": "V1",
+          "index_digest": "7ed1181c851add9c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json",
+          "certifies": "exact negative on the restore-factor scope",
+          "index": "V1",
+          "index_digest": "520f87f8630ee96c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json",
+          "certifies": "exact negative on the three-TARE2 scope",
+          "index": "V1",
+          "index_digest": "5f182cd6fc66d3e1",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json",
+          "certifies": "the later structural (dominance/regime) account",
+          "index": "V1",
+          "index_digest": "95e2b4b1c8a943b3",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6Q_REGIME_PREDICATE_RESULTS.json",
+          "certifies": "the exact regime predicate that makes the explanation precise",
+          "index": "V2",
+          "index_digest": "b481958737c3ea5a3cff1db21b31fb6112536a08",
+          "role": "supporting"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/04-discussion.tex",
+        "line": 5,
+        "quote": "Several exact negatives can establish that a family adds no value on a scope, but a later dominance theorem or counterexample is needed to explain why"
+      }
+    },
+    {
+      "claim_id": "O6-C25",
+      "coverage": "UNBACKED",
+      "coverage_note": "Normative/boundary sentence (ledger O6-P8); no result receipt can certify a normative claim. The cited in-repo CANNOT_CHECK record is an instantiation, not a certificate.",
+      "evidence_class": "BOUNDARY",
+      "ledger_claims": [
+        "O6-P8"
+      ],
+      "other_evidence": [
+        {
+          "certifies": "in-repo instantiation: REPLAY_RECEIPT_V1.json records claim_set_correspondence=CANNOT_CHECK with an explicit reason rather than a fabricated verdict - the exact honest-terminal behavior the sentence describes",
+          "path": "papers/orion-06-recursive-recovery/submission/independent-replay-v1/REPLAY_RECEIPT_V1.json",
+          "sha256": "7ffdea22cc1b0754f5bd8ff58ce4a185f726c217a90e69380f5a9492836a0aec"
+        }
+      ],
+      "receipts": [],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/04-discussion.tex",
+        "line": 7,
+        "quote": "an honest `CANNOT_CHECK` can be methodologically correct even though it offers no scientific answer"
+      }
+    },
+    {
+      "claim_id": "O6-C26",
+      "coverage": "UNBACKED",
+      "coverage_note": "Donor-boundary claim (ledger O6-P4): preregistration, provenance, reproducibility etc. are credited to cited literature; no novelty credit taken, so no receipt is the evidence class.",
+      "evidence_class": "POSITIONING",
+      "ledger_claims": [
+        "O6-P4"
+      ],
+      "other_evidence": [],
+      "receipts": [],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/05-related-work-boundary.tex",
+        "line": 3,
+        "quote": "None of these generic ingredients is claimed as new here"
+      }
+    },
+    {
+      "claim_id": "O6-C27",
+      "coverage": "UNBACKED",
+      "coverage_note": "Positioning claim. The composition is witnessed by the full computational claim set (O6-C01..O6-C24) rather than by any single receipt; see ledger_binding O6-P5.",
+      "evidence_class": "POSITIONING",
+      "ledger_claims": [
+        "O6-P5"
+      ],
+      "other_evidence": [],
+      "receipts": [],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/05-related-work-boundary.tex",
+        "line": 8,
+        "quote": "The contribution is the observed composition of those constraints in one programme"
+      }
+    },
+    {
+      "claim_id": "O6-C28",
+      "coverage": "FULL",
+      "coverage_note": "Certified by enumeration over both committed indexes (verification.cross_domain_absence_audit=0 matches); the unexecuted benchmark is the preserved O6-P7 terminal.",
+      "evidence_class": "BOUNDARY",
+      "ledger_claims": [
+        "O6-P7"
+      ],
+      "other_evidence": [
+        {
+          "certifies": "absence audit: no receipt among the 40 V1 entries asserts a cross-domain comparative benchmark",
+          "path": "papers/orion-06-recursive-recovery/RECEIPT_INDEX.md",
+          "sha256": "5101fd6e5d168ed7a0d3f017764eeda3e84062dc0d13f934b24fd2e5d264605d"
+        },
+        {
+          "certifies": "absence audit: no receipt among the 7 V2 entries asserts a cross-domain comparative benchmark",
+          "path": "papers/orion-06-recursive-recovery/RECEIPT_INDEX_V2.md",
+          "sha256": "209c95e8d630101a18f2142a53cf9bf22ffb8a3e7b48c8695241be2eae73b20e"
+        }
+      ],
+      "receipts": [],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/05-related-work-boundary.tex",
+        "line": 11,
+        "quote": "Cross-domain comparative performance of that discipline remains untested here"
+      }
+    },
+    {
+      "claim_id": "O6-C29",
+      "coverage": "UNBACKED",
+      "coverage_note": "Limitation/boundary statement (ledger O6-P6 prohibited-general-claim zone); receipts cannot certify a scope limitation.",
+      "evidence_class": "BOUNDARY",
+      "ledger_claims": [
+        "O6-P6"
+      ],
+      "other_evidence": [],
+      "receipts": [],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/06-limitations.tex",
+        "line": 3,
+        "quote": "The evidence comes from one programme in one repository"
+      }
+    },
+    {
+      "claim_id": "O6-C30",
+      "coverage": "PARTIAL",
+      "coverage_note": "Four of the five yielded categories are indexed-receipt-certified; the protected-data restraint half rests on the committed-but-unindexed campaign state (see O6-C04/O6-C21).",
+      "evidence_class": "COMPUTATIONAL_RESULT",
+      "ledger_claims": [
+        "O6-P1",
+        "O6-P3"
+      ],
+      "other_evidence": [
+        {
+          "certifies": "protected-data restraint: stretched-N2 discriminator released=false, R6_PROTECTED_SUBJECT_ACCESSED=NO",
+          "path": "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-states/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000004.json",
+          "sha256": "31f57ee33836068b18dfa01799f0c62feee821218d1c5d3e235f9d800773ffd6"
+        }
+      ],
+      "receipts": [
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json",
+          "certifies": "donor absorption",
+          "index": "V1",
+          "index_digest": "29dbd12abf8c817d",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json",
+          "certifies": "exact refutation",
+          "index": "V1",
+          "index_digest": "7ed1181c851add9c",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N3_A_SYMBOLIC_INDUCTION_RESULTS.json",
+          "certifies": "bounded positive",
+          "index": "V1",
+          "index_digest": "2b5166b3d599dae2",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/nlanes/N4_A_UNKNOWN_VOI_RESULTS.json",
+          "certifies": "bounded positive",
+          "index": "V1",
+          "index_digest": "942582f0c1dd89e5",
+          "role": "primary"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N0_STATE.json",
+          "certifies": "protected-gate chain (BELOW_R6, coefficients not accessed)",
+          "index": "V1",
+          "index_digest": "ed5a9fe41ce5165f",
+          "role": "supporting"
+        },
+        {
+          "artifact": "research/extensions/orion-q/MAX_R6_NATIVE_SELF_ORION_N0_RESULTS.json",
+          "certifies": "honest unresolved state (COMPUTATION_REQUIRED, responsibility UNRESOLVED)",
+          "index": "V1",
+          "index_digest": "64115edca1e99757",
+          "role": "primary"
+        }
+      ],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/07-conclusion.tex",
+        "line": 3,
+        "quote": "In the observed programme it yields donor absorptions, exact refutations, bounded positives, protected-data restraint, and honest unresolved states"
+      }
+    },
+    {
+      "claim_id": "O6-C31",
+      "coverage": "FULL",
+      "coverage_note": "The manuscript's own assertion that a claim-to-receipt map exists becomes true exactly when this map is committed; the checker re-verifies it mechanically.",
+      "evidence_class": "PROVENANCE",
+      "ledger_claims": [
+        "O6-P1"
+      ],
+      "other_evidence": [
+        {
+          "certifies": "this artifact: the committed claim-to-receipt map (self-referential; satisfied by this very file) (a file cannot contain its own digest; the committed checker prints the full-file sha256 instead)",
+          "path": "papers/orion-06-recursive-recovery/Q2_RECEIPT_CLAIM_MAP_V1.json",
+          "sha256": "SELF_REFERENTIAL_NOT_HASHED"
+        },
+        {
+          "certifies": "anonymous review supplement in the double-blind publication package",
+          "path": "papers/orion-06-recursive-recovery/submission/publication-ready-20260831/REVIEWER_AUDIT.md",
+          "sha256": "03486b81cced9f16be777f3bd97232e6a0ad642fb7b4fcf1ff2455c467be6fa5"
+        },
+        {
+          "certifies": "research integrity ledger in the publication package",
+          "path": "papers/orion-06-recursive-recovery/submission/publication-ready-20260831/RESEARCH_INTEGRITY_LEDGER.json",
+          "sha256": "6436ff06eb4959f6d07090566b2d34ce3b28345046907b1326b73c963c8de482"
+        }
+      ],
+      "receipts": [],
+      "statement": {
+        "file": "papers/orion-06-recursive-recovery/manuscript/sections/08-reproducibility.tex",
+        "line": 3,
+        "quote": "The final publication package carries a claim-to-receipt map and an anonymous review supplement"
+      }
+    }
+  ],
+  "counts": {
+    "claims": 31,
+    "coverage": {
+      "FULL": 18,
+      "PARTIAL": 5,
+      "UNBACKED": 8
+    },
+    "evidence_class": {
+      "BOUNDARY": 5,
+      "COMPUTATIONAL_RESULT": 18,
+      "DEFINITIONAL": 1,
+      "POSITIONING": 3,
+      "PROVENANCE": 4
+    },
+    "indexed_outside_q2_denominator": [
+      "research/extensions/orion-q/nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json"
+    ],
+    "indexed_receipts_total": 47,
+    "indexed_receipts_unused": 13,
+    "q2_denominator": 51,
+    "qg_inventory_only_unused": 5,
+    "receipt_claim_pairs": 94,
+    "receipts_mapped_to_claims": 34
+  },
+  "follow_ups": [
+    "Binding pins: add Q2_RECEIPT_CLAIM_MAP_V1.json to submission/publication-ready-20260831/PACKAGE_MANIFEST.json, its SHA256SUMS, and Q_SERIES_CONTENT_BINDING_V1.json. Deliberately NOT done here: those shared binding files are the concurrent binding-fix lane's territory; this branch adds new files only.",
+    "RECEIPT_INDEX V3: index development/orion-q-max-r0/harness-r6-drive-2026-08-21/CAMPAIGN_RUN_RECEIPT.json and campaign-states/e6c7f72d.../00000004.json (sha256-recorded under other_evidence here). Doing so upgrades the PARTIAL coverage of O6-C04/O6-C21/O6-C22/O6-C30 to FULL.",
+    "REPLAY_RECEIPT_V1.json claim_set_correspondence CANNOT_CHECK->CHECKED: regenerate submission/independent-replay-v1/ via replay_cited_receipts_v1.py once this map is merged; the script's own comment names this mapping as the missing input. Not done here (submission/** is the other lane's territory).",
+    "Ledger/manuscript wording drift: ATOMIC_CLAIM_INVENTORY admits a 'lower-bound' outcome category the canonical manuscript never states, leaving nlanes/N1_LOWER_BOUND_RESULTS.json unused. Reconcile in the ledger or the manuscript, then re-run the checker.",
+    "Independent replay currently re-executes 2 of 47 generators (digest-verifies the rest); widening the replay target set would upgrade O6-C23 from PARTIAL to FULL."
+  ],
+  "generated_at": "2026-09-03",
+  "grants_authority": "NONE",
+  "manuscript_anchor_note": "Quotes and line anchors are bound to manuscript files at manuscript_base_commit (merge-base of this branch and origin/main). check_receipt_claim_map_v1.py fails with MANUSCRIPT_DRIFT if any cited file's git blob changes, so the map cannot silently go stale.",
+  "manuscript_base_commit": "1558b2efa127d8feda5fc463c7eb226ab23c3ae9",
+  "paper": "orion-06-recursive-recovery",
+  "purpose": "Committed mapping from manuscript claims to the receipts that certify them. This is the artifact REPLAY_RECEIPT_V1.json's claim_set_correspondence=CANNOT_CHECK records as absent: 'no committed mapping from index entries to manuscript claims'. Claim authority remains with CLAIM_LEDGER_V4.md; this map binds, it does not grant.",
+  "receipt_disposition": {
+    "mapped_34": {
+      "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json": [
+        "O6-C01",
+        "O6-C02",
+        "O6-C05",
+        "O6-C10",
+        "O6-C11",
+        "O6-C12",
+        "O6-C16",
+        "O6-C24",
+        "O6-C30"
+      ],
+      "research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json": [
+        "O6-C02",
+        "O6-C12",
+        "O6-C16",
+        "O6-C24"
+      ],
+      "research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json": [
+        "O6-C01",
+        "O6-C02",
+        "O6-C10",
+        "O6-C12",
+        "O6-C16",
+        "O6-C30"
+      ],
+      "research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json": [
+        "O6-C02",
+        "O6-C12",
+        "O6-C16",
+        "O6-C24"
+      ],
+      "research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json": [
+        "O6-C02",
+        "O6-C11",
+        "O6-C13",
+        "O6-C16",
+        "O6-C24"
+      ],
+      "research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json": [
+        "O6-C11",
+        "O6-C14",
+        "O6-C16"
+      ],
+      "research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json": [
+        "O6-C02",
+        "O6-C11",
+        "O6-C15",
+        "O6-C16"
+      ],
+      "research/extensions/orion-q/MAX_R6Q_REGIME_PREDICATE_RESULTS.json": [
+        "O6-C02",
+        "O6-C15",
+        "O6-C24"
+      ],
+      "research/extensions/orion-q/MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_RESULTS.json": [
+        "O6-C15"
+      ],
+      "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json": [
+        "O6-C11",
+        "O6-C15"
+      ],
+      "research/extensions/orion-q/MAX_R6_DONOR_CLOSURE_H4_RESULTS.json": [
+        "O6-C12"
+      ],
+      "research/extensions/orion-q/MAX_R6_FOQCS_INTERFACE_ENVELOPE_RESULTS.json": [
+        "O6-C12"
+      ],
+      "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N0_STATE.json": [
+        "O6-C04",
+        "O6-C21",
+        "O6-C30"
+      ],
+      "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N1_STATE.json": [
+        "O6-C04",
+        "O6-C21"
+      ],
+      "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N2_STATE.json": [
+        "O6-C04",
+        "O6-C21"
+      ],
+      "research/extensions/orion-q/MAX_R6_NATIVE_SELF_ORION_N0_RESULTS.json": [
+        "O6-C04",
+        "O6-C05",
+        "O6-C10",
+        "O6-C21",
+        "O6-C22",
+        "O6-C30"
+      ],
+      "research/extensions/orion-q/nlanes/N1_A_PARAM_SCHEMA_RESULTS.json": [
+        "O6-C03",
+        "O6-C05"
+      ],
+      "research/extensions/orion-q/nlanes/N1_B_GRAMMAR_GROWTH_RESULTS.json": [
+        "O6-C03"
+      ],
+      "research/extensions/orion-q/nlanes/N1_C_COSTLY_VERIFICATION_RESULTS.json": [
+        "O6-C03",
+        "O6-C11",
+        "O6-C17"
+      ],
+      "research/extensions/orion-q/nlanes/N1_D_REPRESENTATION_EDIT_RESULTS.json": [
+        "O6-C03"
+      ],
+      "research/extensions/orion-q/nlanes/N2_F3_PARTIAL_EVIDENCE_RESULTS.json": [
+        "O6-C01"
+      ],
+      "research/extensions/orion-q/nlanes/N2_F4_ACCESS_EDITS_RESULTS.json": [
+        "O6-C01"
+      ],
+      "research/extensions/orion-q/nlanes/N2_F5B_DONOR_COMPARISON_RESULTS.json": [
+        "O6-C03",
+        "O6-C10",
+        "O6-C11",
+        "O6-C18"
+      ],
+      "research/extensions/orion-q/nlanes/N2_F5_CROSSOVER_PREDICTION_RESULTS.json": [
+        "O6-C11",
+        "O6-C18"
+      ],
+      "research/extensions/orion-q/nlanes/N3_A_SYMBOLIC_INDUCTION_RESULTS.json": [
+        "O6-C03",
+        "O6-C10",
+        "O6-C19",
+        "O6-C30"
+      ],
+      "research/extensions/orion-q/nlanes/N3_B_OBLIGATION_EXPANSION_RESULTS.json": [
+        "O6-C03",
+        "O6-C19"
+      ],
+      "research/extensions/orion-q/nlanes/N3_C_OPERATOR_INDUCTION_RESULTS.json": [
+        "O6-C03",
+        "O6-C19"
+      ],
+      "research/extensions/orion-q/nlanes/N3_D_REPRESENTATION_VARIABLES_RESULTS.json": [
+        "O6-C03",
+        "O6-C19"
+      ],
+      "research/extensions/orion-q/nlanes/N4_A_UNKNOWN_VOI_RESULTS.json": [
+        "O6-C03",
+        "O6-C20",
+        "O6-C30"
+      ],
+      "research/extensions/orion-q/nlanes/N4_B_STALE_RECEIPT_REOPENING_RESULTS.json": [
+        "O6-C03",
+        "O6-C20"
+      ],
+      "research/extensions/orion-q/nlanes/N4_C_INTERVAL_PARETO_RESULTS.json": [
+        "O6-C03",
+        "O6-C20"
+      ],
+      "research/extensions/orion-q/nlanes/N4_D_LAUNDERING_DETECTION_RESULTS.json": [
+        "O6-C03",
+        "O6-C20"
+      ],
+      "research/extensions/orion-q/nlanes/N4_E_ACTIVE_EXPERIMENTS_RESULTS.json": [
+        "O6-C03",
+        "O6-C20"
+      ],
+      "research/extensions/orion-q/nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json": [
+        "O6-C03",
+        "O6-C20"
+      ]
+    },
+    "qg_inventory_only_5": {
+      "research/extensions/orion-qg/QG5B_EXACT_FORECASTER_RESULTS.json": "Q2 publication-denominator augmentation receipt (orion-qg main-chain successor of R6R in Q2_TRANSITION_GRAPH_V2.json); the canonical orion-06 manuscript asserts no QG result, so it is carried in the denominator but bound to no claim. Not present in RECEIPT_INDEX.md/V2.",
+      "research/extensions/orion-qg/QG5_CERTIFIED_FORECAST_RESULTS.json": "Q2 publication-denominator augmentation receipt (orion-qg main-chain successor of R6R in Q2_TRANSITION_GRAPH_V2.json); the canonical orion-06 manuscript asserts no QG result, so it is carried in the denominator but bound to no claim. Not present in RECEIPT_INDEX.md/V2.",
+      "research/extensions/orion-qg/QG7B_HYBRID_FAMILY_RESULTS.json": "Q2 publication-denominator augmentation receipt (orion-qg main-chain successor of R6R in Q2_TRANSITION_GRAPH_V2.json); the canonical orion-06 manuscript asserts no QG result, so it is carried in the denominator but bound to no claim. Not present in RECEIPT_INDEX.md/V2.",
+      "research/extensions/orion-qg/QG7C_CLASSIFICATION_RESULTS.json": "Q2 publication-denominator augmentation receipt (orion-qg main-chain successor of R6R in Q2_TRANSITION_GRAPH_V2.json); the canonical orion-06 manuscript asserts no QG result, so it is carried in the denominator but bound to no claim. Not present in RECEIPT_INDEX.md/V2.",
+      "research/extensions/orion-qg/QG7_BPRIME_COMPLETENESS_RESULTS.json": "Q2 publication-denominator augmentation receipt (orion-qg main-chain successor of R6R in Q2_TRANSITION_GRAPH_V2.json); the canonical orion-06 manuscript asserts no QG result, so it is carried in the denominator but bound to no claim. Not present in RECEIPT_INDEX.md/V2."
+    },
+    "unused_indexed_13": {
+      "research/extensions/orion-q/MAX_R0_HETEROGENEOUS_ARENA_RESULTS.json": "Pre-ladder heterogeneous-arena provenance; no canonical-manuscript sentence asserts an arena-composition result.",
+      "research/extensions/orion-q/MAX_R1_OPERATOR_ARBITRATION_RESULTS.json": "Pre-ladder operator-arbitration provenance; not asserted by any manuscript claim.",
+      "research/extensions/orion-q/MAX_R2_KNOWN_OPERATOR_TRANSFER_RESULTS.json": "Owned by the companion TARE / dual-instrument / typed-state papers (claim O6-C08): indexed programme provenance whose result the canonical orion-06 manuscript does not assert.",
+      "research/extensions/orion-q/MAX_R3B_JOINT_OBLIGATION_BINDING_RESULTS.json": "Owned by the companion TARE / dual-instrument / typed-state papers (claim O6-C08): indexed programme provenance whose result the canonical orion-06 manuscript does not assert.",
+      "research/extensions/orion-q/MAX_R3E_PERSISTENT_SKILL_STREAM_RESULTS.json": "Owned by the companion TARE / dual-instrument / typed-state papers (claim O6-C08): indexed programme provenance whose result the canonical orion-06 manuscript does not assert.",
+      "research/extensions/orion-q/MAX_R3E_PROTECTED_SKILL_ADMISSION_RESULTS.json": "Owned by the companion TARE / dual-instrument / typed-state papers (claim O6-C08): indexed programme provenance whose result the canonical orion-06 manuscript does not assert.",
+      "research/extensions/orion-q/MAX_R4A_GROUPED_SPARSE_QSVT_CONFIRMATORY_RESULTS.json": "Owned by the companion TARE / dual-instrument / typed-state papers (claim O6-C08): indexed programme provenance whose result the canonical orion-06 manuscript does not assert.",
+      "research/extensions/orion-q/MAX_R4B_TARE_SPLIT_MAJORISATION_RESULTS.json": "Owned by the companion TARE / dual-instrument / typed-state papers (claim O6-C08): indexed programme provenance whose result the canonical orion-06 manuscript does not assert.",
+      "research/extensions/orion-q/MAX_R4C_FRESH_H2_HETEROGENEOUS_PAIR_RESULTS.json": "Owned by the companion TARE / dual-instrument / typed-state papers (claim O6-C08): indexed programme provenance whose result the canonical orion-06 manuscript does not assert.",
+      "research/extensions/orion-q/MAX_R4D_H2O_DUCC_CONFIRMATION_RESULTS.json": "Owned by the companion TARE / dual-instrument / typed-state papers (claim O6-C08): indexed programme provenance whose result the canonical orion-06 manuscript does not assert.",
+      "research/extensions/orion-q/MAX_R5B_N2_PROOF_OUTER_REPLAY_RESULTS.json": "Owned by the companion TARE / dual-instrument / typed-state papers (claim O6-C08): indexed programme provenance whose result the canonical orion-06 manuscript does not assert.",
+      "research/extensions/orion-q/MAX_R5_N2_JOINT_INTERNAL_CONFIRMATION_RESULTS.json": "Owned by the companion TARE / dual-instrument / typed-state papers (claim O6-C08): indexed programme provenance whose result the canonical orion-06 manuscript does not assert.",
+      "research/extensions/orion-q/nlanes/N1_LOWER_BOUND_RESULTS.json": "Wording-drift finding, not hidden: ATOMIC_CLAIM_INVENTORY.json admits a 'lower-bound' outcome category, but the canonical manuscript never uses the word 'lower' anywhere; the N1 lower-bound receipt therefore certifies no manuscript sentence. Recorded as follow-up ledger/manuscript reconciliation."
+    }
+  },
+  "schema": "ORIONQ.Q2ReceiptClaimMap.v1",
+  "unbacked_claims": [
+    "O6-C06",
+    "O6-C07",
+    "O6-C08",
+    "O6-C09",
+    "O6-C25",
+    "O6-C26",
+    "O6-C27",
+    "O6-C29"
+  ],
+  "unbacked_claims_note": "All eight UNBACKED claims are boundary/definitional/positioning statements for which receipts are not the applicable evidence class; zero computational results lack receipts.",
+  "verification": {
+    "claim_quotes": {
+      "claims": 31,
+      "verbatim_in_anchored_line": 31
+    },
+    "claim_receipt_cross_consistency": {
+      "built_from": "claims[].receipts[].artifact",
+      "equals_disposition_mapped_set": true
+    },
+    "cross_domain_absence_audit": {
+      "indexed_receipts_scanned": 47,
+      "method": "token scan over all 47 indexed receipt bytes; no receipt carries an affirmative cross-domain comparative result, matching the unexecuted-benchmark boundary (O6-P7)",
+      "receipts_asserting_cross_domain_comparative_benchmark": 0,
+      "receipts_mentioning_cross_domain_token": []
+    },
+    "denominator_reconciliation": {
+      "augmentation_11": {
+        "indexed_in_v2": 6,
+        "qg_only": 5
+      },
+      "base_40_equal_v1_index": true,
+      "denominator": 51,
+      "indexed_outside_denominator": [
+        "research/extensions/orion-q/nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json"
+      ],
+      "mapped_inside_denominator": 33,
+      "outside_note": "nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json is RECEIPT_INDEX_V2.md-indexed and digest-verified but is not one of the 51 frozen Q2 publication-denominator receipts; it is claim-bound (O6-C20) via its V2 index entry, which is the authority this map tracks. Denominator identity: 33 mapped + 13 unused + 5 QG-only = 51.",
+      "unused_inside_denominator": 13
+    },
+    "ledger_coverage": {
+      "active_authority_sha256": "f40a73d8f70c08d26ea29739a66663f40d8709ba1df14d3a0baee65b77175b28",
+      "ledger": "papers/orion-06-recursive-recovery/CLAIM_LEDGER_V4.md",
+      "ledger_ids": 8,
+      "ledger_ids_covered": 8,
+      "match": true,
+      "missing": [],
+      "package_manifest": "papers/orion-06-recursive-recovery/submission/publication-ready-20260831/PACKAGE_MANIFEST.json",
+      "sha256": "f40a73d8f70c08d26ea29739a66663f40d8709ba1df14d3a0baee65b77175b28"
+    },
+    "q2_inventory": {
+      "entries": 51,
+      "files_present": 51,
+      "inventory": "papers/orion-06-recursive-recovery/Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json",
+      "missing": []
+    },
+    "receipt_authority_scope_audit": {
+      "indexed_receipts": 47,
+      "method": "receipt bytes contain an \"authority\" field, a \"terminal\" field, or the BELOW_R6 gate marker",
+      "with_authority_or_terminal_scoping": 47,
+      "without": []
+    },
+    "receipt_claim_pairs": 94,
+    "v1_index": {
+      "digest_matches": 40,
+      "entries": 40,
+      "index": "papers/orion-06-recursive-recovery/RECEIPT_INDEX.md",
+      "mismatches": []
+    },
+    "v2_index": {
+      "entries": 7,
+      "git_blob_matches": 7,
+      "index": "papers/orion-06-recursive-recovery/RECEIPT_INDEX_V2.md",
+      "mismatches": []
+    }
+  }
+}
