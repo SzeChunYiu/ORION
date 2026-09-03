@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:579bbe95c96015a1614a72ed9f3a02096f9915e56a928806bd50b0169e22ad10",
+  "after_sha256": "783553e00531c72817144a838e7c7d1a9858f6f66f0ae7cbc81be05f12e8f1fb",
+  "after_version_id": "3",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:1237",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "b8d9ed2b0fec04935ca9dd414f09f5cc1325acf2258d308253c2dd86a7bea63e",
+  "before_version_id": "2",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "783553e00531c72817144a838e7c7d1a9858f6f66f0ae7cbc81be05f12e8f1fb",
+    "after_version_id": "3",
+    "before_sha256": "b8d9ed2b0fec04935ca9dd414f09f5cc1325acf2258d308253c2dd86a7bea63e",
+    "before_version_id": "2",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/CC-BY-4.0",
+    "license_before": "https://spdx.org/licenses/CC-BY-4.0",
+    "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:8eac714f8d6d849dbf528f523409f390df7f02d6debc4ba7bf8bdd3e5dce936b/1135056b5f1cb632e39ad20de994b99687637c9bff890832a14dcbce2c32bbe2",
+    "organization_name": "NIH CFDE Playbook Workflow Partnership",
+    "packet_id": "a6-s2-wh-1237",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:1237",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "Use Case 1: Explain Drug-Drug Interactions"
+  },
+  "candidate_visible_packet_sha256": "8ca2de6c11d97519edd67fca47c3a35e6f92032dd84e42a6a2fc00e7159f3a10",
+  "external_custody_receipt_id": "a6-external-custody:13219d4a5f5e8b91cec987b23b8f50211803cbaeb1c9fa9936e405d3afc31f50",
+  "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:8eac714f8d6d849dbf528f523409f390df7f02d6debc4ba7bf8bdd3e5dce936b/1135056b5f1cb632e39ad20de994b99687637c9bff890832a14dcbce2c32bbe2",
+  "normalized_organization_lineage": "workflowhub:organization:nih-cfde-playbook-workflow-partnership",
+  "packet_id": "a6-s2-wh-1237",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:1237",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

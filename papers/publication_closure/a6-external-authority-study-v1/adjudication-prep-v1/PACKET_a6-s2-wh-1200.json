@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:b0aa3d09a28c560ed7cfe2065b57c07680397b2834dc4d49dcda1fc21d8d2ca5",
+  "after_sha256": "d29333f68be88b8ddcbb4b11c1918b07d6a2e747401ad52871ec6654c8fc55ae",
+  "after_version_id": "2",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:1200",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "f41b70de7372adec278785f9fb430416eda99b27cc50c6c70ae9e0b497589224",
+  "before_version_id": "1",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "d29333f68be88b8ddcbb4b11c1918b07d6a2e747401ad52871ec6654c8fc55ae",
+    "after_version_id": "2",
+    "before_sha256": "f41b70de7372adec278785f9fb430416eda99b27cc50c6c70ae9e0b497589224",
+    "before_version_id": "1",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/CECILL-2.1",
+    "license_before": "https://spdx.org/licenses/CECILL-2.1",
+    "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:5517880220e28fb1177ba49a02666d30f5f20a2297d0f3c566957fe47d6ba50c/88b7178cf08fdb4ef4bc7a80479480df0380de32a109150a74342eab3e496f00",
+    "organization_name": "Bioinformatics Laboratory for Genomics and Biodiversity (LBGB), ERGA Assembly",
+    "packet_id": "a6-s2-wh-1200",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:1200",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "GALOP - Genome Assembly using Long reads Pipeline"
+  },
+  "candidate_visible_packet_sha256": "44966fc224d207f01aa0ed128b36e19fb588ec24a5d4433d4f152193cea76824",
+  "external_custody_receipt_id": "a6-external-custody:713af2988ae4bf844861fafbcce50e7d19788a14db165c1fc5c47431989122f1",
+  "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:5517880220e28fb1177ba49a02666d30f5f20a2297d0f3c566957fe47d6ba50c/88b7178cf08fdb4ef4bc7a80479480df0380de32a109150a74342eab3e496f00",
+  "normalized_organization_lineage": "workflowhub:organization:bioinformatics-laboratory-for-genomics-and-biodiversity-lbgb-erga-assembly",
+  "packet_id": "a6-s2-wh-1200",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:1200",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:b90d702e4531769f521023162937a11398c6e2259001fafba650cbf2504b690c",
+  "after_sha256": "3ab5eed4f98a400e1fc77cfc4b34879d25f4b81c2ec8a261bab74c946af73905",
+  "after_version_id": "mcp-v0.2.2-cli-v0.8.2",
+  "artifact_lineage_id": "zenodo:software:10.5281/zenodo.10041305",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "d98ed431728d5e774d10c440b97d80b4dfce25a450bd6910394039a076406e18",
+  "before_version_id": "mcp-v0.2.1-cli-v0.8.1",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "access_right": "open",
+    "after_sha256": "3ab5eed4f98a400e1fc77cfc4b34879d25f4b81c2ec8a261bab74c946af73905",
+    "after_version_id": "mcp-v0.2.2-cli-v0.8.2",
+    "before_sha256": "d98ed431728d5e774d10c440b97d80b4dfce25a450bd6910394039a076406e18",
+    "before_version_id": "mcp-v0.2.1-cli-v0.8.1",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "mit-license",
+    "license_before": "mit-license",
+    "license_or_rights_receipt_id": "zenodo:version-licenses:mit-license|mit-license|concept:10041305",
+    "packet_id": "a6-s1-zenodo-10041305",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "zenodo:record-family:10041305",
+    "stratum": "scientific_software_release_provenance_attestation",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_title": "ZJUEarthData/Geochemistrypi: GeochemistryPi mcp-v0.2.2-cli-v0.8.2"
+  },
+  "candidate_visible_packet_sha256": "eabf0c6579905534ed6f1e4af8c52707ff9b001598eea4eaafbcc0fffb8c4802",
+  "external_custody_receipt_id": "a6-external-custody:e775cc004e1dac81d0fa196f998efaed8ec94493de27ce50c4fcd13ca9bcd508",
+  "license_or_rights_receipt_id": "zenodo:version-licenses:mit-license|mit-license|concept:10041305",
+  "normalized_organization_lineage": "zenodo:owner:259551",
+  "packet_id": "a6-s1-zenodo-10041305",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "zenodo:record-family:10041305",
+  "split": "primary",
+  "stratum": "scientific_software_release_provenance_attestation",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

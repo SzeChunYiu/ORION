@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:4c4057801a970bc90d5af69c5fbccee9251fff82a455d8c5d2da9d3503920e06",
+  "after_sha256": "3bd7a04cf8ed1077109069fc8b2d63eb382610ecdb2b6205fbd9730fa2a4ae3c",
+  "after_version_id": "2",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:510",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "9ea5a095c2c46dc9fced9d86153c497d81064bbbcb4e7e3689ff342aacb8636a",
+  "before_version_id": "1",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "3bd7a04cf8ed1077109069fc8b2d63eb382610ecdb2b6205fbd9730fa2a4ae3c",
+    "after_version_id": "2",
+    "before_sha256": "9ea5a095c2c46dc9fced9d86153c497d81064bbbcb4e7e3689ff342aacb8636a",
+    "before_version_id": "1",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/MIT",
+    "license_before": "https://spdx.org/licenses/MIT",
+    "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:510",
+    "organization_name": "Metabolomics-Reproducibility",
+    "packet_id": "a6-s2-wh-510",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:510",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "Metabolome Annotation Workflow (MAW)"
+  },
+  "candidate_visible_packet_sha256": "fe1c44211efdd108444a388d22b7f0ca0397430638c0f50f49933269f16b8afe",
+  "external_custody_receipt_id": "a6-external-custody:4e96905a0141ea2f66cf2c35dac297cda1c9d2b38c2f1ee23e0c5f1e620d2701",
+  "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:510",
+  "normalized_organization_lineage": "workflowhub:organization:metabolomics-reproducibility",
+  "packet_id": "a6-s2-wh-510",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:510",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

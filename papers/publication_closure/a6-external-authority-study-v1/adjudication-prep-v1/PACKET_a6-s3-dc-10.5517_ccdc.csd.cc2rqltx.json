@@ -1,0 +1,56 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:fb8991a30b62d18d0365b38e9f282b068473f61f8a6dc6598ae3236d13bc3899",
+  "after_sha256": "440eebe463e94ffb52aa61bb278e19f9f68313b1be96e7b4dafd6d22e9546844",
+  "after_version_id": "datacite:doi:10.5517/ccdc.csd.cc2rqltx",
+  "artifact_lineage_id": "scientific-record:doi:10.5517/ccdc.csd.cc2rqltx",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "a058880954cfae5319754e7ff63407eda92f658ce139c26ed9810e204f4d5940",
+  "before_version_id": "crossref:doi:10.1039/d6dt01176d",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "440eebe463e94ffb52aa61bb278e19f9f68313b1be96e7b4dafd6d22e9546844",
+    "after_version_id": "datacite:doi:10.5517/ccdc.csd.cc2rqltx",
+    "article_crossref_license_urls": [
+      "http://creativecommons.org/licenses/by/3.0/"
+    ],
+    "before_sha256": "a058880954cfae5319754e7ff63407eda92f658ce139c26ed9810e204f4d5940",
+    "before_version_id": "crossref:doi:10.1039/d6dt01176d",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:unspecified:supplement:10.5517/ccdc.csd.cc2rqltx",
+    "packet_id": "a6-s3-dc-10.5517/ccdc.csd.cc2rqltx",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "crossref-supplement-family:doi:10.1039/d6dt01176d",
+    "stratum": "scientific_record_transition",
+    "supplement_resource_type_general": "Dataset",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_kind": "article_to_data_or_code_release"
+  },
+  "candidate_visible_packet_sha256": "ea3ec4de4941ec051afbdbb18426d54144368d7a3737a451624644be517334ca",
+  "external_custody_receipt_id": "a6-external-custody:b51c3df97f992fa67d83cca1b85c1b9aed1ac0f15cac38e394e2e7e2e4424cdb",
+  "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:unspecified:supplement:10.5517/ccdc.csd.cc2rqltx",
+  "normalized_organization_lineage": "crossref:publisher:royal-society-of-chemistry-rsc",
+  "packet_id": "a6-s3-dc-10.5517/ccdc.csd.cc2rqltx",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "crossref-supplement-family:doi:10.1039/d6dt01176d",
+  "split": "primary",
+  "stratum": "scientific_record_transition",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

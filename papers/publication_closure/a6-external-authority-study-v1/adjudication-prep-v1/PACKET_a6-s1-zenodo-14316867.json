@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:0db671a0cd129ea284b7ff35a3bd7858f552c25a49dd40b099ebc86c84e769cb",
+  "after_sha256": "2318fcfee4235c1e1b241b19a5d02cbc58afb986aca6cb16888d24f74f7e0702",
+  "after_version_id": "v0.3.1",
+  "artifact_lineage_id": "zenodo:software:10.5281/zenodo.14316867",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "32075050bb7a3baa934bef4ed1c22c9949b9869099e568160a3996c847c537a6",
+  "before_version_id": "v0.2.5",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "access_right": "open",
+    "after_sha256": "2318fcfee4235c1e1b241b19a5d02cbc58afb986aca6cb16888d24f74f7e0702",
+    "after_version_id": "v0.3.1",
+    "before_sha256": "32075050bb7a3baa934bef4ed1c22c9949b9869099e568160a3996c847c537a6",
+    "before_version_id": "v0.2.5",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "bsd-3-clause",
+    "license_before": "bsd-3-clause",
+    "license_or_rights_receipt_id": "zenodo:version-licenses:bsd-3-clause|bsd-3-clause|concept:14316867",
+    "packet_id": "a6-s1-zenodo-14316867",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "zenodo:record-family:14316867",
+    "stratum": "scientific_software_release_provenance_attestation",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_title": "dellytools/sansa: sansa v0.3.1"
+  },
+  "candidate_visible_packet_sha256": "9d21955a480857155f74c16872bb945743a92b8ddf1c79c3835137f53d3946a3",
+  "external_custody_receipt_id": "a6-external-custody:7e81a4df0e7af82cd2cb14c5d390a2eb7887f233bf2977431d63f5c2b016f2cc",
+  "license_or_rights_receipt_id": "zenodo:version-licenses:bsd-3-clause|bsd-3-clause|concept:14316867",
+  "normalized_organization_lineage": "zenodo:owner:480013",
+  "packet_id": "a6-s1-zenodo-14316867",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "zenodo:record-family:14316867",
+  "split": "replication",
+  "stratum": "scientific_software_release_provenance_attestation",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

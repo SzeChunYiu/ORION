@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:2563d6cdc64af98248a46d30e26824868f83c6e39ca79a41660aad1dea2c5b43",
+  "after_sha256": "f5085c2ef73d3374b0d4380a71bef9a9b19a44793420c7b23ae600fc8df9a9e7",
+  "after_version_id": "v1.3.0",
+  "artifact_lineage_id": "zenodo:software:10.5281/zenodo.18246734",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "f23155a3413014b7ff1d3d7857133764c8492699d37d27007cd1a090c61d4e5d",
+  "before_version_id": "v1.2.2",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "access_right": "open",
+    "after_sha256": "f5085c2ef73d3374b0d4380a71bef9a9b19a44793420c7b23ae600fc8df9a9e7",
+    "after_version_id": "v1.3.0",
+    "before_sha256": "f23155a3413014b7ff1d3d7857133764c8492699d37d27007cd1a090c61d4e5d",
+    "before_version_id": "v1.2.2",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "mit-license",
+    "license_before": "mit-license",
+    "license_or_rights_receipt_id": "zenodo:version-licenses:mit-license|mit-license|concept:18246734",
+    "packet_id": "a6-s1-zenodo-18246734",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "zenodo:record-family:18246734",
+    "stratum": "scientific_software_release_provenance_attestation",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_title": "specular-differentiation"
+  },
+  "candidate_visible_packet_sha256": "a6f298ec683a35cf1454eb96bcdc765b7840d6153e6335bb0064dcf6126658e7",
+  "external_custody_receipt_id": "a6-external-custody:8975d6fec5f09c3165c34e379a0194e89d80942ce948ad896df04aab5a8fe31a",
+  "license_or_rights_receipt_id": "zenodo:version-licenses:mit-license|mit-license|concept:18246734",
+  "normalized_organization_lineage": "zenodo:owner:1511554",
+  "packet_id": "a6-s1-zenodo-18246734",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "zenodo:record-family:18246734",
+  "split": "replication",
+  "stratum": "scientific_software_release_provenance_attestation",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

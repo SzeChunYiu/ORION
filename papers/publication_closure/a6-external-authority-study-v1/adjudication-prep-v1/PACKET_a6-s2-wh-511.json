@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:52ebbfba25c810a980d563f71812098f7f3ab4db892770c4af82bd9be69d5fd3",
+  "after_sha256": "3875d0120d06ebd79b979b5a358db551d1371be7786378a3efb47833fe9cb887",
+  "after_version_id": "5",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:511",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "b7bcd2a6118e9855d97ff24285c2bcd0cc83873bf51044931675397f8a1dbdc7",
+  "before_version_id": "4",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "3875d0120d06ebd79b979b5a358db551d1371be7786378a3efb47833fe9cb887",
+    "after_version_id": "5",
+    "before_sha256": "b7bcd2a6118e9855d97ff24285c2bcd0cc83873bf51044931675397f8a1dbdc7",
+    "before_version_id": "4",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/CC-BY-4.0",
+    "license_before": "https://spdx.org/licenses/CC-BY-4.0",
+    "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:511",
+    "organization_name": "Lake Erken modelling setup",
+    "packet_id": "a6-s2-wh-511",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:511",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "Timing of spring events changes under modelled future climate scenarios in a mesotrophic lake"
+  },
+  "candidate_visible_packet_sha256": "d0a779458d87c1b885239fe701c71423e43605d36181fa4198141f2185b8c987",
+  "external_custody_receipt_id": "a6-external-custody:25cbdd04ced709cfd0d341932854404a79c31ff38ca85b8aad85e6e8d80e73b7",
+  "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:511",
+  "normalized_organization_lineage": "workflowhub:organization:lake-erken-modelling-setup",
+  "packet_id": "a6-s2-wh-511",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:511",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

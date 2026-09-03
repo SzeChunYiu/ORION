@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:7a604a38ec316665d4a8f4b9797a938da3e49a57381395f77af3ba96c343bb63",
+  "after_sha256": "65e2f2f8672ca93232a042c9288dfa7ee544df17d5978b116f85a4091fe3ef04",
+  "after_version_id": "3",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:471",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "6d1ef0a285804a5784a6b4335dab6bfaef84031b31368c1ddf4da433704997e2",
+  "before_version_id": "2",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "65e2f2f8672ca93232a042c9288dfa7ee544df17d5978b116f85a4091fe3ef04",
+    "after_version_id": "3",
+    "before_sha256": "6d1ef0a285804a5784a6b4335dab6bfaef84031b31368c1ddf4da433704997e2",
+    "before_version_id": "2",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/MIT",
+    "license_before": "https://spdx.org/licenses/MIT",
+    "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:471",
+    "organization_name": "TRE-FX",
+    "packet_id": "a6-s2-wh-471",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:471",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "rquest-omop-worker-workflow"
+  },
+  "candidate_visible_packet_sha256": "e681c278ae1c84a5c5673f2795ac93185575426cc7c8613efabbcf5d45d05d12",
+  "external_custody_receipt_id": "a6-external-custody:616ccb59d95de6fbe533c6a045d158960b0b6b3e5bd26267d629df627541f347",
+  "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:471",
+  "normalized_organization_lineage": "workflowhub:organization:tre-fx",
+  "packet_id": "a6-s2-wh-471",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:471",
+  "split": "replication",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

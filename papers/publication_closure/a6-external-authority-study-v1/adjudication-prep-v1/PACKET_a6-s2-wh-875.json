@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:6e3cb34a5053a2d58c34107c80af8e9fb950f74399a143bd5cb86629cf7408a4",
+  "after_sha256": "8e3048421327384e531c39720da6d8c0a751d3ebe8995d35f5a7db981c94d1f2",
+  "after_version_id": "3",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:875",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "5dc98a9955432598906bda01ea21463cdd5a9a24bf3475f687ab4054c2a091a9",
+  "before_version_id": "2",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "8e3048421327384e531c39720da6d8c0a751d3ebe8995d35f5a7db981c94d1f2",
+    "after_version_id": "3",
+    "before_sha256": "5dc98a9955432598906bda01ea21463cdd5a9a24bf3475f687ab4054c2a091a9",
+    "before_version_id": "2",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/GPL-3.0",
+    "license_before": "https://spdx.org/licenses/GPL-3.0",
+    "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:4a47ec5a8090ae27a2f011033c27cc623f22575f7eb4c176b7dc40de094f93a7/f51b6fad0040c506d1cce0f5a7bc36c6e095a3792798df0151b0d03bddf4e2bc",
+    "organization_name": "Australian BioCommons, Galaxy Australia",
+    "packet_id": "a6-s2-wh-875",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:875",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "Repeat masking - TSI"
+  },
+  "candidate_visible_packet_sha256": "43f0c519126a173c1285c7e102ee31bca35a01e2df0a438e536ae1b9f5f05cc0",
+  "external_custody_receipt_id": "a6-external-custody:34645ce71a05d0d00c3c34696a9475a18ff18e9e468637f7567c92a0bef73410",
+  "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:4a47ec5a8090ae27a2f011033c27cc623f22575f7eb4c176b7dc40de094f93a7/f51b6fad0040c506d1cce0f5a7bc36c6e095a3792798df0151b0d03bddf4e2bc",
+  "normalized_organization_lineage": "workflowhub:organization:australian-biocommons-galaxy-australia",
+  "packet_id": "a6-s2-wh-875",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:875",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

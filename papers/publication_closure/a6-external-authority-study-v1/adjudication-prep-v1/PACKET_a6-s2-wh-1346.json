@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:e49814fee27dac128fc3b982ad6a998402b3468b47ebbd337a67dcbf236d89aa",
+  "after_sha256": "df129b63591826a1a0d7a6186290ed40b032272542569f69a670d280b32da73d",
+  "after_version_id": "2",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:1346",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "97e3dc99254fca618797f40fe1a55ae0ffabe833aed4f149bad330505475f11e",
+  "before_version_id": "1",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "df129b63591826a1a0d7a6186290ed40b032272542569f69a670d280b32da73d",
+    "after_version_id": "2",
+    "before_sha256": "97e3dc99254fca618797f40fe1a55ae0ffabe833aed4f149bad330505475f11e",
+    "before_version_id": "1",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/MIT",
+    "license_before": "https://spdx.org/licenses/MIT",
+    "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:6afe1a6360bb00480466a746ff6c27f3c8de55f3a0364b5c9a67cd8192ba9296/4a6bcdcd60d05512d4b07dec361d5ae9eef73e703305e9bbc97efe6cc280116e",
+    "organization_name": "iBOL Europe Museum Skimming",
+    "packet_id": "a6-s2-wh-1346",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:1346",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "Barcode gene Extraction and Evaluation from Genome Skims (BeeGees) Snakemake workflow"
+  },
+  "candidate_visible_packet_sha256": "b8fabd2649e6cdd230b978dc9bdb645cc790715a00349d88619e04229f98194c",
+  "external_custody_receipt_id": "a6-external-custody:9c5eac6a6ae74e5ed05b91833fb423dc5ce9059492c253726c5cb15991ca0636",
+  "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:6afe1a6360bb00480466a746ff6c27f3c8de55f3a0364b5c9a67cd8192ba9296/4a6bcdcd60d05512d4b07dec361d5ae9eef73e703305e9bbc97efe6cc280116e",
+  "normalized_organization_lineage": "workflowhub:organization:ibol-europe-museum-skimming",
+  "packet_id": "a6-s2-wh-1346",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:1346",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}
