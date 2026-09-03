@@ -55,6 +55,21 @@ REQUIRED_COMMON = {
     "journal/review-materials.zip",
     "journal/source.zip",
 }
+SKILLS_REPOSITORY = "https://github.com/SzeChunYiu/academic-paper-skills"
+# Releases of SzeChunYiu/academic-paper-skills that this closure is allowed to cite.
+# A package may only be bound to a revision recorded here, so a registry entry cannot
+# register an arbitrary or invented skill authority.
+REGISTERED_SKILL_REVISIONS = {
+    "be335c630240cd5e73535e8f813594b227d736a8",
+    "488fc5310b84e578431f4a9a176d55bf9a3f0b99",
+}
+SKILL_VERSION_FIELD_BY_SLUG = {
+    "academic-paper-pipeline": "academic_paper_pipeline_version",
+    "academic-writing": "academic_writing_version",
+    "nature-polishing": "nature_polishing_version",
+    "nature-reviewer": "nature_reviewer_version",
+}
+SKILL_RELEASE_FIELDS = ("repository", "revision", *SKILL_VERSION_FIELD_BY_SLUG.values())
 VENUE_FILES = {
     "Quantum": {"journal/QUANTUM_ARXIV_FILING.md"},
     "Transactions on Machine Learning Research": {"journal/TMLR_OPENREVIEW_CHECKLIST.md"},
@@ -162,6 +177,66 @@ def word_count(text: str) -> int:
     return len(text.split())
 
 
+def closure_registry() -> dict:
+    return json.loads((HERE / "CLOSURE_REGISTRY.json").read_text(encoding="utf-8"))
+
+
+def registry_skills_release(paper: str) -> dict:
+    """The externally recorded skills release for one paper.
+
+    The expectation lives in CLOSURE_REGISTRY.json rather than in a constant here,
+    so different packages may legitimately be built from different skills releases.
+    It is not self-declared: the registry entry that carries it also pins the
+    package's manifest_sha256, so a manifest cannot move its own release record
+    without the registry moving with it.
+    """
+    records = [item for item in closure_registry()["papers"] if item["paper"] == paper]
+    if len(records) != 1:
+        raise RuntimeError(f"closure registry does not record {paper} exactly once")
+    declared = records[0].get("academic_paper_skills")
+    if not isinstance(declared, dict) or set(declared) != set(SKILL_RELEASE_FIELDS):
+        raise RuntimeError(f"closure registry records no academic-paper-skills release for {paper}")
+    return declared
+
+
+def parse_skills_applied(path: Path) -> dict:
+    """Read the release a package documents to its readers in SKILLS_APPLIED.md."""
+    text = path.read_text(encoding="utf-8")
+    applied = re.findall(r"^\s*`skills-applied:\s*(.+?)`\s*$", text, flags=re.M)
+    authority = re.findall(r"^\s*Skill authority:\s*`([^`@]+)@([0-9a-f]{40})`", text, flags=re.M)
+    if len(applied) != 1 or len(authority) != 1:
+        raise RuntimeError("SKILLS_APPLIED.md does not state exactly one skills-applied line and one skill authority")
+    slug, revision = authority[0]
+    documented = {"repository": f"https://github.com/{slug}", "revision": revision}
+    for entry in applied[0].split(","):
+        name, _, version = entry.strip().partition("@")
+        field = SKILL_VERSION_FIELD_BY_SLUG.get(name.strip())
+        if field is not None:
+            if not version:
+                raise RuntimeError(f"SKILLS_APPLIED.md states {name.strip()} without a version")
+            documented[field] = version.strip()
+    return documented
+
+
+def verify_skills_release(spec: dict, root: Path, manifest: dict) -> list[str]:
+    declared = manifest.get("academic_paper_skills")
+    if not isinstance(declared, dict) or set(declared) != set(SKILL_RELEASE_FIELDS):
+        raise RuntimeError("manifest declares no complete academic-paper-skills release")
+    if declared != registry_skills_release(spec["paper"]):
+        raise RuntimeError("academic-paper-skills release authority mismatch")
+    if declared["repository"] != SKILLS_REPOSITORY:
+        raise RuntimeError("academic-paper-skills repository is not the canonical one")
+    if declared["revision"] not in REGISTERED_SKILL_REVISIONS:
+        raise RuntimeError(f"unregistered academic-paper-skills revision {declared['revision']}")
+    documented = parse_skills_applied(root / "SKILLS_APPLIED.md")
+    divergent = sorted(field for field in SKILL_RELEASE_FIELDS if documented.get(field) != declared[field])
+    if divergent:
+        raise RuntimeError(
+            "SKILLS_APPLIED.md contradicts the manifest academic-paper-skills release: " + ", ".join(divergent)
+        )
+    return ["skills_release_registry_binding", "skills_release_document_consistency"]
+
+
 def verify_metadata(spec: dict, root: Path) -> list[str]:
     checks: list[str] = []
     arxiv = json.loads((root / "arxiv/metadata.json").read_text(encoding="utf-8"))
@@ -241,15 +316,7 @@ def verify_one(spec: dict) -> dict:
         raise RuntimeError("manifest paper/terminal mismatch")
     if manifest["journal"]["article_type"] != spec["article_type"]:
         raise RuntimeError("manifest article type mismatch")
-    if manifest.get("academic_paper_skills") != {
-        "repository": "https://github.com/SzeChunYiu/academic-paper-skills",
-        "revision": "be335c630240cd5e73535e8f813594b227d736a8",
-        "academic_paper_pipeline_version": "1.20.0",
-        "academic_writing_version": "1.18.0",
-        "nature_polishing_version": "7.5.0",
-        "nature_reviewer_version": "3.5.0",
-    }:
-        raise RuntimeError("academic-paper-skills release authority mismatch")
+    checks.extend(verify_skills_release(spec, root, manifest))
     authority = ROOT / manifest["active_authority"]
     if sha256(authority) != manifest["active_authority_sha256"]:
         raise RuntimeError("active-authority hash mismatch")
