@@ -26,6 +26,8 @@ jobs:
         run: python research/experiments/davenport-c7-frontier/check_atom_length_corridor_v1.py
       - name: Check Zhao 4p resonance controls
         run: python research/experiments/davenport-c7-frontier/check_zhao_4p_resonance_v1.py
+      - name: Check Fan length-37 hostile-control witness
+        run: python research/experiments/davenport-c7-frontier/check_fan_length37_witness_v1.py
       - name: Regenerate projective support-7 cover
         run: |
           python research/experiments/davenport-c7-frontier/generate_support7_projective_arcs_v1.py \
