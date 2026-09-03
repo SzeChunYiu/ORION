@@ -48,3 +48,8 @@ jobs:
           cd research/extensions/orion-q
           python test_max_r5h_lunarc_receipt_validator.py | tee /tmp/r5h-selftest.txt
           grep '^ORIONQ_R5H_VALIDATOR_SELFTEST=PASS' /tmp/r5h-selftest.txt
+      - name: Streaming combine equality selftest
+        run: |
+          cd research/extensions/orion-q
+          python test_max_r5h_streaming_combine.py | tee /tmp/r5h-stream-selftest.txt
+          grep '^ORIONQ_R5H_STREAM_COMBINE_SELFTEST=PASS' /tmp/r5h-stream-selftest.txt
