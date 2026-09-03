@@ -1,0 +1,635 @@
+{
+ "admission_attempts": [
+  {
+   "admitted": true,
+   "blob": "cd32e1e77cc349db71e2514a43b6e69279b20ef6",
+   "n_qubits": 12,
+   "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+   "reason": null
+  }
+ ],
+ "anti_instrument_import_gate": {
+  "forbidden_imports": [],
+  "imports": [
+   "__future__",
+   "argparse",
+   "ast",
+   "hashlib",
+   "itertools",
+   "json",
+   "max_r6r_prospective_fresh_subject",
+   "orion06_negative_revival_r1",
+   "pathlib",
+   "subprocess",
+   "sys",
+   "typing"
+  ],
+  "pass": true
+ },
+ "authority": "PROSPECTIVE_ONE_FRESH_FILE_MECHANISM_CONFIRMATION_ONLY__NO_NOVELTY_NO_FREEZE_NOT_R6_NOT_END_TO_END",
+ "authority_flags": {
+  "end_to_end_qsvt_superiority": false,
+  "final_freeze": false,
+  "hardware_independence": false,
+  "new_molecule_family": false,
+  "novelty": false,
+  "prospective_confirmation_r5b_mechanism_one_fresh_file": true,
+  "r6": false
+ },
+ "base_revision": "ebf43b643264873ef5ec56051ab70ff4f47fe056",
+ "candidate_pair_frontier_sizes": {
+  "11-72": 3,
+  "11-73": 3,
+  "11-74": 3,
+  "4-11": 2,
+  "4-7": 2,
+  "4-72": 2,
+  "4-73": 2,
+  "4-74": 2,
+  "7-11": 3,
+  "7-72": 3,
+  "7-73": 3,
+  "7-74": 3,
+  "72-73": 2,
+  "72-74": 2,
+  "73-74": 2
+ },
+ "candidate_pareto": [
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "0100745e5bd0862e13aac18c1fa06947d3003d223bc090299b48f44caf640e9f",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 13,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     72
+    ],
+    [
+     73,
+     74
+    ]
+   ],
+   "matching_sha256": "08ef5aa41004417578268e162e08dcc6b176e47a532dd3ccf7e085309446b8aa",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 0
+  },
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "5c522e64f1a46b6fa5bf7ee2faa38169629bc73a7b0166f77db4380332669271",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 12,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     72
+    ],
+    [
+     73,
+     74
+    ]
+   ],
+   "matching_sha256": "08ef5aa41004417578268e162e08dcc6b176e47a532dd3ccf7e085309446b8aa",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 2
+  },
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "21a1abc02510b0279986685f689974bd35063c9f3bd03bb99478e7de3a11253b",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 11,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     73
+    ],
+    [
+     72,
+     74
+    ]
+   ],
+   "matching_sha256": "94504e805504b0d1313a7bfc6da01ad4a1d7cb62e9218c1d0e03cb4eeae37b1a",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 4
+  },
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "35830983d80e419038bc7c18b6fe62293d3d3d4102d4b19ee2424af3801724fd",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 10,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     73
+    ],
+    [
+     72,
+     74
+    ]
+   ],
+   "matching_sha256": "94504e805504b0d1313a7bfc6da01ad4a1d7cb62e9218c1d0e03cb4eeae37b1a",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 6
+  },
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "0ac2d9966b742731a393f20d65d04ec1360e8345c3c1b4638babd904b141888d",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 9,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     73
+    ],
+    [
+     72,
+     74
+    ]
+   ],
+   "matching_sha256": "94504e805504b0d1313a7bfc6da01ad4a1d7cb62e9218c1d0e03cb4eeae37b1a",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 8
+  }
+ ],
+ "candidate_point_count": 216,
+ "champion_windows": [
+  0,
+  72
+ ],
+ "date": "2026-09-02",
+ "decision_rule": "R1 protocol R5B attempt decision rule, verbatim (1.01 Lambda budget; seven POINT_COORDS coordinates)",
+ "frontier_expansion_points": [
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "0100745e5bd0862e13aac18c1fa06947d3003d223bc090299b48f44caf640e9f",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 13,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     72
+    ],
+    [
+     73,
+     74
+    ]
+   ],
+   "matching_sha256": "08ef5aa41004417578268e162e08dcc6b176e47a532dd3ccf7e085309446b8aa",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 0
+  },
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "5c522e64f1a46b6fa5bf7ee2faa38169629bc73a7b0166f77db4380332669271",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 12,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     72
+    ],
+    [
+     73,
+     74
+    ]
+   ],
+   "matching_sha256": "08ef5aa41004417578268e162e08dcc6b176e47a532dd3ccf7e085309446b8aa",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 2
+  },
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "21a1abc02510b0279986685f689974bd35063c9f3bd03bb99478e7de3a11253b",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 11,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     73
+    ],
+    [
+     72,
+     74
+    ]
+   ],
+   "matching_sha256": "94504e805504b0d1313a7bfc6da01ad4a1d7cb62e9218c1d0e03cb4eeae37b1a",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 4
+  },
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "35830983d80e419038bc7c18b6fe62293d3d3d4102d4b19ee2424af3801724fd",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 10,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     73
+    ],
+    [
+     72,
+     74
+    ]
+   ],
+   "matching_sha256": "94504e805504b0d1313a7bfc6da01ad4a1d7cb62e9218c1d0e03cb4eeae37b1a",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 6
+  },
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "0ac2d9966b742731a393f20d65d04ec1360e8345c3c1b4638babd904b141888d",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 9,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     73
+    ],
+    [
+     72,
+     74
+    ]
+   ],
+   "matching_sha256": "94504e805504b0d1313a7bfc6da01ad4a1d7cb62e9218c1d0e03cb4eeae37b1a",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 8
+  }
+ ],
+ "frozen_source_indices": [
+  4,
+  7,
+  11,
+  72,
+  73,
+  74
+ ],
+ "gates": {
+  "all_witness_checks_pass": true,
+  "anti_instrument_imports": true,
+  "candidate_product_under_cap": true,
+  "exactly_15_matchings": true,
+  "molecule_dir_not_excluded": true,
+  "protocol_sha256_recorded": true,
+  "six_targets_pairwise_commuting__reasserted": true,
+  "stage1_digest_before_candidates": true,
+  "subject_blob_equals_ls_tree_blob__r6f_machinery": true,
+  "subject_blob_not_committed": true
+ },
+ "in_budget_candidate_pareto_count": 5,
+ "library": {
+  "commit": "be306f5830549304176365750d712093950bbdde",
+  "eligible_before_blob_exclusion": 31,
+  "repo": "npbauman/DUCC-Hamiltonian-Library",
+  "tree_blobs": 528,
+  "tree_listing_digest": "8325ea615e3f32d696bd8d5722437e8e6d00a989e0421bf3f967cd9f7db7c59e"
+ },
+ "max_imag": 7.589415207398531e-19,
+ "minimum_Lambda": 0.46946892175304483,
+ "novelty_authority": false,
+ "one_percent_Lambda_budget": 0.4741636109705753,
+ "parent_pareto": [
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "2d87312a88a4abeb8d9189551a3fcbbe1d7cb2d24e5c77f17a505b1e2ac2908f",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 14,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     73
+    ],
+    [
+     72,
+     74
+    ]
+   ],
+   "matching_sha256": "94504e805504b0d1313a7bfc6da01ad4a1d7cb62e9218c1d0e03cb4eeae37b1a",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 0
+  }
+ ],
+ "parent_point_count": 15,
+ "per_matching_candidate_products": [
+  12,
+  12,
+  12,
+  12,
+  12,
+  12,
+  12,
+  18,
+  18,
+  12,
+  18,
+  18,
+  12,
+  18,
+  18
+ ],
+ "physical_quantum_advantage_claim": false,
+ "protocol_sha256": "c630053fd994dc440d8bffab83835d64adfbf7405305ebb6b6afda6d68b3d769",
+ "result_digest": "eb2d01aaf4f58f32aaa8f6abb05abc81999a4eded829a098e832f63925597c99",
+ "revival_outcome": "IMPROVED",
+ "schema": "ORION.ORION06.R5BProspectiveFreshSubject.v1",
+ "scientific_authority_delta": "NONE",
+ "selection_rule": {
+  "candidate_cap": 6,
+  "candidate_order": "n_qubits ascending, path ascending (bytewise; R6R verbatim)",
+  "excluded_committed_blobs": [
+   "b98792b1055dbac0ebf2a7576f72412e3e4ac6c5",
+   "15369e8e886efbb3d32f3b2dfe2cfbb96ddebeba",
+   "5f157e7bd05aac26b30b10dcea44b7650b7f8648",
+   "5c02c72b88e12b391ea1d8f77eb6b3e04fc2a915"
+  ],
+  "excluded_molecule_dirs": [
+   "H2",
+   "H2O",
+   "H4",
+   "LiH",
+   "N2"
+  ],
+  "n_qubits_cap": 12,
+  "rejected_committed_blobs": [
+   {
+    "blob": "5c02c72b88e12b391ea1d8f77eb6b3e04fc2a915",
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "committed_subject_blob"
+   }
+  ],
+  "rejected_n_qubits_cap": [
+   {
+    "n_qubits": 14,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 14,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 14,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 14,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 16,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_8Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 16,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_8Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 16,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_8Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 16,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_8Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 16,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_8Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 16,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_8Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 18,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_9Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 18,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_9Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 18,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_12Elec_9Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 18,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_12Elec_9Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 18,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_9Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 18,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_9Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 18,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_9Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 18,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_9Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 20,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_10Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 20,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_10Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 20,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_12Elec_10Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 20,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_12Elec_10Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 20,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_14Elec_10Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 20,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_14Elec_10Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 20,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_10Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 20,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_10Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 20,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_10Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   },
+   {
+    "n_qubits": 20,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_10Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "reason": "n_qubits_over_cap"
+   }
+  ]
+ },
+ "stage1_parent_digest": "d2aed831cc5c7a0cee1b73024399183d3afc081b71d15f8bab908faec520caa3",
+ "strict_parent_dominating_points": [
+  {
+   "AND2_compute_uncompute_pairs": 6,
+   "Lambda_joint": 0.46946892175304483,
+   "all_witness_checks_pass": true,
+   "canonical_witness_sha256": "0100745e5bd0862e13aac18c1fa06947d3003d223bc090299b48f44caf640e9f",
+   "controlled_H": 9,
+   "controlled_Pauli_support": 13,
+   "controlled_Rz": 9,
+   "direct_unitary_blocks": 0,
+   "matching": [
+    [
+     4,
+     7
+    ],
+    [
+     11,
+     72
+    ],
+    [
+     73,
+     74
+    ]
+   ],
+   "matching_sha256": "08ef5aa41004417578268e162e08dcc6b176e47a532dd3ccf7e085309446b8aa",
+   "max_extra_conjunction_scratch": 1,
+   "parity_CNOT": 0
+  }
+ ],
+ "study_id": "O6R5BNS1",
+ "subject": {
+  "blob": "cd32e1e77cc349db71e2514a43b6e69279b20ef6",
+  "commit": "be306f5830549304176365750d712093950bbdde",
+  "n_occ": 3,
+  "n_orb": 6,
+  "n_qubits": 12,
+  "n_virt": 3,
+  "never_read_before_this_run": true,
+  "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+  "source_blob_verified": true
+ },
+ "term_count": 394,
+ "terminal": "ORION06_R5B_NS1_PROSPECTIVE_STRICT_PARENT_DOMINANCE_CONFIRMED__ONE_FRESH_FILE_ONLY",
+ "window_champions_available": 2
+}

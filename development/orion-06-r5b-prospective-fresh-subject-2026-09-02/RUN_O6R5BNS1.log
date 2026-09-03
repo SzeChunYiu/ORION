@@ -1,0 +1,32 @@
+RUN_O6R5BNS1 — registered outcome execution log
+registration/execution revision: ebf43b643264873ef5ec56051ab70ff4f47fe056
+driver: research/extensions/orion-q/max_o6_r5b_prospective_fresh_subject.py
+protocol_sha256: c630053fd994dc440d8bffab83835d64adfbf7405305ebb6b6afda6d68b3d769
+command (both runs): ORIONQ_R6R_CACHE=/tmp/o6_lane_cache timeout 3600 python3 <driver> --output <run{i}.json>
+
+=== RUN 1 stdout ===
+ORION06_R5B_NS1_STAGE1_PARENT={"champion_windows":[0,72],"frozen_source_indices":[4,7,11,72,73,74],"max_imag":7.589415207398531e-19,"minimum_Lambda":0.46946892175304483,"one_percent_Lambda_budget":0.4741636109705753,"parent_pareto":[{"AND2_compute_uncompute_pairs":6,"Lambda_joint":0.46946892175304483,"all_witness_checks_pass":true,"canonical_witness_sha256":"2d87312a88a4abeb8d9189551a3fcbbe1d7cb2d24e5c77f17a505b1e2ac2908f","controlled_H":9,"controlled_Pauli_support":14,"controlled_Rz":9,"direct_unitary_blocks":0,"matching":[[4,7],[11,73],[72,74]],"matching_sha256":"94504e805504b0d1313a7bfc6da01ad4a1d7cb62e9218c1d0e03cb4eeae37b1a","max_extra_conjunction_scratch":1,"parity_CNOT":0}],"parent_point_count":15,"subject":{"blob":"cd32e1e77cc349db71e2514a43b6e69279b20ef6","n_qubits":12,"path":"Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"},"term_count":394,"window_champions_available":2}
+ORION06_R5B_NS1_STAGE1_PARENT_DIGEST=d2aed831cc5c7a0cee1b73024399183d3afc081b71d15f8bab908faec520caa3
+ORION06_R5BNS1_RESULT_JSON=/tmp/o6_r5bns1_run1.json
+RUN1_EXIT=0
+
+=== RUN 2 stdout (determinism repeat) ===
+ORION06_R5B_NS1_STAGE1_PARENT={"champion_windows":[0,72],"frozen_source_indices":[4,7,11,72,73,74],"max_imag":7.589415207398531e-19,"minimum_Lambda":0.46946892175304483,"one_percent_Lambda_budget":0.4741636109705753,"parent_pareto":[{"AND2_compute_uncompute_pairs":6,"Lambda_joint":0.46946892175304483,"all_witness_checks_pass":true,"canonical_witness_sha256":"2d87312a88a4abeb8d9189551a3fcbbe1d7cb2d24e5c77f17a505b1e2ac2908f","controlled_H":9,"controlled_Pauli_support":14,"controlled_Rz":9,"direct_unitary_blocks":0,"matching":[[4,7],[11,73],[72,74]],"matching_sha256":"94504e805504b0d1313a7bfc6da01ad4a1d7cb62e9218c1d0e03cb4eeae37b1a","max_extra_conjunction_scratch":1,"parity_CNOT":0}],"parent_point_count":15,"subject":{"blob":"cd32e1e77cc349db71e2514a43b6e69279b20ef6","n_qubits":12,"path":"Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"},"term_count":394,"window_champions_available":2}
+ORION06_R5B_NS1_STAGE1_PARENT_DIGEST=d2aed831cc5c7a0cee1b73024399183d3afc081b71d15f8bab908faec520caa3
+ORION06_R5BNS1_RESULT_JSON=/tmp/o6_r5bns1_run2.json
+RUN2_EXIT=0
+
+=== determinism ===
+run1 sha256: a6e447a5903e95077b46ac038451f8beb5c27cdbf1a46a216ed7e38a5d241e24
+run2 sha256: a6e447a5903e95077b46ac038451f8beb5c27cdbf1a46a216ed7e38a5d241e24
+cmp: byte-identical (DETERMINISM=BYTE_IDENTICAL)
+
+=== receipt headline ===
+terminal: ORION06_R5B_NS1_PROSPECTIVE_STRICT_PARENT_DOMINANCE_CONFIRMED__ONE_FRESH_FILE_ONLY
+revival_outcome: IMPROVED
+result_digest: eb2d01aaf4f58f32aaa8f6abb05abc81999a4eded829a098e832f63925597c99
+subject: Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt
+subject blob: cd32e1e77cc349db71e2514a43b6e69279b20ef6 (n_qubits=12, 394 terms)
+minimum_Lambda: 0.46946892175304483
+candidate_point_count: 216
+strict parent-dominating points: 1 (controlled_Pauli_support 13 < parent 14 at unchanged Lambda and all other coordinates)
