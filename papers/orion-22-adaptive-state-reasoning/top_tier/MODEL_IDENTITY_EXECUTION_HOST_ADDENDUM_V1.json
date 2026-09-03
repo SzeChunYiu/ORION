@@ -46,6 +46,6 @@
   "ordering rule (same-day echo before tuning; P12_TUNING_BINDING_V1.json committed before any protected call)",
   "claude lane window rule (campaign calls after 2026-09-04 03:00 Europe/Stockholm, fresh same-day echo at window start)"
  ],
- "batch_invocation_notes": "sbatch jobs export PATH=$HOME/.local/bin:$PATH and module load nodejs/20.9.0; the judge shim (eval_judge_shim/openai, sha256 09765adab4ed1f2a4e55538a052b82c2049b5d21b2e9af368a1c3dd821f7ad3b) invokes the same pinned codex lane via bare `codex exec` with -i figures",
+ "batch_invocation_notes": "sbatch jobs export PATH=$HOME/.local/bin:$PATH and module load nodejs/20.9.0; the judge shim (eval_judge_shim/openai) and both lane adapters invoke the same pinned codex lane via `codex exec`; operational flags required on the LUNARC mirror (non-git directory), verified by judge-smoke jobs 3570426/3570430 and uniform across lanes: prompt via stdin for the judge (variadic -i), --skip-git-repo-check everywhere; no model, effort, tier, or turn-structure change",
  "scientific_authority_delta": "NONE__HOST_BIND_ONLY"
 }

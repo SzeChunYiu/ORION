@@ -143,7 +143,10 @@ class _Completions:
             # via stdin", judge-smoke job 3570426). The prompt therefore goes
             # through stdin (`codex exec` reads it when no positional PROMPT
             # is given), which is also immune to dash-prefixed prompt text.
-            cmd = [JUDGE_BIN, "exec"]
+            # --skip-git-repo-check: the campaign tree is a plain mirror (not
+            # a git repo) on the execution host; codex refuses otherwise
+            # ("Not inside a trusted directory", judge-smoke job 3570430).
+            cmd = [JUDGE_BIN, "exec", "--skip-git-repo-check"]
             for img in image_paths:
                 cmd += ["-i", img]
             t0 = time.time()

@@ -67,7 +67,11 @@ class LaneAdapter:
             return {"output": out, "seconds": 0.0, "rc": 0}
         lane = self.identity["provider_lane"]
         if lane.startswith("codex"):
-            cmd = ["codex", "exec", prompt]
+            # --skip-git-repo-check: required when the campaign tree is a
+            # plain mirror (not a git repo), e.g. the LUNARC project-storage
+            # staging. codex-cli 0.129.0-alpha.15 refuses otherwise ("Not
+            # inside a trusted directory"). No-op in git checkouts.
+            cmd = ["codex", "exec", "--skip-git-repo-check", prompt]
         elif lane.startswith("claude"):
             cmd = ["claude", "-p", prompt, "--model", self.identity["model_id"]]
         else:
