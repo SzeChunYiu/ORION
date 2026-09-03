@@ -57,9 +57,9 @@ jobs:
           python - <<'PY'
           import json
           for f,keys in (
-              ('/tmp/pool_st.json',('decision','quota_derivation_enforced_zero_free_parameters','tampered_chunk_rejected','row_order_invariant','gold_never_enters_pool','eligibility_rules_fail_closed')),
-              ('/tmp/intake_st.json',('decision','frozen_intake_validator_green','allocation_identity_reproved','non_rederiving_digest_rejected','shortfall_never_intakes')),
-              ('/tmp/prep_st.json',('decision','clean_prep_verifies','filled_label_rejected','filled_receipt_rejected','coverage_tamper_rejected','sign_off_slots_empty')),
+              ('/tmp/pool_st.json',('quota_derivation_enforced_zero_free_parameters','tampered_chunk_rejected','row_order_invariant','gold_never_enters_pool','eligibility_rules_fail_closed')),
+              ('/tmp/intake_st.json',('frozen_intake_validator_green','allocation_identity_reproved','non_rederiving_digest_rejected','shortfall_never_intakes')),
+              ('/tmp/prep_st.json',('clean_prep_verifies','filled_label_rejected','filled_receipt_rejected','coverage_tamper_rejected','sign_off_slots_empty')),
           ):
               d=json.load(open(f))
               assert d['decision']=='GREEN', (f,d.get('decision'))
