@@ -1,6 +1,17 @@
 # ORION-12 — submission readiness record
 
-**Terminal: READY_TO_SUBMIT_SECOND_TIER.** Target venue Information Processing
+**Terminal: `READY_PENDING_TEMPLATE`** (Wave-1 filing bar, defined in
+`WAVE1_UPGRADE_LANE_VENUE_DECISIONS_V1.md` — PR #1692, pending). A complete
+standalone manuscript exists and compiles with zero undefined references; it is
+not in the venue class and carries no author block. What remains is mechanical,
+not authorial.
+
+Supersession note: the earlier label on this record,
+`READY_TO_SUBMIT_SECOND_TIER`, named the venue tier reached but hid the
+venue-format conversion that this record itself lists below as a remaining
+input. That label is superseded by this one.
+
+**Venue tier:** second tier. Target venue Information Processing
 & Management; fallback JASIST.
 
 The scientific terminal is unchanged and remains narrowed: the framework and its
@@ -47,6 +58,8 @@ claim ledger's declared support artifacts require the bound digests to appear in
 the sentence they bind. For that claim the digest is the claim.
 
 ## Venue-format conversion — named explicitly
+
+**Bar note.** This paper has no section titled "Discussion". Its interpretive content sits in "Post-saturation unresolved-route authority", "Limitations and integrity", and a substantial Conclusion. Every other organ the bar names is present. Recorded here so the label rests on disclosed evidence rather than on a heading match.
 
 The manuscript is `\documentclass[11pt]{article}` with `\author{Working framework
 draft}`. It is a complete, sectioned, bibliography-resolved manuscript that

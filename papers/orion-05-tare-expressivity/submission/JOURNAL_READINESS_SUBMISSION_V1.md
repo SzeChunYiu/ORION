@@ -1,6 +1,17 @@
 # ORION-05 — submission readiness record
 
-**Terminal: READY_TO_SUBMIT_SECOND_TIER.**
+**Terminal: `READY_PENDING_TEMPLATE`** (Wave-1 filing bar, defined in
+`WAVE1_UPGRADE_LANE_VENUE_DECISIONS_V1.md` — PR #1692, pending). A complete
+standalone manuscript exists and compiles with zero undefined references; it is
+not in the venue class and carries no author block. What remains is mechanical,
+not authorial.
+
+Supersession note: the earlier label on this record,
+`READY_TO_SUBMIT_SECOND_TIER`, named the venue tier reached but hid the
+venue-format conversion that this record itself lists below as a remaining
+input. That label is superseded by this one.
+
+**Venue tier:** second tier.
 Target venue _Quantum_; fallback npj Quantum Information. PRX Quantum was
 assessed and declined on the significance gate (see `VENUE_DECISION.md`).
 "Second tier" here names the venue tier reached, not a defect in the work.
