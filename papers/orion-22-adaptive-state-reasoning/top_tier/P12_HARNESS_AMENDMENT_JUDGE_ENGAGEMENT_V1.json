@@ -1,0 +1,44 @@
+{
+ "schema": "ORION.A2.P12HarnessAmendment.v1",
+ "artifact_class": "freeze_amendment_preregistered",
+ "date": "2026-09-03",
+ "paper_ids": ["orion-22-adaptive-state-reasoning"],
+ "issue_binding": "SzeChunYiu/ORION-paper#49 A2 Phase 1",
+ "amends": {
+  "artifact": "eval_judge_shim/openai/__init__.py",
+  "parent_sha256": "c8963437b8da44f3b372b95773b3c5373ad3210724ceb0970c74e38a947f46d4",
+  "lineage": "successor correction within the judge substitution recorded by P12_JUDGE_SUBSTITUTION_RECEIPT_V1.md (dated operational corrections: stdin prompt, repo-check skip)"
+ },
+ "authority": {
+  "harness_successor_rule": "editing any frozen value after any protected model call is forbidden; a successor requires its own preregistration",
+  "state_at_amendment": {
+   "protected_model_calls": 0,
+   "protected_outcomes_accessed": false,
+   "tuning_thresholds_bound": false,
+   "prereg_flags_at_amendment": "protected_outcomes_accessed=false, campaign_executed=false, execution_started=false, tuning_thresholds_bound=false, results_exist=false"
+  }
+ },
+ "trigger": "Instrument-validation finding 2026-09-03 (see P12_EVAL_JUDGE_ENGAGEMENT_FINDING_V1.md): under the amended-template codex tuning eval (LUNARC sbatch 3572226) the frozen judge substitution never engaged — 14/68 cells carry RuntimeError('judge shim: AzureOpenAI configured but no Azure credentials exist in this campaign (MODEL_IDENTITY_FREEZE_V1.json: CLI lanes only)') with success_bool=false and eval/tuning/judge_transcripts/ is empty (0 codex judge calls). Root cause: the unmodified upstream gpt4_visual_judge.py selects its client class at module level by 'if os.getenv(\"OPENAI_API_KEY\"): OpenAI() else: AzureOpenAI(...)' — this campaign sets no OPENAI_API_KEY (MODEL_IDENTITY_FREEZE_V1: CLI lanes only), so the upstream always constructs AzureOpenAI, whose shim constructor raised by design; the codex-backed OpenAI substitution was unreachable in any real eval. Judge-smoke job 3570445 (scores [10,5,10]) exercised the shim's OpenAI path directly and could not reveal the branch — the same masked-path shape as the dataset-mountpoint defect this campaign already amended.",
+ "delta": {
+  "file": "eval_judge_shim/openai/__init__.py",
+  "change": "the AzureOpenAI constructor no longer raises; it delegates to the identical codex-backed _Chat inherited from the shim's OpenAI class",
+  "judge_invocation_unchanged": true,
+  "rationale": "Restores reachability of the already-frozen judge substitution without altering it: the judge argv (codex exec --skip-git-repo-check, prompt via stdin, figures via variadic -i), the judge lane identity, the upstream [FINAL SCORE] regex parsing, n=3 sample averaging, and the >= 60 threshold are byte-identical for both client classes; the upstream's model= argument (gpt-4o-2024-05-13 or the unset Azure DEPLOYMENT_NAME) was already ignored by the shim's create()"
+ },
+ "uniformity": "the amended shim applies identically to every judged cell of both model lanes and both phases (tuning, protected); the judge prompt remains identity-blind (two figures + rubric)",
+ "unchanged": [
+  "P12_HARNESS_AND_POLICY_FREEZE_V1.json (template P12_TERMINAL_V1M, sha256 b2cc1975c94a8a503347c7fd14de66df896cc2c7f7bfa5e5a54dcfe16da42254) — terminal template, actions, unit prompts, byte caps, scoring definition, threshold_fitting rule",
+  "P12_HARNESS_AMENDMENT_DATASET_MOUNTPOINT_V1.json and the pre/post-amendment archives it governs",
+  "P12_CAMPAIGN_PREREG_V1.json (23d9dc661f6849f45e4bb8443fedff6ea215da6507f08f508aa221d11a21b8a5) — families, splits, difficulty priors",
+  "MODEL_IDENTITY_FREEZE_V1.json + MODEL_IDENTITY_EXECUTION_HOST_ADDENDUM_V1.json — lanes, CLI pins, effort, tier, turn structure",
+  "campaign_runner_v1.py / campaign_tuning_driver_v1.py / campaign_eval_driver_v1.py / campaign_derivation_v1.py"
+ ],
+ "effect_on_existing_artifacts": {
+  "codex_tuning_run_records": "29 healthy records from job 3571108 (14:01:02-14:43:08 UTC, terminal_rc=0, incl. all 4 success cells) are RETAINED; the 39 post-outage records (terminal_rc=1, empty terminal_output, mid-run codex lane outage 14:43:46-15:03:29 UTC documented in the finding) are ARCHIVED (not deleted) under runs/tuning-archive-judge-engagement-amendment-20260903/ and refilled by the resumable run driver once the codex lane is available again",
+  "codex_tuning_eval_records": "all 68 eval records from job 3572226 (defect-A judge refusals and defect-B outage cells mixed) are ARCHIVED (not deleted) under eval/tuning-archive-judge-engagement-amendment-20260903/ and regenerated under the amended shim",
+  "claude_tuning": "job 3570206 (begin 2026-09-04T03:05, separate lane) proceeds unchanged; its eval pass runs under the amended shim together with the codex refill in one unified eval batch, so every eval record feeding the tuning binding is produced under the fixed instrument",
+  "protected_phase": "not yet run; will run only under the amended shim and only after the tuning binding is committed"
+ },
+ "verification": "campaign_eval_driver_v1 self-test (shim import + parse_final_score) green post-amendment; judge smoke to be re-run through the AzureOpenAI construction path before the unified eval batch; sha256 of the amended shim recorded in this campaign's receipts PR",
+ "successor_rule": "this amendment follows its parent freeze's rule: it was made before any protected model call; after the first protected model call no further harness edits are permitted without a new preregistered successor"
+}

@@ -78,3 +78,21 @@ comparison cannot favor either family through the judge.
 - Per-call transcripts: `eval/<phase>/judge_transcripts/judge_calls.jsonl`.
 - Eval records carry `"judge_substitution":
   "codex-cli-lane (P12_JUDGE_SUBSTITUTION_RECEIPT_V1)"`.
+
+## Dated operational correction 3 (engagement, 2026-09-03)
+
+The substitution above was UNREACHABLE in real evals until this date: the
+unmodified upstream `gpt4_visual_judge.py` selects its client class at module
+level by `os.getenv("OPENAI_API_KEY")` and this campaign sets no key
+(MODEL_IDENTITY_FREEZE_V1: CLI lanes only), so upstream always constructed
+`AzureOpenAI`, whose shim constructor raised by design. LUNARC sbatch 3572226
+recorded 14/68 judge refusals and 0 codex judge calls; judge-smoke 3570445 had
+exercised only the `OpenAI` path and could not reveal the branch.
+Preregistered successor amendment `P12_HARNESS_AMENDMENT_JUDGE_ENGAGEMENT_V1.json`
+(parent shim sha256 `c8963437b8da44f3b372b95773b3c5373ad3210724ceb0970c74e38a947f46d4`,
+amended sha256 `0f7023ae0b197f372b38f0a79cd628cee74cbae68c9d64eb75b33bff1ae8b243`)
+makes `AzureOpenAI` delegate to the identical codex-backed `_Chat`. The judge
+invocation, lane identity, upstream `[FINAL SCORE]` parsing, n=3 averaging,
+and >= 60 threshold are unchanged for both client classes. Evidence and
+disposition of the affected eval records:
+`P12_EVAL_JUDGE_ENGAGEMENT_FINDING_V1.md`.

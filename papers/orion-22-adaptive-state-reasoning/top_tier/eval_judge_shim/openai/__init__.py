@@ -202,13 +202,22 @@ class OpenAI:
 
 
 class AzureOpenAI(OpenAI):
-    """Accepted for import compatibility; the campaign never configures it."""
+    """Same codex-backed judge path as OpenAI.
+
+    The unmodified upstream ``gpt4_visual_judge.py`` selects its client class
+    at module level by ``os.getenv("OPENAI_API_KEY")``; this campaign sets no
+    API key (MODEL_IDENTITY_FREEZE_V1.json: CLI lanes only), so upstream
+    ALWAYS constructs ``AzureOpenAI`` — the raising constructor here made the
+    frozen judge substitution unreachable in every real eval (14/68 cells in
+    sbatch 3572226). P12_HARNESS_AMENDMENT_JUDGE_ENGAGEMENT_V1.json: delegate
+    to the identical inherited ``_Chat`` instead of raising. The judge
+    invocation (codex exec argv, stdin prompt, ``-i`` figures), lane identity,
+    upstream ``[FINAL SCORE]`` parsing, and the >= 60 threshold are unchanged
+    for both client classes.
+    """
 
     def __init__(self, *args, **kwargs):
-        raise RuntimeError(
-            "judge shim: AzureOpenAI configured but no Azure credentials exist "
-            "in this campaign (MODEL_IDENTITY_FREEZE_V1.json: CLI lanes only)"
-        )
+        super().__init__(*args, **kwargs)
 
 
 __all__ = ["OpenAI", "AzureOpenAI", "parse_final_score"]
