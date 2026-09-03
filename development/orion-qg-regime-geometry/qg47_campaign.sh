@@ -68,7 +68,10 @@ pack() {
 #SBATCH --output=logs/task_%a.out
 #SBATCH --error=logs/task_%a.err
 set -euo pipefail
-TOP="$(cd "$(dirname "$0")" && pwd)"
+# SLURM runs the batch script from a spool copy under /var/spool/slurm, so
+# $0 does NOT point at the submission tree; the submission directory is
+# shared across nodes via NFS home. Fall back to $0 only outside SLURM.
+TOP="${SLURM_SUBMIT_DIR:-$(cd "$(dirname "$0")" && pwd)}"
 mkdir -p "$TOP/parts" "$TOP/logs"
 python3 "$TOP/ext/orion-qg/qg47_n2_full_sweep.py" --chunk "$SLURM_ARRAY_TASK_ID" --parts-dir "$TOP/parts"
 EOS
