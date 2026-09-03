@@ -26,11 +26,28 @@ jobs:
         run: python research/experiments/davenport-c7-frontier/check_atom_length_corridor_v1.py
       - name: Check Zhao 4p resonance controls
         run: python research/experiments/davenport-c7-frontier/check_zhao_4p_resonance_v1.py
-      - name: Regenerate projective support cover
+      - name: Regenerate projective support-7 cover
         run: |
           python research/experiments/davenport-c7-frontier/generate_support7_projective_arcs_v1.py \
             --write-reps /tmp/support7-reps.txt --json
           cmp /tmp/support7-reps.txt research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt
+      - name: Check support-8 deficit arithmetic
+        run: python research/experiments/davenport-c7-frontier/check_support8_deficit_v1.py
+      - name: Regenerate projective support-8 cover
+        run: |
+          python research/experiments/davenport-c7-frontier/generate_support8_projective_sets_v1.py \
+            --write-reps /tmp/support8-reps.txt --json | tee /tmp/support8-cover.json
+          echo '1b5a96c1ba457ddd3b18378230658f592926a5b1d471c2e288c8c553497e2a78  /tmp/support8-reps.txt' | sha256sum -c -
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/support8-cover.json'))
+          assert d['projective_equivalence_classes']==350
+          assert d['classes_maxline_2']==1
+          assert d['classes_maxline_3']==180
+          assert d['classes_maxline_4']==169
+          assert d['classes_with_2_disjoint_four_secants']==3
+          assert d['classes_with_2_intersecting_four_secants']==20
+          PY
       - name: Check bound result record
         run: python research/experiments/davenport-c7-frontier/check_support7_all_result_v1.py
 
