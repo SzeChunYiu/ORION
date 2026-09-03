@@ -37,20 +37,30 @@ checked theorem statement.
 
 ## References
 
+- Ch. Delorme, O. Ordaz, and D. Quiroz, "Some remarks on Davenport
+  constant," *Discrete Mathematics* 237(1–3), 119–128 (2001).
+  DOI: 10.1016/S0012-365X(00)00365-4.
 - M. Freeze and W. A. Schmid, "Remarks on a generalization of the Davenport
   constant," *Discrete Mathematics* 310(23), 3373–3389 (2010).
-  DOI: 10.1016/j.disc.2010.04.019. arXiv:0905.4248.
+  DOI: 10.1016/j.disc.2010.07.028. arXiv:0905.4248.
 - G. Bhowmik and J.-C. Schlage-Puchta, "Davenport's constant for groups of
   the form Z3 + Z3 + Z3d," in *Additive Combinatorics*, CRM Proc. Lecture
   Notes 43, AMS, 307–326 (2007).
 - Y. Fan, W. Gao, and Q. Zhong, "On the Erdős–Ginzburg–Ziv constant of finite
   abelian groups of high rank," *Journal of Number Theory* 131(10),
-  1864–1874 (2011). DOI: 10.1016/j.jnt.2011.03.004.
+  1864–1874 (2011). DOI: 10.1016/j.jnt.2011.02.017.
+- Y. Fan, W. Gao, L. Wang, Q. Zhong, and J. Zhuang, "On Short Zero-Sum
+  Subsequences of Zero-Sum Sequences," *Electronic Journal of Combinatorics*
+  19(3), P31 (2012). DOI: 10.37236/2602.
+- K. Zhao, "On zero-sum subsequences in a finite abelian group of length not
+  exceeding a given number," arXiv:2506.21383 (2025).
 - W. Gao and A. Geroldinger, "Zero-sum problems in finite abelian groups: a
   survey," *Expositiones Mathematicae* 24(4), 337–369 (2006).
   DOI: 10.1016/j.exmath.2006.07.002.
 - A. Geroldinger and F. Halter-Koch, *Non-Unique Factorizations: Algebraic,
   Combinatorial and Analytic Theory*, Chapman & Hall/CRC (2006).
 - Q. Zhong, "On the Inverse Problem of the k-th Davenport Constants for
-  Groups of Rank 2," *Combinatorica* (2025). arXiv:2503.21231.
-- C. Zhang, rank-three zero-sum invariants, arXiv:2310.05458 (2023).
+  Groups of Rank 2," *Combinatorica* 45, art. 31 (2025).
+  DOI: 10.1007/s00493-025-00153-3. arXiv:2503.21231.
+- S. Zhang, "On some zero-sum invariants for abelian groups of rank three,"
+  arXiv:2310.05458 (2023).
