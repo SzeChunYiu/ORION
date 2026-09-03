@@ -1,0 +1,86 @@
+QG48_N3_FRONTIER_PROSPECTION_CAMPAIGN — execution log (2026-09-03)
+==================================================================
+
+Study      : QG48 n=3 frontier prospection after the certified QG47 n=2 EMPTY
+             (R1: exact depth-3 kernel slice, 6 tasks, triples_cap 7140;
+              R2: stratified sampled n=3 full alphabet, 1350 tasks x 15000
+              seeded instances at the frozen 6-cell grid, seed 20260903)
+Protocol   : development/orion-qg-regime-geometry/QG48_N3_FRONTIER_PROSPECTION_PROTOCOL_V1.md
+Driver     : development/orion-qg-regime-geometry/qg48_campaign.sh
+Engine     : research/extensions/orion-qg/qg48_n3_frontier_prospection.py
+Host       : LUNARC batch (cosmos), account lu2026-2-51, partition lu48, waves of 150
+Registration merge: PR #2184 -> main (40c41a0d9), 2026-09-03T11:31:44Z
+
+Registration-time decisions (RUN_QG48_REGISTRATION.log):
+  Rate probe on LUNARC (8.62 / 8.17 evals/s/core) rescaled R2 instances
+  25000 -> 15000 per task; budget ~650 core-hours; R2 task ~31 min,
+  R1 task ~15 min. Selftest UnboundLocalError found and fixed BEFORE any
+  production submission. Registered plan: collection on LUNARC, certified
+  merge on the Mac as a single deterministic process, outcome as a second
+  commit (QG43-QG47 chain discipline).
+
+R1 waves (6 tasks each, ~7.5 min/task):
+  13:33:01  array 3569655 (tasks 0-5)   COMPLETED
+  13:48:23  array 3569835 (tasks 0-5)   COMPLETED  (idempotent rerun; R1 parts
+            are deterministic per chunk index, duplicate writes are identical)
+
+R2 waves (150 tasks each, ~17 min/task; sacct is the authoritative table —
+feed.log captured the AssocMaxSubmitJobLimit retry errors but not every
+successful SUBMITTED line):
+  13:34:22  3569661  0-149     COMPLETED
+  13:54:30  3569852  150-299   COMPLETED
+  14:14:00  3570035  300-449   COMPLETED
+  14:35:30  3570242  300-449   COMPLETED  (idempotent duplicate range)
+  14:57:14  3570518  450-599   FAILED    (wave failed; retried below)
+  15:19:20  3570703  600-749   COMPLETED
+  15:39:28  3570927  750-899   COMPLETED
+  15:59:35  3571109  450-599   COMPLETED  (retry of the failed wave)
+  16:19:39  3571314  900-1049  COMPLETED
+  16:39:44  3571487  900-1049  COMPLETED  (idempotent duplicate range)
+  17:01:48  3571665  1050-1199 COMPLETED
+  17:21:52  3571833  1200-1349 COMPLETED
+  Feeder retry cycles (AssocMaxSubmitJobLimit, +20 min each): 14:36:30,
+  15:18:31, 15:59:31, 16:19:31, 17:01:31. Feeder done 17:22:31+02:00;
+  ALL_R2_WAVES_COMPLETE 17:44:07+02:00. Every disjoint range 0-1349 has a
+  COMPLETED run; the merge below re-verifies every part digest, so no
+  duplicate-range or retried part can feed the results unverified.
+
+Collection: parts tarballed on LUNARC (/home/scyiu/qg48_parts_20260903.tar,
+34734080 B, sha256 0b1460a1aa0f731bc11c175584333271b3a51c6d52f6f900dc7db451bff6afc6),
+scp-relayed to the Mac (hash verified both sides), extracted into the engine
+default parts dirs: QG48_R1_PARTS 6/6, QG48_R2_PARTS 1350/1350.
+
+Validation on landed parts (before merge):
+  qg48_r2_parts_manifest_builder.py -> parts=1350 witnesses=5,717,698
+  rows_sha=b8e12763bed3  manifest 700826 B  sha256[:16]=d5737c582ef0a9ec
+
+Honest deviation, caught and corrected: one merge attempt was first launched
+on the LUNARC login node; RUN_QG48_REGISTRATION.log freezes "collection +
+certified merge on the Mac as a single deterministic process", so that
+process was killed BY PID and the registered Mac-side merge run below is
+the only one that produced results.
+
+CERTIFIED MERGE:
+  executed 2026-09-03 19:49-20:02 CEST (Mac worktree, all parts local):
+  python3 research/extensions/orion-qg/qg48_n3_frontier_prospection.py --merge
+  -> rc=0  r1_parts=6  r2_parts=1350  probe_failures=0  problems=[]
+     digest=bb339e46bdd04ae9c59231b2bddfdb84c35bf60fc1e68cc53970456797c43b54
+     terminal=QG48_N3_FRONTIER_WITNESSED
+     r1_witnesses=13778 (exact kernel slice, min_gap=-4, wall 2650.5 s)
+     r2: 20,250,000 instances (15,000/task x 1350, 3,375,000 per cell,
+         225 streams/cell, seed 20260903, detection_floor_95=8.88e-7)
+         witnesses=5,717,698  outside_closure=5,717,697  inside_closure=1
+         min_gap=-5
+  All 9 gates True (parts_complete, parts_digest_ok, letters_sha_uniform,
+  counts_ok, probe_recheck_ok, g4_brute_exact, all_unrestricted_le_dxx,
+  g6_receipt_chain, no_instrument_import). G6 binds QG45+QG46+QG47 receipts
+  (qg47_terminal_ok=True on the EMPTY terminal this study revives from).
+
+Outcome reading (within the frozen authority string, no all-n claim):
+  The certified QG47 exhaustive n=2 frontier is EMPTY; at n=3 the sampled
+  full-alphabet prospection WITNESSES 5,717,697 of 5,717,698 frontier
+  witnesses OUTSIDE the n=2 closure at the frozen seed. The n=2 negative is
+  thereby attributed to the slice dimension, not to structural absence —
+  the n->3 lever reopens the territory (novelty_authority stays False;
+  R2 is seed-bounded sampling, R1 is the exact depth-3 kernel slice).
+  Output: research/extensions/orion-qg/QG48_N3_FRONTIER_PROSPECTION_RESULTS.json
