@@ -1,0 +1,46 @@
+{
+ "schema": "ORION.A2.P12HarnessAmendmentThirdFamilyGlm.v1",
+ "date": "2026-09-03",
+ "amends": [
+  {
+   "artifact": "campaign_runner_v1.py",
+   "parent_sha256": "77f0c2b9049a1a9cea11b92b692bde3214fbb6ed16d7d3aa538730767a565986",
+   "delta": "LaneAdapter.call gains a glm-5.3-apimessages branch: direct HTTPS POST to the frozen endpoint (https://api.z.ai/api/anthropic/v1/messages) via stdlib urllib; body per MODEL_IDENTITY_GLM_ADDENDUM_V1.json invocation_contract (temperature 0.0, max_tokens 8192, no system prompt); Authorization bearer read ONLY from env ANTHROPIC_AUTH_TOKEN; success = HTTP 200 with non-empty content[] text (concatenated) => {output, stderr_tail, seconds, rc:0}; any other outcome => {output:'', stderr_tail: <exception type + http status, never headers/body>, seconds, rc:1}. load_freezes() merges MODEL_IDENTITY_FREEZE_V1.json model_identities with MODEL_IDENTITY_GLM_ADDENDUM_V1.json added_model_identities (addendum file must exist; absent = hard error)."
+  },
+  {
+   "artifact": "campaign_tuning_driver_v1.py",
+   "parent_sha256": "af7925f5c3e6804071d9ed2135026c22e2741d8a27e1ad7e3612a9571bb037a3",
+   "delta": "--lane choices and echo_check identity iteration switch from reading MODEL_IDENTITY_FREEZE_V1.json directly to campaign_runner_v1.load_freezes() so the merged three-lane identity set (codex, claude, glm) is the single source; echo gate semantics unchanged (same-day, lane-scoped when --lane given)."
+  },
+  {
+   "artifact": "campaign_eval_driver_v1.py",
+   "parent_sha256": "42bdc73e2ed5e461cdb53e92e173f8599ea53537ad3b754e3b906914d038dfad",
+   "delta": "the three model-identity read sites (lane iteration, emit_matrix model list x2) switch to campaign_runner_v1.load_freezes() merged identity set so the ONE unified eval batch after the 2026-09-07 codex refill covers all lanes including glm-5.3-apimessages; no separate GLM eval instrument is created; scoring path untouched (consumes success_bool only, as before)."
+  }
+ ],
+ "adds_artifacts": [
+  {
+   "artifact": "MODEL_IDENTITY_GLM_ADDENDUM_V1.json",
+   "sha256": "d824523a76ae51118da04d2ec9fdcb387f539bee9ded49360fdf02c692946eae",
+   "role": "successor addendum to MODEL_IDENTITY_FREEZE_V1.json (parent retained byte-identical, sha256 619fbd2134d66977c4a9ef5a6cedd5f266768901a4e03ae975129d10cbf6af94); freezes model id glm-5.3, endpoint, auth var, sampling params, fail-closed contract for the third study family"
+  }
+ ],
+ "authority": {
+  "state_at_amendment": {
+   "protected_outcomes_accessed": false,
+   "glm_family_calls_made": 0,
+   "tuning_thresholds_bound": false
+  },
+  "order": "coordinator 2026-09-03: third study family (open-weight class) added; superseding correction fixes the endpoint to the z.ai Anthropic-Messages API (glm-5.3) after all three reachable cmkey bearer tokens were verified dead 2026-09-03 20:18-20:21 UTC ('该令牌已过期' x2, '该令牌状态不可用' x1); codex and claude lanes untouched"
+ },
+ "effect_on_existing_artifacts": {
+  "existing_run_records": "retained unchanged: 68/68 codex tuning records (rerun complete 2026-09-03 under sbatch 3571108) and any claude records from the 03:05 job stay byte-identical; the glm lane writes only runs/tuning/glm-5.3-apimessages/",
+  "model_mix": "no model mixing within any condition: each cell's 4 actions are executed by exactly one lane; glm-5.3 cells form their own family column in the unified matrix",
+  "eval": "one unified eval batch after the 2026-09-07 codex refill covering all lanes; the 39 archived codex outage cells remain codex-only (re-executed as codex, never as glm)",
+  "prereg_and_freeze": "P12_CAMPAIGN_PREREG_V1.json (23d9dc661f6849f45e4bb8443fedff6ea215da6507f08f508aa221d11a21b8a5) and P12_HARNESS_AND_POLICY_FREEZE_V1.json (b2cc1975c94a8a503347c7fd14de66df896cc2c7f7bfa5e5a54dcfe16da42254) unchanged"
+ },
+ "verification_plan": {
+  "pre_any_study_call": "same-day echo receipt for lane glm-5.3-apimessages from inside a real sbatch on the execution host: (a) plain echo 'Reply with exactly: ECHO_glm-5.3-apimessages' via --echo-check; (b) gym-shape probe rendering the actual terminal prompt template (dataset tree + mount sentence) and asserting a non-empty, fail-closed-checked reply; both recorded verbatim in the job log",
+  "execution_host_order": "LUNARC preferred (z.ai is an ordinary LLM API, allowed from cluster nodes); if a LUNARC node is refused, fall back to billy-old and record which host shipped"
+ }
+}

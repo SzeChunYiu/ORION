@@ -4,7 +4,9 @@
 Consumes, verbatim: P12_HARNESS_AND_POLICY_FREEZE_V1.json (action semantics,
 terminal template, byte caps, gold isolation), P12_CAMPAIGN_PREREG_V1.json
 (families, splits), MODEL_IDENTITY_FREEZE_V1.json (lanes, invocation
-contracts). Emits per-(instance, action, model) run records; the derivation
+contracts) merged with MODEL_IDENTITY_GLM_ADDENDUM_V1.json (third family
+glm-5.3-apimessages; P12_HARNESS_AMENDMENT_THIRD_FAMILY_GLM_V1.json). Emits
+per-(instance, action, model) run records; the derivation
 module (campaign_derivation_v1.py) turns the matrix into arm scores and the
 analyzer payload.
 
@@ -31,8 +33,11 @@ import argparse
 import datetime as _dt
 import hashlib
 import json
+import os
 import subprocess
 import time
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 from campaign_derivation_v1 import readable_row  # gold guard lives there
@@ -45,6 +50,18 @@ def load_freezes() -> tuple[dict, dict, dict]:
     harness = json.loads((HERE / "P12_HARNESS_AND_POLICY_FREEZE_V1.json").read_text())
     prereg = json.loads((HERE / "P12_CAMPAIGN_PREREG_V1.json").read_text())
     identities = json.loads((HERE / "MODEL_IDENTITY_FREEZE_V1.json").read_text())
+    # P12_HARNESS_AMENDMENT_THIRD_FAMILY_GLM_V1.json: the third-family identity
+    # is an addendum, never an edit of the frozen parent (parent stays
+    # byte-identical). Absent addendum = hard error, not a silent 2-lane run.
+    addendum_path = HERE / "MODEL_IDENTITY_GLM_ADDENDUM_V1.json"
+    if not addendum_path.exists():
+        raise RuntimeError(f"identity addendum missing: {addendum_path}")
+    addendum = json.loads(addendum_path.read_text())
+    have = {i["model_family_id"] for i in identities["model_identities"]}
+    for ident in addendum["added_model_identities"]:
+        if ident["model_family_id"] in have:
+            raise RuntimeError(f"duplicate model_family_id in addendum: {ident['model_family_id']}")
+        identities["model_identities"].append(ident)
     return harness, prereg, identities
 
 
@@ -66,6 +83,8 @@ class LaneAdapter:
             out = f"FAKE_OUTPUT sha={hashlib.sha256(prompt.encode()).hexdigest()[:12]}\n```python\nprint('ok')\n```"
             return {"output": out, "seconds": 0.0, "rc": 0}
         lane = self.identity["provider_lane"]
+        if self.identity["model_family_id"].startswith("glm-"):
+            return self._call_messages_api(prompt, timeout)
         if lane.startswith("codex"):
             # --skip-git-repo-check: required when the campaign tree is a
             # plain mirror (not a git repo), e.g. the LUNARC project-storage
@@ -85,6 +104,78 @@ class LaneAdapter:
             "seconds": round(time.time() - t0, 2),
             "rc": proc.returncode,
         }
+
+    def _call_messages_api(self, prompt: str, timeout: int) -> dict:
+        """glm-5.3-apimessages lane: one Anthropic-Messages HTTPS POST per call.
+
+        P12_HARNESS_AMENDMENT_THIRD_FAMILY_GLM_V1.json +
+        MODEL_IDENTITY_GLM_ADDENDUM_V1.json freeze: endpoint
+        https://api.z.ai/api/anthropic/v1/messages, model glm-5.3,
+        temperature 0.0, max_tokens 8192, no system prompt (the codex/claude
+        lanes also receive the bare prompt). The bearer credential is read
+        ONLY from env ANTHROPIC_AUTH_TOKEN and never stored, logged, or
+        written to any record. Fail-closed: anything but HTTP 200 with
+        non-empty content[] text is rc=1 with an exception-type/status
+        stderr_tail — never an empty success.
+        """
+        t0 = time.time()
+        token = os.environ.get("ANTHROPIC_AUTH_TOKEN", "")
+        if not token:
+            return {
+                "output": "",
+                "stderr_tail": "glm lane: ANTHROPIC_AUTH_TOKEN absent",
+                "seconds": round(time.time() - t0, 2),
+                "rc": 1,
+            }
+        url = self.identity["endpoint_url"]
+        body = json.dumps(
+            {
+                "model": self.identity["model_id"],
+                "max_tokens": 8192,
+                "temperature": 0.0,
+                "messages": [{"role": "user", "content": prompt}],
+            }
+        ).encode()
+        req = urllib.request.Request(
+            url,
+            data=body,
+            headers={
+                "Content-Type": "application/json",
+                "anthropic-version": "2023-06-01",
+                "Authorization": f"Bearer {token}",
+            },
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                data = json.load(resp)
+            parts = [
+                b.get("text", "")
+                for b in data.get("content", [])
+                if isinstance(b, dict) and b.get("type") == "text"
+            ]
+            text = "".join(parts)
+            if not text.strip():
+                raise RuntimeError("empty content[] text")
+            return {
+                "output": text,
+                "stderr_tail": "",
+                "seconds": round(time.time() - t0, 2),
+                "rc": 0,
+            }
+        except urllib.error.HTTPError as e:
+            return {
+                "output": "",
+                "stderr_tail": f"glm lane: HTTPError status={e.code} type=HTTPError",
+                "seconds": round(time.time() - t0, 2),
+                "rc": 1,
+            }
+        except Exception as e:  # noqa: BLE001 — type name only, never payloads
+            return {
+                "output": "",
+                "stderr_tail": f"glm lane: {type(e).__name__}",
+                "seconds": round(time.time() - t0, 2),
+                "rc": 1,
+            }
 
 
 def _cap(text: str, cap: int, label: str) -> str:

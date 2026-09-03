@@ -35,9 +35,26 @@ def _today() -> str:
     return _dt.date.today().isoformat()
 
 
-def echo_check(identities: dict, fake: bool = False) -> dict:
+def echo_check(identities: dict, fake: bool = False, lane: str | None = None) -> dict:
+    """Probe lane liveness and record it.
+
+    P12_HARNESS_AMENDMENT_THIRD_FAMILY_GLM_V1.json: ``lane`` scopes the probe
+    to one family (third-family echo must not re-probe the codex/claude
+    lanes); same-day results for other lanes already in echo_record.json are
+    preserved verbatim, so a lane-scoped echo never erases another lane's
+    same-day receipt.
+    """
     results = {}
-    for ident in identities["model_identities"]:
+    probed = [i for i in identities["model_identities"]]
+    if lane is not None:
+        probed = [i for i in probed if i["model_family_id"] == lane]
+        if not probed:
+            raise RuntimeError(f"unknown echo lane {lane}")
+    if lane is not None and ECHO_RECORD.exists():
+        prior = json.loads(ECHO_RECORD.read_text())
+        if prior.get("date") == _today():
+            results.update(prior.get("results", {}))
+    for ident in probed:
         adapter = LaneAdapter(ident, fake=fake)
         token = f"ECHO_{ident['model_family_id']}"
         res = adapter.call(f"Reply with exactly: {token}", timeout=300)
@@ -175,14 +192,14 @@ def main() -> int:
     ap.add_argument("--limit", type=int)
     ap.add_argument(
         "--lane",
-        choices=[m["model_family_id"] for m in json.loads(
-            (HERE / "MODEL_IDENTITY_FREEZE_V1.json").read_text()
-        )["model_identities"]],
+        choices=[m["model_family_id"] for m in load_freezes()[2]["model_identities"]],
         help=(
-            "restrict the tuning run to one frozen lane; the echo gate then "
-            "requires a same-day echo for THAT lane only (default: both lanes "
-            "must pass, per the freeze ordering rule). Lane-scoped runs are "
-            "recorded identically and never change episode semantics."
+            "restrict the tuning run or the echo probe to one frozen lane "
+            "(merged freeze + GLM addendum); with --run the echo gate then "
+            "requires a same-day echo for THAT lane only; with --echo-check "
+            "only that lane is probed and other lanes' same-day results are "
+            "preserved. Lane-scoped runs are recorded identically and never "
+            "change episode semantics."
         ),
     )
     a = ap.parse_args()
@@ -191,8 +208,10 @@ def main() -> int:
         return 0
     _, _, identities = load_freezes()
     if a.echo_check:
-        rec = echo_check(identities)
+        rec = echo_check(identities, lane=a.lane)
         print(json.dumps(rec, indent=1))
+        if a.lane is not None:
+            return 0 if rec["results"].get(a.lane, {}).get("ok") else 1
         return 0 if rec["all_ok"] else 1
     if a.run:
         if not a.parquet:

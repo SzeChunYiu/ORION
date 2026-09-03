@@ -1,0 +1,33 @@
+{
+ "schema": "ORION.A2.ModelIdentityFreezeAddendum.v1",
+ "date": "2026-09-03",
+ "artifact_class": "FROZEN_BEFORE_PROTECTED_EVALUATION",
+ "successor_of": {
+  "artifact": "MODEL_IDENTITY_FREEZE_V1.json",
+  "parent_sha256": "619fbd2134d669774a9253db6589f284473a86cc897967ee717d34bbca3d943c",
+  "relationship": "addendum, not replacement: the parent freeze is retained byte-identical and remains the identity authority for the gpt-5.5-codexcli and claude-fable-5-claudecli lanes; this addendum appends one additional model identity for the third study family ordered 2026-09-03. Drivers merge parent model_identities + this addendum's added_model_identities."
+ },
+ "authority": {
+  "order": "coordinator directive 2026-09-03: add GLM as THIRD study family (open-weight class), never replacing the codex or claude lanes; superseding correction: the GLM lane uses the SAME API that powers the orchestrator's own session (z.ai Anthropic Messages protocol), NOT the cmkey.cn route originally scoped (three reachable cmkey bearer tokens verified dead 2026-09-03 20:18-20:21 UTC: '该令牌已过期' x2, '该令牌状态不可用' x1).",
+  "state_at_addendum": {
+   "protected_outcomes_accessed": false,
+   "campaign_executed_for_this_family": false,
+   "tuning_thresholds_bound": false,
+   "results_exist": false
+  }
+ },
+ "added_model_identities": [
+  {
+   "class": "OPEN_WEIGHT_CLASS",
+   "model_family_id": "glm-5.3-apimessages",
+   "provider_lane": "z.ai Anthropic-Messages API (open-weight GLM family)",
+   "model_id": "glm-5.3",
+   "endpoint_url": "https://api.z.ai/api/anthropic/v1/messages",
+   "auth": "Authorization: Bearer from env var ANTHROPIC_AUTH_TOKEN (value is a runtime secret: never in source, records, logs, or any archived artifact)",
+   "invocation_contract": "single HTTPS POST per call; body = {model: glm-5.3, max_tokens: 8192, temperature: 0.0, messages: [{role: user, content: <prompt>}]}; headers = content-type application/json, anthropic-version 2023-06-01, authorization bearer; no system prompt (codex/claude lanes receive the bare prompt too); adapter reads response JSON content[] text blocks, concatenated in order, as the lane output — schema-identical to the CLI lanes' stdout",
+   "decoding": "temperature 0.0 frozen here (campaign convention for API lanes); residual provider nondeterminism carried by the 1-run-per-cell repeat policy (campaign prereg)",
+   "fail_closed": "any transport error, non-200 status, empty/absent content, or timeout => lane result rc=1 with stderr_tail carrying the exception TYPE and HTTP status only (never response headers or body); never an empty success",
+   "liveness_probe_2026_09_03": "PENDING — same-day echo receipt required from the execution host inside a real sbatch (plain + gym-shape) before any study call, per the amendment P12_HARNESS_AMENDMENT_THIRD_FAMILY_GLM_V1.json"
+  }
+ ]
+}

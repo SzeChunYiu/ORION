@@ -46,6 +46,8 @@ import time
 import traceback
 from pathlib import Path
 
+from campaign_runner_v1 import load_freezes
+
 HERE = Path(__file__).resolve().parent
 SHIM_DIR = HERE / "eval_judge_shim"
 
@@ -220,7 +222,9 @@ def load_phase(parquet: Path, phase: str) -> tuple[dict, dict[int, dict], dict]:
     import pyarrow.parquet as pq
 
     prereg = json.loads((HERE / "P12_CAMPAIGN_PREREG_V1.json").read_text())
-    identities = json.loads((HERE / "MODEL_IDENTITY_FREEZE_V1.json").read_text())
+    # P12_HARNESS_AMENDMENT_THIRD_FAMILY_GLM_V1.json: merged identity set
+    # (freeze + GLM addendum) so the ONE unified eval batch covers all lanes.
+    identities = load_freezes()[2]
     raw = {
         r["instance_id"]: r
         for r in pq.read_table(parquet).to_pylist()
@@ -242,8 +246,7 @@ def run_eval_phase(phase: str, parquet: Path, repo: Path, limit: int | None) -> 
     eval_dir = HERE / "eval" / phase
     judge_log_dir = HERE / "eval" / phase / "judge_transcripts"
     os.environ.setdefault("P12_JUDGE_LOG_DIR", str(judge_log_dir))
-    models = [m["model_family_id"] for m in json.loads(
-        (HERE / "MODEL_IDENTITY_FREEZE_V1.json").read_text())["model_identities"]]
+    models = [m["model_family_id"] for m in load_freezes()[2]["model_identities"]]
     expected = 0
     done = skipped = failed = 0
     for fid in sorted(fams):
@@ -327,8 +330,7 @@ def emit_matrix(phase: str, parquet: Path) -> int:
     refuse (exit 2) when any expected cell is missing."""
     prereg, raw, fams = load_phase(parquet, phase)
     eval_dir = HERE / "eval" / phase
-    models = [m["model_family_id"] for m in json.loads(
-        (HERE / "MODEL_IDENTITY_FREEZE_V1.json").read_text())["model_identities"]]
+    models = [m["model_family_id"] for m in load_freezes()[2]["model_identities"]]
     matrix: dict[str, dict[str, dict[str, float]]] = {}
     missing: list[str] = []
     per_family: dict[str, dict] = {}
