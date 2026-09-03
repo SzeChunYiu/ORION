@@ -35,12 +35,14 @@ jobs:
       - name: Verify canonical mechanics are structurally discoverable
         run: orion-harness mechanics-coverage | tee c7-mechanics-coverage.json
 
-      - name: Run exact bounded verifier directly
+      - name: Run both exact bounded verifiers directly
         run: |
           python research/extensions/orion-math-c7-davenport/verify_c7_44.py \
-            | tee c7-direct-result.json
+            | tee c7-a7-direct-result.json
+          python research/extensions/orion-math-c7-davenport/verify_b7_one_split.py \
+            | tee c7-b7s1-direct-result.json
 
-      - name: Freeze A7 in an isolated ORION workspace
+      - name: Freeze A7 and B7-S1 in an isolated ORION workspace
         shell: bash
         run: |
           set -euo pipefail
@@ -57,34 +59,54 @@ jobs:
             --criterion 'Accept YES only with an explicit length-44 total-zero witness.' \
             --criterion 'Independently reject all zero-sum submultisets of sizes 1 through 7 by two exact algorithms.' \
             --criterion 'Preserve donor attribution, hostile controls, packing diagnosis, and CANNOT_CHECK priority status.' \
-            | tee c7-problem-add.json
+            | tee c7-a7-problem-add.json
+          orion-harness problem-add "$WS" c7-b7-s1 \
+            'Can any one-term split v->a+b of the canonical length-43 Freeze--Schmid-derived zero-sum witness produce a length-44 sequence over C_7^3 with zz<=4?' \
+            --scope 'Exactly the 1197 labelled unordered nonzero one-term split moves; global B7 remains outside this atom.' \
+            --domain 'zero-sum-theory' \
+            --domain 'finite-abelian-groups' \
+            --criterion 'Verify the base sequence has exact zz=4 by two complete block vocabularies.' \
+            --criterion 'Enumerate all 1197 labelled one-term split moves and construct a valid five-block zero-sum partition for every move.' \
+            --criterion 'Use the merge-back argument for zz<=5; forbid promotion from this neighbourhood to global B7.' \
+            | tee c7-b7s1-problem-add.json
           orion-harness navigate 'counterexample guided completion' \
             | tee c7-mechanic-navigation.json
           orion-harness saturation-surface \
             | tee c7-saturation-surface.json
 
-      - name: Issue and service the exact verifier through the harness
+      - name: Issue and service both exact verifiers through the harness
         shell: bash
         run: |
           set -euo pipefail
           WS=/tmp/orion-c7-davenport
-          PAYLOAD="$(python - <<'PY'
-          import json
+
+          run_bound_python () {
+            local tag="$1"
+            local script="$2"
+            local timeout="$3"
+            local payload request_json request_id
+            payload="$(python - "$script" "$timeout" <<'PY'
+          import json, sys
+          script, timeout = sys.argv[1], int(sys.argv[2])
           print(json.dumps({
-              'code': "import runpy; runpy.run_path('verify_c7_44.py', run_name='__main__')",
+              'code': f"import runpy; runpy.run_path({script!r}, run_name='__main__')",
               'cwd': '.',
-              'timeout': 120,
+              'timeout': timeout,
               'max_output_bytes': 100000,
           }))
           PY
           )"
-          REQUEST_JSON="$(orion-harness request-tool "$WS" PYTHON --json "$PAYLOAD")"
-          printf '%s\n' "$REQUEST_JSON" | tee c7-harness-request.json
-          REQUEST_ID="$(printf '%s' "$REQUEST_JSON" | python -c 'import json,sys; print(json.load(sys.stdin)["request_id"])')"
-          orion-harness show-request "$WS" "$REQUEST_ID" \
-            | tee c7-harness-request-bound.json
-          orion-harness service-local "$WS" "$REQUEST_ID" \
-            | tee c7-harness-service.json
+            request_json="$(orion-harness request-tool "$WS" PYTHON --json "$payload")"
+            printf '%s\n' "$request_json" | tee "c7-${tag}-harness-request.json"
+            request_id="$(printf '%s' "$request_json" | python -c 'import json,sys; print(json.load(sys.stdin)["request_id"])')"
+            orion-harness show-request "$WS" "$request_id" \
+              | tee "c7-${tag}-harness-request-bound.json"
+            orion-harness service-local "$WS" "$request_id" \
+              | tee "c7-${tag}-harness-service.json"
+          }
+
+          run_bound_python a7 verify_c7_44.py 120
+          run_bound_python b7s1 verify_b7_one_split.py 240
           orion-harness pending "$WS" | tee c7-harness-pending.json
 
       - name: Require direct and digest-bound harness executions to agree
@@ -93,23 +115,36 @@ jobs:
           import json
           from pathlib import Path
 
-          direct = json.loads(Path('c7-direct-result.json').read_text())
-          service = json.loads(Path('c7-harness-service.json').read_text())
-          serviced = service.get('serviced', [])
-          assert len(serviced) == 1, service
-          receipt = serviced[0]
-          assert receipt.get('success') is True, receipt
-          output = receipt.get('output')
-          assert isinstance(output, dict), receipt
-          assert output.get('returncode') == 0, output
-          harness_result = json.loads(output.get('stdout', ''))
-          assert harness_result == direct, (harness_result, direct)
-          assert direct['checks']['witness_44_sum_zero'] is True
-          assert direct['checks']['witness_44_short_zero_free_dp'] is True
-          assert direct['checks']['witness_44_short_zero_free_counts'] is True
-          assert direct['packing']['exact_zz'] == 5
-          assert direct['authority']['literature_priority_of_44_not_in_C0'] == 'CANNOT_CHECK'
-          print('ORION_C7_A7_DIGEST_BOUND_EXECUTION_AGREES')
+          def checked(tag: str, direct_path: str):
+              direct = json.loads(Path(direct_path).read_text())
+              service = json.loads(Path(f'c7-{tag}-harness-service.json').read_text())
+              serviced = service.get('serviced', [])
+              assert len(serviced) == 1, service
+              receipt = serviced[0]
+              assert receipt.get('success') is True, receipt
+              output = receipt.get('output')
+              assert isinstance(output, dict), receipt
+              assert output.get('returncode') == 0, output
+              harness_result = json.loads(output.get('stdout', ''))
+              assert harness_result == direct, (tag, harness_result, direct)
+              return direct
+
+          a7 = checked('a7', 'c7-a7-direct-result.json')
+          assert a7['checks']['witness_44_sum_zero'] is True
+          assert a7['checks']['witness_44_short_zero_free_dp'] is True
+          assert a7['checks']['witness_44_short_zero_free_counts'] is True
+          assert a7['packing']['exact_zz'] == 5
+          assert a7['authority']['literature_priority_of_44_not_in_C0'] == 'CANNOT_CHECK'
+
+          b7 = checked('b7s1', 'c7-b7s1-direct-result.json')
+          assert b7['base']['exact_zz'] == 4
+          assert b7['one_split_moves_checked'] == 1197
+          assert set(b7['residual_sum_cover_counts'].values()) == {343}
+          assert b7['all_one_split_moves_exact_zz'] == 5
+          assert b7['global_B7_status'] == 'OPEN'
+          assert b7['authority']['novelty_priority'] == 'CANNOT_CHECK'
+
+          print('ORION_C7_A7_AND_B7S1_DIGEST_BOUND_EXECUTIONS_AGREE')
           PY
 
       - name: Pack immutable harness workspace for inspection
@@ -121,14 +156,19 @@ jobs:
           if-no-files-found: error
           retention-days: 30
           path: |
-            c7-direct-result.json
+            c7-a7-direct-result.json
+            c7-b7s1-direct-result.json
             c7-mechanics-coverage.json
             c7-harness-init.json
-            c7-problem-add.json
+            c7-a7-problem-add.json
+            c7-b7s1-problem-add.json
             c7-mechanic-navigation.json
             c7-saturation-surface.json
-            c7-harness-request.json
-            c7-harness-request-bound.json
-            c7-harness-service.json
+            c7-a7-harness-request.json
+            c7-a7-harness-request-bound.json
+            c7-a7-harness-service.json
+            c7-b7s1-harness-request.json
+            c7-b7s1-harness-request-bound.json
+            c7-b7s1-harness-service.json
             c7-harness-pending.json
             c7-orion-harness-workspace.tgz
