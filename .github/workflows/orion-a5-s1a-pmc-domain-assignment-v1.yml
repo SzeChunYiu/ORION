@@ -1,0 +1,110 @@
+name: ORION A5 S1a PMC domain assignment v1
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a5-s1a-pmc-domain-assignment-v1.yml"
+      - "development/a5-s1-source-repair-2026-09-03/assign_pmc_domains_s1a_v1.py"
+      - "development/a5-s1-source-repair-2026-09-03/s1a-domain-assignment/**"
+      - "development/p4-m6-source-provider-successor-v4-2026-08-23/PROTOCOL_V4.json"
+      - "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M3_PROTOCOL_TO_RESULTS.jsonl"
+      - "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M4_ARTICLE_TO_CORRECTION.jsonl"
+      - "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M8_ARTICLE_TO_LICENSED_SUPPLEMENT.jsonl"
+permissions:
+  contents: read
+jobs:
+  s1a-domain-assignment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pin lane script, inputs and artifacts by sha256
+        run: |
+          set -e
+          check() { got=$(sha256sum "$1" | cut -d' ' -f1); if [ "$got" != "$2" ]; then echo "SHA MISMATCH $1"; exit 1; fi; }
+          check development/a5-s1-source-repair-2026-09-03/assign_pmc_domains_s1a_v1.py b05cf86899e248598d272dcca2c6a01226d47dbcf145435218f75465374e627e
+          check development/p4-m6-source-provider-successor-v4-2026-08-23/PROTOCOL_V4.json 902d2d7e0efac569f9b4c87d087b560e4039666d5ee13be075fd3adba4bc27f4
+          check development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M3_PROTOCOL_TO_RESULTS.jsonl 2703b131c791cad8e547ef6f25d885f7e0c216ff0cff01cc477779b081b1f4fe
+          check development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M4_ARTICLE_TO_CORRECTION.jsonl 18022f30e84e8f8810166e68fafdad81635a2b22712d148dc4742f32306b286b
+          check development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M8_ARTICLE_TO_LICENSED_SUPPLEMENT.jsonl 2d8404d49898b29ace9d2d33db647cb4ed83a7eaad37952e258f998408f2ebfa
+          check development/a5-s1-source-repair-2026-09-03/s1a-domain-assignment/A5_S1A_PMC_DOMAIN_ASSIGNMENT_ROWS_V1.jsonl 509339a7e726140438c46797c05a49cd35a5c1fb468c5b1e456783c58fcbf065
+          check development/a5-s1-source-repair-2026-09-03/s1a-domain-assignment/A5_S1A_PMC_DOMAIN_ASSIGNMENT_RESULT_V1.json 2bb441f5a3becdb93bdbf6f361da79e53f85447ab97c6db668daada0423ec308
+      - name: Compile and self-test the assignment script (tamper assertions)
+        run: |
+          python -m py_compile development/a5-s1-source-repair-2026-09-03/assign_pmc_domains_s1a_v1.py
+          python development/a5-s1-source-repair-2026-09-03/assign_pmc_domains_s1a_v1.py --self-test
+      - name: Determinism gate (offline recompute must be byte-identical to committed rows and result)
+        run: |
+          set -e
+          python development/a5-s1-source-repair-2026-09-03/assign_pmc_domains_s1a_v1.py \
+            --rows /tmp/s1a_rows_recomputed.jsonl --result /tmp/s1a_result_recomputed.json > /tmp/s1a_stdout.json
+          cmp development/a5-s1-source-repair-2026-09-03/s1a-domain-assignment/A5_S1A_PMC_DOMAIN_ASSIGNMENT_ROWS_V1.jsonl /tmp/s1a_rows_recomputed.jsonl
+          cmp development/a5-s1-source-repair-2026-09-03/s1a-domain-assignment/A5_S1A_PMC_DOMAIN_ASSIGNMENT_RESULT_V1.json /tmp/s1a_result_recomputed.json
+          echo "S1A_RECOMPUTE_BYTE_IDENTICAL"
+      - name: Hostile mutation gate (forged result must diverge from canonical recompute)
+        run: |
+          set +e
+          python - <<'PY'
+          import json, pathlib
+          d = json.loads(pathlib.Path('development/a5-s1-source-repair-2026-09-03/s1a-domain-assignment/A5_S1A_PMC_DOMAIN_ASSIGNMENT_RESULT_V1.json').read_text())
+          d['per_mechanism']['M4_ARTICLE_TO_CORRECTION']['domain_assigned_units']['LIFE_BIOMEDICAL'] = 200
+          d['total_domain_assigned_units'] = 228
+          pathlib.Path('/tmp/s1a_result_tampered.json').write_text(json.dumps(d, indent=2, sort_keys=True) + "\n")
+          PY
+          cmp /tmp/s1a_result_tampered.json /tmp/s1a_result_recomputed.json
+          rc=$?
+          if [ "$rc" -eq 0 ]; then echo "TAMPER NOT DETECTED"; exit 1; fi
+          echo "S1A_TAMPER_DETECTED rc=$rc"
+      - name: Cross-verify result aggregates against committed rows (independent of the script)
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from collections import Counter
+          from pathlib import Path
+          lane = Path('development/a5-s1-source-repair-2026-09-03/s1a-domain-assignment')
+          rows = [json.loads(l) for l in (lane/'A5_S1A_PMC_DOMAIN_ASSIGNMENT_ROWS_V1.jsonl').read_text().splitlines() if l.strip()]
+          result = json.loads((lane/'A5_S1A_PMC_DOMAIN_ASSIGNMENT_RESULT_V1.json').read_text())
+          assert result['schema_version'] == 'ORION.A5.S1a.PMCDomainAssignment.v1'
+          assert len(rows) == result['rows'] == 576
+          digest = hashlib.sha256((lane/'A5_S1A_PMC_DOMAIN_ASSIGNMENT_ROWS_V1.jsonl').read_bytes()).hexdigest()
+          assert digest == result['rows_jsonl_sha256']
+          adm = [r for r in rows if r['unit_status'] == 'DOMAIN_ASSIGNED_UNIT']
+          assert len(adm) == result['total_domain_assigned_units'] == 112
+          cells = Counter(f"{r['assigned_domain']}__{r['mechanism']}" for r in adm)
+          assert set(cells) <= set(result['units_by_cell']), 'row cell not in result'
+          for cell, count in result['units_by_cell'].items():
+              assert cells.get(cell, 0) == count, (cell, cells.get(cell, 0), count)
+          for mech, block in result['per_mechanism'].items():
+              assert sum(block['domain_assigned_units'].values()) == block['domain_assigned_units_total']
+              mech_rows = [r for r in rows if r['mechanism'] == mech]
+              assert len(mech_rows) == block['input_rows']
+              assert block['input_rows'] == block['domain_assigned_units_total'] + block['reservoir_total']
+              breakdown = Counter(r['unit_status'] for r in mech_rows if r['unit_status'] != 'DOMAIN_ASSIGNED_UNIT')
+              assert dict(breakdown) == block['reservoir_breakdown'], (mech, dict(breakdown))
+          # every admitted unit is both-sides CC BY 4.0 with byte digests present (M3/M4) or licensed supplement (M8)
+          for r in adm:
+              br = r['bytes_and_rights']
+              if r['mechanism'] in ('M3_PROTOCOL_TO_RESULTS', 'M4_ARTICLE_TO_CORRECTION'):
+                  assert br['article_rights_class'] == 'CC_BY_40' and br['partner_rights_class'] == 'CC_BY_40'
+                  assert br['article_nxml_sha256'] and br['partner_nxml_sha256']
+              else:
+                  assert r['mechanism'] == 'M8_ARTICLE_TO_LICENSED_SUPPLEMENT'
+                  assert br.get('article_rights_class') == 'CC_BY_40'
+          assert result['authority_boundary']['grants_scientific_authority'] is False
+          assert result['authority_boundary']['mechanism_reassignment_performed'] is False
+          assert result['authority_boundary']['protected_outcomes_accessed'] is False
+          print('S1A_RESULT_AGGREGATES_CROSS_VERIFIED units=112')
+          PY
+      - name: Verify SHA256SUMS covers every S1a lane artifact
+        run: |
+          cd development/a5-s1-source-repair-2026-09-03/s1a-domain-assignment
+          sha256sum --check SHA256SUMS
+          listed=$(wc -l < SHA256SUMS | tr -d ' ')
+          files=$(find . -type f ! -name SHA256SUMS | wc -l | tr -d ' ')
+          if [ "$listed" -ne "$files" ]; then echo "SHA256SUMS incomplete: listed=$listed files=$files"; exit 1; fi
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
