@@ -1,0 +1,51 @@
+{
+ "schema": "ORION.A2.ModelIdentityExecutionHostAddendum.v1",
+ "date": "2026-09-03",
+ "parent_freeze": {
+  "artifact": "MODEL_IDENTITY_FREEZE_V1.json",
+  "sha256": "619fbd2134d66977c4a9ef5a6cedd5f266768901a4e03ae975129d10cbf6af94",
+  "successor_rule_invoked": "changing host ... after any tuning or protected call requires a successor freeze and invalidates nothing retroactively only if no protected outcome was accessed"
+ },
+ "trigger": "operator directive 2026-09-03 (mid-task): heavy computation runs as sbatch batch jobs on LUNARC via the billy-old hop; billy-old remains for light staging/preflight/echo checks only",
+ "state_at_addendum": {
+  "protected_model_calls": 0,
+  "protected_outcomes_accessed": false,
+  "tuning_calls_completed": {
+   "lane": "gpt-5.5-codexcli",
+   "cells": "68/68 (6 tuning families x 17 instances x 4 actions)",
+   "host": "billy-old (~/orion-a2-campaign)",
+   "completed_before_directive": true,
+   "rc": 0,
+   "records": "papers/orion-22-adaptive-state-reasoning/top_tier/runs/tuning/gpt-5.5-codexcli/<inst>_<action>.json",
+   "driver_log": "P12_TUNING_CODEX.log (billy-old:~/orion-a2-campaign/)"
+  },
+  "claude_lane_tuning_calls": 0
+ },
+ "remaining_execution_host": {
+  "cluster": "LUNARC cosmos",
+  "slurm_account": "lu2026-2-51",
+  "partition": "lu48",
+  "campaign_storage_root": "/projects/hep/fs9/users/scyiu/orion-a2-p12 (worktree mirror at worktree/papers/orion-22-adaptive-state-reasoning/top_tier, deps at a2-deps/, conda at miniconda3/; staged from billy-old via rsync over the ControlMaster hop)",
+  "batch_scripts": "exec_sbatch/p12_env_setup.sbatch, p12_eval_tuning.sbatch, p12_claude_tuning.sbatch",
+  "verified_nodes": ["cosmos2.int.lunarc (login)", "cn062 (compute)"],
+  "verified_utc": "2026-09-03",
+  "cli_install": "user-local npm prefix ~/.local (module load nodejs/20.9.0), no sudo",
+  "codex_cli_version_verified": "codex-cli 0.129.0-alpha.15 (exact frozen pin)",
+  "claude_cli_version_verified": "claude CLI 2.1.143 (exact frozen pin)",
+  "gap_report": "NONE — both pinned CLIs absent at check time and installed user-local at the exact pinned versions; verified on an execution node, not only the login node"
+ },
+ "auth_binding": {
+  "rule": "model identities are UNCHANGED: same accounts, byte-identical credentials on both hosts",
+  "codex_auth_json_sha256": "51a90fc1a197d642da0fdc4cda42067a089a7418a7b29498e69996c8e85e8de5 (billy-old proven-live during the 68-cell tuning run; identical copy on LUNARC)",
+  "claude_credentials_sha256": "43f3caee9ea7053321310afdbba3217298f845e2e32a9729563f93271804abe6 (operator subscription; identical copy on LUNARC)"
+ },
+ "unchanged": [
+  "model ids (gpt-5.5, claude-fable-5)",
+  "invocation contracts (codex exec single-turn; claude -p --model claude-fable-5 single-turn print mode)",
+  "host config (effort medium, service tier fast)",
+  "ordering rule (same-day echo before tuning; P12_TUNING_BINDING_V1.json committed before any protected call)",
+  "claude lane window rule (campaign calls after 2026-09-04 03:00 Europe/Stockholm, fresh same-day echo at window start)"
+ ],
+ "batch_invocation_notes": "sbatch jobs export PATH=$HOME/.local/bin:$PATH and module load nodejs/20.9.0; the judge shim (eval_judge_shim/openai, sha256 09765adab4ed1f2a4e55538a052b82c2049b5d21b2e9af368a1c3dd821f7ad3b) invokes the same pinned codex lane via bare `codex exec` with -i figures",
+ "scientific_authority_delta": "NONE__HOST_BIND_ONLY"
+}
