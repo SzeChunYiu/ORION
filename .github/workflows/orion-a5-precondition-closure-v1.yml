@@ -28,11 +28,11 @@ jobs:
         run: |
           set -e
           check() { got=$(git hash-object "$1"); if [ "$got" != "$2" ]; then echo "BLOB MISMATCH $1"; exit 1; fi; }
-          check development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_CENSUS_PROTOCOL_V1.json 1cebbc302ff78cccb843ea34a8f95590343518634c3772d64d99dd38adf98f15
-          check development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_RESULT_V1.json 91cf8f915d9bbf1c8e630912948f668b054a50e706159d6d4aba2494ddcdb158
-          check development/a5-precondition-closure-2026-09-03/source_binding/arxiv-cc-by-fulltext-pool-binding-resume-v3/RESULT_V3.json aa92da4fc683548a6ccc151ab03cd33a06cd5d9d3ade2e63d8b7b021ed5b6154
-          check development/a5-precondition-closure-2026-09-03/source_binding/comparator-backbone-bytes-binding-v1/COMPARATOR_BACKBONE_BYTES_BINDING_V1.json e7d888de1076359a80d7be516a03bdb27cdc3eafed650c226fd908261dfa4bb0
-          check development/a5-precondition-closure-2026-09-03/A5_EXTERNAL_BINDINGS_STATUS_V1.json b6eb04855eedd0b012f2e9f86d1fd26a2c564ea2215fd333d07d6bc48cfc69aa
+          check development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_CENSUS_PROTOCOL_V1.json 1c85d3279f8f09195c6f422138e3b06c6df65892
+          check development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_RESULT_V1.json 09985395fcc61dbb4c801a138c8a90455a4e3687
+          check development/a5-precondition-closure-2026-09-03/source_binding/arxiv-cc-by-fulltext-pool-binding-resume-v3/RESULT_V3.json 5f59b5e57fe3e3cf868938240df04c21e28b992d
+          check development/a5-precondition-closure-2026-09-03/source_binding/comparator-backbone-bytes-binding-v1/COMPARATOR_BACKBONE_BYTES_BINDING_V1.json 95a6d0ac0c2d7108890cb6954e814f5c0dcc1c9d
+          check development/a5-precondition-closure-2026-09-03/A5_EXTERNAL_BINDINGS_STATUS_V1.json 034d13f484d1b6f7c1bb3eca2039ec9822b93dff
       - name: Verify frozen authority boundary and census result
         run: |
           python - <<'PY'
