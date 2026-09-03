@@ -1,0 +1,32 @@
+name: ORION A4 model identity freeze v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a4-model-identity-v1.yml"
+      - "papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym/A4_MODEL_IDENTITY_FREEZE_V1.json"
+      - "papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym/check_a4_model_identity_freeze_v1.py"
+      - "papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym/receipts/**"
+permissions:
+  contents: read
+jobs:
+  identity-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Checker hostile self-test
+        run: |
+          python papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym/check_a4_model_identity_freeze_v1.py \
+            --self-test --freeze papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym/A4_MODEL_IDENTITY_FREEZE_V1.json
+      - name: Verify committed freeze and receipts
+        run: |
+          python papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym/check_a4_model_identity_freeze_v1.py \
+            --freeze papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym/A4_MODEL_IDENTITY_FREEZE_V1.json
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
