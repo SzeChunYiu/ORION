@@ -98,7 +98,9 @@
       "single_turn": true,
       "verification": {
         "method": "echo probe: prompt 'Reply with exactly: P11OPENPROBE' + bge-m3 /api/embed sanity",
-        "status": "PENDING_SETUP_JOB_3570185"
+        "result": "PASS \u2014 exact sentinel P11OPENPROBE via /api/generate options num_ctx=2048 t=0.6 p=0.9 seed=42 (475.7s cpu, job 3570429 lu48); bge-m3 /api/embed sanity returned live vector; digests llama3.1:8b=46e0c10c039e bge-m3=790764642607; ollama v0.33.2 linux-amd64 pinned binary; production at 32k/16k num_ctx verified live by compile worker job 3570908 (cg05 A40, 3 parallel workers)",
+        "status": "VERIFIED",
+        "verified_on": "2026-09-03T13:59:04.318693+00:00"
       }
     }
   ],
