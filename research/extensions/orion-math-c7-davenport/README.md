@@ -1,6 +1,6 @@
 # ORION bounded frontier experiment — generalized Davenport constants of `C_7^3`
 
-Status: **ACTIVE / first atom refuted by explicit witness**  
+Status: **ACTIVE / A7 refuted; B7 one-split neighbourhood closed**  
 Branch: `shadow/c7-davenport-frontier-20260903-sol`  
 Scope: isolated domain-neutral ORION research-harness experiment; this does **not** alter the scope-locked `ORION-frontier-problems` programme.
 
@@ -55,7 +55,7 @@ It has length `44`, total sum zero, and remains short-zero-free because it is a 
 
 The repository verifier does **not** rely only on that prose implication: it independently checks the 48-term and 44-term sequences by two exact algorithms.
 
-## Exact bounded consequences
+## Exact bounded consequences of A7
 
 `verify_c7_44.py` establishes all of the following in the frozen finite object:
 
@@ -75,12 +75,6 @@ zz(S) = 5.
 Thus the bounded scientific conclusion is
 
 ```text
-there exists a length-44 total-zero 7-short-zero-free sequence over C_7^3,
-```
-
-or, in the usual `C_0(G)` language,
-
-```text
 44 not in C_0(C_7^3).
 ```
 
@@ -90,13 +84,13 @@ This is a **derived bounded fact**.  Its priority in the mathematical literature
 
 The `p=5` ORION-04 route won by converting the `D_4` ambiguity into a length-31 total-zero short-zero-free obstruction and then proving that obstruction impossible.  A7 shows that the literal `p=7` analogue is false: length 44 already contains an explicit total-zero short-zero-free object.
 
-The failure is scientifically useful because it localizes responsibility.  The next search should **not** spend resources trying to reproduce the 31-term saturation proof at `p=7` without a new ingredient.
+The failure localizes responsibility.  The next search should **not** spend resources trying to reproduce the 31-term saturation proof at `p=7` without a new ingredient.
 
-The present witness also does not itself refute the candidate Freeze–Schmid-tight value `D_4(C_7^3)=43`: its exact packing number is five, whereas a zero-sum witness relevant to raising the fourth generalized Davenport constant would need packing number at most four.
+The A7 witness also does not itself refute the candidate Freeze–Schmid-tight value `D_4(C_7^3)=43`: its exact packing number is five, whereas a zero-sum witness relevant to raising the fourth generalized Davenport constant would need packing number at most four.
 
 ## Reframed frontier atom B7
 
-The next falsification atom is therefore
+The falsification atom is
 
 > **B7.** Is there a zero-sum sequence `B` over `C_7^3` with `|B|=44` and `zz(B)<=4`?
 
@@ -106,18 +100,84 @@ The standard zero-sum characterization used in ORION-04 is
 D_k(G) = max{|B| : B is zero-sum and zz(B) <= k}.
 ```
 
-Consequently, a `YES` to B7 would immediately give `D_4(C_7^3)>=44` and refute tightness of the Freeze–Schmid candidate `43`.  A `NO` would close this particular length-44 obstruction class but would still need to be combined with an independently justified upper corridor before claiming `D_4=43`.
+Consequently, a `YES` to B7 would immediately give `D_4(C_7^3)>=44` and refute tightness of the Freeze–Schmid candidate `43`.  A global `NO` would still need an independently justified upper corridor before claiming `D_4=43`.
 
-That asymmetric interpretation is intentional: the next experiment is a clean falsification gate, not a hidden assumption that length 44 is the only possible obstruction.
+## B7-S1 — exact closure of the canonical one-split neighbourhood
+
+Before launching a global length-44 search, take the specialized Freeze–Schmid lower-bound witness
+
+```text
+S0 = e1^6 e2^6 e3^20 (e1+e2)^3 (e1+e3)^3 (e2+e3)^4,
+```
+
+which has length 42 and total sum `(5,6,6)`.  Append `h=(2,1,1)=-sigma(S0)` to obtain the canonical zero-sum length-43 sequence
+
+```text
+B43 = e1^6 e2^6 e3^20 (e1+e2)^3 (e1+e3)^3 (e2+e3)^4 h.
+```
+
+`verify_b7_one_split.py` independently enumerates the complete bounded zero-sum substate lattice of `B43` and verifies
+
+```text
+zz(B43) = 4.
+```
+
+It then freezes the minimum semantic edit that could raise the length while preserving total sum:
+
+```text
+replace one occurrence v by two nonzero terms a,b with a+b=v.
+```
+
+For each of the seven support types there are exactly 171 unordered nonzero splits, hence 1197 labelled one-term split moves.
+
+The naive approach would recompute a maximum zero-sum packing 1197 times.  The exact closure uses the packing structure instead.  If a split sequence has five zero-sum blocks, `a` and `b` must lie in different blocks; otherwise merging them back to `v` would give five blocks in `B43`, contradicting `zz(B43)=4`.  Merging the two distinct blocks gives a four-block factorization of `B43`.  Conversely, if the corresponding base block can be split after `v -> a+b`, a five-block partition is obtained.
+
+The complete finite base calculation has:
+
+```text
+479 zero-sum substates,
+159 minimal zero-sum atoms.
+```
+
+The counts of zero-sum base blocks `U` containing each source type and leaving a complement that admits three zero-sum blocks are
+
+```text
+e1:          144
+e2:          143
+e3:          144
+e1+e2:      119
+e1+e3:      119
+e2+e3:      127
+completion:   79
+```
+
+For every source type, after removing the source copy from all eligible `U`, the union of exact submultiset-sum reachability sets covers
+
+```text
+343 / 343
+```
+
+group elements.  Therefore `-a` is covered for every possible nonzero first split term `a`, and the verifier constructs and checks an explicit five-block zero-sum partition for **every one of the 1197 moves**.
+
+The merge-back argument supplies the matching upper bound `zz<=5` for every one-split sequence.  Hence the bounded result is
+
+```text
+all 1197 canonical B43 one-term split moves have exact zz = 5.
+```
+
+So the entire one-split neighbourhood contains **no B7 witness**.  This is a real bounded negative result; it is not promoted to a global `NO` for B7.
+
+The scientific diagnosis is that the Freeze–Schmid extremal object is locally packing-rigid under the smallest length-preserving-sum perturbation.  The next useful frontier move must leave this one-edit basin: multi-term exchanges, a different extremal orbit/family, or a global structural exclusion.
 
 ## Reproduction and ORION harness binding
 
-Direct bounded check:
+Direct bounded checks:
 
 ```bash
 python research/extensions/orion-math-c7-davenport/verify_c7_44.py
+python research/extensions/orion-math-c7-davenport/verify_b7_one_split.py
 ```
 
-The companion GitHub Actions workflow initializes the canonical `orion-research-harness`, registers A7 as a frozen problem, issues the exact verifier through the harness `PYTHON` host-capability path, services it locally under explicit process-tool opt-in, and compares the digest-bound harness result with a separate direct execution.  The workspace receipts are uploaded as CI artifacts.
+The companion GitHub Actions workflow initializes the canonical `orion-research-harness`, registers the bounded atoms, issues the exact verifiers through the harness `PYTHON` host-capability path, services them locally under explicit process-tool opt-in, and compares the digest-bound harness results with separate direct executions.  The workspace receipts are uploaded as CI artifacts.
 
 This use of the harness grants execution provenance, not novelty or peer-review authority.
