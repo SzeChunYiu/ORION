@@ -2,7 +2,7 @@
 #SBATCH -J p11chain
 #SBATCH -A lu2026-2-51
 #SBATCH -p gpua40
-#SBATCH -t 1-20:00:00
+#SBATCH -t 23:00:00
 #SBATCH -n 1
 #SBATCH -c 16
 #SBATCH --mem=64G
