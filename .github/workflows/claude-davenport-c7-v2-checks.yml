@@ -1,0 +1,34 @@
+name: claude-davenport-c7-v2-checks
+
+on:
+  push:
+    branches:
+      - claude/orion-research-frontier-3ck9yt
+    paths:
+      - 'research/experiments/davenport-c7-frontier/**'
+      - '.github/workflows/claude-davenport-c7-v2-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-checks-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: research/experiments/davenport-c7-frontier
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: V1 hand-derived orbit cover and certificates (binary cube, length 37)
+        run: python check_support7_binary_cube_v1.py
+      - name: V2 spectrum congruence suite (D2 gate, D3 short-zero-sum lemma, certificates)
+        run: python spectrum_congruences_v2.py
+      - name: V2 cube families S_2(p), S_3(p) for p = 3, 5, 7 (independent packing recursion)
+        run: python verify_cube_family_v2.py --fast
+      - name: V2 exhaustive analogues (compile enumerator, replay p = 3 and p = 5 D2 frames)
+        run: bash run_exhaustive_analogs_v2.sh --ci
