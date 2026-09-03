@@ -1,4 +1,4 @@
-# Support-8 deficit geometry for a length-37 `C_7^3` obstruction — V1
+# Support-8 deficit geometry for a length-37 `C_7^3` obstruction — V2
 
 Status: **analytic reduction plus exact finite projective classification**. This does not yet eliminate all support-8 lifts.
 
@@ -10,6 +10,14 @@ Let `B` be zero-sum over `C_7^3`, `|B|=37`, and `z(B)<=3`. Existing reductions i
 - every two-dimensional subgroup contains at most 18 terms.
 
 Assume `|supp(B)|=8` and write the eight actual support multiplicities as `m_i`.
+
+## Donor rank-two upgrade: Property C of `C_7^2`
+
+The rank-two group `C_7^2` has Property D, hence Property C. Together with `eta(C_7^2)=19`, this says that a 7-short-zero-free sequence of length 18 in a plane is of the form `T^6` with `|T|=3`; in particular it has at most three distinct support values.
+
+Therefore a plane containing **four or more actual support values** of `B` cannot carry 18 terms. Its occupancy is at most 17.
+
+This donor theorem improves the raw `eta` plane bound exactly where the support geometry needs it.
 
 ## Deficit budget
 
@@ -43,9 +51,39 @@ The surviving scalar-ratio orbits under swapping are represented by ratios `2` a
 
 ### No plane contains five actual support elements
 
-If five actual support elements lie in one two-dimensional subgroup, their capacity is 30 but their occupancy is at most 18. They therefore consume deficit at least 12, again exceeding the global budget 11.
+If five actual support elements lie in one two-dimensional subgroup, Property C upgrades its occupancy bound to at most 17. Relative to capacity 30 this costs at least 13 deficit, already larger than the global budget 11.
 
 Hence every plane contains at most four actual support elements.
+
+### A four-support plane costs at least seven deficit
+
+If a plane contains four actual support values, its capacity is 24 and Property C forces occupancy at most 17. Thus its four deficits satisfy
+
+\[
+\sum_{i\in P}d_i\ge 7.
+\]
+
+This replaces the earlier weaker lower bound 6.
+
+If two four-secants intersect in one support point `x` and the eighth support point outside their union is `y`, then adding the two plane inequalities gives
+
+\[
+14\le (11-d_y)+d_x.
+\]
+
+Hence
+
+\[
+d_x-d_y\ge3.
+\]
+
+In particular `d_x>=3`, so the common support value has multiplicity
+
+\[
+m_x=6-d_x\le3.
+\]
+
+Two support-disjoint four-secants are impossible a fortiori.
 
 ## Two projective geometry types
 
@@ -92,17 +130,36 @@ The 350 classes have the following four-secant counts:
 
 Among the last 23 classes, the two four-secants are disjoint on the support in **3** classes and intersect in a support point in **20** classes.
 
-The three disjoint-four-secant classes are analytically impossible for an obstruction: each four-point plane requires at least six deficit, and disjoint support blocks would require at least 12 total deficit, while only 11 is available. Thus the Type-A lift search immediately drops from 350 to at most **347** projective classes before any scalar enumeration.
+The three disjoint-four-secant classes are analytically impossible. For the remaining classes, the stronger Property-C deficit filter gives exact ordered deficit-profile counts:
+
+- no four-secant: **25,488** profiles per class;
+- one four-secant: **8,264** profiles per class;
+- two intersecting four-secants: **1,061** profiles per class;
+- two disjoint four-secants: **0** profiles.
+
+Thus the Type-A projective-class/profile universe is reduced to
+
+\[
+181(25488)+146(8264)+20(1061)=\mathbf{5,841,092}
+\]
+
+pairs before scalar/kernel filtering, down from the raw `350*25488=8,920,800`.
 
 ## Generalizable pattern
 
-The argument is not specific to the number 8. For a `p`-short-zero-free sequence over `C_p^3`, every projective direction has occupancy at most `p-1`, while the rank-two identity `eta(C_p^2)=3p-2` gives plane occupancy at most `3p-3`. If a support of size `s` has total length `N`, its capacity deficit
+For a `p`-short-zero-free sequence over `C_p^3`, every projective direction has occupancy at most `p-1`, while the rank-two identity `eta(C_p^2)=3p-2` gives plane occupancy at most `3p-3`. If Property C is available for `C_p^2`, a plane containing at least four actual support values improves further to occupancy at most `3p-4`.
+
+If a support of size `s` has total length `N`, its capacity deficit
 
 \[
 \Delta=s(p-1)-N
 \]
 
-pays for repeated projective directions and overfull projective incidences. A direction represented by `t` actual support values costs at least `(t-1)(p-1)` deficit, and a plane containing `t` actual support values costs at least `(t-3)(p-1)` deficit.
+pays for repeated projective directions and overfull projective incidences. A direction represented by `t` actual support values costs at least `(t-1)(p-1)` deficit. With Property C, a plane containing `t>=4` actual support values costs at least
+
+\[
+t(p-1)-(3p-4)=(t-3)(p-1)+1.
+\]
 
 This deficit-incidence principle is the prime-uniform mechanism to carry forward; the `p=7,s=8` case is its first exact nontrivial instance.
 
@@ -110,4 +167,5 @@ This deficit-incidence principle is the prime-uniform mechanism to carry forward
 
 - Type A projective geometry is classified, but scalar/multiplicity lifts over the surviving 347 classes are not yet exhausted here.
 - Type B (one duplicated direction) is structurally reduced but not yet projectively classified.
+- Property C is donor structure; no ownership claim is made for it.
 - No global claim about `D_3(C_7^3)` or the general `C_p^3` formula is made by this file alone.
