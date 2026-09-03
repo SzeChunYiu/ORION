@@ -1,0 +1,59 @@
+{
+  "schema": "ORION.A6.ExternalAdjudicatorHandoffContract.v1",
+  "date": "2026-09-03",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A6 Phase 2 external gold",
+  "purpose": "Mechanically validate externally authored candidate-blind A6 authority/discharge gold packets without creating or inferring those two labels inside ORION.",
+  "binding_target": {
+    "intake_manifest_schema": "ORION.A6.ExternalAuthorityPacketIntakeManifest.v1",
+    "intake_manifest_validator": "papers/publication_closure/a6-external-authority-study-v1/validate_external_authority_packet_manifest_v1.py",
+    "required_exact_fields": [
+      "packet_id resolves to exactly one frozen intake packet",
+      "stratum exactly matches the frozen intake packet",
+      "split exactly matches the frozen intake packet",
+      "source_family_id, normalized_organization_lineage, artifact_lineage_id exactly match the frozen intake packet",
+      "before_version_id and after_version_id exactly match the frozen intake packet",
+      "before_sha256 and after_sha256 exactly match the frozen intake packet and differ",
+      "license_or_rights_receipt_id, external_custody_receipt_id, adjudicator_assignment_receipt_id exactly match the frozen intake packet",
+      "candidate_visible_packet_sha256 exactly matches the frozen intake packet"
+    ]
+  },
+  "packet_schema": "ORION.A6.ExternalAdjudicatorGoldPacket.v1",
+  "gold_labels": [
+    "local_action_release_authority",
+    "scientific_discharge_admission_authority"
+  ],
+  "gold_label_rule": "Every packet carries BOTH labels adjudicated separately; each label states its own target, rationale, evidence_refs and an explicit disagreement record.",
+  "allowed_targets": ["ADMIT", "DENY", "CANNOT_CHECK"],
+  "adjudicator_receives": [
+    "the candidate-visible packet (identified by candidate_visible_packet_sha256) carrying only target-relevant scientific coordinates and the terminal alphabet",
+    "no ORION candidate predictions",
+    "no baseline predictions",
+    "no protected outcomes"
+  ],
+  "required_lineage_fields": [
+    "source_family_id",
+    "normalized_organization_lineage",
+    "artifact_lineage_id"
+  ],
+  "required_custody": [
+    "external adjudicator identifier",
+    "adjudicated_at_utc",
+    "adjudicator receipt SHA-256",
+    "independence attestation",
+    "adjudication started before prediction reveal",
+    "ORION predictions not visible",
+    "baseline predictions not visible",
+    "protected outcomes not visible"
+  ],
+  "disagreement_rule": "Per gold label: if disagreement_observed is true, either a non-empty resolution is required or the label target must be CANNOT_CHECK (unresolved authority is CANNOT_CHECK). If disagreement_observed is false, resolution must be null/empty. Notes are always required.",
+  "batch_rule": "packet_id must be unique across all validated gold packets and each gold packet binds exactly one frozen intake packet; unadjudicated intake packets are reported, never filled in.",
+  "validator": "papers/publication_closure/a6-external-authority-study-v1/validate_external_adjudicator_packet_v1.py",
+  "external_packet_committed_by_this_contract": false,
+  "gold_labels_created_by_this_contract": false,
+  "gold_labels_inferred_by_this_contract": false,
+  "candidate_predictions_accessed": false,
+  "baseline_predictions_accessed": false,
+  "protected_outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "scientific_authority_delta": "NONE__CUSTODY_VALIDATION_ONLY"
+}
