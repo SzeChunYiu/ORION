@@ -14,6 +14,11 @@ on:
       - "papers/publication_closure/a3-external-change-transport-v1/prove_external_curator_packet_template_v1.py"
       - "papers/publication_closure/a3-external-change-transport-v1/validate_member_manifest_freeze_result_v1.py"
       - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-member-manifest-freeze-v1/**"
+      - "papers/publication_closure/a3-external-change-transport-v1/normalize_member_manifests_v3.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/harvest_member_manifests_v3.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/validate_member_manifest_normalization_freeze_v3.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_MEMBER_MANIFEST_NORMALIZATION_FREEZE_V3.json"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-member-manifest-freeze-v3/**"
 permissions:
   contents: read
 jobs:
@@ -37,6 +42,11 @@ jobs:
       - name: Networkless verification of the member-manifest freeze boundary result
         run: |
           python papers/publication_closure/a3-external-change-transport-v1/validate_member_manifest_freeze_result_v1.py --self-test
+      - name: v3 member-manifest normalization freeze verification (networkless)
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/normalize_member_manifests_v3.py
+          python papers/publication_closure/a3-external-change-transport-v1/harvest_member_manifests_v3.py --self-test
+          python papers/publication_closure/a3-external-change-transport-v1/validate_member_manifest_normalization_freeze_v3.py --self-test
       - name: Repository cleanliness
         run: |
           git diff --check
