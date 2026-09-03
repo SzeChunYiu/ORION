@@ -1,0 +1,57 @@
+{
+  "interpretation_boundary": {
+    "case_eligibility_adjudicated": false,
+    "external_gold_accessed": false,
+    "grants_scientific_authority": false,
+    "mechanism_counts_are_harvest_counts_not_eligible_pair_counts": true,
+    "prospective_only": true,
+    "protected_orion_predictions_accessed": false,
+    "rights_recorded_per_record": "ali:license_ref per OAI record; supplement files hashed individually; no content rights inferred from metadata alone",
+    "route_specific_pair_adjudication_performed": false
+  },
+  "m3_protocol_to_results": {
+    "both_sides_cc_by40_n": 3,
+    "both_sides_with_licence_n": 6,
+    "discovered_n": 250,
+    "harvested_n": 250,
+    "singleton_with_key_n": 0,
+    "term": "(protocol[Title]) AND \"open access\"[filter]"
+  },
+  "m4_article_to_correction": {
+    "both_sides_cc_by40_n": 203,
+    "both_sides_with_licence_n": 258,
+    "discovered_n": 300,
+    "harvested_n": 300,
+    "term": "(\"erratum\"[Title] OR \"corrigendum\"[Title] OR \"correction\"[Title]) AND \"open access\"[filter]"
+  },
+  "m8_article_to_licensed_supplement": {
+    "articles_with_supplementary_material_n": 14,
+    "from_date": "2026-08-28",
+    "scanned_n": 26,
+    "supplement_files_hashed_n": 20
+  },
+  "network_policy": {
+    "bytes_note": "supplement file bytes stored outside repository at --bytes-dir; NOT committed",
+    "maximum_concurrency": 1,
+    "minimum_request_interval_seconds": 1.5,
+    "providers": [
+      "eutils.ncbi.nlm.nih.gov",
+      "pmc.ncbi.nlm.nih.gov"
+    ],
+    "retries": 3,
+    "timeout_seconds": 90.0
+  },
+  "policy_snapshots": [],
+  "route_id": "R2_PMC_OA_LINKED_RECORDS",
+  "run_provenance": {
+    "finished_utc": "2026-09-03T08:15:27Z",
+    "http_requests": 906,
+    "run_host": "billy-laptop-old",
+    "script_sha256": "337e26d159e1f463c2164c5bd40f2ae1e265320b4320a9ac495cba199b35e9ea",
+    "started_utc": "2026-09-03T07:50:46Z"
+  },
+  "schema": "ORION.A5.PmcOaLinkedHarvest.v1",
+  "status": "PROSPECTIVE_HARVEST_EXECUTED"
+}
+
+EXIT_RC=0
