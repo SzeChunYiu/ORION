@@ -1,0 +1,93 @@
+{
+  "schema": "ORION.A3.WorkflowHubMemberManifestNormalizationFreeze.v3",
+  "date": "2026-09-03",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A3 external change transport",
+  "artifact_class": "FROZEN_BEFORE_V3_HARVEST_AND_SUCCESSOR_FRAME_REBIND",
+  "purpose": "Freeze the exact identity of the v3 member-manifest normalization (request-generated member exclusion) before the v3 harvest runs, so the reproducibility gate it will be judged against is fixed by governance and not by outcomes. Answers the required-next-step recorded by workflowhub-member-manifest-freeze-v1/RESULT_V1.json: a new frozen normalization decision with its own preflight, its own durable snapshot, and any successor-frame rebind left to separate freeze governance.",
+  "decision_document": "papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_MEMBER_MANIFEST_NORMALIZATION_V3_DECISION_2026-09-03.md",
+  "normalization_identity": {
+    "normalization_id": "WORKFLOWHUB_MEMBER_MANIFEST_NORMALIZATION_V3",
+    "executable": "papers/publication_closure/a3-external-change-transport-v1/normalize_member_manifests_v3.py",
+    "executable_sha256": "49de09742b14e0c21db0dda771b687b77b5aa32dd5c07bbd79e9c51a2cd9e3b7",
+    "rule": "normalized member manifest = frozen v2 normalized_content_manifest minus entries whose canonical path is exactly ro-crate-metadata.json or ro-crate-preview.html at the crate root; aggregate = the frozen v2 canonical_json_sha over the retained entries",
+    "request_generated_root_members_excluded": [
+      "ro-crate-metadata.json",
+      "ro-crate-preview.html"
+    ],
+    "exclusion_scope": "uniform for every crate of every family of the frozen 128-family successor frame; root canonical path only; nested members sharing a basename are retained",
+    "structural_requirements_retained_verbatim": [
+      "exactly one root ro-crate-metadata.json per crate",
+      "canonical member-path validation (no absolute paths, no '..'/'.' segments, no backslashes)",
+      "duplicate ZIP member-path rejection",
+      "per-member Unix semantics (kind, executable bit)",
+      "path-sorted entries and canonical JSON SHA-256 aggregate"
+    ],
+    "v2_normalization_imported_verbatim": true,
+    "free_parameters": [],
+    "run_time_resolution": "NONE"
+  },
+  "execution_contract": {
+    "harvester": "papers/publication_closure/a3-external-change-transport-v1/harvest_member_manifests_v3.py",
+    "harvester_sha256": "100709e8e021a83983ab8b2d25211aa285960f1232eda728c9f5be580231f32f",
+    "run_location": "LUNARC batch nodes (egress to workflowhub.eu verified by sbatch 3569314)",
+    "fetch_independence_requirement": "at least 3 independent fetches per family per version; gate is byte-identical v3 aggregates AND identical retained and excluded member path sets across every fetch of every family and version",
+    "fail_closed_rules": [
+      "any family failing the per-version reproducibility gate fails the whole harvest with terminal CANNOT_CHECK_MEMBER_MANIFEST_V3_REPRODUCIBILITY and the exact failing partition, emitting no chunks",
+      "any family whose before and after v3 aggregates are equal fails the harvest closed as a descriptor-only change inadmissible under the frozen frame's content-differ rule",
+      "v2 aggregates are computed per fetch as cross-check evidence only and never gate the harvest"
+    ],
+    "success_terminal": "WORKFLOWHUB_MEMBER_MANIFEST_V3_REPRODUCIBLE_FROZEN",
+    "failure_terminal": "CANNOT_CHECK_MEMBER_MANIFEST_V3_REPRODUCIBILITY",
+    "expected_outcome_recorded_before_execution": "128/128 families reproducible if the exclusion rule captures the whole volatility mechanism; this expectation is checked against, not assumed, and a non-green outcome is reported as found"
+  },
+  "gives_up_recorded": [
+    "descriptor-only version-pair changes are indistinguishable from no content change and fail closed instead of materializing",
+    "frozen v2 aggregates cease to be the live substrate binding; a separately governed successor-frame rebind is required before any downstream frame admission changes",
+    "registry-side crate-descriptor drift (rendering, metadata-only edits) is invisible to v3 content identity",
+    "ro-crate-preview.html content is not bound at all; only its presence is recorded",
+    "the per-request bytes of the generated members are declared out of scope rather than pinned"
+  ],
+  "scientific_lineage_bound_verbatim": {
+    "member_manifest_boundary_result": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/workflowhub-member-manifest-freeze-v1/RESULT_V1.json",
+      "sha256": "eb216b5d0f4d4a9340a83762cb294b9c6fdb991c01561c3e99fe281c80485e6f"
+    },
+    "v2_rocrate_normalization": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/bind_workflowhub_rocrate_content_v1.py",
+      "sha256": "41e43337d98768d7cc4a39bf04ce2d4960d92cd97234681b43ae515d0a0abda3"
+    },
+    "v2_durable_snapshot": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/workflowhub-normalized-content-binding-v2/SNAPSHOT_V2.json",
+      "sha256": "e3784ad03f4b400b565ee81605491736904ee17f27908d2676c10c628f7b4953"
+    },
+    "successor_frame_freeze": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_V1.json",
+      "sha256": "4399ff7c7ba7827f0e1c795db70898431cf32b6f4f12f57379ae0d4dc9673724"
+    },
+    "successor_frame_durable_result": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/workflowhub-two-replacement-successor-v1/RESULT_V1.json",
+      "sha256": "562f8c5bc28ed42debc7334d7d149a75565846082b74709f9c85a75340bfef16"
+    },
+    "candidate_policy_freeze": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/A3_CANDIDATE_POLICY_FREEZE_V1.json",
+      "sha256": "49d4630549a1de6ac412f817a625e7efaa25d774acd4ba1f4a01c739c1a25491"
+    },
+    "candidate_policy_executable": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/candidate_policy_v1.py",
+      "sha256": "a25f87a3bdd71f4422b597a3171dad35172fbdeeaee6a73f82e59d182421a987"
+    }
+  },
+  "downstream_contract_delta": "the candidate-visible record contract's normalization_source line in A3_CANDIDATE_POLICY_FREEZE_V1.json is superseded for substrate materialization by this freeze; the candidate policy executable, decision rule, premise mechanics and free-parameter-freeness are untouched; amending A3_CANDIDATE_POLICY_FREEZE_V1.json itself is reserved to freeze governance and is not performed by this lane",
+  "validator": "papers/publication_closure/a3-external-change-transport-v1/validate_member_manifest_normalization_freeze_v3.py",
+  "flags": {
+    "successor_frame_rebound": false,
+    "change_stratum_adjudicated": false,
+    "external_gold_accessed": false,
+    "candidate_predictions_computed": false,
+    "protected_outcomes_accessed": false,
+    "v3_harvest_executed": false,
+    "member_manifests_committed": false
+  },
+  "grants_scientific_authority": false,
+  "scientific_authority_delta": "NONE__NORMALIZATION_IDENTITY_FREEZE_ONLY"
+}
