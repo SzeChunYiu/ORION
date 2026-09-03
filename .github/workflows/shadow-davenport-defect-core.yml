@@ -83,3 +83,20 @@ jobs:
           assert a['p5_eta_tail_threshold']==4
           print('RESTRICTED_SUM_RECEIPTS_AGREE',a['p7_digest'])
           PY
+      - name: Check maximal-atom two-term avoidance
+        run: |
+          python research/experiments/davenport-c7-frontier/check_maximal_atom_two_term_avoidance_v1.py | tee /tmp/two-term-primary.json
+      - name: Independently verify affine-coset obstruction
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_maximal_atom_two_term_avoidance_independent_v1.py | tee /tmp/two-term-independent.json
+      - name: Compare two-term avoidance receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/two-term-primary.json'))
+          b=json.load(open('/tmp/two-term-independent.json'))
+          assert a['corridor_ranges']['8,10,19']['pair_negative_max']==b['p7_pair_negative_max_10_atom']==7
+          assert a['corridor_ranges']['9,9,19']['pair_negative_max']==b['p7_pair_negative_max_9_atom']==6
+          assert b['total_ordered_pairs_checked']==900748
+          print('TWO_TERM_AVOIDANCE_RECEIPTS_AGREE')
+          PY
