@@ -67,7 +67,10 @@ def echo_check(identities: dict, fake: bool = False, lane: str | None = None) ->
         "all_ok": all(r["ok"] for r in results.values()),
     }
     RUNS.mkdir(parents=True, exist_ok=True)
-    ECHO_RECORD.write_text(json.dumps(record, indent=1) + "\n")
+    # Fake echoes never touch the gate record: a self-test on the execution
+    # host must not be able to satisfy (or erase) a real lane receipt.
+    if not fake:
+        ECHO_RECORD.write_text(json.dumps(record, indent=1) + "\n")
     return record
 
 
