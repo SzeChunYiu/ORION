@@ -1,0 +1,97 @@
+{
+  "admissible_total": 33,
+  "audit_validation": {
+    "archive_doi_hits_across_all_173_candidates": [],
+    "injected_control_doi_class": "10.5281/zenodo.16934842",
+    "injected_control_overlap_fired": true,
+    "note": "the matcher provably fires on an injected known-overlap row; the zero-overlap verdict on real M6 candidates is a scoped negative (all 173 candidate DOIs and related DOIs were compared against the full key sets)",
+    "related_paper_doi_hits_across_all_173_candidates": 0
+  },
+  "authority_boundary": {
+    "adjudication_performed": false,
+    "authority": "COMMITTED_METADATA_IDENTITY_OVERLAP_AUDIT_ONLY",
+    "comparator_outputs_accessed": false,
+    "counts_are_not_eligible_pair_counts": true,
+    "grants_scientific_authority": false,
+    "interpretation": "Candidates flagged admissible share no archive DOI, paper DOI, repository URL or normalised title with any unit counted by the JOSS bridge chain (V4 candidates, V6 bridge rows, V7 resolutions, V8 final resolutions).  Admission into the census M6 bound is a successor-counting-rule decision, not an automatic merge; natural-pair eligibility and external screening remain open.",
+    "protected_outcomes_accessed": false,
+    "terminal_gold_accessed": false
+  },
+  "date": "2026-09-03",
+  "determinism": {
+    "input_sha256_pinned": true,
+    "no_network": true,
+    "no_rng": true
+  },
+  "excluded_total": 0,
+  "forbidden_claims": [
+    "natural-pair eligibility",
+    "identity equivalence adjudication beyond the declared overlap keys",
+    "content rights beyond exact Zenodo record licence",
+    "case resolution",
+    "scientific performance",
+    "confirmation",
+    "ORION superiority"
+  ],
+  "identity": "A5_S1E_ZENODO_M6_DEDUP_AUDIT_V1",
+  "inputs": {
+    "v4_candidates": {
+      "path": "development/p4-m6-source-provider-successor-v4-2026-08-23/CANDIDATES_V4.jsonl",
+      "sha256": "be7e654f09291ccf1e3da14401faf1ba33b65b397d9998aa21c7437978d366d6"
+    },
+    "v6_bridge_rows": {
+      "path": "development/p4-m6-joss-bridge-repair-v6-2026-08-23/BRIDGE_REPAIR_ROWS_V6.jsonl",
+      "sha256": "5d8bdf4bceb4e87762f246b3f76568e2670a0736e2b3290f9e0418ae9d959db9"
+    },
+    "v7_rows": {
+      "path": "development/p4-unresolved-identity-v7-2026-08-23/IDENTITY_RESOLUTION_ROWS_V7.jsonl",
+      "sha256": "fbea1d7e601785f6e591ff6bcd18e67ce243d6437c7b89a32e35bbe226529a01"
+    },
+    "v8_final": {
+      "path": "development/p4-unresolved-identity-v8-2026-08-23/FINAL_IDENTITY_RESOLUTION_V8.json",
+      "sha256": "558f2fba8fb52c7ce94d21c12cc4e087986cca8175a21a9fccb4c05809b53504"
+    },
+    "zenodo_v2_candidates": {
+      "path": "development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CANDIDATES_V2.jsonl",
+      "sha256": "d6f767e88cdc401dd1f7643ed76e4460645fcc3dff9744dc504fed01351c1247"
+    }
+  },
+  "joss_identity_key_set_sizes": {
+    "archive_dois": 41,
+    "paper_dois": 200,
+    "repositories": 232,
+    "titles": 200
+  },
+  "overlap_class_counts_across_candidates": {},
+  "overlap_rule": {
+    "RECORD_DOI_OVERLAP": "candidate doi/concept DOI equals a counted JOSS archive DOI",
+    "RELATED_DOI_OVERLAP": "a candidate related DOI equals a counted JOSS paper DOI",
+    "REPOSITORY_OVERLAP": "a candidate related URL points at a counted GitHub repository",
+    "TITLE_OVERLAP": "normalised candidate title equals a counted publication title"
+  },
+  "per_domain": {
+    "EARTH_ENVIRONMENT": {
+      "admissible_non_overlapping": 6,
+      "excluded_overlapping": 0,
+      "zenodo_m6_candidates": 6
+    },
+    "LIFE_BIOMEDICAL": {
+      "admissible_non_overlapping": 10,
+      "excluded_overlapping": 0,
+      "zenodo_m6_candidates": 10
+    },
+    "PHYSICAL_ENGINEERING": {
+      "admissible_non_overlapping": 10,
+      "excluded_overlapping": 0,
+      "zenodo_m6_candidates": 10
+    },
+    "SCIENTIFIC_SOFTWARE": {
+      "admissible_non_overlapping": 7,
+      "excluded_overlapping": 0,
+      "zenodo_m6_candidates": 7
+    }
+  },
+  "rows_jsonl_sha256": "f3255a765d1a01b2df895d2ef6a9fac70d8348b864a50095ed5b24cb34f07aec",
+  "schema_version": "ORION.A5.S1e.ZenodoM6DedupAudit.v1",
+  "scientific_authority_delta": "NONE__IDENTITY_OVERLAP_AUDIT_ONLY"
+}
