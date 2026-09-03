@@ -18,7 +18,9 @@ COMPILATION_RECEIPT_V1.json before the fresh-query registry reveal):
 
 Compiler lane: llama3.1-8b-ollama (FIXED local compiler — an infrastructure
 identity shared across all model families, like bge-m3). num_ctx: 32768 (map),
-16384 (reduce); identical decoding options otherwise (temp 0.6, top_p 0.9, seed 42).
+16384 (reduce); identical decoding options otherwise (temp 0.6, top_p 0.9, seed 42);
+generation capped by num_predict guards (1024 map / 4096 reduce) that sit above
+the prompts' own output contracts and only terminate runaway repetitions.
 
 Work-queue execution: `--plan` writes the deterministic task list; `--work PORT`
 claims tasks by atomic rename (NFS-safe) and appends results; `--finalize`
@@ -47,6 +49,15 @@ REDUCE_GROUP = 10
 CORPUS_REDUCE_GROUP = 20
 MAP_NUM_CTX = 32768
 REDUCE_NUM_CTX = 16384
+# Generation guards (runaway-output cap): the prompts contract "max 12 lines x
+# <= 40 words" (map ~624 tokens worst case) and "max 60 lines x <= 40 words"
+# (reduce ~3120 tokens worst case). Caps sit ABOVE every legitimate completion
+# (2x+ headroom over observed medians), so they never truncate a
+# contract-conforming output; they only terminate degenerate repetition loops
+# observed on v2 enterprise/web content (100k+ token runaways under
+# context-shift). Decoding distribution is unchanged.
+MAP_NUM_PREDICT = 1024
+REDUCE_NUM_PREDICT = 4096
 
 from p11_external_arms_v1 import COMPILE_MAP_PROMPT, COMPILE_REDUCE_PROMPT  # noqa: E402
 from p11_external_lanes_v1 import _est_tokens, _ollama_call  # noqa: E402
@@ -200,11 +211,12 @@ def build_plan() -> list[dict]:
 
 # ------------------------------------------------------------------- execution
 
-def _ollama_call_ctx(num_ctx: int, prompt: str) -> dict:
+def _ollama_call_ctx(num_ctx: int, prompt: str, num_predict: int) -> dict:
     url = os.environ.get("P11_OLLAMA_URL", "http://127.0.0.1:11434").rstrip("/")
     payload = json.dumps({"model": "llama3.1:8b", "prompt": prompt, "stream": False,
                           "options": {"num_ctx": num_ctx, "temperature": 0.6,
-                                      "top_p": 0.9, "seed": 42}}).encode()
+                                      "top_p": 0.9, "seed": 42,
+                                      "num_predict": num_predict}}).encode()
     t0 = time.time()
     req = urllib.request.Request(url + "/api/generate", data=payload,
                                  headers={"Content-Type": "application/json"})
@@ -276,7 +288,8 @@ def run_worker(port: int, poll_s: int, idle_exit_s: int) -> int:
         for attempt in range(3):
             try:
                 rec = _ollama_call_ctx(MAP_NUM_CTX if claimed["kind"] == "map" else REDUCE_NUM_CTX,
-                                       prompt)
+                                       prompt,
+                                       MAP_NUM_PREDICT if claimed["kind"] == "map" else REDUCE_NUM_PREDICT)
                 if rec["output"].strip():
                     break
             except (OSError, ValueError) as exc:
@@ -354,6 +367,7 @@ def cmd_finalize() -> int:
             "v1": "map per session -> reduce groups<=10 -> final per question-haystack",
             "v2": "map per <=24k-est-token trajectory segment -> per-trajectory reduce -> corpus reduce groups<=20 -> final per corpus",
             "num_ctx": {"map": MAP_NUM_CTX, "reduce": REDUCE_NUM_CTX},
+            "num_predict_guards": {"map": MAP_NUM_PREDICT, "reduce": REDUCE_NUM_PREDICT},
         },
         "tasks_total": len(tasks), "tasks_done": len(outputs), "tasks_missing": n_missing,
         "compile_input_tokens": tot_in, "compile_output_tokens": tot_out,
