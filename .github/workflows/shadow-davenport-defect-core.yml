@@ -100,3 +100,22 @@ jobs:
           assert b['total_ordered_pairs_checked']==900748
           print('TWO_TERM_AVOIDANCE_RECEIPTS_AGREE')
           PY
+      - name: Check q-dependent rank-two plane caps
+        run: |
+          python research/experiments/davenport-c7-frontier/check_rank2_q_plane_cap_v1.py | tee /tmp/plane-primary.json
+      - name: Independently verify saturated-plane and arc controls
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_rank2_q_plane_cap_independent_v1.py | tee /tmp/plane-independent.json
+      - name: Compare q-plane receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/plane-primary.json'))
+          b=json.load(open('/tmp/plane-independent.json'))
+          amap={(row['q'],row['m']):row['new'] for row in a['p7_rows']}
+          bmap={(row['q'],row['m']):row['new'] for row in b['p7_rows']}
+          assert amap==bmap
+          assert a['p7_improved_slices']==b['p7_improved_slices']==4
+          assert a['p7_griesmer_caps']==[123,115,114]
+          print('RANK2_Q_PLANE_RECEIPTS_AGREE')
+          PY
