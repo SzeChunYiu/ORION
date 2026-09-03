@@ -1,0 +1,192 @@
+Traceback (most recent call last):
+  File "/home/billy/a5-deps/arxiv-fulltext/script/bind_arxiv_cc_by_fulltext_pool_v2.py", line 393, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/home/billy/a5-deps/arxiv-fulltext/script/bind_arxiv_cc_by_fulltext_pool_v2.py", line 382, in main
+    result = run_live(args.pool, args.binding, args.out_dir, args.bytes_dir, args.run_host, args.max_rows)
+  File "/home/billy/a5-deps/arxiv-fulltext/script/bind_arxiv_cc_by_fulltext_pool_v2.py", line 272, in run_live
+    got = fetch_pdf_attempt(row)
+  File "/home/billy/a5-deps/arxiv-fulltext/script/bind_arxiv_cc_by_fulltext_pool_v2.py", line 236, in fetch_pdf_attempt
+    data = read_limited(response)
+  File "/home/billy/a5-deps/arxiv-fulltext/script/bind_arxiv_cc_by_fulltext_pool_v2.py", line 137, in read_limited
+    data = response.read(MAX_PDF_BYTES + 1)
+  File "/usr/lib/python3.14/http/client.py", line 484, in read
+    s = self.fp.read(amt)
+  File "/usr/lib/python3.14/socket.py", line 725, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib/python3.14/ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/scyiu/orion-a5-sources/arxiv-fulltext/script/bind_arxiv_cc_by_fulltext_pool_v2.py", line 393, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/scyiu/orion-a5-sources/arxiv-fulltext/script/bind_arxiv_cc_by_fulltext_pool_v2.py", line 382, in main
+    result = run_live(args.pool, args.binding, args.out_dir, args.bytes_dir, args.run_host, args.max_rows)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/scyiu/orion-a5-sources/arxiv-fulltext/script/bind_arxiv_cc_by_fulltext_pool_v2.py", line 285, in run_live
+    tmp.write_bytes(data)
+  File "/sw/easybuild_milan/software/Python/3.11.5-GCCcore-13.2.0/lib/python3.11/pathlib.py", line 1067, in write_bytes
+    with self.open(mode='wb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/sw/easybuild_milan/software/Python/3.11.5-GCCcore-13.2.0/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 122] Disk quota exceeded: 'pdf/1611.06831v3.pdf.part'
+
+wrote out/BINDING_V2_RESULT.json
+{
+  "baseline_predictions_accessed": false,
+  "bound_n": 1531,
+  "bound_per_domain": {
+    "EARTH_ENVIRONMENT": 384,
+    "LIFE_BIOMEDICAL": 382,
+    "PHYSICAL_ENGINEERING": 382,
+    "SCIENTIFIC_SOFTWARE": 383
+  },
+  "cannot_check_n": 5,
+  "cannot_check_rows": [
+    {
+      "abstract_sha256": "24b0fbae089171d8821e71852f56e5fe13dad37d89a22ccb509bc321bdba7329",
+      "arxiv_id": "1805.00393",
+      "attribution": "Miguel Aguilera, Ezequiel Di Paolo, Integrated Information and Autonomy in the Thermodynamic Limit, arXiv:1805.00393v4, CC BY 4.0",
+      "content_license": "CC BY 4.0",
+      "content_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "domain_id": "LIFE_BIOMEDICAL",
+      "exact_arxiv_id": "1805.00393v4",
+      "exact_version": "v4",
+      "pool_index": 552,
+      "reason": "HTTPError 404: Not Found",
+      "status": "CANNOT_CHECK_EXACT_VERSION_FULLTEXT_BINDING"
+    },
+    {
+      "abstract_sha256": "8dd3cbfcf9d58c874732edb1ddd7a5da378918621aaef32bcc57b6f1e2a3b7ae",
+      "arxiv_id": "1908.00285",
+      "attribution": "Sounak Sadhukhan and S. K. Basu, Modeling Tumor Angiogenesis with Cellular Automata, arXiv:1908.00285v3, CC BY 4.0",
+      "content_license": "CC BY 4.0",
+      "content_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "domain_id": "LIFE_BIOMEDICAL",
+      "exact_arxiv_id": "1908.00285v3",
+      "exact_version": "v3",
+      "pool_index": 705,
+      "reason": "HTTPError 404: Not Found",
+      "status": "CANNOT_CHECK_EXACT_VERSION_FULLTEXT_BINDING"
+    },
+    {
+      "abstract_sha256": "d7fb354042ebe3d059b07e851c137d6bc569927e069329bbac9fb65b16d81b6c",
+      "arxiv_id": "2003.10750",
+      "attribution": "Abdulkadir \\c{S}eker, Banu Diri, Halil Arslan, Mehmet Fatih Amasyal{\\i}, Open Source Software Development Challenges: A Systematic Literature Review on GitHub, arXiv:2003.10750v3, CC BY 4.0",
+      "content_license": "CC BY 4.0",
+      "content_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "exact_arxiv_id": "2003.10750v3",
+      "exact_version": "v3",
+      "pool_index": 1049,
+      "reason": "HTTPError 404: Not Found",
+      "status": "CANNOT_CHECK_EXACT_VERSION_FULLTEXT_BINDING"
+    },
+    {
+      "abstract_sha256": "3f03d7c14d5ee3dfc72c5a27827dd64f133e18d12d3b7cbd7654950955e9c3f3",
+      "arxiv_id": "1811.00003",
+      "attribution": "Bhalaji Nagarajan, V Ramana Murthy Oruganti, Deep Net Features for Complex Emotion Recognition, arXiv:1811.00003v2, CC BY 4.0",
+      "content_license": "CC BY 4.0",
+      "content_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "exact_arxiv_id": "1811.00003v2",
+      "exact_version": "v2",
+      "pool_index": 1284,
+      "reason": "HTTPError 404: Not Found",
+      "status": "CANNOT_CHECK_EXACT_VERSION_FULLTEXT_BINDING"
+    },
+    {
+      "abstract_sha256": "ac98dec4f27d749c0eb4e7daab813c8ea92b8f8c548d1175a14c9fbc86325401",
+      "arxiv_id": "1907.08612",
+      "attribution": "M. Jorge Cardoso, Aasa Feragen, Ben Glocker, Ender Konukoglu, Ipek Oguz, Gozde Unal, Tom Vercauteren, Medical Imaging with Deep Learning: MIDL 2019 -- Extended Abstract Track, arXiv:1907.08612v2, CC BY 4.0",
+      "content_license": "CC BY 4.0",
+      "content_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "exact_arxiv_id": "1907.08612v2",
+      "exact_version": "v2",
+      "pool_index": 1465,
+      "reason": "HTTPError 404: Not Found",
+      "status": "CANNOT_CHECK_EXACT_VERSION_FULLTEXT_BINDING"
+    }
+  ],
+  "case_eligibility_adjudicated": false,
+  "external_gold_accessed": false,
+  "full_pool_per_item_binding_complete": false,
+  "grants_scientific_authority": false,
+  "network_policy": {
+    "allowed_final_hosts": [
+      "arxiv.org",
+      "export.arxiv.org"
+    ],
+    "allowed_schemes": [
+      "https"
+    ],
+    "interval_enforced": "between every pair of request starts, including retries and across rows",
+    "maximum_concurrency": 1,
+    "maximum_pdf_bytes": 67108864,
+    "minimum_request_interval_seconds": 3.1,
+    "retries_per_pdf": 3,
+    "timeout_seconds": 120.0
+  },
+  "preflight_consistency_cross_check": {
+    "checked_n": 8,
+    "matched_n": 6,
+    "mismatches": [
+      {
+        "exact_arxiv_id": "1801.00636v1",
+        "issue": "pdf_sha256 differs from durable preflight receipt",
+        "preflight_pdf_sha256": "adff320e9e73d575037d2e41b850f11a0d8f1c585b292a03e6f64bba008b32f9",
+        "this_run_pdf_sha256": "adff320e9e73e575037d2e41b850f11a0d8f1c585b292a03e6f64bba008b32f9"
+      },
+      {
+        "exact_arxiv_id": "2103.11013v1",
+        "issue": "pdf_sha256 differs from durable preflight receipt",
+        "preflight_pdf_sha256": "68ad94ee7f37f8d370d04e8a027f7a3cc0552676e30ed8b463d5b8064022def4",
+        "this_run_pdf_sha256": "68ad94ee7f37f8d370d04e8a027f7a3cc0552636e30ed8b463d5b8064022def4"
+      }
+    ]
+  },
+  "protected_orion_predictions_accessed": false,
+  "provenance": {
+    "access_log_attempts": 1159,
+    "access_log_relpath": "ACCESS_LOG_V2.jsonl",
+    "access_log_sha256": "65fd1363ae796198cf3c65f819a48ac050cbf0736efe1928eb0f67eb24b1a5b6",
+    "durable_preflight_reference": {
+      "artifact_id": 9814382058,
+      "workflow_job_id": 99973407799,
+      "workflow_run_id": 33542940707
+    },
+    "newly_bound_this_run": 1144,
+    "pdf_bytes_stored": "outside repository at --bytes-dir; NOT committed",
+    "receipts_relpath": "BINDING_V2_RECEIPTS.jsonl",
+    "receipts_sha256": "cb3902172ac6f9e363b11f268dc5b20f4b3217a2267484cc8444fd365d627930",
+    "resumed_already_bound_n": 387,
+    "run_finished_utc": "2026-09-03T13:58:26Z",
+    "run_host": "lunarc-scyiu-sbatch",
+    "run_started_utc": "2026-09-03T12:57:19Z",
+    "script_sha256": "447cd7603c628c74172dd35c0484c091393b61a0dccf1fcbd240cb508287feb1"
+  },
+  "result_rows_sha256": "ed8d080d043298983fb25563439c1d1a90b79e04b3331e948b1fade508909dca",
+  "route_specific_pair_adjudication_performed": false,
+  "schema": "ORION.A5.ArxivCCByFulltextPoolBinding.v2",
+  "scientific_authority_delta": "NONE__EXACT_SOURCE_AND_RIGHTS_BINDING_ONLY",
+  "selection_rule": {
+    "data_dependent_selection": false,
+    "description": "ALL rows of the frozen pool (extension of the 8-row live preflight to the full 1536-row candidate frame)",
+    "frozen_before_network_access": true,
+    "indices_zero_based": "0..1535 inclusive",
+    "sample_n": 1536
+  },
+  "source_binding_id": "P4.NAT.AXIS.768.ARXIV_CC_BY_POOL_1536.V1",
+  "source_pool_rows": 1536,
+  "source_pool_sha256": "47dd24657752731cdf45bab95852f3e18b50946af8a29b5acee95956ec81d895",
+  "terminal": "ARXIV_CC_BY_EXACT_VERSION_FULLTEXT_POOL_BINDING_INCOMPLETE__RESUME_REQUIRED"
+}

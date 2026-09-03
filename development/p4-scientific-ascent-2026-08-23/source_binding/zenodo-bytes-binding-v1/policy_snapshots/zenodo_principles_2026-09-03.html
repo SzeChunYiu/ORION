@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="og:image" content="https://blog.zenodo.org/static/img/logos/zenodo-gradient-1000.png" />
+
+
+<meta property="og:title" content="Zenodo - Research. Shared." />
+
+
+<meta property="og:type" content="website" />
+
+
+<meta property="og:description" content="Zenodo is a free and open digital archive built by CERN and OpenAIRE, enabling researchers to share and preserve research output in any size, format and from all fields of research." />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@zenodo_org" />
+<meta name="twitter:creator" content="@zenodo_org" />
+
+<meta name="twitter:title" content="Zenodo - Research. Shared." />
+
+
+
+<meta name="twitter:description" content="Zenodo is a free and open digital archive built by CERN and OpenAIRE, enabling researchers to share and preserve research output in any size, format and from all fields of research." />
+
+<meta name="twitter:image" content="https://blog.zenodo.org/static/img/logos/zenodo-gradient-1000.png" />
+<link rel="stylesheet" href="../static/zenodo.css">
+<link rel="stylesheet" href="../static/style.css">
+<link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../pagefind/pagefind-component-ui.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,100,italic" rel="stylesheet">
+<title>Principles | Zenodo</title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../pagefind/pagefind-component-ui.js" type="module"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="https://zenodo.org"><img class="navbar-brand" src="/static/img/zenodo.svg" alt="Zenodo" /></a>
+          <span class="logo-divider"></span>
+          <span class="header-title" aria-label="header-title">About</span>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right toplist">
+            
+              <li><a href="https://about.zenodo.org">About</a></li>
+            
+              <li><a href="https://blog.zenodo.org">Blog</a></li>
+            
+              <li><a href="https://help.zenodo.org">Help</a></li>
+            
+              <li><a href="https://about.zenodo.org/projects">Projects</a></li>
+            
+              <li><a href="https://developers.zenodo.org">Developers</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="communities">
+    
+    <div class="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 nav navbar-nav navbar subbar">
+            
+
+
+  
+  <li><a href="../">About</a></li>
+
+  
+  <li><a href="../privacy-policy/">Privacy policy</a></li>
+
+  
+  <li><a href="../cookie-policy/">Cookie policy</a></li>
+
+  
+  <li><a href="../terms/">Terms of use</a></li>
+
+  
+  <li><a href="../policies/">General policies</a></li>
+
+  
+  <li><a href="../ai-usage-notice/">AI usage notice</a></li>
+
+  
+  <li><a href="../infrastructure/">Infrastructure</a></li>
+
+  
+  <li class="active"><a href="./">Principles</a></li>
+
+  
+  <li><a href="../roadmap/">Roadmap</a></li>
+
+  
+  <li><a href="../contact/">Contact</a></li>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="container body-container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Principles</h1>
+<p><hr /></p>
+<h2>Best Effort Principles</h2>
+<p>Zenodo does not sign SLAs (service-level agreements). This is not a weakness, it is by design and marks a philosophy that we believe is most appropriate for Science. Instead, Zenodo is run by leading practitioners according to best practices.</p>
+<p>What Science needs is inherent reliability, or more accurately demonstrated reliability based on open best practices. Furthermore the users should be able to influence these best practices. In the long-term, a service which is trusted is much more valuable than one for which assurances must be bought.</p>
+<p>Service failure can never be undone. Enforcing an SLA means being prepared to litigate against the contract, which means compensation, frequently assessed on the basis of loss of revenue… but none of these concepts have any place or relevance in the free exchange of research results!</p>
+<p>Living by these principles, Zenodo strives to make available architecture, implementation, practices and statistics. Please see for example the infrastructure page. We are also aiming to have these certified.</p>
+<hr />
+
+<h2>FAIR Principles</h2>
+<p>FAIR Principles definition as referenced from:
+<em>Wilkinson, M. D. et al. The FAIR Guiding Principles for scientific data management and stewardship.</em>
+<em>Sci. Data 3:160018 doi: <a href="https://doi.org/10.1038/sdata.2016.18">10.1038/sdata.2016.18</a> (2016).</em></p>
+<h3>To be Findable:</h3>
+<ul>
+<li><strong>F1</strong>: (meta)data are assigned a globally unique and persistent identifier<ul>
+<li>A DOI is issued to every published record on Zenodo.</li>
+</ul>
+</li>
+<li><strong>F2</strong>: data are described with rich metadata (defined by R1 below)<ul>
+<li>Zenodo's metadata is compliant with <a href="https://schema.datacite.org/">DataCite's Metadata Schema</a> minimum and recommended terms, with a few additional enrichments.</li>
+</ul>
+</li>
+<li><strong>F3</strong>: metadata clearly and explicitly include the identifier of the data it describes<ul>
+<li>The DOI is a top-level and a mandatory field in the metadata of each record.</li>
+</ul>
+</li>
+<li><strong>F4</strong>: (meta)data are registered or indexed in a searchable resource<ul>
+<li>Metadata of each record is indexed and searchable directly in Zenodo's search engine immediately after publishing.</li>
+<li>Metadata of each record is sent to DataCite servers during DOI registration and indexed there.</li>
+</ul>
+</li>
+</ul>
+<h3>To be Accessible:</h3>
+<ul>
+<li><strong>A1</strong>: (meta)data are retrievable by their identifier using a standardized communications protocol<ul>
+<li>Metadata for individual records as well as record collections are harvestable using the <a href="https://zenodo.org/oai2d">OAI-PMH</a>
+protocol by the record identifier and the collection name.</li>
+<li>Metadata is also retrievable through the public <a href="https://developers.zenodo.org/">REST API</a>.</li>
+</ul>
+</li>
+<li><strong>A1.1</strong>: the protocol is open, free, and universally implementable<ul>
+<li>See point A1. OAI-PMH and REST are open, free and universal protocols for information retrieval on the web.</li>
+</ul>
+</li>
+<li><strong>A1.2</strong>: the protocol allows for an authentication and authorization procedure, where necessary<ul>
+<li>Metadata are publicly accessible and licensed under public domain. No authorization is ever necessary to retrieve it.</li>
+</ul>
+</li>
+<li><strong>A2</strong>: metadata are accessible, even when the data are no longer available<ul>
+<li>Data and metadata will be retained for the lifetime of the repository.
+This is currently the lifetime of the host laboratory CERN, which currently has an experimental programme defined for the next 20 years at least.</li>
+<li>Metadata are stored in high-availability database servers at CERN, which are separate to the data itself.</li>
+</ul>
+</li>
+</ul>
+<h3>To be Interoperable:</h3>
+<ul>
+<li><strong>I1</strong>: (meta)data use a formal, accessible, shared, and broadly applicable language for knowledge representation.<ul>
+<li>Zenodo uses <a href="https://json-schema.org">JSON Schema</a> as internal representation of metadata and offers export to other popular formats such as <a href="http://dublincore.org">Dublin Core</a> or <a href="https://www.loc.gov/marc/marcxml.html">MARCXML</a>.</li>
+</ul>
+</li>
+<li><strong>I2</strong>: (meta)data use vocabularies that follow FAIR principles<ul>
+<li>For certain terms we refer to open, external vocabularies, e.g.: license (<a href="https://opendefinition.org">Open Definition</a>), funders (<a href="https://www.crossref.org/services/funder-registry/">FundRef</a>) and grants (<a href="https://graph.openaire.eu/docs/apis/home/">OpenAIRE</a>).</li>
+</ul>
+</li>
+<li><strong>I3</strong>: (meta)data include qualified references to other (meta)data<ul>
+<li>Each referenced external piece of metadata is qualified by a resolvable URL.</li>
+</ul>
+</li>
+</ul>
+<h3>To be Reusable:</h3>
+<ul>
+<li><strong>R1</strong>: (meta)data are richly described with a plurality of accurate and relevant attributes<ul>
+<li>Each record contains a minimum of DataCite's mandatory terms, with optionally additional DataCite recommended terms and Zenodo's enrichments.</li>
+</ul>
+</li>
+<li><strong>R1.1</strong>: (meta)data are released with a clear and accessible data usage license<ul>
+<li>License is one of the mandatory terms in Zenodo's metadata, and is referring to an <a href="https://opendefinition.org/">Open Definition</a> license.</li>
+<li>Data downloaded by the users is subject to the license specified in the metadata by the uploader.</li>
+</ul>
+</li>
+<li><strong>R1.2</strong>: (meta)data are associated with detailed provenance<ul>
+<li>All data and metadata uploaded is traceable to a registered Zenodo user.</li>
+<li>Metadata can optionally describe the original authors of the published work.</li>
+</ul>
+</li>
+<li><strong>R1.3</strong>: (meta)data meet domain-relevant community standards<ul>
+<li>Zenodo is not a domain-specific repository, yet through compliance with DataCite's Metadata Schema, metadata meets one of the broadest cross-domain standards available.</li>
+</ul>
+</li>
+</ul>
+<hr id="plan-s" />
+
+<h2>Plan S - compliance self-assessment</h2>
+<p>The following is a self-assessment of Zenodo against the Plan S requirements for Open Access Repositories (as published October 2019).</p>
+<p>See the <a href="https://www.coalition-s.org/principles-and-implementation/">Plan S Principles and Implementation</a> (under Part III: Technical Guidance and Requirements / 2. Requirements for Open Access Repositories).</p>
+<h3>Mandatory criteria for repositories</h3>
+<table class="table table-striped">
+<tr>
+    <td width="39%">1. The repository must be registered in the Directory of Open Access Repositories (OpenDOAR) or in the process of being registered.</td>
+    <td width="2%">✅</td>
+    <td width="59%"><ul>
+            <li>See <a href="https://v2.sherpa.ac.uk/id/repository/2659">https://v2.sherpa.ac.uk/id/repository/2659</a></li>
+        <ul>
+    </td>
+</tr>
+<tr>
+    <td>2. Use of PIDs for the deposited versions of the publications (with versioning, for example in case of revisions), such as DOI (preferable), URN, or Handle.</td>
+    <td>✅</td>
+    <td>
+    <ul>
+    <li>Zenodo registers DOIs (via DataCite) for all deposited records. See <a href="https://search.datacite.org/data-centers/cern.zenodo">DataCite</a>.</li>
+    <li>Zenodo pioneered <a href="https://blog.zenodo.org/2017/05/30/doi-versioning-launched/">DOI versioning</a></li>
+    <li>Objects with pre-existing DOIs may be uploaded and the external DOI displayed.</li>
+    </ul>
+</td>
+</tr>
+<tr>
+    <td>3. High quality article level metadata in standard interoperable non-proprietary format, under a CC0 public domain dedication. This must include information on the DOI (or other PIDs) both of the original publication and the deposited version, on the version deposited (AAM/VoR), and on the Open Access status and the license of the deposited version. Metadata must include complete and reliable information on funding provided by cOAlition S funders (including as a minimum the name of the funder and the grant number/identifier).</td>
+    <td>✅</td>
+    <td>
+        <ul>
+            <li><i>"High quality article level metadata"</i></li>
+            <ul>
+                <li>Zenodo supports the DataCite Metadata Schema v4.</li>
+                <li>The following additional article level fields are supported: journal title/volume/issue/pages, conference title/acronym/dates/place/website, book publisher/place/ISBN/title/pages, alternate persistent identifiers (see <a href="https://developers.zenodo.org/#representation">all fields</a>).</li>
+            </ul>
+            <li><i>"in standard interoperable non-proprietary format"</i></li>
+            <ul>
+                <li>The following metadata formats are provided by Zenodo: MARCXML, Dublin Core (according to OpenAIRE Guidelines), DataCite, DCAT, JSON-LD (Schema.org).</li>
+            </ul>
+            <li><i>"under a CC0 public domain dedication"</i></li>
+            <ul>
+                <li>All metadata in Zenodo may be freely used under the CC0 waiver. (see <a href="https://about.zenodo.org/terms/">terms of use</a>, bullet 7).</li>
+            </ul>
+            <li><i>"[...] include information on the DOI (or other PIDs) both of the original publication and the deposited version"</i></li>
+            <ul>
+                <li>Zenodo registers DOIs for all uploads.</li>
+                <li>Zenodo allows including information on alternate persistent identifiers, as well as linking to related persistent identifiers.</li>
+            </ul>
+            <li><i>"include [..] the Open Access status and the license of the deposited version"</i></li>
+            <ul>
+                <li>All Zenodo records include the Open Access status according to the <a href="https://vocabularies.coar-repositories.org/access_rights/">COAR access right vocabulary</a> (open, embargoed, restricted, closed).</li>
+                <li>All open access and embargoed records specify a license of the deposited material. Any license from the <a href="https://opendefinition.org">OpenDefinition</a> and <a href="https://spdx.org/license-list">SPDX</a> vocabularies are supported (including all Creative Commons licenses).</li>
+            </ul>
+            <li><i>"including as a minimum the name of the funder and the grant number/identifier"</i></li>
+            <ul>
+                <li>All records can be uniquely linked to grants in the <a href="https://api.openaire.eu/bulk-projects.html">OpenAIRE grant database</a>. The database currently covers 11 funders and 2 million grants.</li>
+            </ul>
+        <ul>
+    </td>
+</tr>
+<tr>
+    <td>4. Machine readable information on the Open Access status and the license embedded in the article, in standard non-proprietary format.</td>
+    <td>✅</td>
+    <td>
+        <ul>
+            <li>The open access status and a license are embedded in all metadata formats (i.e. machine-readable). See our APIs below in the strongly recommended criteria response.</li>
+            <li>It is the responsibility of the uploader to ensure the open access status and a license is embedded in any digital file uploaded. Zenodo does not modify files uploaded by users in any way.</li>
+        <ul>
+    </td>
+</tr>
+<tr>
+    <td>5. Continuous availability (uptime at least 99.7%, not taking into account scheduled downtime for maintenance or upgrades).</td>
+    <td>✅</td>
+    <td>
+        <ul>
+            <li>Zenodo publicly displays uptime on <a href="https://stats.uptimerobot.com/vlYOVuWgM">Uptime Robot</a></li>
+            <li>Historically Zenodo's uptime is 99.98% (Oct 2019)</li>
+        <ul>
+    </td>
+</tr>
+<tr>
+    <td>6. Helpdesk: as a minimum, an email address (functional mailbox) has to be provided; a response time of no more than one business day must be ensured.</td>
+    <td>✅</td>
+    <td>
+        <ul>
+            <li>Zenodo provides support via <a href="https://zenodo.org/support">https://zenodo.org/support</a></li>
+            <li>The helpdesk is manned during CERN business hours (Mon-Fri 8:30-17:30 CET).</li>
+            <li>Zenodo's average response time is 22 hours (based on 1534 requests received in the period May-Oct 2019, and not accounting for out of business hours).</li>
+        <ul>
+    </td>
+</tr>
+</table><h3>Strongly recommended additional criteria for repositories:</h3>
+<table class="table table-striped">
+<tr>
+    <td width="39%">7. Manuscript submission system that supports both individual author uploads and bulk uploads of manuscripts (AAM or VoR) by publishers.</td>
+    <td width="2%">✅</td>
+    <td width="59%">
+        <ul>
+            <li>Zenodo support users/machines uploading both AAM and VoR versions of manuscripts.</li>
+            <li>Zenodo supports both author uploads via a normal deposit user interface as well bulk uploads via our APIs.</li>
+        <ul>
+    </td>
+</tr>
+<tr>
+    <td>8. Full text stored in a machine-readable community standard format such as JATS XML.</td>
+    <td>✅</td>
+    <td>
+        <ul>
+            <li>Zenodo supports all file formats, consistent with the goal of accommodating all research objects. XML files are stored alongside other representations like PDF as just another format.</li>
+        <ul>
+    </td>
+</tr>
+<tr>
+    <td>9. Support for PIDs for authors (e.g., ORCID), funders, funding programmes and grants, institutions, and other relevant entities.</td>
+    <td>✅</td>
+    <td>
+        <ul>
+            <li>ORCID supported for authors and contributors.</li>
+            <li>Open Funder Registry supported for funders.</li>
+            <li>OpenAIRE grant database supported for grants.</li>
+            <li>Zenodo plans to support ROR for institutions.</li>
+        <ul>
+    </td>
+</tr>
+<tr>
+    <td>10. Openly accessible data on citations according to the standards by the Initiative for Open Citations (I4OC).</td>
+    <td>✅</td>
+    <td>
+        <ul>
+            <li>Zenodo supports linking records with related persistent identifiers (both incoming and outgoing links - i.e. citations and references). The links are exported in the DataCite metadata registered with the DOI, and thus makes the links available in the CrossRef/DataCite Event Data.</li>
+            <li>Discovering citations to a record requires global knowledge of the entire world-wide corpus of journal articles which is out of scope for Zenodo. Zenodo, however, harvests openly available citation databases (Crossref/DataCite Event Data, NASA/SAO Astrophysics Data System and Europe PMC) for citations to Zenodo objects. All citation data is exported in Scholix-format. See <a href="https://help.zenodo.org/#citations">https://help.zenodo.org/#citations</a> for details.</li>
+        <ul>
+    </td>
+</tr>
+<tr>
+    <td>11. Open API to allow others (including machines) to access the content. A compliant API must be free to access without any barrier. A light authentication mechanism such as a token for ‘power users’ – e.g., high-traffic collaborators – is acceptable as long as there is a totally open/anonymous route too.</td>
+    <td>✅</td>
+    <td>
+        <ul>
+            <li>Available APIs:</li>
+            <ul>
+                <li>OAI-PMH: <a href="https://zenodo.org/oai2d">https://zenodo.org/oai2d</a></li>
+                <li>REST API: <a href="https://zenodo.org/api/records/">https://zenodo.org/api/records/</a></li>
+                <li>Documentation: <a href="https://developers.zenodo.org">https://developers.zenodo.org</a></li>
+            </ul>
+            <li>Zenodo allows anonymous and authenticated access (via OAuth 2.0 access token) to the API.</li>
+            <li>All requests to Zenodo (both UI and API) are rate-limited to prevent abusive use and DoS attacks (default limit: 5000 request/hour). Zenodo's average request rate is 14 requests/second.</li>
+        <ul>
+    </td>
+</tr>
+<tr>
+    <td>12. OpenAIRE compliance of the metadata.</td>
+    <td>✅</td>
+    <td>
+        <ul>
+            <li>Zenodo is compliant with the OpenAIRE Guidelines v3.0.</li>
+        <ul>
+    </td>
+</tr>
+<tr>
+    <td>13. Quality assurance processes to link full-text deposits with authoritative bibliographic metadata from third-party systems, e.g., PubMed, Crossref, or SCOPUS where feasible.</td>
+    <td>✅</td>
+    <td>
+        <ul>
+            <li>Per community harvesting allows curation and indexing e.g., NASA ADS harvests specific communities which are curated by astronomy librarians; similarly by ZHB Luzern, BLR, etc.</li>
+        <ul>
+    </td>
+</tr>
+</table>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <footer class="footer">
+    <div class="menu-wrapper">
+      <div class="container">
+        <div class="row footer-menu">
+          <div class="col-xs-12 col-md-8">
+            <div class="row">
+              <div class="col-xs-2 col-md-2">
+                <h5>About</h5>
+                <ul class="list-unstyled">
+                  <li><a href="http://about.zenodo.org">About</a></li>
+                  <li><a href="http://about.zenodo.org/policies/">Policies</a></li>
+                  <li><a href="http://about.zenodo.org/infrastructure/">Infrastructure</a></li>
+                  <li><a href="http://about.zenodo.org/principles/">Principles</a></li>
+                  <li><a href="http://about.zenodo.org/roadmap/">Roadmap</a></li>
+                  <li><a href="http://about.zenodo.org/projects/">Projects</a></li>
+                  <li><a href="http://about.zenodo.org/contact/">Contact</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-2 col-md-2">
+                <h5>Blog</h5>
+                <ul class="list-unstyled">
+                  <li><a href="https://blog.zenodo.org">Blog</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-2 col-md-2">
+                <h5>Support</h5>
+                <ul class="list-unstyled">
+                  <li><a href="https://help.zenodo.org">Help</a></li>
+                  <li><a href="https://support.zenodo.org/help/">FAQ</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-2 col-md-2">
+                <h5>Developers</h5>
+                <ul class="list-unstyled">
+                <li><a href="https://developers.zenodo.org">REST API</a></li>
+                <li><a href="https://developers.zenodo.org#oai-pmh">OAI-PMH</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-2 col-md-2">
+                <h5>Contribute</h5>
+                <ul class="list-unstyled">
+                  <li><a href="https://github.com/zenodo/zenodo-rdm"><i class="fa fa-external-link"></i> GitHub</a></li>
+                  <li><a href="https://zenodo.org/donate"><i class="fa fa-external-link"></i> Donate</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="pull-right-md text-center-sm text-center-xs">
+              <h5>Funded by</h5>
+              <ul class="list-inline">
+                <li><a href="https://home.cern"><img src="/static/img/cern.png" width="60" height="60" /></a></li>
+                <li><a href="https://www.openaire.eu"><img src="/static/img/openaire.png" width="80"/></a></li>
+                <li><a href="https://commission.europa.eu/index_en"><img src="/static/img/eu.png" width="88" height="60" /></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-push-6">
+          <div class="pull-right-sm text-center-xs">
+            <ul class="list-inline">
+              <li><a href="https://stats.uptimerobot.com/vlYOVuWgM">Status</a></li>
+              <li><a href="https://about.zenodo.org/privacy-policy">Privacy policy</a></li>
+              <li><a href="https://about.zenodo.org/cookie-policy">Cookie policy</a></li>
+              <li><a href="https://about.zenodo.org/terms">Terms of Use</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-sm-pull-6 text-center-xs">
+          <p><a title="Except where otherwise noted, content on this site is licensed under a Creative Commons Attribution 4.0 International License." rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" height="20" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>&nbsp; Powered by <a href="https://home.cern/science/computing/data-centre">CERN Data Centre</a> &amp; <a href="https://inveniosoftware.org/products/rdm/">InvenioRDM</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  
+<div class="cookie-banner hidden">
+    <i class="close icon"></i>
+    <div>
+        <p >This site uses cookies. Find out more on <a href="https://about.zenodo.org/cookie-policy">how we use cookies</a></p>
+    </div>
+    <div class="buttons">
+        <button class="small primary" id="cookies-all">Accept all cookies</button>
+        <button class="small" id="cookies-essential">Accept only essential cookies</button>
+    </div>
+</div>
+
+<script>
+var _paq = window._paq = window._paq || [];
+_paq.push(['requireCookieConsent']);
+
+(function() {
+    var u="https://webanalytics.web.cern.ch/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '361']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+})();
+
+var cookieConsent = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("cookie_consent="))
+    ?.split("=")[1];
+
+if (cookieConsent) {
+    if (cookieConsent === "all") {
+        matomo();
+    }
+} else {
+    document.querySelector(".cookie-banner").classList.remove("hidden")
+    _paq.push(['forgetConsentGiven']);
+}
+
+$('.cookie-banner .close')
+    .on('click', function () {
+    $(this)
+        .closest('.cookie-banner')
+        .fadeOut('fast');
+    setCookie("cookie_consent","essential");
+    });
+
+$('#cookies-essential')
+    .on('click', function () {
+    $(this)
+        .closest('.cookie-banner')
+        .fadeOut('fast');
+    setCookie("cookie_consent","essential");
+    });
+
+$('#cookies-all')
+    .on('click', function () {
+    $(this)
+        .closest('.cookie-banner')
+        .fadeOut('fast');
+    setCookie("cookie_consent","all");
+    _paq.push(['rememberCookieConsentGiven']);
+    matomo();
+    });
+
+function matomo() {
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+}
+
+function setCookie(cname, cvalue) {
+    var d = new Date();
+    d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000)); // one year
+    var expires = "expires=" + d.toUTCString();
+    var cookie = cname + "=" + cvalue + ";" + expires + ";"
+    cookie += "Domain=zenodo.org;Path=/;SameSite=None; Secure"; // so that it works across subdomains
+    document.cookie = cookie;
+}
+</script>
+
+
+
+</body>
+</html>

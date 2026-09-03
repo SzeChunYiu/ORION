@@ -1,0 +1,67 @@
+{
+  "files_byte_bound_n": 58,
+  "input_census": {
+    "candidates_jsonl": "P4_ZENODO_RELATED_OBJECT_CANDIDATES_V2.jsonl",
+    "candidates_sha256": "d6f767e88cdc401dd1f7643ed76e4460645fcc3dff9744dc504fed01351c1247",
+    "rows": 173
+  },
+  "interpretation_boundary": {
+    "case_eligibility_adjudicated": false,
+    "external_gold_accessed": false,
+    "grants_scientific_authority": false,
+    "prospective_only": true,
+    "protected_orion_predictions_accessed": false,
+    "route_specific_pair_adjudication_performed": false
+  },
+  "network_policy": {
+    "bytes_note": "file bytes stored outside repository at --bytes-dir; NOT committed",
+    "maximum_concurrency": 1,
+    "minimum_request_interval_seconds": 2.5,
+    "per_file_byte_cap": 268435456,
+    "provider_hosts": [
+      "zenodo.org",
+      "www.zenodo.org"
+    ],
+    "retries": 3,
+    "timeout_seconds": 180.0
+  },
+  "policy_snapshots": [
+    {
+      "bytes": 174410,
+      "file": "zenodo_developers_api_2026-09-03.html",
+      "final_url": "https://developers.zenodo.org/",
+      "http_status": 200,
+      "sha256": "0d160d7491206d3f014549194fa6f18235b1b96e889f57b36356e93acc3476dc",
+      "url": "https://developers.zenodo.org/"
+    },
+    {
+      "bytes": 27348,
+      "file": "zenodo_principles_2026-09-03.html",
+      "final_url": "https://about.zenodo.org/principles/",
+      "http_status": 200,
+      "sha256": "10296f7d05b37cbae61ad584d092f83cb336e76d2a28ff98d529abcc79a34d1d",
+      "url": "https://about.zenodo.org/principles/"
+    },
+    {
+      "bytes": 14429,
+      "file": "zenodo_terms_2026-09-03.html",
+      "final_url": "https://about.zenodo.org/terms/",
+      "http_status": 200,
+      "sha256": "bbfc65e42c81063b3ffa3b679bd6a712227b048b37888e39a5670cee14b9f659",
+      "url": "https://about.zenodo.org/terms/"
+    }
+  ],
+  "provider_md5_crosscheck_match_n": 58,
+  "records_receipted_n": 44,
+  "route_id": "R3_ZENODO_RELATED_DATA",
+  "run_provenance": {
+    "finished_utc": "2026-09-03T08:04:14Z",
+    "http_requests": 105,
+    "run_host": "billy-laptop-old",
+    "started_utc": "2026-09-03T07:44:03Z"
+  },
+  "schema": "ORION.A5.ZenodoCandidateBytesBinding.v1",
+  "status": "PROSPECTIVE_BYTE_BINDING_EXECUTED"
+}
+
+EXIT_RC=0
