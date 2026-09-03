@@ -1,0 +1,36 @@
+QG48_N3_FRONTIER_PROSPECTION — registration log (2026-09-03)
+============================================================
+Study    : QG48 n=3 frontier prospection (R1 exact depth-3 kernel slice, 6 tasks;
+           R2 stratified seeded uniform sampling, 1,350 tasks x 15,000 instances)
+Protocol : development/orion-qg-regime-geometry/QG48_N3_FRONTIER_PROSPECTION_PROTOCOL_V1.md
+Driver   : development/orion-qg-regime-geometry/qg48_campaign.sh
+Engine   : research/extensions/orion-qg/qg48_n3_frontier_prospection.py
+Design   : frozen in QG47_EMPTY_FRONTIER_ATTRIBUTION_V1.md section 6 (PR #2180),
+           per-task R2 instances rescaled 25,000 -> 15,000 by the realized n=3 rate
+           probe (budget held at ~650 core-hours).
+
+Rate probes (sizing inputs, NOT results)
+----------------------------------------
+2026-09-03 pre-registration : 8.62 evals/s/core (recorded in driver constant)
+2026-09-03 registration re-check (Mac, single core):
+  {"rate_probe":{"evals_per_s_core":8.17,"instances":150,
+   "objective":"Q45G_tr2_dc-2_dnc0_tag2","wall_s":18.36}}
+Per R2 task ~= 15,000 / 8.2 ~= 31 min single-core; R1 task ~= 7,140 evals ~= 15 min.
+
+Selftest (reduced 2+2-part configuration through the FULL merge path, G4+G6 incl.)
+----------------------------------------------------------------------------------
+First run: FAILED — UnboundLocalError in merge() fold(): probe_checks/probe_failures
+rebound without `nonlocal`. Fixed in the registration commit (one-line
+`nonlocal probe_checks, probe_failures`); no production part existed before the fix.
+Re-run after fix: rc=0
+  problems=[] probe_failures=0 r1_parts=2 r2_parts=2
+  terminal(mini slice)=QG48_N3_FRONTIER_WITNESSED  (plumbing evidence ONLY;
+  selftest is NOT a result and carries no authority)
+  merge digest ddec4c03f641f4c8321b841a6e95cd255c135e3506afffe0ab99a18d116f2aec
+
+Execution environment
+---------------------
+LUNARC batch via the QG47 tarball pattern (pure math, no network, no repo clone):
+R1 array 0-5 + R2 arrays in waves of <= 250 (0-249 ... 1250-1349), --time=02:00:00,
+1 cpu/task. Collection + certified merge on the Mac as a single deterministic
+process; outcome lands as a second commit per the QG43–QG47 chain discipline.
