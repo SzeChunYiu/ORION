@@ -1,0 +1,75 @@
+{
+  "schema": "ORION.A4.LaneEchoReceipt.v1",
+  "test": "gymshape",
+  "endpoint": "http://127.0.0.1:11434/v1/chat/completions",
+  "model": "qwen2.5:7b-instruct-q4_K_M",
+  "slurm_job_id": "3572403",
+  "node": "cn018",
+  "recorded_utc": "2026-09-03T19:51:00Z",
+  "elapsed_s": 588.8,
+  "http_status": 200,
+  "request": {
+    "model": "qwen2.5:7b-instruct-q4_K_M",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a science assistant. Use tools via the Action format when needed."
+      },
+      {
+        "role": "user",
+        "content": "What is 2+2? (calibration echo task; if no tool is needed, reply with the token A4_QWEN_LUNARC_ECHO_V2_OK)"
+      },
+      {
+        "role": "assistant",
+        "content": "",
+        "tool_calls": [
+          {
+            "id": "call_probe_1",
+            "type": "function",
+            "function": {
+              "name": "get_data",
+              "arguments": "{\"dataset\": \"probe\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_probe_1",
+        "content": "{\"result\": \"probe dataset: 2+2=4\"}"
+      },
+      {
+        "role": "assistant",
+        "content": "Action: get_data\n<arg_key>dataset</arg_key>\n<arg_value>probe</arg_value>"
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_probe_2",
+        "content": "{\"result\": \"probe dataset: 2+2=4\"}"
+      }
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_data",
+          "description": "Fetch a dataset by name.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "dataset": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "dataset"
+            ]
+          }
+        }
+      }
+    ],
+    "tool_choice": "auto",
+    "temperature": 0
+  },
+  "response_verbatim": "{\"id\":\"chatcmpl-861\",\"object\":\"chat.completion\",\"created\":1788465060,\"model\":\"qwen2.5:7b-instruct-q4_K_M\",\"system_fingerprint\":\"fp_ollama\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"A4_QWEN_LUNARC_ECHO_V2_OK\\n\\nThe answer to 2+2 is 4.\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":285,\"completion_tokens\":26,\"total_tokens\":311}}\n"
+}
