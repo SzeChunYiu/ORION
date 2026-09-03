@@ -10,6 +10,8 @@ score (SAB evaluation is a separate step); never reads gold fields.
 Usage (billy-old, from the campaign worktree's top_tier dir):
   python3 campaign_tuning_driver_v1.py --echo-check
   python3 campaign_tuning_driver_v1.py --parquet ~/a2-deps/sab_verified.parquet --run
+  python3 campaign_tuning_driver_v1.py --parquet ~/a2-deps/sab_verified.parquet --run \
+      --lane gpt-5.5-codexcli   (lane-scoped; echo gate = same-day echo for that lane)
   python3 campaign_tuning_driver_v1.py --self-test   (CI-safe, fake adapters)
 """
 
@@ -71,17 +73,35 @@ def load_tuning_rows(parquet: Path, prereg: dict) -> dict[str, list[dict]]:
     return fams
 
 
-def run_tuning(parquet: Path, fake: bool = False, limit: int | None = None) -> dict:
+def run_tuning(
+    parquet: Path,
+    fake: bool = False,
+    limit: int | None = None,
+    lane: str | None = None,
+) -> dict:
     harness, prereg, identities = load_freezes()
     if not fake:
         if not ECHO_RECORD.exists():
             raise RuntimeError("no echo record; run --echo-check first")
         rec = json.loads(ECHO_RECORD.read_text())
-        if rec["date"] != _today() or not rec["all_ok"]:
-            raise RuntimeError(f"echo record stale or failed: {rec}")
+        if rec["date"] != _today():
+            raise RuntimeError(f"echo record stale (not today): {rec['date']}")
+        if lane is None:
+            if not rec["all_ok"]:
+                raise RuntimeError(f"echo record failed for at least one lane: {rec}")
+        else:
+            if lane not in rec["results"]:
+                raise RuntimeError(f"lane {lane} absent from echo record: {rec}")
+            if not rec["results"][lane]["ok"]:
+                raise RuntimeError(f"echo record failed for lane {lane}: {rec}")
+    idents = identities["model_identities"]
+    if lane is not None:
+        idents = [i for i in idents if i["model_family_id"] == lane]
+        if not idents:
+            raise RuntimeError(f"unknown lane {lane}")
     fams = load_tuning_rows(parquet, prereg)
     done = skipped = 0
-    for ident in identities["model_identities"]:
+    for ident in idents:
         adapter = LaneAdapter(ident, fake=fake)
         outdir = RUNS / ident["model_family_id"]
         outdir.mkdir(parents=True, exist_ok=True)
@@ -96,6 +116,12 @@ def run_tuning(parquet: Path, fake: bool = False, limit: int | None = None) -> d
                     rec = run_episode_action(harness, adapter, rows, row, action, s1_cache)
                     dest.write_text(json.dumps(rec, ensure_ascii=False, indent=1) + "\n")
                     done += 1
+                    print(
+                        f"[tuning] {ident['model_family_id']} {fid} "
+                        f"inst={row['instance_id']} {action} -> {dest.name} "
+                        f"({rec['terminal_seconds']}s)",
+                        flush=True,
+                    )
                     if limit and done >= limit:
                         return {"done": done, "skipped": skipped, "stopped_at_limit": True}
     return {"done": done, "skipped": skipped, "stopped_at_limit": False}
@@ -147,6 +173,18 @@ def main() -> int:
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--parquet", type=Path)
     ap.add_argument("--limit", type=int)
+    ap.add_argument(
+        "--lane",
+        choices=[m["model_family_id"] for m in json.loads(
+            (HERE / "MODEL_IDENTITY_FREEZE_V1.json").read_text()
+        )["model_identities"]],
+        help=(
+            "restrict the tuning run to one frozen lane; the echo gate then "
+            "requires a same-day echo for THAT lane only (default: both lanes "
+            "must pass, per the freeze ordering rule). Lane-scoped runs are "
+            "recorded identically and never change episode semantics."
+        ),
+    )
     a = ap.parse_args()
     if a.self_test:
         self_test()
@@ -159,7 +197,7 @@ def main() -> int:
     if a.run:
         if not a.parquet:
             ap.error("--parquet required with --run")
-        out = run_tuning(a.parquet, limit=a.limit)
+        out = run_tuning(a.parquet, limit=a.limit, lane=a.lane)
         print(json.dumps(out))
         return 0
     ap.error("choose --self-test, --echo-check or --run")

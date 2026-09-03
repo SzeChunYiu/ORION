@@ -16,8 +16,13 @@ CI-safe: ``--self-test`` drives the full episode pipeline through a fake
 adapter (no network, no model), asserting terminal-template identity across
 actions, byte-cap enforcement, S1 caching, and protected-family refusal.
 
-Host execution (billy-old): ``--families tuning`` runs the tuning split once
-both frozen lanes pass a same-day echo (--echo-check enforces this).
+Host execution (billy-old): ``--families tuning`` / ``--families protected``
+run a split once both frozen lanes pass a same-day echo (echo_record.json,
+written by campaign_tuning_driver_v1.py --echo-check). The protected split
+additionally refuses to start unless P12_TUNING_BINDING_V1.json exists in
+this directory AND validates against the frozen binding schema (harness
+freeze threshold_fitting.binding_artifact) — no protected-family model call
+before the tuning binding is committed.
 """
 
 from __future__ import annotations
@@ -62,7 +67,11 @@ class LaneAdapter:
             return {"output": out, "seconds": 0.0, "rc": 0}
         lane = self.identity["provider_lane"]
         if lane.startswith("codex"):
-            cmd = ["codex", "exec", prompt]
+            # --skip-git-repo-check: required when the campaign tree is a
+            # plain mirror (not a git repo), e.g. the LUNARC project-storage
+            # staging. codex-cli 0.129.0-alpha.15 refuses otherwise ("Not
+            # inside a trusted directory"). No-op in git checkouts.
+            cmd = ["codex", "exec", "--skip-git-repo-check", prompt]
         elif lane.startswith("claude"):
             cmd = ["claude", "-p", prompt, "--model", self.identity["model_id"]]
         else:
@@ -281,6 +290,52 @@ def self_test() -> None:
             assert "protected" in str(e)
         else:
             raise AssertionError("protected family accepted without binding")
+    # tuning-binding validation: good fixture + five hostile variants
+    import tempfile
+
+    good_binding = {
+        "schema": "ORION.A2.P12TuningBinding.v1",
+        "thetas": {"theta_m": 1.0, "theta_d": 0.1, "theta_v": 2.0, "theta_r": 0.0},
+        "selected_one_signal_arm": "ONE_SIGNAL_STATE",
+        "tuning_scores_by_arm": {
+            "ADAPTIVE": 50.0,
+            "ONE_SIGNAL_STATE": 45.0,
+            "ONE_SIGNAL_REASON": 44.0,
+        },
+        "bound_before_any_protected_model_call": True,
+    }
+    validate_tuning_binding(good_binding)
+    hostile = [
+        {**good_binding, "schema": "ORION.A2.P12TuningBinding.v2"},
+        {**good_binding, "thetas": {"theta_m": 1.0}},
+        {**good_binding, "thetas": {**good_binding["thetas"], "theta_v": "high"}},
+        {**good_binding, "selected_one_signal_arm": "ADAPTIVE"},
+        {**good_binding, "bound_before_any_protected_model_call": False},
+    ]
+    for bad in hostile:
+        try:
+            validate_tuning_binding(bad)
+        except RuntimeError:
+            pass
+        else:
+            raise AssertionError(f"hostile binding accepted: {bad}")
+    with tempfile.TemporaryDirectory() as td:
+        missing = Path(td) / "P12_TUNING_BINDING_V1.json"
+        try:
+            protected_split_gate(missing)
+        except RuntimeError as e:
+            assert "tuning binding" in str(e)
+        else:
+            raise AssertionError("protected gate opened without binding file")
+        missing.write_text(json.dumps(hostile[0]))
+        try:
+            protected_split_gate(missing)
+        except RuntimeError:
+            pass
+        else:
+            raise AssertionError("protected gate opened on invalid binding")
+        missing.write_text(json.dumps(good_binding))
+        assert protected_split_gate(missing)["schema"] == "ORION.A2.P12TuningBinding.v1"
     print("CAMPAIGN_RUNNER_SELF_TEST_GREEN")
 
 
@@ -294,17 +349,151 @@ def ensure_families_allowed(
         )
 
 
+# --------------------------------------------------- tuning-binding gate
+
+
+BINDING_SCHEMA = "ORION.A2.P12TuningBinding.v1"
+BINDING_THETAS = ("theta_m", "theta_d", "theta_v", "theta_r")
+BINDING_ARMS = ("ADAPTIVE", "ONE_SIGNAL_STATE", "ONE_SIGNAL_REASON")
+BINDING_PATH = HERE / "P12_TUNING_BINDING_V1.json"
+
+
+def validate_tuning_binding(binding: dict) -> None:
+    """Validate P12_TUNING_BINDING_V1.json against the frozen required fields
+    (harness freeze threshold_fitting.binding_artifact.required_fields)."""
+    if not isinstance(binding, dict) or binding.get("schema") != BINDING_SCHEMA:
+        raise RuntimeError("tuning binding schema mismatch")
+    thetas = binding.get("thetas")
+    if not isinstance(thetas, dict):
+        raise RuntimeError("tuning binding thetas missing")
+    for k in BINDING_THETAS:
+        v = thetas.get(k)
+        if isinstance(v, bool) or not isinstance(v, (int, float)):
+            raise RuntimeError(f"tuning binding theta {k} not numeric")
+    sel = binding.get("selected_one_signal_arm")
+    if sel not in ("ONE_SIGNAL_STATE", "ONE_SIGNAL_REASON"):
+        raise RuntimeError("tuning binding selected_one_signal_arm invalid")
+    scores = binding.get("tuning_scores_by_arm")
+    if not isinstance(scores, dict) or any(a not in scores for a in BINDING_ARMS):
+        raise RuntimeError("tuning binding tuning_scores_by_arm incomplete")
+    for a in BINDING_ARMS:
+        v = scores[a]
+        if isinstance(v, bool) or not isinstance(v, (int, float)):
+            raise RuntimeError(f"tuning binding score for {a} not numeric")
+    if binding.get("bound_before_any_protected_model_call") is not True:
+        raise RuntimeError("tuning binding not marked bound_before_any_protected_model_call")
+
+
+def protected_split_gate(binding_path: Path = BINDING_PATH) -> dict:
+    """Fail-closed gate for any protected-family model call."""
+    if not binding_path.exists():
+        raise RuntimeError(
+            "protected families requested without a committed tuning binding "
+            f"at {binding_path}"
+        )
+    binding = json.loads(binding_path.read_text())
+    validate_tuning_binding(binding)
+    return binding
+
+
+# ------------------------------------------------------- host execution
+
+
+def load_split_rows(parquet: Path, prereg: dict, split: str) -> dict[str, list[dict]]:
+    """Runner-visible rows of one campaign split; refuses silent narrowing:
+    every family declared for the split must be present at its declared n."""
+    import pyarrow.parquet as pq
+
+    excluded = {3, 32, 46, 53, 54, 84}
+    rows = [
+        readable_row(r)
+        for r in pq.read_table(parquet).to_pylist()
+        if r["instance_id"] not in excluded
+    ]
+    fams: dict[str, list[dict]] = {}
+    want = set(prereg["split"][f"{split}_family_ids"])
+    for f in prereg["families"]:
+        if f["family_id"] in want:
+            ids = set(f["instance_ids"])
+            fams[f["family_id"]] = [r for r in rows if r["instance_id"] in ids]
+            if len(fams[f["family_id"]]) != f["n"]:
+                raise RuntimeError(
+                    f"family {f['family_id']}: instance rows "
+                    f"{len(fams[f['family_id']])} != declared n {f['n']}"
+                )
+    if set(fams) != want:
+        missing = sorted(want - set(fams))
+        raise RuntimeError(f"split {split} incomplete; missing families: {missing[:5]}")
+    return fams
+
+
+def _echo_gate(record_path: Path) -> None:
+    if not record_path.exists():
+        raise RuntimeError(
+            "no same-day echo record; run campaign_tuning_driver_v1.py --echo-check first"
+        )
+    rec = json.loads(record_path.read_text())
+    today = _dt.date.today().isoformat()
+    if rec.get("date") != today or not rec.get("all_ok"):
+        raise RuntimeError(f"echo record stale or failed: {rec}")
+
+
+def run_split_host(
+    split: str, parquet: Path, out: Path | None, limit: int | None
+) -> dict:
+    harness, prereg, identities = load_freezes()
+    _echo_gate(HERE / "runs" / "tuning" / "echo_record.json")
+    if split == "protected":
+        protected_split_gate()
+    fams = load_split_rows(parquet, prereg, split)
+    outdir = out or (HERE / "runs" / split)
+    done = skipped = 0
+    for ident in identities["model_identities"]:
+        adapter = LaneAdapter(ident)
+        model_dir = outdir / ident["model_family_id"]
+        model_dir.mkdir(parents=True, exist_ok=True)
+        s1_cache: dict = {}
+        for fid, rows in sorted(fams.items()):
+            for row in rows:
+                for action in ACTIONS:
+                    dest = model_dir / f"{row['instance_id']}_{action}.json"
+                    if dest.exists():
+                        skipped += 1
+                        continue
+                    rec = run_episode_action(harness, adapter, rows, row, action, s1_cache)
+                    dest.write_text(json.dumps(rec, ensure_ascii=False, indent=1) + "\n")
+                    done += 1
+                    print(
+                        f"[{split}] {ident['model_family_id']} {fid} "
+                        f"inst={row['instance_id']} {action} -> {dest.name} "
+                        f"({rec['terminal_seconds']}s)",
+                        flush=True,
+                    )
+                    if limit and done >= limit:
+                        return {"done": done, "skipped": skipped, "stopped_at_limit": True}
+    return {"done": done, "skipped": skipped, "stopped_at_limit": False}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--self-test", action="store_true")
-    ap.add_argument("--families", choices=["tuning"], help="run the tuning split (host only)")
+    ap.add_argument(
+        "--families", choices=["tuning", "protected"], help="run a split (host only)"
+    )
     ap.add_argument("--parquet", type=Path)
     ap.add_argument("--out", type=Path)
+    ap.add_argument("--limit", type=int)
     a = ap.parse_args()
     if a.self_test:
         self_test()
         return 0
-    ap.error("host execution paths are driven by the campaign driver script; only --self-test runs here")
+    if a.families:
+        if not a.parquet:
+            ap.error("--parquet required with --families")
+        out = run_split_host(a.families, a.parquet, a.out, a.limit)
+        print(json.dumps(out))
+        return 0
+    ap.error("choose --self-test or --families {tuning,protected} (host execution)")
     return 2
 
 
