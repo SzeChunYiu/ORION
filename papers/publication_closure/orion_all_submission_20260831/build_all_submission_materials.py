@@ -1414,7 +1414,15 @@ claim.
     write(out / "PACKAGE_MANIFEST.json", json.dumps(manifest, indent=2, sort_keys=True) + "\n")
     files = sorted(p for p in out.rglob("*") if p.is_file() and p.name != "SHA256SUMS")
     write(out / "SHA256SUMS", "".join(f"{sha(p)}  {p.relative_to(out).as_posix()}\n" for p in files))
-    return {"paper": spec_["paper"], "path": str(out.relative_to(ROOT)), "status": spec_["status"], "manifest_sha256": sha(out / "PACKAGE_MANIFEST.json")}
+    return {
+        "paper": spec_["paper"],
+        "path": str(out.relative_to(ROOT)),
+        "status": spec_["status"],
+        "manifest_sha256": sha(out / "PACKAGE_MANIFEST.json"),
+        # The verifier reads its per-paper skills expectation from here, so a rebuild
+        # must record the release it actually used rather than leaving it implicit.
+        "academic_paper_skills": manifest["academic_paper_skills"],
+    }
 
 
 def write_global_filing_materials() -> None:

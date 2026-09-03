@@ -15,6 +15,19 @@
 > The rows below are retained unchanged as the historical record of that run.
 > See the `superseded` block in `VERIFICATION_REPORT.json` for the regeneration
 > requirement.
+>
+> **Update 2026-09-03 — live gate is now `FAIL`, 24/25.** `ORION-01`'s
+> active-authority hash was rebound to the live ledger; `ORION-08` and `ORION-10`
+> were never package defects — the verifier's single hardcoded skills-release dict
+> could not express the `488fc531`/`1.21.0` release those two packages legitimately
+> declare, and the expectation is now recorded per paper in `CLOSURE_REGISTRY.json`.
+> `ORION-13` remains red for a real reason: its authority was reclassified to a
+> Brief Report and `publication-ready-20260831` was retired as historical
+> provenance, so rebinding its hash would falsify the record. This change edits
+> both the builder and the verifier, so the recorded `builder_sha256` and
+> `verifier_sha256` here are stale on top of the existing block — the mirror is
+> not unblocked at 24/25. See `superseded.mirror_gate_completion_lane_20260903`
+> in `VERIFICATION_REPORT.json`.
 
 **Aggregate:** `SUPERSEDED` (record: `PASS`, 2026-09-01)  
 **Packages checked:** 25/25  

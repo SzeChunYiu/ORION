@@ -55,6 +55,21 @@ REQUIRED_COMMON = {
     "journal/review-materials.zip",
     "journal/source.zip",
 }
+SKILLS_REPOSITORY = "https://github.com/SzeChunYiu/academic-paper-skills"
+# Releases of SzeChunYiu/academic-paper-skills that this closure is allowed to cite.
+# A package may only be bound to a revision recorded here, so a registry entry cannot
+# register an arbitrary or invented skill authority.
+REGISTERED_SKILL_REVISIONS = {
+    "be335c630240cd5e73535e8f813594b227d736a8",
+    "488fc5310b84e578431f4a9a176d55bf9a3f0b99",
+}
+SKILL_VERSION_FIELD_BY_SLUG = {
+    "academic-paper-pipeline": "academic_paper_pipeline_version",
+    "academic-writing": "academic_writing_version",
+    "nature-polishing": "nature_polishing_version",
+    "nature-reviewer": "nature_reviewer_version",
+}
+SKILL_RELEASE_FIELDS = ("repository", "revision", *SKILL_VERSION_FIELD_BY_SLUG.values())
 VENUE_FILES = {
     "Quantum": {"journal/QUANTUM_ARXIV_FILING.md"},
     "Transactions on Machine Learning Research": {"journal/TMLR_OPENREVIEW_CHECKLIST.md"},
@@ -83,8 +98,8 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def run(*args: str, cwd: Path | None = None) -> str:
-    proc = subprocess.run(args, cwd=cwd, text=True, errors="replace", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+def run(*args: str, cwd: Path | None = None, env: dict[str, str] | None = None) -> str:
+    proc = subprocess.run(args, cwd=cwd, env=env, text=True, errors="replace", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     if proc.returncode:
         raise RuntimeError(f"command failed ({proc.returncode}): {' '.join(args)}\n{proc.stdout[-8000:]}")
     return proc.stdout
@@ -162,6 +177,66 @@ def word_count(text: str) -> int:
     return len(text.split())
 
 
+def closure_registry() -> dict:
+    return json.loads((HERE / "CLOSURE_REGISTRY.json").read_text(encoding="utf-8"))
+
+
+def registry_skills_release(paper: str) -> dict:
+    """The externally recorded skills release for one paper.
+
+    The expectation lives in CLOSURE_REGISTRY.json rather than in a constant here,
+    so different packages may legitimately be built from different skills releases.
+    It is not self-declared: the registry entry that carries it also pins the
+    package's manifest_sha256, so a manifest cannot move its own release record
+    without the registry moving with it.
+    """
+    records = [item for item in closure_registry()["papers"] if item["paper"] == paper]
+    if len(records) != 1:
+        raise RuntimeError(f"closure registry does not record {paper} exactly once")
+    declared = records[0].get("academic_paper_skills")
+    if not isinstance(declared, dict) or set(declared) != set(SKILL_RELEASE_FIELDS):
+        raise RuntimeError(f"closure registry records no academic-paper-skills release for {paper}")
+    return declared
+
+
+def parse_skills_applied(path: Path) -> dict:
+    """Read the release a package documents to its readers in SKILLS_APPLIED.md."""
+    text = path.read_text(encoding="utf-8")
+    applied = re.findall(r"^\s*`skills-applied:\s*(.+?)`\s*$", text, flags=re.M)
+    authority = re.findall(r"^\s*Skill authority:\s*`([^`@]+)@([0-9a-f]{40})`", text, flags=re.M)
+    if len(applied) != 1 or len(authority) != 1:
+        raise RuntimeError("SKILLS_APPLIED.md does not state exactly one skills-applied line and one skill authority")
+    slug, revision = authority[0]
+    documented = {"repository": f"https://github.com/{slug}", "revision": revision}
+    for entry in applied[0].split(","):
+        name, _, version = entry.strip().partition("@")
+        field = SKILL_VERSION_FIELD_BY_SLUG.get(name.strip())
+        if field is not None:
+            if not version:
+                raise RuntimeError(f"SKILLS_APPLIED.md states {name.strip()} without a version")
+            documented[field] = version.strip()
+    return documented
+
+
+def verify_skills_release(spec: dict, root: Path, manifest: dict) -> list[str]:
+    declared = manifest.get("academic_paper_skills")
+    if not isinstance(declared, dict) or set(declared) != set(SKILL_RELEASE_FIELDS):
+        raise RuntimeError("manifest declares no complete academic-paper-skills release")
+    if declared != registry_skills_release(spec["paper"]):
+        raise RuntimeError("academic-paper-skills release authority mismatch")
+    if declared["repository"] != SKILLS_REPOSITORY:
+        raise RuntimeError("academic-paper-skills repository is not the canonical one")
+    if declared["revision"] not in REGISTERED_SKILL_REVISIONS:
+        raise RuntimeError(f"unregistered academic-paper-skills revision {declared['revision']}")
+    documented = parse_skills_applied(root / "SKILLS_APPLIED.md")
+    divergent = sorted(field for field in SKILL_RELEASE_FIELDS if documented.get(field) != declared[field])
+    if divergent:
+        raise RuntimeError(
+            "SKILLS_APPLIED.md contradicts the manifest academic-paper-skills release: " + ", ".join(divergent)
+        )
+    return ["skills_release_registry_binding", "skills_release_document_consistency"]
+
+
 def verify_metadata(spec: dict, root: Path) -> list[str]:
     checks: list[str] = []
     arxiv = json.loads((root / "arxiv/metadata.json").read_text(encoding="utf-8"))
@@ -198,6 +273,34 @@ def verify_metadata(spec: dict, root: Path) -> list[str]:
     return checks
 
 
+TEX_LOG_WRAP_WIDTH = 79
+UNDEFINED_CITATION_PATTERN = (
+    r"(?:undefined references|undefined citations|Citation .* undefined|Reference .* undefined)"
+)
+
+
+def dewrap_tex_log(text: str, width: int = TEX_LOG_WRAP_WIDTH) -> str:
+    """Undo TeX's hard wrap so a warning can be matched as one line.
+
+    pdflatex breaks log output at max_print_line (79 by default) mid-word, so a
+    citation warning can read `Citation 'somekey' on page 1 undefin` / `ed on input
+    line 4.` and a regex for "Citation .* undefined" finds nothing. Joining each
+    full-width line to its continuation restores the sentence. For the unanchored
+    patterns scanned here the result is a superset of the raw text, so this can only
+    reveal a warning, never hide one. Overfull-box counting stays on the raw text:
+    joining lines can merge two adjacent messages and undercount them.
+    """
+    lines: list[str] = []
+    joining = False
+    for line in text.split("\n"):
+        if joining and lines:
+            lines[-1] += line
+        else:
+            lines.append(line)
+        joining = len(line) == width
+    return "\n".join(lines)
+
+
 def clean_build(spec: dict, route: str, root: Path) -> dict:
     source_zip = root / route / "source.zip"
     release_pdf = root / route / "manuscript.pdf"
@@ -211,14 +314,16 @@ def clean_build(spec: dict, route: str, root: Path) -> dict:
         if spec["paper"] == "ORION-24":
             args = ["latexmk", "-xelatex", "-interaction=nonstopmode", "-halt-on-error"]
         args.append("main.tex")
-        output = run(*args, cwd=work)
+        # Stop the wrap at the source too; dewrap_tex_log still guards logs built without it.
+        env = {**os.environ, "max_print_line": "10000", "error_line": "254", "half_error_line": "238"}
+        output = run(*args, cwd=work, env=env)
         built_pdf = work / "main.pdf"
         if pdf_pages(built_pdf) != pdf_pages(release_pdf):
             raise RuntimeError("clean-build and release page counts differ")
         if normalized_pdf_text(built_pdf) != normalized_pdf_text(release_pdf):
             raise RuntimeError("clean-build and release PDF text differ")
         logs = "\n".join(path.read_text(encoding="utf-8", errors="replace") for path in work.rglob("*.log"))
-        undefined = len(re.findall(r"(?:undefined references|Citation .* undefined|Reference .* undefined)", logs, flags=re.I))
+        undefined = len(re.findall(UNDEFINED_CITATION_PATTERN, dewrap_tex_log(logs), flags=re.I))
         overfull = len(re.findall(r"Overfull \\[hv]box", logs))
         if undefined:
             raise RuntimeError(f"clean build contains {undefined} undefined-reference/citation warnings")
@@ -241,15 +346,7 @@ def verify_one(spec: dict) -> dict:
         raise RuntimeError("manifest paper/terminal mismatch")
     if manifest["journal"]["article_type"] != spec["article_type"]:
         raise RuntimeError("manifest article type mismatch")
-    if manifest.get("academic_paper_skills") != {
-        "repository": "https://github.com/SzeChunYiu/academic-paper-skills",
-        "revision": "be335c630240cd5e73535e8f813594b227d736a8",
-        "academic_paper_pipeline_version": "1.20.0",
-        "academic_writing_version": "1.18.0",
-        "nature_polishing_version": "7.5.0",
-        "nature_reviewer_version": "3.5.0",
-    }:
-        raise RuntimeError("academic-paper-skills release authority mismatch")
+    checks.extend(verify_skills_release(spec, root, manifest))
     authority = ROOT / manifest["active_authority"]
     if sha256(authority) != manifest["active_authority_sha256"]:
         raise RuntimeError("active-authority hash mismatch")
