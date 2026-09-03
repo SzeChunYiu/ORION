@@ -12,24 +12,24 @@ background is provided by the zero-sum survey of Gao and Geroldinger and the
 monograph of Geroldinger and Halter-Koch.
 
 The lower-bound half of the paper's formula is published prior work: Theorem
-4.1 of Freeze and Schmid, instantiated at \(s=3\), \(t=1\), \(\delta=1\),
-gives \(D_k(C_5^3)\ge 5k+10\) for every \(k\ge2\). The exact rank-three
-companion \(C_3^3\) [Bhowmik–Schlage-Puchta 2007, recorded in Freeze–Schmid
-Remark 5.3] attains that bound only at \(k=2\) and exceeds it from \(k=3\)
-onward. No exact value of \(\eta(C_5^3)\) is published [Fan–Gao–Zhong 2011
-prove \(s(C_5^3)=\eta(C_5^3)+4\) without determining either constant], so no
-exact \(D_k(C_5^3)\) follows from the known upper-bound machinery.
+4.1 of Freeze and Schmid, instantiated at `s=3`, `t=1`, `delta=1`,
+gives `D_k(C_5^3) >= 5k+10` for every `k>=2`. The exact rank-three
+companion `C_3^3` [Bhowmik–Schlage-Puchta 2007, recorded in Freeze–Schmid
+Remark 5.3] attains that bound only at `k=2` and exceeds it from `k=3`
+onward. No exact value of `eta(C_5^3)` is published [Fan–Gao–Zhong 2011
+prove `s(C_5^3)=eta(C_5^3)+4` without determining either constant], so no
+exact `D_k(C_5^3)` follows from the known upper-bound machinery.
 
 The current paper's contribution is the matching upper bound and hence
-exactness: it proves \(D_4(C_5^3)=30\), so the Freeze–Schmid lower bound is
-tight for \(C_5^3\) from \(k=2\) onward — the opposite tightness regime from
-\(C_3^3\), stated as data. The residual novelty claim is confined to this
+exactness: it proves `D_4(C_5^3)=30`, so the Freeze–Schmid lower bound is
+tight for `C_5^3` from `k=2` onward — the opposite tightness regime from
+`C_3^3`, stated as data. The residual novelty claim is confined to this
 bounded computer-assisted theorem and its checked decomposition; it is not a
 new general recurrence theory, and the lower bound is not claimed.
 
 The primary-source review was refreshed on 2026-09-02 with a PARTIAL verdict
 (record: `PRIORITY_AUDIT_ADDENDUM_2026-09-02.md`): no retrieved source states
-the exact value \(D_4(C_5^3)=30\) or any exact \(D_k(C_5^3)\); MathSciNet and
+the exact value `D_4(C_5^3)=30` or any exact `D_k(C_5^3)`; MathSciNet and
 zbMATH were not accessible and remain CANNOT_CHECK. Accordingly the paper
 makes no "first", "unique", or exhaustive-nearest-work claim; a closer source
 found during editorial review should narrow positioning without changing the
