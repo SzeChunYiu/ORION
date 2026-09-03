@@ -1,0 +1,22 @@
+{
+  "schema": "ORION.A4.LaneEchoReceipt.v1",
+  "test": "plain",
+  "endpoint": "http://127.0.0.1:8765/v1/chat/completions",
+  "model": "gpt-5.5",
+  "slurm_job_id": "3572402",
+  "node": "cn018",
+  "recorded_utc": "2026-09-03T19:35:19Z",
+  "elapsed_s": 43.5,
+  "http_status": 500,
+  "request": {
+    "model": "gpt-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Reply with exactly this token and nothing else: A4_CODEX_LUNARC_ECHO_V2_OK"
+      }
+    ],
+    "temperature": 0
+  },
+  "response_verbatim": "{\"error\": {\"message\": \"codex exec rc=1 transport=argv stderr_tail='u are using the skill.\\\\\\\\n- Then, use the skill as long as it stays within the scope of the task.\\\\\\\\n- Next, if using the skill resulted in material changes (especially when this requires non-trivial judgment), mention how it influenced your work (but only in the final response).\\\\\\\\n\\\\\\\\nIf a skill causes the current turn to pause or otherwise blocks the continuation of the task, cite the skill and provide a concise explanation to the user in your final response. Do not cite skills you merely inspected.\\\\\\\\n\\\"}]}\\\\nERROR: You\\\\'ve hit your usage limit. Visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Sep 7th, 2026 4:19 PM.\\\\nERROR: You\\\\'ve hit your usage limit. Visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Sep 7th, 2026 4:19 PM.\\\\n'\", \"type\": \"a4_bridge_error\"}}"
+}

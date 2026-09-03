@@ -1,0 +1,22 @@
+{
+  "schema": "ORION.A4.LaneEchoReceipt.v1",
+  "test": "plain",
+  "endpoint": "http://127.0.0.1:8766/v1/chat/completions",
+  "model": "claude-fable-5",
+  "slurm_job_id": "3572404",
+  "node": "cn018",
+  "recorded_utc": "2026-09-03T19:34:37Z",
+  "elapsed_s": 3.7,
+  "http_status": 500,
+  "request": {
+    "model": "claude-fable-5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Reply with exactly this token and nothing else: A4_CLAUDE_LUNARC_ECHO_V2_OK"
+      }
+    ],
+    "temperature": 0
+  },
+  "response_verbatim": "{\"error\": {\"message\": \"claude -p rc=1 stderr_tail=b''\", \"type\": \"a4_bridge_error\"}}"
+}
