@@ -110,6 +110,14 @@ isolated per-instance environment on the execution host. The runner never
 reads `gold_program_name`, `eval_script_name` content, or any gold output;
 evaluation is the upstream evaluator's job.
 
+Amended 2026-09-03 (template_id `P12_TERMINAL_V1` -> `P12_TERMINAL_V1M`) by
+the preregistered successor `P12_HARNESS_AMENDMENT_DATASET_MOUNTPOINT_V1.json`
+(made at 0 protected calls, tuning binding unbound; evidence:
+`P12_TUNING_EVAL_INSTRUMENT_FINDING_V1.md`): the template gained one sentence
+disclosing that DATASET TREE files mount under `./benchmark/datasets/`
+relative to the program's working directory. Uniform across all arms and
+lanes; infrastructure-only; every other frozen value unchanged.
+
 ## 6. Scores, oracle, and the derivation step
 
 - Per-instance outcome = the upstream evaluator's primary task-success

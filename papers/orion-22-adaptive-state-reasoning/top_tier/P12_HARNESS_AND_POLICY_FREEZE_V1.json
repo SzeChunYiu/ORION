@@ -1,7 +1,10 @@
 {
  "schema": "ORION.A2.P12HarnessAndPolicyFreeze.v1",
  "date": "2026-09-02",
- "paper_ids": ["ORION-21", "ORION-22"],
+ "paper_ids": [
+  "ORION-21",
+  "ORION-22"
+ ],
  "issue_binding": "SzeChunYiu/ORION#2139 Stage 2 (+ Stage 0 slots); SzeChunYiu/ORION-paper#49 A2 Phase 1",
  "artifact_class": "FROZEN_BEFORE_PROTECTED_EVALUATION",
  "flags": {
@@ -46,17 +49,23 @@
   "binding_artifact": {
    "path": "P12_TUNING_BINDING_V1.json",
    "schema": "ORION.A2.P12TuningBinding.v1",
-   "required_fields": ["thetas", "selected_one_signal_arm", "tuning_scores_by_arm", "bound_before_any_protected_model_call"],
+   "required_fields": [
+    "thetas",
+    "selected_one_signal_arm",
+    "tuning_scores_by_arm",
+    "bound_before_any_protected_model_call"
+   ],
    "must_be_committed_before": "any protected-family model call"
   }
  },
  "terminal_step": {
   "charged": false,
   "arm_blind": true,
-  "template_id": "P12_TERMINAL_V1",
-  "template_text": "You are completing a scientific programming task.\n\nTASK INSTRUCTION:\n{task_inst}\n\nDATASET TREE:\n{dataset_folder_tree}\n\nDATASET PREVIEW:\n{dataset_preview}\n{auxiliary_block}\nWrite one complete, self-contained Python program that accomplishes the task and saves the required output to the specified path. Reply with exactly one fenced Python code block and nothing else.",
+  "template_id": "P12_TERMINAL_V1M",
+  "template_text": "You are completing a scientific programming task.\n\nTASK INSTRUCTION:\n{task_inst}\n\nDATASET TREE:\n{dataset_folder_tree}\n\nDATASET PREVIEW:\n{dataset_preview}\n{auxiliary_block}\nDataset files named in DATASET TREE are mounted under ./benchmark/datasets/ relative to the working directory your program runs from; the tree's top-level entry is the dataset directory name. Save the required output to the path given in the task instruction.\nWrite one complete, self-contained Python program that accomplishes the task and saves the required output to the specified path. Reply with exactly one fenced Python code block and nothing else.",
   "auxiliary_block_rule": "concatenation, in fixed order, of whichever intermediate artifacts the action produced (family state artifact, instance state artifact, plan 1, plan 2), each under a neutral header naming neither the arm nor the action; empty string for A_RETAIN_MINIMAL",
-  "output_contract": "single fenced Python block; the program is executed by the pinned upstream evaluator"
+  "output_contract": "single fenced Python block; the program is executed by the pinned upstream evaluator",
+  "amended_by": "P12_HARNESS_AMENDMENT_DATASET_MOUNTPOINT_V1.json"
  },
  "scoring": {
   "instance_outcome": "primary task-success boolean of the pinned upstream ScienceAgentBench evaluator (OSU-NLP-Group/ScienceAgentBench @ c26e151ed601ba109dc4d35e057ff8e73fec469d)",
@@ -65,12 +74,28 @@
   "execution_shape": "4-action matrix executed once per (instance, model); arm scores derived by policy lookup, never re-run"
  },
  "gold_isolation": {
-  "runner_readable_parquet_fields": ["instance_id", "domain", "github_name", "task_inst", "domain_knowledge", "dataset_folder_tree", "dataset_preview", "output_fname"],
-  "runner_forbidden_parquet_fields": ["gold_program_name", "eval_script_name", "src_file_or_path"],
+  "runner_readable_parquet_fields": [
+   "instance_id",
+   "domain",
+   "github_name",
+   "task_inst",
+   "domain_knowledge",
+   "dataset_folder_tree",
+   "dataset_preview",
+   "output_fname"
+  ],
+  "runner_forbidden_parquet_fields": [
+   "gold_program_name",
+   "eval_script_name",
+   "src_file_or_path"
+  ],
   "note": "output_fname is part of the task statement (where to save results) and carries no gold content; evaluation happens only in the upstream evaluator"
  },
  "model_identity_slots": {
-  "required_classes": ["GPT_CLASS", "CLAUDE_OR_GEMINI_CLASS"],
+  "required_classes": [
+   "GPT_CLASS",
+   "CLAUDE_OR_GEMINI_CLASS"
+  ],
   "optional_phase2_class": "OPEN_WEIGHT",
   "binding_artifact": "MODEL_IDENTITY_FREEZE_V1.json",
   "probed_candidate_lanes_2026_09_02": {

@@ -1,0 +1,44 @@
+{
+ "schema": "ORION.A2.P12HarnessAmendment.v1",
+ "artifact_class": "freeze_amendment_preregistered",
+ "date": "2026-09-03",
+ "paper_ids": ["orion-22-adaptive-state-reasoning"],
+ "issue_binding": "SzeChunYiu/ORION-paper#49 A2 Phase 1",
+ "amends": {
+  "artifact": "P12_HARNESS_AND_POLICY_FREEZE_V1.json",
+  "parent_sha256": "13cdefd9838f19327a2a32a512a59384c8f61c10e3369a35b2917f6a4c790516"
+ },
+ "authority": {
+  "harness_successor_rule": "editing any frozen value here after any protected model call is forbidden; a successor requires its own preregistration",
+  "state_at_amendment": {
+   "protected_model_calls": 0,
+   "protected_outcomes_accessed": false,
+   "tuning_thresholds_bound": false,
+   "prereg_flags_at_amendment": "protected_outcomes_accessed=false, campaign_executed=false, execution_started=false, tuning_thresholds_bound=false, results_exist=false"
+  }
+ },
+ "trigger": "Instrument-validation finding 2026-09-03 (see P12_TUNING_EVAL_INSTRUMENT_FINDING_V1.md): the full 68-cell codex tuning evaluation under LUNARC sbatch 3570675 returned 0/68 with 100% of failures in the input-data-path class (models wrote dataset paths exactly as the parquet's dataset_folder_tree presents them, without the evaluator's ./benchmark/datasets/ mount prefix). The frozen terminal template requested a self-contained program but never stated the working-directory mount convention; a single-turn non-interactive lane cannot discover it, so the instrument measured path guessing rather than task capability, defeating its own design intent (the S1 state artifact was specified to carry 'file conventions' but its input cannot contain the mount point).",
+ "delta": {
+  "field": "terminal_step.template_text",
+  "template_id_old": "P12_TERMINAL_V1",
+  "template_id_new": "P12_TERMINAL_V1M",
+  "inserted_sentence": "Dataset files named in DATASET TREE are mounted under ./benchmark/datasets/ relative to the working directory your program runs from; the tree's top-level entry is the dataset directory name. Save the required output to the path given in the task instruction.",
+  "insertion_point": "immediately before the final instruction line of the template",
+  "rationale": "Restores parity with the information any pinned-upstream interactive agent obtains with one directory listing; discloses evaluator working-directory convention only (infrastructure), no gold content (gold_program_name, eval_script_name, src_file_or_path remain runner-forbidden per gold_isolation)"
+ },
+ "uniformity": "the amended template bytes are identical for every action and every model lane; the template remains arm-blind and uncharged; auxiliary_block_rule, output_contract, and all unit prompts are unchanged",
+ "unchanged": [
+  "P12_CAMPAIGN_PREREG_V1.json (23d9dc661f6849f45e4bb8443fedff6ea215da6507f08f508aa221d11a21b8a5) — families, splits, n per family, difficulty priors",
+  "P12_SCIENCEAGENTBENCH_VERIFIED_SUBSTRATE_FREEZE_V1.json — parquet, evaluator pin, exclusions",
+  "MODEL_IDENTITY_FREEZE_V1.json + MODEL_IDENTITY_EXECUTION_HOST_ADDENDUM_V1.json — lanes, CLI pins, effort, tier, turn structure",
+  "actions A_RETAIN_MINIMAL/A_STATE_MAX/A_REASON_MAX/A_BALANCED, unit prompts S1/S2/R1/R2, byte caps",
+  "scoring definition, threshold_fitting rule, result assembly, policies"
+ ],
+ "effect_on_existing_artifacts": {
+  "codex_tuning_run_records": "68 records produced under the pre-amendment template are ARCHIVED (not deleted) under runs/tuning-archive-pre-mountpoint-amendment-20260903/ together with their 68 eval records under eval/tuning-archive-pre-mountpoint-amendment-20260903/; they remain valid measurements of the pre-amendment instrument and are the evidence for this amendment",
+  "claude_tuning": "job 3570206 (begin 2026-09-04T03:05) reads the template from this amended file at run time and therefore executes under the amended template",
+  "protected_phase": "not yet run; will run only under the amended template and only after the tuning binding is committed"
+ },
+ "verification": "campaign_runner_v1 / campaign_tuning_driver_v1 / campaign_eval_driver_v1 / campaign_derivation_v1 self-tests green post-amendment; sha256 of the amended freeze recorded in this campaign's receipts PR",
+ "successor_rule": "this amendment follows its parent's rule: it was made before any protected model call; after the first protected model call no further harness edits are permitted without a new preregistered successor"
+}
