@@ -98,8 +98,8 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def run(*args: str, cwd: Path | None = None) -> str:
-    proc = subprocess.run(args, cwd=cwd, text=True, errors="replace", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+def run(*args: str, cwd: Path | None = None, env: dict[str, str] | None = None) -> str:
+    proc = subprocess.run(args, cwd=cwd, env=env, text=True, errors="replace", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     if proc.returncode:
         raise RuntimeError(f"command failed ({proc.returncode}): {' '.join(args)}\n{proc.stdout[-8000:]}")
     return proc.stdout
@@ -273,6 +273,34 @@ def verify_metadata(spec: dict, root: Path) -> list[str]:
     return checks
 
 
+TEX_LOG_WRAP_WIDTH = 79
+UNDEFINED_CITATION_PATTERN = (
+    r"(?:undefined references|undefined citations|Citation .* undefined|Reference .* undefined)"
+)
+
+
+def dewrap_tex_log(text: str, width: int = TEX_LOG_WRAP_WIDTH) -> str:
+    """Undo TeX's hard wrap so a warning can be matched as one line.
+
+    pdflatex breaks log output at max_print_line (79 by default) mid-word, so a
+    citation warning can read `Citation 'somekey' on page 1 undefin` / `ed on input
+    line 4.` and a regex for "Citation .* undefined" finds nothing. Joining each
+    full-width line to its continuation restores the sentence. For the unanchored
+    patterns scanned here the result is a superset of the raw text, so this can only
+    reveal a warning, never hide one. Overfull-box counting stays on the raw text:
+    joining lines can merge two adjacent messages and undercount them.
+    """
+    lines: list[str] = []
+    joining = False
+    for line in text.split("\n"):
+        if joining and lines:
+            lines[-1] += line
+        else:
+            lines.append(line)
+        joining = len(line) == width
+    return "\n".join(lines)
+
+
 def clean_build(spec: dict, route: str, root: Path) -> dict:
     source_zip = root / route / "source.zip"
     release_pdf = root / route / "manuscript.pdf"
@@ -286,14 +314,16 @@ def clean_build(spec: dict, route: str, root: Path) -> dict:
         if spec["paper"] == "ORION-24":
             args = ["latexmk", "-xelatex", "-interaction=nonstopmode", "-halt-on-error"]
         args.append("main.tex")
-        output = run(*args, cwd=work)
+        # Stop the wrap at the source too; dewrap_tex_log still guards logs built without it.
+        env = {**os.environ, "max_print_line": "10000", "error_line": "254", "half_error_line": "238"}
+        output = run(*args, cwd=work, env=env)
         built_pdf = work / "main.pdf"
         if pdf_pages(built_pdf) != pdf_pages(release_pdf):
             raise RuntimeError("clean-build and release page counts differ")
         if normalized_pdf_text(built_pdf) != normalized_pdf_text(release_pdf):
             raise RuntimeError("clean-build and release PDF text differ")
         logs = "\n".join(path.read_text(encoding="utf-8", errors="replace") for path in work.rglob("*.log"))
-        undefined = len(re.findall(r"(?:undefined references|Citation .* undefined|Reference .* undefined)", logs, flags=re.I))
+        undefined = len(re.findall(UNDEFINED_CITATION_PATTERN, dewrap_tex_log(logs), flags=re.I))
         overfull = len(re.findall(r"Overfull \\[hv]box", logs))
         if undefined:
             raise RuntimeError(f"clean build contains {undefined} undefined-reference/citation warnings")
