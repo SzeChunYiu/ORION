@@ -1,0 +1,54 @@
+# QG47 registration run log — pre-registration smoke evidence
+# Date: 2026-09-03 (Mac mini, single core, cold caches; registration
+# precedes outcome per the QG43–QG46 chain discipline)
+
+## Selftest (`--selftest`, reduced 2-part configuration through the FULL
+## merge path incl. G4 brute cross-check + G6 chain binding)
+
+    terminal               = QG47_N2_FRONTIER_EMPTY
+    problems               = 0
+    probe_failures         = 0
+    gates.all_unrestricted_le_dxx = true     (G1)
+    g4_brute_report        = {all_exact: true, instances: 12}   (G4)
+    gates.no_instrument_import = true       (G5)
+    g6_binding:
+      qg45_receipt_sha256  = f2f52d7cfaf96e0b3ce5853d0356eeafaf4e8ab7cec69d3654a2fa0f5fe139ce
+      qg45_terminal        = QG45_LIFT_IS_ISOLATED (ok)
+      qg45_single_rows     = 36
+      qg46_receipt_sha256  = ca3cbd934f7d6fc3121992f2c67530964a69c984291d345f1f0e0465984b8abf
+      qg46_terminal        = QG46_KERNEL_PARTIAL (ok)
+      qg46_pair_rows       = 3588   (= 598 pairs x 6 objectives)
+      roundtrip_evaluations = 3804  (= 3588 pairs + 36 singles x 6 objectives)
+      roundtrip_ok         = true
+    letters_sha_uniform / parts_complete / parts_digest_ok /
+      probe_recheck_ok / totals_ok = all true
+    result_digest          = 8e4c5fffaa7111168b8d49ec343f95598551286a1b7fa02d6893ade3c12eaf0a
+    wall                   = 234.75 s (181.81 s user + 51.89 s system, 99% cpu)
+
+G6 panel rule note (fixed BEFORE registration): the pair panel builder
+mirrors the QG45/QG46 enumeration exactly — XOR `1<<q` per flip, skip an
+instance iff a FINAL target letter is (0,0). Set-equality asserts against
+the receipt panel names passed (36 singles, 598 pairs). An earlier draft
+that skipped any zeroed coordinate covered only 468/598 pairs; it was
+rejected by the pre-registration selftest and never committed.
+
+## Full-size chunk timing (`--chunk 7`, production path, single core)
+
+    task_id                = 7
+    completions enumerated = 50625 (15^4, exact)
+    witnesses              = 0
+    min_gap                = 0
+    wall                   = 1397.5 s
+    part file_sha256       = 3531ba2634c0… (verified by the merge digest
+                             re-check; digest_match = true)
+
+## Campaign projection (registration-time planning numbers only)
+
+    throughput             = 50625 / 1397.5 s = 36.2 evaluations/s/core
+    total evaluations      = 68,360,340 (15^6 x 6 objectives)
+    projected core-hours   ≈ 525
+    sbatch --time          = 02:00:00 per 23-min task (comfortable)
+
+Campaign EXECUTION is deferred to a sanctioned heavy-compute host
+(LUNARC batch pure-math tarball, or laptop billy). No outcome data is
+committed at this registration SHA.
