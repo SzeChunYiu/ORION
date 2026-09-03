@@ -1,0 +1,56 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:e94e4b4ca789b2b686506237baf89268e47caaacefa5526c75c10eede3920d82",
+  "after_sha256": "79785a78da9f5b8368a3fb7b5025d6cda107c5adb6fd4ea60fc4393bde76e953",
+  "after_version_id": "datacite:doi:10.6084/m9.figshare.33415162.v1",
+  "artifact_lineage_id": "scientific-record:doi:10.6084/m9.figshare.33415162.v1",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "3c46ee7773caf012afd9efc22b3db553c82e05f49f1fe07a688153717a4de6ad",
+  "before_version_id": "crossref:doi:10.1080/17410541.2026.2723766",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "79785a78da9f5b8368a3fb7b5025d6cda107c5adb6fd4ea60fc4393bde76e953",
+    "after_version_id": "datacite:doi:10.6084/m9.figshare.33415162.v1",
+    "article_crossref_license_urls": [
+      "https://doi.org/10.1080/policies-text-data-mining"
+    ],
+    "before_sha256": "3c46ee7773caf012afd9efc22b3db553c82e05f49f1fe07a688153717a4de6ad",
+    "before_version_id": "crossref:doi:10.1080/17410541.2026.2723766",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by/4.0/legalcode:supplement:10.6084/m9.figshare.33415162.v1",
+    "packet_id": "a6-s3-dc-10.6084/m9.figshare.33415162.v1",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "crossref-supplement-family:doi:10.1080/17410541.2026.2723766",
+    "stratum": "scientific_record_transition",
+    "supplement_resource_type_general": "Dataset",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_kind": "article_to_data_or_code_release"
+  },
+  "candidate_visible_packet_sha256": "976d4c0f3253118ef9933f3d7a80727dd88732a33b547dff27c97314f1c819e3",
+  "external_custody_receipt_id": "a6-external-custody:737f3df5127116a2734782e55f9d438331bbcaf6b7cfe1382378424e6dee0121",
+  "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by/4.0/legalcode:supplement:10.6084/m9.figshare.33415162.v1",
+  "normalized_organization_lineage": "crossref:publisher:informa-uk-limited",
+  "packet_id": "a6-s3-dc-10.6084/m9.figshare.33415162.v1",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "crossref-supplement-family:doi:10.1080/17410541.2026.2723766",
+  "split": "primary",
+  "stratum": "scientific_record_transition",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

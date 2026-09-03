@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:5dbbb320b7734041a7a22af44ecc8a8389aab21dc576f219e7f5a3fa46334165",
+  "after_sha256": "e051cd8a7b8435dd0c4a648b79ce3a3ebfe9d5dc8aaa28ae002a738ce1912a7c",
+  "after_version_id": "1.0.5",
+  "artifact_lineage_id": "zenodo:software:10.5281/zenodo.22017303",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "dba5210263c1bec46878da98f1d411b655e20790f2dee8ad86fa4b7d540079c6",
+  "before_version_id": "1.0.4",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "access_right": "open",
+    "after_sha256": "e051cd8a7b8435dd0c4a648b79ce3a3ebfe9d5dc8aaa28ae002a738ce1912a7c",
+    "after_version_id": "1.0.5",
+    "before_sha256": "dba5210263c1bec46878da98f1d411b655e20790f2dee8ad86fa4b7d540079c6",
+    "before_version_id": "1.0.4",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "cc-by-4.0",
+    "license_before": "cc-by-4.0",
+    "license_or_rights_receipt_id": "zenodo:version-licenses:cc-by-4.0|cc-by-4.0|concept:22017303",
+    "packet_id": "a6-s1-zenodo-22017303",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "zenodo:record-family:22017303",
+    "stratum": "scientific_software_release_provenance_attestation",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_title": "Analysis code and derived aggregates for temporal trends and geospatial heterogeneity in Chagas disease in Mexico, 1998-2024: a multiscale cross-registry analysis"
+  },
+  "candidate_visible_packet_sha256": "240093206d7b2415a4f5c306dcb7f6b62f7f0f6d45e03ea033e6e6902f8950af",
+  "external_custody_receipt_id": "a6-external-custody:63732dd1c9683497ff35ff0faa663e1579a666ba6f9940a9c7149428e3331c44",
+  "license_or_rights_receipt_id": "zenodo:version-licenses:cc-by-4.0|cc-by-4.0|concept:22017303",
+  "normalized_organization_lineage": "zenodo:owner:1527439",
+  "packet_id": "a6-s1-zenodo-22017303",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "zenodo:record-family:22017303",
+  "split": "replication",
+  "stratum": "scientific_software_release_provenance_attestation",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

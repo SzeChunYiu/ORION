@@ -1,0 +1,57 @@
+{
+  "schema": "ORION.A6.ReplicationQuotaFreeze.v1",
+  "date": "2026-09-03",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A6 Phase 2 source-disjoint replication set frozen before outcomes",
+  "artifact_class": "FROZEN_BEFORE_CANDIDATE_PREDICTIONS_AND_GOLD",
+  "frozen_by": "A6 downstream pool/allocation lane under the SzeChunYiu/ORION-paper#49 authority chain; the quota numbers are not chosen, they are derived by the fixed rule below from externally sourced, already frozen, outcome-blind census facts. Zero free parameters.",
+  "derivation_rule": {
+    "rule_id": "A6_REPLICATION_QUOTA_UNIFORM_MIN_EXTERNAL_CAPACITY_V1",
+    "statement": "R = max(1, min over strata s of (external_disjoint_lineage_capacity_s - 20)) where external_disjoint_lineage_capacity_s is the distinct normalized_organization_lineage count of stratum s in the frozen A6 census manifest (the binding disjointness constraint, since organization lineages are the scarcest of the three lineage dimensions in every stratum), and 20 is the frozen primary quota per stratum. The quota is held uniform across strata to mirror the 20/20/20 primary quota symmetry; per-stratum asymmetric replication would require a scientific justification that no external party has provided, and cross-stratum transfer after outcomes is forbidden by the allocation contract.",
+    "inputs": {
+      "primary_quota_per_stratum": 20,
+      "external_disjoint_lineage_capacity_by_stratum": {
+        "scientific_software_release_provenance_attestation": 211,
+        "workflowhub_rocrate_versioned_workflow": 64,
+        "scientific_record_transition": 25
+      },
+      "capacity_input_manifests": {
+        "scientific_software_release_provenance_attestation": "papers/publication_closure/a6-external-authority-study-v1/zenodo-census-v1/A6_STRATUM1_CENSUS_MANIFEST_V1.json",
+        "workflowhub_rocrate_versioned_workflow": "papers/publication_closure/a6-external-authority-study-v1/workflowhub-census-v1/A6_STRATUM2_CENSUS_MANIFEST_V1.json",
+        "scientific_record_transition": "papers/publication_closure/a6-external-authority-study-v1/scientific-record-census-v1/A6_STRATUM3_CENSUS_MANIFEST_V1.json"
+      },
+      "capacity_field": "distinct_normalized_organization_lineage_n"
+    },
+    "computation": "R = min(211-20, 64-20, 25-20) = min(191, 44, 5) = 5",
+    "greedy_feasibility_note": "The frozen allocation scan (sort by allocation_key ascending, greedy lineage-trio-unique selection) was probed against the census frames before this freeze: the maximum lineage-disjoint selection per stratum equals 211/64/25 exactly, so 20 primary + 5 replication per stratum is achievable by the frozen scan with no shortfall."
+  },
+  "replication_quota_by_stratum": {
+    "scientific_software_release_provenance_attestation": 5,
+    "workflowhub_rocrate_versioned_workflow": 5,
+    "scientific_record_transition": 5
+  },
+  "replication_target_n": 15,
+  "headroom_caps_recorded_honestly": {
+    "scientific_software_release_provenance_attestation": {
+      "replication_headroom_cap": 191,
+      "binding_constraint": "211 distinct external organization lineages (Zenodo owner lineages); not binding at R=5"
+    },
+    "workflowhub_rocrate_versioned_workflow": {
+      "replication_headroom_cap": 44,
+      "binding_constraint": "64 distinct external organization lineages (WorkflowHub organizations); not binding at R=5"
+    },
+    "scientific_record_transition": {
+      "replication_headroom_cap": 5,
+      "binding_constraint": "25 distinct external organization lineages (Crossref publisher lineages over the DataCite Dataset-side IsSupplementTo route); THIS CAP BINDS. Stratum 3's source-disjoint replication headroom is capped at 5 by external source structure. The uniform quota is set by this cap. No padding, no eligibility loosening, no cross-stratum substitution was applied to raise it."
+    }
+  },
+  "issue49_checkbox_record": "Issue #49 requires a source-disjoint replication set frozen before outcomes. This freeze satisfies it at n=15 (5 per stratum, uniform) IF the deterministic allocation achieves disjoint selection under the frozen scan; the allocation result terminal records the outcome and any shortfall stays CANNOT_CHECK per the allocation contract (shortfall is never a reason to change replication N or substitute another stratum). The stratum-3 cap is a recorded external-source constraint, not a protocol defect to be padded around.",
+  "frozen_before_candidate_predictions": true,
+  "frozen_before_gold": true,
+  "protected_outcomes_accessed": false,
+  "candidate_predictions_accessed": false,
+  "baseline_predictions_accessed": false,
+  "gold_adjudicated": false,
+  "grants_scientific_authority": false,
+  "amendment_rule": "Immutable once candidate predictions exist. Any amendment before that point requires a new dated freeze version and re-derivation under the same zero-free-parameter rule from updated frozen census facts.",
+  "scientific_authority_delta": "NONE__QUOTA_FREEZE_ONLY"
+}

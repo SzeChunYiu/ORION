@@ -1,0 +1,57 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:e97961b42a2d50d0bdc08c5cc9546930c67f210b54a7bf7d95970987942424e0",
+  "after_sha256": "9676dde4737056570f23d76d8d6df0a13b8b483c21781a0814f946cf067fa23d",
+  "after_version_id": "datacite:doi:10.5281/zenodo.22240562",
+  "artifact_lineage_id": "scientific-record:doi:10.5281/zenodo.22240562",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "5aa96f2d62b9f95beec0cc8ba412c4c24a265e23912cc195ea20906fbf72af4c",
+  "before_version_id": "crossref:doi:10.3847/1538-4357/adcc14",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "9676dde4737056570f23d76d8d6df0a13b8b483c21781a0814f946cf067fa23d",
+    "after_version_id": "datacite:doi:10.5281/zenodo.22240562",
+    "article_crossref_license_urls": [
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://iopscience.iop.org/info/page/text-and-data-mining"
+    ],
+    "before_sha256": "5aa96f2d62b9f95beec0cc8ba412c4c24a265e23912cc195ea20906fbf72af4c",
+    "before_version_id": "crossref:doi:10.3847/1538-4357/adcc14",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by/4.0/legalcode:supplement:10.5281/zenodo.22240562",
+    "packet_id": "a6-s3-dc-10.5281/zenodo.22240562",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "crossref-supplement-family:doi:10.3847/1538-4357/adcc14",
+    "stratum": "scientific_record_transition",
+    "supplement_resource_type_general": "Dataset",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_kind": "article_to_data_or_code_release"
+  },
+  "candidate_visible_packet_sha256": "06201bf965c9b9c42f012e97f12fb664d43b5ae04ee16a11562e995e649f1cff",
+  "external_custody_receipt_id": "a6-external-custody:4def0239c679fdb86c2cde7e592adf0e3ebc61a8e23683c53cf65f2caa0c322f",
+  "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by/4.0/legalcode:supplement:10.5281/zenodo.22240562",
+  "normalized_organization_lineage": "crossref:publisher:american-astronomical-society",
+  "packet_id": "a6-s3-dc-10.5281/zenodo.22240562",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "crossref-supplement-family:doi:10.3847/1538-4357/adcc14",
+  "split": "primary",
+  "stratum": "scientific_record_transition",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

@@ -1,0 +1,120 @@
+name: ORION A6 pool, intake and pre-outcome allocation v1
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a6-pool-intake-allocation-v1.yml"
+      - "papers/publication_closure/a6-external-authority-study-v1/A6_REPLICATION_QUOTA_FREEZE_V1.json"
+      - "papers/publication_closure/a6-external-authority-study-v1/build_eligible_external_authority_pool_v1.py"
+      - "papers/publication_closure/a6-external-authority-study-v1/build_external_authority_intake_manifest_v1.py"
+      - "papers/publication_closure/a6-external-authority-study-v1/prepare_external_adjudicator_packets_v1.py"
+      - "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+      - "papers/publication_closure/a6-external-authority-study-v1/eligible-pool-v1/**"
+      - "papers/publication_closure/a6-external-authority-study-v1/allocation-v1/**"
+      - "papers/publication_closure/a6-external-authority-study-v1/intake-v1/**"
+      - "papers/publication_closure/a6-external-authority-study-v1/adjudication-prep-v1/**"
+      - "papers/publication_closure/a6-external-authority-study-v1/zenodo-census-v1/**"
+      - "papers/publication_closure/a6-external-authority-study-v1/workflowhub-census-v1/**"
+      - "papers/publication_closure/a6-external-authority-study-v1/scientific-record-census-v1/**"
+permissions:
+  contents: read
+jobs:
+  pool-intake-allocation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Verify quota freeze boundary
+        run: |
+          python - <<'PY'
+          import json
+          p='papers/publication_closure/a6-external-authority-study-v1/A6_REPLICATION_QUOTA_FREEZE_V1.json'
+          d=json.load(open(p))
+          assert d['schema']=='ORION.A6.ReplicationQuotaFreeze.v1'
+          assert d['frozen_before_candidate_predictions'] is True
+          assert d['frozen_before_gold'] is True
+          assert d['protected_outcomes_accessed'] is False
+          assert d['candidate_predictions_accessed'] is False
+          assert d['gold_adjudicated'] is False
+          assert d['grants_scientific_authority'] is False
+          q=d['replication_quota_by_stratum']
+          assert sorted(q)==['scientific_record_transition','scientific_software_release_provenance_attestation','workflowhub_rocrate_versioned_workflow']
+          assert all(isinstance(v,int) and v>=1 for v in q.values())
+          assert d['replication_target_n']==sum(q.values())==15
+          assert q=={k:5 for k in q}, 'quota must be the derived uniform 5/5/5'
+          cap=d['headroom_caps_recorded_honestly']['scientific_record_transition']
+          assert cap['replication_headroom_cap']==5 and 'THIS CAP BINDS' in cap['binding_constraint']
+          PY
+      - name: Compile and run hostile self-tests
+        run: |
+          set -e
+          B=papers/publication_closure/a6-external-authority-study-v1
+          python -m py_compile $B/build_eligible_external_authority_pool_v1.py $B/build_external_authority_intake_manifest_v1.py $B/prepare_external_adjudicator_packets_v1.py
+          python $B/build_eligible_external_authority_pool_v1.py --self-test | tee /tmp/pool_st.json
+          python $B/build_external_authority_intake_manifest_v1.py --self-test | tee /tmp/intake_st.json
+          python $B/prepare_external_adjudicator_packets_v1.py --self-test | tee /tmp/prep_st.json
+          python - <<'PY'
+          import json
+          for f,keys in (
+              ('/tmp/pool_st.json',('decision','quota_derivation_enforced_zero_free_parameters','tampered_chunk_rejected','row_order_invariant','gold_never_enters_pool','eligibility_rules_fail_closed')),
+              ('/tmp/intake_st.json',('decision','frozen_intake_validator_green','allocation_identity_reproved','non_rederiving_digest_rejected','shortfall_never_intakes')),
+              ('/tmp/prep_st.json',('decision','clean_prep_verifies','filled_label_rejected','filled_receipt_rejected','coverage_tamper_rejected','sign_off_slots_empty')),
+          ):
+              d=json.load(open(f))
+              assert d['decision']=='GREEN', (f,d.get('decision'))
+              for k in keys: assert d.get(k) is True, (f,k)
+          PY
+      - name: Rebuild committed artifacts and prove determinism
+        run: |
+          set -e
+          B=papers/publication_closure/a6-external-authority-study-v1
+          python $B/build_eligible_external_authority_pool_v1.py --quota-freeze $B/A6_REPLICATION_QUOTA_FREEZE_V1.json --output /tmp/pool_rebuilt.json >/dev/null
+          sha256sum $B/eligible-pool-v1/A6_ELIGIBLE_POOL_V1.json /tmp/pool_rebuilt.json
+          cmp $B/eligible-pool-v1/A6_ELIGIBLE_POOL_V1.json /tmp/pool_rebuilt.json
+          python - <<'PY'
+          import importlib.util,json,pathlib,sys
+          B=pathlib.Path('papers/publication_closure/a6-external-authority-study-v1')
+          spec=importlib.util.spec_from_file_location('alloc',B/'allocate_external_authority_packets_v1.py')
+          m=importlib.util.module_from_spec(spec); sys.modules['alloc']=m; spec.loader.exec_module(m)
+          pool=json.load(open(B/'eligible-pool-v1/A6_ELIGIBLE_POOL_V1.json'))
+          committed=json.load(open(B/'allocation-v1/A6_PREOUTCOME_ALLOCATION_RESULT_V1.json'))
+          rederived=m.allocate(pool)
+          assert rederived['terminal']==committed['terminal']=='A6_EXTERNAL_PRIMARY_REPLICATION_ALLOCATION_FROZEN'
+          assert rederived['selection_manifest_sha256']==committed['selection_manifest_sha256']
+          assert rederived['primary_n']==60 and rederived['replication_n']==15
+          print('allocation re-derivation: GREEN', rederived['selection_manifest_sha256'])
+          PY
+      - name: Validate committed intake manifest and prep packets
+        run: |
+          set -e
+          B=papers/publication_closure/a6-external-authority-study-v1
+          python $B/validate_external_authority_packet_manifest_v1.py $B/intake-v1/A6_EXTERNAL_AUTHORITY_PACKET_INTAKE_MANIFEST_V1.json | tee /tmp/intake_val.json
+          python $B/prepare_external_adjudicator_packets_v1.py --verify --intake $B/intake-v1/A6_EXTERNAL_AUTHORITY_PACKET_INTAKE_MANIFEST_V1.json | tee /tmp/prep_val.json
+          python - <<'PY'
+          import json
+          v=json.load(open('/tmp/intake_val.json'))
+          assert v['decision']=='GREEN' and v['primary_n']==60 and v['source_disjoint'] is True and v['gold_or_outputs_present'] is False
+          p=json.load(open('/tmp/prep_val.json'))
+          assert p['decision']=='GREEN' and p['sign_off_slots_empty'] is True and p['adjudications_performed']==0
+          PY
+      - name: Ban host RNG, network and judgment inference
+        run: |
+          set -e
+          B=papers/publication_closure/a6-external-authority-study-v1
+          for f in build_eligible_external_authority_pool_v1.py build_external_authority_intake_manifest_v1.py prepare_external_adjudicator_packets_v1.py; do
+            ! grep -Eq '^import (random|numpy|urllib|requests)|^from (random|numpy|urllib|requests)' $B/$f
+            python - <<PY
+          import ast,pathlib
+          mod=ast.parse(pathlib.Path('$B/$f').read_text())
+          for node in ast.walk(mod):
+              if isinstance(node,ast.Import):
+                  for alias in node.names: assert alias.name.split('.')[0] not in {'random','numpy','urllib','requests','sklearn','torch','openai'}
+              if isinstance(node,ast.ImportFrom) and node.module:
+                  assert node.module.split('.')[0] not in {'random','numpy','urllib','requests','sklearn','torch','openai'}
+          PY
+          done
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code

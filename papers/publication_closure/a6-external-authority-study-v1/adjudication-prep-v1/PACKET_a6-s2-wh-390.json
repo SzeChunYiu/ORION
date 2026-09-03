@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:c8fa4562048cd3652c46804fc463c9e1374be996637da871ba793f40db12dbb7",
+  "after_sha256": "3d16dbbd8d5edca11f66a0fdbb55d23799c36bb75fea009d22e9adc8a1404f65",
+  "after_version_id": "2",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:390",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "1923d973318c973012d9e5944a633e64adf030378abf795a58f090aee56456c2",
+  "before_version_id": "1",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "3d16dbbd8d5edca11f66a0fdbb55d23799c36bb75fea009d22e9adc8a1404f65",
+    "after_version_id": "2",
+    "before_sha256": "1923d973318c973012d9e5944a633e64adf030378abf795a58f090aee56456c2",
+    "before_version_id": "1",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/MIT",
+    "license_before": "https://spdx.org/licenses/MIT",
+    "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:390",
+    "organization_name": "CAPSID",
+    "packet_id": "a6-s2-wh-390",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:390",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "CroMaSt: A workflow for assessing protein domain classification by cross-mapping of structural instances between domain databases and structural alignment"
+  },
+  "candidate_visible_packet_sha256": "d0a37bb382bd6466353421288902c439b085c3d9e83eb72b1e49dff21fb22216",
+  "external_custody_receipt_id": "a6-external-custody:1a2bb8fbab5b7dc93cf241858c815ea97a27c5991af7b1aa7e2d9345998549c5",
+  "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:390",
+  "normalized_organization_lineage": "workflowhub:organization:capsid",
+  "packet_id": "a6-s2-wh-390",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:390",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

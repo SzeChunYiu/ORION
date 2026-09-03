@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:9fa2b19afa0a384f0a9ccb65f909a6902f990db44d3a8a0cd75abb102eaff446",
+  "after_sha256": "9f665dae64427ff40fa94cb951d80057bfc5e3ff8acacc4d1581d50efd4980e6",
+  "after_version_id": "3",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:189",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "52688ae5452bcb611d41a80571a7d48f63f537433b1ec51b1bb291db64f3099f",
+  "before_version_id": "2",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "9f665dae64427ff40fa94cb951d80057bfc5e3ff8acacc4d1581d50efd4980e6",
+    "after_version_id": "3",
+    "before_sha256": "52688ae5452bcb611d41a80571a7d48f63f537433b1ec51b1bb291db64f3099f",
+    "before_version_id": "2",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/Apache-2.0",
+    "license_before": "https://spdx.org/licenses/Apache-2.0",
+    "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:189",
+    "organization_name": "CO2MICS Lab",
+    "packet_id": "a6-s2-wh-189",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:189",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "BioTranslator Workflow"
+  },
+  "candidate_visible_packet_sha256": "6eb91a2a94d6512f2fc823c8acb58cbdc992b771096fe3de67ba45ea91cb0cd9",
+  "external_custody_receipt_id": "a6-external-custody:a7cf97aed9b8d302e7e63e12fd36a1042bd3f932a3c13fe95fd784becf3409ec",
+  "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:189",
+  "normalized_organization_lineage": "workflowhub:organization:co2mics-lab",
+  "packet_id": "a6-s2-wh-189",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:189",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

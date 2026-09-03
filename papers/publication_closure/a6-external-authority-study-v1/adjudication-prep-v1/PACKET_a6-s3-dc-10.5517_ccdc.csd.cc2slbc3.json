@@ -1,0 +1,56 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:4744fc34588486a80c786636d007dda4bedd7be8da388aaa9440d39f756c70ba",
+  "after_sha256": "9fb91f65b304a5ba930015a8ea58ac59e6766caf172e26476afde0772b51318a",
+  "after_version_id": "datacite:doi:10.5517/ccdc.csd.cc2slbc3",
+  "artifact_lineage_id": "scientific-record:doi:10.5517/ccdc.csd.cc2slbc3",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "c8c97cf9bbf1ff775587391394b61eb3f699970db5d9e5a6331ab2fb9f512bd4",
+  "before_version_id": "crossref:doi:10.1107/s2056989026008984",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "9fb91f65b304a5ba930015a8ea58ac59e6766caf172e26476afde0772b51318a",
+    "after_version_id": "datacite:doi:10.5517/ccdc.csd.cc2slbc3",
+    "article_crossref_license_urls": [
+      "https://creativecommons.org/licenses/by/4.0/legalcode"
+    ],
+    "before_sha256": "c8c97cf9bbf1ff775587391394b61eb3f699970db5d9e5a6331ab2fb9f512bd4",
+    "before_version_id": "crossref:doi:10.1107/s2056989026008984",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:unspecified:supplement:10.5517/ccdc.csd.cc2slbc3",
+    "packet_id": "a6-s3-dc-10.5517/ccdc.csd.cc2slbc3",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "crossref-supplement-family:doi:10.1107/s2056989026008984",
+    "stratum": "scientific_record_transition",
+    "supplement_resource_type_general": "Dataset",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_kind": "article_to_data_or_code_release"
+  },
+  "candidate_visible_packet_sha256": "4aadfdf2ee2ea5cbc3dd536ea4dbcf05255ff459f974d2c1ffc0ad61ad12205c",
+  "external_custody_receipt_id": "a6-external-custody:ccccdc3135425fe34d7875823da94236ca50185d5c69d31ac3df36678bab9f71",
+  "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:unspecified:supplement:10.5517/ccdc.csd.cc2slbc3",
+  "normalized_organization_lineage": "crossref:publisher:international-union-of-crystallography-iucr",
+  "packet_id": "a6-s3-dc-10.5517/ccdc.csd.cc2slbc3",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "crossref-supplement-family:doi:10.1107/s2056989026008984",
+  "split": "primary",
+  "stratum": "scientific_record_transition",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

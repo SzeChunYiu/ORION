@@ -1,0 +1,93 @@
+{
+  "schema": "ORION.A6.ExternalAdjudicatorPacketTemplate.v1",
+  "date": "2026-09-03",
+  "packet_schema_to_emit": "ORION.A6.ExternalAdjudicatorGoldPacket.v1",
+  "handoff_contract": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_HANDOFF_V1.json",
+  "validator": "papers/publication_closure/a6-external-authority-study-v1/validate_external_adjudicator_packet_v1.py",
+  "intake_binding": "Every emitted packet must bind field-exactly to one frozen intake packet of ORION.A6.ExternalAuthorityPacketIntakeManifest.v1 (stratum, split, lineage trio, version ids, transition digests, all three receipts, candidate_visible_packet_sha256). The validator is authoritative: if a filled packet is rejected, fix the packet, never the validator.",
+  "template_usage": "Exactly one gold packet per frozen intake packet (60 primary + replication intake packets). Replace every null with a concrete value; keep the fixed false flags false. Both gold labels are adjudicated separately over the terminal alphabet ADMIT/DENY/CANNOT_CHECK. Unadjudicated intake packets are reported by the validator and never filled in by ORION.",
+  "escrow_statement": "The two gold labels are escrowed gold. ORION never authors, infers, or commits targets. Completed packets are held outside ORION until candidate and baseline predictions are durably frozen; only then are they released as the gold side of the evaluation. Governance sign-off is external continuation, never promotion.",
+  "adjudication_must_precede": "adjudicator_receipt.adjudication_started_before_prediction_reveal must be true and honest: adjudication starts before any ORION-side candidate or baseline prediction exists.",
+  "disagreement_rule": "Per label: if disagreement_observed is true, either a non-empty resolution is required or the target must be CANNOT_CHECK (unresolved authority is CANNOT_CHECK). If disagreement_observed is false, resolution must be null/empty. Notes are always required.",
+  "template": {
+    "schema": "ORION.A6.ExternalAdjudicatorGoldPacket.v1",
+    "packet_id": null,
+    "stratum": null,
+    "split": null,
+    "source_family_id": null,
+    "normalized_organization_lineage": null,
+    "artifact_lineage_id": null,
+    "before_version_id": null,
+    "after_version_id": null,
+    "before_sha256": null,
+    "after_sha256": null,
+    "license_or_rights_receipt_id": null,
+    "external_custody_receipt_id": null,
+    "adjudicator_assignment_receipt_id": null,
+    "candidate_visible_packet_sha256": null,
+    "labels": {
+      "local_action_release_authority": {
+        "target": null,
+        "rationale": null,
+        "evidence_refs": [],
+        "disagreement_record": {
+          "disagreement_observed": null,
+          "resolution": null,
+          "notes": null
+        }
+      },
+      "scientific_discharge_admission_authority": {
+        "target": null,
+        "rationale": null,
+        "evidence_refs": [],
+        "disagreement_record": {
+          "disagreement_observed": null,
+          "resolution": null,
+          "notes": null
+        }
+      }
+    },
+    "adjudicator_receipt": {
+      "adjudicator_id": null,
+      "adjudicated_at_utc": null,
+      "receipt_sha256": null,
+      "independence_attested": null,
+      "adjudication_started_before_prediction_reveal": null,
+      "orion_predictions_visible": false,
+      "baseline_predictions_visible": false,
+      "protected_outcomes_visible": false
+    },
+    "candidate_predictions_in_packet": false,
+    "baseline_predictions_in_packet": false,
+    "protected_outcomes_in_packet": false
+  },
+  "field_guidance": {
+    "packet_id": "Exactly the frozen intake packet_id this packet adjudicates.",
+    "stratum/split/lineage/version/digest/receipt/candidate_visible fields": "Copied verbatim from the frozen intake packet; the validator enforces field-exact equality against the intake manifest.",
+    "labels.local_action_release_authority.target": "Exactly one of: ADMIT, DENY, CANNOT_CHECK.",
+    "labels.scientific_discharge_admission_authority.target": "Exactly one of: ADMIT, DENY, CANNOT_CHECK; adjudicated independently of the first label.",
+    "labels.*.rationale": "Non-empty human-readable justification citing the transition's target-relevant scientific coordinates.",
+    "labels.*.evidence_refs": "Non-empty list of non-empty references (source URLs, registry records, metadata fields, or content digests inspected).",
+    "labels.*.disagreement_record.disagreement_observed": "Explicit boolean; true if any adjudicator disagreement occurred.",
+    "labels.*.disagreement_record.resolution": "null/empty when no disagreement; non-empty resolution when disagreement was observed and resolved; unresolved disagreement forces target CANNOT_CHECK.",
+    "labels.*.disagreement_record.notes": "Always required, non-empty: how adjudication was performed, who was involved, what was checked.",
+    "adjudicator_receipt.adjudicator_id": "Stable identifier of the external adjudicator (person or role) authoring the packet.",
+    "adjudicator_receipt.adjudicated_at_utc": "UTC timestamp string of adjudication completion (e.g. 2026-09-10T14:03:00Z).",
+    "adjudicator_receipt.receipt_sha256": "SHA-256 (hex, 64 lowercase) over the canonical packet body (the adjudicator's own receipt hash, excluding the receipt_sha256 field).",
+    "adjudicator_receipt.independence_attested": "Must be true: attests independence from ORION-side prediction and outcome custody.",
+    "adjudicator_receipt.adjudication_started_before_prediction_reveal": "Must be true and honest.",
+    "adjudicator_receipt.orion_predictions_visible": "Fixed false.",
+    "adjudicator_receipt.baseline_predictions_visible": "Fixed false.",
+    "adjudicator_receipt.protected_outcomes_visible": "Fixed false.",
+    "candidate_predictions_in_packet / baseline_predictions_in_packet / protected_outcomes_in_packet": "Fixed false."
+  },
+  "prepared_by_this_template": "Per-packet adjudication prep files (candidate-visible payload + bound fields + EMPTY sign-off slots) are prepared inside ORION under adjudication-prep-v1/; the sign-off slots stay null and confer nothing.",
+  "external_packet_committed_by_this_template": false,
+  "gold_labels_created_by_this_template": false,
+  "gold_labels_inferred_by_this_template": false,
+  "candidate_predictions_accessed": false,
+  "baseline_predictions_accessed": false,
+  "protected_outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "scientific_authority_delta": "NONE__CUSTODY_TEMPLATE_ONLY"
+}

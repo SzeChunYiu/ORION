@@ -1,0 +1,56 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:c23233b0ea34896e27dfcc784572a08f22c60dd5a8ff63912e36fd17b20bc4c6",
+  "after_sha256": "7e7b6474b27ca853daed79b252a1a44081dada7f5359dc603d90f85ac615d9ce",
+  "after_version_id": "datacite:doi:10.5517/ccdc.csd.cc2knzmv",
+  "artifact_lineage_id": "scientific-record:doi:10.5517/ccdc.csd.cc2knzmv",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "eb3de3c21809f908369dd59bafaffec5702a8374452c904285c49458ff3fa0e3",
+  "before_version_id": "crossref:doi:10.1093/bulcsj/uoaf072",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "7e7b6474b27ca853daed79b252a1a44081dada7f5359dc603d90f85ac615d9ce",
+    "after_version_id": "datacite:doi:10.5517/ccdc.csd.cc2knzmv",
+    "article_crossref_license_urls": [
+      "https://academic.oup.com/pages/standard-publication-reuse-rights"
+    ],
+    "before_sha256": "eb3de3c21809f908369dd59bafaffec5702a8374452c904285c49458ff3fa0e3",
+    "before_version_id": "crossref:doi:10.1093/bulcsj/uoaf072",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:unspecified:supplement:10.5517/ccdc.csd.cc2knzmv",
+    "packet_id": "a6-s3-dc-10.5517/ccdc.csd.cc2knzmv",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "crossref-supplement-family:doi:10.1093/bulcsj/uoaf072",
+    "stratum": "scientific_record_transition",
+    "supplement_resource_type_general": "Dataset",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_kind": "article_to_data_or_code_release"
+  },
+  "candidate_visible_packet_sha256": "77f215f120d91959d6e4a58f55a5408d2f396fa6972f887b3910f7bddf856322",
+  "external_custody_receipt_id": "a6-external-custody:b6a2350a5d4d27ba65bb464551a7c8b9ad897de8ec3044e76006a83ded00bb03",
+  "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:unspecified:supplement:10.5517/ccdc.csd.cc2knzmv",
+  "normalized_organization_lineage": "crossref:publisher:oxford-university-press-oup",
+  "packet_id": "a6-s3-dc-10.5517/ccdc.csd.cc2knzmv",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "crossref-supplement-family:doi:10.1093/bulcsj/uoaf072",
+  "split": "primary",
+  "stratum": "scientific_record_transition",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

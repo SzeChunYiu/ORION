@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:e8fa5eaa9f0fd0fd406fd71c990d31573817c4646fff31a957b50865a9ef07b8",
+  "after_sha256": "90b60e0a210606994aea5ec413bdf5f4bb399b052b525f01aa1eb03d95f6174b",
+  "after_version_id": "3",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:260",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "4ae370edf42986e4dc56126db19afb81ff3d283f81a977f7c24d0a3985d054f2",
+  "before_version_id": "2",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "90b60e0a210606994aea5ec413bdf5f4bb399b052b525f01aa1eb03d95f6174b",
+    "after_version_id": "3",
+    "before_sha256": "4ae370edf42986e4dc56126db19afb81ff3d283f81a977f7c24d0a3985d054f2",
+    "before_version_id": "2",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/Apache-2.0",
+    "license_before": "https://spdx.org/licenses/Apache-2.0",
+    "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:260",
+    "organization_name": "BioBB Building Blocks",
+    "packet_id": "a6-s2-wh-260",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:260",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "CWL Amber Protein MD Setup tutorial"
+  },
+  "candidate_visible_packet_sha256": "1a63b9bde1fa623e910d5fd76afdda3d962de560555910e750b7404c31e3b727",
+  "external_custody_receipt_id": "a6-external-custody:7d38c99d453cd03ddcc52e3e35e0cb62bd4b7445de3dee69b6a2a4bf7bd8ada5",
+  "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:260",
+  "normalized_organization_lineage": "workflowhub:organization:biobb-building-blocks",
+  "packet_id": "a6-s2-wh-260",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:260",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

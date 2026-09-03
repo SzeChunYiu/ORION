@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:b5fbc378649a1910b8a955c4cc202b2ce207cd550d23ecb85825349440f31044",
+  "after_sha256": "b635d56a7dbc58c0017e5b7ded2632fa9e456f7997708f48a00dade3c2ac84d4",
+  "after_version_id": "2",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:1072",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "76aaa63393c005e7f7486a7a9c57c2aea071e2a2d901b24e2dd1ffc2d28294fe",
+  "before_version_id": "1",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "b635d56a7dbc58c0017e5b7ded2632fa9e456f7997708f48a00dade3c2ac84d4",
+    "after_version_id": "2",
+    "before_sha256": "76aaa63393c005e7f7486a7a9c57c2aea071e2a2d901b24e2dd1ffc2d28294fe",
+    "before_version_id": "1",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/Apache-2.0",
+    "license_before": "https://spdx.org/licenses/Apache-2.0",
+    "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:bc80116df432a6c62c09bcaa2f551ea9452f8b67614f720b4101c7b92293d57d/0a62e7b23e5ee2ee4f5b23ca71f5a2ec09e4baa8bd68bd38f6f98fb9233f85b6",
+    "organization_name": "Workflows and Distributed Computing, eFlows4HPC general",
+    "packet_id": "a6-s2-wh-1072",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:1072",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "KMeans housing"
+  },
+  "candidate_visible_packet_sha256": "bd42ccc124974adb61c4c004606a604c65e943c1cf0bd1a7a5acf35c2d2cd52c",
+  "external_custody_receipt_id": "a6-external-custody:01a695f0d1a34a7a8aa04857157096ad755786b8991587871a64df315f243156",
+  "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:bc80116df432a6c62c09bcaa2f551ea9452f8b67614f720b4101c7b92293d57d/0a62e7b23e5ee2ee4f5b23ca71f5a2ec09e4baa8bd68bd38f6f98fb9233f85b6",
+  "normalized_organization_lineage": "workflowhub:organization:workflows-and-distributed-computing-eflows4hpc-general",
+  "packet_id": "a6-s2-wh-1072",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:1072",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

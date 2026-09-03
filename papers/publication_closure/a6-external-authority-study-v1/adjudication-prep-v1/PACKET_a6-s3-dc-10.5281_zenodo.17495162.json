@@ -1,0 +1,58 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:a5ebee6b586d1b1a481c0f67bcc8de930aa6693c7b5e1c39e68f0950ece39ffc",
+  "after_sha256": "b99179164b2828a37a2f33cee944f346ea2c9501e95ff938aac885a9e20eddfa",
+  "after_version_id": "datacite:doi:10.5281/zenodo.17495162",
+  "artifact_lineage_id": "scientific-record:doi:10.5281/zenodo.17495162",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "e685bb6c088e47b0cec52688d32c6dc7b795be3a460bb7352638b277005fe38a",
+  "before_version_id": "crossref:doi:10.3168/jds.2025-27564",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "b99179164b2828a37a2f33cee944f346ea2c9501e95ff938aac885a9e20eddfa",
+    "after_version_id": "datacite:doi:10.5281/zenodo.17495162",
+    "article_crossref_license_urls": [
+      "http://creativecommons.org/licenses/by/4.0/",
+      "https://www.elsevier.com/legal/tdmrep-license",
+      "https://www.elsevier.com/tdm/userlicense/1.0/"
+    ],
+    "before_sha256": "e685bb6c088e47b0cec52688d32c6dc7b795be3a460bb7352638b277005fe38a",
+    "before_version_id": "crossref:doi:10.3168/jds.2025-27564",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by/4.0/legalcode:supplement:10.5281/zenodo.17495162",
+    "packet_id": "a6-s3-dc-10.5281/zenodo.17495162",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "crossref-supplement-family:doi:10.3168/jds.2025-27564",
+    "stratum": "scientific_record_transition",
+    "supplement_resource_type_general": "Dataset",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_kind": "article_to_data_or_code_release"
+  },
+  "candidate_visible_packet_sha256": "896c91dbd0335bc83a6608ed435aa3a6afc21748b2098acf09f19c677fff183e",
+  "external_custody_receipt_id": "a6-external-custody:fb10315f9654fc202177842a5028f5919509592651807447d731f6f1a9bbc6e8",
+  "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by/4.0/legalcode:supplement:10.5281/zenodo.17495162",
+  "normalized_organization_lineage": "crossref:publisher:american-dairy-science-association",
+  "packet_id": "a6-s3-dc-10.5281/zenodo.17495162",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "crossref-supplement-family:doi:10.3168/jds.2025-27564",
+  "split": "replication",
+  "stratum": "scientific_record_transition",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

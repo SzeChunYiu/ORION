@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:e2cbd9d734f73591e18cde667fcdec47d4915b73665325140630d170ee55ddd0",
+  "after_sha256": "746a72e828071dd24001dce25b0f3ccd3fa9703c491a11f79b4748c5ff095d01",
+  "after_version_id": "3",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:106",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "7b5c98ac92ee1d6e5315a23681b20bfd629235d59fa498a32cc5daeee01b0a9d",
+  "before_version_id": "2",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "746a72e828071dd24001dce25b0f3ccd3fa9703c491a11f79b4748c5ff095d01",
+    "after_version_id": "3",
+    "before_sha256": "7b5c98ac92ee1d6e5315a23681b20bfd629235d59fa498a32cc5daeee01b0a9d",
+    "before_version_id": "2",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/Apache-2.0",
+    "license_before": "https://spdx.org/licenses/Apache-2.0",
+    "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:106",
+    "organization_name": "EOSC-Life - Demonstrator 7: Rare Diseases",
+    "packet_id": "a6-s2-wh-106",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:106",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "VariantCaller_GATK3.6"
+  },
+  "candidate_visible_packet_sha256": "a8698087dc439eba09ea86c4632cef6d5a4cb31aa4f561626c397c67d0dbd5ae",
+  "external_custody_receipt_id": "a6-external-custody:859262f57e0d7a87bd71b7a1076336c087f2230d87628731dd9f87378e9b97f3",
+  "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:106",
+  "normalized_organization_lineage": "workflowhub:organization:eosc-life-demonstrator-7-rare-diseases",
+  "packet_id": "a6-s2-wh-106",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:106",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

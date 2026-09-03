@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:0cb54725254f3d8a939d9014d29a8b9d2bcffef3c14a08137c094882957b897c",
+  "after_sha256": "1afc052a63c6aa4b2395722527ae12f938ff997300200d4149bb6e960970efb6",
+  "after_version_id": "v5.10.0",
+  "artifact_lineage_id": "zenodo:software:10.5281/zenodo.20656258",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "810ebb421ef2898ac14e4c5117d868870e79623fbd52de83343523175f4e2714",
+  "before_version_id": "v5.9.1",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "access_right": "open",
+    "after_sha256": "1afc052a63c6aa4b2395722527ae12f938ff997300200d4149bb6e960970efb6",
+    "after_version_id": "v5.10.0",
+    "before_sha256": "810ebb421ef2898ac14e4c5117d868870e79623fbd52de83343523175f4e2714",
+    "before_version_id": "v5.9.1",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "mit-license",
+    "license_before": "mit-license",
+    "license_or_rights_receipt_id": "zenodo:version-licenses:mit-license|mit-license|concept:20656258",
+    "packet_id": "a6-s1-zenodo-20656258",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "zenodo:record-family:20656258",
+    "stratum": "scientific_software_release_provenance_attestation",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_title": "BiliCore: An Open-Source Framework for LLM-Powered Applications (IRIS / AETHER / AEGIS)"
+  },
+  "candidate_visible_packet_sha256": "106f00503284d7bdb95bb3e7d51ab17b7e5b72f70438927c43073fccbb4bc421",
+  "external_custody_receipt_id": "a6-external-custody:b84d69433cee5869c6d09a2ef50d03dcf55b7828ecade01faec01514d3e9f96a",
+  "license_or_rights_receipt_id": "zenodo:version-licenses:mit-license|mit-license|concept:20656258",
+  "normalized_organization_lineage": "zenodo:owner:1685271",
+  "packet_id": "a6-s1-zenodo-20656258",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "zenodo:record-family:20656258",
+  "split": "primary",
+  "stratum": "scientific_software_release_provenance_attestation",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

@@ -1,0 +1,56 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:1067e7a1e8896a112a154901f98815f10486ca54535e025e36bece984647d10f",
+  "after_sha256": "8c45f9a75d214147243dbcabbca240f1371d9c5f3d8aacdab01b1ce39509e78c",
+  "after_version_id": "datacite:doi:10.5281/zenodo.16533802",
+  "artifact_lineage_id": "scientific-record:doi:10.5281/zenodo.16533802",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "b464fc36a8cdb69ac2c851a3d674eab2ecf47cd6be73439b4166ad0325db96d6",
+  "before_version_id": "crossref:doi:10.1103/nxh9-dhvx",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "8c45f9a75d214147243dbcabbca240f1371d9c5f3d8aacdab01b1ce39509e78c",
+    "after_version_id": "datacite:doi:10.5281/zenodo.16533802",
+    "article_crossref_license_urls": [
+      "https://link.aps.org/licenses/aps-default-license"
+    ],
+    "before_sha256": "b464fc36a8cdb69ac2c851a3d674eab2ecf47cd6be73439b4166ad0325db96d6",
+    "before_version_id": "crossref:doi:10.1103/nxh9-dhvx",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by/4.0/legalcode:supplement:10.5281/zenodo.16533802",
+    "packet_id": "a6-s3-dc-10.5281/zenodo.16533802",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "crossref-supplement-family:doi:10.1103/nxh9-dhvx",
+    "stratum": "scientific_record_transition",
+    "supplement_resource_type_general": "Dataset",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_kind": "article_to_data_or_code_release"
+  },
+  "candidate_visible_packet_sha256": "2f9b05145ca6d3176d474ff8f35e769fb9490b65b587a73cf3b0f24d32d874f8",
+  "external_custody_receipt_id": "a6-external-custody:cf1d0d311b3369a7b809c1c47ed30f07c09774d2e8d17455402bee9538caa61c",
+  "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by/4.0/legalcode:supplement:10.5281/zenodo.16533802",
+  "normalized_organization_lineage": "crossref:publisher:american-physical-society-aps",
+  "packet_id": "a6-s3-dc-10.5281/zenodo.16533802",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "crossref-supplement-family:doi:10.1103/nxh9-dhvx",
+  "split": "primary",
+  "stratum": "scientific_record_transition",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

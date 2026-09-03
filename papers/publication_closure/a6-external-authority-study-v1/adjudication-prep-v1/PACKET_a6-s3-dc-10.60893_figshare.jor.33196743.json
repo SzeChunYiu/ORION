@@ -1,0 +1,53 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:583e3ce4f582ef72266d1aee9ad1f18e6c141adeca352064dc3747e001c70f25",
+  "after_sha256": "0e14fd4cd0df1b130902df3c7723845792ff285cec04554fc22e2c165b64a503",
+  "after_version_id": "datacite:doi:10.60893/figshare.jor.33196743",
+  "artifact_lineage_id": "scientific-record:doi:10.60893/figshare.jor.33196743",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "3273492f9c82d634184ab1b5712dfbaae026dd0d92587b01c6f11a407af37a19",
+  "before_version_id": "crossref:doi:10.1122/8.0001206",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "0e14fd4cd0df1b130902df3c7723845792ff285cec04554fc22e2c165b64a503",
+    "after_version_id": "datacite:doi:10.60893/figshare.jor.33196743",
+    "before_sha256": "3273492f9c82d634184ab1b5712dfbaae026dd0d92587b01c6f11a407af37a19",
+    "before_version_id": "crossref:doi:10.1122/8.0001206",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by-nc/4.0/legalcode:supplement:10.60893/figshare.jor.33196743",
+    "packet_id": "a6-s3-dc-10.60893/figshare.jor.33196743",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "crossref-supplement-family:doi:10.1122/8.0001206",
+    "stratum": "scientific_record_transition",
+    "supplement_resource_type_general": "Dataset",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_kind": "article_to_data_or_code_release"
+  },
+  "candidate_visible_packet_sha256": "0b636eaaf3441cc9965f36cc5acc52795e5c0b3d3e6b3e0afaf51a5527b03d7c",
+  "external_custody_receipt_id": "a6-external-custody:497d73e0eae9d6336227763d0f029721726b790f4088eac4d2d0fdd635b628bc",
+  "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by-nc/4.0/legalcode:supplement:10.60893/figshare.jor.33196743",
+  "normalized_organization_lineage": "crossref:publisher:society-of-rheology",
+  "packet_id": "a6-s3-dc-10.60893/figshare.jor.33196743",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "crossref-supplement-family:doi:10.1122/8.0001206",
+  "split": "primary",
+  "stratum": "scientific_record_transition",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:4e16b72195e56e5a454fab46d776e6ebb5f4f326991cd23499d0adc44aa834b1",
+  "after_sha256": "666623316874812d953706f5fc88a5566c7c07fe02e518c64969a40ee32bc4fe",
+  "after_version_id": "7",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:556",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "2d2c2afa09d270a9d245330f779eeebb4f3a357c3df68bc16308d5c0929f120c",
+  "before_version_id": "6",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "666623316874812d953706f5fc88a5566c7c07fe02e518c64969a40ee32bc4fe",
+    "after_version_id": "7",
+    "before_sha256": "2d2c2afa09d270a9d245330f779eeebb4f3a357c3df68bc16308d5c0929f120c",
+    "before_version_id": "6",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/Apache-2.0",
+    "license_before": "https://spdx.org/licenses/Apache-2.0",
+    "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:556",
+    "organization_name": "Polygenic Score Catalog",
+    "packet_id": "a6-s2-wh-556",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:556",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "The Polygenic Score Catalog Calculator"
+  },
+  "candidate_visible_packet_sha256": "3e7b72e17dd2365b7f31a856f2aba37eb0ffa35d2d605eccf561f93f6597e2b4",
+  "external_custody_receipt_id": "a6-external-custody:4c09dfbfa2bd6c812782aa0d732afb785c8cd7b761c31b53c724411f40737b2e",
+  "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:556",
+  "normalized_organization_lineage": "workflowhub:organization:polygenic-score-catalog",
+  "packet_id": "a6-s2-wh-556",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:556",
+  "split": "replication",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

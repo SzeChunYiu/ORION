@@ -1,0 +1,53 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:a994acc2c1aa941b39bfc1ee5960e185fdd1ee59273e694eff5e50a5e3f70ca1",
+  "after_sha256": "6aa7f7d99b5c6096413675d6737a4caa44098d9343b8fbed95d9702cad2dc54a",
+  "after_version_id": "datacite:doi:10.60893/figshare.jva.33245799",
+  "artifact_lineage_id": "scientific-record:doi:10.60893/figshare.jva.33245799",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "24225b79e3fd67b0081726ab07f682b8d652b4748a5e0fd58eb72dd41d8871df",
+  "before_version_id": "crossref:doi:10.1116/6.0005751",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "6aa7f7d99b5c6096413675d6737a4caa44098d9343b8fbed95d9702cad2dc54a",
+    "after_version_id": "datacite:doi:10.60893/figshare.jva.33245799",
+    "before_sha256": "24225b79e3fd67b0081726ab07f682b8d652b4748a5e0fd58eb72dd41d8871df",
+    "before_version_id": "crossref:doi:10.1116/6.0005751",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by-nc/4.0/legalcode:supplement:10.60893/figshare.jva.33245799",
+    "packet_id": "a6-s3-dc-10.60893/figshare.jva.33245799",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "crossref-supplement-family:doi:10.1116/6.0005751",
+    "stratum": "scientific_record_transition",
+    "supplement_resource_type_general": "Dataset",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "transition_kind": "article_to_data_or_code_release"
+  },
+  "candidate_visible_packet_sha256": "d5467fa8a449e3bd85bc97f7271edd907727c75d0b6b06a78854de77fde36d5e",
+  "external_custody_receipt_id": "a6-external-custody:d234e82d13e6e221965e6d40510f51ea713f0d2cf56c5855a53f40172be2c83e",
+  "license_or_rights_receipt_id": "crossref-metadata:CC0-1.0+datacite-metadata:CC0-1.0+datacite-rights:https://creativecommons.org/licenses/by-nc/4.0/legalcode:supplement:10.60893/figshare.jva.33245799",
+  "normalized_organization_lineage": "crossref:publisher:american-vacuum-society",
+  "packet_id": "a6-s3-dc-10.60893/figshare.jva.33245799",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "crossref-supplement-family:doi:10.1116/6.0005751",
+  "split": "primary",
+  "stratum": "scientific_record_transition",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:91eaffa46c06c396f8c67531980daeb8a0a6d886c86b0b62410c39a462456551",
+  "after_sha256": "2c01e4b724cb528dfdac8ec33b859758b220947776a9917fd97ce1edbd9c9d46",
+  "after_version_id": "3",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:384",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "6dbd213bd5f22a27a8348b9ed70753dde043cdbf69d8259752e83d814bf1a010",
+  "before_version_id": "2",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "2c01e4b724cb528dfdac8ec33b859758b220947776a9917fd97ce1edbd9c9d46",
+    "after_version_id": "3",
+    "before_sha256": "6dbd213bd5f22a27a8348b9ed70753dde043cdbf69d8259752e83d814bf1a010",
+    "before_version_id": "2",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/Apache-2.0",
+    "license_before": "https://spdx.org/licenses/GPL-3.0",
+    "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:384",
+    "organization_name": "emo-bon",
+    "packet_id": "a6-s2-wh-384",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:384",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "A workflow for marine Genomic Observatories data analysis"
+  },
+  "candidate_visible_packet_sha256": "e1d4c969a363c9433fb457b4b3fe77b0f68b913928dc992ed64c05a42ab3cb96",
+  "external_custody_receipt_id": "a6-external-custody:299e0febe6645607a818d17d895cfdf04509dfc8bf5cad6e237c659fb4f9417a",
+  "license_or_rights_receipt_id": "a3-workflowhub-normalized-content-binding-v2+successor-v1:workflow:384",
+  "normalized_organization_lineage": "workflowhub:organization:emo-bon",
+  "packet_id": "a6-s2-wh-384",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:384",
+  "split": "replication",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}

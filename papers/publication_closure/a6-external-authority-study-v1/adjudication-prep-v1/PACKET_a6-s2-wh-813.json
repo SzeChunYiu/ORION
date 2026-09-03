@@ -1,0 +1,55 @@
+{
+  "adjudication": {
+    "adjudicator_receipt": null,
+    "labels": {
+      "local_action_release_authority": null,
+      "scientific_discharge_admission_authority": null
+    },
+    "sign_off_slots_empty": true,
+    "status": "UNADJUDICATED"
+  },
+  "adjudicator_assignment_receipt_id": "a6-adjudicator-assignment:60c15bab2008f9da160492f62f6b80bbec6c1c769ee2ecd52a64ce6d0ddd4b1f",
+  "after_sha256": "b4d73419fd32124461ba14ac243fd439b5be1c0987dbb411e0fcb2c5176dbbae",
+  "after_version_id": "2",
+  "artifact_lineage_id": "workflowhub:workflow-artifact:813",
+  "baseline_predictions_in_packet": false,
+  "before_sha256": "7b6d430c4df2ab360cda60014f039c356ba2787a887ff75bf284aa6e12dc1b65",
+  "before_version_id": "1",
+  "candidate_blind_gold_process_frozen": true,
+  "candidate_predictions_in_packet": false,
+  "candidate_visible_packet": {
+    "after_sha256": "b4d73419fd32124461ba14ac243fd439b5be1c0987dbb411e0fcb2c5176dbbae",
+    "after_version_id": "2",
+    "before_sha256": "7b6d430c4df2ab360cda60014f039c356ba2787a887ff75bf284aa6e12dc1b65",
+    "before_version_id": "1",
+    "gold_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "license_after": "https://spdx.org/licenses/MIT",
+    "license_before": "https://spdx.org/licenses/MIT",
+    "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:f4d86f3e34ab3bd12c6316e5ab0140a3d9f120077a319b064f95f2b51c218c8f/4c292d989e13c52c04f7119c3d59c65eff1e49dc63838b5d2be51bf57e444a10",
+    "organization_name": "Tree of Life Genome Assembly",
+    "packet_id": "a6-s2-wh-813",
+    "schema": "ORION.A6.CandidateVisiblePacket.v1",
+    "source_family_id": "workflowhub:workflow:813",
+    "stratum": "workflowhub_rocrate_versioned_workflow",
+    "terminal_alphabet": [
+      "ADMIT",
+      "DENY",
+      "CANNOT_CHECK"
+    ],
+    "workflow_name": "sanger-tol/treeval"
+  },
+  "candidate_visible_packet_sha256": "9c92373fa6c4d412059dbefe7c9ad54f640897f868331774858f40a25741d149",
+  "external_custody_receipt_id": "a6-external-custody:8f0309ef8791bd7410979e22707f370b26f8c63631359a33b3c91d5445dc5b13",
+  "license_or_rights_receipt_id": "a6-workflowhub-census-v1:landing-metadata:f4d86f3e34ab3bd12c6316e5ab0140a3d9f120077a319b064f95f2b51c218c8f/4c292d989e13c52c04f7119c3d59c65eff1e49dc63838b5d2be51bf57e444a10",
+  "normalized_organization_lineage": "workflowhub:organization:tree-of-life-genome-assembly",
+  "packet_id": "a6-s2-wh-813",
+  "protected_outcomes_in_packet": false,
+  "schema": "ORION.A6.ExternalAdjudicatorPrepPacket.v1",
+  "source_family_id": "workflowhub:workflow:813",
+  "split": "primary",
+  "stratum": "workflowhub_rocrate_versioned_workflow",
+  "template": "papers/publication_closure/a6-external-authority-study-v1/A6_EXTERNAL_ADJUDICATOR_PACKET_TEMPLATE_V1.json"
+}
