@@ -1,0 +1,43 @@
+name: ORION A3 eligible pool materialization v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a3-eligible-pool-materialization-v1.yml"
+      - "papers/publication_closure/a3-external-change-transport-v1/build_eligible_change_cluster_pool_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/allocate_change_clusters_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/validate_external_curator_packet_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/harvest_member_manifests_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/bind_workflowhub_rocrate_content_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/candidate_policy_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/EXTERNAL_CURATOR_PACKET_TEMPLATE_V1.json"
+      - "papers/publication_closure/a3-external-change-transport-v1/prove_external_curator_packet_template_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/validate_member_manifest_freeze_result_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-member-manifest-freeze-v1/**"
+permissions:
+  contents: read
+jobs:
+  eligible-pool-materialization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cluster pool builder self-test (synthetic custody shape through the frozen allocator)
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/build_eligible_change_cluster_pool_v1.py --self-test
+      - name: Curator packet template prover (frozen validator, hostile mutations)
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/prove_external_curator_packet_template_v1.py --self-test
+      - name: Harvest self-test (frozen normalization verbatim, no network)
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/harvest_member_manifests_v1.py --self-test
+      - name: Networkless verification of the member-manifest freeze boundary result
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/validate_member_manifest_freeze_result_v1.py --self-test
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
