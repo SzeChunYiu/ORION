@@ -1,0 +1,54 @@
+name: ORION A3 member-manifest normalization freeze v3
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a3-member-manifest-freeze-v3.yml"
+      - "papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_MEMBER_MANIFEST_NORMALIZATION_V3_DECISION_2026-09-03.md"
+      - "papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_MEMBER_MANIFEST_NORMALIZATION_FREEZE_V3.json"
+      - "papers/publication_closure/a3-external-change-transport-v1/normalize_member_manifests_v3.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/harvest_member_manifests_v3.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/validate_member_manifest_normalization_freeze_v3.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-member-manifest-freeze-v3/**"
+permissions:
+  contents: read
+jobs:
+  member-manifest-freeze-v3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: v3 normalization self-test (networkless, mutation controls)
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/normalize_member_manifests_v3.py
+      - name: v3 harvester self-test (networkless, mutation controls)
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/harvest_member_manifests_v3.py --self-test
+      - name: Freeze validator (identity, digests, lineage bindings, result mode)
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/validate_member_manifest_normalization_freeze_v3.py --self-test
+      - name: Freeze flags and custody assertions
+        run: |
+          python - <<'PY'
+          import json
+          d = json.load(open('papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_MEMBER_MANIFEST_NORMALIZATION_FREEZE_V3.json'))
+          assert d['schema'] == 'ORION.A3.WorkflowHubMemberManifestNormalizationFreeze.v3'
+          assert d['artifact_class'] == 'FROZEN_BEFORE_V3_HARVEST_AND_SUCCESSOR_FRAME_REBIND'
+          assert all(v is False for v in d['flags'].values()), d['flags']
+          assert d['scientific_authority_delta'] == 'NONE__NORMALIZATION_IDENTITY_FREEZE_ONLY'
+          assert d['grants_scientific_authority'] is False
+          ident = d['normalization_identity']
+          assert ident['normalization_id'] == 'WORKFLOWHUB_MEMBER_MANIFEST_NORMALIZATION_V3'
+          assert ident['free_parameters'] == []
+          assert ident['run_time_resolution'] == 'NONE'
+          assert sorted(ident['request_generated_root_members_excluded']) == ['ro-crate-metadata.json', 'ro-crate-preview.html']
+          assert ident['v2_normalization_imported_verbatim'] is True
+          print('A3_MEMBER_MANIFEST_NORMALIZATION_FREEZE_V3_FLAGS_GREEN')
+          PY
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
