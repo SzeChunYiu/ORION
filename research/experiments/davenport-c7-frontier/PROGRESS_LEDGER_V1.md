@@ -1,4 +1,4 @@
-# C7^3 multiwise Davenport frontier — progress ledger V4
+# C7^3 multiwise Davenport frontier — progress ledger V6
 
 Status: live LLM-assisted ORION research ledger. No novelty authority.
 
@@ -11,72 +11,65 @@ Status: live LLM-assisted ORION research ledger. No novelty authority.
 5. **Support-7 projective reduction.** A hypothetical length-37 obstruction with support seven projects to seven distinct points of `PG(2,7)` with no four collinear.
 6. **Projective cover regeneration.** A deterministic frame-normalized generator enumerates 18,451 frame-containing candidates and quotients them to exactly 54 projective support classes: 53 with a collinear triple and one ordinary seven-arc. The external coding-theory count `53+1` is a control, not executable cover authority.
 7. **Complete support-7 closure.** Across all 54 support classes, 7,400 normalized full-support kernel vectors and 462 positive deficit-weight profiles yield exactly 3,418,800 total-zero scalar/multiplicity lifts. Exactly 14,860 survive the necessary 7-short-zero-free filter, and all 14,860 admit four pairwise disjoint nonempty zero-sum subsequences. Therefore any hypothetical length-37 total-zero obstruction with packing number at most three has support at least eight. Primary and differently structured independent verifiers agree.
-8. **Complete support-8 one-projective-collision closure.** Reusing the 54 seven-direction arc classes, 7,400 normalized full-support kernels and 2,583 doubled-direction/profile/local states give 19,114,200 parameterized lifts. Exactly 15,844 are 7-short-zero-free, and all 15,844 four-pack. Six primary and six structurally independent CI shards replay the complete class cover. Thus every support-8 obstruction, if one exists, uses eight distinct projective directions. See `SUPPORT8_ONE_COLLISION_THEOREM_V1.md` and `SUPPORT8_ONE_COLLISION_HOSTILE_AUDIT_V1.md`.
-9. **Prime-uniform short-free complement barrier.** For a zero-sum `p`-short-zero-free sequence over any exponent-`p` group, support deficit `Delta=s(p-1)-N` is impossible whenever `Delta>=0`, `s+Delta<=p`, and `2 Delta<=p-2`. Consequently a critical sequence of length `((2k+5)p-3)/2` has support at least `k+4`. Conditional on the `(k-1)`-st stabilized lower line, every first obstruction to `D_k(C_p^3)<=((2k+5)p-5)/2` satisfies this support bound.
-10. **Length-19 line-fiber avoidance.** Proper-subsum avoidance localizes to each projective direction. For a zero-sumfree scalar fiber `A` of length `r>p/2`, the surviving maximal-atom scalar list satisfies `d(d+1)/2<=p-1-r`, where `d=|R(A)|`. At `p=7`, two independent exact checkers freeze all 96 zero-sumfree line multisets: occupancies `3,4,5,6` leave at most `1,1,1,0` scalars, and every survivor for occupancy at least three is already a companion-atom scalar. The `(8,10,19)` length-29 pair and `(9,9,19)` length-28 pair each have actual support at least six.
-11. **All-`k` packing-defect core formalism.** For an exponent-`n` group, `delta_n(B)=|B|-n z(B)` has a finite global maximum equal to `max_k(D_k(G)-kn)`. Deleting `n` equal terms never lowers defect, and a shortest maximizer is `n`-short-zero-free, so the global problem reduces to a finite Apéry box. For `C_p^3`, the proposed formula for every `k>=2` is equivalent to the single bound `delta_p(B)<=(5p-5)/2` for every zero-sum block. In Hilbert-basis coordinates, defect is a minimum factorization cost; a counterexample is exactly a short-free box factorization above the threshold that is terminal under every positive-gain Graver move. Two independently structured arithmetic/signature checkers agree on the exact `p=7,q=1` record: 219 bounded signatures over all `m>=3`, 19 raw `m=3` signatures, and the six donor-pruned atom corridors.
+8. **Complete support-8 one-projective-collision closure.** Reusing the 54 seven-direction arc classes, 7,400 normalized full-support kernels and 2,583 doubled-direction/profile/local states give 19,114,200 parameterized lifts. Exactly 15,844 are 7-short-zero-free, and all 15,844 four-pack. Six primary and six structurally independent CI shards replay the complete class cover. Thus every support-8 obstruction, if one exists, uses eight distinct projective directions.
+9. **Prime-uniform short-free complement barrier.** For a zero-sum `p`-short-zero-free sequence over any exponent-`p` group, support deficit `Delta=s(p-1)-N` is impossible whenever `Delta>=0`, `s+Delta<=p`, and `2 Delta<=p-2`. Consequently a critical sequence of length `((2k+5)p-3)/2` has support at least `k+4`.
+10. **Length-19 line-fiber avoidance.** Proper-subsum avoidance localizes to each projective direction. For a zero-sumfree scalar fiber `A` of length `r>p/2`, the surviving maximal-atom scalar list satisfies `d(d+1)/2<=p-1-r`. At `p=7`, two independent exact checkers freeze all 96 zero-sumfree line multisets: occupancies `3,4,5,6` leave at most `1,1,1,0` scalars. The `(8,10,19)` length-29 pair and `(9,9,19)` length-28 pair each have actual support at least six.
+11. **All-`k` packing-defect core formalism.** For exponent `n`, `delta_n(B)=|B|-n z(B)` has a finite global maximum equal to `max_k(D_k(G)-kn)`. A shortest maximizer is `n`-short-zero-free. For `C_p^3`, the proposed formula for every `k>=2` is equivalent to `delta_p(B)<=(5p-5)/2` for every zero-sum block; in Hilbert/Graver coordinates a counterexample is an above-threshold short-free box factorization terminal under every positive-gain conformal move.
+12. **Minimal-level excess signatures.** If the target first fails at factorization length `m` with overshoot `q>=1`, every atom excess satisfies `e_i>=q`, `sum e_i=M_p+q`, and `(m-1)q<=M_p`. The exact `p=7` algebraic shell has 322 raw signatures. Zhang's short-atom input plus the six exact `(m,q)=(3,1)` corridors prune this to 301. Primary recursive and independent multiplicity-vector checkers agree. See `PACKING_DEFECT_MINIMAL_CORE_SIGNATURES_V1.md`.
+13. **Coding-theoretic finite first-failure theorem.** Freeze--Schmid's standard `D_0(G)` is the eventual intercept, not the branch defect envelope; the target line is exactly `D_0(C_p^3)=M_p` with stabilization index `k_D=2`. Every first failure is `p`-short-zero-free. Combining `eta(C_p^2)=3p-2` with the dimension-three Griesmer bound gives `|B|<=62` for `p=5` and `|B|<=3p^2-3p-3` for `p>=7`. Therefore it suffices to prove the target only through `K_5=10`, `K_7=15`, and `K_p=(5p-3)/2` for primes `p>=11`. For `p=7`, the coding cap removes exactly the algebraic top shell `(m,q,e)=(16,1,(1^16))`, reducing the working signature cover from 322 raw / 301 donor-pruned to **321 raw / 300 donor-pruned**. If first-failure projective directions have no four collinear, the donor `(n,3)`-arc bound gives `m<=2p-4`; levels `m>=2p-3` must contain a rich four-secant plane. Two new structurally independent checkers agree on canonical digest `37f152e4074a10edeedc14ea52207fb189bcc000dcb2901c4bb182defe91d68c`.
 
-## Strongest current obstruction semantics
+## Strongest current `C_7^3` obstruction semantics
 
 If `B` is zero-sum over `C_7^3`, `|B|=37`, and `z(B)<=3`, then
 
-- `z(B)=3`;
-- `delta_7(B)=16`, so it is the `(p,m,q)=(7,3,1)` slice of the defect-core formalism;
+- `z(B)=3` and `delta_7(B)=16`, the `(p,m,q)=(7,3,1)` core slice;
 - `|supp(B)|>=8`;
-- if `|supp(B)|=8`, its eight actual support values lie on eight distinct projective directions;
-- every three-atom factorization has one of the six corridor length triples above;
-- in either length-19 corridor, the maximal-atom/short-atom pair has support at least six and obeys the exact projective line-fiber scalar grammar in `LENGTH19_PROJECTIVE_LINE_FIBER_AVOIDANCE_V1.md`;
-- a maximum-length atomic factorization is Graver-terminal, and proving an applicable positive-gain conformal move would eliminate the candidate.
+- support eight, if it occurs, uses eight distinct projective directions;
+- every three-atom factorization lies in the six frozen atom corridors;
+- the two maximal-atom corridors obey the projective line-fiber scalar grammar;
+- every maximum factorization is Graver-terminal.
 
 This is not yet a determination of `D_3(C_7^3)`.
 
 ## General formula now isolated
 
-For `p>=5`, put
-
-`M_p=(5p-5)/2`.
-
-The donor lower line is
+For `p>=5`, put `M_p=(5p-5)/2`. The donor lower line is
 
 `D_k(C_p^3)>=kp+M_p` for `k>=2`.
 
-By `PACKING_DEFECT_CORE_FORMALISM_V1.md`, equality for every `k>=2` is equivalent to
+The target
 
-`|B|-p z(B)<=M_p`
+`D_k(C_p^3)=kp+M_p` for every `k>=2`
 
-for every zero-sum block `B`. It is also equivalent to absence of every terminal `(p,m,q)` core with `m>=3` and `q>=1`.
+has three equivalent coordinate systems now frozen in the branch:
 
-Every such core has:
+1. **defect:** `|B|-p z(B)<=M_p` for every zero-sum block;
+2. **standard eventual-line:** `D_0(C_p^3)=M_p` and `k_D(C_p^3)=2` in Freeze--Schmid notation;
+3. **finite first failure:** no first-failure core exists for `3<=m<=K_p`, with `q<=floor(M_p/(m-1))`, excess slack `e_i=q+f_i`, `sum f_i=M_p-(m-1)q`, the coding length cap, projective deficit constraints and Graver terminality.
 
-- length `pm+M_p+q`;
-- atom excesses `e_i in [1,2p-2]` summing to `M_p+q` and satisfying `e_i+e_j<=M_p`;
-- actual support at least `m+4`;
-- at least `ceil(m+5/2+(m+q)/(p-1))` projective directions;
-- plane occupancy at most `3p-3`, with the Property-C rich-plane improvement where available;
-- a positive modular kernel vector in the finite multiplicity box;
-- no applicable positive-gain Graver move at an optimal factorization.
-
-This is the current general formalism. The missing theorem is the special rank-three augmentation statement that excludes all such terminal cores.
+Thus the missing statement is no longer an infinite stabilization theorem. It is a **finite-level rank-three augmentation theorem**.
 
 ## Retained negative / non-promoted findings
 
 - Exact-name and one lexical multiwise donor-search route were flat. Flatness is not a novelty certificate.
-- The first unstructured support-7 enumeration exceeded the host budget. It remains preserved as `CANNOT_CHECK_RESOURCE_BOUND`; the successful projective formulation is a representation repair, not a relabeling of that timeout.
-- Several apparent saturation observations collapsed under hostile review to direct consequences of `D_2=29` and were not promoted.
-- A donor search for a rank-three inverse theorem strong enough to eliminate the length-19 corridor patterns did not close them. See `LENGTH19_TRIPLES_RESIDUAL_V1.md`.
-- Global cardinality of the proper-subsum avoidance set is not by itself a corridor separator. The retained repair is the projective line-fiber decomposition, which preserves scalar and rank information.
-- The count 14,860 belongs to support seven. The independently frozen support-8 one-collision short-free count is 15,844; stale handoffs conflating them are rejected.
-- Appending `g^p` need not increase the packing number by exactly one, so defect maximizers do not automatically propagate to larger `k`. Eventual linearity therefore does not prove immediate stabilization. See `FAILURE_DEFECT_BOOTSTRAP_V1.md`.
-- Atomic excess signatures and a generic Graver test-set theorem are exact reductions, not the missing rank-three augmentation proof.
+- The first unstructured support-7 enumeration exceeded the host budget and remains `CANNOT_CHECK_RESOURCE_BOUND`.
+- Several apparent saturation observations reduced to direct consequences of `D_2=29` and were not promoted.
+- No verified rank-three donor inverse theorem yet eliminates the two length-19 corridors.
+- Global cardinality of the proper-subsum avoidance set is insufficient; projective line fibers retain the needed rank/scalar data.
+- The count 14,860 belongs to support seven; the support-8 one-collision short-free count is 15,844.
+- Appending `g^p` need not raise packing by exactly one. Eventual linearity alone does not prove immediate stabilization; see `FAILURE_DEFECT_BOOTSTRAP_V1.md`.
+- The old 322/301 minimal-signature counts remain correct for the pre-coding algebraic shell. The new 321/300 counts are a strict coding-theory refinement, not a correction of those checkers.
+- Generic Graver test-set existence is an exact reformulation, not the missing positive-gain rank-three theorem.
 
 ## Open residuals / next discriminators
 
-1. **Defect-core augmentation theorem.** Prove that every `p`-short-zero-free box factorization over `C_p^3` with cost above `M_p` has an applicable positive-gain Graver move. Use projective support and deficit incidence before constructing any atom or move set.
-2. **Length-19 inverse residual.** Continue `(8,10,19)` and `(9,9,19)` from the line-fiber grammar: projective support first, then companion fibers, allowed scalar lists, positive primitive kernels, and conformal three-splitting. No unstructured atom-pair enumeration.
-3. **Support-8 Type-A closure.** Exhaust or analytically eliminate the eight-distinct-direction branch over the surviving 347 projective classes and 5,841,092 deficit-profile/class pairs before scalar/kernel filtering. This is the smallest unresolved face of the `(7,3,1)` core.
-4. **Higher-core induction.** Use any verified `m`-core elimination as a donor bound on every `m`-atom subproduct of a larger terminal factorization, recursively tightening its excess signatures.
-5. **Hypergraph/coding dual.** Seek a matching theorem or bounded exceptional list for the positive codewords of the projective parity-check matrix.
-6. **Donor/priority saturation.** Continue alias/function/historical searches for the defect envelope, generalized Noether stabilization, Graver augmentation in block monoids, and rank-three primitive-kernel decomposition before novelty language.
+1. **Finite first-failure augmentation theorem.** Work only with `3<=m<=K_p` and `q<=floor(M_p/(m-1))`. Use slack signatures before vector enumeration. High levels `m>=2p-3` must enter a four-secant/rich-plane branch.
+2. **Support-8 Type-A closure.** Eliminate the eight-distinct-direction `(7,3,1)` face over the surviving 347 projective classes and 5,841,092 deficit-profile/class pairs before scalar/kernel filtering.
+3. **Length-19 inverse residual.** Continue `(8,10,19)` and `(9,9,19)` via line fibers, primitive positive kernels and conformal three-splitting.
+4. **Coding/finite-geometry upgrade.** Improve the generic Griesmer cap using weighted-projective restrictions, repeated-column restrictions, rich-plane counts and Property C.
+5. **Higher-core induction.** Push every verified lower level into all proper atom subproducts of a first failure before constructing moves.
+6. **Hypergraph dual.** Seek a matching/fractional-matching theorem whose deficiency equals the factor-excess slack.
+7. **Donor/priority saturation.** Continue searches for stabilization-index bounds, generalized Noether stabilization, rank-three primitive-kernel decomposition and weighted projective-code bounds.
 
 ## Claim ceiling
 

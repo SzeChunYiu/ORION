@@ -43,3 +43,23 @@ jobs:
           assert a['pruned_by_m']==b['pruned_by_m']
           print('MINIMAL_DEFECT_SIGNATURE_RECEIPTS_AGREE',a['canonical_sha256'])
           PY
+      - name: Apply coding-theory first-failure reduction
+        run: |
+          python research/experiments/davenport-c7-frontier/check_first_failure_reduction_v1.py | tee /tmp/first-primary.json
+      - name: Independently verify coding-theory first-failure reduction
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_first_failure_reduction_independent_v1.py | tee /tmp/first-independent.json
+      - name: Compare coding-refined receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/first-primary.json'))
+          b=json.load(open('/tmp/first-independent.json'))
+          assert a['canonical_sha256']==b['canonical_sha256']=='37f152e4074a10edeedc14ea52207fb189bcc000dcb2901c4bb182defe91d68c'
+          assert a['p5_first_failure_signatures']==b['p5_signatures']==71
+          assert a['p7_first_failure_signatures']==b['p7_signatures']==321
+          assert a['p7_short_atom_removed']==b['p7_short_atom_removed']==8
+          assert a['p7_corridor_removed']==b['p7_corridor_removed']==13
+          assert a['p7_donor_pruned_signatures']==b['p7_donor_pruned_signatures']==300
+          print('CODING_REFINED_FIRST_FAILURE_RECEIPTS_AGREE',a['canonical_sha256'])
+          PY
