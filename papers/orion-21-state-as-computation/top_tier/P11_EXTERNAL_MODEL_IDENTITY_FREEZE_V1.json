@@ -1,0 +1,108 @@
+{
+  "family_classes_required": [
+    "GPT_CLASS",
+    "CLAUDE_OR_GEMINI_CLASS",
+    "OPEN_WEIGHT"
+  ],
+  "forbidden": [
+    "proxying a lane through another model",
+    "substituting an unavailable family",
+    "summarizing instead of executing a call",
+    "revealing protected outcome fields to any lane prompt"
+  ],
+  "frozen_at_utc": "2026-09-03T12:14:59Z",
+  "infrastructure_identities": [
+    {
+      "identity_id": "bge-m3-embedder",
+      "invocation_contract": [
+        "POST",
+        "http://127.0.0.1:11434/api/embed",
+        "body: model=bge-m3"
+      ],
+      "note": "infrastructure identity, not a model family: identical to the BM25 index, it is charged per frozen accounting and shared across all lanes",
+      "role": "dense retrieval embedder (shared, query-agnostic)"
+    },
+    {
+      "identity_id": "llama3.1-8b-compiler",
+      "invocation_contract": "same server/model/options as llama3.1-8b-ollama",
+      "note": "infrastructure identity: the compiler is the state-construction mechanism under test, held FIXED across lanes so family comparisons are apples-to-apples",
+      "role": "FIXED local compiler for query-agnostic state compilation (hierarchical map-reduce), shared across all families"
+    }
+  ],
+  "model_identities": [
+    {
+      "executable": "codex",
+      "executable_path": "/home/scyiu/orion-p11-campaign/npm-prefix/bin/codex",
+      "family_class": "GPT_CLASS",
+      "invocation_contract": [
+        "codex",
+        "exec",
+        "--skip-git-repo-check",
+        "<prompt>"
+      ],
+      "invocation_environment": {
+        "CODEX_HOME": "/home/scyiu/.codex (config.toml: model=gpt-5.5, model_reasoning_effort=medium, service_tier=fast)",
+        "stdin": "/dev/null"
+      },
+      "kind": "cli",
+      "model_identity_id": "gpt-5.5-codexcli",
+      "single_turn": true,
+      "verification": {
+        "method": "echo probe: prompt 'Reply with exactly: P11CODEXPROBE'",
+        "result": "PASS \u2014 exact sentinel returned; codex --version = 0.129.0-alpha.15 on execution node",
+        "status": "VERIFIED",
+        "verified_on": "cn062 via sbatch (lu48)"
+      },
+      "version": "0.129.0-alpha.15"
+    },
+    {
+      "executable": "claude",
+      "executable_path": "/home/scyiu/orion-p11-campaign/npm-prefix/bin/claude",
+      "family_class": "CLAUDE_OR_GEMINI_CLASS",
+      "invocation_contract": [
+        "claude",
+        "-p",
+        "<prompt>",
+        "--model",
+        "claude-fable-5",
+        "--output-format",
+        "json",
+        "--verbose"
+      ],
+      "invocation_environment": {
+        "credentials": "/home/scyiu/.claude/.credentials.json (mode 600)",
+        "stdin": "/dev/null"
+      },
+      "kind": "cli",
+      "model_identity_id": "claude-fable-5-cli",
+      "single_turn": true,
+      "verification": {
+        "method": "authenticated session listing + echo probe with exact sentinel P11CLAUDEPROBE at window start",
+        "status": "AUTHENTICATED_PENDING_SAME_DAY_ECHO"
+      }
+    },
+    {
+      "executable": "ollama serve (linux-amd64 release build) + /api/generate",
+      "family_class": "OPEN_WEIGHT",
+      "invocation_contract": [
+        "POST",
+        "http://127.0.0.1:11434/api/generate",
+        "body: model=llama3.1:8b, stream=false, options.num_ctx=131072, temperature=0.6, top_p=0.9, seed=42"
+      ],
+      "invocation_environment": {
+        "OLLAMA_MODELS": "/home/scyiu/orion-p11-campaign/ollama/models",
+        "threads": "32 (lu48 batch)"
+      },
+      "kind": "local_server",
+      "model_identity_id": "llama3.1-8b-ollama",
+      "single_turn": true,
+      "verification": {
+        "method": "echo probe: prompt 'Reply with exactly: P11OPENPROBE' + bge-m3 /api/embed sanity",
+        "status": "PENDING_SETUP_JOB_3570185"
+      }
+    }
+  ],
+  "pattern_source": "papers/orion-22-adaptive-state-reasoning/top_tier/MODEL_IDENTITY_FREEZE_V1.json (P12 invocation-contract pattern)",
+  "policy": "Identities are exact CLI/server invocation contracts verified on the execution nodes BEFORE any protected call. A lane is recorded VERIFIED only after an echo probe returned the exact requested sentinel on an execution node. No lane may be proxied, substituted, or summarized: each arm call is the exact contract below.",
+  "schema": "ORION.A2.P11ExternalModelIdentityFreeze.v1"
+}
