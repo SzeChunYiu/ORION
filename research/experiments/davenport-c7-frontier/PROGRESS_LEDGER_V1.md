@@ -1,84 +1,101 @@
-# C7^3 multiwise Davenport frontier — progress ledger V10
+# C7^3 multiwise Davenport frontier — progress ledger V11
 
 Status: live LLM-assisted ORION research ledger. No novelty authority.
 
 ## Verified structural spine
 
-1. **Exact donor base.** For prime `p>=5`, `D_2(C_p^3)=(9p-5)/2`; in particular `D_2(C_7^3)=29`.
-2. **Length-37 atom corridor.** A `C_7^3` zero-sum length-37 packing obstruction has a maximum three-atom factorization of one of `(8,10,19)`, `(9,9,19)`, `(9,10,18)`, `(9,11,17)`, `(9,12,16)`, `(10,10,17)`.
-3. **Support-7 exact closure.** All 3,418,800 projective/scalar/multiplicity lifts were replayed; 14,860 are 7-short-free and every one four-packs. Hence support is at least eight.
-4. **Support-8 one-projective-collision closure.** All 19,114,200 parameterized lifts were replayed; 15,844 are 7-short-free and all four-pack. Hence any support-eight obstruction uses eight distinct projective directions.
-5. **Support-8 Type-A residual.** Eight distinct directions reduce to 350 projective classes; after the existing four-secant/Property-C exclusions, 347 classes and 5,841,092 class/deficit-profile pairs remain before scalar/kernel filtering.
-6. **Packing-defect equivalence.** With `z(B)` the maximum zero-sum packing, `delta_p(B)=|B|-p z(B)`. The candidate all-`k` formula is equivalent to `delta_p(B)<=M_p=(5p-5)/2` for every zero-sum block. A counterexample is an above-threshold finite-box kernel vector terminal under every positive-gain conformal Graver move.
-7. **Standard asymptotic coordinates.** Freeze--Schmid's `D_0(G)` is the eventual intercept and `k_D(G)` the stabilization index. The target is exactly `D_0(C_p^3)=M_p` and `k_D(C_p^3)=2`.
-8. **First-failure grammar.** If the target first fails at level `m>=3` with overshoot `q>=1`, a maximum atomic factorization has excesses `e_i=|U_i|-p` with `e_i>=q`, `sum e_i=M_p+q`, `(m-1)q<=M_p`, and every proper atom subproduct has its expected packing number.
-9. **Restricted-sum front end.** A first failure is `(p+q-1)`-short-zero-free. Bhowmik--Schlage-Puchta gives `q<=(p-1)/2`; Zhang gives a maximum factorization with `min e_i<=p-2`.
-10. **Finite level cap.** The Griesmer/plane argument plus the algebraic first-failure cap gives `K_5=10`, `K_7=15`, and `K_p=(5p-3)/2` for primes `p>=11`. Freeze--Schmid's recurrence also gives the eta-tail gate `3<=m<=min(M_p+1,T_p(E_p))` for any verified upper bound `eta(C_p^3)<=E_p`.
-11. **p=7 signature shell.** Algebraic: 322. After coding: 321. After `q<=3`: 300. After the uniform short-atom filter: 299. After the six exact `(m,q)=(3,1)` corridors: **286**. Independent digest: `2b49f2b6f4579a27165ebe5285292a5966901f1af7793a5cf73f3e9c8d47be19`.
-12. **Maximal-atom line fibers.** In the `(8,10,19)` and `(9,9,19)` corridors, the 19-atom is projectively separated and the companion scalar fibers obey the exact line-fiber avoidance grammar.
-13. **Two-term maximal-atom avoidance.** Geroldinger--Yang's p-group `nu` theorem implies: if maximal atom `U` and atom `V` satisfy `z(UV)=2`, then `Sigma_2(U)` is disjoint from `Sigma_{3..|V|-1}(V)`. Equivalently, short negative V-subsums have U-representation depth at least three. For the 10-atom corridor the negative range is sizes `1..7`; for the 9-atom corridor it is `1..6`. The independent affine-coset replay checks 900,748 ordered pairs.
-14. **q-dependent rank-two plane cap.** Exact rank-two restricted-sum theory gives
+The current general target is
 
-   `s_{<=p+q-1}(C_p^2)=3p-q-1`,
+`D_k(C_p^3)=kp+(5p-5)/2=((2k+5)p-5)/2` for prime `p>=5`, `k>=2`.
 
-   hence every first-failure plane has occupancy at most
+The branch has reduced a first failure to a finite rank-three augmentation problem:
 
-   `3p-q-2`.
+- with `M_p=(5p-5)/2`, a first failure has `z(B)=m`, `|B|=pm+M_p+q`, `q>=1`;
+- every proper atom subproduct has its expected packing number;
+- atom excesses satisfy `e_i>=q`, `sum e_i=M_p+q`, `(m-1)q<=M_p`;
+- the sequence is `(p+q-1)`-short-zero-free;
+- Bhowmik--Schlage-Puchta gives `q<=(p-1)/2`;
+- Zhang forces a maximum factorization containing an atom with excess at most `p-2`;
+- coding plus the algebraic cap gives finite first-failure levels: `K_5=10`, `K_7=15`, `K_p=(5p-3)/2` for `p>=11`;
+- Freeze--Schmid's eta-tail recurrence gives the alternative bound `m<=min(M_p+1,T_p(E_p))` whenever `eta(C_p^3)<=E_p` is known;
+- the p=7 excess-signature shell is reduced from 322 algebraic signatures to 286 after coding, the q-cap, the uniform short-atom theorem and the six exact `(m,q)=(3,1)` atom corridors;
+- q-dependent rank-two restricted-sum theory gives every plane occupancy `<=3p-q-2`, with strict cap `3p-q-3` for four or more occupied directions;
+- equality for `q>=2` forces the exact plane grammar `e1^(p-1)e2^(p-1)(e1+e2)^(p-q)` and a canonical atom `e1^q e2^q (e1+e2)^(p-q)` of length `p+q` into a maximum factorization;
+- weighted projective deficits satisfy `sum_line d_i >= (t-3)(p-1)+(q-1)` on every t-secant, strengthened to `+(q)` for `t>=4`;
+- full-multiplicity directions form an arc for `q>=2`;
+- maximal-atom products have the Geroldinger--Yang two-term avoidance: if maximal `U` and atom `V` have `z(UV)=2`, then `Sigma_2(U)` misses `Sigma_{3..|V|-1}(V)`, so the corresponding short negative V-subsums require U-representation depth at least three;
+- every surviving first failure remains terminal under every positive-gain conformal Graver move.
 
-   For `q>=2`, equality forces the exact three-direction pattern
+## Exact p=7 length-37 frontier
 
-   `e1^(p-1) e2^(p-1) (e1+e2)^(p-q)`.
+For zero-sum `B` over `C_7^3` with `|B|=37` and `z(B)<=3`:
 
-   A four-direction plane therefore has the strict cap `3p-q-3`. Saturation also forces the canonical atom `e1^q e2^q (e1+e2)^(p-q)` of length `p+q` and excess exactly `q` into a maximum factorization.
-15. **Weighted arc consequence for q>=2.** If `r` projective directions have weights `w_i` and deficits `d_i=p-1-w_i`, `Delta=sum d_i`, then every projective line with `t>=3` occupied directions satisfies
+- `z(B)=3`, the `(p,m,q)=(7,3,1)` slice;
+- support is at least eight;
+- support eight must use eight distinct projective directions;
+- every maximum three-atom factorization has one of
+  `(8,10,19)`, `(9,9,19)`, `(9,10,18)`, `(9,11,17)`, `(9,12,16)`, `(10,10,17)`;
+- the support-seven cover is completely closed: 3,418,800 lifts, 14,860 short-free, all four-pack;
+- the support-eight one-projective-collision cover is completely closed: 19,114,200 lifts, 15,844 short-free, all four-pack;
+- the smallest unresolved support-eight face is the eight-distinct-direction Type-A branch over 347 projective classes and 5,841,092 class/deficit-profile pairs;
+- the two length-19 corridors obey both the earlier scalar line-fiber grammar and the newer U-representation-depth >=3 constraints.
 
-   `sum_line d_i >= (t-3)(p-1)+(q-1)`,
+No `D_3(C_7^3)` value is claimed yet.
 
-   with `+q` instead of `+(q-1)` for `t>=4`. Full-multiplicity directions form an arc, so
+## New bounded closure: `(p,q,m,r)=(7,2,8,13)`
 
-   `r >= max(ceil(N/(p-1)), ceil((N-p-1)/(p-2)))`.
+`RANK2_Q_PLANE_CAP_AND_WEIGHTED_ARC_V1.md` first raised the direction floor in the `(q,m)=(2,8)` first-failure slice to `r>=13`.
 
-   If `Delta<q-1`, the entire direction set is an arc and has size at most `p+1`.
-16. **p=7 high-overshoot direction refinement.** The new weighted-arc condition raises the projective-direction floor by one in exactly four slices: `(q,m)=(2,6),(2,7),(3,5),(3,6)`. The new floors are respectively `11,12,10,11`. No whole `(m,q)` level is eliminated by this step alone.
-17. **Solved p=5 control.** The sibling ORION-04 package plus `eta(C_5^3)=33` gives `D_k(C_5^3)=5k+10` for every `k>=2`; retained only as a control for the general mechanism.
+`P7_Q2_M8_R13_CONIC_CLOSURE_V1.md` now eliminates equality.
 
-## Current target
+At `r=13`, total direction deficit is
 
-For `p>=5`, the conjectured line is
+`Delta=13*6-73=5`.
 
-`D_k(C_p^3)=kp+(5p-5)/2=((2k+5)p-5)/2`, `k>=2`.
+The arc bound forces exactly eight weight-6 directions and five weight-5 directions. The eight full directions form an 8-arc and hence, by Segre, a conic. Total deficit five is too small for a four-secant, so the direction support is a `(13,3)`-arc formed by that conic plus five off-conic points.
 
-A first counterexample can now be required to satisfy simultaneously:
+Two independent generators enumerate exactly **5,166** valid five-point off-conic extensions. Canonical cover digest:
 
-- finite `(m,q)` range with `q<=(p-1)/2`;
-- excess slack `e_i=q+f_i`, `sum f_i=M_p-(m-1)q`;
-- a short atom with `e_i<=p-2`;
-- q-dependent plane occupancy `<=3p-q-2`;
-- exact saturated-plane grammar or an extra unit of plane deficit;
-- weighted projective secant inequalities and strengthened direction floors;
-- maximal-atom representation-depth constraints when a `D(G)`-atom occurs;
-- hereditary rigidity of every proper atom subproduct;
-- terminality under positive-gain Graver augmentation.
+`0eb3a99b0bb1c30595f9b6b58e74b980c094c5d5754a50f726d82aed4711d82c`.
 
-The missing theorem is still the **finite rank-three augmentation theorem**: every surviving first-failure kernel must admit a positive-gain two- or three-atom refactor.
+Every conic secant through a weight-5 point has occupancy `6+6+5=17`, saturating the q-dependent plane cap. Rank-two inverse structure therefore forces the actual-element equation
 
-## Retained negative / non-promoted routes
+`x_D=x_i+x_j`
 
-- Unstructured support enumeration remains inferior to the projective reduction.
-- Eventual linearity does not imply stabilization at `k=2`: appending a pure `g^p` block need not raise packing by exactly one.
-- Generic Graver-basis existence is a reformulation, not the needed rank-three positive-gain theorem.
-- General exact `eta(C_p^3)` is not assumed for primes `p>=7`.
-- The additive-basis donor sweep after the two-term `nu` lemma did not produce a theorem forcing every relevant target to have U-depth at most two; no corridor elimination is claimed from that route.
-- The q-dependent rank-two cap improves geometry but does not by itself delete a complete first-failure `(m,q)` level.
+on every such secant. All eight conic directions participate in saturated secants for every candidate.
+
+Primary verifier: assemble the resulting homogeneous system in 13 scalar variables over `F_7`; **all 5,166 matrices have rank 13**.
+
+Independent verifier: derive multiplicative conic-scalar ratios on every saturated secant and propagate them around cycles; **all 5,166 candidates have an inconsistent ratio cycle**.
+
+Therefore the minimal direction case is impossible:
+
+`(p,q,m)=(7,2,8) => r>=14`.
+
+This is a bounded first-failure closure only; the `r>=14` branch remains.
+
+## Current missing theorem
+
+The all-prime problem is still isolated to a finite **rank-three augmentation theorem**:
+
+every surviving first-failure positive kernel vector satisfying the short-sum, atom-excess, q-dependent plane, weighted-secants, maximal-atom depth and hereditary subproduct constraints must admit a positive-gain two- or three-atom conformal refactor.
 
 ## Next discriminators
 
-1. **Saturated-plane factorization attack.** If a plane is saturated, exploit the forced excess-`q` atom of length `p+q`; otherwise charge the extra plane deficit globally until a Graver move is forced.
-2. **Representation-depth corridor attack.** Combine U-depth `>=3` with exact short-atom/rank-two subsum structure; kill a maximal-atom corridor if any required negative V-subsum is forced to have U-depth `<=2`.
-3. **Support-8 Type-A exact closure.** Finish the 347 eight-distinct-direction classes, retaining complete primitive-core certificates for any survivor.
-4. **Weighted projective supersaturation.** Use the q-dependent secant deficit inequalities together with lower bounds on trisecants/four-secants to raise support or force a saturated plane.
-5. **Local-`nu` extension.** Seek a three-deletion analogue for maximal atoms in `C_p^3`.
-6. **Donor saturation.** Continue searches under `D_0`, `k_D`, generalized Noether numbers, sets of lengths, products of atoms, local `nu`, restricted sumsets, projective codes, and Graver augmentation.
+1. Continue the `(p,q,m)=(7,2,8)` branch from the improved floor `r>=14`; test whether weighted secant supersaturation forces either another saturated plane system or a direct Graver move.
+2. Apply the same saturated-conic compatibility method to the other bumped slices `(q,m)=(2,6),(2,7),(3,5),(3,6)` at their minimum projective-direction floors.
+3. Finish the eight-distinct-direction support-eight Type-A `(7,3,1)` closure.
+4. Combine maximal-atom U-depth >=3 with exact short-atom/rank-two subsum structure in `(8,10,19)` and `(9,9,19)`.
+5. Seek a local-`nu` three-deletion theorem for maximal atoms in `C_p^3`.
+6. Continue donor saturation under generalized Noether numbers, sets of lengths, local `nu`, restricted sumsets, projective codes and Graver augmentation.
+
+## Retained negative / non-promoted routes
+
+- Eventual linearity alone does not imply stabilization at `k=2`.
+- Generic Graver-basis existence is a reformulation, not the needed positive-gain theorem.
+- General exact `eta(C_p^3)` is not assumed for primes `p>=7`.
+- Additive-basis donor searches have not yet forced a relevant maximal-atom target to have representation depth at most two.
+- The q-dependent rank-two cap improves several geometric slices but by itself does not delete a complete `(m,q)` level; the new `q=2,m=8,r=13` deletion needs the scalar compatibility layer.
 
 ## Claim ceiling
 

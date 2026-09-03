@@ -119,3 +119,23 @@ jobs:
           assert a['p7_griesmer_caps']==[123,115,114]
           print('RANK2_Q_PLANE_RECEIPTS_AGREE')
           PY
+      - name: Close p7 q2 m8 r13 conic boundary
+        run: |
+          python research/experiments/davenport-c7-frontier/check_p7_q2_m8_r13_conic_closure_v1.py | tee /tmp/conic-primary.json
+      - name: Independently verify conic scalar incompatibility
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_p7_q2_m8_r13_conic_closure_independent_v1.py | tee /tmp/conic-independent.json
+      - name: Compare conic-boundary receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/conic-primary.json'))
+          b=json.load(open('/tmp/conic-independent.json'))
+          digest='0eb3a99b0bb1c30595f9b6b58e74b980c094c5d5754a50f726d82aed4711d82c'
+          assert a['candidate_extensions']==b['candidate_extensions']==5166
+          assert a['candidate_sha256']==b['candidate_sha256']==digest
+          assert a['rank_13_systems']==5166
+          assert a['all_conic_directions_covered']==b['all_conic_directions_covered']==5166
+          assert b['ratio_inconsistent_candidates']==5166
+          print('P7_Q2_M8_R13_CONIC_RECEIPTS_AGREE',digest)
+          PY
