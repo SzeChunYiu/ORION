@@ -15,8 +15,15 @@ jobs:
         # N2 runs only as a committed LUNARC receipt: measured 2026-09-03 it
         # exceeds 2h40m single-core (CI rc=124 at 9600s) against this job's
         # 30-minute timeout, while H4 completes in 58.3s. The N2 execution is
-        # certified by 8h-budget LUNARC jobs whose receipts are validated by
-        # max_r5h_lunarc_receipt_validator.py below.
+        # certified by LUNARC jobs whose receipts are validated by
+        # max_r5h_lunarc_receipt_validator.py below: the original single-job
+        # leg hit its 8h budget (rc=124, not a receipt); the revival
+        # instrument max_r5h_subject_chunked.py re-runs the identical frozen
+        # fold window-chunked with per-window JSON checkpoints, proven against
+        # the CI H4 receipt field-for-field (parity gate: every
+        # checkpoint-derived field bit-identical; the sole divergence is 1 ulp
+        # in B0_Pauli_LCU.Lambda from the cross-platform JW-coefficient libm
+        # boundary, a value finalize recomputes rather than checkpoints).
         subject: [H4]
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -36,3 +43,8 @@ jobs:
           cd research/extensions/orion-q
           python max_r5h_lunarc_receipt_validator.py | tee /tmp/r5h-receipts.txt
           grep '^ORIONQ_MAX_R5H_RECEIPTS=' /tmp/r5h-receipts.txt
+      - name: Receipt validator selftest
+        run: |
+          cd research/extensions/orion-q
+          python test_max_r5h_lunarc_receipt_validator.py | tee /tmp/r5h-selftest.txt
+          grep '^ORIONQ_R5H_VALIDATOR_SELFTEST=PASS' /tmp/r5h-selftest.txt
