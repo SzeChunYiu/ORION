@@ -1,0 +1,102 @@
+{
+ "schema": "ORION.A4.ModelIdentityFreeze.v1",
+ "date": "2026-09-03",
+ "issue_binding": "SzeChunYiu/ORION-paper#49 A4 checkbox 'Freeze >=3 model/agent families if executable under the access plan'; resolves the model-identity open precondition of A4_INTERVENTION_PREREG_V1.json in this directory",
+ "artifact_class": "FROZEN_BEFORE_PROTECTED_EVALUATION",
+ "flags": {
+  "protected_agent_runs_executed": false,
+  "protected_outcomes_accessed": false,
+  "development_partition_runs_executed": false,
+  "intervention_study_executed": false,
+  "results_exist": false,
+  "lanes_fully_deployed": false
+ },
+ "execution_pattern": "ALL A4 study computation executes as LUNARC batch jobs (sbatch) from /home/scyiu/orion-a4-preflight, account lu2026-2-51 (operator directive 2026-09-03); no interactive long processes on login nodes or billy-old; heavy artifacts live under /projects/hep/fs9/users/scyiu/orion-a4 (the /home/scyiu quota was hit once at ~502k files on 2026-09-03 and relieved by moving the ollama stage there and clearing the npm cache — recorded so no lane repeats it)",
+ "model_identities": [
+  {
+   "class": "GPT_CLASS",
+   "model_family_id": "gpt-5.5-codexcli",
+   "provider_lane": "codex CLI under the operator ChatGPT subscription auth",
+   "runtime_version": "codex-cli 0.129.0-alpha.15 (operator-pinned EXACTLY at this version forever; any reinstall uses @openai/codex@0.129.0-alpha.15)",
+   "model_id": "gpt-5.5",
+   "identity_echo_host": "billy-old",
+   "host_config": {
+    "service_tier": "fast",
+    "model_reasoning_effort": "high"
+   },
+   "invocation_contract": "codex exec --model gpt-5.5, single-turn, non-interactive (--skip-git-repo-check); the harness passes the unit prompt as the sole argument and reads stdout; effort/service tier come from the frozen host config and are never mutated per call",
+   "decoding": "provider-default, non-configurable via CLI; nondeterminism carried by the 1-run-per-cell policy (A4_INTERVENTION_MENU_DRAFT_V1)",
+   "charge_accounting": "the 'tokens used' line of codex exec output (reportable: 15,981 in the echo receipt)",
+   "receipt_file": "receipts/codex_echo.txt",
+   "receipt_expected_token": "A4_CODEX_ECHO_GPT55_OK",
+   "receipt_verified_utc": "2026-09-03T11:47:01Z (receipts/codex_meta.txt)"
+  },
+  {
+   "class": "CLAUDE_OR_GEMINI_CLASS",
+   "model_family_id": "claude-fable-5-claudecli",
+   "provider_lane": "claude CLI under the operator claude.ai subscription auth",
+   "runtime_version": "claude CLI 2.1.258 (Claude Code)",
+   "model_id": "claude-fable-5",
+   "identity_echo_host": "mac-mini (billy)",
+   "host_config": {
+    "note": "billy-old also runs claude CLI 2.1.143 but its lane is subscription-walled until the weekly window resets (banner observed 2026-09-03T11:47:48Z: 'You're out of extra usage / resets 3am (Europe/Stockholm)'); the Mac mini lane answered the same-day echo, so the Mac is the identity host and the billy-old lane is a recorded secondary"
+   },
+   "invocation_contract": "claude -p --model claude-fable-5, single-turn print mode, non-interactive; the harness passes the prompt as the argument and reads stdout; no agentic tool use is requested by any A4 study prompt",
+   "decoding": "provider-default, non-configurable via CLI; 1-run-per-cell policy",
+   "charge_accounting": "usage reported by the lane; unreportable at the lane -> CANNOT_CHECK_COST for that task per the prereg charge rule",
+   "receipt_file": "receipts/claude_echo.txt",
+   "receipt_expected_token": "A4_CLAUDE_ECHO_FABLE5_OK",
+   "receipt_verified_utc": "2026-09-03T11:48:11Z (receipts/claude_meta.txt)"
+  },
+  {
+   "class": "OPEN_WEIGHT_CLASS",
+   "model_family_id": "qwen2.5-7b-instruct-ollama",
+   "provider_lane": "local open-weight runtime: portable ollama bundle installed without root, exposing the OpenAI-compatible /v1/chat/completions endpoint that gym/utils/client_manager.py already speaks natively (all gym providers are OpenAI SDK + base_url)",
+   "runtime_version": "ollama 0.33.2 (portable tar.zst; staged at /projects/hep/fs9/users/scyiu/orion-a4/a4-ollama-portable on LUNARC and ~/a4-ollama-portable on billy-old)",
+   "model_id": "qwen2.5:7b-instruct-q4_K_M (digest 845dbda0ea48, 4.7 GB, sha256-verified pull on 2026-09-03)",
+   "identity_echo_host": "billy-old (CPU)",
+   "host_config": {
+    "study_deployment": "LUNARC compute node CPU inside the sbatch job; model blobs are copied from /projects to node-local $TMPDIR before serving (NFS-backed model stores stall the CPU warmup pathologically — attempts 3570013 and 3570187); the runner load timeout is set with OLLAMA_LOAD_TIMEOUT (ollama 0.33.2 does NOT read OLLAMA_LLAMA_SERVER_TIMEOUT)"
+   },
+   "invocation_contract": "POST {base_url}/v1/chat/completions with the frozen model id; base_url is local to the job; temperature 0 fixed; max_tokens per arm; blobs never modified after the sha256-verified pull",
+   "decoding": "temperature 0; quantization q4_K_M frozen at pull time",
+   "charge_accounting": "prompt+completion tokens from the endpoint usage object (verified reportable in the echo receipt: 48 prompt + 11 completion = 59)",
+   "receipt_file": "receipts/qwen_echo.json",
+   "receipt_expected_token": "A4_QWEN_ECHO_V1_OK",
+   "receipt_verified_utc": "2026-09-03T12:08:21Z (receipts/qwen_meta.txt)"
+  }
+ ],
+ "lunarc_sbatch_lanes": [
+  {
+   "family": "gpt-5.5-codexcli",
+   "status": "LANE_VERIFIED_ON_LUNARC_SBATCH",
+   "job_id": 3569851,
+   "node": "cn019",
+   "receipt": "npm install @openai/codex@0.129.0-alpha.15 into the project dir (module nodejs/20.9.0), ~/.codex/auth.json pre-staged; codex exec --model gpt-5.5 from inside the job returned exactly A4_CODEX_LUNARC_ECHO_OK at 2026-09-03T11:53:24Z, job COMPLETED in 46s; output lanecodex-3569851.out"
+  },
+  {
+   "family": "claude-fable-5-claudecli",
+   "status": "LANE_BLOCKED_HONEST_RECORD",
+   "job_id": 3570012,
+   "node": "cn062",
+   "receipt": "npm install @anthropic-ai/claude-code@2.1.258 succeeded (3 packages) and claude --version answered 2.1.258 inside the job, but claude -p returned 'You have hit your weekly limit / resets 3am (Europe/Stockholm)' (2026-09-03T11:59:14Z, laneclaude-3570012.out); additionally npm warns EBADENGINE: claude-code 2.1.258 requires node >=22.0.0 while the available module is nodejs/20.9.0 — a nodejs/22+ module must be located before this lane can be certified; identity itself is verified same-day on the Mac mini (see model_identities)"
+  },
+  {
+   "family": "qwen2.5-7b-instruct-ollama",
+   "status": "LANE_VERIFIED_ON_LUNARC_SBATCH",
+   "job_id": 3570226,
+   "node": "cn038",
+   "receipt": "job COMPLETED in 5:46 (partition lu48, --cpus-per-task=16): blobs copied from /projects to node-local $TMPDIR, ollama 0.33.2 served, prewarm 65s, then POST /v1/chat/completions (temperature 0) returned exactly A4_QWEN_LUNARC_ECHO_V1_OK with usage 51 prompt + 14 completion = 65 tokens, finish_reason stop; verbatim response committed as receipts/qwen_lunarc_echo.json; output laneqwen-3570226.out. Failed-attempt receipts kept for the record: 3570013 timed out at the default runner-load timeout (NFS-backed OLLAMA_MODELS); 3570187 added node-local staging but set the timeout under the wrong env name for 0.33.2 (OLLAMA_LLAMA_SERVER_TIMEOUT is not read; the binary reads OLLAMA_LOAD_TIMEOUT, verified by strings on the pinned bundle); 3570024 was cancelled during its stall; the fix pair in 3570226 was OLLAMA_LOAD_TIMEOUT=1800 + dedicated --cpus-per-task=16"
+  }
+ ],
+ "provider_config_replacement": {
+  "banned": "the shipped SUPPORTED_MODELS third-party proxy base URL http://35.220.164.252:3888/v1 with sk-****** placeholder keys (gym/config/config.py:20-160; commented zjuapi.com variant at :153-159) is NEVER used — no key for it exists (PREFLIGHT_V2.json shipped_llm_config_hazard)",
+  "replacement": "each study family is served through its own lane: gpt-5.5 via codex exec; claude-fable-5 via claude -p; qwen2.5 via the job-local OpenAI-compatible ollama endpoint; the A4 harness supplies a per-family config overlay and never edits substrate files"
+ },
+ "open_preconditions_before_any_study_model_call": [
+  "claude-fable-5-claudecli LUNARC sbatch lane: retry the in-job echo after the subscription weekly window resets (after 2026-09-04 03:00 Europe/Stockholm) and after locating a nodejs/22+ module for claude-code 2.1.258; the Mac mini identity echo does not substitute for the LUNARC lane receipt",
+  "development-partition base-condition runs (sbatch) -> candidate calibration -> A4_CANDIDATE_POLICY_BINDING_V1.json committed (per A4_INTERVENTION_PREREG_V1.json)"
+ ],
+ "scientific_authority_delta": "NONE__IDENTITY_BINDING_ONLY",
+ "successor_rule": "changing any frozen identity field (model id, runtime version, quantization, echo host, invocation contract, decoding) after any development/primary/replication study-model run requires a successor identity freeze; a lane that becomes blocked is recorded with its job receipts as an honest terminal and never papered over; the >=3-family requirement is satisfied at the identity level by these three classes and lane deployment is tracked separately in lunarc_sbatch_lanes"
+}
