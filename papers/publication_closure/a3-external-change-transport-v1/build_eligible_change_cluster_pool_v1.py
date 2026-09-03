@@ -84,11 +84,14 @@ def _member_manifests_v3(source_frame: dict[str, dict[str, Any]], base_dir: Path
     """Load the frozen v3 member-manifest substrate, fail closed on any defect.
 
     Returns the pool-binding block (per-family before/after v3 aggregate shas
-    plus the substrate identity), or None when the v3 harvest result has not
-    been materialized yet. A present-but-failed harvest result is a hard error:
-    the pool must never silently fall back to a substrate that failed its
-    reproducibility gate. Partial family coverage, chunk-byte drift against the
-    recorded chunk digests, and any before==after v3 collapse are hard errors.
+    plus the substrate identity), None when the v3 harvest result has not been
+    materialized yet, or a bound=False record when the harvest failed closed
+    (a fail-closed result is a result: the pool stays on the frozen v2-bound
+    frame, which remains the admission authority until a governed rebind, and
+    records the v3 boundary explicitly instead of crashing or silently
+    consuming a substrate that was never materialized). A SUCCESS result with
+    partial family coverage, chunk-byte drift against the recorded chunk
+    digests, or any before==after v3 collapse is a hard error.
     """
     freeze_dir = (base_dir if base_dir is not None else HERE) / V3_FREEZE_DIRNAME
     result_path = freeze_dir / "RESULT_V3.json"
@@ -101,8 +104,25 @@ def _member_manifests_v3(source_frame: dict[str, dict[str, Any]], base_dir: Path
         return None
     result = json.loads(result_path.read_text(encoding="utf-8"))
     terminal = result.get("terminal")
+    result_sha = hashlib.sha256(result_path.read_bytes()).hexdigest()
     if terminal == V3_FAILURE_TERMINAL:
-        raise ValueError("v3 member-manifest harvest failed closed; the pool cannot bind its substrate")
+        partition = result.get("partition", {})
+        return {
+            "normalization_id": V3_NORMALIZATION_ID,
+            "bound": False,
+            "result_terminal": terminal,
+            "result_sha256": result_sha,
+            "v3_reproducible_n": partition.get("v3_reproducible_n"),
+            "v3_nonreproducible_workflow_ids": partition.get("v3_nonreproducible_workflow_ids", []),
+            "v3_content_only_before_after_equal_workflow_ids": partition.get("v3_content_only_before_after_equal_workflow_ids", []),
+            "v2_aggregate_reproduces_frozen_frame_n": partition.get("v2_aggregate_reproduces_frozen_frame_n"),
+            "state": (
+                "v3 member-manifest harvest failed closed (fail_closed_before_emitting_any_chunk); no v3 "
+                "substrate was materialized, no eligible row carries v3 aggregates, and the frozen v2-bound "
+                "frame remains the admission authority; the descriptor-only families and any frame rebind are "
+                "reserved to freeze governance"
+            ),
+        }
     if terminal != V3_SUCCESS_TERMINAL:
         raise ValueError(f"unknown v3 member-manifest terminal: {terminal!r}")
     if result.get("successor_frame_sha256") != _frozen_validator().EXPECTED_SUCCESSOR_FRAME_SHA256:
@@ -133,8 +153,9 @@ def _member_manifests_v3(source_frame: dict[str, dict[str, Any]], base_dir: Path
 
     return {
         "normalization_id": V3_NORMALIZATION_ID,
+        "bound": True,
         "result_terminal": terminal,
-        "result_sha256": hashlib.sha256(result_path.read_bytes()).hexdigest(),
+        "result_sha256": result_sha,
         "snapshot_sha256": hashlib.sha256((freeze_dir / "SNAPSHOT_V3.json").read_bytes()).hexdigest(),
         "frozen_rows_digest_sha256": snapshot.get("frozen_rows_digest_sha256"),
         "families_bound": len(rows_by_id),
@@ -191,7 +212,7 @@ def build(packets: list[dict[str, Any]], v3_base_dir: Path | None = None) -> dic
             "candidate_visible_packet_frozen": True,
             "candidate_visible_packet_sha256": packet["candidate_visible_packet_sha256"],
         }
-        if substrate is not None:
+        if substrate is not None and substrate.get("bound") is True:
             v3_row = substrate["rows_by_workflow_id"][wid]
             cluster["before_manifest_v3_sha256"] = v3_row["before_normalized_manifest_v3_sha256"]
             cluster["after_manifest_v3_sha256"] = v3_row["after_normalized_manifest_v3_sha256"]
@@ -202,12 +223,27 @@ def build(packets: list[dict[str, Any]], v3_base_dir: Path | None = None) -> dic
         member_manifest_block = {
             "normalization_id": V3_NORMALIZATION_ID,
             "present": False,
+            "bound": False,
             "state": "v3 member-manifest harvest result not yet materialized; pool rows carry frame-side v2 aggregates only",
+        }
+    elif substrate.get("bound") is not True:
+        member_manifest_block = {
+            "normalization_id": V3_NORMALIZATION_ID,
+            "present": True,
+            "bound": False,
+            "result_terminal": substrate["result_terminal"],
+            "result_sha256": substrate["result_sha256"],
+            "v3_reproducible_n": substrate["v3_reproducible_n"],
+            "v3_nonreproducible_workflow_ids": substrate["v3_nonreproducible_workflow_ids"],
+            "v3_content_only_before_after_equal_workflow_ids": substrate["v3_content_only_before_after_equal_workflow_ids"],
+            "v2_aggregate_reproduces_frozen_frame_n": substrate["v2_aggregate_reproduces_frozen_frame_n"],
+            "state": substrate["state"],
         }
     else:
         member_manifest_block = {
             "normalization_id": V3_NORMALIZATION_ID,
             "present": True,
+            "bound": True,
             "result_terminal": substrate["result_terminal"],
             "result_sha256": substrate["result_sha256"],
             "snapshot_sha256": substrate["snapshot_sha256"],
@@ -434,20 +470,37 @@ def self_test() -> dict[str, Any]:
             raise ValueError("v3-bound pool failed the frozen allocation")
         _assert_gold_free(v3_pool)
 
-    # Hostile: a failed v3 harvest result must not be consumed as substrate.
+    # Hostile: a failed v3 harvest result is never consumed as substrate; the
+    # pool stays buildable on the v2-bound frame and records the boundary.
     with tempfile.TemporaryDirectory() as td:
         base = Path(td)
         _synthetic_v3_freeze_dir(source_frame, base)
         result_path = base / V3_FREEZE_DIRNAME / "RESULT_V3.json"
         result = json.loads(result_path.read_text(encoding="utf-8"))
         result["terminal"] = V3_FAILURE_TERMINAL
+        result["partition"] = {
+            "frame_n": 128,
+            "fetches_per_family_version": 3,
+            "v3_reproducible_n": 128,
+            "v3_nonreproducible_workflow_ids": [],
+            "v3_content_only_before_after_equal_workflow_ids": ["106", "360", "384"],
+            "v2_aggregate_reproduces_frozen_frame_n": 33,
+            "v2_aggregate_mismatch_workflow_ids_n": 95,
+        }
         result_path.write_text(json.dumps(result, indent=1, sort_keys=True) + "\n", encoding="utf-8")
-        try:
-            build(packets, v3_base_dir=base)
-        except ValueError:
-            pass
-        else:
-            raise AssertionError("failed v3 harvest accepted as pool substrate")
+        failed_pool = build(packets, v3_base_dir=base)
+        block = failed_pool["member_manifest_freeze_v3"]
+        if block.get("bound") is not False or block.get("result_terminal") != V3_FAILURE_TERMINAL:
+            raise ValueError("failed v3 harvest not recorded in the pool block")
+        if block.get("v3_content_only_before_after_equal_workflow_ids") != ["106", "360", "384"]:
+            raise ValueError("failed v3 harvest partition not carried into the pool block")
+        if any("before_manifest_v3_sha256" in c for c in failed_pool["clusters"]):
+            raise AssertionError("failed v3 harvest leaked v3 aggregates onto pool rows")
+        failed_alloc = allocator.allocate(failed_pool)
+        if failed_alloc["terminal"] != "A3_PREOUTCOME_PRIMARY_REPLICATION_ALLOCATION_FROZEN":
+            raise ValueError("pool on the recorded v3 boundary must still allocate under the frozen frame")
+        if failed_alloc["selection_manifest_sha256"] != allocation["selection_manifest_sha256"]:
+            raise ValueError("recorded-but-unbound v3 boundary changed the allocation digest")
 
     with tempfile.TemporaryDirectory() as td:
         base = Path(td)
@@ -497,6 +550,7 @@ def self_test() -> dict[str, Any]:
         "allocation_selection_manifest_sha256": allocation["selection_manifest_sha256"],
         "v3_substrate_allocation_terminal": v3_allocation["terminal"],
         "v3_substrate_defects_fail_closed": True,
+        "v3_failure_recorded_not_bound": True,
         "partial_coverage_fails_closed": True,
         "gold_never_enters_pool": True,
         "scientific_judgment_made": False,

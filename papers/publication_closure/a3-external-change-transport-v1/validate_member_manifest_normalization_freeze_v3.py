@@ -384,10 +384,19 @@ def self_test() -> dict[str, Any]:
         rhostile.append(("terminal invented", rmutated(**{"terminal": "GREEN_MEMBER_MANIFESTS_BOUND"})))
         rhostile.append(("frame sha rebound", rmutated(**{"successor_frame_sha256": "0" * 64})))
         rhostile.append(("rebind claimed", rmutated(**{"successor_frame_rebound": True})))
-        rhostile.append(("nonreproducible list emptied", rmutated(**{"partition.v3_nonreproducible_workflow_ids": []})))
+        if result_doc["terminal"] == FAILURE_TERMINAL:
+            # A failure without a failing partition is incoherent; so is a
+            # failure that claims it did not fail closed before emitting.
+            rhostile.append(("failing partition emptied", rmutated(**{
+                "partition.v3_content_only_before_after_equal_workflow_ids": [],
+                "partition.v3_nonreproducible_workflow_ids": [],
+            })))
+            rhostile.append(("fail-closed gate flipped", rmutated(**{"evidence.fail_closed_before_emitting_any_chunk": False})))
+        else:
+            rhostile.append(("nonreproducible list emptied", rmutated(**{"partition.v3_nonreproducible_workflow_ids": ["1"]})))
         rhostile.append(("fetches weakened", rmutated(**{"partition.fetches_per_family_version": 1})))
         rhostile.append(("authority granted", rmutated(**{"grants_scientific_authority": True})))
-        rhostile.append(("committed flag flipped on failure", rmutated(**{"flags.member_manifests_committed": not result_doc["flags"]["member_manifests_committed"]})))
+        rhostile.append(("committed flag flipped", rmutated(**{"flags.member_manifests_committed": not result_doc["flags"]["member_manifests_committed"]})))
         rhostile.append(("v2 count inflated", rmutated(**{"partition.v2_aggregate_reproduces_frozen_frame_n": 128})))
         for label, packet in rhostile:
             try:

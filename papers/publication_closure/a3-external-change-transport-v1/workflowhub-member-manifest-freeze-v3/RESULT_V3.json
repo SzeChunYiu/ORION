@@ -1,0 +1,47 @@
+{
+ "date": "2026-09-03",
+ "evidence": {
+  "content_only_collapse": "families whose before/after v3 aggregates are equal: the version-pair change is confined to the excluded request-generated members, which the frozen successor frame admission rule (normalized content must differ) cannot express under v3",
+  "fail_closed_before_emitting_any_chunk": true,
+  "nonreproducible_fetch_defects": {}
+ },
+ "flags": {
+  "candidate_predictions_computed": false,
+  "change_stratum_adjudicated": false,
+  "external_gold_accessed": false,
+  "member_manifests_committed": false,
+  "protected_outcomes_accessed": false,
+  "successor_frame_rebound": false
+ },
+ "grants_scientific_authority": false,
+ "normalization": {
+  "id": "WORKFLOWHUB_MEMBER_MANIFEST_NORMALIZATION_V3",
+  "module": "papers/publication_closure/a3-external-change-transport-v1/normalize_member_manifests_v3.py",
+  "request_generated_root_members_excluded": [
+   "ro-crate-metadata.json",
+   "ro-crate-preview.html"
+  ],
+  "rule": "normalized member manifest = frozen v2 normalized_content_manifest minus entries whose canonical path is exactly one of ro-crate-metadata.json|ro-crate-preview.html; aggregate = the frozen v2 canonical_json_sha over the retained entries",
+  "v2_normalization_imported_verbatim": true
+ },
+ "partition": {
+  "fetches_per_family_version": 3,
+  "frame_n": 128,
+  "v2_aggregate_mismatch_workflow_ids_n": 95,
+  "v2_aggregate_reproduces_frozen_frame_n": 33,
+  "v3_content_only_before_after_equal_workflow_ids": [
+   "106",
+   "360",
+   "384"
+  ],
+  "v3_nonreproducible_workflow_ids": [],
+  "v3_reproducible_n": 128
+ },
+ "purpose": "Governed execution of the frozen v3 member-manifest normalization (WORKFLOWHUB_MEMBER_MANIFEST_NORMALIZATION_V3) over the frozen 128-family successor frame: re-verify WorkflowHub reproducibility for every family with at least three independent fetches per family per version, and materialize the candidate-visible member manifests only if every family reproduces.",
+ "run_environment": "LUNARC sbatch job 3570688 on cn001, account lu2026-2-51, partition lu48, workers 8, staging /home/scyiu/orion-a3-campaign/harvest-20260903-v3",
+ "schema": "ORION.A3.MemberManifestFreezeResult.v3",
+ "scientific_authority_delta": "NONE__PUBLIC_SUBSTRATE_MATERIALIZATION_ONLY",
+ "successor_frame_rebound": false,
+ "successor_frame_sha256": "a47d9255aa37de056cb5cdd7c140bcccb487aa3285790655a48abb5e538c2993",
+ "terminal": "CANNOT_CHECK_MEMBER_MANIFEST_V3_REPRODUCIBILITY"
+}
