@@ -50,6 +50,17 @@ interpretive content lives elsewhere) is kept verbatim. The label vocabulary is
 defined in `WAVE1_UPGRADE_LANE_VENUE_DECISIONS_V1.md` (open PR #1692); the
 records cite it as pending, not as a main path.
 
+Binding note: orion-12's readiness record is bound by exactly one committed
+digest — line 5 of `submission/SHA256SUMS` (the superseded
+`submission/SUBMISSION_MANIFEST_V1.json` lists only the older
+`JOURNAL_READINESS.md` / `_V2.md`; repo-wide, nothing else names the file or its
+old digest). This PR rebinds that line alongside the edit, so the
+content-binding drift ratchet
+(`tests/unit/programme/test_content_binding_drift_ratchet.py`) stays green —
+all 3 tests pass on the branch tree (survey: 0 drifted papers; orion-12
+BOUND_PARTIAL, 122 bound). The other five records are bound by no digest
+artifact, which is why only orion-12 appeared in CI.
+
 w1-sub worktree disposition: its 11 branch commits are fully landed or
 evolved-past (of 97 files touched, 48 byte-identical to main; the 49 differing
 files' main-side last-touch commits are all newer, e.g. orion-06 main.tex
