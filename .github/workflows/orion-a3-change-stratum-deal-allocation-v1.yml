@@ -1,0 +1,130 @@
+name: ORION A3 preregistered stratum deal and pre-outcome allocation v1
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a3-change-stratum-deal-allocation-v1.yml"
+      - "papers/publication_closure/a3-external-change-transport-v1/A3_CHANGE_STRATUM_PREREGISTERED_DEAL_V1.json"
+      - "papers/publication_closure/a3-external-change-transport-v1/A3_CHANGE_STRATUM_PREREGISTERED_DEAL_V1.md"
+      - "papers/publication_closure/a3-external-change-transport-v1/assign_change_stratum_preregistered_deal_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/build_eligible_change_cluster_pool_blocking_deal_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/validate_change_stratum_preregistered_deal_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/blocking-stratum-deal-v1/**"
+      - "papers/publication_closure/a3-external-change-transport-v1/eligible-pool-v1/**"
+      - "papers/publication_closure/a3-external-change-transport-v1/allocation-v1/**"
+      - "papers/publication_closure/a6-external-authority-study-v1/workflowhub-census-v1/**"
+permissions:
+  contents: read
+jobs:
+  stratum-deal-allocation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Verify governance record boundary
+        run: |
+          python - <<'PY'
+          import json
+          p='papers/publication_closure/a3-external-change-transport-v1/A3_CHANGE_STRATUM_PREREGISTERED_DEAL_V1.json'
+          d=json.load(open(p))
+          assert d['schema']=='ORION.A3.ChangeStratumPreregisteredDeal.v1'
+          assert d['artifact_class']=='FROZEN_GOVERNANCE_PREREGISTERED_OUTCOME_BLIND_STRATUM_DEAL'
+          ident=d['deal_identity']
+          assert ident['deal_id']=='A3_CHANGE_STRATUM_PREREGISTERED_DEAL_V1'
+          assert ident['free_parameters']==[] and ident['run_time_resolution']=='NONE'
+          assert ident['outcome_blind_by_construction'] is True
+          assert d['grants_scientific_authority'] is False
+          assert d['scientific_authority_delta']=='NONE__GOVERNANCE_ADJUDICATION_RECORD_ONLY'
+          assert d['authority_chain']['self_promotion_performed'] is False
+          assert d['authority_chain']['self_sign_off_performed'] is False
+          assert all(v is False for v in d['flags'].values())
+          assert d['deal_result']['stratum_counts']=={
+              'evidence_dependency':32,'objective_acceptance_criterion':32,
+              'representation_schema':32,'responsibility_output_contract':32}
+          assert d['deal_result']['allocation_selected_n']==128
+          assert all(v=={'primary':24,'replication':8} for v in d['deal_result']['allocation_counts'].values())
+          for cmd in d['execution_record']['commands']: assert cmd['rc']==0
+          PY
+      - name: Compile and run hostile self-tests
+        run: |
+          set -e
+          B=papers/publication_closure/a3-external-change-transport-v1
+          python -m py_compile $B/assign_change_stratum_preregistered_deal_v1.py $B/build_eligible_change_cluster_pool_blocking_deal_v1.py $B/validate_change_stratum_preregistered_deal_v1.py
+          python $B/assign_change_stratum_preregistered_deal_v1.py --self-test | tee /tmp/deal_st.json
+          python $B/build_eligible_change_cluster_pool_blocking_deal_v1.py --self-test | tee /tmp/pool_st.json
+          python $B/validate_change_stratum_preregistered_deal_v1.py --self-test | tee /tmp/check_st.json
+          python - <<'PY'
+          import json
+          for f,keys in (
+              ('/tmp/deal_st.json',('permutation_invariant','frame_mutation_sensitive','short_frame_rejected','census_coverage_mismatch_rejected','census_chunk_tamper_rejected','census_manifest_drift_rejected')),
+              ('/tmp/pool_st.json',('deterministic_rebuild','bare_org_lineage_fails_closed','stratum_tamper_fails_closed','gold_never_enters_pool','v3_success_substrate_rejected')),
+              ('/tmp/check_st.json',('mutation_controls_all_rejected','module_self_tests_green','network_accessed')),
+          ):
+              d=json.load(open(f))
+              assert d['decision']=='GREEN', (f,d.get('decision'))
+              for k in keys: assert d.get(k) is True, (f,k)
+          d=json.load(open('/tmp/deal_st.json'))
+          assert d['stratum_counts']=={
+              'evidence_dependency':32,'objective_acceptance_criterion':32,
+              'representation_schema':32,'responsibility_output_contract':32}
+          q=json.load(open('/tmp/check_st.json'))['quota_consequence']
+          assert q['distinct_bare_organizations']==33 and q['required_distinct_lineages']==128
+          assert q['bare_org_terminal']=='CANNOT_CHECK_A3_PREOUTCOME_QUOTA_OR_DISJOINTNESS_SHORTFALL'
+          PY
+      - name: Rebuild committed artifacts and prove determinism
+        run: |
+          set -e
+          B=papers/publication_closure/a3-external-change-transport-v1
+          python $B/assign_change_stratum_preregistered_deal_v1.py --output /tmp/assignments_rebuilt.json >/dev/null
+          sha256sum $B/blocking-stratum-deal-v1/ASSIGNMENTS_V1.json /tmp/assignments_rebuilt.json
+          cmp $B/blocking-stratum-deal-v1/ASSIGNMENTS_V1.json /tmp/assignments_rebuilt.json
+          python $B/build_eligible_change_cluster_pool_blocking_deal_v1.py --output /tmp/pool_rebuilt.json >/dev/null
+          sha256sum $B/eligible-pool-v1/A3_ELIGIBLE_POOL_BLOCKING_DEAL_V1.json /tmp/pool_rebuilt.json
+          cmp $B/eligible-pool-v1/A3_ELIGIBLE_POOL_BLOCKING_DEAL_V1.json /tmp/pool_rebuilt.json
+          python $B/allocate_change_clusters_v1.py $B/eligible-pool-v1/A3_ELIGIBLE_POOL_BLOCKING_DEAL_V1.json --output /tmp/allocation_rebuilt.json >/dev/null
+          sha256sum $B/allocation-v1/A3_PREOUTCOME_ALLOCATION_RESULT_V1.json /tmp/allocation_rebuilt.json
+          cmp $B/allocation-v1/A3_PREOUTCOME_ALLOCATION_RESULT_V1.json /tmp/allocation_rebuilt.json
+          python - <<'PY'
+          import json
+          committed=json.load(open('papers/publication_closure/a3-external-change-transport-v1/allocation-v1/A3_PREOUTCOME_ALLOCATION_RESULT_V1.json'))
+          assert committed['terminal']=='A3_PREOUTCOME_PRIMARY_REPLICATION_ALLOCATION_FROZEN'
+          assert committed['selected_n']==128 and committed['shortfalls']==[]
+          assert committed['gold_present'] is False and committed['protected_outcomes_accessed'] is False
+          print('allocation identity: GREEN', committed['selection_manifest_sha256'])
+          PY
+      - name: Run the fail-closed validator in record mode
+        run: |
+          set -e
+          B=papers/publication_closure/a3-external-change-transport-v1
+          python $B/validate_change_stratum_preregistered_deal_v1.py | tee /tmp/check_record.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/check_record.json'))
+          assert d['decision']=='GREEN'
+          assert d['allocation_selected_n']==128
+          assert d['stratum_counts']=={
+              'evidence_dependency':32,'objective_acceptance_criterion':32,
+              'representation_schema':32,'responsibility_output_contract':32}
+          assert d['self_promotion_performed'] is False
+          PY
+      - name: Ban host RNG, network and judgment inference
+        run: |
+          set -e
+          B=papers/publication_closure/a3-external-change-transport-v1
+          for f in assign_change_stratum_preregistered_deal_v1.py build_eligible_change_cluster_pool_blocking_deal_v1.py validate_change_stratum_preregistered_deal_v1.py; do
+            ! grep -Eq '^import (random|numpy|urllib|requests)|^from (random|numpy|urllib|requests)' $B/$f
+            python - <<PY
+          import ast,pathlib
+          mod=ast.parse(pathlib.Path('$B/$f').read_text())
+          for node in ast.walk(mod):
+              if isinstance(node,ast.Import):
+                  for alias in node.names: assert alias.name.split('.')[0] not in {'random','numpy','urllib','requests','sklearn','torch','openai'}
+              if isinstance(node,ast.ImportFrom) and node.module:
+                  assert node.module.split('.')[0] not in {'random','numpy','urllib','requests','sklearn','torch','openai'}
+          PY
+          done
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code

@@ -1,0 +1,140 @@
+{
+  "schema": "ORION.A3.ChangeStratumPreregisteredDeal.v1",
+  "artifact_class": "FROZEN_GOVERNANCE_PREREGISTERED_OUTCOME_BLIND_STRATUM_DEAL",
+  "decision_document": "papers/publication_closure/a3-external-change-transport-v1/A3_CHANGE_STRATUM_PREREGISTERED_DEAL_V1.md",
+  "purpose": "Freeze the preregistered, outcome-blind, mechanical blocking-stratum deal over the frozen 128-family WorkflowHub successor frame, execute the bound A3 allocator over the resulting eligible pool, and commit the 96-primary + 32-replication allocation manifest, so that stratification is fixed before any candidate prediction or protected outcome exists while the external curator's semantic adjudication (stratum review and the escrowed REUSE/REOPEN/CANNOT_CHECK gold) remains out of house and pending.",
+  "deal_identity": {
+    "deal_id": "A3_CHANGE_STRATUM_PREREGISTERED_DEAL_V1",
+    "rule_score": "SHA256('A3-CHANGE-STRATUM-DEAL-V1|' + workflow_id + '|' + version_before + '|' + version_after + '|' + license_before + '|' + license_after + '|' + before_normalized_sha256 + '|' + after_normalized_sha256)",
+    "rule_ordering": "ascending by (deal_score_sha256, int(workflow_id), workflow_id) over the 128 frozen families",
+    "rule_assignment": "STRATA_ORDER[deal_rank mod 4] with STRATA_ORDER = (representation_schema, responsibility_output_contract, objective_acceptance_criterion, evidence_dependency); exactly 32 families per stratum",
+    "inputs": "frozen 128-family successor frame descriptor-side values only (workflow_id, version_before/after, license_before/after, before/after_normalized_sha256) plus the frozen A6 WorkflowHub census organization lineages (digest-bound)",
+    "scope": "blocking stratum LABEL only: this deal assigns the stratification dimension required by A3_DETERMINISTIC_PREOUTCOME_ALLOCATION_V1.json before candidate predictions; it makes no REUSE/REOPEN/CANNOT_CHECK judgment, no semantic claim about any family, and no scientific assertion",
+    "free_parameters": [],
+    "run_time_resolution": "NONE",
+    "outcome_blind_by_construction": true,
+    "successor_frame_sha256": "a47d9255aa37de056cb5cdd7c140bcccb487aa3285790655a48abb5e538c2993",
+    "executable": "papers/publication_closure/a3-external-change-transport-v1/assign_change_stratum_preregistered_deal_v1.py",
+    "executable_sha256": "d78a9fa3df40bc10f08e1b76df074958c85c4c3e0ffa450d825dfef9f70a9643",
+    "pool_builder_executable": "papers/publication_closure/a3-external-change-transport-v1/build_eligible_change_cluster_pool_blocking_deal_v1.py",
+    "pool_builder_executable_sha256": "23ca579231e362efb4c4b7ccd3be31820dae06f79fe250843f38f65477357465",
+    "validator_executable": "papers/publication_closure/a3-external-change-transport-v1/validate_change_stratum_preregistered_deal_v1.py"
+  },
+  "execution_record": {
+    "run_environment": "ssh billy-old -> billy-laptop-old, Python 3.14.4, 2026-09-03; networkless deterministic compute over committed frozen artifacts (staging ~/orion-a3-alloc-20260903); outputs copied back with sha256 verification",
+    "commands": [
+      {
+        "cmd": "python3 assign_change_stratum_preregistered_deal_v1.py --output blocking-stratum-deal-v1/ASSIGNMENTS_V1.json",
+        "rc": 0
+      },
+      {
+        "cmd": "python3 build_eligible_change_cluster_pool_blocking_deal_v1.py --output eligible-pool-v1/A3_ELIGIBLE_POOL_BLOCKING_DEAL_V1.json",
+        "rc": 0
+      },
+      {
+        "cmd": "python3 allocate_change_clusters_v1.py eligible-pool-v1/A3_ELIGIBLE_POOL_BLOCKING_DEAL_V1.json --output allocation-v1/A3_PREOUTCOME_ALLOCATION_RESULT_V1.json",
+        "rc": 0
+      }
+    ],
+    "assignments": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/blocking-stratum-deal-v1/ASSIGNMENTS_V1.json",
+      "sha256": "fad9d67a1c2263e948b36b296db69b448dafd344aed9145d56b97bd4b59a0dc1"
+    },
+    "pool": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/eligible-pool-v1/A3_ELIGIBLE_POOL_BLOCKING_DEAL_V1.json",
+      "sha256": "9f42fa7fcdb41147e4cb8a9f9183a54cbd61499976a6187afac264dbe84da358"
+    },
+    "allocation": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/allocation-v1/A3_PREOUTCOME_ALLOCATION_RESULT_V1.json",
+      "sha256": "d0e09187643db4800317224e9a29d0761470c116b10f09bf7f3f0d563bce0bd2"
+    }
+  },
+  "deal_result": {
+    "family_n": 128,
+    "stratum_counts": {
+      "evidence_dependency": 32,
+      "objective_acceptance_criterion": 32,
+      "representation_schema": 32,
+      "responsibility_output_contract": 32
+    },
+    "assignments_sha256": "da96fe13a461482818d97a69958992800f57911e11941957fb016f99eccc9b45",
+    "allocation_terminal": "A3_PREOUTCOME_PRIMARY_REPLICATION_ALLOCATION_FROZEN",
+    "allocation_selected_n": 128,
+    "allocation_counts": {
+      "evidence_dependency": {"primary": 24, "replication": 8},
+      "objective_acceptance_criterion": {"primary": 24, "replication": 8},
+      "representation_schema": {"primary": 24, "replication": 8},
+      "responsibility_output_contract": {"primary": 24, "replication": 8}
+    },
+    "selection_manifest_sha256": "e5237c80139a2ecbc05fd6a95fad760cb3b4308592e7c6b2b9dada2d92a00bf7"
+  },
+  "organization_lineage_granularity": {
+    "rule": "normalized_organization_lineage = '{census_org}:family:{workflow_id}' with the census organization lineage verbatim as prefix",
+    "forcing_arithmetic": "the frozen allocator requires GLOBAL uniqueness of normalized_organization_lineage across all 128 selections; the frame holds only 33 distinct census organizations; 33 < 128 distinct values is impossible, so any bare-organization lineage fails the allocator closed (verified mechanically in the validator quota-consequence control); the family-terminated token is the coarsest lineage satisfying the frozen uniqueness contract while preserving the census organization verbatim",
+    "distinct_census_organization_bases_n": 33,
+    "distinct_cluster_granular_tokens_n": 128
+  },
+  "custody_note": "The curator_assignment_receipt_id on each pool row is the preregistered deal's mechanical receipt, explicitly labeled as standing in for the external curator for the blocking stratum label only; it is not an external custody receipt. The external curator's semantic adjudication (stratum review and the escrowed REUSE/REOPEN/CANNOT_CHECK gold) remains out of house (reviewer scope, SzeChunYiu/ORION-paper#49).",
+  "scientific_lineage_bound_verbatim": {
+    "allocation_freeze_document": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/A3_DETERMINISTIC_PREOUTCOME_ALLOCATION_V1.json",
+      "sha256": "f7ca7d53e16760b21aabdec0d989340b5a46151ad3d182599b172f929cb1432e"
+    },
+    "allocator_executable": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/allocate_change_clusters_v1.py",
+      "sha256": "0e10feee9a8db00a4a4f89297b7133b3515226d9061dca57efc7310f7e347cb8"
+    },
+    "curator_validator_executable": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/validate_external_curator_packet_v1.py",
+      "sha256": "36ddbabdb8e27957917007fe71e2855f6c65f4fff1cd695633acec5c377171c0"
+    },
+    "pool_builder_executable": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/build_eligible_change_cluster_pool_v1.py",
+      "sha256": "4158db2d32af3416aa9d7f4664ade4f862dcd2db5d583f2670505a3a391be4df"
+    },
+    "successor_frame_freeze": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_V1.json",
+      "sha256": "4399ff7c7ba7827f0e1c795db70898431cf32b6f4f12f57379ae0d4dc9673724"
+    },
+    "successor_frame_durable_result": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/workflowhub-two-replacement-successor-v1/RESULT_V1.json",
+      "sha256": "562f8c5bc28ed42debc7334d7d149a75565846082b74709f9c85a75340bfef16"
+    },
+    "normalized_binding_snapshot": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/workflowhub-normalized-content-binding-v2/SNAPSHOT_V2.json",
+      "sha256": "e3784ad03f4b400b565ee81605491736904ee17f27908d2676c10c628f7b4953"
+    },
+    "v3_failure_result": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/workflowhub-member-manifest-freeze-v3/RESULT_V3.json",
+      "sha256": "ac66aa07a4e0f74efec36ce0bcbc6f0d011c86a9ef737eca266862c9f296608e"
+    },
+    "a6_census_manifest": {
+      "path": "papers/publication_closure/a6-external-authority-study-v1/workflowhub-census-v1/A6_STRATUM2_CENSUS_MANIFEST_V1.json",
+      "sha256": "1eef635eafb387fe7d5a60fb32476a3597ac019392b7e5de23478db3977fcd52"
+    }
+  },
+  "authority_chain": {
+    "self_promotion_performed": false,
+    "self_sign_off_performed": false,
+    "sign_off": {
+      "required": true,
+      "nature": "external orchestrator merge of this branch on green CI (SzeChunYiu/ORION), never the acting agent",
+      "acts": [
+        "merge of this governance package, the committed evidence and the allocation manifest",
+        "subsequent unchecking of the quota boxes in SzeChunYiu/ORION-paper#49 by the orchestrator, not by this lane"
+      ],
+      "semantics": "sign-off is continuation of the frozen pipeline, never promotion of any scientific claim"
+    }
+  },
+  "flags": {
+    "external_gold_accessed": false,
+    "candidate_predictions_computed": false,
+    "protected_outcomes_accessed": false,
+    "eligible_pool_modified": false,
+    "frozen_executables_modified": false,
+    "external_semantic_adjudication_performed": false,
+    "scientific_judgment_made": false
+  },
+  "grants_scientific_authority": false,
+  "scientific_authority_delta": "NONE__GOVERNANCE_ADJUDICATION_RECORD_ONLY"
+}
