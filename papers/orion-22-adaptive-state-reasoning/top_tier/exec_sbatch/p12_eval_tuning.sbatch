@@ -25,7 +25,8 @@ RC=$?
 echo "P12_EVAL_TUNING_RC=$RC"
 if [ "$RC" -eq 0 ]; then
   "$P12BASE/miniconda3/bin/conda" run -n sci-agent --no-capture-output python campaign_eval_driver_v1.py \
-    --phase tuning --emit-matrix
+    --phase tuning --emit-matrix \
+    --parquet "$P12BASE/a2-deps/sab_verified.parquet"
   echo "P12_EVAL_TUNING_MATRIX_RC=$?"
 fi
 echo P12_EVAL_TUNING_DONE

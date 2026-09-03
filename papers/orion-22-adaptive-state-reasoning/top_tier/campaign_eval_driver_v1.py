@@ -28,7 +28,8 @@ Evaluator fidelity (see P12_JUDGE_SUBSTITUTION_RECEIPT_V1.md):
 Usage (billy-old, sci-agent env, from the campaign worktree's top_tier dir):
   conda run -n sci-agent python campaign_eval_driver_v1.py --phase tuning \
       --parquet ~/a2-deps/sab_verified.parquet --repo ~/a2-deps/ScienceAgentBench
-  conda run -n sci-agent python campaign_eval_driver_v1.py --phase tuning --emit-matrix
+  conda run -n sci-agent python campaign_eval_driver_v1.py --phase tuning --emit-matrix \
+      --parquet ~/a2-deps/sab_verified.parquet
   python3 campaign_eval_driver_v1.py --self-test   (CI-safe; no repo/conda/network)
 """
 
@@ -322,12 +323,10 @@ def run_eval_phase(phase: str, parquet: Path, repo: Path, limit: int | None) -> 
     return 0 if failed == 0 else 3
 
 
-def emit_matrix(phase: str) -> int:
+def emit_matrix(phase: str, parquet: Path) -> int:
     """Build the family x model x action score matrix from eval records;
     refuse (exit 2) when any expected cell is missing."""
-    import pyarrow.parquet as pq  # noqa: F401  (parity with load_phase)
-
-    prereg, raw, fams = load_phase(HERE_path_parquet(phase), phase)
+    prereg, raw, fams = load_phase(parquet, phase)
     eval_dir = HERE / "eval" / phase
     models = [m["model_family_id"] for m in json.loads(
         (HERE / "MODEL_IDENTITY_FREEZE_V1.json").read_text())["model_identities"]]
@@ -371,11 +370,6 @@ def emit_matrix(phase: str) -> int:
     print(json.dumps({"status": "OK", "wrote": str(dest),
                       "families": len(matrix), "models": len(models)}))
     return 0
-
-
-def HERE_path_parquet(phase: str) -> Path:
-    """Parquet path used by --emit-matrix (defaults to the frozen location)."""
-    return Path(os.environ.get("P12_PARQUET", str(Path.home() / "a2-deps/sab_verified.parquet")))
 
 
 # ----------------------------------------------------------------- self-test
@@ -428,7 +422,9 @@ def main() -> int:
     if not a.phase:
         ap.error("--phase required (tuning|protected)")
     if a.emit_matrix:
-        return emit_matrix(a.phase)
+        if not a.parquet:
+            ap.error("--parquet required with --emit-matrix (frozen parquet path)")
+        return emit_matrix(a.phase, a.parquet)
     if not a.parquet:
         ap.error("--parquet required without --emit-matrix")
     return run_eval_phase(a.phase, a.parquet, a.repo, a.limit)
