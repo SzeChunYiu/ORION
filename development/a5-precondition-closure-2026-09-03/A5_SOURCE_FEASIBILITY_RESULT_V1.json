@@ -1,0 +1,442 @@
+{
+  "cells": {
+    "EARTH_ENVIRONMENT|M1_ABSTRACT_TO_FULLTEXT": {
+      "bound_units": 384,
+      "derivation": [
+        "BINDING_V2 receipts status=EXACT_VERSION_CC_BY_FULLTEXT_BOUND (exact-version CC BY 4.0 PDF sha256 + pool abstract sha256)"
+      ],
+      "domain": "EARTH_ENVIRONMENT",
+      "gap_to_48": 0,
+      "m1_upstream_404_cannot_check_in_domain": 0,
+      "mechanism": "M1_ABSTRACT_TO_FULLTEXT",
+      "metadata_signal_upper_bound": 384,
+      "quota_48": 48,
+      "verdict": "CELL_SOURCE_FRAME_PASS"
+    },
+    "EARTH_ENVIRONMENT|M2_EARLIER_TO_LATER_VERSION": {
+      "bound_units": 0,
+      "derivation": [
+        "V2 amendment current_arxiv_pool_capability=METADATA_SIGNAL_ONLY__EACH_VERSION_LICENSE_AND_BYTES_UNBOUND => bound=0 by frozen rule"
+      ],
+      "domain": "EARTH_ENVIRONMENT",
+      "gap_to_48": 48,
+      "mechanism": "M2_EARLIER_TO_LATER_VERSION",
+      "metadata_signal_upper_bound": 102,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "EARTH_ENVIRONMENT|M3_PROTOCOL_TO_RESULTS": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=3 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "EARTH_ENVIRONMENT",
+      "gap_to_48": 48,
+      "mechanism": "M3_PROTOCOL_TO_RESULTS",
+      "metadata_signal_upper_bound": 2,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "EARTH_ENVIRONMENT|M4_ARTICLE_TO_CORRECTION": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=203 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "EARTH_ENVIRONMENT",
+      "gap_to_48": 48,
+      "mechanism": "M4_ARTICLE_TO_CORRECTION",
+      "metadata_signal_upper_bound": 12,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "EARTH_ENVIRONMENT|M5_ARTICLE_TO_DATA_DOCUMENTATION": {
+      "bound_units": 43,
+      "derivation": [
+        "Zenodo V2 census EARTH_DATA publication-typed relations=37",
+        "source-universe V3 EARTH_ENVIRONMENT__M5_ARTICLE_TO_DATA_DOCUMENTATION unique units=6 (Figshare/Harvard-Dataverse; Dryad strict=0; DataCite V2 admitted 0)"
+      ],
+      "domain": "EARTH_ENVIRONMENT",
+      "gap_to_48": 5,
+      "mechanism": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "metadata_signal_upper_bound": 41,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "EARTH_ENVIRONMENT|M6_ARTICLE_TO_CODE_RELEASE": {
+      "bound_units": 8,
+      "derivation": [
+        "M6 exact JOSS bridge: V6 deduplicated_v3_plus_final_exact=6 + V7 repairs=1 + V8 repairs=1 (indices [59, 108, 196] joined to V4 domain_classification)",
+        "Zenodo M6 software candidates=6 recorded as unmerged reservoir (JOSS archive DOIs are Zenodo-hosted; no committed cross-route dedup audit covers the overlap)"
+      ],
+      "domain": "EARTH_ENVIRONMENT",
+      "gap_to_48": 40,
+      "mechanism": "M6_ARTICLE_TO_CODE_RELEASE",
+      "metadata_signal_upper_bound": 6,
+      "quota_48": 48,
+      "unmerged_reservoir_zenodo_m6": 6,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "EARTH_ENVIRONMENT|M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER": {
+      "bound_units": 0,
+      "derivation": [
+        "no linked-pair rights route executed for M7 => bound=0; signals are arXiv metadata keyword upper bounds only"
+      ],
+      "domain": "EARTH_ENVIRONMENT",
+      "gap_to_48": 48,
+      "mechanism": "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER",
+      "metadata_signal_upper_bound": 16,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "EARTH_ENVIRONMENT|M8_ARTICLE_TO_LICENSED_SUPPLEMENT": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=14 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "EARTH_ENVIRONMENT",
+      "gap_to_48": 48,
+      "mechanism": "M8_ARTICLE_TO_LICENSED_SUPPLEMENT",
+      "metadata_signal_upper_bound": 10,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "LIFE_BIOMEDICAL|M1_ABSTRACT_TO_FULLTEXT": {
+      "bound_units": 382,
+      "derivation": [
+        "BINDING_V2 receipts status=EXACT_VERSION_CC_BY_FULLTEXT_BOUND (exact-version CC BY 4.0 PDF sha256 + pool abstract sha256)"
+      ],
+      "domain": "LIFE_BIOMEDICAL",
+      "gap_to_48": 0,
+      "m1_upstream_404_cannot_check_in_domain": 2,
+      "mechanism": "M1_ABSTRACT_TO_FULLTEXT",
+      "metadata_signal_upper_bound": 384,
+      "quota_48": 48,
+      "verdict": "CELL_SOURCE_FRAME_PASS"
+    },
+    "LIFE_BIOMEDICAL|M2_EARLIER_TO_LATER_VERSION": {
+      "bound_units": 0,
+      "derivation": [
+        "V2 amendment current_arxiv_pool_capability=METADATA_SIGNAL_ONLY__EACH_VERSION_LICENSE_AND_BYTES_UNBOUND => bound=0 by frozen rule"
+      ],
+      "domain": "LIFE_BIOMEDICAL",
+      "gap_to_48": 48,
+      "mechanism": "M2_EARLIER_TO_LATER_VERSION",
+      "metadata_signal_upper_bound": 138,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "LIFE_BIOMEDICAL|M3_PROTOCOL_TO_RESULTS": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=3 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "LIFE_BIOMEDICAL",
+      "gap_to_48": 48,
+      "mechanism": "M3_PROTOCOL_TO_RESULTS",
+      "metadata_signal_upper_bound": 9,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "LIFE_BIOMEDICAL|M4_ARTICLE_TO_CORRECTION": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=203 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "LIFE_BIOMEDICAL",
+      "gap_to_48": 48,
+      "mechanism": "M4_ARTICLE_TO_CORRECTION",
+      "metadata_signal_upper_bound": 7,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "LIFE_BIOMEDICAL|M5_ARTICLE_TO_DATA_DOCUMENTATION": {
+      "bound_units": 54,
+      "derivation": [
+        "Zenodo V2 census LIFE_DATA publication-typed relations=44",
+        "source-universe V3 LIFE_BIOMEDICAL__M5_ARTICLE_TO_DATA_DOCUMENTATION unique units=10 (Figshare/Harvard-Dataverse; Dryad strict=0; DataCite V2 admitted 0)"
+      ],
+      "domain": "LIFE_BIOMEDICAL",
+      "gap_to_48": 0,
+      "mechanism": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "metadata_signal_upper_bound": 54,
+      "quota_48": 48,
+      "verdict": "CELL_SOURCE_FRAME_PASS"
+    },
+    "LIFE_BIOMEDICAL|M6_ARTICLE_TO_CODE_RELEASE": {
+      "bound_units": 7,
+      "derivation": [
+        "M6 exact JOSS bridge: V6 deduplicated_v3_plus_final_exact=4 + V7 repairs=3 + V8 repairs=0 (indices [59, 108, 196] joined to V4 domain_classification)",
+        "Zenodo M6 software candidates=10 recorded as unmerged reservoir (JOSS archive DOIs are Zenodo-hosted; no committed cross-route dedup audit covers the overlap)"
+      ],
+      "domain": "LIFE_BIOMEDICAL",
+      "gap_to_48": 41,
+      "mechanism": "M6_ARTICLE_TO_CODE_RELEASE",
+      "metadata_signal_upper_bound": 25,
+      "quota_48": 48,
+      "unmerged_reservoir_zenodo_m6": 10,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "LIFE_BIOMEDICAL|M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER": {
+      "bound_units": 0,
+      "derivation": [
+        "no linked-pair rights route executed for M7 => bound=0; signals are arXiv metadata keyword upper bounds only"
+      ],
+      "domain": "LIFE_BIOMEDICAL",
+      "gap_to_48": 48,
+      "mechanism": "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER",
+      "metadata_signal_upper_bound": 31,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "LIFE_BIOMEDICAL|M8_ARTICLE_TO_LICENSED_SUPPLEMENT": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=14 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "LIFE_BIOMEDICAL",
+      "gap_to_48": 48,
+      "mechanism": "M8_ARTICLE_TO_LICENSED_SUPPLEMENT",
+      "metadata_signal_upper_bound": 27,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "PHYSICAL_ENGINEERING|M1_ABSTRACT_TO_FULLTEXT": {
+      "bound_units": 382,
+      "derivation": [
+        "BINDING_V2 receipts status=EXACT_VERSION_CC_BY_FULLTEXT_BOUND (exact-version CC BY 4.0 PDF sha256 + pool abstract sha256)"
+      ],
+      "domain": "PHYSICAL_ENGINEERING",
+      "gap_to_48": 0,
+      "m1_upstream_404_cannot_check_in_domain": 2,
+      "mechanism": "M1_ABSTRACT_TO_FULLTEXT",
+      "metadata_signal_upper_bound": 384,
+      "quota_48": 48,
+      "verdict": "CELL_SOURCE_FRAME_PASS"
+    },
+    "PHYSICAL_ENGINEERING|M2_EARLIER_TO_LATER_VERSION": {
+      "bound_units": 0,
+      "derivation": [
+        "V2 amendment current_arxiv_pool_capability=METADATA_SIGNAL_ONLY__EACH_VERSION_LICENSE_AND_BYTES_UNBOUND => bound=0 by frozen rule"
+      ],
+      "domain": "PHYSICAL_ENGINEERING",
+      "gap_to_48": 48,
+      "mechanism": "M2_EARLIER_TO_LATER_VERSION",
+      "metadata_signal_upper_bound": 75,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "PHYSICAL_ENGINEERING|M3_PROTOCOL_TO_RESULTS": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=3 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "PHYSICAL_ENGINEERING",
+      "gap_to_48": 48,
+      "mechanism": "M3_PROTOCOL_TO_RESULTS",
+      "metadata_signal_upper_bound": 7,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "PHYSICAL_ENGINEERING|M4_ARTICLE_TO_CORRECTION": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=203 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "PHYSICAL_ENGINEERING",
+      "gap_to_48": 48,
+      "mechanism": "M4_ARTICLE_TO_CORRECTION",
+      "metadata_signal_upper_bound": 7,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "PHYSICAL_ENGINEERING|M5_ARTICLE_TO_DATA_DOCUMENTATION": {
+      "bound_units": 33,
+      "derivation": [
+        "Zenodo V2 census PHYSICAL_DATA publication-typed relations=29",
+        "source-universe V3 PHYSICAL_ENGINEERING__M5_ARTICLE_TO_DATA_DOCUMENTATION unique units=4 (Figshare/Harvard-Dataverse; Dryad strict=0; DataCite V2 admitted 0)"
+      ],
+      "domain": "PHYSICAL_ENGINEERING",
+      "gap_to_48": 15,
+      "mechanism": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "metadata_signal_upper_bound": 74,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "PHYSICAL_ENGINEERING|M6_ARTICLE_TO_CODE_RELEASE": {
+      "bound_units": 8,
+      "derivation": [
+        "M6 exact JOSS bridge: V6 deduplicated_v3_plus_final_exact=4 + V7 repairs=3 + V8 repairs=1 (indices [59, 108, 196] joined to V4 domain_classification)",
+        "Zenodo M6 software candidates=10 recorded as unmerged reservoir (JOSS archive DOIs are Zenodo-hosted; no committed cross-route dedup audit covers the overlap)"
+      ],
+      "domain": "PHYSICAL_ENGINEERING",
+      "gap_to_48": 40,
+      "mechanism": "M6_ARTICLE_TO_CODE_RELEASE",
+      "metadata_signal_upper_bound": 14,
+      "quota_48": 48,
+      "unmerged_reservoir_zenodo_m6": 10,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "PHYSICAL_ENGINEERING|M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER": {
+      "bound_units": 0,
+      "derivation": [
+        "no linked-pair rights route executed for M7 => bound=0; signals are arXiv metadata keyword upper bounds only"
+      ],
+      "domain": "PHYSICAL_ENGINEERING",
+      "gap_to_48": 48,
+      "mechanism": "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER",
+      "metadata_signal_upper_bound": 100,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "PHYSICAL_ENGINEERING|M8_ARTICLE_TO_LICENSED_SUPPLEMENT": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=14 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "PHYSICAL_ENGINEERING",
+      "gap_to_48": 48,
+      "mechanism": "M8_ARTICLE_TO_LICENSED_SUPPLEMENT",
+      "metadata_signal_upper_bound": 2,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "SCIENTIFIC_SOFTWARE|M1_ABSTRACT_TO_FULLTEXT": {
+      "bound_units": 383,
+      "derivation": [
+        "BINDING_V2 receipts status=EXACT_VERSION_CC_BY_FULLTEXT_BOUND (exact-version CC BY 4.0 PDF sha256 + pool abstract sha256)"
+      ],
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "gap_to_48": 0,
+      "m1_upstream_404_cannot_check_in_domain": 1,
+      "mechanism": "M1_ABSTRACT_TO_FULLTEXT",
+      "metadata_signal_upper_bound": 384,
+      "quota_48": 48,
+      "verdict": "CELL_SOURCE_FRAME_PASS"
+    },
+    "SCIENTIFIC_SOFTWARE|M2_EARLIER_TO_LATER_VERSION": {
+      "bound_units": 0,
+      "derivation": [
+        "V2 amendment current_arxiv_pool_capability=METADATA_SIGNAL_ONLY__EACH_VERSION_LICENSE_AND_BYTES_UNBOUND => bound=0 by frozen rule"
+      ],
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "gap_to_48": 48,
+      "mechanism": "M2_EARLIER_TO_LATER_VERSION",
+      "metadata_signal_upper_bound": 81,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "SCIENTIFIC_SOFTWARE|M3_PROTOCOL_TO_RESULTS": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=3 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "gap_to_48": 48,
+      "mechanism": "M3_PROTOCOL_TO_RESULTS",
+      "metadata_signal_upper_bound": 9,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "SCIENTIFIC_SOFTWARE|M4_ARTICLE_TO_CORRECTION": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=203 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "gap_to_48": 48,
+      "mechanism": "M4_ARTICLE_TO_CORRECTION",
+      "metadata_signal_upper_bound": 5,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "SCIENTIFIC_SOFTWARE|M5_ARTICLE_TO_DATA_DOCUMENTATION": {
+      "bound_units": 33,
+      "derivation": [
+        "Zenodo V2 census SOFTWARE_DATA publication-typed relations=30",
+        "source-universe V3 SCIENTIFIC_SOFTWARE__M5_ARTICLE_TO_DATA_DOCUMENTATION unique units=3 (Figshare/Harvard-Dataverse; Dryad strict=0; DataCite V2 admitted 0)"
+      ],
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "gap_to_48": 15,
+      "mechanism": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "metadata_signal_upper_bound": 38,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "SCIENTIFIC_SOFTWARE|M6_ARTICLE_TO_CODE_RELEASE": {
+      "bound_units": 69,
+      "derivation": [
+        "M6 exact JOSS bridge: V6 deduplicated_v3_plus_final_exact=51 + V7 repairs=17 + V8 repairs=1 (indices [59, 108, 196] joined to V4 domain_classification)",
+        "Zenodo M6 software candidates=7 recorded as unmerged reservoir (JOSS archive DOIs are Zenodo-hosted; no committed cross-route dedup audit covers the overlap)"
+      ],
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "gap_to_48": 0,
+      "mechanism": "M6_ARTICLE_TO_CODE_RELEASE",
+      "metadata_signal_upper_bound": 72,
+      "quota_48": 48,
+      "unmerged_reservoir_zenodo_m6": 7,
+      "verdict": "CELL_SOURCE_FRAME_PASS"
+    },
+    "SCIENTIFIC_SOFTWARE|M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER": {
+      "bound_units": 0,
+      "derivation": [
+        "no linked-pair rights route executed for M7 => bound=0; signals are arXiv metadata keyword upper bounds only"
+      ],
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "gap_to_48": 48,
+      "mechanism": "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER",
+      "metadata_signal_upper_bound": 83,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    },
+    "SCIENTIFIC_SOFTWARE|M8_ARTICLE_TO_LICENSED_SUPPLEMENT": {
+      "bound_units": 0,
+      "derivation": [
+        "PMC OA harvest rights-clear=14 domain-unassigned; frozen attrition rule forbids in-house domain reassignment => cell bound=0"
+      ],
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "gap_to_48": 48,
+      "mechanism": "M8_ARTICLE_TO_LICENSED_SUPPLEMENT",
+      "metadata_signal_upper_bound": 3,
+      "quota_48": 48,
+      "verdict": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL"
+    }
+  },
+  "cells_pass": 6,
+  "cells_shortfall": 26,
+  "cells_total": 32,
+  "domain_unassigned_rights_clear_reservoirs_pmc": {
+    "M3_PROTOCOL_TO_RESULTS": 3,
+    "M4_ARTICLE_TO_CORRECTION": 203,
+    "M8_ARTICLE_TO_LICENSED_SUPPLEMENT": 14
+  },
+  "input_sha256": {
+    "m1_receipts": "cb3902172ac6f9e363b11f268dc5b20f4b3217a2267484cc8444fd365d627930",
+    "m1_result": "8378e24d39e517e14a7cf059045a7154e878a257e4272ce2aad9a92f9717abae",
+    "metadata_feasibility": "8ee8bc85d524efc0a0d5239a3862b7bfc5cfa81f62ae3afc50fa06ad9e534807",
+    "pmc_result": "3fab694486e7a75dcfb48b386de2fe89f526a74d5fb4aadf4389b876565960cb",
+    "v3_cells": "3abb1ef76ecb97f84494b08d13f3b2553661a514e7aae8f56c26bfe12b767b0b",
+    "v4_candidates": "be7e654f09291ccf1e3da14401faf1ba33b65b397d9998aa21c7437978d366d6",
+    "v6_cells": "1c32a24d369df19968cb873e9950f5cfb4f6608ffc55345e6b0eecaade743284",
+    "v7_rows": "fbea1d7e601785f6e591ff6bcd18e67ce243d6437c7b89a32e35bbe226529a01",
+    "v8_final": "558f2fba8fb52c7ce94d21c12cc4e087986cca8175a21a9fccb4c05809b53504",
+    "zenodo_v2": "683c2ec074c04d92276dcd185f3c06750f6e1dd9817310ecd6e879f87f99e62d"
+  },
+  "interpretation_boundary": {
+    "case_eligibility_adjudicated": false,
+    "comparator_outputs_accessed": false,
+    "counts_are_bound_candidate_substrates_not_eligible_pairs": true,
+    "external_screen_still_required_before_allocation": true,
+    "grants_scientific_authority": false,
+    "protected_outcomes_accessed": false,
+    "terminal_gold_accessed": false
+  },
+  "protocol": {
+    "path": "development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_CENSUS_PROTOCOL_V1.json",
+    "sha256": "1cebbc302ff78cccb843ea34a8f95590343518634c3772d64d99dd38adf98f15"
+  },
+  "quota_per_cell": 48,
+  "result_sha256_excluding_self": "3b60de481a7c1af7421d0cf6e7bff9378e9395a2c1e96e44b37ab0281cd97ce1",
+  "schema": "ORION.A5.SourceFeasibilityCensusResult.v1",
+  "scientific_authority_delta": "NONE__OUTCOME_BLIND_SOURCE_CENSUS_ONLY",
+  "terminal": "A5_SOURCE_UNIVERSE_32_CELL_FRAME_CANNOT_CHECK"
+}

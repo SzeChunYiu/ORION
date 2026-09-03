@@ -1,0 +1,141 @@
+{
+  "access_log": "arxiv-cc-by-fulltext-pool-binding-resume-v3/ACCESS_LOG_V3.jsonl",
+  "bound_in_resume_n": 0,
+  "case_eligibility_adjudicated": false,
+  "comparator_outputs_accessed": false,
+  "network_policy": {
+    "allowed_hosts": [
+      "arxiv.org",
+      "export.arxiv.org"
+    ],
+    "attempts_per_host": 3,
+    "concurrency": 1,
+    "min_interval_seconds": 3.1,
+    "user_agent": "ORION-A5-source-binding-resume-v3 (research source rights verification; contact via repo)"
+  },
+  "parent_binding": {
+    "parent_terminal": "ARXIV_CC_BY_EXACT_VERSION_FULLTEXT_POOL_BINDING_INCOMPLETE__RESUME_REQUIRED",
+    "receipts_sha256": "cb3902172ac6f9e363b11f268dc5b20f4b3217a2267484cc8444fd365d627930",
+    "result_sha256": "8378e24d39e517e14a7cf059045a7154e878a257e4272ce2aad9a92f9717abae"
+  },
+  "protected_outcomes_accessed": false,
+  "rows": [
+    {
+      "abstract_sha256": "24b0fbae089171d8821e71852f56e5fe13dad37d89a22ccb509bc321bdba7329",
+      "arxiv_id": "1805.00393",
+      "attempted_hosts": [
+        "arxiv.org",
+        "export.arxiv.org"
+      ],
+      "attempts_n": 6,
+      "content_license": "CC BY 4.0",
+      "content_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "domain_id": "LIFE_BIOMEDICAL",
+      "exact_arxiv_id": "1805.00393v4",
+      "note": "exact-version PDF absent from both official arXiv hosts across all attempts; permanent upstream absence, not a resume-recoverable state",
+      "observed_http_statuses": [
+        404
+      ],
+      "pool_index": 552,
+      "status": "CANNOT_CHECK_UPSTREAM_ABSENT_CONFIRMED_V3",
+      "v2_reason": "HTTPError 404: Not Found",
+      "v2_status": "CANNOT_CHECK_EXACT_VERSION_FULLTEXT_BINDING",
+      "version": "v4"
+    },
+    {
+      "abstract_sha256": "8dd3cbfcf9d58c874732edb1ddd7a5da378918621aaef32bcc57b6f1e2a3b7ae",
+      "arxiv_id": "1908.00285",
+      "attempted_hosts": [
+        "arxiv.org",
+        "export.arxiv.org"
+      ],
+      "attempts_n": 6,
+      "content_license": "CC BY 4.0",
+      "content_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "domain_id": "LIFE_BIOMEDICAL",
+      "exact_arxiv_id": "1908.00285v3",
+      "note": "exact-version PDF absent from both official arXiv hosts across all attempts; permanent upstream absence, not a resume-recoverable state",
+      "observed_http_statuses": [
+        404
+      ],
+      "pool_index": 705,
+      "status": "CANNOT_CHECK_UPSTREAM_ABSENT_CONFIRMED_V3",
+      "v2_reason": "HTTPError 404: Not Found",
+      "v2_status": "CANNOT_CHECK_EXACT_VERSION_FULLTEXT_BINDING",
+      "version": "v3"
+    },
+    {
+      "abstract_sha256": "d7fb354042ebe3d059b07e851c137d6bc569927e069329bbac9fb65b16d81b6c",
+      "arxiv_id": "2003.10750",
+      "attempted_hosts": [
+        "arxiv.org",
+        "export.arxiv.org"
+      ],
+      "attempts_n": 6,
+      "content_license": "CC BY 4.0",
+      "content_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "exact_arxiv_id": "2003.10750v3",
+      "note": "exact-version PDF absent from both official arXiv hosts across all attempts; permanent upstream absence, not a resume-recoverable state",
+      "observed_http_statuses": [
+        404
+      ],
+      "pool_index": 1049,
+      "status": "CANNOT_CHECK_UPSTREAM_ABSENT_CONFIRMED_V3",
+      "v2_reason": "HTTPError 404: Not Found",
+      "v2_status": "CANNOT_CHECK_EXACT_VERSION_FULLTEXT_BINDING",
+      "version": "v3"
+    },
+    {
+      "abstract_sha256": "3f03d7c14d5ee3dfc72c5a27827dd64f133e18d12d3b7cbd7654950955e9c3f3",
+      "arxiv_id": "1811.00003",
+      "attempted_hosts": [
+        "arxiv.org",
+        "export.arxiv.org"
+      ],
+      "attempts_n": 6,
+      "content_license": "CC BY 4.0",
+      "content_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "exact_arxiv_id": "1811.00003v2",
+      "note": "exact-version PDF absent from both official arXiv hosts across all attempts; permanent upstream absence, not a resume-recoverable state",
+      "observed_http_statuses": [
+        404
+      ],
+      "pool_index": 1284,
+      "status": "CANNOT_CHECK_UPSTREAM_ABSENT_CONFIRMED_V3",
+      "v2_reason": "HTTPError 404: Not Found",
+      "v2_status": "CANNOT_CHECK_EXACT_VERSION_FULLTEXT_BINDING",
+      "version": "v2"
+    },
+    {
+      "abstract_sha256": "ac98dec4f27d749c0eb4e7daab813c8ea92b8f8c548d1175a14c9fbc86325401",
+      "arxiv_id": "1907.08612",
+      "attempted_hosts": [
+        "arxiv.org",
+        "export.arxiv.org"
+      ],
+      "attempts_n": 6,
+      "content_license": "CC BY 4.0",
+      "content_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "exact_arxiv_id": "1907.08612v2",
+      "note": "exact-version PDF absent from both official arXiv hosts across all attempts; permanent upstream absence, not a resume-recoverable state",
+      "observed_http_statuses": [
+        404
+      ],
+      "pool_index": 1465,
+      "status": "CANNOT_CHECK_UPSTREAM_ABSENT_CONFIRMED_V3",
+      "v2_reason": "HTTPError 404: Not Found",
+      "v2_status": "CANNOT_CHECK_EXACT_VERSION_FULLTEXT_BINDING",
+      "version": "v2"
+    }
+  ],
+  "run_utc": "2026-09-03T20:18:27+00:00",
+  "schema": "ORION.A5.ArxivFulltextBindingResumeV3.v1",
+  "scientific_authority_delta": "NONE__SOURCE_BYTES_RIGHTS_RECEIPT_ONLY",
+  "still_cannot_check_n": 5,
+  "targets_n": 5,
+  "terminal": "ARXIV_CC_BY_EXACT_VERSION_FULLTEXT_POOL_BINDING_RESUME_EXECUTED_ALL_FIVE_PERMANENTLY_ABSENT",
+  "terminal_gold_accessed": false
+}

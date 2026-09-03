@@ -1,0 +1,103 @@
+{
+  "schema": "ORION.A5.ExternalBindingsStatus.v1",
+  "date": "2026-09-03",
+  "lane": "a5-precondition-closure-2026-09-03",
+  "parent_clause": {
+    "path": "papers/orion-14-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V2_AMENDMENT.json",
+    "protocol_status_quoted": "IDENTITY_COMPLETE_DESIGN_FREEZE__SOURCE_FEASIBILITY_AND_EXTERNAL_BINDINGS_STILL_REQUIRED",
+    "external_bindings_required_quoted": [
+      "RIGHTS_BOUND_FULLTEXT_AND_LINKED_OBJECTS",
+      "ELIGIBLE_32_CELL_PRIMARY_AND_REPLICATION_PANEL",
+      "FOUR_EXECUTABLE_TERMINAL_ATTAINABLE_COMPARATORS",
+      "INDEPENDENT_EVALUATOR_AND_RAW_CASE_CUSTODY"
+    ],
+    "feasibility_signal_boundary_quoted": "metadata/text keyword hits are outcome-free discovery signals only; they establish neither a natural pair nor case eligibility",
+    "custody_required_quoted": [
+      "external raw source and full-text bytes",
+      "external eligibility/mechanism assignment",
+      "independent terminal adjudication and disagreements",
+      "externally frozen primary/replication partition",
+      "candidate-blind gold",
+      "independent confirmatory scoring and access log"
+    ]
+  },
+  "bindings": [
+    {
+      "binding": "RIGHTS_BOUND_FULLTEXT_AND_LINKED_OBJECTS",
+      "status": "PARTIALLY_CLOSED_IN_HOUSE__RESIDUAL_PERMANENTLY_ABSENT_UPSTREAM",
+      "evidence": [
+        {
+          "artifact": "development/p4-scientific-ascent-2026-08-23/source_binding/arxiv-cc-by-fulltext-pool-binding-v2/BINDING_V2_RESULT.json",
+          "fact": "1531 of 1536 pool rows carry exact-version CC BY 4.0 PDF sha256 bindings; 5 rows CANNOT_CHECK (HTTP 404)"
+        },
+        {
+          "artifact": "development/a5-precondition-closure-2026-09-03/source_binding/arxiv-cc-by-fulltext-pool-binding-resume-v3/RESULT_V3.json",
+          "fact": "resume executed on billy-laptop-old 2026-09-03: all 5 exact versions returned 404 on BOTH official hosts (arxiv.org, export.arxiv.org) across 30 total attempts; terminal ARXIV_CC_BY_EXACT_VERSION_FULLTEXT_POOL_BINDING_RESUME_EXECUTED_ALL_FIVE_PERMANENTLY_ABSENT; the M1 pool is closed at 1531 bound rows with 5 fail-closed rows that no further resume can recover"
+        },
+        {
+          "artifact": "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/RESULT_V1.json",
+          "fact": "linked-object routes (M3/M4/M8) hold rights-clear harvests (3 / 203 / 14) but no domain assignment in the committed harvest; recorded as unassigned reservoirs, not per-cell bindings"
+        }
+      ],
+      "residual": "linked-object routes need a domain-assigned, per-object rights+bytes binding pass before any M3/M4/M8 cell can be populated; the 5 absent arXiv versions are permanently closed as CANNOT_CHECK"
+    },
+    {
+      "binding": "ELIGIBLE_32_CELL_PRIMARY_AND_REPLICATION_PANEL",
+      "status": "CANNOT_CHECK__REQUIRES_EXTERNAL_ELIGIBILITY_AND_MECHANISM_SCREEN",
+      "evidence": [
+        {
+          "artifact": "development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_RESULT_V1.json",
+          "fact": "outcome-blind deterministic census: 6 of 32 cells hold >=48 rights-and-bytes-bound candidate units (4x M1, M5 LIFE_BIOMEDICAL, M6 SCIENTIFIC_SOFTWARE); 26 cells CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL; frame terminal A5_SOURCE_UNIVERSE_32_CELL_FRAME_CANNOT_CHECK"
+        },
+        {
+          "artifact": "papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/allocate_naturalistic_panel_v1.py",
+          "fact": "the frozen allocator hard-rejects any pool without external_eligibility_and_mechanism_screen_complete=true; setting that flag in-house would fabricate the external custody the amendment places out-of-house (custody_required: 'external eligibility/mechanism assignment'), so no allocation manifest is honestly producible in this run"
+        }
+      ],
+      "residual": "external eligibility/mechanism screen over the bound substrates, then source-universe repair for the 26 short cells (largest lever: domain assignment of the PMC reservoirs, M2 earlier-version licence+bytes binding, M7 linked-pair rights route)"
+    },
+    {
+      "binding": "FOUR_EXECUTABLE_TERMINAL_ATTAINABLE_COMPARATORS",
+      "status": "BACKBONE_BYTES_CLOSED__C2_C3_C4_EXECUTION_IDENTITIES_STILL_OPEN",
+      "evidence": [
+        {
+          "artifact": "papers/orion-14-verified-scientific-discovery/protocol/a5-comparator-freeze-v1/COMPARATOR_EXECUTION_FREEZE_V1.json",
+          "fact": "terminal FOUR_COMPARATORS_EXECUTION_IDENTITIES_FROZEN__OUTCOMES_UNRUN pins the C1 backbone identity (repo, revision, model sha256, bytes, MIT licence, runtime_precondition)"
+        },
+        {
+          "artifact": ".github/workflows/orion-a5-comparator-freeze-v1.yml",
+          "fact": "CI continuously verifies the pinned HF API metadata (revision sha, cardData licence mit, LFS blob sha256+size)"
+        },
+        {
+          "artifact": "development/a5-precondition-closure-2026-09-03/source_binding/comparator-backbone-bytes-binding-v1/COMPARATOR_BACKBONE_BYTES_BINDING_V1.json",
+          "fact": "bytes-level closure executed on billy-laptop-old 2026-09-03: model.safetensors downloaded at the pinned revision, sha256 == 06d6fd89edd4f97816831626daafbdb0b029cf63bae8edc0bccab1d64e2e7707, bytes == 368877646, config.json id2label exactly entailment/neutral/contradiction (runtime_precondition verified); terminal A5_COMPARATOR_BACKBONE_BYTES_BOUND__RUNTIME_PRECONDITION_VERIFIED; no inference, no tokenizer load, no panel packets touched"
+        }
+      ],
+      "residual": "C2/C3 execution identities are MISSING_ORIGINAL_OR_DECLARED_REIMPLEMENTATION_IDENTITY and C4 is SPECIFICATION_BOUND__SEPARATE_IMPLEMENTATION_AND_EXTERNAL_EXECUTION_MISSING per the amendment; binding them is author-side work (declared reimplementation identities) plus external execution"
+    },
+    {
+      "binding": "INDEPENDENT_EVALUATOR_AND_RAW_CASE_CUSTODY",
+      "status": "OUT_OF_HOUSE__DEFERRED_PER_ISSUE_49_ADJUDICATION",
+      "evidence": [
+        {
+          "artifact": "SzeChunYiu/ORION-paper#49 (closed)",
+          "fact": "custody boxes were adjudicated out-of-house/deferred: external raw-case custody, candidate-blind gold, independent terminal adjudication, independent confirmatory scoring"
+        },
+        {
+          "artifact": "development/a5-precondition-closure-2026-09-03/A5_PHASE2_EXECUTION_PLAN_V1.md",
+          "fact": "phase-2 plan carries the custody workstreams as externally-owned dependencies with handoff packages defined in-house"
+        }
+      ],
+      "residual": "external custodian(s) must be selected and contracted; everything in-house preparable (custody handoff packages, adjudication interface, access-log format) is scheduled in the phase-2 plan"
+    }
+  ],
+  "allocation_manifest_decision": {
+    "deterministic_allocation_performable_this_run": false,
+    "reason": "allocate_naturalistic_panel_v1.py validate_pool() requires external_eligibility_and_mechanism_screen_complete=true, and the census shows 26 of 32 cells below the 48-unit quota; running the frozen allocator on any in-house-constructed pool would either hard-fail or require fabricating the external screen flag, which the successor rule forbids",
+    "committed_instead": "the frozen allocator remains unexecuted; the census result is the honest predecessor artifact"
+  },
+  "protected_outcomes_accessed": false,
+  "comparator_outputs_accessed": false,
+  "terminal_gold_accessed": false,
+  "scientific_authority_delta": "NONE__BINDINGS_STATUS_ACCOUNTING_ONLY"
+}

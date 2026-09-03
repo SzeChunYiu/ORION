@@ -1,0 +1,53 @@
+{
+  "access_log": "comparator-backbone-bytes-binding-v1/ACCESS_LOG_V1.jsonl",
+  "backbone": {
+    "config_id2label_observed": {
+      "0": "entailment",
+      "1": "neutral",
+      "2": "contradiction"
+    },
+    "config_sha256": "a6c616d6dabeacf90fd0e776c741d3f0f30a05533ccf0bd3b5b62e94cfaa8d57",
+    "license": "MIT",
+    "model_file": "model.safetensors",
+    "observed_model_bytes": 368877646,
+    "observed_model_sha256": "06d6fd89edd4f97816831626daafbdb0b029cf63bae8edc0bccab1d64e2e7707",
+    "pinned_model_bytes": 368877646,
+    "pinned_model_sha256": "06d6fd89edd4f97816831626daafbdb0b029cf63bae8edc0bccab1d64e2e7707",
+    "repository": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+    "revision": "eb8b17b1983bca679126ea69b12b5d28c5fe9b9a",
+    "runtime_precondition_verified": true
+  },
+  "bytes_location_host_relative": "/home/billy/orion-a5-sources/comparator-backbone",
+  "checks": {
+    "api_revision_sha_and_card_license_mit_and_lfs_blob_pinned": true,
+    "config_http_200": true,
+    "config_label_names_exactly_frozen": true,
+    "model_bytes_match_freeze": true,
+    "model_http_200": true,
+    "model_sha256_matches_freeze": true
+  },
+  "execution_boundary": {
+    "comparator_outputs_produced": false,
+    "inference_performed": false,
+    "panel_or_candidate_packets_touched": false,
+    "protected_outcomes_accessed": false,
+    "terminal_gold_accessed": false,
+    "tokenizer_loaded": false
+  },
+  "freeze_binding": {
+    "path": "papers/orion-14-verified-scientific-discovery/protocol/a5-comparator-freeze-v1/COMPARATOR_EXECUTION_FREEZE_V1.json",
+    "worktree_sha256": "3af0552fbdea0e3841719cffec975b37d7d069c37730deb7fcf086ddef68fdfd"
+  },
+  "network_policy": {
+    "concurrency": 1,
+    "hosts": [
+      "huggingface.co"
+    ],
+    "min_interval_seconds": 3.1,
+    "user_agent": "ORION-A5-comparator-backbone-bytes-binding-v1 (model identity verification; contact via repo)"
+  },
+  "run_utc": "2026-09-03T20:23:34+00:00",
+  "schema": "ORION.A5.ComparatorBackboneBytesBinding.v1",
+  "scientific_authority_delta": "NONE__MODEL_IDENTITY_BYTES_RECEIPT_ONLY",
+  "terminal": "A5_COMPARATOR_BACKBONE_BYTES_BOUND__RUNTIME_PRECONDITION_VERIFIED"
+}

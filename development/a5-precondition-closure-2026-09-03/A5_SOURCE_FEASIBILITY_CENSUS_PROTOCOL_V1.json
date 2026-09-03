@@ -1,0 +1,85 @@
+{
+  "schema": "ORION.A5.SourceFeasibilityCensusProtocol.v1",
+  "date": "2026-09-03",
+  "lane": "a5-precondition-closure-2026-09-03",
+  "purpose": "Convert the V2-amendment precondition SOURCE_FEASIBILITY (protocol_status IDENTITY_COMPLETE_DESIGN_FREEZE__SOURCE_FEASIBILITY_AND_EXTERNAL_BINDINGS_STILL_REQUIRED) into a closed, deterministic, outcome-blind per-cell census verdict over the already-committed source-universe harvests.",
+  "authority_boundary": {
+    "authority": "PUBLIC_METADATA_AND_BOUND_BYTES_CENSUS_ONLY",
+    "grants_scientific_authority": false,
+    "protected_outcomes_accessed": false,
+    "comparator_outputs_accessed": false,
+    "terminal_gold_accessed": false,
+    "counts_are_not_eligible_pair_counts": true,
+    "case_eligibility_adjudicated": false,
+    "route_specific_pair_adjudication_performed": false,
+    "interpretation": "A cell that passes this census has a rights-and-bytes-bound CANDIDATE SUBSTRATE of at least 48 units; natural-pair eligibility, target-claim adjudication and external screening remain open and can only reduce these counts."
+  },
+  "parent_bindings": {
+    "v2_amendment_path": "papers/orion-14-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V2_AMENDMENT.json",
+    "v2_amendment_git_blob": "c2de4a426f1ea32fba084250390c21304d885507",
+    "allocation_freeze_path": "papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/A5_DETERMINISTIC_PANEL_ALLOCATION_V1.json",
+    "quota_per_cell": 48,
+    "quota_composition": {"primary": 24, "replication": 8, "screening_reserve": 16},
+    "cells": 32
+  },
+  "inputs": [
+    {
+      "role": "arXiv metadata signal upper bounds per domain x mechanism",
+      "path": "development/p4-scientific-ascent-2026-08-23/P4_NATURAL_PAIR_METADATA_FEASIBILITY_V1.json"
+    },
+    {
+      "role": "M1 exact-version CC BY 4.0 fulltext byte-binding receipts (recomputed from rows, not trusted from summary fields)",
+      "path": "development/p4-scientific-ascent-2026-08-23/source_binding/arxiv-cc-by-fulltext-pool-binding-v2/BINDING_V2_RECEIPTS.jsonl"
+    },
+    {
+      "role": "M1 binding terminal + 5 upstream-404 cannot-check rows",
+      "path": "development/p4-scientific-ascent-2026-08-23/source_binding/arxiv-cc-by-fulltext-pool-binding-v2/BINDING_V2_RESULT.json"
+    },
+    {
+      "role": "M3/M4/M8 PMC OA linked-record rights-clear harvest counts (domain-unassigned in harvest)",
+      "path": "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/RESULT_V1.json"
+    },
+    {
+      "role": "M5/M6 Zenodo publication-typed relation candidates per domain cell",
+      "path": "development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CENSUS_RESULT_V2.json"
+    },
+    {
+      "role": "M5/M6 Dryad/Figshare/Harvard-Dataverse unique units per domain cell",
+      "path": "development/p4-source-universe-successor-v3-2026-08-23/CELL_COUNTS_V1.json"
+    },
+    {
+      "role": "M6 deduplicated V3+V6 exact JOSS bridge totals per domain cell",
+      "path": "development/p4-m6-joss-bridge-repair-v6-2026-08-23/CELL_COUNTS_V6.json"
+    },
+    {
+      "role": "M6 V7 targeted identity repairs by domain",
+      "path": "development/p4-unresolved-identity-v7-2026-08-23/IDENTITY_RESOLUTION_ROWS_V7.jsonl"
+    },
+    {
+      "role": "M6 V8 final targeted repairs by domain",
+      "path": "development/p4-unresolved-identity-v8-2026-08-23/FINAL_IDENTITY_RESOLUTION_V8.json"
+    }
+  ],
+  "counting_rules": [
+    "M1_ABSTRACT_TO_FULLTEXT: bound units = BINDING_V2 receipts rows with status EXACT_VERSION_CC_BY_FULLTEXT_BOUND, counted per domain_id (restricted = provider-native abstract sha256 in the frozen pool; resolving = exact-version PDF sha256; rights = exact CC BY 4.0).",
+    "M2_EARLIER_TO_LATER_VERSION: bound units = 0 in every cell; the V2 amendment freezes current_arxiv_pool_capability = METADATA_SIGNAL_ONLY__EACH_VERSION_LICENSE_AND_BYTES_UNBOUND, so earlier-version licence and bytes are unbound by definition of the frozen amendment; metadata signal counts are recorded as upper bounds only.",
+    "M3_PROTOCOL_TO_RESULTS / M4_ARTICLE_TO_CORRECTION / M8_ARTICLE_TO_LICENSED_SUPPLEMENT: rights-clear harvested pairs exist (both-sides-CC-BY-4.0 counts in the PMC result) but carry NO domain assignment in the committed harvest; the census forbids inventing domain/mechanism reassignment (frozen attrition rule), so per-cell bound = 0 and the unassigned reservoir is recorded separately per mechanism.",
+    "M5_ARTICLE_TO_DATA_DOCUMENTATION: per-cell bound = Zenodo-census publication-typed relation candidates + source-universe V3 unique units; the two route families are provider-disjoint (Zenodo vs Figshare/Harvard-Dataverse; Dryad strict = 0), so their union is the sum; DataCite V2 admitted 0 rows and contributes 0.",
+    "M6_ARTICLE_TO_CODE_RELEASE: per-cell bound = CELL_COUNTS_V6 deduplicated_v3_plus_final_exact + V7 repaired rows (counts_as_unit=1, by row domain) + V8 repaired rows (by row domain); Zenodo-census M6 software candidates are NOT summed in because JOSS archive DOIs are Zenodo-hosted and no committed cross-route dedup audit covers that overlap; they are recorded as an unmerged reservoir.",
+    "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER: bound units = 0 in every cell; no linked-pair rights route has been executed for M7; metadata signal counts recorded as upper bounds only.",
+    "Every cell verdict is fail-closed: bound >= 48 => CELL_SOURCE_FRAME_PASS, else CANNOT_CHECK_SOURCE_UNIVERSE_SHORTFALL with exact gap = 48 - bound."
+  ],
+  "fail_closed_terminals": {
+    "cell_shortfall": "CANNOT_CHECK_A5_CELL_SOURCE_UNIVERSE_SHORTFALL",
+    "any_cell_short": "A5_SOURCE_UNIVERSE_32_CELL_FRAME_CANNOT_CHECK",
+    "input_digest_mismatch": "CANNOT_CHECK_CENSUS_INPUT_DIGEST_MISMATCH"
+  },
+  "determinism": {
+    "no_network": true,
+    "no_rng": true,
+    "input_sha256_pinned": true,
+    "recomputation_rule": "the census recomputes M1 bound counts from raw receipt rows and cross-checks them against the committed result summary; any disagreement is CANNOT_CHECK_CENSUS_INPUT_DIGEST_MISMATCH"
+  },
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A5 source feasibility precondition",
+  "scientific_authority_delta": "NONE__OUTCOME_BLIND_SOURCE_CENSUS_ONLY"
+}

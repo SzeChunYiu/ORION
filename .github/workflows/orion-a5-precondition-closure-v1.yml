@@ -1,0 +1,119 @@
+name: ORION A5 precondition closure v1
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a5-precondition-closure-v1.yml"
+      - "development/a5-precondition-closure-2026-09-03/**"
+      - "development/p4-scientific-ascent-2026-08-23/P4_NATURAL_PAIR_METADATA_FEASIBILITY_V1.json"
+      - "development/p4-scientific-ascent-2026-08-23/source_binding/arxiv-cc-by-fulltext-pool-binding-v2/**"
+      - "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/RESULT_V1.json"
+      - "development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CENSUS_RESULT_V2.json"
+      - "development/p4-source-universe-successor-v3-2026-08-23/CELL_COUNTS_V1.json"
+      - "development/p4-m6-joss-bridge-repair-v6-2026-08-23/CELL_COUNTS_V6.json"
+      - "development/p4-unresolved-identity-v7-2026-08-23/IDENTITY_RESOLUTION_ROWS_V7.jsonl"
+      - "development/p4-unresolved-identity-v8-2026-08-23/FINAL_IDENTITY_RESOLUTION_V8.json"
+      - "development/p4-m6-source-provider-successor-v4-2026-08-23/CANDIDATES_V4.jsonl"
+permissions:
+  contents: read
+jobs:
+  source-feasibility-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pin frozen census protocol and inputs by blob hash
+        run: |
+          set -e
+          check() { got=$(git hash-object "$1"); if [ "$got" != "$2" ]; then echo "BLOB MISMATCH $1"; exit 1; fi; }
+          check development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_CENSUS_PROTOCOL_V1.json 1cebbc302ff78cccb843ea34a8f95590343518634c3772d64d99dd38adf98f15
+          check development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_RESULT_V1.json 91cf8f915d9bbf1c8e630912948f668b054a50e706159d6d4aba2494ddcdb158
+          check development/a5-precondition-closure-2026-09-03/source_binding/arxiv-cc-by-fulltext-pool-binding-resume-v3/RESULT_V3.json aa92da4fc683548a6ccc151ab03cd33a06cd5d9d3ade2e63d8b7b021ed5b6154
+          check development/a5-precondition-closure-2026-09-03/source_binding/comparator-backbone-bytes-binding-v1/COMPARATOR_BACKBONE_BYTES_BINDING_V1.json e7d888de1076359a80d7be516a03bdb27cdc3eafed650c226fd908261dfa4bb0
+          check development/a5-precondition-closure-2026-09-03/A5_EXTERNAL_BINDINGS_STATUS_V1.json b6eb04855eedd0b012f2e9f86d1fd26a2c564ea2215fd333d07d6bc48cfc69aa
+      - name: Verify frozen authority boundary and census result
+        run: |
+          python - <<'PY'
+          import json
+          p='development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_CENSUS_PROTOCOL_V1.json'
+          d=json.load(open(p))
+          assert d['schema']=='ORION.A5.SourceFeasibilityCensusProtocol.v1'
+          assert d['parent_bindings']['quota_per_cell']==48
+          assert d['parent_bindings']['quota_composition']=={'primary':24,'replication':8,'screening_reserve':16}
+          assert d['parent_bindings']['cells']==32
+          assert d['authority_boundary']['grants_scientific_authority'] is False
+          assert d['authority_boundary']['protected_outcomes_accessed'] is False
+          assert d['determinism']['no_network'] is True and d['determinism']['no_rng'] is True
+          r=json.load(open('development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_RESULT_V1.json'))
+          assert r['schema']=='ORION.A5.SourceFeasibilityCensusResult.v1'
+          assert r['cells_total']==32 and r['cells_pass']==6 and r['cells_shortfall']==26
+          assert r['terminal']=='A5_SOURCE_UNIVERSE_32_CELL_FRAME_CANNOT_CHECK'
+          assert r['interpretation_boundary']['protected_outcomes_accessed'] is False
+          assert r['interpretation_boundary']['external_screen_still_required_before_allocation'] is True
+          assert r['scientific_authority_delta']=='NONE__OUTCOME_BLIND_SOURCE_CENSUS_ONLY'
+          print('A5_CENSUS_RESULT_PINNED',r['result_sha256_excluding_self'])
+          PY
+      - name: Compile and self-test the census checker (tamper assertions)
+        run: |
+          python -m py_compile development/a5-precondition-closure-2026-09-03/census_a5_source_feasibility_v1.py
+          python development/a5-precondition-closure-2026-09-03/census_a5_source_feasibility_v1.py --self-test
+      - name: Determinism gate (recompute must reproduce committed result)
+        run: |
+          python development/a5-precondition-closure-2026-09-03/census_a5_source_feasibility_v1.py --verify development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_RESULT_V1.json
+      - name: Hostile mutation gate (forged cell count must fire RED, exit 2)
+        run: |
+          set +e
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('development/a5-precondition-closure-2026-09-03/A5_SOURCE_FEASIBILITY_RESULT_V1.json')
+          d=json.loads(p.read_text())
+          d['cells']['EARTH_ENVIRONMENT|M3_PROTOCOL_TO_RESULTS']['bound_units']=48
+          pathlib.Path('/tmp/a5-census-tampered.json').write_text(json.dumps(d,indent=2,sort_keys=True)+"\n")
+          PY
+          python development/a5-precondition-closure-2026-09-03/census_a5_source_feasibility_v1.py --verify /tmp/a5-census-tampered.json >/tmp/a5-tamper-stdout.json 2>&1
+          rc=$?
+          if [ "$rc" -ne 2 ]; then echo "TAMPER NOT DETECTED (rc=$rc)"; cat /tmp/a5-tamper-stdout.json; exit 1; fi
+          grep -q '"decision": "RED"' /tmp/a5-tamper-stdout.json || { echo 'no RED decision'; cat /tmp/a5-tamper-stdout.json; exit 1; }
+          echo "A5_CENSUS_TAMPER_DETECTED rc=2"
+      - name: Verify job-script self-tests (offline)
+        run: |
+          python -m py_compile development/a5-precondition-closure-2026-09-03/resume_arxiv_fulltext_binding_v3.py development/a5-precondition-closure-2026-09-03/bind_comparator_backbone_bytes_v1.py
+          python development/a5-precondition-closure-2026-09-03/resume_arxiv_fulltext_binding_v3.py --self-test
+          python development/a5-precondition-closure-2026-09-03/bind_comparator_backbone_bytes_v1.py --self-test
+      - name: Verify resume-V3 and comparator-bytes receipts
+        run: |
+          python - <<'PY'
+          import json
+          v3=json.load(open('development/a5-precondition-closure-2026-09-03/source_binding/arxiv-cc-by-fulltext-pool-binding-resume-v3/RESULT_V3.json'))
+          assert v3['schema']=='ORION.A5.ArxivFulltextBindingResumeV3.v1'
+          assert v3['targets_n']==5 and v3['bound_in_resume_n']==0 and v3['still_cannot_check_n']==5
+          assert v3['terminal']=='ARXIV_CC_BY_EXACT_VERSION_FULLTEXT_POOL_BINDING_RESUME_EXECUTED_ALL_FIVE_PERMANENTLY_ABSENT'
+          assert v3['network_policy']['allowed_hosts']==['arxiv.org','export.arxiv.org']
+          assert v3['network_policy']['minimum_request_interval_seconds']>=3.1
+          assert v3['protected_outcomes_accessed'] is False and v3['case_eligibility_adjudicated'] is False
+          rows=[json.loads(l) for l in open('development/a5-precondition-closure-2026-09-03/source_binding/arxiv-cc-by-fulltext-pool-binding-resume-v3/ACCESS_LOG_V3.jsonl')]
+          assert len(rows)==30 and all(r['http_status']==404 for r in rows)
+          cb=json.load(open('development/a5-precondition-closure-2026-09-03/source_binding/comparator-backbone-bytes-binding-v1/COMPARATOR_BACKBONE_BYTES_BINDING_V1.json'))
+          assert cb['schema']=='ORION.A5.ComparatorBackboneBytesBinding.v1'
+          assert cb['terminal']=='A5_COMPARATOR_BACKBONE_BYTES_BOUND__RUNTIME_PRECONDITION_VERIFIED'
+          assert cb['backbone']['observed_model_sha256']=='06d6fd89edd4f97816831626daafbdb0b029cf63bae8edc0bccab1d64e2e7707'
+          assert cb['backbone']['observed_model_bytes']==368877646
+          assert cb['backbone']['runtime_precondition_verified'] is True
+          assert cb['execution_boundary']['inference_performed'] is False
+          assert cb['execution_boundary']['panel_or_candidate_packets_touched'] is False
+          assert cb['execution_boundary']['comparator_outputs_produced'] is False
+          print('A5_RESUME_V3_AND_COMPARATOR_BYTES_RECEIPTS_GREEN')
+          PY
+      - name: Verify SHA256SUMS covers every lane artifact
+        run: |
+          cd development/a5-precondition-closure-2026-09-03
+          shasum -a 256 --check SHA256SUMS 2>/dev/null || sha256sum --check SHA256SUMS
+          listed=$(wc -l < SHA256SUMS | tr -d ' ')
+          files=$(find . -type f ! -name SHA256SUMS ! -path './__pycache__/*' | wc -l | tr -d ' ')
+          if [ "$listed" -ne "$files" ]; then echo "SHA256SUMS incomplete: listed=$listed files=$files"; exit 1; fi
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
