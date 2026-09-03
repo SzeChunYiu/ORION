@@ -40,14 +40,18 @@ So `D_2(C_5^3) = 20` holds by exhaustive enumeration, independently of both the 
 
 Contrast (same enumerator, `--zsfree` mode): the 181 979 symmetry-reduced zero-sum-free sequences of length 12 over `C_5^3`, completed by `−σ` to minimal zero-sum sequences of the maximal length `D(C_5^3) = 13`, have maximal multiplicity 4 in 136 949 cases, 3 in 44 277 cases and 2 in 753 cases. So *maximal atoms* of `C_5^3` need not contain an element of multiplicity `p − 1`, while all *`D_2`-extremal* sequences do (for `p = 3, 5`). This separates the two inverse problems and is the empirical basis of Conjecture 5.1 below.
 
-## 4. `C_5^3`: `D_3` frames — status
+## 4. `C_5^3`: `D_3 = 25` (exhaustive)
 
-| frame | parameters | status |
-|---|---|---|
-| D3 bound | 5 25 4 5 2 --planecap 18 | RUNNING at the time of this record (see ledger for the outcome); `found = 0` so far after `> 6·10^8` nodes |
-| D3 witnesses | 5 24 4 4 2 --planecap 18 | PENDING |
+| frame | parameters | nodes | leaves | found | conclusion |
+|---|---|---|---|---|---|
+| D3 bound | 5 25 4 5 2 --planecap 18 | 848 752 855 | 7 716 438 | **0** | `D_3 ≤ 25` |
+| D3 witnesses | 5 24 4 4 2 --planecap 18 | RUNNING (classification of extremal sequences) | | | `D_3 ≥ 25` is already witnessed by `S_3(5)` |
 
-If the bound frame terminates with `found = 0`, then `D_3(C_5^3) = 25 = (11·5−5)/2`, the first `p ≥ 5` instance of the pattern `D_3(C_p^3) = (11p−5)/2` whose `p = 7` case is the frozen question.
+**Theorem 4.1.** `D_3(C_5^3) = 25 = (11·5 − 5)/2`.
+
+*Proof.* Lower bound: `S_3(5) = e_1^4 e_2^4 e_3^4 e_12^4 e_13^3 e_23^2 e_123^3` has length 24 and packing number 2 (`CUBE_FAMILY_LOWER_BOUNDS_V2.md`, Theorem 2, and `verify_cube_family_v2.py`). Upper bound: by `OBSTRUCTION_REDUCTION_LEMMAS_V2.md` §4 a sequence of length 25 with packing number `≤ 2` would have all multiplicities `≤ 4` (a fifth copy `v^5` plus `D_2(C_5^3) = 20` on the remaining 20 elements gives three blocks), no zero-sum subsequence of length `≤ 5` (else `T = S·(−σ(S))` has four blocks by `D_2 + 1 = 21`), spanning support (`D_3(C_5^2) = 19 ≤ 25`), and at most `D_3(C_5^2) − 1 = 18` elements in every plane; the symmetry-breaking rule of §1 loses no `GL(3,5)`-orbit of such sequences. The frame enumerates every multiplicity vector meeting these conditions — 7 716 438 leaves — and finds none with packing number `≤ 2`. ∎
+
+The run took about 35 minutes on one core (`enum_packing_v2`, `-O2`). A second run with the non-basis points visited in reverse order (`--reverse`) is the independence check recorded in the JSON (leaf and found counts must agree; node counts differ). This is the first `p ≥ 5` instance of the pattern `D_3(C_p^3) = (11p−5)/2` whose `p = 7` case is the frozen question.
 
 ## 5. `C_7^3`: inverse problem for `D_2` (length 28, `pk = 1`) — partial classes
 

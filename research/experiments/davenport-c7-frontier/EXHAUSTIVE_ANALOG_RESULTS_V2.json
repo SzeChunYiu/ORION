@@ -129,8 +129,18 @@
       }
     },
     "D_3_frames": {
-      "L25_bound": "RUNNING",
-      "L24_witnesses": "PENDING"
+      "L25_bound": {
+        "L": 25,
+        "cap": 4,
+        "s": 5,
+        "kmax": 2,
+        "planecap": 18,
+        "nodes": 848752855,
+        "leaves": 7716438,
+        "found": 0,
+        "reverse_order_rerun": "RUNNING"
+      },
+      "L24_witnesses": "RUNNING"
     },
     "D2_extremal_orbits_by_support_size": {
       "5": 2,
@@ -139,7 +149,8 @@
       "8": 543,
       "9": 133,
       "10": 9
-    }
+    },
+    "D_3": 25
   },
   "C_7^3": {
     "D2_inverse_length28": {
