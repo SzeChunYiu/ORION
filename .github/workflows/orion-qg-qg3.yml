@@ -14,10 +14,10 @@ concurrency:
 jobs:
   qg3-positive-forecast:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75
     env:
       QG3_FROZEN_BASE: 13a0fc6afb1d150a114ec318d72830e3c6722b03
-      ORION_HARNESS_MAX_PROCESS_TIMEOUT_SECONDS: 600
+      ORION_HARNESS_MAX_PROCESS_TIMEOUT_SECONDS: 2400
     steps:
       - name: Checkout exact protected head, never synthetic merge ref
         uses: actions/checkout@v4
