@@ -15,6 +15,11 @@ set -x
 P12BASE=/projects/hep/fs9/users/scyiu/orion-a2-p12
 export PATH=$HOME/.local/bin:$P12BASE/miniconda3/bin:$PATH
 module load nodejs/20.9.0
+# The module system exports an EasyBuild python3.11 PYTHONPATH that must not
+# leak into the driver env, the conda-run pred-program env, or the judge shim
+# subprocess (the driver builds its own PYTHONPATH = shim + upstream repo).
+unset PYTHONPATH
+export PYTHONNOUSERSITE=1
 cd "$P12BASE/worktree/papers/orion-22-adaptive-state-reasoning/top_tier" || exit 20
 
 "$P12BASE/miniconda3/bin/conda" run -n sci-agent --no-capture-output python campaign_eval_driver_v1.py \

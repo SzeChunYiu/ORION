@@ -18,6 +18,27 @@ P12BASE=/projects/hep/fs9/users/scyiu/orion-a2-p12
 export PATH=$HOME/.local/bin:$PATH
 module load nodejs/20.9.0
 
+# Root causes fixed after jobs 3570021/3570031 failed:
+# 1. The module system exports PYTHONPATH=/sw/.../python3.11/site-packages,
+#    which leaks EasyBuild pluggy/conda remnants into every python (seen as
+#    pluggy SyntaxWarnings + 'conda-pypi' entry-point errors). Kill it.
+# 2. CondaToSNonInteractiveError on repo.anaconda.com defaults channels.
+#    Fix: campaign-local condarc + --override-channels -c conda-forge on every
+#    create (explicit CLI flags beat every config file). Leaves ~/.condarc
+#    and the module environment untouched outside this job.
+unset PYTHONPATH
+export PYTHONNOUSERSITE=1
+cat > "$P12BASE/condarc" <<'EOF'
+channels:
+  - conda-forge
+channel_priority: flexible
+pkgs_dirs:
+  - /projects/hep/fs9/users/scyiu/orion-a2-p12/miniconda3/pkgs
+envs_dirs:
+  - /projects/hep/fs9/users/scyiu/orion-a2-p12/miniconda3/envs
+EOF
+export CONDARC="$P12BASE/condarc"
+
 if [ ! -x "$P12BASE/miniconda3/bin/conda" ]; then
   wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/mc.sh \
     || curl -sSL -o /tmp/mc.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -26,13 +47,15 @@ fi
 CONDA="$P12BASE/miniconda3/bin/conda"
 
 if ! "$CONDA" env list | grep -q "^sci-agent "; then
-  "$CONDA" create -y -n sci-agent python=3.10 pip setuptools wheel || exit 10
+  "$CONDA" create -y --override-channels -c conda-forge -n sci-agent \
+    python=3.10 pip setuptools wheel || exit 10
   "$CONDA" run -n sci-agent pip install \
     -r "$P12BASE/a2-deps/ScienceAgentBench/requirements.txt" \
     scipy scikit-learn rasterio pipreqs pyarrow || exit 11
 fi
 if ! "$CONDA" env list | grep -q "^sci-agent-eval "; then
-  "$CONDA" create -y -n sci-agent-eval python=3.10 pip setuptools wheel || exit 12
+  "$CONDA" create -y --override-channels -c conda-forge -n sci-agent-eval \
+    python=3.10 pip setuptools wheel || exit 12
   "$CONDA" run -n sci-agent-eval pip install pip-tools || exit 13
 fi
 

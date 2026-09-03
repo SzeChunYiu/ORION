@@ -16,6 +16,10 @@ set -x
 P12BASE=/projects/hep/fs9/users/scyiu/orion-a2-p12
 export PATH=$HOME/.local/bin:$P12BASE/miniconda3/bin:$PATH
 module load nodejs/20.9.0
+# Same PYTHONPATH hygiene as the other jobs: the module system's EasyBuild
+# python3.11 site-packages must not leak into the driver or lane subprocesses.
+unset PYTHONPATH
+export PYTHONNOUSERSITE=1
 cd "$P12BASE/worktree/papers/orion-22-adaptive-state-reasoning/top_tier" || exit 20
 
 # No `|| exit` on the echo step on purpose: it probes BOTH lanes, and only the
