@@ -63,3 +63,23 @@ jobs:
           assert a['p7_donor_pruned_signatures']==b['p7_donor_pruned_signatures']==300
           print('CODING_REFINED_FIRST_FAILURE_RECEIPTS_AGREE',a['canonical_sha256'])
           PY
+      - name: Apply restricted-sum front end and eta-tail gate
+        run: |
+          python research/experiments/davenport-c7-frontier/check_restricted_sum_first_failure_v1.py | tee /tmp/restricted-primary.json
+      - name: Independently verify restricted-sum front end
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_restricted_sum_first_failure_independent_v1.py | tee /tmp/restricted-independent.json
+      - name: Compare restricted-sum receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/restricted-primary.json'))
+          b=json.load(open('/tmp/restricted-independent.json'))
+          assert a['p7_digest']==b['p7_digest']=='2b49f2b6f4579a27165ebe5285292a5966901f1af7793a5cf73f3e9c8d47be19'
+          assert a['p7_coding_raw']==b['p7_coding_raw']==321
+          assert a['p7_after_q_cap']==b['p7_after_q_cap']==300
+          assert a['p7_after_short_atom']==b['p7_after_short_atom']==299
+          assert a['p7_current_signatures']==b['p7_current_signatures']==286
+          assert a['p5_eta_tail_threshold']==4
+          print('RESTRICTED_SUM_RECEIPTS_AGREE',a['p7_digest'])
+          PY
