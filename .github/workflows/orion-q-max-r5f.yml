@@ -28,10 +28,21 @@ jobs:
           python max_r5g_h4_independent_replay.py | tee /tmp/r5g-h4.txt
           grep '^ORIONQ_MAX_R5G_H4_INDEPENDENT=' /tmp/r5g-h4.txt
       # The mixed-cardinality DEV leg is dropped from CI: measured 2026-09-03
-      # it exceeds 2h40m single-core (rc=124 at 9600s against the 30-minute
-      # job timeout). Its execution is certified by an 8h-budget LUNARC job
-      # whose receipt is validated by max_r5h_lunarc_receipt_validator.py
-      # (also run by orion-q-max-r5h.yml for the N2 subject).
+      # it is compute-bound beyond any single job's budget (rc=124 at 9600s
+      # against the 30-minute job timeout, then rc=124 again at exactly 28800s
+      # on LUNARC job 3569846 with MaxRSS 1.92 GB and a zero-byte log). The
+      # revival derives it from the SUBJECT chunked-fold checkpoints via
+      # max_r5f_dev_derived.py (only b.global_frontier is swapped for a
+      # checkpoint loader; b.main() itself runs untouched), gated by the H4
+      # live-vs-derived parity check below. Its execution is certified by a
+      # LUNARC job whose receipt is validated by
+      # max_r5h_lunarc_receipt_validator.py (also run by
+      # orion-q-max-r5h.yml for the N2 subject).
+      - name: Derived DEV parity gate (H4 live vs checkpoint-derived)
+        run: |
+          cd research/extensions/orion-q
+          python max_r5f_dev_derived.py parity-h4 /tmp/r5fdev-parity-ckpts | tee /tmp/r5fdev-parity.txt
+          grep '^ORIONQ_R5F_DEV_DERIVED_PARITY=PASS' /tmp/r5fdev-parity.txt
       - name: Validate committed LUNARC DEV receipt
         run: |
           cd research/extensions/orion-q
