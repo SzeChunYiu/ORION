@@ -71,13 +71,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard:
-          - '0 9'
-          - '9 18'
-          - '18 27'
-          - '27 36'
-          - '36 45'
-          - '45 54'
+        shard: ['0 9','9 18','18 27','27 36','36 45','45 54']
     steps:
       - uses: actions/checkout@v4
       - name: Compile independent verifier
@@ -87,3 +81,37 @@ jobs:
           set -- ${{ matrix.shard }}
           /tmp/verify-support7 research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt "$1" "$2" | tee /tmp/independent.log
           grep -E ' bad=0 ' /tmp/independent.log
+
+  primary-support8-one-collision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ['0 9','9 18','18 27','27 36','36 45','45 54']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile primary one-collision search
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/search_support8_one_collision_v1.cpp -o /tmp/search-support8b
+      - name: Replay one-collision shard
+        run: |
+          set -- ${{ matrix.shard }}
+          /tmp/search-support8b research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt "$1" "$2" | tee /tmp/support8b-primary.log
+          grep -E ' bad=0 ' /tmp/support8b-primary.log
+
+  independent-support8-one-collision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ['0 9','9 18','18 27','27 36','36 45','45 54']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile independent one-collision verifier
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/verify_support8_one_collision_independent_v1.cpp -o /tmp/verify-support8b
+      - name: Independently verify one-collision shard
+        run: |
+          set -- ${{ matrix.shard }}
+          /tmp/verify-support8b research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt "$1" "$2" | tee /tmp/support8b-independent.log
+          grep -E ' bad=0 ' /tmp/support8b-independent.log
