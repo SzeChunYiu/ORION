@@ -29,6 +29,13 @@ non-interactive — the same invocation contract as the campaign's own codex lan
 Response objects are shaped so upstream code paths (regex `[FINAL SCORE]: (\d{1,3})`,
 n-sample averaging, >= 60 threshold) run byte-for-byte unchanged.
 
+Operational correction (2026-09-03, judge-smoke job 3570426 on LUNARC): in
+codex-cli 0.129.0-alpha.15 `-i/--image <FILE>...` is variadic, so a positional
+prompt appended after the figures is consumed as another image and codex falls
+back to stdin. The judge prompt is therefore delivered via stdin (codex exec
+reads stdin when no positional PROMPT is given). Same lane, same single-turn
+contract; only the argv transport changed. Verified by the passing judge smoke.
+
 Nothing inside the pinned upstream repo is modified. The judge prompt is
 identity-blind (two figures + rubric; the model under test is never named), and the
 judge lane is uniform across ALL judged cells of BOTH tested model families, so the

@@ -137,15 +137,20 @@ class _Completions:
         text, image_paths = _extract_content_parts(messages)
         contents: list[str] = []
         for sample in range(max(1, n)):
+            # `-i/--image <FILE>...` is VARIADIC in codex-cli 0.129.0-alpha.15:
+            # a positional prompt appended after the images is consumed as
+            # another image and codex falls back to stdin ("No prompt provided
+            # via stdin", judge-smoke job 3570426). The prompt therefore goes
+            # through stdin (`codex exec` reads it when no positional PROMPT
+            # is given), which is also immune to dash-prefixed prompt text.
             cmd = [JUDGE_BIN, "exec"]
             for img in image_paths:
                 cmd += ["-i", img]
-            cmd.append(text)
             t0 = time.time()
             try:
                 proc = subprocess.run(
-                    cmd, capture_output=True, text=True, timeout=JUDGE_TIMEOUT,
-                    check=False,
+                    cmd, input=text, capture_output=True, text=True,
+                    timeout=JUDGE_TIMEOUT, check=False,
                 )
             except (subprocess.TimeoutExpired, FileNotFoundError) as e:
                 _log_call(
