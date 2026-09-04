@@ -1,0 +1,25 @@
+{
+  "schema": "ORION.Davenport.A1LightSupport3FourShare.v1",
+  "status": "green",
+  "parent_commit": "b726ec44473b3de6dabba35972354389d7ee1aeb",
+  "theorem": "For every prime p>=7, the a=1 first-corridor exact-support-six support-three companion cannot have shared multiplicity c=4.",
+  "primary": {
+    "prime_limit": 1009,
+    "primes": 166,
+    "symbolic_or_explicit_multiplier_cases": 19611,
+    "multiplier_residuals": [[7, 1, 5], [13, 3, 12], [17, 8, 13]],
+    "radial_survivors": {"7:4,1,5": 0, "13:4,3,12": 0, "17:4,8,13": 0}
+  },
+  "independent": {
+    "prime_limit": 5000,
+    "multiplicity_states": 388365,
+    "atom_compatible_states": 184929,
+    "multiplier_residuals": [[7, 1, 5], [13, 3, 12], [17, 8, 13]],
+    "base_parameters": {"7:4,1,5": 341, "13:4,3,12": 2195, "17:4,8,13": 4911},
+    "max_mu": {"7:4,1,5": 8, "13:4,3,12": 12, "17:4,8,13": 20},
+    "theorem_threshold": {"7:4,1,5": 10, "13:4,3,12": 19, "17:4,8,13": 25},
+    "theorem_survivors": {"7:4,1,5": 0, "13:4,3,12": 0, "17:4,8,13": 0},
+    "mutation_survivors_at_max_mu": {"7:4,1,5": 6, "13:4,3,12": 72, "17:4,8,13": 6}
+  },
+  "claim_ceiling": "No D_3 or all-prime D_k formula is claimed."
+}

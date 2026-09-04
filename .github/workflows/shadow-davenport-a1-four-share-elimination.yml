@@ -1,0 +1,35 @@
+name: shadow-davenport-a1-four-share-elimination
+
+on:
+  push:
+    branches:
+      - shadow/davenport-a1-c4-orion-20260904
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-a1-four-share-elimination-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  primary-and-hostile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run primary symbolic and exact-base checker
+        run: python3 research/experiments/davenport-c7-frontier/check_a1_light_support3_four_share_elimination_v1.py
+      - name: Compile independent optimized verifier
+        run: g++ -O3 -std=c++17 -Wall -Wextra -pedantic research/experiments/davenport-c7-frontier/verify_a1_light_support3_four_share_independent_v1.cpp -o /tmp/a1-c4-independent
+      - name: Run independent multiplier and full-depth replay
+        run: /tmp/a1-c4-independent
+      - name: Compile sanitizer verifier
+        run: g++ -O1 -g -std=c++17 -Wall -Wextra -pedantic -fsanitize=address,undefined -fno-omit-frame-pointer research/experiments/davenport-c7-frontier/verify_a1_light_support3_four_share_independent_v1.cpp -o /tmp/a1-c4-sanitized
+      - name: Run sanitizer replay
+        env:
+          ASAN_OPTIONS: detect_leaks=1
+          UBSAN_OPTIONS: print_stacktrace=1
+        run: /tmp/a1-c4-sanitized --prime-limit 401
