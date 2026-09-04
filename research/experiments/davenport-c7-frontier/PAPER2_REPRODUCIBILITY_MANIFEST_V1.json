@@ -101,6 +101,19 @@
         "forbidden_reference_hits": 0,
         "forbidden_length_snippet_hits": 0
       }
+    },
+    {
+      "id": "paper2_reproduction_manifest",
+      "path": "research/experiments/davenport-c7-frontier/check_paper2_reproduction_manifest_v1.py",
+      "expected_status": "PAPER2_REPRODUCTION_MANIFEST_GREEN",
+      "expected": {
+        "counts.python_executables": 12,
+        "counts.cpp_executables": 2,
+        "counts.authority_files": 4,
+        "counts.unique_executable_ids": 14,
+        "hostile_mutations_rejected": 8,
+        "assertions_enabled": true
+      }
     }
   ],
   "cpp_executables": [
