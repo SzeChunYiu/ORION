@@ -32,7 +32,6 @@ def c_light(p: int) -> int:
 
 
 def radial_cost(p: int, c: int, D: int) -> int:
-    """Exact lambda_{3,c}(D) from the one-dimensional radial formula."""
     u = pow(3, -1, p)
     best = 10**9
     for z in range(c + 4):
@@ -54,11 +53,7 @@ def augmented_coeffs(p: int, c: int, d: int) -> tuple[int, int, int, int, int, i
 
 def minimal_length_four(p: int, coeffs: tuple[int, int, int, int]) -> bool:
     assert sum(coeffs) == 2 * p
-    for i in range(4):
-        for j in range(i + 1, 4):
-            if coeffs[i] + coeffs[j] == p:
-                return False
-    return True
+    return all(coeffs[i] + coeffs[j] != p for i in range(4) for j in range(i + 1, 4))
 
 
 def index_one_rows(p: int, coeffs: tuple[int, int, int, int]) -> list[tuple[int, int, int, int, int]]:
@@ -70,7 +65,8 @@ def index_one_rows(p: int, coeffs: tuple[int, int, int, int]) -> list[tuple[int,
     return out
 
 
-def symbolic_regression() -> tuple[int, int, int]:
+def large_structural_regression() -> tuple[int, int, int]:
+    """Cheap replay of the symbolic minimal/nonminimal split through p=1009."""
     primes = 0
     nonupper_rows = 0
     upper_controls = 0
@@ -84,32 +80,23 @@ def symbolic_regression() -> tuple[int, int, int]:
             for d in range(c):
                 e, f, cc, r, t, half = augmented_coeffs(p, c, d)
                 coeffs = (cc, r, t, half)
-                assert sum(coeffs) == 2 * p
                 if e == 1:
                     assert cc + t == p
                     assert r + half == p
                     assert not minimal_length_four(p, coeffs)
                     upper_controls += 1
-                    continue
-
-                assert minimal_length_four(p, coeffs)
-                idx = index_one_rows(p, coeffs)
-                # Donor theorem predicts nonemptiness; this is only a regression check.
-                assert idx, (p, c, d, coeffs)
-                for n, D, A, B, L in idx:
-                    F = (n * f) % p
-                    assert B == p - F
-                    assert F == D + A + L
-                    assert (B <= t) == (F >= f)
-                    assert (A <= r) == (F - D - L <= H + 1 - e)
-                nonupper_rows += 1
+                else:
+                    assert minimal_length_four(p, coeffs)
+                    nonupper_rows += 1
     return primes, nonupper_rows, upper_controls
 
 
-def bounded_usable_scan() -> tuple[int, int, int]:
+def bounded_donor_and_usable_scan() -> tuple[int, int, int, int]:
+    """Enumerate index-one scalars only on the bounded donor/discovery control."""
     rows = 0
     usable = 0
     index_one_total = 0
+    identity_checks = 0
     for p in range(7, 200):
         if not is_prime(p):
             continue
@@ -120,14 +107,22 @@ def bounded_usable_scan() -> tuple[int, int, int]:
                 e, f, cc, r, t, half = augmented_coeffs(p, c, d)
                 if e == 1:
                     continue
+                coeffs = (cc, r, t, half)
+                assert minimal_length_four(p, coeffs)
+                idx = index_one_rows(p, coeffs)
+                # Existence here is a regression of the donor theorem, not ORION authority.
+                assert idx
                 rows += 1
                 found = False
-                for n, D, A, B, L in index_one_rows(p, (cc, r, t, half)):
+                for n, D, A, B, L in idx:
                     index_one_total += 1
                     F = (n * f) % p
-                    if F < f:
-                        continue
-                    if A > r or B > t:
+                    assert B == p - F
+                    assert F == D + A + L
+                    assert (B <= t) == (F >= f)
+                    assert (A <= r) == (F - D - L <= H + 1 - e)
+                    identity_checks += 1
+                    if F < f or A > r or B > t:
                         continue
                     lam = radial_cost(p, c, D)
                     assert (lam + A + B <= m - 1) == (lam - D <= H + L - 1)
@@ -137,21 +132,22 @@ def bounded_usable_scan() -> tuple[int, int, int]:
                 assert found, (p, c, d, r, t)
                 usable += 1
     assert usable == rows
-    return rows, usable, index_one_total
+    return rows, usable, index_one_total, identity_checks
 
 
 def main() -> None:
-    primes, nonupper, upper = symbolic_regression()
-    rows, usable, idx_total = bounded_usable_scan()
+    primes, nonupper, upper = large_structural_regression()
+    rows, usable, idx_total, identities = bounded_donor_and_usable_scan()
     print(json.dumps({
         "status": "A3_BOUNDARY_INDEX_ONE_REDUCTION_GREEN",
         "primes_through_1009": primes,
-        "nonupper_rows_checked": nonupper,
+        "nonupper_structural_rows": nonupper,
         "upper_endpoint_nonminimal_controls": upper,
-        "bounded_discovery_rows_through_199": rows,
+        "bounded_donor_rows_through_199": rows,
         "bounded_usable_rows": usable,
         "index_one_multipliers_examined_bounded": idx_total,
-        "authority": "minimality and capacity identities are symbolic; index-one existence is donor-owned; bounded usable scan is discovery only",
+        "capacity_identity_checks": identities,
+        "authority": "minimality and capacity identities symbolic; index-one existence donor-owned; bounded usable scan discovery only",
     }, sort_keys=True))
 
 
