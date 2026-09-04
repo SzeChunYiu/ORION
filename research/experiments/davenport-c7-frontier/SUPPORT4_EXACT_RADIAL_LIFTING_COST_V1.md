@@ -152,7 +152,7 @@ This is preferable to deriving a separate lifting identity for every support-fou
 
 ## Verification receipt
 
-`check_support4_exact_radial_lifting_cost_v1.py` verifies the formula against an occurrence-level shortest-path dynamic program for every support-four type and admissible `c,D` on the bounded prime set through `31`. It also checks the one-dimensional formula through prime `101`, recovers the stated `a=1` and `a=2` target costs, and replays the doubling discriminator.
+`check_support4_exact_radial_lifting_cost_v1.py` verifies the formula against an occurrence-level shortest-cost dynamic program for every support-four type and every allowed radial target on the bounded primes `5,7,11`, across all tested overlap counts. It also checks the one-dimensional formula through prime `101`, recovers the stated `a=1` and `a=2` target costs, and replays the doubling discriminator.
 
 The checker is regression only; theorem authority is the coordinate-forcing proof above.
 
