@@ -35,29 +35,37 @@ has packing number 1. Consequently
 
 *Proof.* Every coordinate sum is `(p−1) + Σ_{A ∋ i} m_A ≤ 2p−1 < 2p`, so each coordinate contributes at most one multiple of `p` and can be used by at most one zero-sum block. A block using no `v_A` is `Π e_i^{a_i}` with every `a_i ≡ 0 (mod p)` and `a_i ≤ p−1`, hence empty; so every nonempty block's coordinate set contains some `A ∈ F` with `m_A > 0`. Two disjoint blocks would have disjoint coordinate sets, hence contain disjoint members of `F`, contradicting intersectingness. ∎
 
-`M(r,p)` is `p` times the **fractional matching number** of the best intersecting family on `[r]`, subject to integrality — the Erdős–Ko–Rado / Füredi setting. It is what produces the halves:
+`M(r,p)` is `p` times the **fractional matching number** of the best intersecting family on `[r]`, subject to integrality — the Erdős–Ko–Rado / Füredi setting. `M(r,p)` was computed **exactly** for `r ≤ 5` by enumerating every maximal intersecting family on `[r]` (2, 4, 12 and 81 of them) and solving the integer program on each (`tools/d2_intersecting_optimum_v3.py`):
 
-| r | best family found | `ν*` | `M(r,p)` | resulting length | known `D_2 − 1` |
-|---|---|---|---|---|---|
-| 2 | single edge (star) | 1 | `p` | `3p−2` | `3p−2` ✔ tight |
-| 3 | triangle | 3/2 | `(3p−1)/2` | `(9p−7)/2` | `(9p−7)/2` ✔ tight |
-| 4 | triangle inside `[4]` | 3/2 | `(3p−1)/2` | `(11p−9)/2` | ? (upper bound `6p−4`) |
-| 5 | triangle inside `[5]` | 3/2 | `(3p−1)/2` | `(13p−11)/2` | ? (upper bound `(15p−13)/2`) |
+| r | optimal support | `ν*` | `M(r,p)` | `r(p−1) + M` |
+|---|---|---|---|---|
+| 2 | `{12}` (star) | 1 | `p` | `3p−2` |
+| 3 | `{12, 13, 23}` (triangle) | 3/2 | `(3p−1)/2` | `(9p−7)/2` |
+| 4 | `{12, 13, 14, 234}` | 5/3 | `⌊5p/3⌋` | `4(p−1)+⌊5p/3⌋` |
+| 5 | (16-set maximal family) | 9/5 | `9` at `p=5`, `12` at `p=7` | `29`, `42` |
 
-Verified by exact packing computation (`tools/d2_rank_families_v3.py`): every row has packing number exactly 1 at `p = 5` and `p = 7`, as does the 3-uniform family of all four 3-subsets of `[4]` (a weaker family, `ν* = 4/3`).
+The rank-4 optimum is explicit and pretty: a star of three edges at vertex 1 together with the complementary triple. Its fractional matching puts `p/3` on each edge and `2p/3` on the triple, giving `3·(p/3) + 2p/3 = 5p/3`. Verified: `M(4,p) = ⌊5p/3⌋` at `p = 5, 7, 11, 13` (values 8, 11, 18, 21).
+
+Verified by exact packing computation (`tools/d2_rank_families_v3.py`): the star, triangle, triangle-inside-`[4]`, triangle-inside-`[5]` and all-3-subsets-of-`[4]` configurations all have packing number exactly 1 at `p = 5` and `p = 7`.
 
 **The half-defect is `ν*(triangle) = 3/2`.** `CUBE_PACKING_PROFILE_V3.md` §5 traced the `(n−1)/2` in `D_2(C_n^3) = D + n + (n−1)/2` to the determinant-2 minor of the cube incidence matrix. Theorem 2 says the same thing combinatorially and more usefully: the extremal rank-3 configuration is the triangle `{12, 13, 23}` — the unique intersecting graph with fractional matching number above 1 — and the half is that number. The two readings agree, since the triangle's incidence matrix *is* the determinant-2 minor.
 
-## 3. Where the two sides stand
+## 3. The two sides meet at ranks 2 and 3
 
-| r | lower (Thm 2, best family found) | upper (Thm 1) | gap |
-|---|---|---|---|
-| 2 | `3p−1` | `3p−1` | **0** |
-| 3 | `(9p−5)/2` | `(9p−5)/2` | **0** |
-| 4 | `(11p−7)/2` | `6p−3` | `(p+1)/2` |
-| 5 | `(13p−9)/2` | `(15p−11)/2` | `p−1` |
+| r | p | lower (Thm 2, exact `M`) | upper (Thm 1) | |
+|---|---|---|---|---|
+| 2 | 5, 7, 11, 13 | 14, 20, 32, 38 | 14, 20, 32, 38 | **equal** |
+| 3 | 5, 7, 11, 13 | 20, 29, 47, 56 | 20, 29, 47, 56 | **equal** |
+| 4 | 5, 7, 11, 13 | 25, 36, 59, 70 | 27, 39, 63, 75 | gap 2, 3, 4, 5 |
+| 5 | 5, 7 | 30, 43 | 32, 47 | gap 2, 4 |
 
-So `D_2(C_p^r)` is **determined at ranks 2 and 3 and bracketed for `r ≥ 4`**. Closing the gap needs either a better intersecting-family construction (the maximum of `ν*` over intersecting families is maximised by projective planes in the uniform case, with Füredi's bound `ν* ≤ k−1+1/k` for `k`-uniform), or a sharpening of the congruence system using more than the length spectrum.
+**Corollary.** For `r ∈ {2,3}` and every prime `p ≤ 13` tested, the framework alone gives
+
+    D_2(C_p^2) = 3p−1,    D_2(C_p^3) = (9p−5)/2,
+
+with the lower bound from Theorem 2's intersecting-family optimum and the upper bound from Theorem 1's certificate. Modulo Olson's `D(C_p^r) = r(p−1)+1`, both values are established here without any donor input — the `r = 3` case being exactly the premise the rest of the packet had been assuming from unreadable text.
+
+So `D_2(C_p^r)` is **determined at ranks 2 and 3 and bracketed for `r ≥ 4`**, the gap growing slowly. Closing the gap needs either a better intersecting-family construction (the maximum of `ν*` over intersecting families is maximised by projective planes in the uniform case, with Füredi's bound `ν* ≤ k−1+1/k` for `k`-uniform), or a sharpening of the congruence system using more than the length spectrum.
 
 A Fano-plane instance (`r = 7`, the seven lines, `ν* = 7/3`) is the natural next test of the lower bound; its exact packing computation exceeded the session's resource budget and is recorded as `CANNOT_CHECK_RESOURCE_BOUND`, not as a negative.
 
