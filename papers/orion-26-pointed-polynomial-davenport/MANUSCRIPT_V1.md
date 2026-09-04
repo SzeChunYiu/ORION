@@ -126,13 +126,21 @@ Suppose `T` is zero-sum over `C_p^3`, `|T| = (9p−3)/2`, with `z(T) = 2`. Atoms
 
 The contradiction gives the upper bound. The argument degenerates at `p = 3` exactly because `(p−3)/2 = 0` collides with residue `0`, which is why the theorem starts at `p = 5`.
 
+The three bullets above are a summary; the digit-level argument is carried out in full in `D2_UNIFORM_SELFCONTAINED_THEOREM_V3.md`, and `tools/d2_digit_certificate_v3.py` re-checks its structural steps for all 44 primes `5 ≤ p ≤ 200`. A referee should read that record, not this paragraph, as the proof.
+
 ### 4.3 Lower bound
 
-The family
+For odd `n ≥ 3` and `k ≥ 2` set, in the basis `e_1,e_2,e_3` with `e_{ij} = e_i + e_j`,
 
-`T_k(n) = e_1^{n−1} e_2^{n−1} e_3^{n−1+n} · (corrections)`
+`T_k(n) = e_1^{(k−1)n−1} · e_2^{n−1} · e_3^{n−1} · e_12^{(n+1)/2} · e_13^{(n−1)/2} · e_23^{(n−1)/2}`,
 
-realizes `z = k−1` at length `((2k+5)n−5)/2 − 1` for every odd `n` and `k ≥ 2`, by a direct argument on the coordinate pattern. Its `k = 2` case gives `D_2(C_p^3) ≥ (9p−5)/2`. ∎
+of length `((2k+5)n − 7)/2`.
+
+> **Lemma A′.** `z(T_k(n)) = k−1` for every odd `n ≥ 3` and every `k ≥ 2`. Hence `D_k(C_n^3) ≥ ((2k+5)n−5)/2`.
+
+*Proof sketch.* Write `c_j` for the `j`-th coordinate sum: `c_1 = kn−1`, `c_2 = 2n−1`, `c_3 = 2n−2`. For `≥`: the `k−2` blocks `e_1^n` together with `e_1^{(n−1)/2} e_2^{(n−1)/2} e_12^{(n+1)/2}` are `k−1` disjoint blocks. For `≤`: every block has each `c_j` a multiple of `n`; since `c_2, c_3 < 2n`, at most one block meets `c_2` and at most one meets `c_3`, so at most two blocks are non-unary (a *unary* block is a power of `e_1`), and counting the `c_1`-budget `kn−1` against the `n` each non-unary block consumes bounds the total by `k−1` in each case. ∎
+
+Only oddness of `n` is used, not primality. The `k = 2` case gives `D_2(C_p^3) ≥ (9p−5)/2`. The full case analysis is in `GENERAL_LOWER_BOUND_AND_ETA_INDUCTION_V3.md`, and `verify_tk_family_v3.py` recomputes `z(T_k(n))` exactly for `n ∈ {3,5,7}`, `k ≤ 6`. ∎
 
 ---
 
@@ -226,6 +234,8 @@ The lower bound is `T_3(7)` (§4.3). For the upper bound, suppose an obstruction
 5. the feasible length spectra are enumerated; closure under the corridors and the complement systems leaves a finite list, and every member is eliminated.
 
 Steps 1–5 are reproduced end to end by a single program (§9), which asserts each step and prints the conclusion. ∎
+
+**Where the weight of this proof sits.** Steps 1–4 are human-checkable arguments, and step 3 is now a corollary of Theorem G. Step 5 is a finite computation: an enumeration of spectra followed by an elimination of the survivors. It is the step a referee should press hardest, and it is the one place in this paper where a single implementation carries a load-bearing claim. We state that plainly rather than let the end-to-end checker's `PASS` imply more than it does: the checker re-runs *our* enumeration, so it guards against regression, not against a systematic error in the enumeration itself. An independent re-implementation of step 5 is listed in §9 as a submission prerequisite.
 
 **Relation to the corridor literature.** A parallel line of work classifies the three-atom factorizations that contain a *maximal* atom, prime-uniformly, as `(p+j, p+(p+1)/2−j, 3p−2)` for `1 ≤ j ≤ ⌊(p+1)/4⌋`. At `p = 7` that is `(8,10,19)` and `(9,9,19)`. Proposition B recovers those two and adds the triples with no maximal atom, `(9,10,18)` and `(10,10,17)`; at `p = 11` it gives nine triples of which that classification supplies three. The two results are complementary: the maximal-atom branch carries a support classification that the others do not.
 
