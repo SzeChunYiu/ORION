@@ -81,6 +81,28 @@ Intersecting with both corridors — the atom-length set must contain a corridor
 
 Two consequences worth noting. Of the 36 corridor pairs `(P1,P2)`, two are incompatible on the shortest-atom length and **31 more are killed outright**: for those, `T` must have an atom of a length outside `P1 ∪ P2`, i.e. a third factorization. Only three pairs survive with no extra length required, and all three have `P1 = (9,12,16)`. Also, `{8,10,19} ∪ P2` is feasible for no `P2`, so an obstruction whose shortest atom has length 8 needs at least three factorizations.
 
+## 6b. Factorization closure: eight possible atom-length sets
+
+Three further necessary conditions cut the 548 feasible sets down hard.
+
+1. **Closure.** For an atom `A` of length `l ≤ 17`, `|T A^{−1}| = 37 − l ≥ 20 > D`, so `T A^{−1}` is not an atom, splits into two atoms, and their lengths lie in `L`. Hence for every `l ∈ L` with `l ≤ 17` there are `u, v ∈ L` with `u + v = 37 − l`. For `l ∈ {18,19}` the complement may itself be an atom, so the requirement weakens to `37 − l ∈ L` or such a `u, v`.
+2. **Corridor-1 consistency.** Every three-atom factorization containing an atom of the minimum length `s = min L` must be a corridor triple.
+3. **The forced atom:** `13 ∈ L` or `14 ∈ L`.
+
+Applying all three (`verify_atom_length_closure_v3.py`) leaves **exactly eight** admissible atom-length sets:
+
+    {8,9,10,11,14,16,19}      {8,9,10,12,14,16,19}
+    {8,9,10,11,12,14,16,19}   {8,9,10,11,14,16,17,19}
+    {8,9,10,12,14,16,18,19}
+    {9,10,11,12,13,16,17,18}  {9,10,11,12,13,16,17,19}
+    {9,10,11,12,13,16,17,18,19}
+
+> **Theorem.** The atom-length set of a length-37 obstruction over `C_7^3` is one of those eight. Every one contains `{9,10,16}`, and the minimum atom length is 8 or 9.
+
+**Link to the closed corridor branch.** The five sets containing 8 have `s = 8`, and the only corridor triple containing 8 is `(8,10,19)` — whose support-four branch is closed (`CORRIDOR_8_10_19_CROSS_CHECK_V3.md`). So those five survive only with a 19-atom of support `≥ 5`. The remaining three have `s = 9` and contain no 14, so their forced atom has length 13.
+
+Eliminating eight explicit spectra would prove `D_3(C_7^3) = 36`. Counting cannot do it — the complement systems (§6) are all consistent — so this is where the geometric machinery has to take over, now against a target list of eight rather than an open-ended ladder.
+
 ## 7. Validation
 
 `verify_atom_spectrum_v3.py` checks, in order:
