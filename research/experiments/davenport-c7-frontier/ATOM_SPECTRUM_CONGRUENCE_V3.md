@@ -64,6 +64,23 @@ That is a sharper and more finite target than the support ladder: two atom lengt
 
 I first read the corridor theorem as constraining **every** three-atom factorization, concluded `W_13 = W_14 = W_15 = 0` outright, and therefore that `D_3(C_7^3) = 36`. That was wrong. The proof in `ATOM_LENGTH_CORRIDOR_V1.md` selects a *shortest* atom `A` and classifies the factorization built from it; an atom of length 13 sitting in a factorization such as `(11,13,13)`, which contains no shortest atom, is not excluded by that argument. The claim is withdrawn; what survives is §4 (unconditional) and §5 (a reduction, not a proof).
 
+## 6a. The complete atom-length lattice
+
+Feasibility of `(⋆)` under "`W_l = 0` for every `l ∉ L`" is monotone: enlarging `L` only adds free variables. So the family of admissible atom-length sets is upward closed and is determined by its minimal elements. Sweeping all `2^12` subsets of `[8,19]` (`verify_spectrum_lattice_v3.py`) gives **548 feasible sets, with exactly 7 minimal ones**:
+
+    {9,14,16}
+    {9,10,11,12,13,14,17,18}   {9,10,11,12,13,14,17,19}
+    {9,10,11,12,13,16,17,18}   {9,10,11,12,13,16,17,19}
+    {10,11,12,13,14,16,17,18}  {10,11,12,13,14,16,17,19}
+
+> **Theorem.** The set of atom lengths of an obstruction contains one of those seven sets. In particular it contains 9 or 10, and 14 or 16; and if it has only three atom lengths they are exactly `{9,14,16}`.
+
+Intersecting with both corridors — the atom-length set must contain a corridor-1 profile and a corridor-2 profile — leaves **11 minimal sets**, the smallest being
+
+    {9,12,14,16}    with P1 = (9,12,16), P2 = (9,14,14).
+
+Two consequences worth noting. Of the 36 corridor pairs `(P1,P2)`, two are incompatible on the shortest-atom length and **31 more are killed outright**: for those, `T` must have an atom of a length outside `P1 ∪ P2`, i.e. a third factorization. Only three pairs survive with no extra length required, and all three have `P1 = (9,12,16)`. Also, `{8,10,19} ∪ P2` is feasible for no `P2`, so an obstruction whose shortest atom has length 8 needs at least three factorizations.
+
 ## 7. Validation
 
 `verify_atom_spectrum_v3.py` checks, in order:
