@@ -32,17 +32,18 @@ def c_light(p: int) -> int:
 
 
 def radial_oracle(p: int, c: int, D: int) -> int:
+    """General exact one-dimensional radial formula, not the closed staircase."""
     u = pow(3, -1, p)
     best = 10**9
     for z in range(c + 4):
-        for q in range(p - 2):
-            if (z + q - D) % p == 0:
-                best = min(best, z + q + 2 * ((u * q) % p))
+        q = (D - z) % p
+        if q <= p - 3:
+            best = min(best, z + q + 2 * ((u * q) % p))
     assert best < 10**9
     return best
 
 
-def closed(p: int, c: int, D: int) -> int:
+def closed(c: int, D: int) -> int:
     L = max(D - c - 3, 0)
     return D + 2 * ((L + 2) // 3)
 
@@ -57,13 +58,14 @@ def main() -> None:
         for c in range(1, c_light(p) + 1):
             for D in range(1, p):
                 got = radial_oracle(p, c, D)
-                want = closed(p, c, D)
+                want = closed(c, D)
                 assert got == want, (p, c, D, got, want)
                 checks += 1
     print(json.dumps({
         "status": "A3_EXACT_RADIAL_EXCESS_GREEN",
         "primes_through_401": primes,
         "targets_checked": checks,
+        "oracle": "general one-dimensional support-four radial minimization",
     }, sort_keys=True))
 
 
