@@ -299,7 +299,18 @@ That is the structural reason the special lengths are special — and the dual t
 
 We verify, for `p ∈ {11,13,17,19,23}` and every basis dual with `Q(0) ≠ 0`, that `Q` is supported inside `S` — and, when `Z` is a pair of special lengths, inside `S` minus the involution-pair of the *third* special length. At `p = 11` excluding `Z = {22,26}` the support is `{0,4,11,22,26,33,37,48,55,59} = S \ {15,44}`, and `{15,44} = {a, N−a}` for the omitted special length `a = 15`.
 
-Granting that support statement, Observation D follows: the antisymmetry can be broken only where `Q ≠ 0`, hence only on `S`, hence — by Lemma H — only at the three special lengths and at `0`. So **the entire gap between Observation D and a theorem is the single claim `supp Q ⊆ S`**, a Lucas statement of the same kind as Theorem G on a longer window. This also retires our earlier description of the certificates as dense: they are supported on twelve points, and the apparent density came from examining `P` instead of `Q`.
+That support statement is now a theorem.
+
+> **Theorem I.** For `Z` a set of special lengths, every dual satisfies `supp Q ⊆ S`.
+
+*Proof.* Write `G_j(t) = P(jp+t)`. Since `deg P ≤ A = 2p+h+2 < 3p`, every `d ≤ A` has base-`p` high digit `≤ 2`, so Lucas makes `G_j = F_0 + jF_1 + C(j,2)F_2` a degree-two binomial polynomial **in `j`**, whence the third difference vanishes: `G_{j+3} − 3G_{j+2} + 3G_{j+1} − G_j = 0`. The involution sends `jp+t` to `(5−j)p+(h−t)` for `t ≤ h` and to `(4−j)p+(p+h−t)` for `t > h`, so `Q(jp+t) = G_j(t) + s G_{5−j}(h−t)` and `G_j(t) + s G_{4−j}(p+h−t)` respectively. Two identities, formal in the `G`'s and valid for both signs of `s`,
+
+`G_5(x) + s G_0(h−x) = 3[G_4(x)+s G_1(h−x)] − 3[G_3(x)+s G_2(h−x)] + [G_2(x)+s G_3(h−x)]`,
+`G_4(u) + s G_0(w) = 3[G_3(u)+s G_1(w)] − 3[G_2(u)+s G_2(w)] + [G_1(u)+s G_3(w)]`, `w = p+h−u`,
+
+express `Q` on the two bottom intervals as a fixed combination of three brackets, each of which is `Q` at a single point. Using `Q(N−z) = s·Q(z)`, those points land in `[p+1, 2p−1] ∪ [2p+1, 2p+h−1]` — inside the atom range and distinct from `p+h`, `2p`, `2p+h` — so each is an imposed condition; the one edge case `u = p−1` is covered because that bracket equals `s·Q(2p+h+1)`. Hence `Q` vanishes on `[1,h−1] ∪ [h+1,p−1]`, which by Lemma H's interval count is exactly `supp Q ⊆ S`. Nothing beyond `p ≥ 5` is used. ∎
+
+So the **structural** half of Observation D is settled for every prime: any dual can break the antisymmetry only at the three special lengths and at `0`. What is still verified-only is the existence half (a dual does exist for each special pair, so the pair is forced) and minimality (no dual for any other pair or single length); Theorem I constrains what a dual looks like without constructing one or forbidding one for non-special `Z`. This also retires our earlier description of the certificates as dense: they are supported on twelve points, and the apparent density came from examining `P` instead of `Q`.
 
 ---
 
