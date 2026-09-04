@@ -20,6 +20,16 @@ Status: **planning document**. Not a submission, not a claim of novelty, and not
 | 8 | Structure of a hypothetical `D_3(C_7^3)` counterexample: multiplicities `≤ 6`, no zero-sum of length `≤ 7`, shortest block in `{8,9,10}`, complement a product of exactly two atoms, every one-element deletion `D_3`-extremal. | Proved | `OBSTRUCTION_REDUCTION_LEMMAS_V2.md` |
 | 9 | Conjecture: `D_k(C_n^3) = D(C_n^3) + (k−1)n + (n−1)/2` for all `k ≥ 2`, odd `n`; the `k`-independent half-defect is the shadow of the index-2 sublattice `⟨e_12,e_13,e_23⟩`. | Conjecture with mechanism | `DK_ARITHMETIC_CONJECTURE_V3.md` |
 
+## Added after the in-repo audit (the strongest remaining material)
+
+| # | Statement | Strength | Where |
+|---|---|---|---|
+| 10 | `D_2(C_p^r) ≤ (3D+1)/2` (`r` odd) and `≤ (3D+r−1)/2` (`r` even) for `2 ≤ r ≤ p`, by an `F_p` infeasibility certificate; exact at `r = 2, 3`. | Proved per `(p,r)`, 60 pairs | `D2_ALL_RANKS_V3.md` Thm 1 |
+| 11 | `D_2(C_p^r) ≥ r(p−1) + M(r,p) + 1` from intersecting families; tight at `r = 2, 3`. | Proved | ibid. Thm 2 |
+| 12 | The rank-3 half-defect **is** `ν*(triangle) = 3/2`; zero-sum packing extremals are governed by fractional matchings of intersecting families. | Mechanism, with both sides proved at `r ≤ 3` | ibid. §2 |
+
+Items 10–12 are the natural spine of a paper that does not depend on `D_3(C_7^3)`: a two-sided framework for `D_2(C_p^r)` at all ranks, exact at ranks 2 and 3, bracketed above rank 3, with an Erdős–Ko–Rado mechanism explaining the extremal constants. Priority for all three is unassessed.
+
 ## Retained negatives that belong in the paper
 
 - The pointed (non-symmetric) polynomial-method congruences give **exactly** the symmetric threshold at the `D_3` target length; the counting route stops at "shortest block `≤ 10`" where `≤ 8` is needed.
