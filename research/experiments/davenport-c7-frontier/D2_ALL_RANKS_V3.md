@@ -41,7 +41,7 @@ has packing number 1. Consequently
 |---|---|---|---|---|
 | 2 | `{12}` (star) | 1 | `p` | `3p−2` |
 | 3 | `{12, 13, 23}` (triangle) | 3/2 | `(3p−1)/2` | `(9p−7)/2` |
-| 4 | `{12, 13, 14, 234}` | 5/3 | `⌊5p/3⌋` | `4(p−1)+⌊5p/3⌋` |
+| 4 | `{12, 13, 14, 234}` | 5/3 | `⌊5p/3⌋` | `4(p−1)+⌊5p/3⌋` (exact at `p=3`: `D_2 = 14`, §4) |
 | 5 | (16-set maximal family) | 9/5 | `9` at `p=5`, `12` at `p=7` | `29`, `42` |
 
 The rank-4 optimum is explicit and pretty: a star of three edges at vertex 1 together with the complementary triple. Its fractional matching puts `p/3` on each edge and `2p/3` on the triple, giving `3·(p/3) + 2p/3 = 5p/3`. Verified: `M(4,p) = ⌊5p/3⌋` at `p = 5, 7, 11, 13` (values 8, 11, 18, 21).
@@ -65,7 +65,25 @@ Verified by exact packing computation (`tools/d2_rank_families_v3.py`): the star
 
 with the lower bound from Theorem 2's intersecting-family optimum and the upper bound from Theorem 1's certificate. Modulo Olson's `D(C_p^r) = r(p−1)+1`, both values are established here without any donor input — the `r = 3` case being exactly the premise the rest of the packet had been assuming from unreadable text.
 
-So `D_2(C_p^r)` is **determined at ranks 2 and 3 and bracketed for `r ≥ 4`**, the gap growing slowly. Closing the gap needs either a better intersecting-family construction (the maximum of `ν*` over intersecting families is maximised by projective planes in the uniform case, with Füredi's bound `ν* ≤ k−1+1/k` for `k`-uniform), or a sharpening of the congruence system using more than the length spectrum.
+So `D_2(C_p^r)` is **determined at ranks 2 and 3 and bracketed for `r ≥ 4`** by the two theorems, the gap growing slowly.
+
+## 4. Rank 4 decided at `p = 3`: `D_2(C_3^4) = 14`
+
+The congruence certificate is weak at `p = 3` (it only gives `≤ 18`, the same degeneration as everywhere else at that prime), so this case was settled by exhaustive search instead, with `tools/enum_rank_generic_v3.c`.
+
+*Setup.* Suppose `|S| = 14` over `C_3^4` with `pk(S) ≤ 1`. Its rank is 4: a rank-`≤3` sequence lies in a copy of `C_3^3`, where `D_2 = 11 ≤ 14` would give two disjoint blocks. So `S` contains a basis, normalised to `e_1,…,e_4` by `GL(4,3)`. By the complement lemma every block of `S` has length `≥ 14 − D + 1 = 6`, so `S` has no zero-sum of length `≤ 5` — which also forces every multiplicity `≤ 2`. The search enumerates every multiset containing the basis, in nondecreasing index order, pruning on the short-zero-sum condition, and tests each survivor for two disjoint blocks by an exact layered dynamic programme over pairs of disjoint sub-multisets.
+
+*Result.* **987,944 nodes, 10,852 survivors, zero with packing number `≤ 1`.** Hence `D_2(C_3^4) ≤ 14`. Theorem 2 with the rank-4 optimum gives `M(4,3) = 5` and the explicit witness
+
+    e_1^2 e_2^2 e_3^2 e_4^2 · e_12 e_13 e_14 · (e_2+e_3+e_4)^2      (length 13, packing number 1),
+
+so `D_2(C_3^4) ≥ 14`. Therefore
+
+> **`D_2(C_3^4) = 14 = D + M(4,3)`.**
+
+*Controls.* The same program returns `found = 0` at `(r,L,s) = (2,8,3)` and `(3,11,4)` — reproducing `D_2(C_3^2) = 8` and `D_2(C_3^3) = 11` — and `found = 65` at `(2,7,2)`, whose witnesses were re-checked for packing number 1 by the packet's independent atom recursion.
+
+**This is the first test of Conjecture 4.2 at a rank where it was not fitted, and it passes.** Closing the gap needs either a better intersecting-family construction (the maximum of `ν*` over intersecting families is maximised by projective planes in the uniform case, with Füredi's bound `ν* ≤ k−1+1/k` for `k`-uniform), or a sharpening of the congruence system using more than the length spectrum.
 
 A Fano-plane instance (`r = 7`, the seven lines, `ν* = 7/3`) is the natural next test of the lower bound; its exact packing computation exceeded the session's resource budget and is recorded as `CANNOT_CHECK_RESOURCE_BOUND`, not as a negative.
 

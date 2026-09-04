@@ -89,9 +89,15 @@ The rank-4 optimum is a star of three edges at a vertex together with the comple
 
 **Theorem 4.1.** For `r ∈ {2,3}` and every prime `p ≤ 13`, `D_2(C_p^2) = 3p−1` and `D_2(C_p^3) = (9p−5)/2`, with the lower bound from Theorem 3.1 and the upper bound from Theorem 2.3. At `r = 3` the upper bound holds for every prime `p ≥ 5` by §2.4. Modulo Olson's theorem, both values are established here without donor input.
 
-**Conjecture 4.2.** `D_2(C_p^r) = D(C_p^r) + M(r,p)` for every prime `p` and every `r ≥ 2`.
+**Theorem 4.2.** `D_2(C_3^4) = 14`.
 
-True at `r = 2, 3`. It predicts `D_2(C_p^4) = 4p−3+⌊5p/3⌋`, e.g. `D_2(C_5^4) = 25`, against the proved upper bound 27. The conjecture says the extremal configuration is always *a full basis at multiplicity `p−1` plus the best intersecting family* — a purely combinatorial description of a zero-sum invariant.
+*Proof.* Lower bound: Theorem 3.1 with `F = {12,13,14,234}` and `m = (1,1,1,2)` gives the length-13 sequence `e_1^2e_2^2e_3^2e_4^2·e_12e_13e_14·(e_2+e_3+e_4)^2` with packing number 1, and `M(4,3) = 5`. Upper bound: a length-14 sequence with packing number `≤ 1` has rank 4 (else it embeds in `C_3^3`, where `D_2 = 11`), so contains a basis; by Lemma 2.1 it has no zero-sum of length `≤ 5`, forcing all multiplicities `≤ 2`. Exhaustive search over all such multisets — 987,944 nodes, 10,852 survivors — finds none with packing number `≤ 1`. ∎
+
+Note `D + M(4,3) = 9 + 5 = 14`.
+
+**Conjecture 4.3.** `D_2(C_p^r) = D(C_p^r) + M(r,p)` for every prime `p` and every `r ≥ 2`.
+
+True at `r = 2, 3` (Theorem 4.1) and at `(r,p) = (4,3)` (Theorem 4.2), the latter being a rank at which it was not fitted. It predicts `D_2(C_p^4) = 4p−3+⌊5p/3⌋`, e.g. `D_2(C_5^4) = 25`, against the proved upper bound 27. The conjecture says the extremal configuration is always *a full basis at multiplicity `p−1` plus the best intersecting family* — a purely combinatorial description of a zero-sum invariant.
 
 ## 5. Reading: where the halves come from
 
@@ -106,7 +112,8 @@ True at `r = 2, 3`. It predicts `D_2(C_p^4) = 4p−3+⌊5p/3⌋`, e.g. `D_2(C_5^
 | §2.4 | Rank-3 upper bound for all `p ≥ 5` | proved; structure machine-checked to `p = 200` |
 | 3.x | `M(r,p)` for `r ≤ 5` | computed exactly |
 | 4.1 | `D_2` at ranks 2, 3 | proved (rank 2 for `p ≤ 13`; rank 3 for all `p ≥ 5`) |
-| 4.2 | Conjecture | open; consistent with everything computed |
+| 4.2 | `D_2(C_3^4) = 14` | proved (exhaustive; controls reproduce ranks 2, 3) |
+| 4.3 | Conjecture | open; consistent with everything computed, and confirmed at rank 4 for `p = 3` |
 
 ## 7. What this draft does not contain
 
