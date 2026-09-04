@@ -1,6 +1,6 @@
 # Inverse structure of `D_k`-extremal sequences over `C_n^3` — V3
 
-Status: **exact finite observations on complete enumerations (`n = 3`, all `k ≤ 4`; `n = 5`, `k = 2`) plus a partial enumeration (`n = 5`, `k = 3`) and two partial classes at `n = 7`**. One conjecture is stated; one plausible-looking conjecture is **refuted** here. Priority CANNOT_CHECK.
+Status: **exact finite observations**. Corrected by `CORRECTION_MULTIPLICITY_CAP_V3.md`: the `k = 2` enumerations are complete, but for `k ≥ 3` every table below covers only the sequences with all multiplicities `≤ n−1`, because the enumeration cap is not justified there. Conjecture R as first stated is **refuted for `k ≥ 3`** by the family `T_k(n)`; it survives as Conjecture R′ for `k = 2`. Priority CANNOT_CHECK.
 Branch: `claude/orion-research-frontier-3ck9yt`. Tools: `tools/enum_packing_v2.c`, `tools/canon_gl3.py`, `tools/cubelike_v3.py`, `tools/boxmax.c`.
 
 A `D_k`-extremal sequence is one of length `D_k(C_n^3) − 1` with packing number `k−1`: the largest sequences that still fail to contain `k` disjoint zero-sum subsequences.
@@ -19,9 +19,11 @@ So at `k = 2` **97 % of the extremal objects contain no cube at all**, and the c
 
 ## 2. Conjecture that survives: maximal multiplicity `n−1`
 
-**Conjecture R (rigidity).** Every `D_k`-extremal sequence over `C_n^3` (`k ≥ 2`, `n` odd) contains an element of multiplicity exactly `n−1`.
+**Conjecture R′ (rigidity, `k = 2`).** Every `D_2`-extremal sequence over `C_n^3` (`n` odd) contains an element of multiplicity exactly `n−1`.
 
-Evidence, from complete enumerations unless stated:
+The `k ≥ 3` version is **false**: `T_3(3) = e_1^5 e_2^2 e_3^2 e_12^2 e_13 e_23` is `D_3(C_3^3)`-extremal with maximal multiplicity 5 (`GENERAL_LOWER_BOUND_AND_ETA_INDUCTION_V3.md`). The `k ≥ 3` rows below are therefore evidence only about the capped subset, and are kept for that restricted reading.
+
+Evidence (complete only for `k = 2`; the `k ≥ 3` rows are over sequences with multiplicities `≤ n−1`):
 
 | family | sequences | max-multiplicity distribution |
 |---|---|---|
@@ -44,7 +46,7 @@ An independent, complete check inside the cube: capping all multiplicities at `n
 
 so no cube-supported extremal sequence for `k = 2` or `k = 3` avoids multiplicity `n−1`. The loss shrinks with `n` (3, 2, 1, 1 at `k = 3`), so this is evidence, not a proof, and the `k = 3` margin should be watched at larger `n`.
 
-**Why Conjecture R matters.** In `OBSTRUCTION_REDUCTION_LEMMAS_V2.md` Lemma 2.4(4), a length-36 obstruction over `C_7^3` with shortest block `u = 8` produces a length-28 sequence that is `D_2`-extremal after deleting any single element. Conjecture R would force a multiplicity-6 element into that object, normalising it to `e_1^6 · (rest)` and cutting the residual search by roughly the size of the multiplicity alphabet. It is the cheapest available lever on the frozen question.
+**Why Conjecture R′ matters.** In `OBSTRUCTION_REDUCTION_LEMMAS_V2.md` Lemma 2.4(4), a length-36 obstruction over `C_7^3` with shortest block `u = 8` produces a length-28 sequence that is `D_2`-extremal after deleting any single element. Conjecture R′ would force a multiplicity-6 element into that object, normalising it to `e_1^6 · (rest)` and cutting the residual search by roughly the size of the multiplicity alphabet. It is the cheapest available lever on the frozen question.
 
 ## 3. Support-size profiles (complete enumerations)
 
@@ -60,8 +62,8 @@ The minimum support size grows with `k` and the distribution shifts right, consi
 
 ## 4. Maximal atoms are a different population
 
-Over `C_5^3` there are 181 979 symmetry-reduced zero-sum-free sequences of length `D−1 = 12`; completing each by `−σ` gives a minimal zero-sum sequence of the maximal length `D(C_5^3) = 13`. Their maximal multiplicities are 4 in 136 949 cases, 3 in 44 277, and **2 in 753**. So maximal atoms need not contain an element of multiplicity `n−1`, while (Conjecture R) `D_k`-extremal sequences appear to. The two inverse problems are genuinely different, and results about maximal atoms cannot be imported.
+Over `C_5^3` there are 181 979 symmetry-reduced zero-sum-free sequences of length `D−1 = 12`; completing each by `−σ` gives a minimal zero-sum sequence of the maximal length `D(C_5^3) = 13`. Their maximal multiplicities are 4 in 136 949 cases, 3 in 44 277, and **2 in 753**. So maximal atoms need not contain an element of multiplicity `n−1`, while (Conjecture R′) `D_2`-extremal sequences appear to. The two inverse problems are genuinely different, and results about maximal atoms cannot be imported.
 
 ## Claim ceiling
 
-§1 is a complete refutation on complete enumerations at `n = 3` only; it does not assert anything for `n ≥ 5`. Conjecture R is a conjecture. Rows marked running/partial are execution status, not results.
+§1 is about the `n = 3` enumerations only (complete for `k = 2`, capped for `k = 3, 4`); it does not assert anything for `n ≥ 5`. Conjecture R′ is a conjecture, restricted to `k = 2` where the enumeration is complete. Rows marked running/partial are execution status, not results.

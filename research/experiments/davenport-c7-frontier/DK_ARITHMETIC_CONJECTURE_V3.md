@@ -1,6 +1,6 @@
 # `D_k(C_n^3)` is arithmetic from `k = 2` with a half-defect — V3
 
-Status: **conjecture, with all computed cases in agreement, explicit lower-bound families for `k = 2, 3, 4` verified for `n = 3, 5, 7, 9` (and proved by hand for all odd `n` when `k = 2, 3`)**. Priority: CANNOT_CHECK — the donor literature could not be read from this host (ledger row C7-DONOR-1), and the `k = 2` case and the general inequality `D_{k+1} ≥ D_k + exp` are certainly donor-owned. No novelty is claimed.
+Status: **the lower bound is now a theorem for all `k` and all odd `n`** (`GENERAL_LOWER_BOUND_AND_ETA_INDUCTION_V3.md`, Theorem 1, family `T_k(n)`); the matching upper bound is a conjecture, proved for `C_3^3` (all `k`), for `k = 2` at `n = 3, 5, 7` and prime powers `p^a, p ≥ 5`, and for `k = 3` at `n = 3, 5`. Priority: CANNOT_CHECK — the donor literature could not be read from this host (ledger row C7-DONOR-1), and the `k = 2` case and the general inequality `D_{k+1} ≥ D_k + exp` are certainly donor-owned. No novelty is claimed.
 Branch: `claude/orion-research-frontier-3ck9yt`.
 
 ## The statement
@@ -14,6 +14,16 @@ Equivalently, writing `D = D(C_n^3) = 3n−2` (Olson, for `n` a prime power) and
     D_k(C_n^3) = D(C_n^3) + (k−1)·exp(C_n^3) + (n−1)/2       for all k ≥ 2,
 
 i.e. the sequence `(D_k)_{k≥2}` is an arithmetic progression of difference `exp(G)` — the eventual behaviour proved in general by Freeze–Schmid — which begins already at `k = 2`, and which sits **exactly `(n−1)/2` above** the naive value `D(G) + (k−1)exp(G)`. The defect `(n−1)/2` is independent of `k`.
+
+## Status of the two halves
+
+**Lower bound — proved.** For every odd `n` and every `k ≥ 2`,
+
+    T_k(n) = e_1^{(k−1)n−1} e_2^{n−1} e_3^{n−1} e_12^{(n+1)/2} e_13^{(n−1)/2} e_23^{(n−1)/2}
+
+has length `((2k+5)n−7)/2` and packing number exactly `k−1`, so `D_k(C_n^3) ≥ ((2k+5)n−5)/2`. Hand proof and machine check: `GENERAL_LOWER_BOUND_AND_ETA_INDUCTION_V3.md`. This supersedes the case-by-case families `S_2, S_3, S_4` as the source of the lower bound (they remain the *cube-supported* record holders, which is what `CUBE_PACKING_PROFILE_V3.md` measures).
+
+**Upper bound — open in general, with a switch-on mechanism.** `D_{k+1} ≤ D_k + n` holds as soon as `D_k + n ≥ η(C_n^3)` (Theorem 2, ibid.). Assuming `η(C_n^3) = 8n−7`, that is available for all `k ≥ 5` (and `k ≥ 4` for `n ≤ 9`). So the conjecture reduces to finitely many values of `k` per `n`: at `n = 7`, everything from `k = 4` up follows from `D_4(C_7^3) = 43` plus `η`, and `k = 3` — the frozen question — stands alone. For `n = 3` the reduction completes: `D_k(C_3^3) = 3k+5` for **all** `k ≥ 2` (Theorem 4, ibid.).
 
 ## Evidence
 
@@ -34,7 +44,7 @@ i.e. the sequence `(D_k)_{k≥2}` is an arithmetic progression of difference `ex
 
 Write `a = n−1`, `hi = (n+1)/2`, `lo = (n−1)/2`, and use the cube points `e_1,e_2,e_3,e_12,e_13,e_23,e_123` plus `g = e_1+e_2+2e_3`.
 
-    S_2(n) = e_1^a e_2^a e_3^a e_12^{hi} e_13^{lo} e_23^{lo}                          |S_2| = (9n−7)/2,  pk = 1
+    S_2(n) = e_1^a e_2^a e_3^a e_12^{hi} e_13^{lo} e_23^{lo}                          |S_2| = (9n−7)/2,  pk = 1   ( = T_2(n) )
     S_3(n) = e_1^a e_2^a e_3^a e_12^a    e_13^{hi} e_23^{lo} e_123^{hi}               |S_3| = (11n−7)/2, pk = 2
     S_4(n) = e_1^a e_2^a e_3^a e_12^a    e_13^{hi} e_23^{lo} e_123^a   g^{(n+3)/2}    |S_4| = (13n−7)/2, pk = 3
 
@@ -56,7 +66,8 @@ so the sublattice `⟨e_12, e_13, e_23⟩` has index 2 in `⟨e_1,e_2,e_3⟩`, t
 
 1. **Upper bound `D_3(C_n^3) ≤ (11n−5)/2`.** The obstruction-side reduction is complete (`OBSTRUCTION_REDUCTION_LEMMAS_V2.md`): one must show every zero-sum sequence of length `(11n−3)/2` over `C_n^3` has four disjoint blocks. The cube case is settled with room to spare (shortfall `(n+3)/2`, `CUBE_PACKING_PROFILE_V3.md` §4); the general case is open. At `n = 7` this is exactly the frozen question `D_3(C_7^3) = 36`.
 2. **The step inequality `D_{k+1} ≤ D_k + n` for `k ≥ 2`.** The matching lower step `D_{k+1} ≥ D_k + n` is donor-owned. A short-zero-sum route (`|U| ≤ n` then apply `D_k` to the complement) would need `η(C_n^3) ≤ D_k + n`, which fails: `η(C_n^3) ≥ 8n−7 > (11n−5)/2` for `n ≥ 3`. So the induction must use the zero-sum form of the problem, where `SPECTRUM_CONGRUENCE_THEOREM_V2.md` gives shortest-block bounds (length `≤ 10` at `n = 7`) that are still one step too weak (`n+1 = 8` is what is needed).
-3. **A hand proof for `S_4`,** and the general `S_k`, which would give the lower bound for all `k` without importing the donor step inequality.
+3. ~~A hand proof for `S_4` and the general `S_k`~~ — **done**, by a different and simpler family (`T_k(n)`, Theorem 1 of `GENERAL_LOWER_BOUND_AND_ETA_INDUCTION_V3.md`). The lower bound no longer depends on the donor step inequality.
+4. **`η(C_n^3) = 8n−7`** for `n = 5, 7`: verified here only for `n = 3` (`≤ 17`, from a frame with no leaves). With it, `D_4` at a given `n` settles every larger `k`.
 
 ## Claim ceiling
 

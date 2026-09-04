@@ -34,5 +34,7 @@ jobs:
         run: python cube_packing_profile_v3.py
       - name: V3 extremal families S_2, S_3, S_4 for n = 5, 7, 9, 11
         run: python tools/famcheck_v3.py 5 7 9
+      - name: V3 general family T_k(n) for n = 3, 5, 7 and k <= 6
+        run: python verify_tk_family_v3.py
       - name: V2 exhaustive analogues (compile enumerator, replay p = 3 and p = 5 D2 frames)
         run: bash run_exhaustive_analogs_v2.sh --ci
