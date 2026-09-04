@@ -36,5 +36,7 @@ jobs:
         run: python tools/famcheck_v3.py 5 7 9
       - name: V3 general family T_k(n) for n = 3, 5, 7 and k <= 6
         run: python verify_tk_family_v3.py
+      - name: V3 uniform D_2 digit certificate (all primes 5 <= p <= 200)
+        run: python tools/d2_digit_certificate_v3.py
       - name: V2 exhaustive analogues (compile enumerator, replay p = 3 and p = 5 D2 frames)
         run: bash run_exhaustive_analogs_v2.sh --ci
