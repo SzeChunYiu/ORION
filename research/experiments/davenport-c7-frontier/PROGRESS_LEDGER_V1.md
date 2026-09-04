@@ -1,4 +1,4 @@
-# C7^3 multiwise Davenport frontier — progress ledger V13
+# C7^3 multiwise Davenport frontier — progress ledger V14
 
 Status: live LLM-assisted ORION research ledger. No novelty authority.
 
@@ -22,6 +22,7 @@ With `M_p=(5p-5)/2`, a first failure may be chosen with
 - equality for `q>=2` forcing the exact rank-two grammar and a canonical atom of length `p+q` into a maximum factorization;
 - weighted projective line-deficit inequalities and full-multiplicity directions forming an arc;
 - low-deficit tangent packing for `q>=3`;
+- saturated full-arc scalar interpolation for full arcs of sizes `p+1` and, when `p>=11`, `p`;
 - the p-group Geroldinger--Yang two-term avoidance for terminal maximal-atom products;
 - terminality under every positive-gain conformal Graver move.
 
@@ -41,50 +42,86 @@ and hence
 
 For `q=3`, `f>=2r-Delta-(p+2)`. See `LOW_DEFICIT_TANGENT_PACKING_V1.md`.
 
-## New prime-uniform saturated-conic scalar uniqueness
+## Saturated full-conic scalar uniqueness
 
-Let `p>=7` be odd. If all `p+1` full-multiplicity directions form a conic and `D` is an occupied off-conic direction of deficit exactly `q-1`, every conic secant through `D` saturates the rank-two plane bound. In canonical conic coordinates `C(t)=(1,t,t^2)`, writing `D=(d_0,d_1,d_2)`, the saturated-plane equations force the conic scalar profile
+For odd prime `p>=7`, a full `(p+1)`-arc is a conic. If `D=(d_0,d_1,d_2)` is an occupied off-conic direction of deficit exactly `q-1`, saturated conic secants force the actual full-direction scalar profile
 
-`lambda(t)=mu_D (d_0d_2-d_1^2)/(d_0t^2-2d_1t+d_2)`
+`lambda(t)=mu_D (d_0d_2-d_1^2)/(d_0t^2-2d_1t+d_2)`.
 
-at every non-tangent finite conic point.
+Two distinct minimal-deficit off-conic directions would make two quadratic denominators proportional at at least `p-4>=3` field values, hence projectively equal. Therefore a full conic supports at most one deficit-`q-1` off-conic direction.
 
-Two distinct off-conic minimal-deficit centers `D,E` would force their two quadratic denominators to be proportional at at least `p-4>=3` field values. Hence the quadratics, and therefore `D,E`, are projectively equal. Contradiction.
-
-Thus:
-
-> A full conic can coexist with **at most one** deficit-`q-1` off-conic direction for every odd prime `p>=7`.
-
-Consequently, if a full conic has `n>=2` occupied off-conic directions, total projective deficit satisfies
+If it has `n>=2` occupied off-conic directions, total projective deficit satisfies
 
 `Delta>=qn-1`.
 
-This gives an integral strictness criterion for the existing full-direction arc bound. Put
+This yields the first integral direction-floor bump. With
 
-`R=(N-p-1)/(p-2)`.
+`R=(N-p-1)/(p-2)`
 
-If `R` is integral and equality `r=R` would force all `p+1` full directions, then:
+integral, equality `r=R` is impossible for `q>=3,R>=p+2`, and for `q=2,p>=7,R>=p+3`. One explicit q=2 family is
 
-- for `q>=3`, equality is impossible as soon as `R>=p+2`;
-- for `q=2`, equality is impossible for `p>=7` as soon as `R>=p+3`.
+`p congruent 1 mod 4`, `p>=13`, `m=(5p-13)/4`,
 
-Hence the direction floor bumps from `R` to `R+1` in those cases.
-
-An explicit infinite family follows. For primes `p congruent 1 mod 4`, `p>=13`, the potential first-failure slice
-
-`q=2`, `m=(5p-13)/4`
-
-has old integral direction floor
-
-`R=(5p+3)/4`
-
-and therefore the new necessary bound
+with the improved floor
 
 `r>=(5p+7)/4`.
 
+The p=5 hostile control has 30 compatible distinct saturated-center pairs, so the p>=7 threshold is retained exactly.
+
 See `SATURATED_CONIC_SCALAR_UNIQUENESS_V1.md`.
 
-The threshold `p>=7` is real: an independent finite hostile control finds 30 compatible distinct saturated-center pairs at `p=5`, while exhaustive pair replays find none at `p=7,11,13`.
+## New p-full arc interpolation layer
+
+For prime `p>=11`, every p-arc in `PG(2,p)` extends to a unique `(p+1)`-arc/conic. If the p full directions are the conic with one completion point `R` deleted, then any occupied direction outside the completed conic with deficit exactly `q-1` again imposes the reciprocal-quadratic scalar profile on all but at most three full arc points.
+
+Two distinct off-conic minimal-deficit centers would therefore have profiles agreeing at at least `p-7>=4` finite parameters, forcing the centers to coincide. Hence:
+
+> relative to a p-point full arc, at most one occupied direction **outside its conic completion** has deficit `q-1` for `p>=11`.
+
+The missing completion point is a genuine exceptional direction: it lies on no secant through two full arc points and may have deficit below `q-1`.
+
+If exactly p directions are full and `n=r-p>=2` are deficient, the total deficit satisfies
+
+`Delta>=qn-q`.
+
+At the integral p-full boundary
+
+`S=(N-p)/(p-2) in Z`, `n=S-p`,
+
+equality `r=S` forces at least p full directions. Accounting for both possible cases—exactly p full or all p+1 full—gives the corrected strictness criterion
+
+`(q-1)n>q+1  =>  r>=S+1`.
+
+Thus equality is impossible for:
+
+- q=2 with `n>=4`;
+- q=3 with `n>=3`;
+- q>=4 with `n>=2`.
+
+The earlier scratch example `p=11,q=2,m=10` has `n=3` and is **not** promoted: a full conic plus deficit pattern `(1,2)` remains compatible with the present theorem.
+
+An explicit complementary q=2 family is obtained for
+
+`p congruent 3 mod 4`, `p>=19`, `m=(5p-15)/4`.
+
+Here
+
+`S=(5p+1)/4`, `n=(p+1)/4>=5`,
+
+so
+
+`r>=(5p+5)/4`.
+
+Together with the `p congruent 1 mod 4` conic family, every prime `p>=13` now has an explicit high-level q=2 slice where the raw full-direction arc floor is provably strict.
+
+Independent deleted-conic gain-graph replays show the threshold is real:
+
+- p=5: 125 compatible distinct off-conic center pairs;
+- p=7: 84 compatible;
+- p=11: 0 compatible;
+- p=13: 0 compatible.
+
+See `SATURATED_P_ARC_SCALAR_UNIQUENESS_V1.md`.
 
 ## Exact p=7 length-37 frontier
 
@@ -105,21 +142,21 @@ No `D_3(C_7^3)` value is claimed yet.
 
 ### `(p,q,m,r)=(7,2,8,13)`
 
-At length 73 and `r=13`, total direction deficit five forces `6^8 5^5`, hence a full conic plus five deficit-one directions. Saturated-conic scalar uniqueness now gives an analytic contradiction immediately, so
+At length 73 and `r=13`, total direction deficit five forces `6^8 5^5`, hence a full conic plus five deficit-one directions. Saturated-conic scalar uniqueness gives an analytic contradiction, so
 
 `(p,q,m)=(7,2,8) => r>=14`.
 
-The older two finite verifiers remain independent controls: 5,166 projective extensions, every rank-13 system singular only at zero, every ratio graph inconsistent; digest
+The finite controls remain: 5,166 conic-plus-five extensions, all rank-13 systems full rank and all ratio graphs inconsistent; digest
 
 `0eb3a99b0bb1c30595f9b6b58e74b980c094c5d5754a50f726d82aed4711d82c`.
 
 ### `(p,q,m,r)=(7,3,6,11)`
 
-Here `N=60`, `Delta=6`. Low-deficit tangent packing forces at least seven full directions. Seven full directions would require at least two secant-free deficit-one points, but a 7-arc has at most one secant-free extension. Thus only eight full directions remain, forcing a conic plus three deficit-two directions. Saturated-conic scalar uniqueness again gives an analytic contradiction, hence
+Here `N=60`, `Delta=6`. Tangent packing forces at least seven full directions. Seven full directions would require at least two secant-free deficit-one points, but a 7-arc has at most one secant-free extension. Eight full directions force a conic plus three deficit-two directions, contradicted by saturated-conic scalar uniqueness. Therefore
 
 `(p,q,m)=(7,3,6) => r>=12`.
 
-The finite scalar replay remains an independent control: 4,466 conic-plus-three extensions, all rank-11 systems full rank and all bipartite gain graphs inconsistent; digest
+The finite controls remain: 4,466 conic-plus-three extensions, all rank-11 systems full rank and all gain graphs inconsistent; digest
 
 `7f858cbd83b9922d4fc0122baa2a34680216033f28bd948aa225bde055c85cce`.
 
@@ -135,14 +172,14 @@ The geometric closures remove projective realizations inside that signature shel
 
 The all-prime problem remains a finite **rank-three augmentation theorem**:
 
-every surviving first-failure positive kernel vector satisfying the restricted-sum, atom-excess, q-dependent plane, tangent-packing, conic-interpolation, weighted-secant, maximal-atom-depth and hereditary-subproduct constraints must admit a positive-gain two- or three-atom conformal refactor.
+every surviving first-failure positive kernel vector satisfying the restricted-sum, atom-excess, q-dependent plane, tangent-packing, large-arc interpolation, weighted-secant, maximal-atom-depth and hereditary-subproduct constraints must admit a positive-gain two- or three-atom conformal refactor.
 
-The geometric interface has sharpened from a finite gain-graph observation to an analytic principle: saturated planes impose rational scalar profiles, and complete full arcs turn compatibility into polynomial interpolation.
+The geometric interface is now systematic: saturated rank-two planes impose rational scalar profiles, while large-arc completion turns compatibility into low-degree polynomial interpolation.
 
 ## Next discriminators
 
-1. Search for analogous interpolation rigidity when the full-direction arc has `p` or `p-1` points rather than a complete conic.
-2. Continue `(p,q,m)=(7,2,8)` from `r>=14`; the full-conic subcase is now constrained by `Delta>=qn-1`, forcing sharply restricted deficit patterns.
+1. Search for controlled interpolation rigidity for `(p-1)` full arcs. Uniform completion is unavailable in the small odd-prime cases, so this requires either a large-arc theorem with explicit exceptions or a different projective-code invariant.
+2. Continue `(p,q,m)=(7,2,8)` from `r>=14`; the full-conic subcase is constrained by `Delta>=qn-1` and has sharply restricted deficit patterns.
 3. Continue `(p,q,m)=(7,3,6)` from `r>=12` using tangent packing before scalar search.
 4. Apply the conic/tangent framework to `(q,m,r)=(3,5,10)`, where `f=3` is already excluded.
 5. Finish the eight-distinct-direction support-eight Type-A `(7,3,1)` closure.
@@ -155,8 +192,9 @@ The geometric interface has sharpened from a finite gain-graph observation to an
 - Generic Graver-basis existence is a reformulation, not the needed positive-gain theorem.
 - General exact `eta(C_p^3)` is not assumed for primes `p>=7`.
 - Additive-basis donor searches have not yet forced a relevant maximal-atom target to have representation depth at most two.
-- The saturated-conic theorem requires a complete full `(p+1)`-arc; no claim is made yet for smaller full arcs.
-- The `p=5` saturated-center phenomenon is genuinely exceptional and is retained as a hostile boundary.
+- The full-conic interpolation theorem fails at p=5; the p-full interpolation theorem still has compatible pairs at p=5 and p=7.
+- No uniform claim is made for `(p-1)` full arcs because complete `(p-1)`-arcs exist for several small odd orders.
+- The corrected p-full case split explicitly preserves the q=2,n=3 boundary rather than overclaiming a strict bump.
 
 ## Claim ceiling
 
