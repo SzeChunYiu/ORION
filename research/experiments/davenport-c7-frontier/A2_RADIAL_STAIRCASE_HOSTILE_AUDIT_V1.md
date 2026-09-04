@@ -27,16 +27,16 @@ The committed replay requires exactly:
 - 167 primes through `1009`;
 - 76,964 parity checks;
 - 25,066,528 broad feasibility checks;
-- 12,513,856 floor-rounding mutation disagreements;
+- 12,513,856 broad floor-rounding mutation disagreements;
 - 73,672 full-capacity oracle rows through prime `101`;
 - 73,672 even optimizers;
-- 36,036 oracle-level floor-rounding disagreements;
+- 17,858 oracle-level floor-rounding mutation disagreements;
 - 38,396 doubled-target checks;
 - oracle transcript SHA-256
 
 `a1775e11ae11f91b54766349013754aff9d0e159d72770cc32156414db8d6371`.
 
-The mutation count is load-bearing: a checker that replaced the ceiling by a floor would still agree on half the staircase and could look superficially plausible. The audit requires millions of explicit disagreements.
+The mutation count is load-bearing: a checker that replaced the ceiling by a floor would still agree on many staircase entries and could look superficially plausible. The audit requires millions of symbolic disagreements and thousands of direct-oracle disagreements.
 
 ## Authority boundary
 
