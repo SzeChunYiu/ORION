@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Regression for exact multi-copy sharing criteria from support-line depth."""
+"""Bounded regression for exact multi-copy sharing criteria.
+
+The theorem is analytic.  This checker deliberately separates:
+  * brute oracle-vs-interval equivalence on a finite prime set; and
+  * cheap algebraic/singleton regression through p=401.
+It does not perform the accidentally super-polynomial all-p<=401 brute loop
+from the first draft.
+"""
 
 from __future__ import annotations
 
@@ -40,70 +47,83 @@ def neg(x: tuple[int, int, int], p: int) -> tuple[int, int, int]:
     return tuple((-y) % p for y in x)
 
 
-def main() -> None:
-    primes = [p for p in range(5, 402) if is_prime(p)]
-    checked = 0
+def brute_prefix_ok(p: int, a: int, j: int, side: str, c: int) -> bool:
+    b = (p + 1) // 2 - j
+    m = p + b
+    u = pow(a, -1, p)
+    s = (0, 0, 1) if side == "light" else ((-u) % p, (-u) % p, 1)
+    for r in range(1, c + 1):
+        if r + rho_formula(p, a, neg(mul(r, s, p), p)) < m:
+            return False
+    return True
 
-    for p in primes:
+
+def interval_prefix_ok(p: int, a: int, j: int, side: str, c: int) -> bool:
+    b = (p + 1) // 2 - j
+    h = ceil(b / 2)
+    u = pow(a, -1, p)
+    if side == "light":
+        lo, hi = a, a + c
+    else:
+        lo, hi = a - c, a
+    return all((u * k) % p <= p - h for k in range(lo, hi + 1))
+
+
+def main() -> None:
+    brute_primes = [5, 7, 11, 13, 17, 19, 23]
+    brute_cases = 0
+
+    # Complete oracle-vs-closed-form check on a deliberately bounded prime set.
+    for p in brute_primes:
+        for j in range(1, (p + 1) // 4 + 1):
+            for a in range(1, (p - 1) // 2 + 1):
+                for c in range(1, p - a):
+                    assert brute_prefix_ok(p, a, j, "light", c) == interval_prefix_ok(
+                        p, a, j, "light", c
+                    )
+                    brute_cases += 1
+                for c in range(1, a):
+                    assert brute_prefix_ok(p, a, j, "heavy", c) == interval_prefix_ok(
+                        p, a, j, "heavy", c
+                    )
+                    brute_cases += 1
+
+    # Cheap all-corridor endpoint algebra through p=401.
+    broad_primes = [p for p in range(5, 402) if is_prime(p)]
+    broad_rows = 0
+    for p in broad_primes:
         for j in range(1, (p + 1) // 4 + 1):
             b = (p + 1) // 2 - j
-            m = p + b
             h = ceil(b / 2)
-
             for a in range(1, (p - 1) // 2 + 1):
                 u = pow(a, -1, p)
-                e3 = (0, 0, 1)
-                g4 = ((-u) % p, (-u) % p, 1)
+                broad_rows += 1
 
-                # Light sharing: exact equivalence for every possible c.
-                prefix_ok = True
-                for c in range(1, p - a):
-                    prefix_ok = prefix_ok and ((u * (a + c)) % p <= p - h)
-                    depth_ok = True
-                    for r in range(1, c + 1):
-                        d = rho_formula(p, a, neg(mul(r, e3, p), p))
-                        if r + d < m:
-                            depth_ok = False
-                            break
-                    assert depth_ok == prefix_ok, (p, j, a, "light", c)
-                    checked += 1
-
-                # Heavy sharing: exact equivalence for every possible c.
-                prefix_ok = True
-                for c in range(1, a):
-                    prefix_ok = prefix_ok and ((u * (a - c)) % p <= p - h)
-                    depth_ok = True
-                    for r in range(1, c + 1):
-                        d = rho_formula(p, a, neg(mul(r, g4, p), p))
-                        if r + d < m:
-                            depth_ok = False
-                            break
-                    assert depth_ok == prefix_ok, (p, j, a, "heavy", c)
-                    checked += 1
-
-                # Singleton endpoint thresholds.
+                # Singleton cases of the interval theorem, equivalent to the
+                # previously committed inverse selector.
                 light_one = (p - 1 - a) >= 1 and ((u * (a + 1)) % p <= p - h)
                 assert light_one == (u <= p - h - 1)
                 if a > 1:
                     heavy_one = ((u * (a - 1)) % p <= p - h)
                     assert heavy_one == (u >= h + 1)
 
+                # The interval endpoints always stay among nonzero residues.
+                assert a + (p - 1 - a) == p - 1
+                assert a - (a - 1) == 1
+
     # Frozen p=7, j=1 exact maxima.
     p, j = 7, 1
-    b = (p + 1) // 2 - j
-    h = ceil(b / 2)
     frozen = []
     for a in (1, 2, 3):
-        u = pow(a, -1, p)
         cl = 0
         for c in range(1, p - a):
-            if all((u * k) % p <= p - h for k in range(a, a + c + 1)):
+            if interval_prefix_ok(p, a, j, "light", c):
                 cl = c
             else:
                 break
         ch = 0
         for c in range(1, a):
-            if all((u * k) % p <= p - h for k in range(a - c, a + 1)):
+            if interval_prefix_ok(p, a, j, "heavy", c):
                 ch = c
             else:
                 break
@@ -114,9 +134,10 @@ def main() -> None:
         json.dumps(
             {
                 "status": "SUPPORT4_MULTICOPY_SHARING_GREEN",
-                "checked_primes": len(primes),
-                "max_prime": primes[-1],
-                "checked_multiplicity_cases": checked,
+                "brute_primes": brute_primes,
+                "brute_cases": brute_cases,
+                "broad_max_prime": broad_primes[-1],
+                "broad_type_corridor_rows": broad_rows,
                 "p7_j1": frozen,
             },
             sort_keys=True,
