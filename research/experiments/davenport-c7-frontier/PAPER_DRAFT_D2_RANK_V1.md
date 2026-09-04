@@ -103,6 +103,8 @@ So the natural conjecture `D_2(C_p^r) = D + M(r,p)` — true at `r = 2, 3` and a
 
 The two constructions scale differently — the capacity family contributes `M(r,p) ≈ p·ν*(r)`, the star of `k`-sets contributes `C(r−1,k−1)` independent of `p` — so neither dominates: at `(3,5)` the star wins (16 against 15), at `(5,5)` capacity wins (29 against 26).
 
+The failure is not confined to rank 5. The search at `(p,r,L,s) = (5,4,25,8)` also returns length-25 witnesses with packing number 1 against `D + M(4,5) = 25`, so `D_2(C_5^4) ≥ 26`, and with Theorem 2.3 `D_2(C_5^4) ∈ {26,27}`. Rank 4 therefore satisfies `D + M` at `p = 3` and violates it at `p = 5`, which retrospectively makes Theorem 4.2 a coincidence rather than an instance.
+
 **Open problem 4.4.** Determine `D_2(C_p^r)` for `r ≥ 4`. The framework brackets it; the lower side is an optimisation over admissible configurations for which no single closed form survives.
 
 ## 5. Reading: where the halves come from

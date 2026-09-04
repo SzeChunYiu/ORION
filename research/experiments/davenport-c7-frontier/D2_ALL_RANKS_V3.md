@@ -111,7 +111,17 @@ Testing that family directly (`tools/d2_rank_families_v3.py` extended):
 
 The two constructions scale differently: the capacity family contributes `M(r,p) ≈ p·ν*(r)`, growing with `p`, while the star of `k`-sets contributes `C(r−1,k−1)`, independent of `p`. So the combinatorial family wins for small `p` relative to `r` (it beats capacity at `(3,5)`: 16 against 15) and loses for large `p` (at `(5,5)`: 26 against 29). The true lower bound is the maximum over both, and presumably over families neither of these covers.
 
-**Corrected picture.** `D_2(C_p^r) = D + M(r,p)` holds at `r = 2, 3` for the primes tested and at `(r,p) = (4,3)`, and fails at `(5,3)`. There is no reason left to expect a single clean closed form across all ranks; what survives is the two-sided framework, with the lower side an optimisation over admissible families rather than one formula. Closing the gap needs either a better intersecting-family construction (the maximum of `ν*` over intersecting families is maximised by projective planes in the uniform case, with Füredi's bound `ν* ≤ k−1+1/k` for `k`-uniform), or a sharpening of the congruence system using more than the length spectrum.
+### Rank 4 fails too, at `p = 5`
+
+The search at `(p,r,L,s) = (5,4,25,8)` likewise returns sequences of length 25 with packing number 1 (three re-checked independently), while `D + M(4,5) = 17 + 8 = 25`. So
+
+    D_2(C_5^4) ≥ 26 > 25 = D + M(4,5),
+
+and combined with Theorem 1's bound of 27, `D_2(C_5^4) ∈ {26, 27}`. These witnesses are not of either construction in this record: a typical one has support 11 with multiplicity profile `(4,4,4,3,3,2,1,1,1,1,1)`.
+
+So the agreement at `(4,3)` was a coincidence: rank 4 satisfies `D + M` at `p = 3` and violates it at `p = 5`.
+
+**Corrected picture.** `D_2(C_p^r) = D + M(r,p)` holds at `r = 2, 3` for the primes tested and at `(r,p) = (4,3)`, and fails at `(4,5)` and `(5,3)`. There is no reason left to expect a single clean closed form across all ranks; what survives is the two-sided framework, with the lower side an optimisation over admissible families rather than one formula. Closing the gap needs either a better intersecting-family construction (the maximum of `ν*` over intersecting families is maximised by projective planes in the uniform case, with Füredi's bound `ν* ≤ k−1+1/k` for `k`-uniform), or a sharpening of the congruence system using more than the length spectrum.
 
 A Fano-plane instance (`r = 7`, the seven lines, `ν* = 7/3`) is the natural next test of the lower bound; its exact packing computation exceeded the session's resource budget and is recorded as `CANNOT_CHECK_RESOURCE_BOUND`, not as a negative.
 
