@@ -53,7 +53,9 @@ Before, `(6,6,6,13)` was the only profile a maximal-atom method could reach. Now
 | `(7,7,7,10)` | maximal atom **forced** (Theorem O); support-four branch closed by Theorem M |
 | `(6,6,7,12)`, `(6,7,7,11)`, `(6,7,8,10)` | still flat; each has a part 6, so Proposition N does not bite |
 
-The three remaining profiles all contain a 6, which satisfies every forced pair, so this particular congruence says nothing about them. Reaching them needs either a finer congruence or one of the other two directions.
+The three remaining profiles all contain a 6, which satisfies every forced pair, so this particular congruence says nothing about them.
+
+**And it never will.** Searching forced sets of size 3 that avoid the complementation class `{6,25}` returns **none** — so the entire content of this congruence, at every set size checked, is the single implication *no zero-sum of length 6 ⟹ zero-sums of all lengths `7…24`*. A profile containing a 6 satisfies every forced set there is. The spectrum congruence at `p = 5`, `N = 31` is therefore **exhausted** for four of the five profiles, and reaching them requires a genuinely different instrument, not a finer search of this one.
 
 **The transferable point:** a flat profile is not necessarily beyond maximal-atom methods — it may be *forced* into their reach. The obstruction to the `D_3(C_p^3)` flat rows at `p ≥ 11` should be re-examined in that light, since the analogous question there (does Theorem J's `b`- or `c`-row force a maximal atom?) has not been asked.
 
