@@ -133,8 +133,8 @@ The odd-multiplier criterion is satisfied, producing a forbidden zero-sum subseq
 Combining `c=1` and `c>=2`:
 
 > **Upper-endpoint theorem.** For every prime `p>=7`, no exact-support-six first-corridor support-three rank-two companion of maximal type `a=3` can lie on the upper light boundary
-+>
-+> `r=H`, `t=p-c`.
+>
+> `r=H`, `t=p-c`.
 
 Equivalently, in the boundary parameters `e=c-d`, `f=d+1`, every surviving `a=3` row must satisfy
 
