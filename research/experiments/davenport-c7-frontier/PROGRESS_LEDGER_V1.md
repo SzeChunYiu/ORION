@@ -1,188 +1,126 @@
-# C7^3 multiwise Davenport frontier — progress ledger V16
+# C7^3 multiwise Davenport frontier — progress ledger V17
 
 Status: live LLM-assisted ORION research ledger. No novelty authority.
 
 ## General target and first-failure formalism
 
-For prime `p>=5`, put
+For prime `p>=5`, put `M_p=(5p-5)/2`. The candidate line is
 
-`M_p=(5p-5)/2`.
+`D_k(C_p^3)=kp+M_p=((2k+5)p-5)/2`, `k>=2`.
 
-The candidate line is
+Equivalently every zero-sum block `B` should satisfy `|B|-p z(B)<=M_p`; in Freeze--Schmid notation the target is `D_0(C_p^3)=M_p` with stabilization index `k_D=2`.
 
-`D_k(C_p^3)=kp+M_p=((2k+5)p-5)/2` for `k>=2`.
-
-Equivalently, every zero-sum block `B` should satisfy
-
-`|B|-p z(B)<=M_p`,
-
-where `z(B)` is its maximum zero-sum packing number. In Freeze--Schmid notation this is the joint assertion `D_0(C_p^3)=M_p` and stabilization index `k_D=2`.
-
-A first failure may be chosen with
+A first failure can be chosen with
 
 `z(B)=m`, `|B|=pm+M_p+q`, `q>=1`,
 
-and a maximum atomic factorization `B=U_1...U_m`. Writing `e_i=|U_i|-p`, the branch has proved:
+and maximum atomic factorization `B=U_1...U_m`. Writing `e_i=|U_i|-p`, verified constraints include:
 
 - every proper atom subproduct has exactly its displayed packing number;
 - `e_i>=q`, `sum e_i=M_p+q`, `(m-1)q<=M_p`;
-- `B` has no nonempty zero-sum through length `p+q-1`;
+- no nonempty zero-sum through length `p+q-1`;
 - `q<=(p-1)/2` by Bhowmik--Schlage-Puchta;
 - Zhang forces a maximum factorization with `min e_i<=p-2`;
-- coding/algebraic bounds reduce first-failure levels to `K_5=10`, `K_7=15`, `K_p=(5p-3)/2` for `p>=11`;
+- finite first-failure levels `K_5=10`, `K_7=15`, `K_p=(5p-3)/2` for `p>=11` from coding plus the algebraic cap;
 - any verified `eta(C_p^3)<=E_p` gives the alternative tail threshold `m<=min(M_p+1,T_p(E_p))`;
-- every surviving factorization is terminal under positive-gain conformal Graver moves.
+- every survivor is terminal under positive-gain conformal Graver moves.
 
-## Rank-two / projective geometry layer
+## Rank-two, projective and pair geometry
 
-The exact rank-two restricted-sum formula gives every first-failure plane occupancy
+The exact rank-two restricted-sum spectrum gives every first-failure plane occupancy
 
 `<=3p-q-2`,
 
-with strict cap `3p-q-3` for planes containing at least four occupied projective directions.
-
-For `q>=2`, equality forces the exact grammar
+with strict cap `3p-q-3` for four or more occupied projective directions. For `q>=2`, equality forces the exact rank-two grammar
 
 `e1^(p-1)e2^(p-1)(e1+e2)^(p-q)`
 
-and the canonical atom
+and the canonical atom `e1^q e2^q (e1+e2)^(p-q)` of length `p+q` into a maximum factorization.
 
-`e1^q e2^q (e1+e2)^(p-q)`
-
-of length `p+q` into a maximum factorization.
-
-For projective direction deficits `d_i=(p-1)-w_i`, every `t`-secant satisfies
+Direction deficits obey
 
 `sum_line d_i >= (t-3)(p-1)+(q-1)`,
 
-and for `t>=4` the right side improves by one. Full directions form an arc for `q>=2`.
-
-For `q>=3`, with `a=floor((q-1)/2)`, low-deficit tangent packing gives
+with an additional unit for `t>=4`. Full directions form an arc. For `q>=3`, low-deficit tangent packing gives, with `a=floor((q-1)/2)`,
 
 `L<=p+2-f`
 
-for the number `L` of directions with deficit in `1..a` relative to `f` full directions, and hence
+and
 
 `f >= (a+1)r-Delta-a(p+2)`.
 
-## Large-arc scalar interpolation
+Large full arcs additionally satisfy scalar interpolation rigidity:
 
-### Full `(p+1)`-arc / conic
+- a full `(p+1)`-arc/conic for odd `p>=7` has at most one deficit-`q-1` off-conic occupied direction; with `n>=2` off-conic directions, `Delta>=qn-1`;
+- for `p>=11`, a full p-arc extends uniquely to a conic and has the analogous uniqueness outside the missing completion point;
+- these yield explicit infinite q=2 direction-floor strictness families in both prime residue classes mod 4.
 
-For odd prime `p>=7`, a full `(p+1)`-arc is a conic. A deficit-`q-1` off-conic direction `D=(d_0,d_1,d_2)` forces the scalar profile
+For any atom pair `P=U_iU_j`, put `E=e_i+e_j`. Hereditary rigidity gives `z(P)=2`, pair short-free depth
 
-`lambda(t)=mu_D(d_0d_2-d_1^2)/(d_0t^2-2d_1t+d_2)`.
+`H_ij=max(p+q-1,E-p+1)`,
 
-Two distinct minimal-deficit centers would force proportional quadratic profiles at at least three field values, hence coincide. Therefore a full conic has at most one deficit-`q-1` off-conic direction and, with `n>=2` occupied off-conic directions,
+and pair-plane cap
 
-`Delta>=qn-1`.
+`|P_K|<=4p-3-H_ij`
 
-This yields a strict integral bump and the q=2 family
+for every rank-two subgroup `K`. If the whole pair had rank at most two, then
 
-`p congruent 1 mod 4`, `p>=13`, `m=(5p-13)/4`,
+`e_i+e_j<=p-q-3`.
 
-with
+Hence `e_i+e_j>p-q-3` forces pair rank three. In particular every p=7 pair for q=2,3 is rank three, and every atom pair in all six length-37 corridors is rank three.
 
-`r>=(5p+7)/4`.
+## Support-four maximal atoms: prime-uniform classification
 
-### Full p-arc
+If a maximal atom `U` of length `3p-2` has exactly four support values, then its support is a projective four-circuit and its multiplicities are, after reordering,
 
-For prime `p>=11`, every p-arc extends to a unique conic. Relative to the p full arc, at most one occupied direction outside the conic completion can have deficit `q-1`; the missing completion point is an explicit exception.
+`boxed{(p-1,p-1,a,p-a)}`, `1<=a<=(p-1)/2`.
 
-At the integral p-full boundary `S=(N-p)/(p-2)`, equality `r=S` is impossible whenever
+The proof converts atom minimality into a disjoint partition of finite rational Beatty jump sets `C_a={t:[ta]_p<a}`. For `p>=11`, moments 2,4,6,8 force
 
-`(q-1)(S-p)>q+1`.
+`sum x_i=sum x_i^3=sum x_i^5=sum x_i^7=2`, `x_i=a_i^{-1}`,
 
-This gives the complementary q=2 family
+and a four-pole rational-function collapse forces `{x_i}={1,1,u,-u}`. `p=5,7` are direct finite base cases with independent primitive-kernel scans.
 
-`p congruent 3 mod 4`, `p>=19`, `m=(5p-15)/4`,
+Up to automorphism, the support-four maximal atom is
 
-with
+`e1^(p-1)e2^(p-1)e3^a(e3-a^{-1}(e1+e2))^(p-a)`.
 
-`r>=(5p+5)/4`.
+For p=7 only `a=1,2,3` occur.
 
-Small-prime hostile boundaries are retained: compatible distinct centers exist for full p-arcs at `p=5,7`.
+## New exact closure: support-four `(8,10,19)` branch
 
-## Pair-product rank forcing
+Let the 19-atom be one of the three p=7 canonical support-four maximal atoms `U_a`. Let `V` be the 10-atom and `W` the 8-atom.
 
-For every distinct pair of atoms `U_i,U_j`, put
+The pair `U_aV` must be 9-short-zero-free. Two independent exhaustive enumerators give exactly
 
-`E=e_i+e_j`, `P=U_iU_j`.
+- `a=1`: 538 length-10 pair companions;
+- `a=2`: 24;
+- `a=3`: 0.
 
-Hereditary rigidity gives `z(P)=2`. Besides the ambient short-free window, the pair-complement argument makes `P` short-zero-free through
+Extending by a zero-sum length-8 `W` while preserving whole-sequence 7-short-freeness gives:
 
-`H_ij=max(p+q-1,E-p+1)`.
+- extendable pair candidates `229,6,0`;
+- completion counts `2772,24,0`;
+- total factor triples `2796`;
+- distinct length-37 multiplicity vectors `1572`.
 
-Hence every rank-two subgroup `K` satisfies
+Every one of the 2796 factor triples admits a four-pack.
 
-`|(U_iU_j)_K|<=4p-3-H_ij`.
+The primary search maintains cardinality-indexed subset-sum sets and uses a smallest-two-block four-pack criterion. The independent verifier instead uses occurrence-mask enumeration against a minimum-base-depth table and tests four-packs by complementary pairs of zero-sum block unions. Both reproduce all counts.
 
-If the whole pair had rank at most two, total-zero structure improves the ambient extremal length by one:
+Therefore:
 
-`|U_iU_j|<=3p-q-3`,
+> **No `(8,10,19)` length-37 obstruction can have its 19-atom supported on exactly four elements.**
 
-or equivalently
+Every surviving `(8,10,19)` candidate now satisfies
 
-`rank <U_iU_j> <=2 => e_i+e_j<=p-q-3`.
+`boxed{|supp(U_19)|>=5.}`
 
-Thus
+See `SUPPORT4_81019_CLOSURE_V1.md`.
 
-`e_i+e_j>p-q-3 => <supp(U_iU_j)>=C_p^3`.
+### Retained failed receipt
 
-Since every `e_i>=q`, every atom pair is rank three whenever `3q>p-3`.
-
-At `p=7`, this applies uniformly for `q=2,3`. In the length-37 `q=1` frontier, every pair in all six exact corridors is also rank three because every pair excess sum is at least four while the rank-two threshold is three.
-
-The maximal-short pair-plane caps sharpen to:
-
-- `(19,10)`: plane occupancy at most `16`;
-- `(19,9)`: plane occupancy at most `17`.
-
-See `FIRST_FAILURE_PAIR_RANK_FORCING_V1.md`.
-
-## New support-four maximal-atom classification
-
-Let `U` be a maximal atom of length `3p-2` over `C_p^3` with exactly four support values. Then the support is a projective four-circuit and, after reordering, its multiplicities are exactly
-
-`boxed{(p-1,p-1,a,p-a)}`
-
-for some `1<=a<=(p-1)/2`.
-
-The proof is arithmetic. Put `a_i=p-v_i(U)`, so `sum a_i=p+2`. Atom minimality is equivalent to the exact jump-set partition
-
-`C_{a_1} sqcup ... sqcup C_{a_4}={2,...,p-1}`,
-
-where
-
-`C_a={t:[ta]_p<a}`
-
-and `|C_a|=a-1`.
-
-For `p>=11`, power moments `2,4,6,8` force, with `x_i=a_i^{-1}`,
-
-`sum x_i=sum x_i^3=sum x_i^5=sum x_i^7=2`.
-
-The rational function
-
-`sum_i x_i/(1-x_i^2z)`
-
-then agrees with `2/(1-z)` to order four at zero and to one extra order at infinity because `sum x_i^{-1}=sum a_i=2`. Its numerator must vanish identically. Partial fractions force
-
-`{x_i}={1,1,u,-u}`,
-
-hence
-
-`{a_i}={1,1,c,p-c}`
-
-and the displayed multiplicity pattern. The small primes `p=5,7` are checked directly by two independent primitive-kernel enumerators.
-
-Up to automorphism and reordering, every such atom has canonical form
-
-`e_1^(p-1) e_2^(p-1) e_3^a (e_3-a^{-1}(e_1+e_2))^(p-a)`.
-
-For `p=7`, only `a=1,2,3` remain. This sharply reduces the support-four branch of the two length-19 corridors.
-
-See `SUPPORT4_MAXIMAL_ATOM_WEIGHTS_V1.md`.
+An exploratory Python recursion earlier reported only 55 `(V,W)` completions and incorrectly removed the `a=2` type. Its recursive subset-sum state was restored incorrectly across sibling branches, producing false negatives. The rejected undercount is preserved in `FAILURE_SUPPORT4_81019_PY_STATE_RESTORE_V1.md`. The correct independently reproduced total is 2796.
 
 ## Exact p=7 length-37 frontier
 
@@ -196,44 +134,37 @@ For zero-sum `B` over `C_7^3` with `|B|=37` and `z(B)<=3`:
 - support seven is exactly closed: 3,418,800 lifts, 14,860 short-free, all four-pack;
 - support-eight one-projective-collision is exactly closed: 19,114,200 lifts, 15,844 short-free, all four-pack;
 - the smallest unresolved support-eight face is Type A: eight distinct projective directions over 347 surviving classes and 5,841,092 class/deficit-profile pairs;
-- the `(8,10,19)` and `(9,9,19)` corridors obey scalar line-fiber avoidance, maximal-atom U-representation depth at least three, pair rank three, pair-plane caps 16/17, and now a three-type canonical classification whenever the 19-atom has support four.
+- `(8,10,19)` now additionally has `|supp(U_19)|>=5`;
+- both maximal-atom corridors obey scalar line-fiber avoidance, U-representation depth at least three, pair rank three and pair-plane caps 16/17.
 
 No `D_3(C_7^3)` value is claimed yet.
 
 ## Exact higher first-failure closures at p=7
 
-- `(q,m)=(2,8)`: the minimum 13-direction face is impossible, so `r>=14`. The 5,166-candidate conic census remains an independent control; full-conic interpolation gives the analytic contradiction.
-- `(q,m)=(3,6)`: the minimum 11-direction face is impossible, so `r>=12`. Tangent packing plus 7-arc extension kills seven full directions; full-conic interpolation kills eight full directions. The 4,466-candidate scalar census remains an independent control.
+- `(q,m)=(2,8)`: the minimum 13-direction face is impossible, so `r>=14`.
+- `(q,m)=(3,6)`: the minimum 11-direction face is impossible, so `r>=12`.
+
+Finite conic scalar censuses remain independent controls; the analytic conic interpolation theorem now explains both closures.
 
 ## Current p=7 excess-signature shell
 
-The necessary shell is reduced from 322 algebraic signatures to **286** after coding, the overshoot cap, Zhang's short-atom theorem and the exact `(m,q)=(3,1)` corridors.
-
-Digest:
+The necessary length-signature shell is reduced from 322 algebraic signatures to **286** after coding, the overshoot cap, Zhang's short-atom theorem and the exact `(m,q)=(3,1)` corridors. Digest:
 
 `2b49f2b6f4579a27165ebe5285292a5966901f1af7793a5cf73f3e9c8d47be19`.
 
-Geometric and pair-rank constraints prune realizations inside this shell without changing its length-signature count.
+Geometric and pair-rank closures prune realizations inside this shell without changing its length-signature count.
 
 ## Current missing theorem
 
 The all-prime problem remains a finite **rank-three augmentation theorem**:
 
-every surviving first-failure positive kernel vector satisfying the restricted-sum, excess-signature, pair-rank, pair-plane, q-dependent plane, tangent-packing, large-arc interpolation, maximal-atom-depth, support-four maximal-atom classification and hereditary-subproduct constraints must admit a positive-gain two- or three-atom conformal refactor.
-
-The strongest current interfaces are:
-
-- atom excess -> pair short-free depth -> pair rank / plane geometry;
-- plane saturation -> canonical atom and scalar gain constraints;
-- large full arcs -> rational scalar interpolation;
-- maximal atoms -> one/two-term representation-depth exclusions;
-- support-four maximal atoms -> a one-parameter primitive circuit family.
+every surviving first-failure positive kernel vector satisfying the restricted-sum, excess-signature, pair-rank, pair-plane, q-dependent plane, tangent-packing, large-arc interpolation, maximal-atom-depth, support-four classification and hereditary-subproduct constraints must admit a positive-gain two- or three-atom conformal refactor.
 
 ## Next discriminators
 
-1. **Support-four length-19 corridor closure.** For `p=7`, test the three canonical maximal atoms `a=1,2,3` against the 9- and 10-atom companion using pair-plane caps, U-depth >=3 and line-fiber avoidance. This should be done before any generic maximal-atom search.
-2. Feed pair-plane caps 16/17 into the remaining support>=5 maximal-atom corridor geometry.
-3. Classify the short-short 18-term zero-sum pair in the two maximal-atom corridors: it is 7-short-free, rank three, and every proper zero-sum has length 8--10.
+1. **Support-four `(9,9,19)` branch.** Repeat the canonical `a=1,2,3` attack with the necessary additional `z(UV)=2` filter, since 8-short-freeness alone allows a `(9,9,10)` three-pack in length 28.
+2. **Support>=5 `(8,10,19)` branch.** Feed pair-plane cap 16, maximal-atom projective separation, line-fiber avoidance and U-depth >=3 into projective support geometry.
+3. Classify the 18-term short-short pair in the maximal-atom corridors: it is 7-short-free, rank three, and every proper zero-sum has length 8--10.
 4. Finish the support-eight Type-A `(7,3,1)` closure.
 5. Continue q=2,m=8 from r>=14 and q=3,m=6 from r>=12 using pair-rank forcing before kernel enumeration.
 6. Seek a local-`nu` three-deletion theorem for maximal atoms.
