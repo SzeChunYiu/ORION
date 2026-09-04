@@ -1,0 +1,31 @@
+name: shadow-davenport-a1-two-share-elimination
+
+on:
+  push:
+    branches:
+      - shadow/davenport-a1-c2-elimination-20260904
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-a1-two-share-elimination-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  theorem-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run primary symbolic and p=13 replay
+        run: python research/experiments/davenport-c7-frontier/check_a1_light_support3_two_share_elimination_v1.py
+      - name: Compile independent occurrence-DP verifier
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/verify_a1_light_support3_two_share_independent_v1.cpp -o /tmp/a1-c2-independent
+      - name: Run independent exhaustive replay
+        run: /tmp/a1-c2-independent
+      - name: Compile sanitizer mutation replay
+        run: g++ -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -std=c++17 research/experiments/davenport-c7-frontier/verify_a1_light_support3_two_share_independent_v1.cpp -o /tmp/a1-c2-sanitized
+      - name: Run sanitizer replay
+        run: /tmp/a1-c2-sanitized
