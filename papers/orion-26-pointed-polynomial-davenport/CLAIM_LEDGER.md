@@ -24,6 +24,8 @@ Status vocabulary: **proved** (mathematical proof, machine-checked) · **verifie
 | 16 | **Lemma E**: the two-sided window needs no packing hypothesis | `D4_C5_FOUR_ATOM_CORRIDOR_V4.md` §2 | **proved** |
 | 17 | Every zero-sum over `C_5^3` of length `m ∈ [14,31]` has an atom of length `≤ 8`, and `≤ 7` unless `m ≡ 4 (mod 5)` | `verify_d4_c5_corridor_v4.py` step 2 — 18 bounds by elimination, 12 cross-checked by exhaustive search, `w−1` feasible throughout | **proved** |
 | 18 | **Theorem F**: a length-31 obstruction over `C_5^3` has four-atom profile in `{(6,6,6,13), (6,6,7,12), (6,7,7,11), (6,7,8,10), (7,7,7,10)}` | `verify_d4_c5_corridor_v4.py` step 3 | **proved**, given `D_3(C_5^3) = 25` (external, prior ORION-RG X1-F) |
+| 19 | Observation D reduces to: `Q = P + (−1)^N P∘σ` is `(−1)^N`-symmetric, vanishes on the atom range except at the two excluded lengths (nonzero at both) and at `0`; `P` vanishes on the interval `[N−D,D]` of length `(p−3)/2` | `OBSERVATION_D_REDUCTION_V5.md`; `verify_observationD_reduction_v5.py` (`p = 11,13,17,19,23`) | **proved as a reduction**; does not extend Observation D's verified range |
+| 20 | Step 5 of Theorem C double-implemented, exact agreement (548 → 8 → 0) | `D3_STEP5_SECOND_IMPLEMENTATION_V5.md`; `verify_d3_step5_independent_v5.c` | **double-implemented, not independently verified** (same author) |
 | 14 | `D_3(C_p^3)` for `p ≥ 11` | — | **open** |
 | 14b | `D_4(C_5^3) ∈ {30,31}` | narrowed to five profiles by claim 18; none excluded | **open** |
 | 15 | Observation D for `p > 31` | — | **open**, with the obstacle now exact: find `P` vanishing on `[N−D,D]` with `P(L) = −(−1)^N P(N−L)` on `[p+1, N−D−1]` and `P(0) + (−1)^N P(N) ≠ 0` (`LUCAS_CRITERION_V5.md` §4) |
