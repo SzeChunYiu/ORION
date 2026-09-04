@@ -11,6 +11,8 @@ For a finite abelian group `G`, the generalized Davenport constant `D_k(G)` is t
 
 The method is a *pointed* form of the Chevalley–Warning counting identity. The symmetric identity constrains the numbers `N_ℓ` of zero-sum subsequences of each length; on a complement of an atom these numbers are tied in pairs by `N_ℓ = N_{m−ℓ}`, and the identity sees only the pairs. Replacing the symmetric polynomial `e_d` by `x_i·e_d(x_{−i})` breaks that pairing at the cost of one extra unknown per length and one fewer usable degree. We show the trade is favourable exactly when the admissible length window is two-sided: over `C_7^3`, on a zero-sum sequence of length `m ∈ [23,29]` with packing number 2, the symmetric identity yields no atom shorter than `m/2 − 1`, while the pointed identity forces an atom of length at most 10, uniformly in `m`. This single statement replaces three separately-sourced inputs in the previous derivation and halves both length corridors of the `p = 7` analysis.
 
+The bound needs no hypothesis on the packing number — only that a proper zero-sum and its complement each contain an atom — so the same machine runs at every `k`. At `k = 4` it yields new structure for an open question: a length-31 obstruction over `C_5^3`, the object that decides `D_4(C_5^3) ∈ {30,31}` and with it the conjectured line at `p = 5`, must factor into four atoms of lengths `(6,6,6,13)`, `(6,6,7,12)`, `(6,7,7,11)`, `(6,7,8,10)` or `(7,7,7,10)` — five profiles where previously only a minimum atom length was known.
+
 We then run the whole apparatus uniformly in `p`. Calling `L ∈ [p+1, 3p−2]` *special* when `p | L` or `p | (N−L)`, where `N = (11p−3)/2`, there are exactly three special lengths for every prime, `3(p−1)/2`, `2p` and `(5p−3)/2`; equivalently their base-`p` low digit is `0` or `(p−3)/2`, which is what makes Lucas' theorem collapse either their own column or their complement's. For every prime `5 ≤ p ≤ 31` we verify that excluding any two special lengths makes the spectrum congruences inconsistent, so a `D_3` obstruction must carry atoms of at least two of the three; for `11 ≤ p ≤ 19` these three pairs are exactly the minimal forced sets. We state this as a verified finite computation, not a theorem for all `p`: the contradiction uses essentially every degree in `[p+2, (5p+1)/2]`, so no short certificate exists and a uniform proof needs a rank argument we do not have.
 
 **Keywords.** generalized Davenport constants; zero-sum sequences; elementary abelian groups; polynomial method; Chevalley–Warning; Lucas' theorem.
@@ -38,6 +40,7 @@ Taking `h = e_d` turns this into linear congruences on the counts `N_ℓ` of zer
 1. `D_2(C_p^3) = (9p−5)/2` for every prime `p ≥ 5`, self-contained given Olson (§4).
 2. A pointed short-atom bound, uniform over `m ∈ [23,29]` at `p = 7`, that removes three external inputs and halves both length corridors (§5).
 3. `D_3(C_7^3) = 36`, with Olson as the only external input (§6).
+3b. A four-atom corridor of five length profiles for the length-31 obstruction over `C_5^3`, constraining the open `D_4(C_5^3) ∈ {30,31}` (§6.5).
 4. A uniform-in-`p` identification of three *special* atom lengths, with the Lucas mechanism that explains them, verified for `5 ≤ p ≤ 31` (§7).
 5. A correction to the record: pointed congruences do add strength, in the two-sided regime specifically (§5.3).
 
@@ -203,6 +206,22 @@ Steps 1–5 are reproduced end to end by a single program (§9), which asserts e
 
 **Relation to the corridor literature.** A parallel line of work classifies the three-atom factorizations that contain a *maximal* atom, prime-uniformly, as `(p+j, p+(p+1)/2−j, 3p−2)` for `1 ≤ j ≤ ⌊(p+1)/4⌋`. At `p = 7` that is `(8,10,19)` and `(9,9,19)`. Proposition B recovers those two and adds the triples with no maximal atom, `(9,10,18)` and `(10,10,17)`; at `p = 11` it gives nine triples of which that classification supplies three. The two results are complementary: the maximal-atom branch carries a support classification that the others do not.
 
+### 6.5 The method at `k = 4`: a corridor for `D_4(C_5^3)`
+
+Proposition B was stated for `z(C) = 2`, where every proper zero-sum is an atom. That hypothesis is not needed, and dropping it is what lets the method leave `k = 3`.
+
+> **Lemma E.** Let `C` be zero-sum over `C_p^3` with `|C| = m` and suppose every atom of `C` has length `≥ w+1`. Then every proper nonempty zero-sum subsequence of `C` has length in `[w+1, m−w−1]`.
+
+*Proof.* A proper nonempty zero-sum `B` contains an atom, so `|B| ≥ w+1`; its complement `C B^{−1}` is zero-sum and nonempty, so it contains an atom too, giving `m − |B| ≥ w+1`. ∎
+
+No packing number appears, so the window is two-sided at every `k`, and **(P)** applies. At `p = 5` (`D = 13`) the resulting table is uniform: every zero-sum sequence over `C_5^3` of length `m ∈ [14,31]` has an atom of length `≤ 8`, and of length `≤ 7` unless `m ≡ 4 (mod 5)`.
+
+`D_4(C_5^3) ∈ {30,31}` is open, and the value 31 would falsify the conjectured line at `p = 5`. The `= 31` branch requires a zero-sum `T` over `C_5^3` with `|T| = 31` and no five pairwise disjoint blocks; its atoms have length in `[6,13]`, and until now nothing further was known about how the 31 terms distribute across atoms. Peeling a shortest atom and then two more by the table, and observing that the fourth part must itself be an atom — a split would give five disjoint blocks — gives:
+
+> **Theorem F.** A length-31 obstruction over `C_5^3` factors into four atoms whose lengths are one of `(6,6,6,13)`, `(6,6,7,12)`, `(6,7,7,11)`, `(6,7,8,10)`, `(7,7,7,10)`.
+
+In particular `T` has at least three atoms of length `≤ 8`. `(6,6,6,13)` is the only profile carrying a maximal atom, so maximal-atom support classifications reach it and no other; `(6,7,8,10)` and `(7,7,7,10)` are flat, and are exactly the profiles such methods do not reach — the same shape of difficulty as at `p = 7`. Theorem F does not decide `D_4(C_5^3)` and excludes none of the five profiles; it turns an unstructured 31-term search into five constrained completion problems, orthogonal to the support-based evidence already available for this object.
+
 ---
 
 ## 7. Uniform structure at a general prime
@@ -245,11 +264,11 @@ We deliberately do **not** state Observation D as a theorem for all `p`. Greedy 
 
 **What is verified over a finite range.** Observation D, for `5 ≤ p ≤ 31` (minimality for `p ≤ 19`). We claim no more, and specifically not that the pattern continues.
 
-**What is open.** `D_3(C_p^3)` for `p ≥ 11`. The distance is honest and large: the first corridor has nine triples at `p = 11` against four at `p = 7`, and the support classifications that close individual `p = 7` branches have no general-`p` analogue yet. Narrowing the target is not hitting it. `D_4(C_5^3) ∈ {30,31}` also remains open elsewhere in this programme and decides the conjectured line at `p = 5`.
+**What is open.** `D_4(C_5^3) ∈ {30,31}`, now narrowed to five length profiles (§6.5) but not decided; it settles the conjectured line at `p = 5`. And `D_3(C_p^3)` for `p ≥ 11`. The distance is honest and large: the first corridor has nine triples at `p = 11` against four at `p = 7`, and the support classifications that close individual `p = 7` branches have no general-`p` analogue yet. Narrowing the target is not hitting it.
 
 **Method transfer.** The rule isolated in §5.3 — point the polynomial when the window is two-sided — is not specific to Davenport constants. It applies wherever a counting identity is applied to an object whose admissible configurations are closed under complementation, since that is exactly when the symmetric identity is silently halving its own information.
 
-**Prior-art position.** This paper is `D_2` for all primes and `D_3` at `p = 7`, unconditional. It is complementary to, not a strengthening of, the conditional `C_5^3` analysis that settles `D_4(C_5^3)` to one bit under two hypotheses. Theorem A does discharge, for every prime, a `D_2` premise that several reductions in that line assume on the strength of an external lemma.
+**Prior-art position.** This paper is `D_2` for all primes and `D_3` at `p = 7`, unconditional. It is complementary to, not a strengthening of, the conditional `C_5^3` analysis that settles `D_4(C_5^3)` to one bit under two hypotheses. Theorem A does discharge, for every prime, a `D_2` premise that several reductions in that line assume on the strength of an external lemma, and Theorem F adds atom-length structure to the branch that analysis develops.
 
 ---
 
@@ -264,6 +283,7 @@ Every claim above is backed by a checker in `research/experiments/davenport-c7-f
 | Proposition B | `verify_short_atom_bound_v4.py` steps 2–4 | every system decided **twice**, by Gaussian elimination over `F_7` and by exhaustive search over all `7^{\|S\|}` assignments, required to agree; `w = 9` shown feasible so the bound is not vacuous; symmetric system shown feasible at `w = 13` to isolate the gain to pointing |
 | corridors | `verify_short_atom_bound_v4.py` step 5 | exact triple and profile lists asserted |
 | Theorem C | `verify_D3_C7_end_to_end_v3.py` | 8 asserted steps; a real packing-3 object over `C_5^3` (144 zero-sum multisets) must satisfy every congruence, and does, exactly |
+| Theorem F | `verify_d4_c5_corridor_v4.py` | all 18 bounds decided by Gaussian elimination, 12 cross-checked by exhaustive search; `w−1` feasible at every length; a real `z = 3` object over `C_5^3` satisfies the predicted bound on all 57 of its zero-sum subsequences of length `≥ 14` |
 | Observation D | `verify_general_spectrum_v4.py` | agreement with the independently written `p = 7` checker on **all 298** length subsets of size `≤ 3`; conclusion unchanged under the alternative modelling `X_L = X_{N−L}`; unrestricted system shown consistent at every prime |
 
 **Independent-replication status.** The `(8,10,19)` corridor companion counts (`0/24/538`) were reproduced by a separately written program from the predicate alone, matching a parallel lane's counts exactly. The remaining checks are single-implementation but double-method where a second decision procedure exists, as noted above.

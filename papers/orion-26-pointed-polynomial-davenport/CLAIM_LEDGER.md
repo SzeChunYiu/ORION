@@ -20,13 +20,18 @@ Status vocabulary: **proved** (mathematical proof, machine-checked) · **verifie
 | 11 | Those three pairs are the only minimal forced sets of size `≤ 2` | `verify_general_spectrum_v4.py` step 4 | **verified-range** `11 ≤ p ≤ 19` |
 | 12 | The general system is a faithful generalisation of the recorded `p = 7` one | `verify_general_spectrum_v4.py` step 1 — agreement on **all 298** subsets of size `≤ 3`, zero disagreements | **proved** (as an agreement statement) |
 | 13 | Pointing strictly gains on two-sided windows; the earlier "pointing buys nothing" record is correct only for one-sided windows | `SHORT_ATOM_BOUND_UNIFORM_V4.md` §3; `verify_short_atom_bound_v4.py` step 3 — symmetric feasible at `w = 13`, pointed infeasible at `w = 10` | **proved** (as a separation) |
+| 16 | **Lemma E**: the two-sided window needs no packing hypothesis | `D4_C5_FOUR_ATOM_CORRIDOR_V4.md` §2 | **proved** |
+| 17 | Every zero-sum over `C_5^3` of length `m ∈ [14,31]` has an atom of length `≤ 8`, and `≤ 7` unless `m ≡ 4 (mod 5)` | `verify_d4_c5_corridor_v4.py` step 2 — 18 bounds by elimination, 12 cross-checked by exhaustive search, `w−1` feasible throughout | **proved** |
+| 18 | **Theorem F**: a length-31 obstruction over `C_5^3` has four-atom profile in `{(6,6,6,13), (6,6,7,12), (6,7,7,11), (6,7,8,10), (7,7,7,10)}` | `verify_d4_c5_corridor_v4.py` step 3 | **proved**, given `D_3(C_5^3) = 25` (external, prior ORION-RG X1-F) |
 | 14 | `D_3(C_p^3)` for `p ≥ 11` | — | **open** |
+| 14b | `D_4(C_5^3) ∈ {30,31}` | narrowed to five profiles by claim 18; none excluded | **open** |
 | 15 | Observation D for `p > 31` | — | **open**; no small certificate exists (degree-set minimisation), so a rank argument is needed |
 
 ## Withdrawn / not claimed
 
 - No priority claim is made against the external literature: the authoring host has no network access, so the prior-art pass is outstanding (`MANUSCRIPT_V1.md` §9). Earlier records in this programme already withdrew four claims that duplicated in-repository work (`PRIOR_WORK_RECONCILIATION_V3.md`); none of those is re-asserted here.
 - The value `D_2(C_5^3) = 20` and `D_3(C_5^3) = 25` are **not** claimed as new; they are prior ORION-RG results (X1-F, X1-F0). Claim 2 is a self-contained *proof route* for all primes, which matters because later reductions consume `D_2`.
+- Theorem F does **not** decide `D_4(C_5^3)` and excludes none of its five profiles. `D_3(C_5^3) = 25`, which it consumes, is prior ORION-RG work.
 - The prime-uniform maximal-atom corridor `(p+j, p+(p+1)/2−j, 3p−2)` is a parallel lane's result, cited in §6 and not claimed here.
 
 ## Pre-submission gates
