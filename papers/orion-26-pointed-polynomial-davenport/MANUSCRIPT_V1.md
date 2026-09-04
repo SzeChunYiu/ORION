@@ -300,6 +300,14 @@ That is the structural reason the special lengths are special — and the dual t
 
 We verify, for `p ∈ {11,13,17,19,23}` and every basis dual with `Q(0) ≠ 0`, that `Q` is supported inside `S` — and, when `Z` is a pair of special lengths, inside `S` minus the involution-pair of the *third* special length. At `p = 11` excluding `Z = {22,26}` the support is `{0,4,11,22,26,33,37,48,55,59} = S \ {15,44}`, and `{15,44} = {a, N−a}` for the omitted special length `a = 15`.
 
+Both of the theorems below parametrise `P` by its Newton coefficients about `N−D`, which builds in "`P` vanishes on the whole interval `[N−D, D]`". That is legitimate precisely because of:
+
+> **Lemma K.** None of `a = p+h`, `b = 2p`, `c = 2p+h`, nor their complements `4p`, `3p+h`, `3p`, lies in the overlap range `[N−D, D] = [2p+h+2, 3p−2]`.
+
+*Proof.* `p+h`, `2p`, `2p+h` are all `< 2p+h+2`; and `4p`, `3p+h`, `3p` are all `> 3p−2`. ∎
+
+The `X_L` columns are present exactly for `L ∈ [N−D,D]` with `L, N−L ∉ Z`, so Lemma K says **no `X_L` column is dropped when `Z` consists of special lengths**: the interval condition is then exactly the right one, not an extra hypothesis. (For non-special `Z` this fails — a non-special length can lie in `[N−D,D]` — which is why the sharpness statement below is harder than it looks.)
+
 That support statement is now a theorem.
 
 > **Theorem I.** For `Z` a set of special lengths, every dual satisfies `supp Q ⊆ S`.
