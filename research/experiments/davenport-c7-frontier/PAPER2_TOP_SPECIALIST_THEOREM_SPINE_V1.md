@@ -132,7 +132,7 @@ The upper half is closed by a half-step, quarter-step, or complemented quarter-s
 **Files:**
 
 - `A2_MAXIMAL_OVERLAP_STANDARD_FAMILIES_EMPTY_V1.md`
-- `check_a2_maximal_overlap_standard_familIES_v1.py`
+- `check_a2_maximal_overlap_standard_families_v1.py`
 
 **Open interface:** classify every power-compatible high-multiplicity value into these standard fibers, apart from the bounded central exceptions.
 
