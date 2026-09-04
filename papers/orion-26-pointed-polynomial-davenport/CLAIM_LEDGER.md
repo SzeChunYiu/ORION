@@ -17,7 +17,7 @@ Status vocabulary: **proved** (mathematical proof, machine-checked) · **verifie
 | 7 | **Theorem C**: `D_3(C_7^3) = 36` | `HYPOTHESIS_Z_PROVED_V3.md`, `D3_C7_CONDITIONAL_CLOSURE_V3.md`; `verify_D3_C7_end_to_end_v3.py` (8 asserted steps, passes) | **proved** |
 | 8 | Every `p = 7` obstruction has an atom of length 13 or 14 | `ATOM_SPECTRUM_CONGRUENCE_V3.md`; `verify_atom_spectrum_v3.py` | **proved** |
 | 9 | Exactly three special lengths `3(p−1)/2`, `2p`, `(5p−3)/2` for every prime `p ≥ 5`, characterised by base-`p` low digit `0` or `(p−3)/2` | `verify_general_spectrum_v4.py` step 2 — closed form asserted at every prime tested | **proved** (elementary identity) |
-| 10 | **Observation D**: excluding any two special lengths makes `(S_p)` inconsistent | `GENERAL_SPECTRUM_SPECIAL_LENGTHS_V4.md`; `verify_general_spectrum_v4.py` step 3 | **verified-range** `5 ≤ p ≤ 31` |
+| 10 | Excluding any two special lengths makes `(S_p)` inconsistent | superseded by claim 23 | **proved** (was verified-range) |
 | 11 | Those three pairs are the only minimal forced sets of size `≤ 2` | `verify_general_spectrum_v4.py` step 4 | **verified-range** `11 ≤ p ≤ 19` |
 | 12 | The general system is a faithful generalisation of the recorded `p = 7` one | `verify_general_spectrum_v4.py` step 1 — agreement on **all 298** subsets of size `≤ 3`, zero disagreements | **proved** (as an agreement statement) |
 | 13 | Pointing strictly gains on two-sided windows; the earlier "pointing buys nothing" record is correct only for one-sided windows | `SHORT_ATOM_BOUND_UNIFORM_V4.md` §3; `verify_short_atom_bound_v4.py` step 3 — symmetric feasible at `w = 13`, pointed infeasible at `w = 10` | **proved** (as a separation) |
@@ -28,8 +28,8 @@ Status vocabulary: **proved** (mathematical proof, machine-checked) · **verifie
 | 20 | Step 5 of Theorem C double-implemented, exact agreement (548 → 8 → 0) | `D3_STEP5_SECOND_IMPLEMENTATION_V5.md`; `verify_d3_step5_independent_v5.c` | **double-implemented, not independently verified** (same author) |
 | 21 | **Lemma H**: of the twelve points `S = {jp} ∪ {jp+h}`, `h=(p−3)/2`, exactly `3(p−1)/2`, `2p`, `(5p−3)/2` lie in `[p+1,3p−2]` | `DUAL_SUPPORT_TWELVE_POINTS_V5.md`; `verify_dual_support_v5.py` (four inequalities, all 76 primes 5..397) | **proved**, uniform in `p` |
 | 22 | **Theorem I**: for `Z` a set of special lengths, every dual satisfies `supp Q ⊆ S` | `SUPP_Q_PROVED_V5.md`; `verify_supp_Q_proof_v5.py` — identities exact over `ℤ` both signs; span check `p = 11..37` | **proved**, uniform in `p` |
-| 23 | Observation D, existence half (a dual exists for each special pair) | `verify_general_spectrum_v4.py` | **verified `p ≤ 31`, not proved** |
-| 24 | Observation D, minimality half | `verify_general_spectrum_v4.py` | **verified `p ≤ 19`, not proved** |
+| 23 | **Theorem J**: each special pair is forced, so every obstruction has atoms of at least two of `3(p−1)/2`, `2p`, `(5p−3)/2` | `OBSERVATION_D_EXISTENCE_PROVED_V5.md`; `verify_existence_proved_v5.py` — explicit dual, finite identity set, parity fact checked per branch | **proved, all primes `p ≥ 5`** |
+| 24 | Sharpness: the three pairs are the *only* minimal forced sets | `verify_general_spectrum_v4.py` | **verified `p ≤ 19`, not proved**; nothing downstream uses it |
 | 14 | `D_3(C_p^3)` for `p ≥ 11` | — | **open** |
 | 14b | `D_4(C_5^3) ∈ {30,31}` | narrowed to five profiles by claim 18; none excluded | **open** |
 | 15 | Observation D for `p > 31` | — | **open**, with the obstacle now exact: find `P` vanishing on `[N−D,D]` with `P(L) = −(−1)^N P(N−L)` on `[p+1, N−D−1]` and `P(0) + (−1)^N P(N) ≠ 0` (`LUCAS_CRITERION_V5.md` §4) |

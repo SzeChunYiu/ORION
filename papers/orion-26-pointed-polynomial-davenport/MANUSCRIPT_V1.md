@@ -13,7 +13,7 @@ The method is a *pointed* form of the Chevalley–Warning counting identity, and
 
 The bound needs no hypothesis on the packing number — only that a proper zero-sum and its complement each contain an atom — so the same machine runs at every `k`. At `k = 4` it yields new structure for an open question: a length-31 obstruction over `C_5^3`, the object that decides `D_4(C_5^3) ∈ {30,31}` and with it the conjectured line at `p = 5`, must factor into four atoms of lengths `(6,6,6,13)`, `(6,6,7,12)`, `(6,7,7,11)`, `(6,7,8,10)` or `(7,7,7,10)` — five profiles where previously only a minimum atom length was known.
 
-We then run the whole apparatus uniformly in `p`. Calling `L ∈ [p+1, 3p−2]` *special* when `p | L` or `p | (N−L)`, where `N = (11p−3)/2`, there are exactly three special lengths for every prime, `3(p−1)/2`, `2p` and `(5p−3)/2`; equivalently their base-`p` low digit is `0` or `(p−3)/2`, which is what makes Lucas' theorem collapse either their own column or their complement's. For every prime `5 ≤ p ≤ 31` we verify that excluding any two special lengths makes the spectrum congruences inconsistent, so a `D_3` obstruction must carry atoms of at least two of the three; for `11 ≤ p ≤ 19` these three pairs are exactly the minimal forced sets. We state this as a verified finite computation, not a theorem for all `p`: the contradiction uses essentially every degree in `[p+2, (5p+1)/2]`, so no short certificate exists and a uniform proof needs a rank argument we do not have.
+We then run the whole apparatus uniformly in `p`. Calling `L ∈ [p+1, 3p−2]` *special* when `p | L` or `p | (N−L)`, where `N = (11p−3)/2`, there are exactly three special lengths for every prime, `3(p−1)/2`, `2p` and `(5p−3)/2`; equivalently their base-`p` low digit is `0` or `(p−3)/2`, which is what makes Lucas' theorem collapse either their own column or their complement's. Excluding any two special lengths makes the spectrum congruences inconsistent — **for every prime `p ≥ 5`** — so a `D_3` obstruction must carry atoms of at least two of the three. We prove this by exhibiting the dual explicitly: taking the second difference in the high base-`p` digit to vanish and supporting the data on two residues makes the verification a fixed finite set of identities, independent of `p`. A parity fact is needed and is not cosmetic: `N` is even exactly when `p ≡ 1 (mod 4)`, which is what keeps the construction alive at `p = 5` and `p = 7`, where the relevant constants are divisible by 5 and 7. That these three pairs are the *only* minimal forced sets is a sharpness statement, verified for `11 ≤ p ≤ 19` and not proved; nothing downstream uses it.
 
 **Keywords.** generalized Davenport constants; zero-sum sequences; elementary abelian groups; polynomial method; Chevalley–Warning; Lucas' theorem.
 
@@ -41,6 +41,7 @@ Taking `h = e_d` turns this into linear congruences on the counts `N_ℓ` of zer
 2. An exact digit criterion for the pointed system (Theorem G, §5.5): inconsistency holds iff some `d ∈ [m−2w−1, m−3p+1]` is base-`p` digit-dominated by `m−1−w`. This removes linear algebra from the method and makes the short-atom bound a theorem at every prime rather than a per-prime computation.
 2b. The resulting short-atom bound in closed form — generic value `(3p−1)/2`, about half the Davenport constant — which at `p = 7` removes three external inputs and halves both length corridors (§5).
 3. `D_3(C_7^3) = 36`, with Olson as the only external input (§6).
+3c. **Theorem J** (§7.3): every `D_3(C_p^3)` obstruction carries atoms of at least two of the three special lengths, for every prime — proved by an explicit dual, with a parity fact (`s = +1 ⟺ p ≡ 1 mod 4`) that is what keeps the construction alive at `p = 5, 7`.
 3b. A four-atom corridor of five length profiles for the length-31 obstruction over `C_5^3`, constraining the open `D_4(C_5^3) ∈ {30,31}` (§6.5).
 4. A uniform-in-`p` identification of three *special* atom lengths, with the Lucas mechanism that explains them, verified for `5 ≤ p ≤ 31` (§7).
 5. A correction to the record: pointed congruences do add strength, in the two-sided regime specifically (§5.3).
@@ -316,9 +317,9 @@ So the **structural** half of Observation D is settled for every prime: any dual
 
 ## 8. Discussion and boundaries
 
-**What is proved.** Theorem A (`D_2(C_p^3)` for all primes `p ≥ 5`), Theorem G and its corollary Proposition B, Theorem C (`D_3(C_7^3) = 36`), Lemma E and Theorem F. Olson's theorem is the only external mathematical input to any of them.
+**What is proved.** Theorem A (`D_2(C_p^3)` for all primes `p ≥ 5`), Theorem G and its corollary Proposition B, Theorem C (`D_3(C_7^3) = 36`), Lemma E, Theorem F, Lemma H, and Theorems I and J. Olson's theorem is the only external mathematical input to any of them.
 
-**What is verified over a finite range.** Observation D, for `5 ≤ p ≤ 31` (minimality for `p ≤ 19`). We claim no more, and specifically not that the pattern continues. §7.3 now states the exact functional equation whose solution would close it.
+**What is verified over a finite range.** Only the *sharpness* of Theorem J — that the three special pairs are the sole minimal forced sets — checked for `11 ≤ p ≤ 19`. No result in the main line rests on it.
 
 **What is open.** `D_4(C_5^3) ∈ {30,31}`, now narrowed to five length profiles (§6.5) but not decided; it settles the conjectured line at `p = 5`. And `D_3(C_p^3)` for `p ≥ 11`. The distance is honest and large: the first corridor has nine triples at `p = 11` against four at `p = 7`, and the support classifications that close individual `p = 7` branches have no general-`p` analogue yet. Narrowing the target is not hitting it.
 
