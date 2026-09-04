@@ -1,6 +1,12 @@
 {
   "schema": "ORION.PAPER2_REPRODUCIBILITY_MANIFEST_V1",
   "as_of_date": "2026-09-04",
+  "cpp_compile_contract": {
+    "compiler": "g++",
+    "flags": ["-std=c++17", "-O3", "-Wall", "-Wextra"],
+    "assertions": "ENABLED",
+    "forbidden_flags": ["-DNDEBUG"]
+  },
   "python_executables": [
     {
       "id": "canonical_a2_radial",
@@ -83,6 +89,17 @@
         "counts.development_ready": 1,
         "counts.evidence_paths": 52,
         "hostile_mutations_rejected": 12
+      }
+    },
+    {
+      "id": "paper2_surface_references",
+      "path": "research/experiments/davenport-c7-frontier/check_paper2_surface_references_v1.py",
+      "expected_status": "PAPER2_SURFACE_REFERENCES_GREEN",
+      "expected": {
+        "surfaces_checked": 4,
+        "missing_references": 0,
+        "forbidden_reference_hits": 0,
+        "forbidden_length_snippet_hits": 0
       }
     }
   ],
