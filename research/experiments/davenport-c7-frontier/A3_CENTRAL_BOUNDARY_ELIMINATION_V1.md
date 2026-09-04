@@ -84,7 +84,19 @@ Hence
 
 `R+q<=H+e+(c-1)+(H-e-c+1)=2H<p`.
 
-The only smaller central value is `c=3`. At its minimal possible `H=6`, one has `q=3` and `R+q=12<13=p`; for larger H the same displayed inequality holds directly.
+The only smaller central value is `c=3`, `e=2`. Here
+
+`q=ceil((H+2)/3)`.
+
+For `H=6,7`, direct substitution gives respectively `4q=12<13` and `4q=12<15`. For `H>=8`,
+
+`q<= (H+4)/3 <= H/2`,
+
+so
+
+`R+q=3q+q=4q<=2H<p`.
+
+Thus `R+q<p` also for `c=3`.
 
 Consequently
 
