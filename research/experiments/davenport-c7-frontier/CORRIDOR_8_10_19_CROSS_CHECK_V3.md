@@ -43,6 +43,20 @@ This turns stage 2 from "find four disjoint blocks" into "partition into four bl
 
 The extension factor is not uniform: the 24 `a = 2` pairs each admit exactly one 8-atom, while the 538 `a = 1` pairs admit 2,772 between them (mean ≈ 5.2). So the "exactly one `U`" observation is a feature of the `a = 2` branch, not a general law — worth recording as a corrected reading of the earlier note.
 
+## 3a. The `(9,9,19)` corridor
+
+The same pipeline runs on the other length-19 corridor with `|V| = 9`, pair **8**-short-free (the threshold is `|VW| − D − 1 = 28 − 19 − 1`) and `|U| = 9`:
+
+| `a` | pairs | `T` candidates | four-pack | no four-pack |
+|---|---|---|---|---|
+| 3 | 1,436 | 6,394 | **6,394** | **0** |
+| 2 | 3,971 | 5,518 | **5,518** | **0** |
+| 1 | — | — | — | running |
+
+> **Theorem (partial).** No length-37 obstruction over `C_7^3` has a `(9,9,19)` factorization whose 19-atom is of canonical support-four type `a = 3` or `a = 2`.
+
+Across both corridors that is **11,912 candidates with no obstruction**, on top of the 2,796 above.
+
 ## 4. Validation of the predicate
 
 The four-pack predicate is not taken on trust. Every `a = 2` candidate and a sample of eight `a = 1` candidates (supports 8 to 11) were re-tested by the packet's atom-based packing recursion — a different algorithm from the partition search — which returns packing number exactly 4 for all of them, and each candidate was independently confirmed to have 37 terms, zero sum, and no zero-sum of length `≤ 7`. The recursion was also run on a V1 binary-cube profile of known packing number 4 as a control.
