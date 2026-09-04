@@ -83,7 +83,35 @@ so `D_2(C_3^4) ≥ 14`. Therefore
 
 *Controls.* The same program returns `found = 0` at `(r,L,s) = (2,8,3)` and `(3,11,4)` — reproducing `D_2(C_3^2) = 8` and `D_2(C_3^3) = 11` — and `found = 65` at `(2,7,2)`, whose witnesses were re-checked for packing number 1 by the packet's independent atom recursion.
 
-**This is the first test of Conjecture 4.2 at a rank where it was not fitted, and it passes.** Closing the gap needs either a better intersecting-family construction (the maximum of `ν*` over intersecting families is maximised by projective planes in the uniform case, with Füredi's bound `ν* ≤ k−1+1/k` for `k`-uniform), or a sharpening of the congruence system using more than the length spectrum.
+**This was the first test of the conjecture `D_2 = D + M(r,p)` at a rank where it was not fitted, and it passes here. Rank 5 refutes it — see §5.**
+
+## 5. Refutation at rank 5: `D_2(C_3^5) ≥ 17 > D + M(5,3)`
+
+The same search at `(p,r,L,s) = (3,5,16,5)` returns **22,843 sequences of length 16 with packing number 1**, five of which were re-checked by the packet's independent atom recursion. Since `D + M(5,3) = 11 + 5 = 16`, this gives
+
+    D_2(C_3^5) ≥ 17 > 16 = D + M(5,3),
+
+so **the conjecture that Theorem 2's intersecting-family optimum is attained is false.** Theorem 2 itself is unaffected: its hypothesis is sufficient, not necessary.
+
+The witnesses show exactly how the hypothesis is escaped. Every one has the form
+
+    e_1^2 e_2^2 e_3^2 e_4^2 e_5^2 · Π_{S} v_S ,   S ranging over the six 3-subsets of [5] containing 1,
+
+i.e. a **star of 3-sets at multiplicity 1**. Its supports are intersecting (any two 3-subsets of a 5-set meet), but coordinate 1 carries `2 + 6 = 8 ≥ 2p`, violating the capacity condition of Theorem 2 — and the sequence still has packing number 1. Capacity is therefore sufficient but far from necessary.
+
+Testing that family directly (`tools/d2_rank_families_v3.py` extended):
+
+| p | r | k | sets | length | pk | max coordinate sum vs `2p−1` |
+|---|---|---|---|---|---|---|
+| 3 | 4 | 3 | 3 | 11 | 1 | 5 = 5 |
+| 3 | 5 | 3 | 6 | **16** | 1 | 8 > 5 |
+| 3 | 5 | 4 | 4 | 14 | 1 | 6 > 5 |
+| 5 | 4 | 3 | 3 | 19 | 1 | 7 < 9 |
+| 5 | 5 | 3 | 6 | 26 | 1 | 10 > 9 |
+
+The two constructions scale differently: the capacity family contributes `M(r,p) ≈ p·ν*(r)`, growing with `p`, while the star of `k`-sets contributes `C(r−1,k−1)`, independent of `p`. So the combinatorial family wins for small `p` relative to `r` (it beats capacity at `(3,5)`: 16 against 15) and loses for large `p` (at `(5,5)`: 26 against 29). The true lower bound is the maximum over both, and presumably over families neither of these covers.
+
+**Corrected picture.** `D_2(C_p^r) = D + M(r,p)` holds at `r = 2, 3` for the primes tested and at `(r,p) = (4,3)`, and fails at `(5,3)`. There is no reason left to expect a single clean closed form across all ranks; what survives is the two-sided framework, with the lower side an optimisation over admissible families rather than one formula. Closing the gap needs either a better intersecting-family construction (the maximum of `ν*` over intersecting families is maximised by projective planes in the uniform case, with Füredi's bound `ν* ≤ k−1+1/k` for `k`-uniform), or a sharpening of the congruence system using more than the length spectrum.
 
 A Fano-plane instance (`r = 7`, the seven lines, `ν* = 7/3`) is the natural next test of the lower bound; its exact packing computation exceeded the session's resource budget and is recorded as `CANNOT_CHECK_RESOURCE_BOUND`, not as a negative.
 

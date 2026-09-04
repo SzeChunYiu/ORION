@@ -95,13 +95,19 @@ The rank-4 optimum is a star of three edges at a vertex together with the comple
 
 Note `D + M(4,3) = 9 + 5 = 14`.
 
-**Conjecture 4.3.** `D_2(C_p^r) = D(C_p^r) + M(r,p)` for every prime `p` and every `r ≥ 2`.
+**Theorem 4.3 (refutation).** `D_2(C_3^5) ≥ 17 > 16 = D + M(5,3)`.
 
-True at `r = 2, 3` (Theorem 4.1) and at `(r,p) = (4,3)` (Theorem 4.2), the latter being a rank at which it was not fitted. It predicts `D_2(C_p^4) = 4p−3+⌊5p/3⌋`, e.g. `D_2(C_5^4) = 25`, against the proved upper bound 27. The conjecture says the extremal configuration is always *a full basis at multiplicity `p−1` plus the best intersecting family* — a purely combinatorial description of a zero-sum invariant.
+*Proof.* The search at `(p,r,L,s) = (3,5,16,5)` returns 22,843 sequences of length 16 with packing number 1; five were re-checked by an independent atom recursion. ∎
+
+So the natural conjecture `D_2(C_p^r) = D + M(r,p)` — true at `r = 2, 3` and at `(4,3)` — is **false**. Theorem 3.1 is unaffected: its capacity hypothesis is sufficient, not necessary, and the rank-5 witnesses escape it. Each has the form `e_1^2 ⋯ e_5^2 · Π_S v_S` with `S` running over the six 3-subsets of `[5]` through a fixed coordinate: the supports are intersecting, but that coordinate carries `2+6 = 8 ≥ 2p`.
+
+The two constructions scale differently — the capacity family contributes `M(r,p) ≈ p·ν*(r)`, the star of `k`-sets contributes `C(r−1,k−1)` independent of `p` — so neither dominates: at `(3,5)` the star wins (16 against 15), at `(5,5)` capacity wins (29 against 26).
+
+**Open problem 4.4.** Determine `D_2(C_p^r)` for `r ≥ 4`. The framework brackets it; the lower side is an optimisation over admissible configurations for which no single closed form survives.
 
 ## 5. Reading: where the halves come from
 
-`D_2(C_p^3) = D + p + (p−1)/2` exceeds the naive `D + exp(G)` by `(p−1)/2`. Conjecture 4.2 identifies that excess: it is `M(3,p) − p = (3p−1)/2 − p = (p−1)/2`, i.e. `p(ν*(triangle) − 1)` up to integrality, and `ν*(triangle) = 3/2` because the triangle is the unique intersecting graph with fractional matching number above 1. An equivalent linear-algebra reading — the `(e_12,e_13,e_23)` minor of the cube incidence matrix has determinant `−2`, so the relevant polytope is half-integral — is the same fact: that minor *is* the triangle's incidence matrix. The combinatorial reading is the more useful one, because it generalises: the excess at rank `r` is `M(r,p) − p`, governed by how far an intersecting family on `[r]` can push its fractional matching number.
+`D_2(C_p^3) = D + p + (p−1)/2` exceeds the naive `D + exp(G)` by `(p−1)/2`. At ranks 2 and 3 that excess is `M(3,p) − p = (3p−1)/2 − p = (p−1)/2`, i.e. `p(ν*(triangle) − 1)` up to integrality, and `ν*(triangle) = 3/2` because the triangle is the unique intersecting graph with fractional matching number above 1. An equivalent linear-algebra reading — the `(e_12,e_13,e_23)` minor of the cube incidence matrix has determinant `−2`, so the relevant polytope is half-integral — is the same fact: that minor *is* the triangle's incidence matrix. The combinatorial reading is the more useful one, because it survives contact with higher rank: the excess is a supremum over admissible configurations, of which intersecting families with bounded capacity are only one kind — as Theorem 4.3 shows, at rank 5 a different kind wins.
 
 ## 6. Status of each claim
 
@@ -113,7 +119,7 @@ True at `r = 2, 3` (Theorem 4.1) and at `(r,p) = (4,3)` (Theorem 4.2), the latte
 | 3.x | `M(r,p)` for `r ≤ 5` | computed exactly |
 | 4.1 | `D_2` at ranks 2, 3 | proved (rank 2 for `p ≤ 13`; rank 3 for all `p ≥ 5`) |
 | 4.2 | `D_2(C_3^4) = 14` | proved (exhaustive; controls reproduce ranks 2, 3) |
-| 4.3 | Conjecture | open; consistent with everything computed, and confirmed at rank 4 for `p = 3` |
+| 4.3 | `D_2(C_3^5) ≥ 17`, refuting `D_2 = D + M` | proved (22,843 witnesses, 5 independently re-checked) |
 
 ## 7. What this draft does not contain
 
