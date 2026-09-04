@@ -1,5 +1,11 @@
 # `D_2(C_p^r)` for every rank: a two-sided framework — V3
 
+> **SUPERSEDED IN PART (V6).** Theorem 2 below is the special case `b = e_A, b′ = e_B` of the
+> witness-coordinate criterion proved in `WITNESS_CRITERION_V6.md`, which is an *exact* test for
+> `z(S) ≤ 1` on these families. Dropping Theorem 2's coordinate load cap improves five of the
+> lower bounds in §3: `D_2(C_3^5) ≥ 17`, `D_2(C_3^6) ≥ 20`, `D_2(C_5^4) ≥ 26`, `D_2(C_7^4) ≥ 37`,
+> `D_2(C_5^5) ≥ 31`. The upper bounds and the `r ≤ 3` values below are unaffected.
+
 Status: **upper bound proved per `(p,r)` by an explicit `F_p` certificate (60 pairs verified, `2 ≤ r ≤ 11`, `5 ≤ p ≤ 23`); lower bound proved in general and verified by exact packing computations for `r ≤ 5`. The two sides meet exactly at `r = 2` and `r = 3` and leave a gap for `r ≥ 4`.** Priority CANNOT_CHECK from this host; the `r = 2, 3` values are donor-owned and the higher-rank statements have not been checked against the literature.
 Tools: `tools/d2_rank_bounds_v3.py`, `tools/d2_rank_families_v3.py`.
 Branch: `claude/orion-research-frontier-3ck9yt`.

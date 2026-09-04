@@ -11,7 +11,7 @@ static int *addtab;
 static unsigned char *reach;
 static int *seq;
 static long long nodes=0, leaves=0, found=0;
-static int progress=0;
+static int progress=0, SHARD=-1, NSHARD=1;
 static inline unsigned char *R(int d,int l){ return reach + ((size_t)d*(s+1)+l)*N; }
 
 /* layers: 00,10,01,11 over (sA,sB) in [N]x[N] */
@@ -42,6 +42,7 @@ static void dfs(int d,int lo){
         if(!two_disjoint()){ found++; printf("packing<=1:"); for(int i=0;i<L;i++) printf(" %d",seq[i]); printf("\n"); fflush(stdout);} return; }
     for(int g=lo; g<N; g++){
         if(g==0) continue;
+        if(SHARD>=0 && d==r && g%NSHARD!=SHARD) continue;   /* shard on 1st free term */
         unsigned char *dst=R(d+1,0); memcpy(dst,R(d,0),(size_t)(s+1)*N);
         int bad=0;
         for(int l=s;l>=1 && !bad;l--){
@@ -55,7 +56,8 @@ static void dfs(int d,int lo){
 }
 int main(int argc,char**argv){
     p=atoi(argv[1]); r=atoi(argv[2]); L=atoi(argv[3]); s=atoi(argv[4]);
-    for(int i=5;i<argc;i++) if(!strcmp(argv[i],"--progress")) progress=1;
+    for(int i=5;i<argc;i++){ if(!strcmp(argv[i],"--progress")) progress=1;
+        else if(!strcmp(argv[i],"--shard")){ SHARD=atoi(argv[i+1]); NSHARD=atoi(argv[i+2]); } }
     N=1; for(int i=0;i<r;i++) N*=p;
     addtab=malloc(sizeof(int)*(size_t)N*N);
     for(int a=0;a<N;a++) for(int b=0;b<N;b++){ int x=0,pw=1,aa=a,bb=b;
@@ -72,6 +74,6 @@ int main(int argc,char**argv){
     fprintf(stderr,"p=%d r=%d L=%d s=%d N=%d\n",p,r,L,s,N);
     dfs(d,1);
     fprintf(stderr,"DONE nodes=%lld leaves=%lld found=%lld\n",nodes,leaves,found);
-    printf("RESULT p=%d r=%d L=%d s=%d found=%lld leaves=%lld nodes=%lld\n",p,r,L,s,found,leaves,nodes);
+    printf("RESULT p=%d r=%d L=%d s=%d shard=%d/%d found=%lld leaves=%lld nodes=%lld\n",p,r,L,s,SHARD,NSHARD,found,leaves,nodes);
     return 0;
 }

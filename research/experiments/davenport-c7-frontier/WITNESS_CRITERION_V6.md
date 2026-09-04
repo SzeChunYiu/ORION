@@ -161,6 +161,30 @@ a jump that does **not** continue the decreasing increments `1 → 3/2 → 9/5 �
 breaks the pattern or `M*` is not exactly `⌊ν_r p⌋` at every rank. Both patterns are observed
 regularities over the ranges shown, **not theorems**.
 
+## 7. Negative: the extremal families have no uniform shape
+
+`M*(r,3) = r+1` is clean, but the families achieving it are not. Two natural uniform shapes
+suggested by the small cases were tested against the criterion and **both fail**:
+
+| candidate shape | works at | fails at |
+|---|---|---|
+| `{[r]\{i} : i ∈ [r]} ∪ {[r]}` (all `(r−1)`-subsets plus the whole set), `r+1` sets | `r = 3` only | `r = 2, 4,…,12` |
+| `{ {1} ∪ e : e ∈ E }` for a graph `E` on the other `r−1` vertices with `r+1` edges | `r = 5` only, uniquely `E = K_4` | `r = 6, 7` (no graph works) |
+
+The first dies for a transparent reason: taking `b = {[r]}` and `b′` = all `r` of the
+`(r−1)`-subsets gives `deg_i(b′) = r−1` in every coordinate, which is `≡ 0 (mod 3)` whenever
+`r ≡ 1 (mod 3)`, so no coordinate can witness. The second has no such clean cause — at `r = 6`
+all 120 seven-edge graphs on five vertices fail, and at `r = 7` all 6435 eight-edge graphs on
+six vertices fail.
+
+So the optimum `r+1` is attained by genuinely heterogeneous families (the `r = 6` optimum
+`123, 124, 125, 345, 136, 146, 156` mixes a set avoiding coordinate `1` with six containing it),
+and a closed form for `M*(r,p)` is not going to come from guessing a family shape. Determining
+`M*` is an extremal problem in its own right — the asymptotic version is a fractional relaxation
+in which the constraint involves *fractional parts* of the loads, hence is not a linear
+programme, which is why the load-capped LP of Theorem 2 (whose optimum is the fractional
+matching number of an intersecting family) undershoots.
+
 ## Claim ceiling
 
 Theorem W and its three corollaries are proved above and hold for all `(p,r)`. `M*` values are
