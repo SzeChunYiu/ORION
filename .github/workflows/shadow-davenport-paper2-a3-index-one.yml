@@ -1,0 +1,24 @@
+name: shadow-davenport-paper2-a3-index-one
+
+on:
+  push:
+    branches:
+      - shadow/davenport-paper2-integration-20260904
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-paper2-a3-index-one-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  a3-index-one:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay a3 index-one boundary reduction
+        run: python3 research/experiments/davenport-c7-frontier/check_a3_boundary_index_one_reduction_v1.py
