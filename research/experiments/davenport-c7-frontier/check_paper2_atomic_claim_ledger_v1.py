@@ -173,7 +173,7 @@ def validate(data: dict[str, Any], *, check_live_files: bool = True) -> dict[str
         "open": 8,
         "cannot_check": 1,
         "development_ready": 1,
-        "evidence_paths": 54,
+        "evidence_paths": 52,
     }, f"frozen census drift: {counts}")
 
     # Cross-record authority implications.
