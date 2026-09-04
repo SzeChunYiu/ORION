@@ -19,7 +19,11 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - name: Run exact radial lifting cost regression
+      - name: Run exact light radial lifting cost regression
         run: python3 research/experiments/davenport-c7-frontier/check_support4_exact_radial_lifting_cost_v1.py
+      - name: Run exact heavy radial lifting cost regression
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_exact_heavy_radial_lifting_cost_v1.py
       - name: Run all-type light-share interior regression
         run: python3 research/experiments/davenport-c7-frontier/check_support4_alltype_light_interior_elimination_v1.py
+      - name: Run all-type heavy-share interior regression
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_alltype_heavy_interior_elimination_v1.py
