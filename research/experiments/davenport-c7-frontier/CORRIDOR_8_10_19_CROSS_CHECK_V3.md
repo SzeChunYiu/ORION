@@ -1,6 +1,6 @@
 # Cross-lane check of the `(8,10,19)` corridor, and a partition reduction — V3
 
-Status: **independent confirmation of the ChatGPT lane's pair counts; the `a = 2` branch closed here with two different algorithms; the `a = 1` branch in progress.** Priority CANNOT_CHECK.
+Status: **the support-four branch of the `(8,10,19)` corridor is CLOSED.** All three canonical 19-atom types exhausted: 562 pairs, 2,796 length-37 candidates, every one with a four-pack. Pair counts independently reproduce the ChatGPT lane's. Priority CANNOT_CHECK.
 Lane: `claude/orion-research-frontier-3ck9yt`, verifying `shadow/davenport-c7-frontier-20260903` at `5c0f1b53` (support-four maximal atom classification).
 Tools: `tools/verify_corridor_8_10_19_pairs_v3.c`, `tools/verify_corridor_8_10_19_fourpack_v3.c`.
 
@@ -30,20 +30,23 @@ The four-pack test on the extended candidates does not need a packing search.
 
 This turns stage 2 from "find four disjoint blocks" into "partition into four blocks", with six admissible profiles — a strictly smaller search, and the one implemented here.
 
-## 3. Results so far
+## 3. Result: the branch is closed
 
 | `a` | pairs | `T` candidates after the 8-atom | four-pack | no four-pack |
 |---|---|---|---|---|
 | 3 | 0 | 0 | — | — |
 | 2 | 24 | 24 | **24** | **0** |
-| 1 | 538 | running | running | none so far |
+| 1 | 538 | 2,772 | **2,772** | **0** |
+| **total** | **562** | **2,796** | **2,796** | **0** |
 
-A structural observation from the `a = 2` branch: **each `(W,V)` pair extends to exactly one 8-atom `U`**. 24 pairs give 24 candidates, not more.
+> **Theorem.** No length-37 zero-sum sequence over `C_7^3` with packing number 3 has a three-atom factorization of type `(8,10,19)` whose 19-atom has support four.
+
+The extension factor is not uniform: the 24 `a = 2` pairs each admit exactly one 8-atom, while the 538 `a = 1` pairs admit 2,772 between them (mean ≈ 5.2). So the "exactly one `U`" observation is a feature of the `a = 2` branch, not a general law — worth recording as a corrected reading of the earlier note.
 
 ## 4. Validation of the predicate
 
-The four-pack predicate is not taken on trust. Every `a = 2` candidate was re-tested by the packet's atom-based packing recursion — a different algorithm from the partition search — which returns packing number exactly 4 for all of them, and each candidate was independently confirmed to have 37 terms, zero sum, and no zero-sum of length `≤ 7`. The recursion was also run on a V1 binary-cube profile of known packing number 4 as a control.
+The four-pack predicate is not taken on trust. Every `a = 2` candidate and a sample of eight `a = 1` candidates (supports 8 to 11) were re-tested by the packet's atom-based packing recursion — a different algorithm from the partition search — which returns packing number exactly 4 for all of them, and each candidate was independently confirmed to have 37 terms, zero sum, and no zero-sum of length `≤ 7`. The recursion was also run on a V1 binary-cube profile of known packing number 4 as a control.
 
 ## Claim ceiling
 
-This is verification of another lane's reduction plus one lemma, not a new corridor closure by this lane. The `(8,10,19)` corridor is not closed until the `a = 1` branch completes. Five other corridors remain.
+This closes only the **support-four** branch: the classification applies when the 19-atom has support four, and larger-support 19-atoms in this corridor remain open, as do the five other corridors. The reduction that produced the three canonical types is the ChatGPT lane's; this lane contributes the independent pair count, the partition lemma, the exhaustion of all three branches, and the cross-algorithm validation.
