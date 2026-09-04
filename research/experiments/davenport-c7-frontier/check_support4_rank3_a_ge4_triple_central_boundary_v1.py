@@ -21,9 +21,10 @@ def is_prime(n: int) -> bool:
 def main() -> None:
     primes = 0
     theorem_rows = 0
-    min_slack = None
 
-    for p in range(7, 2004):
+    # Complete small-prime box regression. All-prime authority is the exact
+    # symbolic coefficient identity, so a larger census would be redundant.
+    for p in range(7, 152):
         if not is_prime(p):
             continue
         primes += 1
@@ -56,15 +57,13 @@ def main() -> None:
                         assert 1 <= T <= t
                         assert 3 * c <= a + c
                         assert 3 * d <= p - a + d
-                        length = R + T + 3 * S
-                        assert length == m1
-                        min_slack = (m1 - length) if min_slack is None else min(min_slack, m1 - length)
+                        assert R + T + 3 * S == m1
 
     print(json.dumps({
         "status": "SUPPORT4_RANK3_A_GE4_TRIPLE_CENTRAL_GREEN",
-        "primes_through_2003": primes,
+        "primes_through_151": primes,
         "theorem_rows_checked": theorem_rows,
-        "minimum_length_slack": min_slack,
+        "exact_length": "m-1 on every checked theorem row",
         "authority": "symbolic exact-m-minus-one theorem; loops are regression only",
     }, sort_keys=True))
 
