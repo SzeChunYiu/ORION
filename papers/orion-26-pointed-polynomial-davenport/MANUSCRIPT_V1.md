@@ -9,7 +9,7 @@
 
 For a finite abelian group `G`, the generalized Davenport constant `D_k(G)` is the least `ℓ` such that every sequence over `G` of length `ℓ` has `k` pairwise disjoint nonempty zero-sum subsequences. We determine `D_2(C_p^3) = (9p−5)/2` for every prime `p ≥ 5`, with Olson's `D(C_p^r) = r(p−1)+1` as the only external input, and we determine `D_3(C_7^3) = 36` on the same footing.
 
-The method is a *pointed* form of the Chevalley–Warning counting identity. The symmetric identity constrains the numbers `N_ℓ` of zero-sum subsequences of each length; on a complement of an atom these numbers are tied in pairs by `N_ℓ = N_{m−ℓ}`, and the identity sees only the pairs. Replacing the symmetric polynomial `e_d` by `x_i·e_d(x_{−i})` breaks that pairing at the cost of one extra unknown per length and one fewer usable degree. We show the trade is favourable exactly when the admissible length window is two-sided: over `C_7^3`, on a zero-sum sequence of length `m ∈ {23,24,27,28,29}` with packing number 2, the symmetric identity yields no atom shorter than `m/2 − 1`, while the pointed identity forces an atom of length at most 10. More generally the pointed bound obeys a closed law at every prime: writing `r = m mod p` and `h = (p−1)/2`, the forced atom length is `(3p−1)/2` — about half the Davenport constant — except for `r ∈ [h+1, p−2]`, where it is `(3p−1)/2 + r − h`. This single statement replaces three separately-sourced inputs in the previous derivation and halves both length corridors of the `p = 7` analysis.
+The method is a *pointed* form of the Chevalley–Warning counting identity, and we reduce it to arithmetic. Dualising the pointed system, rewriting the dual vector by Newton's forward-difference formula about the left end of the window, and applying Lucas' theorem shows that the system on the window `[w+1, m−w−1]` is inconsistent **exactly when** some integer `d ∈ [m−2w−1, m−3p+1]` has all base-`p` digits dominated by those of `m−1−w`. No linear algebra survives: deciding a case is a digit comparison. From this the short-atom bound follows in closed form at every prime — generically `(3p−1)/2`, about half the Davenport constant, degrading on the residue run `r ∈ [(p+1)/2, p−2]` to at most `2p−2`. The symmetric identity constrains the numbers `N_ℓ` of zero-sum subsequences of each length; on a complement of an atom these numbers are tied in pairs by `N_ℓ = N_{m−ℓ}`, and the identity sees only the pairs. Replacing the symmetric polynomial `e_d` by `x_i·e_d(x_{−i})` breaks that pairing at the cost of one extra unknown per length and one fewer usable degree. We show the trade is favourable exactly when the admissible length window is two-sided: over `C_7^3`, on a zero-sum sequence of length `m ∈ {23,24,27,28,29}` with packing number 2, the symmetric identity yields no atom shorter than `m/2 − 1`, while the pointed identity forces an atom of length at most 10. This single statement replaces three separately-sourced inputs in the previous derivation and halves both length corridors of the `p = 7` analysis.
 
 The bound needs no hypothesis on the packing number — only that a proper zero-sum and its complement each contain an atom — so the same machine runs at every `k`. At `k = 4` it yields new structure for an open question: a length-31 obstruction over `C_5^3`, the object that decides `D_4(C_5^3) ∈ {30,31}` and with it the conjectured line at `p = 5`, must factor into four atoms of lengths `(6,6,6,13)`, `(6,6,7,12)`, `(6,7,7,11)`, `(6,7,8,10)` or `(7,7,7,10)` — five profiles where previously only a minimum atom length was known.
 
@@ -38,7 +38,8 @@ Taking `h = e_d` turns this into linear congruences on the counts `N_ℓ` of zer
 **Contributions.**
 
 1. `D_2(C_p^3) = (9p−5)/2` for every prime `p ≥ 5`, self-contained given Olson (§4).
-2. A pointed short-atom bound with a closed form at every prime — generic value `(3p−1)/2`, i.e. about half the Davenport constant — which at `p = 7` removes three external inputs and halves both length corridors (§5).
+2. An exact digit criterion for the pointed system (Theorem G, §5.5): inconsistency holds iff some `d ∈ [m−2w−1, m−3p+1]` is base-`p` digit-dominated by `m−1−w`. This removes linear algebra from the method and makes the short-atom bound a theorem at every prime rather than a per-prime computation.
+2b. The resulting short-atom bound in closed form — generic value `(3p−1)/2`, about half the Davenport constant — which at `p = 7` removes three external inputs and halves both length corridors (§5).
 3. `D_3(C_7^3) = 36`, with Olson as the only external input (§6).
 3b. A four-atom corridor of five length profiles for the length-31 obstruction over `C_5^3`, constraining the open `D_4(C_5^3) ∈ {30,31}` (§6.5).
 4. A uniform-in-`p` identification of three *special* atom lengths, with the Lucas mechanism that explains them, verified for `5 ≤ p ≤ 31` (§7).
@@ -145,6 +146,8 @@ realizes `z = k−1` at length `((2k+5)n−5)/2 − 1` for every odd `n` and `k 
 >
 > In particular at `p = 7` the bound is 10 for `m ∈ {23,24,27,28,29}` (and 11, 12 at `m = 25, 26`).
 
+This is a corollary of the digit criterion of §5.5, so it holds at every prime; the closed form above is the bookkeeping carried out on the range `m ≤ (11p−3)/2` that the applications use.
+
 Before this, the available bounds at `p = 7` were `≤ 10` for `|C| ∈ {27,29}` (from the symmetric congruences), `≤ 12` for `|C| = 28` (from a specialization of `s_{≤12}(C_7^3) = 26`), and nothing at all for `|C| ∈ {23,24}`. The generic value `(3p−1)/2` is roughly `D/2`, and the exceptional residues raise it to at most `2p−2`.
 
 ### 5.2 Proof
@@ -169,6 +172,22 @@ For each `|C| ∈ {23,24,27,28,29}` this system is inconsistent over `F_7`; the 
 From `d = 6`, `M_14 ≡ 6`; then `d = 5` gives `−M_13 ≡ 7 ≡ 0`, so `M_13 ≡ 0`; then `d = 4` gives `M_12 ≡ 0`; then `d = 3` gives `M_11 ≡ 0`. Substituting into `d = 0` leaves `−M_15 + M_16 − M_17 ≡ 0`, and `d = 7` then reads `6 − 2·0 = 6 ≢ 4 (mod 7)`. ∎
 
 The rigidity is a Lucas phenomenon: `13 = (1,6)_7` and `14 = (2,0)_7` make the top-degree columns nearly empty, so the equations peel unknowns off one at a time from `d = 6` downwards.
+
+### 5.5 The criterion: from linear algebra to digits
+
+Everything above decides a linear system over `F_p`. It need not.
+
+> **Theorem G.** Let `p ≥ 5` be prime, `D = 3p−2`, `m > D`, `w ≥ p`. The pointed system on the window `S = [w+1, m−w−1]` is inconsistent over `F_p` **iff** some integer `d` with `m − 2w − 1 ≤ d ≤ m − 3p + 1` has all base-`p` digits dominated by the corresponding digits of `m − 1 − w`.
+
+*Proof.* Write `dmax = m − D − 1`. By Fredholm the system is inconsistent iff some `λ` kills the columns and not the right-hand side. Put `P(y) = Σ_d λ_d C(y,d)`, an integer-valued function. Killing the columns says `P(l−1) = 0` for every `l ∈ S`; for `w ≥ p` the set `{l−1 : l ∈ S}` is the integer interval `[w, m−w−2]`, of size `L = m−2w−1`. Not killing the right-hand side says `P(m−1) ≠ 0`.
+
+Rewrite `P` about the left end by Newton's forward-difference formula, `P(y) = Σ_d μ_d C(y−w,d)` with `μ_d = (Δ^d P)(w)` — a bijection on coefficients, under which `λ_e = 0` for `e > dmax` corresponds to `μ_d = 0` for `d > dmax`. Since `C(j,d) = 0` for `j < d`, vanishing on `[w, w+L−1]` is *exactly* `μ_0 = ⋯ = μ_{L−1} = 0`. So the admissible `P` are `Σ_{d=L}^{dmax} μ_d C(y−w,d)` with `μ` free, and
+
+`P(m−1) = Σ_{d=L}^{dmax} μ_d C(m−1−w, d)`.
+
+Such a `P` with `P(m−1) ≠ 0` exists iff `C(m−1−w, d) ≢ 0` for some `d ∈ [L, dmax]`; Lucas turns that into the digit condition. ∎
+
+Three consequences. Deciding a case is now a digit comparison rather than an elimination, at any prime and any length. The closed form of Proposition B follows by digit bookkeeping — the generic value `(3p−1)/2` and the exceptional run `r ∈ [(p+1)/2, p−2]` record when the interval `[m−2w−1, m−3p+1]` first catches a digit-dominated integer — and the periodicity in `m mod p` is immediate, since the digit condition sees only residues and carries. Finally the hand-proof of §5.2 is demystified: the peeling `d = 6 ⇒ M_14`, `d = 5 ⇒ M_13`, … is the triangular unwinding of the Newton step, one coefficient at a time.
 
 ### 5.3 Why pointing is what buys this — and a correction
 
@@ -258,15 +277,15 @@ At `p = 7` these are `9, 14, 16`; at `p = 11`, `15, 22, 26`; at `p = 13`, `18, 2
 
 The two smallest primes are richer, not weaker: at `p = 5` and `p = 7` there are 18 minimal forced pairs, the three special ones among them. At `p = 7` the extra ones include `{13,14}`, the pair on which §6 step 2 rests. So the uniform statement is a floor that small primes exceed.
 
-We deliberately do **not** state Observation D as a theorem for all `p`. Greedy minimization shows the contradiction uses essentially every degree in `[p+2, (5p+1)/2]`: there is no small inconsistent subsystem and hence no short hand-certificate of the kind that proves Proposition B. The dual certificates are dense with no evident closed form, though their right-hand sides sit in the constant ratio `4 : 2 : 3 (mod p)` across the three pairs at every prime tested — a hint that a generating-function identity underlies the pattern. A uniform proof needs a rank statement about the matrix `[C(L,d) + (−1)^N C(N−L,d)]` over the degree window, which we do not have.
+We deliberately do **not** state Observation D as a theorem for all `p`. The duality of §5.5 applies here too, and identifies the obstacle precisely: the spectrum system dualises to *find an integer-valued `P` vanishing on the interval `[N−D, D]`, satisfying `P(L) = −(−1)^N P(N−L)` for every `L ∈ [p+1, N−D−1]`, with `P(0) + (−1)^N P(N) ≠ 0`.* Unlike the pointed case, this is a functional equation and not a plain interval-vanishing condition, so the Newton step does not finish it. Greedy minimization is consistent with that: the contradiction uses essentially every degree in `[p+2, (5p+1)/2]`, so no short certificate exists. The dual certificates are dense, though their right-hand sides sit in the constant ratio `4 : 2 : 3 (mod p)` across the three pairs at every prime tested. Solving that functional equation is, on the present evidence, the single step between Observation D and a theorem.
 
 ---
 
 ## 8. Discussion and boundaries
 
-**What is proved.** Theorem A (`D_2(C_p^3)` for all primes `p ≥ 5`), Proposition B, and Theorem C (`D_3(C_7^3) = 36`). Olson's theorem is the only external mathematical input to any of them.
+**What is proved.** Theorem A (`D_2(C_p^3)` for all primes `p ≥ 5`), Theorem G and its corollary Proposition B, Theorem C (`D_3(C_7^3) = 36`), Lemma E and Theorem F. Olson's theorem is the only external mathematical input to any of them.
 
-**What is verified over a finite range.** Observation D, for `5 ≤ p ≤ 31` (minimality for `p ≤ 19`). We claim no more, and specifically not that the pattern continues.
+**What is verified over a finite range.** Observation D, for `5 ≤ p ≤ 31` (minimality for `p ≤ 19`). We claim no more, and specifically not that the pattern continues. §7.3 now states the exact functional equation whose solution would close it.
 
 **What is open.** `D_4(C_5^3) ∈ {30,31}`, now narrowed to five length profiles (§6.5) but not decided; it settles the conjectured line at `p = 5`. And `D_3(C_p^3)` for `p ≥ 11`. The distance is honest and large: the first corridor has nine triples at `p = 11` against four at `p = 7`, and the support classifications that close individual `p = 7` branches have no general-`p` analogue yet. Narrowing the target is not hitting it.
 
@@ -284,7 +303,8 @@ Every claim above is backed by a checker in `research/experiments/davenport-c7-f
 |---|---|---|
 | identities **(C)**, **(S)**, **(P)** | `verify_short_atom_bound_v4.py` step 1 | brute force over `C_3^3`; both degree bounds shown sharp by exhibiting failure one degree higher |
 | Theorem A | `tools/d2_digit_certificate_v3.py` | structural steps re-checked for all 44 primes `5 ≤ p ≤ 200` |
-| Proposition B | `verify_short_atom_bound_v4.py` steps 2–4 | every system decided **twice**, by Gaussian elimination over `F_7` and by exhaustive search over all `7^{\|S\|}` assignments, required to agree; `w = 9` shown feasible so the bound is not vacuous; symmetric system shown feasible at `w = 13` to isolate the gain to pointing |
+| Theorem G | `verify_lucas_criterion_v5.py` | Lucas and Newton steps checked separately; the criterion checked against Gaussian elimination on all 2,916 `(p,m,w)` cases across six primes, 0 disagreements; the closed form re-derived from the criterion with no linear algebra |
+| Proposition B | `verify_short_atom_law_v5.py`, `verify_short_atom_bound_v4.py` steps 2–4 | every system decided **twice**, by Gaussian elimination over `F_7` and by exhaustive search over all `7^{\|S\|}` assignments, required to agree; `w = 9` shown feasible so the bound is not vacuous; symmetric system shown feasible at `w = 13` to isolate the gain to pointing |
 | corridors | `verify_short_atom_bound_v4.py` step 5 | exact triple and profile lists asserted |
 | Theorem C | `verify_D3_C7_end_to_end_v3.py` | 8 asserted steps; a real packing-3 object over `C_5^3` (144 zero-sum multisets) must satisfy every congruence, and does, exactly |
 | Theorem F | `verify_d4_c5_corridor_v4.py` | all 18 bounds decided by Gaussian elimination, 12 cross-checked by exhaustive search; `w−1` feasible at every length; a real `z = 3` object over `C_5^3` satisfies the predicted bound on all 57 of its zero-sum subsequences of length `≥ 14` |
