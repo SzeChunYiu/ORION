@@ -32,7 +32,13 @@ So the gap is sharp and singular: `(Z)` excludes precisely the profiles `(9,13,1
 
 > **`f_12(C_7^3) ≤ 27`** — every sequence of length 28 over `C_7^3` has a zero-sum subsequence of length `≤ 12`
 
-(Zhang's value is 25, so this is weaker than what the literature claims). A direct search for a length-28 counterexample is running.
+(Zhang's value is 25, so this is weaker than what the literature claims). A direct search for a length-28 counterexample is running; its rank-3 restriction is legitimate because a rank-`≤2` sequence of length 28 lies in `C_7^2`, where `η = 19 ≤ 28` already forces a zero-sum of length `≤ 7`.
+
+**Refinement.** The congruences do not prove `(Z)`, but they pin the counterexample down. A length-28 zero-sum whose only proper zero-sum lengths are `{13,14,15}` must satisfy
+
+    N_13 ≡ 0,   N_14 ≡ 5   (mod 7),
+
+the unique solution of the 10-equation system in those two unknowns. So such a `C` has at least five zero-sum subsequences of length 14, and either none of length 13 or at least seven. In the first case every atom of `C` has length exactly 14, so `C` is a length-28 zero-sum all of whose proper zero-sums have length 14 — a rigid object, and the natural target for the search.
 
 ## 5. Claim ceiling
 
