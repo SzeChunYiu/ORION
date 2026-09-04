@@ -32,6 +32,17 @@ Its shortest atom is 7, so `T` has no atom of length 6, hence no zero-sum of len
 
 Combined with Theorem M (`D4_C5_SUPPORT4_MAXIMAL_CLOSURE_V6.md`), that maximal atom has support `≥ 5`.
 
+## 3a. A refinement, and the limits of the test
+
+Running the Proposition-P test directly on the five `D_4` profiles — is the system consistent when `N_l` may be nonzero only on the profile's own subset sums? — separates them the same way:
+
+| profile | parts alone consistent |
+|---|---|
+| `(6,6,6,13)`, `(6,6,7,12)`, `(6,7,7,11)`, `(6,7,8,10)` | **yes** — no extra constraint from this test |
+| `(7,7,7,10)` | **no**, and **no single extra length restores it** |
+
+So `(7,7,7,10)` needs at least two zero-sum lengths beyond its own factorization, which is consistent with Theorem O's much stronger conclusion (all of `7 … 13`). The four profiles containing a 6 are untouched: this congruence says nothing about them, exactly as in §4 below.
+
 ## 4. What this changes
 
 Before, `(6,6,6,13)` was the only profile a maximal-atom method could reach. Now two of the five are in the same position — both require a maximal atom of support `≥ 5`:
