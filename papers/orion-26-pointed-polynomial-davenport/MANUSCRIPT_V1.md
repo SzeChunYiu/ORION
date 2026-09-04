@@ -291,7 +291,15 @@ We deliberately do **not** state Observation D as a theorem for all `p`. The dua
 
 > "the pair `Z` is forced" says exactly that the `(−1)^N`-antisymmetry of the spectrum can be broken at the two lengths of `Z` and at `0`, and nowhere else on the atom range.
 
-That is the structural reason the special lengths are special, and it explains why the dual certificates looked dense: the density is an artefact of examining `P` rather than `Q`. What remains is to construct such a `Q` for a special pair, and to show none exists for any other pair or any single length — questions about one explicitly described symmetric function rather than about a matrix rank.
+That is the structural reason the special lengths are special — and the dual turns out to live on twelve points.
+
+> **Lemma H.** Write `h = (p−3)/2`, so `N = 5p + h = (5,h)_p`, and put `S = {jp : 0 ≤ j ≤ 5} ∪ {jp + h : 0 ≤ j ≤ 5}`, which `σ(y) = N − y` maps to itself, pairing `jp ↔ (5−j)p + h`. Then exactly three points of `S` lie in the atom range `[p+1, 3p−2]`, namely `p + h = 3(p−1)/2`, `2p` and `2p + h = (5p−3)/2` — the three special lengths.
+
+*Proof.* Four inequalities, each valid for every prime `p ≥ 5`. Among the `jp`: `p < p+1` excludes `j = 1`, `p+1 ≤ 2p ≤ 3p−2` keeps `j = 2`, `3p > 3p−2` excludes `j ≥ 3`. Among the `jp + h`: `h < p+1` excludes `j = 0`, `p + h ≥ p+1` (⟺ `p ≥ 5`) and `2p + h ≤ 3p−2` keep `j = 1, 2`, and `3p + h > 3p−2` excludes `j ≥ 3`. ∎
+
+We verify, for `p ∈ {11,13,17,19,23}` and every basis dual with `Q(0) ≠ 0`, that `Q` is supported inside `S` — and, when `Z` is a pair of special lengths, inside `S` minus the involution-pair of the *third* special length. At `p = 11` excluding `Z = {22,26}` the support is `{0,4,11,22,26,33,37,48,55,59} = S \ {15,44}`, and `{15,44} = {a, N−a}` for the omitted special length `a = 15`.
+
+Granting that support statement, Observation D follows: the antisymmetry can be broken only where `Q ≠ 0`, hence only on `S`, hence — by Lemma H — only at the three special lengths and at `0`. So **the entire gap between Observation D and a theorem is the single claim `supp Q ⊆ S`**, a Lucas statement of the same kind as Theorem G on a longer window. This also retires our earlier description of the certificates as dense: they are supported on twelve points, and the apparent density came from examining `P` instead of `Q`.
 
 ---
 
