@@ -31,9 +31,9 @@ Evidence (complete only for `k = 2`; the `k ≥ 3` rows are over sequences with 
 | `n=3`, `k=3` (len 13) | 7 317 | all 2 |
 | `n=3`, `k=4` (len 16) | 8 921 | all 2 |
 | `n=5`, `k=2` (len 19) | 7 847 | all 4 = `n−1` |
-| `n=5`, `k=3` (len 24) | 4 014 so far (enumeration running) | all 4 |
-| `n=7`, `k=2` (len 28), class `m(e_1)=6` | 19 174 so far | all 6 = `n−1` by construction of the class |
-| `n=7`, `k=2` (len 28), class `m(e_1)=5` | 0 found from 791 short-zero-sum-free leaves (running) | — |
+| `n=5`, `k=3` (len 24) | 6 130 (frame TERMINATED INCOMPLETE, 1.01e9 leaves) | all 4 |
+| `n=7`, `k=2` (len 28), class `m(e_1)=6` | 19 174 (frame TERMINATED INCOMPLETE, 1.73e10 nodes) | all 6 = `n−1` by construction of the class |
+| `n=7`, `k=2` (len 28), class `m(e_1)=5` | 0 from 791 short-zero-sum-free leaves (frame TERMINATED INCOMPLETE, 2.27e10 nodes) | — |
 
 An independent, complete check inside the cube: capping all multiplicities at `n−2` strictly lowers the cube capacity at every computed `n`,
 
@@ -56,7 +56,7 @@ so no cube-supported extremal sequence for `k = 2` or `k = 3` avoids multiplicit
 - `n=3`, `k=3`: 161 orbits — support 7 (22), 8 (109), 9 (30).
 - `n=3`, `k=4`: 69 orbits — support 8 (1, the profile `2^8`), 9 (44), 10 (24).
 - `n=5`, `k=2`: 1 405 orbits — support 5 (2), 6 (136), 7 (582), 8 (543), 9 (133), 10 (9).
-- `n=5`, `k=3`: partial, 4 014 raw sequences with supports 6 (2), 7 (335), 8 (1 854), 9 (1 414), 10 (205), 11 (8).
+- `n=5`, `k=3`: partial (frame terminated incomplete), 6 130 raw sequences with supports 6 (9), 7 (700), 8 (3 141), 9 (2 027), 10 (245), 11 (8).
 
 The minimum support size grows with `k` and the distribution shifts right, consistent with the fact that each `+1` in `k` costs one more support point in the extremal families (`DK_ARITHMETIC_CONJECTURE_V3.md`).
 
@@ -66,4 +66,4 @@ Over `C_5^3` there are 181 979 symmetry-reduced zero-sum-free sequences of lengt
 
 ## Claim ceiling
 
-§1 is about the `n = 3` enumerations only (complete for `k = 2`, capped for `k = 3, 4`); it does not assert anything for `n ≥ 5`. Conjecture R′ is a conjecture, restricted to `k = 2` where the enumeration is complete. Rows marked running/partial are execution status, not results.
+§1 is about the `n = 3` enumerations only (complete for `k = 2`, capped for `k = 3, 4`); it does not assert anything for `n ≥ 5`. Conjecture R′ is a conjecture, restricted to `k = 2` where the enumeration is complete. Rows marked TERMINATED INCOMPLETE are execution status, not results: the three `n = 5`/`n = 7` frames were stopped by a container restart before exhausting their trees, so their counts are lower bounds on the number of objects in those classes and their zero counts are **not** exhaustive negatives. Nothing in this packet's proved statements depends on them.
