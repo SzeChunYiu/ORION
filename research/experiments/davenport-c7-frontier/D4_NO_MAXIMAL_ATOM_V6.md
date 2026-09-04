@@ -18,9 +18,12 @@ A maximal atom is an extremal zero-sum-free sequence of length 12 plus its compl
 
 A length-13 atom must span rank three — inside a plane the zero-sum-free part would have length `12 > D(C_5^2) − 1 = 8` — so it contains three independent elements, which `GL(3,5)` sends to `e_1,e_2,e_3`. Enumerating atoms that contain `e_1,e_2,e_3` is therefore complete up to `GL`.
 
+**Counting caveat (corrected).** The enumeration walks zero-sum-free prefixes and appends the completion, so an atom `M` is produced once for *every* element `x` with `M \ {x}` zero-sum-free — about 6.33 times each. The raw figure 6,315,607 counts those pairs; the number of **distinct** maximal atoms is **998,182**. The orbit count is unaffected, since canonical forms deduplicate exactly, and so is the theorem.
+
 | step | measured |
 |---|---|
-| maximal atoms containing `e_1,e_2,e_3` | **6,315,607** |
+| `(prefix, completion)` pairs enumerated | 6,315,607 |
+| **distinct** maximal atoms among them | **998,182** |
 | reduced to `GL(3,5)` orbits | **3,325** |
 | canonicalisation time | 557 s |
 | exhaustive extension of each representative to length 31 | 3,325 reps, 284,529,220 nodes, **199 s** |

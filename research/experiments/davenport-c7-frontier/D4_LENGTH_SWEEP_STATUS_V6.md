@@ -10,7 +10,7 @@ Theorem Q (`D4_NO_MAXIMAL_ATOM_V6.md`) eliminated the two corridor profiles carr
 
 The tool is now parameterised by atom length. The rank argument still holds at each: an atom of length `L` has a zero-sum-free part of length `L−1`, and `L−1 > D(C_5^2) − 1 = 8` for every `L ≥ 10`, so the atom spans rank three and the `e_1,e_2,e_3` normalisation is complete up to `GL(3,5)`.
 
-**Revalidation.** Run at `L = 13` the generalised tool reproduces Theorem Q exactly — 6,315,607 atoms, **3,325 orbits**, 284,529,220 sweep nodes, **0** completions — so the parameterisation did not disturb the settled case.
+**Revalidation.** Run at `L = 13` the generalised tool reproduces Theorem Q exactly — 6,315,607 `(prefix, completion)` pairs (998,182 distinct atoms), **3,325 orbits**, 284,529,220 sweep nodes, **0** completions — so the parameterisation did not disturb the settled case.
 
 ## 2. A correctness guard that must be checked before trusting any run
 

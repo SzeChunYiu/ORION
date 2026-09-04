@@ -8,7 +8,7 @@ Lane: `claude/orion-research-frontier-3ck9yt`.
 
 A maximal atom over `C_5^3` has length `13 = D(C_5^3)`, so it is an **extremal zero-sum-free sequence of length 12** plus its completing element `−σ`. Zero-sum-freeness prunes far harder than the 5-short-freeness used elsewhere in this packet: carry `Σ` = the set of *all* subsums as one 125-bit mask, and adding `v` is legal exactly when `−v ∉ Σ`.
 
-> **Measured.** With the first independent triple normalised to `e_1,e_2,e_3`, there are **6,315,607** maximal atoms, enumerated in **72 seconds**.
+> **Measured.** With the first independent triple normalised to `e_1,e_2,e_3`, the enumeration produces **6,315,607** `(prefix, completion)` pairs in **72 seconds**, which is **998,182 distinct maximal atoms** — each atom arises once per element whose removal leaves a zero-sum-free sequence, about 6.33 times. The earlier version of this record misreported the pair count as the atom count.
 
 That is the fact that changes the picture: `FLAT_TRIPLE_INFEASIBILITY_MEASURED_V6.md` §4 listed "work from the longest part" as untried because classifying long atoms looked like the hard half. For `p = 5` it is not hard at all.
 
@@ -16,7 +16,8 @@ That is the fact that changes the picture: `FLAT_TRIPLE_INFEASIBILITY_MEASURED_V
 
 | quantity | measured |
 |---|---|
-| maximal atoms (normalised) | 6,315,607 |
+| `(prefix, completion)` pairs (NOT the atom count — see correction) | 6,315,607 |
+| distinct maximal atoms | 998,182 |
 | enumeration time | 72 s |
 | full extension search to length 31, per atom | **65 ms** |
 | raw sweep, no deduplication | **114 hours** |
@@ -24,9 +25,9 @@ That is the fact that changes the picture: `FLAT_TRIPLE_INFEASIBILITY_MEASURED_V
 
 114 hours is too long here, but the raw count is the wrong denominator. The normalisation fixes an *ordered* independent triple, and an atom of length 13 contains at most `13·12·11 = 1716` of them, so each `GL(3,5)`-orbit is generated at most 1716 times:
 
-`orbits ≥ 6,315,607 / 1716 ≈ 3,680`.
+`orbits ≥ 998,182 / 1716 ≈ 582` — a weak bound; the measured count is 3,325.
 
-At 65 ms per representative that is **about four minutes**. The sweep is a deduplication problem, not a compute problem.
+At 65 ms per representative the sweep is **about four minutes** (measured: 199 s). The sweep is a deduplication problem, not a compute problem.
 
 ## 3. What the sweep would decide
 
