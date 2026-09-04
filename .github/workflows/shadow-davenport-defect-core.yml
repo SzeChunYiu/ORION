@@ -1,0 +1,141 @@
+name: shadow-davenport-defect-core
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-defect-core-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  minimal-core-signatures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Enumerate minimal-core signatures
+        run: |
+          python research/experiments/davenport-c7-frontier/check_packing_defect_minimal_signatures_v1.py | tee /tmp/signatures-primary.json
+      - name: Independently verify minimal-core signatures
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_packing_defect_minimal_signatures_independent_v1.py | tee /tmp/signatures-independent.json
+      - name: Compare complete signature receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/signatures-primary.json'))
+          b=json.load(open('/tmp/signatures-independent.json'))
+          assert a['canonical_sha256']==b['canonical_sha256']
+          assert a['raw_signatures']==b['raw_signatures']==322
+          assert a['short_atom_removed']==b['short_atom_removed']==8
+          assert a['corridor_removed']==b['corridor_removed']==13
+          assert a['pruned_signatures']==b['pruned_signatures']==301
+          assert a['raw_by_m']==b['raw_by_m']
+          assert a['pruned_by_m']==b['pruned_by_m']
+          print('MINIMAL_DEFECT_SIGNATURE_RECEIPTS_AGREE',a['canonical_sha256'])
+          PY
+      - name: Apply coding-theory first-failure reduction
+        run: |
+          python research/experiments/davenport-c7-frontier/check_first_failure_reduction_v1.py | tee /tmp/first-primary.json
+      - name: Independently verify coding-theory first-failure reduction
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_first_failure_reduction_independent_v1.py | tee /tmp/first-independent.json
+      - name: Compare coding-refined receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/first-primary.json'))
+          b=json.load(open('/tmp/first-independent.json'))
+          assert a['canonical_sha256']==b['canonical_sha256']=='37f152e4074a10edeedc14ea52207fb189bcc000dcb2901c4bb182defe91d68c'
+          assert a['p5_first_failure_signatures']==b['p5_signatures']==71
+          assert a['p7_first_failure_signatures']==b['p7_signatures']==321
+          assert a['p7_short_atom_removed']==b['p7_short_atom_removed']==8
+          assert a['p7_corridor_removed']==b['p7_corridor_removed']==13
+          assert a['p7_donor_pruned_signatures']==b['p7_donor_pruned_signatures']==300
+          print('CODING_REFINED_FIRST_FAILURE_RECEIPTS_AGREE',a['canonical_sha256'])
+          PY
+      - name: Apply restricted-sum front end and eta-tail gate
+        run: |
+          python research/experiments/davenport-c7-frontier/check_restricted_sum_first_failure_v1.py | tee /tmp/restricted-primary.json
+      - name: Independently verify restricted-sum front end
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_restricted_sum_first_failure_independent_v1.py | tee /tmp/restricted-independent.json
+      - name: Compare restricted-sum receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/restricted-primary.json'))
+          b=json.load(open('/tmp/restricted-independent.json'))
+          assert a['p7_digest']==b['p7_digest']=='2b49f2b6f4579a27165ebe5285292a5966901f1af7793a5cf73f3e9c8d47be19'
+          assert a['p7_coding_raw']==b['p7_coding_raw']==321
+          assert a['p7_after_q_cap']==b['p7_after_q_cap']==300
+          assert a['p7_after_short_atom']==b['p7_after_short_atom']==299
+          assert a['p7_current_signatures']==b['p7_current_signatures']==286
+          assert a['p5_eta_tail_threshold']==4
+          print('RESTRICTED_SUM_RECEIPTS_AGREE',a['p7_digest'])
+          PY
+      - name: Check maximal-atom two-term avoidance
+        run: |
+          python research/experiments/davenport-c7-frontier/check_maximal_atom_two_term_avoidance_v1.py | tee /tmp/two-term-primary.json
+      - name: Independently verify affine-coset obstruction
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_maximal_atom_two_term_avoidance_independent_v1.py | tee /tmp/two-term-independent.json
+      - name: Compare two-term avoidance receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/two-term-primary.json'))
+          b=json.load(open('/tmp/two-term-independent.json'))
+          assert a['corridor_ranges']['8,10,19']['pair_negative_max']==b['p7_pair_negative_max_10_atom']==7
+          assert a['corridor_ranges']['9,9,19']['pair_negative_max']==b['p7_pair_negative_max_9_atom']==6
+          assert b['total_ordered_pairs_checked']==900748
+          print('TWO_TERM_AVOIDANCE_RECEIPTS_AGREE')
+          PY
+      - name: Check q-dependent rank-two plane caps
+        run: |
+          python research/experiments/davenport-c7-frontier/check_rank2_q_plane_cap_v1.py | tee /tmp/plane-primary.json
+      - name: Independently verify saturated-plane and arc controls
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_rank2_q_plane_cap_independent_v1.py | tee /tmp/plane-independent.json
+      - name: Compare q-plane receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/plane-primary.json'))
+          b=json.load(open('/tmp/plane-independent.json'))
+          amap={(row['q'],row['m']):row['new'] for row in a['p7_rows']}
+          bmap={(row['q'],row['m']):row['new'] for row in b['p7_rows']}
+          assert amap==bmap
+          assert a['p7_improved_slices']==b['p7_improved_slices']==4
+          assert a['p7_griesmer_caps']==[123,115,114]
+          print('RANK2_Q_PLANE_RECEIPTS_AGREE')
+          PY
+      - name: Close p7 q2 m8 r13 conic boundary
+        run: |
+          python research/experiments/davenport-c7-frontier/check_p7_q2_m8_r13_conic_closure_v1.py | tee /tmp/conic-primary.json
+      - name: Independently verify conic scalar incompatibility
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_p7_q2_m8_r13_conic_closure_independent_v1.py | tee /tmp/conic-independent.json
+      - name: Compare conic-boundary receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/conic-primary.json'))
+          b=json.load(open('/tmp/conic-independent.json'))
+          digest='0eb3a99b0bb1c30595f9b6b58e74b980c094c5d5754a50f726d82aed4711d82c'
+          assert a['candidate_extensions']==b['candidate_extensions']==5166
+          assert a['candidate_sha256']==b['candidate_sha256']==digest
+          assert a['rank_13_systems']==5166
+          assert a['all_conic_directions_covered']==b['all_conic_directions_covered']==5166
+          assert b['ratio_inconsistent_candidates']==5166
+          print('P7_Q2_M8_R13_CONIC_RECEIPTS_AGREE',digest)
+          PY
