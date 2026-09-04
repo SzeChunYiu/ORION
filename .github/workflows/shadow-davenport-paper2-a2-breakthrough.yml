@@ -1,0 +1,38 @@
+name: shadow-davenport-paper2-a2-breakthrough
+
+on:
+  push:
+    branches:
+      - shadow/davenport-paper2-breakthrough-a2-20260904
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-paper2-a2-breakthrough-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  theorem-stack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile Python theorem replays
+        run: |
+          python3 -m py_compile \
+            research/experiments/davenport-c7-frontier/check_a2_exact_radial_excess_v1.py \
+            research/experiments/davenport-c7-frontier/check_a2_exact_depth_fiber_envelope_v1.py \
+            research/experiments/davenport-c7-frontier/check_p7_a2_rank3_support4_exception_table_v1.py \
+            research/experiments/davenport-c7-frontier/check_a2_maximal_overlap_standard_families_v1.py
+      - name: Replay exact a2 radial parity staircase
+        run: python3 research/experiments/davenport-c7-frontier/check_a2_exact_radial_excess_v1.py
+      - name: Replay exact a2 depth fiber envelope
+        run: python3 research/experiments/davenport-c7-frontier/check_a2_exact_depth_fiber_envelope_v1.py
+      - name: Replay p7 rank-three exception table
+        run: python3 research/experiments/davenport-c7-frontier/check_p7_a2_rank3_support4_exception_table_v1.py
+      - name: Replay maximal-overlap standard families
+        run: python3 research/experiments/davenport-c7-frontier/check_a2_maximal_overlap_standard_families_v1.py
+      - name: Require clean replay tree
+        run: test -z "$(git status --porcelain)"
