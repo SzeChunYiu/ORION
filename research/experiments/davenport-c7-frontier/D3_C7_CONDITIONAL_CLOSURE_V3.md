@@ -38,7 +38,11 @@ So the gap is sharp and singular: `(Z)` excludes precisely the profiles `(9,13,1
 
     N_13 ≡ 0,   N_14 ≡ 5   (mod 7),
 
-the unique solution of the 10-equation system in those two unknowns. So such a `C` has at least five zero-sum subsequences of length 14, and either none of length 13 or at least seven. In the first case every atom of `C` has length exactly 14, so `C` is a length-28 zero-sum all of whose proper zero-sums have length 14 — a rigid object, and the natural target for the search.
+the unique solution of the 10-equation system in those two unknowns. So such a `C` has at least five zero-sum subsequences of length 14, and either none of length 13 or at least seven. In the first case every atom of `C` has length exactly 14, so `C` is a length-28 zero-sum all of whose proper zero-sums have length 14. Complementation is then a fixed-point-free involution on those zero-sum index sets (a 14-subset of a 28-set never equals its complement), so `N_14` is **even**; being also `≡ 5 (mod 7)` forces
+
+    N_14 ≡ 12 (mod 14),   so   N_14 ≥ 12.
+
+Such a `C` therefore carries at least six distinct two-atom factorizations into length-14 atoms, and no other zero-sum subsequence whatsoever — a very rigid object, and the natural target for the search.
 
 ## 5. Claim ceiling
 
