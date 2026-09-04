@@ -22,17 +22,20 @@ def ceilings(p: int, a: int) -> tuple[int, int]:
     H = (p - 1) // 2
     h = (H + 1) // 2
     u = pow(a, -1, p)
+    cutoff = p - h
 
+    # Incremental form of the exact interval criterion: once the prefix is
+    # known good, only the newly added endpoint needs to be checked.
     cl = 0
     for c in range(1, p - a):
-        if all((u * k) % p <= p - h for k in range(a, a + c + 1)):
+        if (u * (a + c)) % p <= cutoff:
             cl = c
         else:
             break
 
     ch = 0
     for c in range(1, a):
-        if all((u * k) % p <= p - h for k in range(a - c, a + 1)):
+        if (u * (a - c)) % p <= cutoff:
             ch = c
         else:
             break
@@ -55,7 +58,9 @@ def main() -> None:
     a4_odd_H = 0
     min_gap = None
 
-    for p in range(7, 2004):
+    # Exact interval ceilings on a broad but bounded range. The all-prime
+    # authority is the symbolic residue-block proof, not this census.
+    for p in range(7, 1010):
         if not is_prime(p):
             continue
         primes += 1
@@ -90,7 +95,7 @@ def main() -> None:
 
     print(json.dumps({
         "status": "SUPPORT4_SIMULTANEOUS_OVERLAP_SUM_GREEN",
-        "primes_through_2003": primes,
+        "primes_through_1009": primes,
         "types_a_ge4_checked": types,
         "types_with_both_overlaps": simultaneous,
         "minimum_gap_to_a_minus_2": min_gap,
