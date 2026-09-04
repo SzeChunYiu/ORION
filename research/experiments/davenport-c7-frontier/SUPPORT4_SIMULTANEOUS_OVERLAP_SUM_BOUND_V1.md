@@ -76,7 +76,7 @@ Indeed `ell k=aM+r_k`, so
 
 and `r_k p+k` is divisible by a because
 
-`ell p==-a^0==-1 (mod a)`.
+`ell p==-1 (mod a)`.
 
 Moreover
 
