@@ -1,0 +1,28 @@
+name: shadow-davenport-pair-rank-forcing
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-pair-rank-forcing-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pair-rank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check pair-rank theorem arithmetic
+        run: python research/experiments/davenport-c7-frontier/check_first_failure_pair_rank_forcing_v1.py
+      - name: Independently replay p7 signature consequences
+        run: python research/experiments/davenport-c7-frontier/verify_first_failure_pair_rank_forcing_independent_v1.py

@@ -1,200 +1,210 @@
-# C7^3 multiwise Davenport frontier — progress ledger V14
+# C7^3 multiwise Davenport frontier — progress ledger V15
 
 Status: live LLM-assisted ORION research ledger. No novelty authority.
 
-## Verified general structural spine
+## General target and first-failure formalism
 
-The current target is
+For prime `p>=5`, put
 
-`D_k(C_p^3)=kp+(5p-5)/2=((2k+5)p-5)/2` for prime `p>=5`, `k>=2`.
+`M_p=(5p-5)/2`.
 
-With `M_p=(5p-5)/2`, a first failure may be chosen with
+The candidate line is
 
-- `z(B)=m`, `|B|=pm+M_p+q`, `q>=1`;
-- every proper atom subproduct having its displayed packing number;
-- atom excesses `e_i>=q`, `sum e_i=M_p+q`, `(m-1)q<=M_p`;
-- no nonempty zero-sum through length `p+q-1`;
-- `q<=(p-1)/2` by the Bhowmik--Schlage-Puchta restricted-sum bound;
-- a maximum factorization containing an atom of excess at most `p-2` by Zhang's rank-three theorem;
-- finite first-failure levels from coding/algebraic bounds: `K_5=10`, `K_7=15`, `K_p=(5p-3)/2` for `p>=11`;
-- eta-tail propagation from any verified upper bound on `eta(C_p^3)`;
-- q-dependent rank-two plane occupancy `<=3p-q-2`, with strict rich-plane cap `3p-q-3`;
-- equality for `q>=2` forcing the exact rank-two grammar and a canonical atom of length `p+q` into a maximum factorization;
-- weighted projective line-deficit inequalities and full-multiplicity directions forming an arc;
-- low-deficit tangent packing for `q>=3`;
-- saturated full-arc scalar interpolation for full arcs of sizes `p+1` and, when `p>=11`, `p`;
-- the p-group Geroldinger--Yang two-term avoidance for terminal maximal-atom products;
-- terminality under every positive-gain conformal Graver move.
+`D_k(C_p^3)=kp+M_p=((2k+5)p-5)/2` for `k>=2`.
 
-## Low-deficit tangent packing
+Equivalently, every zero-sum block `B` should satisfy
 
-For `q>=3`, put `a=floor((q-1)/2)`. If `f` projective directions have full multiplicity and `L` deficient directions have deficit in `1..a`, then
+`|B|-p z(B)<=M_p`,
 
-`L<=p+2-f`.
+where `z(B)` is its maximum zero-sum packing number. In Freeze--Schmid notation this is the joint assertion `D_0(C_p^3)=M_p` and stabilization index `k_D=2`.
 
-Together with total direction deficit `Delta`,
+A first failure may be chosen with
 
-`L>=ceil(((a+1)(r-f)-Delta)/a)`
+`z(B)=m`, `|B|=pm+M_p+q`, `q>=1`,
 
-and hence
+and a maximum atomic factorization `B=U_1...U_m`. Writing `e_i=|U_i|-p`, the branch has proved:
+
+- every proper atom subproduct has exactly its displayed packing number;
+- `e_i>=q`, `sum e_i=M_p+q`, `(m-1)q<=M_p`;
+- `B` has no nonempty zero-sum through length `p+q-1`;
+- `q<=(p-1)/2` by Bhowmik--Schlage-Puchta;
+- Zhang forces a maximum factorization with `min e_i<=p-2`;
+- coding/algebraic bounds reduce the first-failure levels to `K_5=10`, `K_7=15`, `K_p=(5p-3)/2` for `p>=11`;
+- any verified `eta(C_p^3)<=E_p` gives the alternative tail threshold `m<=min(M_p+1,T_p(E_p))`;
+- every surviving factorization is terminal under positive-gain conformal Graver moves.
+
+## Rank-two / projective geometry layer
+
+The exact rank-two restricted-sum formula gives every first-failure plane occupancy
+
+`<=3p-q-2`,
+
+with strict cap `3p-q-3` for planes containing at least four occupied projective directions.
+
+For `q>=2`, equality forces the exact grammar
+
+`e1^(p-1)e2^(p-1)(e1+e2)^(p-q)`
+
+and the canonical atom
+
+`e1^q e2^q (e1+e2)^(p-q)`
+
+of length `p+q` into a maximum factorization.
+
+For projective direction deficits `d_i=(p-1)-w_i`, every `t`-secant satisfies
+
+`sum_line d_i >= (t-3)(p-1)+(q-1)`,
+
+and for `t>=4` the right side improves by one. Full directions form an arc for `q>=2`.
+
+For `q>=3`, with `a=floor((q-1)/2)`, low-deficit tangent packing gives
+
+`L<=p+2-f`
+
+for the number `L` of directions with deficit in `1..a` relative to `f` full directions, and hence
 
 `f >= (a+1)r-Delta-a(p+2)`.
 
-For `q=3`, `f>=2r-Delta-(p+2)`. See `LOW_DEFICIT_TANGENT_PACKING_V1.md`.
+## Large-arc scalar interpolation
 
-## Saturated full-conic scalar uniqueness
+### Full `(p+1)`-arc / conic
 
-For odd prime `p>=7`, a full `(p+1)`-arc is a conic. If `D=(d_0,d_1,d_2)` is an occupied off-conic direction of deficit exactly `q-1`, saturated conic secants force the actual full-direction scalar profile
+For odd prime `p>=7`, a full `(p+1)`-arc is a conic. A deficit-`q-1` off-conic direction `D=(d_0,d_1,d_2)` forces the actual full-conic scalar profile
 
-`lambda(t)=mu_D (d_0d_2-d_1^2)/(d_0t^2-2d_1t+d_2)`.
+`lambda(t)=mu_D(d_0d_2-d_1^2)/(d_0t^2-2d_1t+d_2)`.
 
-Two distinct minimal-deficit off-conic directions would make two quadratic denominators proportional at at least `p-4>=3` field values, hence projectively equal. Therefore a full conic supports at most one deficit-`q-1` off-conic direction.
-
-If it has `n>=2` occupied off-conic directions, total projective deficit satisfies
+Two distinct minimal-deficit centers would force proportional quadratic profiles at at least three field values, hence the centers coincide. Therefore a full conic has at most one deficit-`q-1` off-conic direction and, with `n>=2` occupied off-conic directions,
 
 `Delta>=qn-1`.
 
-This yields the first integral direction-floor bump. With
-
-`R=(N-p-1)/(p-2)`
-
-integral, equality `r=R` is impossible for `q>=3,R>=p+2`, and for `q=2,p>=7,R>=p+3`. One explicit q=2 family is
+This yields a strict integral bump for the full-direction arc floor and the infinite q=2 family
 
 `p congruent 1 mod 4`, `p>=13`, `m=(5p-13)/4`,
 
-with the improved floor
+with
 
 `r>=(5p+7)/4`.
 
-The p=5 hostile control has 30 compatible distinct saturated-center pairs, so the p>=7 threshold is retained exactly.
+### Full p-arc
 
-See `SATURATED_CONIC_SCALAR_UNIQUENESS_V1.md`.
+For prime `p>=11`, every p-arc extends to a unique conic. Relative to the p full arc, at most one occupied direction outside the conic completion can have deficit `q-1`; the missing completion point is an explicit exceptional direction.
 
-## New p-full arc interpolation layer
+At the integral p-full boundary `S=(N-p)/(p-2)`, equality `r=S` is impossible whenever
 
-For prime `p>=11`, every p-arc in `PG(2,p)` extends to a unique `(p+1)`-arc/conic. If the p full directions are the conic with one completion point `R` deleted, then any occupied direction outside the completed conic with deficit exactly `q-1` again imposes the reciprocal-quadratic scalar profile on all but at most three full arc points.
+`(q-1)(S-p)>q+1`.
 
-Two distinct off-conic minimal-deficit centers would therefore have profiles agreeing at at least `p-7>=4` finite parameters, forcing the centers to coincide. Hence:
+This gives the complementary q=2 family
 
-> relative to a p-point full arc, at most one occupied direction **outside its conic completion** has deficit `q-1` for `p>=11`.
+`p congruent 3 mod 4`, `p>=19`, `m=(5p-15)/4`,
 
-The missing completion point is a genuine exceptional direction: it lies on no secant through two full arc points and may have deficit below `q-1`.
-
-If exactly p directions are full and `n=r-p>=2` are deficient, the total deficit satisfies
-
-`Delta>=qn-q`.
-
-At the integral p-full boundary
-
-`S=(N-p)/(p-2) in Z`, `n=S-p`,
-
-equality `r=S` forces at least p full directions. Accounting for both possible cases—exactly p full or all p+1 full—gives the corrected strictness criterion
-
-`(q-1)n>q+1  =>  r>=S+1`.
-
-Thus equality is impossible for:
-
-- q=2 with `n>=4`;
-- q=3 with `n>=3`;
-- q>=4 with `n>=2`.
-
-The earlier scratch example `p=11,q=2,m=10` has `n=3` and is **not** promoted: a full conic plus deficit pattern `(1,2)` remains compatible with the present theorem.
-
-An explicit complementary q=2 family is obtained for
-
-`p congruent 3 mod 4`, `p>=19`, `m=(5p-15)/4`.
-
-Here
-
-`S=(5p+1)/4`, `n=(p+1)/4>=5`,
-
-so
+with
 
 `r>=(5p+5)/4`.
 
-Together with the `p congruent 1 mod 4` conic family, every prime `p>=13` now has an explicit high-level q=2 slice where the raw full-direction arc floor is provably strict.
+The small-prime hostile boundaries are retained: compatible distinct centers exist for full p-arcs at `p=5` and `p=7`.
 
-Independent deleted-conic gain-graph replays show the threshold is real:
+## New pair-product rank forcing
 
-- p=5: 125 compatible distinct off-conic center pairs;
-- p=7: 84 compatible;
-- p=11: 0 compatible;
-- p=13: 0 compatible.
+For every distinct pair of atoms `U_i,U_j` in a maximum first-failure factorization, put
 
-See `SATURATED_P_ARC_SCALAR_UNIQUENESS_V1.md`.
+`E=e_i+e_j`, `P=U_iU_j`.
+
+Hereditary rigidity gives `z(P)=2`. Besides the ambient `(p+q-1)` short-free window, the pair-complement argument makes `P` short-zero-free through
+
+`H_ij=max(p+q-1,E-p+1)`.
+
+Therefore every rank-two subgroup `K` satisfies the pair-specific cap
+
+`|(U_iU_j)_K|<=4p-3-H_ij`.
+
+If the whole pair had rank at most two, then its being total-zero improves the ambient rank-two extremal length by one:
+
+`|U_iU_j|<=3p-q-3`.
+
+Equivalently,
+
+`rank <U_iU_j> <=2  =>  e_i+e_j<=p-q-3`.
+
+Thus
+
+> `e_i+e_j>p-q-3  =>  <supp(U_iU_j)>=C_p^3`.
+
+Since every `e_i>=q`, **every atom pair in every first failure is rank three whenever `3q>p-3`**.
+
+At `p=7`, this applies uniformly for `q=2,3`. An independent replay of the current 286-signature shell finds no q=2/q=3 pair-rank violation.
+
+For the length-37 q=1 frontier, rank-two pairs would require excess sum at most three. All six exact three-atom corridors have every pair excess sum at least four, so **every pair of atoms in all six corridors spans `C_7^3`**.
+
+The maximal-short pair-plane caps also sharpen to:
+
+- `(19,10)`: 9-short-free pair, plane occupancy at most `16`;
+- `(19,9)`: 8-short-free pair, plane occupancy at most `17`.
+
+See `FIRST_FAILURE_PAIR_RANK_FORCING_V1.md`.
 
 ## Exact p=7 length-37 frontier
 
 For zero-sum `B` over `C_7^3` with `|B|=37` and `z(B)<=3`:
 
-- `z(B)=3`, the `(p,m,q)=(7,3,1)` slice;
+- `z(B)=3`, the `(p,m,q)=(7,3,1)` first-failure slice;
 - support is at least eight;
 - support eight must use eight distinct projective directions;
-- every maximum three-atom factorization has one of `(8,10,19)`, `(9,9,19)`, `(9,10,18)`, `(9,11,17)`, `(9,12,16)`, `(10,10,17)`;
-- support seven is completely closed: 3,418,800 lifts, 14,860 short-free, all four-pack;
-- support-eight one-projective-collision is completely closed: 19,114,200 lifts, 15,844 short-free, all four-pack;
-- the smallest unresolved support-eight face is the eight-distinct-direction Type-A branch over 347 projective classes and 5,841,092 class/deficit-profile pairs;
-- the two length-19 corridors obey both scalar line-fiber avoidance and U-representation depth at least three.
+- every maximum factorization has one of
+  `(8,10,19)`, `(9,9,19)`, `(9,10,18)`, `(9,11,17)`, `(9,12,16)`, `(10,10,17)`;
+- every pair of these three atoms spans rank three;
+- support seven is exactly closed: 3,418,800 lifts, 14,860 short-free, all four-pack;
+- support-eight one-projective-collision is exactly closed: 19,114,200 lifts, 15,844 short-free, all four-pack;
+- the smallest unresolved support-eight face is Type A: eight distinct projective directions over 347 surviving classes and 5,841,092 class/deficit-profile pairs;
+- the `(8,10,19)` and `(9,9,19)` corridors obey scalar line-fiber avoidance, maximal-atom U-representation depth at least three, pair rank three, and pair-plane caps 16/17.
 
 No `D_3(C_7^3)` value is claimed yet.
 
-## Exact first-failure closures beyond the length-37 slice
+## Exact higher first-failure closures at p=7
 
-### `(p,q,m,r)=(7,2,8,13)`
+- `(q,m)=(2,8)`: the minimum 13-direction face is impossible, so `r>=14`. The old 5,166-candidate conic scalar census remains an independent control; full-conic interpolation now gives the analytic contradiction.
+- `(q,m)=(3,6)`: the minimum 11-direction face is impossible, so `r>=12`. Tangent packing plus 7-arc extension kills seven full directions; full-conic interpolation kills eight full directions. The old 4,466-candidate scalar census remains an independent control.
 
-At length 73 and `r=13`, total direction deficit five forces `6^8 5^5`, hence a full conic plus five deficit-one directions. Saturated-conic scalar uniqueness gives an analytic contradiction, so
+## Current p=7 excess-signature shell
 
-`(p,q,m)=(7,2,8) => r>=14`.
+The necessary shell is reduced from 322 algebraic signatures to **286** after coding, the overshoot cap, Zhang's short-atom theorem and the exact `(m,q)=(3,1)` corridors.
 
-The finite controls remain: 5,166 conic-plus-five extensions, all rank-13 systems full rank and all ratio graphs inconsistent; digest
-
-`0eb3a99b0bb1c30595f9b6b58e74b980c094c5d5754a50f726d82aed4711d82c`.
-
-### `(p,q,m,r)=(7,3,6,11)`
-
-Here `N=60`, `Delta=6`. Tangent packing forces at least seven full directions. Seven full directions would require at least two secant-free deficit-one points, but a 7-arc has at most one secant-free extension. Eight full directions force a conic plus three deficit-two directions, contradicted by saturated-conic scalar uniqueness. Therefore
-
-`(p,q,m)=(7,3,6) => r>=12`.
-
-The finite controls remain: 4,466 conic-plus-three extensions, all rank-11 systems full rank and all gain graphs inconsistent; digest
-
-`7f858cbd83b9922d4fc0122baa2a34680216033f28bd948aa225bde055c85cce`.
-
-## Current p=7 first-failure signature shell
-
-The purely algebraic shell has 322 signatures. Coding reduces it to 321; the q-cap, uniform short-atom theorem and exact `(m,q)=(3,1)` atom corridors reduce the current necessary cover to **286** excess signatures, digest
+Digest:
 
 `2b49f2b6f4579a27165ebe5285292a5966901f1af7793a5cf73f3e9c8d47be19`.
 
-The geometric closures remove projective realizations inside that signature shell; they do not alter the 286 length-signature count itself.
+The geometric and pair-rank constraints prune realizations inside this shell without changing its length-signature count.
 
 ## Current missing theorem
 
 The all-prime problem remains a finite **rank-three augmentation theorem**:
 
-every surviving first-failure positive kernel vector satisfying the restricted-sum, atom-excess, q-dependent plane, tangent-packing, large-arc interpolation, weighted-secant, maximal-atom-depth and hereditary-subproduct constraints must admit a positive-gain two- or three-atom conformal refactor.
+every surviving first-failure positive kernel vector satisfying the restricted-sum, excess-signature, pair-rank, pair-plane, q-dependent plane, tangent-packing, large-arc interpolation, maximal-atom-depth and hereditary-subproduct constraints must admit a positive-gain two- or three-atom conformal refactor.
 
-The geometric interface is now systematic: saturated rank-two planes impose rational scalar profiles, while large-arc completion turns compatibility into low-degree polynomial interpolation.
+The strongest current interfaces are now:
+
+- atom excess -> pair short-free depth -> pair rank / plane geometry;
+- plane saturation -> canonical atom and scalar gain constraints;
+- large full arcs -> rational scalar interpolation;
+- maximal atoms -> one/two-term representation-depth exclusions.
 
 ## Next discriminators
 
-1. Search for controlled interpolation rigidity for `(p-1)` full arcs. Uniform completion is unavailable in the small odd-prime cases, so this requires either a large-arc theorem with explicit exceptions or a different projective-code invariant.
-2. Continue `(p,q,m)=(7,2,8)` from `r>=14`; the full-conic subcase is constrained by `Delta>=qn-1` and has sharply restricted deficit patterns.
-3. Continue `(p,q,m)=(7,3,6)` from `r>=12` using tangent packing before scalar search.
-4. Apply the conic/tangent framework to `(q,m,r)=(3,5,10)`, where `f=3` is already excluded.
-5. Finish the eight-distinct-direction support-eight Type-A `(7,3,1)` closure.
-6. Combine maximal-atom U-depth >=3 with exact short-atom/rank-two subsum structure in `(8,10,19)` and `(9,9,19)`.
-7. Seek a local-`nu` three-deletion theorem and continue donor saturation under generalized Noether numbers, sets of lengths, restricted sumsets, projective codes and Graver augmentation.
+1. Feed the pair-plane caps 16/17 into the `(8,10,19)` and `(9,9,19)` corridor geometry together with maximal-atom projective separation and line-fiber avoidance.
+2. Classify the short-short 18-term zero-sum pair in those corridors: it is 7-short-free, rank three, and every proper zero-sum has length 8--10.
+3. Finish the support-eight Type-A `(7,3,1)` closure.
+4. Continue q=2,m=8 from r>=14 and q=3,m=6 from r>=12 using pair-rank forcing before kernel enumeration.
+5. Seek a local-`nu` three-deletion theorem for maximal atoms.
+6. Continue donor saturation under generalized Noether numbers, sets of lengths, rank-two inverse theory, projective codes, gain graphs and Graver augmentation.
 
 ## Retained negative / non-promoted routes
 
 - Eventual linearity alone does not imply stabilization at `k=2`.
+- Generalized Noether number equivalence `beta_k(A)=D_k(A)` for abelian groups is useful language, but available subgroup/quotient degree inequalities are too coarse for this rank-three line.
 - Generic Graver-basis existence is a reformulation, not the needed positive-gain theorem.
 - General exact `eta(C_p^3)` is not assumed for primes `p>=7`.
-- Additive-basis donor searches have not yet forced a relevant maximal-atom target to have representation depth at most two.
-- The full-conic interpolation theorem fails at p=5; the p-full interpolation theorem still has compatible pairs at p=5 and p=7.
-- No uniform claim is made for `(p-1)` full arcs because complete `(p-1)`-arcs exist for several small odd orders.
-- The corrected p-full case split explicitly preserves the q=2,n=3 boundary rather than overclaiming a strict bump.
+- Additive-basis donor searches have not forced a relevant maximal-atom target to have U-representation depth at most two.
+- No uniform `(p-1)`-full-arc interpolation theorem is claimed.
+- The p-full q=2 boundary with `n=3` is explicitly preserved rather than overclaimed.
 
 ## Claim ceiling
 
