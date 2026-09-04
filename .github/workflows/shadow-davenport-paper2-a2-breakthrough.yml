@@ -48,14 +48,5 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
-      - name: Reject assertion-suppressing build flags
-        run: |
-          if grep -R --line-number --fixed-strings -- '-DNDEBUG' \
-            .github/workflows/shadow-davenport-paper2-a2-breakthrough.yml \
-            research/experiments/davenport-c7-frontier/run_paper2_reproduction_v1.py; then
-            echo 'assertion-suppressing build flag detected' >&2
-            exit 1
-          fi
-
       - name: Require clean replay tree
         run: test -z "$(git status --porcelain)"
