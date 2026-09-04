@@ -28,7 +28,11 @@ The checker treats `(*)` as a linear system over `F_p` in the unknowns `N_ℓ` f
 
 *Proof.* Let `|S| = 29` and `T = S·(−σ(S))`, a zero-sum sequence of length 30. If `T` had no zero-sum subsequence of length in `[1,10]`, then by complementation none in `[20,29]`, and `(*)` for `d = 0,…,11` in the unknowns `N_{11},…,N_{15}` (with `N_{16..19}` tied by symmetry and `N_0 = N_30 = 1`) is inconsistent modulo 7 (certificate `λ = (5,0,0,0,6,0,6,0,1,0,1,0)`, combination `0 = 3`). So `T` has a zero-sum `U` with `|U| ≤ 10`. Then `|T U^{−1}| ≥ 20`; delete one element `x`; the remaining `≥ 19 = D(C_7^3)` elements contain a zero-sum `V`; `R = T(UV)^{−1} ∋ x` is a nonempty zero-sum. Of the pairwise disjoint `U, V, R` at most one contains the appended element, so `S` has two disjoint nonempty zero-sum subsequences. ∎
 
-This uses only Olson's `D(C_7^3) = 19` and Theorem 1; it does **not** depend on reading Zhao's Lemma 4.4. Together with the explicit length-28 packing-1 witness of `CUBE_FAMILY_LOWER_BOUNDS_V2.md`, `D_2(C_7^3) = 29` is now established inside this repository by two independent routes (this one and the enumeration route of `EXHAUSTIVE_ANALOG_RESULTS_V2.md`). The same computation succeeds for `p = 5, 11, 13` at `N = (9p−3)/2` with window `[1,(3p−1)/2]`, and is silent (consistent) for `p = 3`, exactly matching the Lucas degeneration `a_2 ≡ 0 (mod 3)` recorded in `D2_PRIME_POWER_COROLLARY_V1.md`.
+This uses only Olson's `D(C_7^3) = 19` and Theorem 1; it does **not** depend on reading Zhao's Lemma 4.4. Together with the explicit length-28 packing-1 witness of `CUBE_FAMILY_LOWER_BOUNDS_V2.md`, `D_2(C_7^3) = 29` is now established inside this repository by two independent routes (this one and the enumeration route of `EXHAUSTIVE_ANALOG_RESULTS_V2.md`). The same computation succeeds at `N = (9p−3)/2` with window `[1,(3p−1)/2]` for **every prime `5 ≤ p ≤ 43`** tested (5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43), each with its own printed certificate, and is silent (consistent) for `p = 3`, exactly matching the Lucas degeneration `a_2 ≡ 0 (mod 3)` recorded in `D2_PRIME_POWER_COROLLARY_V1.md`. Together with the lower bound `T_2(p)` of `GENERAL_LOWER_BOUND_AND_ETA_INDUCTION_V3.md`, this makes
+
+    D_2(C_p^3) = (9p − 5)/2      for every prime 5 <= p <= 43
+
+a **self-contained result of this packet**, independent of the donor texts the host cannot read. A uniform (all `p`) proof would require showing the linear system is inconsistent for every `p`, which is not done here: the certificate is computed per prime.
 
 **Theorem B (short zero-sums at the D3 target length).** Every zero-sum sequence of length 37 over `C_7^3` contains a nonempty zero-sum subsequence of length at most 10.
 
@@ -55,4 +59,10 @@ Forbidding only `[1,9]` is consistent, so this method alone cannot force a zero-
 
 - It replaces the unread donor lemma in the D2 gate by a self-contained, certificate-carrying argument. Priority for the *statement* `D_2(C_p^3) = (9p−5)/2` remains with the donors named in `D2_PRIME_POWER_COROLLARY_V1.md` (Freeze–Schmid lower bound) and is otherwise CANNOT_CHECK.
 - It narrows the D3 problem: a hypothetical length-36 obstruction yields, after appending `−σ`, a length-37 zero-sum sequence with a shortest zero-sum of length in `{8, 9, 10}` (Theorem B combined with the D2 gate; see the reduction lemmas). It does **not** decide `D_3(C_7^3)`.
-- The residual windows for the complement lengths 27, 28, 29 are all consistent under `(*)` (nullity 2, 1, 0), so the symmetric congruences alone cannot close the residual; non-symmetric `h` (Theorem 1 with `h = x_J · e_d`) and multiplicity information are the next lever, and are **not** exploited here.
+- The residual windows for the complement lengths 27, 28, 29 are all consistent under `(*)` (nullity 2, 1, 0), so the symmetric congruences alone cannot close the residual.
+
+**Retained negative (V3): the pointed congruences add nothing.** The obvious next lever is Theorem 1 with a non-symmetric `h`. Taking `h = x_i · e_d(x_{−i})` (multilinear of degree `d+1`) gives, for each fixed index `i` and every `d ≤ N − D − 1`,
+
+    Σ_{I ∋ i, σ(I)=0} (−1)^{|I|} C(|I|−1, d) ≡ 0 (mod p),
+
+which combines with the symmetric equations through the complementation relations `M_ℓ + M_{N−ℓ} = N_ℓ`. The full combined system was solved mod `p` (`tools/pointed_spectrum_v3.py`). At `N = 37` over `C_7^3` it is inconsistent for the window `[1,10]` and **consistent for `[1,9]`** — exactly the symmetric threshold. The same holds at `N = 26` over `C_5^3` (threshold `[1,7]` either way) and at the control lengths 27, 28, 29, 30, 36. So pointing at one element buys nothing, and the counting route stalls at "shortest block `≤ 10`" while the reduction lemmas need `≤ 8`. Any improvement must use multiplicity or geometry, not the length spectrum alone.

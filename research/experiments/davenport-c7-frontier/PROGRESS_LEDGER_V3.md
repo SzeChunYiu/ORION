@@ -22,6 +22,8 @@ V1 and V2 worked one prime at a time: exhaustive frames at `n = 3, 5`, a spectru
 | C7-LB-2 | **Theorem (`η`-induction):** `D_k(G) + exp(G) ≥ η(G)` implies `D_{k+1}(G) ≤ D_k(G) + exp(G)`, for any finite abelian `G`. Assuming `η(C_n^3) = 8n−7`, this is available for all `k ≥ 5` (and `k ≥ 4` when `n ≤ 9`). | PROVED (Thm 2); the `η` value is a hypothesis except at `n = 3` | Consequence: at `n = 7`, `D_4 = 43` plus `η = 49` would settle **every** `k ≥ 4`, leaving the frozen question `k = 3` as an isolated case. |
 | C7-LB-3 | **`D_k(C_3^3) = 3k+5` for every `k ≥ 2`** — the complete sequence, from this packet's own frames (`D_2 = 11`, `D_3 = 14`, `η(C_3^3) ≤ 17`) plus C7-LB-1 and C7-LB-2. | PROVED (self-contained; values very likely classical, no priority claimed) | Thm 4, ibid. |
 | C7-CORR-1 | **Self-audit:** the multiplicity cap `n−1` used by every enumeration frame is justified iff `L ≥ D_kmax + n`. It holds for **all** upper-bound frames and for all `k = 2` classifications, and fails for witness frames with `k ≥ 3`. Consequences: every exact value in the packet stands; the `k ≥ 3` "complete classifications" are classifications of the capped subset; Conjecture R is **refuted for `k ≥ 3`** by `T_3(3)` (max multiplicity 5) and survives only as Conjecture R′ (`k = 2`), which is the form the reduction lemmas actually need. | CORRECTION, retained | `CORRECTION_MULTIPLICITY_CAP_V3.md`. |
+| C7-SPEC-5 | The `D_2` upper-bound spectrum route succeeds for **every prime `5 ≤ p ≤ 43`** tested, each with its own `F_p` certificate. With C7-LB-1 this makes `D_2(C_p^3) = (9p−5)/2` a self-contained packet result for those primes. | PROVED per prime; uniform proof open | `spectrum_congruences_v2.py`. |
+| C7-SPEC-6 | **Retained negative:** the pointed congruences (`h = x_i e_d(x_{−i})`) plus complementation give exactly the same threshold as the symmetric system — inconsistent for window `[1,10]`, consistent for `[1,9]` at `N = 37` over `C_7^3`; likewise at `N = 26` over `C_5^3` and at the controls. The length-spectrum route is exhausted at 10 where the reduction lemmas need 8. | NEGATIVE, retained | `tools/pointed_spectrum_v3.py`. |
 | C7-EXH-6 | `D_3(C_5^3) = 25` re-verified by an independent reverse-point-order run: identical 7 716 438 leaves and 0 obstructions, different node count (1 038 218 799 vs 848 752 855). | EXACT FINITE, doubly certified | `run_exhaustive_analogs_v2.sh`. |
 
 ## Where the frozen question now stands
@@ -42,7 +44,8 @@ V1 and V2 worked one prime at a time: exhaustive frames at `n = 3, 5`, a spectru
 3. `D_4(C_7^3) = 43` and `η(C_7^3) = 49` — together they would close every `k ≥ 4` at `n = 7`.
 4. Conjecture R′ (`k = 2` rigidity), and a hand proof of the cube family `S_4` (superseded for the lower bound by `T_k`, still open as a statement about cube-supported extremal objects).
 5. Priority / donor saturation: unchanged and now also blocked by host egress policy (C7-DONOR-1).
-6. `η`-type input: the short-zero-sum induction `D_{k+1} ≤ D_k + n` cannot use `η(C_n^3) ≥ 8n−7`; the zero-sum spectrum bound (length `≤ 10` at `n = 7`) is one step short of the needed `n+1 = 8`.
+6. A paper scoping document is at `PAPER_OUTLINE_V1.md`; it lists which statements are proved, which are conjectural, and the donor-subtraction work that must precede any submission.
+7. `η`-type input: the short-zero-sum induction `D_{k+1} ≤ D_k + n` cannot use `η(C_n^3) ≥ 8n−7`; the zero-sum spectrum bound (length `≤ 10` at `n = 7`) is one step short of the needed `n+1 = 8`.
 
 ## Claim ceiling
 
