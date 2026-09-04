@@ -10,7 +10,7 @@ Status vocabulary: **proved** (mathematical proof, machine-checked) · **verifie
 | 1 | `D(C_p^r) = r(p−1)+1` | Olson (1969) | **external** — the only external input to claims 2–7 |
 | 2 | `D_2(C_p^3) = (9p−5)/2` for every prime `p ≥ 5` | `D2_UNIFORM_SELFCONTAINED_THEOREM_V3.md`; `tools/d2_digit_certificate_v3.py`; structural steps re-checked for all 44 primes `5 ≤ p ≤ 200` | **proved** |
 | 3 | Counting identities **(C)**, **(S)**, **(P)**, with both degree bounds sharp | `verify_short_atom_bound_v4.py` step 1 — brute force over `C_3^3`, plus explicit failure one degree higher | **proved** |
-| 4 | **Proposition B**: over `C_7^3`, zero-sum `C` with `23 ≤ \|C\| ≤ 29` and `z(C) = 2` has an atom of length `≤ 10` | `SHORT_ATOM_BOUND_UNIFORM_V4.md`; `verify_short_atom_bound_v4.py` steps 2–3 — every system decided by Gaussian elimination **and** exhaustive search, required to agree; `w = 9` feasible (non-vacuity) | **proved** |
+| 4 | **Proposition B**: over `C_p^3`, zero-sum `C` with `3p−2 < \|C\| ≤ (11p−3)/2` and all atoms `≥ p+1` has an atom of length `≤ w(p,m)`, closed form; at `p = 7` that is `≤ 10` for `\|C\| ∈ {23,24,27,28,29}` | `SHORT_ATOM_BOUND_UNIFORM_V4.md`; `verify_short_atom_bound_v4.py` steps 2–3 and `verify_short_atom_law_v5.py` — every system decided by Gaussian elimination **and** (where the window allows) exhaustive search, required to agree; `w−1` feasible everywhere (non-vacuity); law checked for 7 primes over every applied length | **proved** |
 | 5 | First corridor is exactly `(8,10,19)`, `(9,9,19)`, `(9,10,18)`, `(10,10,17)` | `verify_short_atom_bound_v4.py` step 4a | **proved**, given claims 2 and 4 |
 | 6 | Second corridor is exactly `(9,13,15)`, `(9,14,14)`, `(10,13,14)` | `verify_short_atom_bound_v4.py` step 4b | **proved**, given claims 4 and 8 |
 | 7 | **Theorem C**: `D_3(C_7^3) = 36` | `HYPOTHESIS_Z_PROVED_V3.md`, `D3_C7_CONDITIONAL_CLOSURE_V3.md`; `verify_D3_C7_end_to_end_v3.py` (8 asserted steps, passes) | **proved** |
@@ -26,6 +26,10 @@ Status vocabulary: **proved** (mathematical proof, machine-checked) · **verifie
 | 14 | `D_3(C_p^3)` for `p ≥ 11` | — | **open** |
 | 14b | `D_4(C_5^3) ∈ {30,31}` | narrowed to five profiles by claim 18; none excluded | **open** |
 | 15 | Observation D for `p > 31` | — | **open**; no small certificate exists (degree-set minimisation), so a rank argument is needed |
+
+## Corrections
+
+- **V4 → V5 range correction.** `SHORT_ATOM_BOUND_UNIFORM_V4.md` stated Proposition B for `23 ≤ |C| ≤ 29`. Only `{23,24,27,28,29}` was verified, and `|C| = 25, 26` genuinely give 11 and 12, not 10. Corrected here and in the record. No downstream conclusion changes: the corridors consume exactly the five verified lengths (`29,28,27` and `24,23`).
 
 ## Withdrawn / not claimed
 

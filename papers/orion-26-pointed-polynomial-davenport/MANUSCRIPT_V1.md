@@ -9,7 +9,7 @@
 
 For a finite abelian group `G`, the generalized Davenport constant `D_k(G)` is the least `ℓ` such that every sequence over `G` of length `ℓ` has `k` pairwise disjoint nonempty zero-sum subsequences. We determine `D_2(C_p^3) = (9p−5)/2` for every prime `p ≥ 5`, with Olson's `D(C_p^r) = r(p−1)+1` as the only external input, and we determine `D_3(C_7^3) = 36` on the same footing.
 
-The method is a *pointed* form of the Chevalley–Warning counting identity. The symmetric identity constrains the numbers `N_ℓ` of zero-sum subsequences of each length; on a complement of an atom these numbers are tied in pairs by `N_ℓ = N_{m−ℓ}`, and the identity sees only the pairs. Replacing the symmetric polynomial `e_d` by `x_i·e_d(x_{−i})` breaks that pairing at the cost of one extra unknown per length and one fewer usable degree. We show the trade is favourable exactly when the admissible length window is two-sided: over `C_7^3`, on a zero-sum sequence of length `m ∈ [23,29]` with packing number 2, the symmetric identity yields no atom shorter than `m/2 − 1`, while the pointed identity forces an atom of length at most 10, uniformly in `m`. This single statement replaces three separately-sourced inputs in the previous derivation and halves both length corridors of the `p = 7` analysis.
+The method is a *pointed* form of the Chevalley–Warning counting identity. The symmetric identity constrains the numbers `N_ℓ` of zero-sum subsequences of each length; on a complement of an atom these numbers are tied in pairs by `N_ℓ = N_{m−ℓ}`, and the identity sees only the pairs. Replacing the symmetric polynomial `e_d` by `x_i·e_d(x_{−i})` breaks that pairing at the cost of one extra unknown per length and one fewer usable degree. We show the trade is favourable exactly when the admissible length window is two-sided: over `C_7^3`, on a zero-sum sequence of length `m ∈ {23,24,27,28,29}` with packing number 2, the symmetric identity yields no atom shorter than `m/2 − 1`, while the pointed identity forces an atom of length at most 10. More generally the pointed bound obeys a closed law at every prime: writing `r = m mod p` and `h = (p−1)/2`, the forced atom length is `(3p−1)/2` — about half the Davenport constant — except for `r ∈ [h+1, p−2]`, where it is `(3p−1)/2 + r − h`. This single statement replaces three separately-sourced inputs in the previous derivation and halves both length corridors of the `p = 7` analysis.
 
 The bound needs no hypothesis on the packing number — only that a proper zero-sum and its complement each contain an atom — so the same machine runs at every `k`. At `k = 4` it yields new structure for an open question: a length-31 obstruction over `C_5^3`, the object that decides `D_4(C_5^3) ∈ {30,31}` and with it the conjectured line at `p = 5`, must factor into four atoms of lengths `(6,6,6,13)`, `(6,6,7,12)`, `(6,7,7,11)`, `(6,7,8,10)` or `(7,7,7,10)` — five profiles where previously only a minimum atom length was known.
 
@@ -38,7 +38,7 @@ Taking `h = e_d` turns this into linear congruences on the counts `N_ℓ` of zer
 **Contributions.**
 
 1. `D_2(C_p^3) = (9p−5)/2` for every prime `p ≥ 5`, self-contained given Olson (§4).
-2. A pointed short-atom bound, uniform over `m ∈ [23,29]` at `p = 7`, that removes three external inputs and halves both length corridors (§5).
+2. A pointed short-atom bound with a closed form at every prime — generic value `(3p−1)/2`, i.e. about half the Davenport constant — which at `p = 7` removes three external inputs and halves both length corridors (§5).
 3. `D_3(C_7^3) = 36`, with Olson as the only external input (§6).
 3b. A four-atom corridor of five length profiles for the length-31 obstruction over `C_5^3`, constraining the open `D_4(C_5^3) ∈ {30,31}` (§6.5).
 4. A uniform-in-`p` identification of three *special* atom lengths, with the Lucas mechanism that explains them, verified for `5 ≤ p ≤ 31` (§7).
@@ -139,9 +139,13 @@ realizes `z = k−1` at length `((2k+5)n−5)/2 − 1` for every odd `n` and `k 
 
 ### 5.1 Statement
 
-> **Proposition B.** Let `C` be zero-sum over `C_7^3` with `23 ≤ |C| ≤ 29` and `z(C) = 2`. Then `C` has an atom of length `≤ 10`.
+> **Proposition B.** Let `p ≥ 5` be prime and let `C` be zero-sum over `C_p^3` with `3p−2 < |C| = m ≤ (11p−3)/2`, every atom of length `≥ p+1`. Write `r = m mod p` and `h = (p−1)/2`. Then `C` has an atom of length at most
+>
+> `w(p,m) = (3p−1)/2` if `r ≤ h` or `r = p−1`;  `(3p−1)/2 + r − h` if `h+1 ≤ r ≤ p−2`.
+>
+> In particular at `p = 7` the bound is 10 for `m ∈ {23,24,27,28,29}` (and 11, 12 at `m = 25, 26`).
 
-Before this, the available bounds were `≤ 10` for `|C| ∈ {27,29}` (from the symmetric congruences), `≤ 12` for `|C| = 28` (from a specialization of `s_{≤12}(C_7^3) = 26`), and nothing at all for `|C| ∈ {23,24}`.
+Before this, the available bounds at `p = 7` were `≤ 10` for `|C| ∈ {27,29}` (from the symmetric congruences), `≤ 12` for `|C| = 28` (from a specialization of `s_{≤12}(C_7^3) = 26`), and nothing at all for `|C| ∈ {23,24}`. The generic value `(3p−1)/2` is roughly `D/2`, and the exceptional residues raise it to at most `2p−2`.
 
 ### 5.2 Proof
 
@@ -149,7 +153,7 @@ Since `z(C) = 2`, every proper nonempty zero-sum subsequence of `C` is an atom a
 
 `Σ_{ℓ ∈ S} (−1)^ℓ M_ℓ C(ℓ−1, d) + (−1)^{|C|} C(|C|−1, d) ≡ 0 (mod 7)`.
 
-For each `|C| ∈ {23,24,27,28,29}` this system is inconsistent over `F_7`. ∎
+For each `|C| ∈ {23,24,27,28,29}` this system is inconsistent over `F_7`; the general statement follows the same route at every prime. ∎
 
 **The case `|C| = 28` by hand.** Unknowns `M_11 … M_17`, degrees `d ≤ 8`. Six equations suffice:
 

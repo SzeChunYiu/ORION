@@ -1,14 +1,16 @@
 # A uniform short-atom bound, and both corridors cut in half — V4
 
-Status: **proved**. Strengthens Proposition 4.3 / Hypothesis `(Z)` from "`|C| = 28` forces an atom of length `≤ 12`" to the uniform "`23 ≤ |C| ≤ 29` forces an atom of length `≤ 10`", by one argument covering every length at once. Consequences: the first corridor drops from **six** length triples to **four**, and the second from **six** profiles to **three**.
+Status: **proved**, with a **corrected range** (see the box below). Strengthens Proposition 4.3 / Hypothesis `(Z)` from "`|C| = 28` forces an atom of length `≤ 12`" to "`|C| ∈ {23,24,27,28,29}` forces an atom of length `≤ 10`", by one argument covering those lengths at once. Consequences: the first corridor drops from **six** length triples to **four**, and the second from **six** profiles to **three**.
 Checker: `verify_short_atom_bound_v4.py` (five steps, two independent decision procedures, three controls). Priority CANNOT_CHECK.
 Lane: `claude/orion-research-frontier-3ck9yt`.
 
 ## 1. Statement
 
-> **Proposition 4.3′.** Let `C` be a zero-sum sequence over `C_7^3` with `23 ≤ |C| ≤ 29` and packing number `z(C) = 2`. Then `C` has an atom of length `≤ 10`.
+>  **Correction (V5).** This record originally stated the hypothesis as `23 ≤ |C| ≤ 29`. That overreached: only `|C| ∈ {23,24,27,28,29}` was ever verified, and `SHORT_ATOM_LAW_UNIFORM_V5.md` shows the two omitted lengths genuinely fail it — the true bounds are `11` at `|C| = 25` and `12` at `|C| = 26`. The corrected statement is below. **No downstream conclusion changes**: the first corridor uses `|C| = 29, 28, 27` and the second uses `|C| = 24, 23`, so the five verified lengths are exactly the ones consumed.
 
-The previous state of the art in this packet was: `≤ 10` for `|C| ∈ {27,29}` (symmetric congruences), `≤ 12` for `|C| = 28` (`HYPOTHESIS_Z_PROVED_V3.md`), and **nothing at all** for `|C| ∈ {23,24}` — the lengths that arise in the second corridor, where only the trivial `[8,19]` atom range was used.
+> **Proposition 4.3′ (corrected).** Let `C` be a zero-sum sequence over `C_7^3` with `|C| ∈ {23,24,27,28,29}` and packing number `z(C) = 2`. Then `C` has an atom of length `≤ 10`.
+
+The previous state of the art in this packet was: `≤ 10` for `|C| ∈ {27,29}` (symmetric congruences), `≤ 12` for `|C| = 28` (`HYPOTHESIS_Z_PROVED_V3.md`), and **nothing at all** for `|C| ∈ {23,24}` — the lengths that arise in the second corridor, where only the trivial `[8,19]` atom range was used. (`|C| = 25, 26` are excluded: there the bound is 11 and 12, not 10.)
 
 ## 2. Proof
 
