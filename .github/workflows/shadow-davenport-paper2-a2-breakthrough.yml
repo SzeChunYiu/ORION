@@ -30,6 +30,8 @@ jobs:
             >/dev/null
 
       - name: Compile reproduction and governance entry points
+        env:
+          PYTHONPYCACHEPREFIX: /tmp/orion-paper2-pycache
         run: |
           python3 -m py_compile \
             research/experiments/davenport-c7-frontier/run_paper2_reproduction_v1.py \
