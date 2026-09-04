@@ -32,7 +32,7 @@ Status vocabulary: **proved** (mathematical proof, machine-checked) · **verifie
 | 25 | **Lemma K**: no special length or complement lies in `[N−D,D]`, so no `X_L` column is dropped for special `Z` — the Newton parametrisation used by Theorems I and J is exact there | `MINIMALITY_ATTEMPT_V5.md`; checked all 76 primes 5..397 | **proved** — closes an implicit gap in the setup of claims 22 and 23 |
 | 24 | Sharpness: the three pairs are the *only* minimal forced sets | `verify_general_spectrum_v4.py` | **verified `p ≤ 19`, not proved**; nothing downstream uses it. The natural dimension count is refuted (`MINIMALITY_ATTEMPT_V5.md` §3) — the ambient space moves with `Z` |
 | 14 | `D_3(C_p^3)` for `p ≥ 11` | — | **open** |
-| 14b | `D_4(C_5^3) ∈ {30,31}` | narrowed to five profiles by claim 18; none excluded | **open** |
+| 26 | **Theorem T**: `D_4(C_5^3) = 30`; hence `D_k(C_5^3) = 5k+10` for every `k ≥ 2` | `D4_C5_DECIDED_V6.md`; orbit sweeps at `L = 10,11,12,13`, each by two independent builds with exactly matching node counts | **proved**, given `D_3(C_5^3) = 25` (external, prior ORION-RG X1-F); the line consequence additionally uses the Freeze–Schmid induction |
 | 15 | Observation D for `p > 31` | — | **open**, with the obstacle now exact: find `P` vanishing on `[N−D,D]` with `P(L) = −(−1)^N P(N−L)` on `[p+1, N−D−1]` and `P(0) + (−1)^N P(N) ≠ 0` (`LUCAS_CRITERION_V5.md` §4) |
 
 ## Corrections
