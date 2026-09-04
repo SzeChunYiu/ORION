@@ -193,7 +193,7 @@ Thus any future all-type support-seven proof should not search a two-dimensional
 
 ## Verification receipt
 
-`check_support4_alltype_light_interior_elimination_v1.py` verifies, for every prime through `1009`, every canonical type `a`, every multiplicity row for which `d>=c`, the quotient-remainder radial resource bounds, doubled residues, coefficient capacities, and the final short-zero length inequality. It also confirms that the derived discriminator specializes exactly to the previous `a=1` range.
+`check_support4_alltype_light_interior_elimination_v1.py` exhausts every meaningful `(p,a,c)` parameter triple through prime `251` and checks the two extreme admissible `d` values; the intermediate coefficient bounds and total certificate length are monotone/independent in `d` as used in the proof. A separate cheap control checks the load-bearing worst-case inequalities for every prime through `1009`, including the `a=2` worst case and the exact `a=1` cutoff.
 
 The checker is regression only; theorem authority is the symbolic quotient-remainder proof above.
 
