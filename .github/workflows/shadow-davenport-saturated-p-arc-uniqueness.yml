@@ -1,0 +1,28 @@
+name: shadow-davenport-saturated-p-arc-uniqueness
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-saturated-p-arc-uniqueness-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  theorem-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check arithmetic boundary families
+        run: python research/experiments/davenport-c7-frontier/check_saturated_p_arc_scalar_uniqueness_v1.py
+      - name: Independently replay deleted-conic-center pairs
+        run: python research/experiments/davenport-c7-frontier/verify_saturated_p_arc_scalar_uniqueness_independent_v1.py
