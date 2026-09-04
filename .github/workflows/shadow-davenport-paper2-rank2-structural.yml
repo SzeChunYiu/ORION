@@ -1,0 +1,26 @@
+name: shadow-davenport-paper2-rank2-structural
+
+on:
+  push:
+    branches:
+      - shadow/davenport-paper2-integration-20260904
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-paper2-rank2-structural-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rank2-structural:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Heavy-share full branch elimination
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_heavy_share_support3_empty_v1.py
+      - name: Light-share a>=4 full branch elimination
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_light_share_a_ge4_support3_empty_v1.py
