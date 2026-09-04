@@ -1,11 +1,15 @@
-# `D_3(C_7^3) = 36`, conditional on one statement — V3
+# `D_3(C_7^3) = 36` — V3  (**hypothesis (Z) now proved; see `HYPOTHESIS_Z_PROVED_V3.md`**)
 
-Status: **conditional theorem.** Every input is proved inside this packet except one, which is named precisely below. Machine-checked; the machinery is validated against a real object that must survive it. Priority CANNOT_CHECK.
+> **UPDATE.** `(Z)` is no longer a hypothesis: it is proved in `HYPOTHESIS_Z_PROVED_V3.md` by the *pointed* counting identity, which is rigid here because a counterexample admits only three zero-sum lengths. The theorem below is therefore **unconditional**, with Olson's `D(C_7^3) = 19` the only external input in the whole chain.
+
+Status: **theorem** (was conditional). Every input is proved inside this packet except one, which is named precisely below. Machine-checked; the machinery is validated against a real object that must survive it. Priority CANNOT_CHECK.
 Tools: `tools/spectra_complement_v3.py`, `tools/unconditional_v3.py`, `tools/selfcontained_v3.py`, `tools/replace_donors_v3.py`, `tools/control_complement_v3.py`.
 
 ## 1. Statement
 
-> **Theorem.** Assume `(Z)`: *every zero-sum sequence of length 28 over `C_7^3` with zero-sum packing number 2 has an atom of length `≤ 12`.* Then `D_3(C_7^3) = 36`.
+> **Theorem.** `D_3(C_7^3) = 36`.
+>
+> (The step formerly assumed, `(Z)`: every zero-sum sequence of length 28 over `C_7^3` with packing number 2 has an atom of length `≤ 12`, is proved in `HYPOTHESIS_Z_PROVED_V3.md`.)
 
 `(Z)` is exactly the specialisation of Zhang's `s_{≤12}(C_7^3) = 26` used by `ATOM_LENGTH_CORRIDOR_V1.md`. It is the **only** donor input left in the chain; everything else — including `D_2(C_7^3) = 29` and the short-zero-sum bounds that the corridor argument took from Zhao's Lemma 4.4 — is proved in this packet.
 
