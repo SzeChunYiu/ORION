@@ -30,5 +30,9 @@ jobs:
         run: python spectrum_congruences_v2.py
       - name: V2 cube families S_2(p), S_3(p) for p = 3, 5, 7 (independent packing recursion)
         run: python verify_cube_family_v2.py --fast
+      - name: V3 binary-cube packing profile (independent Python recomputation, n = 3 and 5)
+        run: python cube_packing_profile_v3.py
+      - name: V3 extremal families S_2, S_3, S_4 for n = 5, 7, 9, 11
+        run: python tools/famcheck_v3.py 5 7 9
       - name: V2 exhaustive analogues (compile enumerator, replay p = 3 and p = 5 D2 frames)
         run: bash run_exhaustive_analogs_v2.sh --ci
