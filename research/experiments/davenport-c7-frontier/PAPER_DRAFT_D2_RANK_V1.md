@@ -123,6 +123,17 @@ The failure is not confined to rank 5. The search at `(p,r,L,s) = (5,4,25,8)` al
 | 4.2 | `D_2(C_3^4) = 14` | proved (exhaustive; controls reproduce ranks 2, 3) |
 | 4.3 | `D_2(C_3^5) ≥ 17`, refuting `D_2 = D + M` | proved (22,843 witnesses, 5 independently re-checked) |
 
-## 7. What this draft does not contain
+## 7. Companion results in the same packet (not part of this draft's spine)
 
-`D_3(C_7^3)` is untouched here and remains open; it is the subject of the rest of the packet and of the ChatGPT lane's much deeper reduction. The rank-`≥ 4` gap is open. Whether any statement above is new is unknown and must be settled by a literature pass from a host with access, together with an external mathematical review of §2.4 and §3.
+Two further results were obtained on the `D_3` side and belong in a separate paper, the one the ChatGPT lane is driving:
+
+- **Atom-length spectrum.** For an obstruction `T` over `C_7^3` (`|T| = 37`, `z(T) = 3`) the zero-sum sub-multisets are exactly `∅`, `T`, the atoms and their complements; the counting identity then gives 19 equations over `F_7` in the atom-length weight spectrum, forcing an atom of length **13 or 14**. Since neither length occurs in any of the six corridor triples, excluding those two lengths would prove `D_3(C_7^3) = 36`. Record: `ATOM_SPECTRUM_CONGRUENCE_V3.md`.
+- **Corridor closures.** The support-four branch of `(8,10,19)` is closed (562 pairs, 2,796 candidates, all four-pack), matching the ChatGPT lane's independent count exactly; `(9,9,19)` `a = 3` likewise (1,436 pairs, 6,394 candidates). Record: `CORRIDOR_8_10_19_CROSS_CHECK_V3.md`.
+
+Both are *constraints*, not closures. The complement systems for every admissible atom length are consistent, so the counting method alone cannot exclude lengths 13 and 14; that step needs the geometric machinery.
+
+## 8. What this draft does not contain
+
+`D_3(C_7^3)` is not resolved. The rank-`≥ 4` gap is open, and §4's conjecture is **false** — `D_2(C_3^5) ≥ 17` and `D_2(C_5^4) ≥ 26` refute it, so no single closed form should be expected above rank 3.
+
+Whether any statement above is new is unknown. It must be settled by a literature pass from a host with journal access — the in-repo Davenport programme logged more than eleven prior-art collisions, and an audit during this session found four of this packet's own claims duplicating earlier in-repo work — together with an external mathematical review of §2.4 and §3.
