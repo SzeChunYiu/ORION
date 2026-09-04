@@ -178,7 +178,12 @@ For a support-six equality search, the next sequence of reductions is therefore:
 
 ## Verification receipt
 
-`check_support4_multicopy_sharing_v1.py` compares the interval criteria against the original exact one-parameter depth formula for every prime through 401, every maximal corridor, every support-four type, and every multiplicity within pair capacity. It also freezes the p=7 first-corridor table `(4,0),(2,1),(0,2)`.
+`check_support4_multicopy_sharing_v1.py` deliberately uses two validation layers:
+
+- complete oracle-versus-interval comparison on the bounded prime set `5,7,11,13,17,19,23`, across every corridor, support-four type and reusable multiplicity;
+- cheap algebraic/singleton endpoint regression for every prime through `401`.
+
+It also freezes the p=7 first-corridor table `(4,0),(2,1),(0,2)`. The first draft of the checker attempted the full brute oracle loop through `p=401`; that was mathematically redundant and computationally inappropriate, so it was replaced before being used as evidence.
 
 The checker is regression only; theorem authority is the depth calculation above.
 
