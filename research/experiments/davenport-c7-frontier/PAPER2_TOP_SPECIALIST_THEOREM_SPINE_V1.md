@@ -1,22 +1,24 @@
-# Paper 2 top-specialist theorem spine — V1
+# Paper 2 top-specialist theorem spine — V2
 
-Status: **theorem-dense specialist-paper spine ready for full manuscript development**. The package supports a strong structural/computer-assisted zero-sum paper. It does not support an exact-value announcement for `D_3(C_7^3)`, a top-generalist venue claim, or a novelty certificate.
+Status: **reconciled theorem-dense specialist-paper spine ready for full manuscript development**. This version incorporates the Paper-2 V8 rank-three reductions, removes duplicate `a=2` radial authority, and separates analytic theorems, donor-dependent reductions, exact finite closures, and independent audits.
+
+The package supports a strong structural/computer-assisted zero-sum paper. It does not support an exact-value announcement for `D_3(C_7^3)`, a top-generalist venue claim, or a novelty certificate.
 
 ## Proposed title
 
 **Representation-depth rigidity and support growth in the first multiwise Davenport corridors of elementary rank-three groups**
 
-A more C7-forward alternative is:
+A more `C_7^3`-forward alternative is:
 
 **Exact representation depth and support-six exclusion in the maximal corridors of `C_7^3`**
 
 ## Provisional abstract
 
-We study the first nontrivial multiwise Davenport corridors in elementary abelian groups of rank three through the geometry of a maximal zero-sum atom and the representation depth it induces on a companion atom. For the canonical support-four maximal type with light multiplicity two, we determine the exact radial lifting cost and a complete piecewise-linear maximum depth envelope on every affine coordinate-sum fiber. For the light multiplicity-three type, explicit scalar constructions eliminate the entire rank-two support-three companion face for every prime `p>=7`. On the top-overlap multiplicity-two face for primes `p==1 (mod 4)`, an inverse-quarter rotation selector eliminates both standard high-multiplicity families. At `p=7`, the remaining rank-three support-four equality face reduces to fourteen ordered parameter pairs; each admits an explicit mixed zero-sum certificate of length at most eight. Combining these analytic reductions with two structurally independent exhaustive verifiers for the second maximal corridor shows that, in both maximal `C_7^3` corridors, a hypothetical packing obstruction with a support-four maximal atom cannot have a maximal pair of total support six. The result is a support-growth theorem and a reproducible proof architecture, not a determination of `D_3(C_7^3)`.
+We study the first nontrivial multiwise Davenport corridors in elementary abelian groups of rank three through the geometry of a maximal zero-sum atom and the representation depth it induces on a companion atom. For the canonical support-four maximal type with light multiplicity two, we determine the exact light-overlap ceiling, radial lifting cost, and a complete piecewise-linear maximum depth envelope on every affine coordinate-sum fiber. For arbitrary canonical type, we derive an exact two-dimensional overlap-plane lifting cost. This yields prime-uniform support-sharing reductions: the light multiplicity-three rank-two face is empty for every prime `p>=7`; simultaneous overlap for types `a>=4` is sharply bounded; doubling and scalar three collapse the generic rank-three face to four explicit edge regimes; and an inverse-quarter rotation selector eliminates both standard high-multiplicity families on the maximal type-two overlap face. At `p=7`, the remaining type-two rank-three support-four equality face reduces to fourteen ordered parameter pairs, each admitting an explicit mixed zero-sum certificate of length at most eight. Combined with two structurally independent exhaustive verifiers for the second maximal corridor, these results show that in both maximal `C_7^3` corridors a hypothetical packing obstruction containing a support-four maximal atom cannot remain in the support-six maximal-pair face. The result is a support-growth theorem and a reproducible proof architecture, not a determination of `D_3(C_7^3)`.
 
 ## 1. Central thesis
 
-The paper’s unifying object is not a raw search over sequences. It is the **representation-depth function**
+The unifying object is the **representation-depth function**
 
 `rho_U(z)=min{|T|: T|U, sigma(T)=z}`
 
@@ -32,20 +34,31 @@ The manuscript should present every finite computation as a terminal reduction a
 
 ## 2. Main theorem suite
 
-### Theorem A — exact type-`a=2` radial calculus
+### Theorem A — exact type-`a=2` overlap and radial calculus
 
-For every odd prime `p>=5`, every `0<=c<=p-3`, and every `0<=D<=p-1`,
+For `p=2H+1>=7`, the exact reusable light multiplicity is
+
+`c_light=2 floor(H/2)=2 floor((p-1)/4)`,
+
+and for every allowed overlap `c` and target `1<=D<=p-1`,
 
 `lambda_{2,c}(D)=D+2 ceil(max(D-c-2,0)/2)`.
 
-This is proved by excluding wrapped representations and splitting the inverse-of-two residue into even and odd classes.
+The proof excludes wrapped representations and splits the inverse-of-two residue into even and odd classes.
 
-**Authority:** analytic.
+**Authority:** analytic integration-lane theorem.
 
-**Files:**
+**Canonical files:**
 
-- `A2_EXACT_RADIAL_EXCESS_V1.md`
-- `check_a2_exact_radial_excess_v1.py`
+- `A2_EXACT_OVERLAP_AND_RADIAL_STAIRCASE_V1.md`
+- `check_a2_exact_overlap_and_radial_staircase_v1.py`
+
+**Independent audit:**
+
+- `A2_RADIAL_STAIRCASE_HOSTILE_AUDIT_V1.md`
+- `verify_a2_radial_staircase_independent_v1.py`
+
+The audit extends the replay to the full formal capacity range, freezes the first optimizer, and rejects a floor-rounding mutation; it does not create a second theorem-authority surface.
 
 ### Theorem B — exact type-`a=2` depth-fiber envelope
 
@@ -60,28 +73,76 @@ This is the paper’s strongest reusable method theorem. It compresses three coo
 - `A2_EXACT_DEPTH_FIBER_ENVELOPE_V1.md`
 - `check_a2_exact_depth_fiber_envelope_v1.py`
 
-### Theorem C — complete type-`a=3` rank-two face elimination
+### Theorem C — exact overlap-plane lifting in rank three
+
+For the canonical maximal atom
+
+`U=e1^(p-1)e2^(p-1)s^a g^(p-a)`,
+
+with `g=s-a^(-1)(e1+e2)`, the exact `U`-cost of an overlap-plane target `C s+D g` is
+
+`nu_a(C,D)=min (z+q+2[a^(-1)(q-D)]_p)`
+
+over
+
+`0<=z<=a`, `0<=q<=p-a`, `z+q==C+D (mod p)`.
+
+This removes the free geometry of the two new values from the first scalar attack on a rank-three support-four companion.
+
+**Authority:** analytic integration-lane theorem.
+
+**Files:**
+
+- `SUPPORT4_EXACT_OVERLAP_PLANE_LIFTING_COST_V1.md`
+- `check_support4_overlap_plane_rank3_scalar_v1.py`
+
+### Theorem D — complete type-`a=3` rank-two face elimination
 
 For every prime `p>=7`, no exact-support-six first-corridor support-three rank-two companion survives in the canonical type-`a=3` light-share face.
 
 The proof combines:
 
 - exact inverse-three radial depth;
-- boundary index-one reduction;
+- a capacity-aware length-four index-one donor reduction;
 - explicit elimination of the right half `e<=f`;
 - explicit elimination of the complementary left half `e>f`.
 
-**Authority:** analytic; the length-four index-one ingredient is donor-owned and clearly attributed.
+**Authority:** analytic. The cyclic length-four index-one theorem is donor-owned and must remain explicitly attributed.
 
 **Principal files:**
 
 - `A3_EXACT_RADIAL_EXCESS_V1.md`
 - `A3_BOUNDARY_INDEX_ONE_DONOR_REDUCTION_V1.md`
 - `A3_RIGHT_HALF_BOUNDARY_ELIMINATION_V1.md`
-- the committed left-half closure on the integration branch
-- corresponding replay checkers
+- the committed left-half closure and its independent replay
 
-### Theorem D — maximal-overlap standard-family exclusion for type `a=2`
+### Theorem E — generic rank-three reductions for `a>=4`
+
+For canonical types `a>=4` with both overlap directions available:
+
+1. the exact reuse ceilings satisfy
+   
+   `c_light+c_heavy<=a-2`;
+2. if the smaller new-value multiplicity exceeds `H`, doubling produces a zero-sum of length exactly `p-1`;
+3. every survivor lies on the thin boundary
+   
+   `r=H-k`, `t=p-(c+d)+k`, `0<=k<=c+d-1`;
+4. scalar three eliminates every boundary box satisfying the four central capacity inequalities, leaving only four explicit edge regimes.
+
+**Authority:** analytic integration-lane theorem chain.
+
+**Files:**
+
+- `SUPPORT4_SIMULTANEOUS_OVERLAP_SUM_BOUND_V1.md`
+- `check_support4_simultaneous_overlap_sum_bound_v1.py`
+- `SUPPORT4_RANK3_A_GE4_DOUBLING_BOUNDARY_REDUCTION_V1.md`
+- `check_support4_rank3_a_ge4_doubling_boundary_reduction_v1.py`
+- `SUPPORT4_RANK3_A_GE4_TRIPLE_CENTRAL_BOUNDARY_V1.md`
+- `check_support4_rank3_a_ge4_triple_central_boundary_v1.py`
+
+This chain is a major all-prime reduction, not a complete elimination of the `a>=4` rank-three face.
+
+### Theorem F — maximal-overlap standard-family exclusion for type `a=2`
 
 For prime `p>=13`, `p==1 (mod 4)`, the top light-overlap face cannot have its high-multiplicity value in either standard family
 
@@ -102,7 +163,9 @@ The selected power has a uniform positive depth margin.
 - `A2_MAXIMAL_OVERLAP_STANDARD_FAMILIES_EMPTY_V1.md`
 - `check_a2_maximal_overlap_standard_families_v1.py`
 
-### Theorem E — explicit `p=7` rank-three equality-face closure
+The remaining gap is the prime-uniform classification that forces a power-compatible high-multiplicity value into these standard fibers, apart from bounded central exceptions.
+
+### Theorem G — explicit `p=7` rank-three equality-face closure
 
 For the canonical type-`a=2` length-19 atom over `C_7^3`, the rank-three support-four length-10 companion face has six multiplicity rows. Separate power tests leave exactly fourteen ordered parameter pairs. Every one has an explicit mixed zero-sum certificate of length `4`, `6`, `7`, or `8`.
 
@@ -113,7 +176,7 @@ For the canonical type-`a=2` length-19 atom over `C_7^3`, the rank-three support
 - `P7_A2_RANK3_SUPPORT4_EQUALITY_EMPTY_V1.md`
 - `check_p7_a2_rank3_support4_exception_table_v1.py`
 
-### Theorem F — two-corridor C7 support-six exclusion
+### Theorem H — two-corridor `C_7^3` support-six exclusion
 
 Let a hypothetical length-37 packing obstruction over `C_7^3` contain a support-four length-19 maximal atom.
 
@@ -122,12 +185,12 @@ Let a hypothetical length-37 packing obstruction over `C_7^3` contain a support-
 
 Therefore, in either maximal corridor, a surviving obstruction with a support-four maximal atom must escape the support-six maximal-pair face.
 
-**Authority:** composite theorem: analytic first-corridor closure plus dual-verifier finite second-corridor closure.
+**Authority:** composite theorem: analytic/explicit-certificate first-corridor closure plus dual-verifier exact finite second-corridor closure.
 
 **Principal files:**
 
 - `P7_A2_RANK3_SUPPORT4_EQUALITY_EMPTY_V1.md`
-- the support-three elimination files for types `a=1,2,3`
+- the support-three elimination files for canonical types `a=1,2,3`
 - `SUPPORT6_9919_CLOSURE_V1.md`
 - `search_support6_9919_closure_v1.cpp`
 - `verify_support6_9919_independent_v1.cpp`
@@ -136,24 +199,26 @@ Therefore, in either maximal corridor, a surviving obstruction with a support-fo
 
 The reader-facing proof should follow this order:
 
-1. **First-failure reduction.** Convert a hypothetical `D_3` counterexample into three atoms and two maximal length corridors.
+1. **First-failure reduction.** Convert a hypothetical `D_3` counterexample into three atoms and the two maximal length corridors.
 2. **Maximal-atom normal form.** Reduce a support-four length-`(3p-1)/2` atom to canonical type `a`.
-3. **Representation depth.** Define `rho_U`, derive the general bounded resource formula, then specialize to exact type-`a=2` and `a=3` envelopes.
+3. **Representation depth.** Define `rho_U`, derive the bounded resource formula, then specialize to exact radial, fiber, and overlap-plane costs.
 4. **Support-sharing normal forms.** Separate rank-two support-three and rank-three support-four companions.
-5. **Prime-uniform eliminations.** Present `a=3` closure and the type-`a=2` standard-family theorem.
-6. **C7 terminal face.** Give the six rows and fourteen explicit mixed certificates.
-7. **Second corridor.** State the 26-pair/1634-completion theorem and explain verifier independence.
-8. **Support-growth conclusion.** Combine both corridors and state the exact remaining frontier.
+5. **Prime-uniform rank-two eliminations.** Present heavy-share closure, all light types `a>=3`, and the residual `a=1,2` high-overlap interface.
+6. **Prime-uniform rank-three reductions.** Present simultaneous overlap, doubling, and scalar-three boundary collapse.
+7. **Inverse-quarter rotation.** Eliminate the type-two standard high-multiplicity fibers.
+8. **`C_7^3` terminal face.** Give the six rows and fourteen explicit mixed certificates.
+9. **Second corridor.** State the 26-pair/1634-completion theorem and explain verifier independence.
+10. **Support-growth conclusion.** Combine both corridors and state the exact remaining frontier.
 
 The manuscript should avoid interleaving discovery chronology with the proof.
 
 ## 4. Computational-proof architecture
 
-The finite C7 statements meet a credible computer-assisted-proof standard because the decisive predicates are replayed independently.
+The finite `C_7^3` statements meet a credible computer-assisted-proof standard because the decisive predicates are replayed independently.
 
 ### First corridor
 
-- Depth is computed from actual occurrences of the 19-term atom.
+- Depth is computed from the actual 19 occurrences of the maximal atom.
 - The closed support-four depth formula is used only as an independent cross-check.
 - Every terminal survivor has a human-readable count-vector certificate whose vector sum and capacity are checked directly.
 - Removing any one certificate leaves exactly one unresolved ordered case.
@@ -174,53 +239,59 @@ The manuscript should include pseudocode, exact census tables, hashes, compiler 
 2. Multiwise Davenport first-failure framework
 3. Canonical support-four maximal atoms
 4. Representation-depth calculus
-5. Exact type-`a=2` radial and fiber theorems
+5. Exact radial, fiber, and overlap-plane theorems
 6. Prime-uniform rank-two eliminations
-7. Inverse-quarter rotation on the top-overlap face
-8. The explicit C7 rank-three exception table
-9. The `(9,9,19)` dual-verifier closure
-10. Combined support-growth theorem
-11. Reproducibility and hostile verification
-12. Remaining frontier and limitations
+7. Prime-uniform rank-three boundary reductions
+8. Inverse-quarter rotation on the top-overlap face
+9. The explicit `C_7^3` rank-three exception table
+10. The `(9,9,19)` dual-verifier closure
+11. Combined support-growth theorem
+12. Reproducibility and hostile verification
+13. Remaining frontier and limitations
 
 Appendices:
 
 - cyclic index-one donor statement and attribution;
 - full piecewise fiber table and sharp witnesses;
-- fourteen C7 certificates;
+- fourteen `C_7^3` certificates;
 - complete machine-readable census receipts.
 
 ## 6. Figures and tables that materially help
 
-1. A diagram of the two maximal corridors `(8,10,19)` and `(9,9,19)`.
+1. The two maximal corridors `(8,10,19)` and `(9,9,19)`.
 2. A support-sharing diagram separating support-three/rank-two and support-four/rank-three faces.
 3. A heat map of the exact `M_p(w,C)` envelope, emphasizing `w=H` and `w=p-1`.
-4. The inverse-quarter selector on the cyclic rotation orbit.
-5. The six-row/fourteen-certificate C7 terminal table.
-6. A verifier-independence matrix for the second corridor.
+4. The four-regime V8 rank-three boundary after doubling and scalar three.
+5. The inverse-quarter selector on the cyclic rotation orbit.
+6. The six-row/fourteen-certificate `C_7^3` terminal table.
+7. A verifier-independence matrix for the second corridor.
 
 ## 7. Atomic open gaps
 
-The paper does **not** need these gaps closed to support its bounded theorem, but they determine whether a stronger all-prime sequel or exact-value paper is possible.
+The bounded paper does not require these gaps to be closed, but they determine whether a stronger all-prime sequel or exact-value paper is possible.
 
-1. Prove the high-multiplicity classification forcing the type-`a=2` top-overlap value into `(A,-A,1)` or `(A,-A,2)`, with three central exceptions.
-2. Eliminate lower-overlap type-`a=2` layers `c>=5` prime-uniformly.
-3. Establish a support-seven/rank-three augmentation theorem covering both C7 corridors without finite enumeration.
-4. Close maximal atoms of support at least five.
-5. Resolve the support-eight one-projective-collision Type-A packing face.
-6. Only after those steps reconsider `D_3(C_7^3)=36`.
+1. Prove the high-multiplicity classification forcing the type-`a=2` top-overlap value into `(A,-A,1)` or `(A,-A,2)`, with the bounded central exceptions explicitly handled.
+2. Eliminate the rank-two light type `a=1`, overlap `c>=5`.
+3. Eliminate the remaining rank-two light type `a=2`, overlap `c>=5`, including lower-than-top overlap layers.
+4. Close the four `a>=4` rank-three edge regimes after the V8 reductions.
+5. Close the exceptional rank-three types `a=2,3` prime-uniformly.
+6. Establish a support-seven/rank-three augmentation theorem covering both `C_7^3` corridors without finite enumeration.
+7. Close maximal atoms of support at least five.
+8. Resolve the support-eight one-projective-collision Type-A packing face.
+9. Only after those steps reconsider `D_3(C_7^3)=36`.
 
 ## 8. Claim ceiling
 
 The strongest current reader-facing claim is:
 
-> exact representation-depth formulas and support-growth theorems exclude the smallest support-four maximal-pair face in both maximal `C_7^3` corridors.
+> exact representation-depth formulas and support-growth theorems exclude the smallest support-four maximal-pair face in both maximal `C_7^3` corridors, while all-prime support-six equality is reduced to explicit high-overlap and rank-three edge regimes.
 
 The manuscript must not state or imply:
 
 - `D_3(C_7^3)=36`;
 - a complete classification of all length-37 obstructions;
-- all-prime closure of the type-`a=2` face;
+- all-prime closure of the type-`a=1` or type-`a=2` high-overlap faces;
+- complete elimination of the V8 rank-three edge regimes;
 - independent novelty or priority;
 - top-journal acceptance authority.
 
@@ -228,23 +299,24 @@ The manuscript must not state or imply:
 
 ### Ready
 
-- coherent analytic method;
-- multiple prime-uniform theorems;
-- a nontrivial bounded C7 headline;
+- one coherent analytic method based on representation depth;
+- exact radial, fiber, and overlap-plane calculus;
+- multiple prime-uniform eliminations and boundary reductions;
+- a nontrivial two-corridor `C_7^3` headline;
 - explicit terminal certificates;
 - dual independent verification in the larger finite closure;
 - branch-scoped CI replay;
-- honest claim boundary.
+- an honest claim boundary and nearest-work audit.
 
 ### Required before submission
 
-- external mathematical audit of the two new exact type-`a=2` formulas;
-- external prior-art subtraction;
-- independent reimplementation of the 14-entry C7 classifier or a formal proof-assistant replay;
+- external mathematical audit of the exact type-two fiber envelope and inverse-quarter selector;
+- external prior-art subtraction through MathSciNet, zbMATH, theses, and citation networks;
+- independent reimplementation of the fourteen-entry `C_7^3` classifier or a formal proof-assistant replay;
 - conversion to a concise LaTeX manuscript;
 - a referee-facing data and code availability statement;
 - author-level decision on venue and novelty language.
 
 ### Verdict
 
-There is now enough mathematical substance for a **top specialist-paper development track**. The result is not yet an exact generalized-Davenport paper and should not be marketed as one. Its strength is the exact depth calculus, support rigidity, and independently reproducible finite closure.
+There is enough mathematical substance for a **top specialist-paper development track**. The result is not yet an exact generalized-Davenport paper and should not be marketed as one. Its strength is the exact depth calculus, all-prime support-sharing rigidity, and independently reproducible finite closure.
