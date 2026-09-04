@@ -1,0 +1,46 @@
+name: shadow-davenport-q3-m6-r11
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-q3-m6-r11-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  exact-closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check q3 m6 r11 closure
+        run: |
+          python research/experiments/davenport-c7-frontier/check_p7_q3_m6_r11_closure_v1.py | tee /tmp/primary.json
+      - name: Independently verify conic gain obstruction
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_p7_q3_m6_r11_closure_independent_v1.py | tee /tmp/independent.json
+      - name: Compare receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/primary.json'))
+          b=json.load(open('/tmp/independent.json'))
+          digest='7f858cbd83b9922d4fc0122baa2a34680216033f28bd948aa225bde055c85cce'
+          assert a['conic_candidates']==b['candidate_extensions']==4466
+          assert a['candidate_sha256']==b['candidate_sha256']==digest
+          assert a['rank_11_systems']==4466
+          assert a['all_conic_directions_covered']==b['all_conic_directions_covered']==4466
+          assert b['connected_gain_graphs']==4466
+          assert b['ratio_inconsistent_candidates']==4466
+          assert a['new_direction_floor']==12
+          print('P7_Q3_M6_R11_RECEIPTS_AGREE',digest)
+          PY
