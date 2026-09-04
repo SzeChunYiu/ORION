@@ -16,23 +16,71 @@ concurrency:
 jobs:
   theorem-stack:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - name: Compile Python theorem replays
+
+      - name: Compile Python theorem and governance replays
         run: |
           python3 -m py_compile \
+            research/experiments/davenport-c7-frontier/check_a2_exact_overlap_and_radial_staircase_v1.py \
             research/experiments/davenport-c7-frontier/verify_a2_radial_staircase_independent_v1.py \
             research/experiments/davenport-c7-frontier/check_a2_exact_depth_fiber_envelope_v1.py \
+            research/experiments/davenport-c7-frontier/check_support4_overlap_plane_rank3_scalar_v1.py \
+            research/experiments/davenport-c7-frontier/check_support4_simultaneous_overlap_sum_bound_v1.py \
+            research/experiments/davenport-c7-frontier/check_support4_rank3_a_ge4_doubling_boundary_reduction_v1.py \
+            research/experiments/davenport-c7-frontier/check_support4_rank3_a_ge4_triple_central_boundary_v1.py \
+            research/experiments/davenport-c7-frontier/check_a2_maximal_overlap_standard_families_v1.py \
             research/experiments/davenport-c7-frontier/check_p7_a2_rank3_support4_exception_table_v1.py \
-            research/experiments/davenport-c7-frontier/check_a2_maximal_overlap_standard_families_v1.py
+            research/experiments/davenport-c7-frontier/check_paper2_atomic_claim_ledger_v1.py
+
+      - name: Validate Paper 2 claim ledger JSON
+        run: python3 -m json.tool research/experiments/davenport-c7-frontier/PAPER2_ATOMIC_CLAIM_LEDGER_V1.json >/dev/null
+
+      - name: Replay canonical a2 overlap and radial staircase
+        run: python3 research/experiments/davenport-c7-frontier/check_a2_exact_overlap_and_radial_staircase_v1.py
+
       - name: Replay independent a2 radial hostile audit
         run: python3 research/experiments/davenport-c7-frontier/verify_a2_radial_staircase_independent_v1.py
+
       - name: Replay exact a2 depth fiber envelope
         run: python3 research/experiments/davenport-c7-frontier/check_a2_exact_depth_fiber_envelope_v1.py
+
+      - name: Replay exact overlap-plane lifting and bounded rank3 scalar scan
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_overlap_plane_rank3_scalar_v1.py
+
+      - name: Replay simultaneous overlap sum theorem
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_simultaneous_overlap_sum_bound_v1.py
+
+      - name: Replay rank3 a>=4 doubling boundary reduction
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_rank3_a_ge4_doubling_boundary_reduction_v1.py
+
+      - name: Replay rank3 scalar-three central boundary theorem
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_rank3_a_ge4_triple_central_boundary_v1.py
+
+      - name: Replay a2 maximal-overlap standard families
+        run: python3 research/experiments/davenport-c7-frontier/check_a2_maximal_overlap_standard_families_v1.py
+
       - name: Replay p7 rank-three exception table
         run: python3 research/experiments/davenport-c7-frontier/check_p7_a2_rank3_support4_exception_table_v1.py
-      - name: Replay maximal-overlap standard families
-        run: python3 research/experiments/davenport-c7-frontier/check_a2_maximal_overlap_standard_families_v1.py
+
+      - name: Enforce Paper 2 atomic claim ceiling
+        run: python3 research/experiments/davenport-c7-frontier/check_paper2_atomic_claim_ledger_v1.py
+
+      - name: Build independent second-corridor verifiers
+        run: |
+          g++ -std=c++17 -O3 -DNDEBUG \
+            research/experiments/davenport-c7-frontier/search_support6_9919_closure_v1.cpp \
+            -o /tmp/search_support6_9919
+          g++ -std=c++17 -O3 -DNDEBUG \
+            research/experiments/davenport-c7-frontier/verify_support6_9919_independent_v1.cpp \
+            -o /tmp/verify_support6_9919
+
+      - name: Replay primary second-corridor closure
+        run: /tmp/search_support6_9919
+
+      - name: Replay independent second-corridor closure
+        run: /tmp/verify_support6_9919
+
       - name: Require clean replay tree
         run: test -z "$(git status --porcelain)"
