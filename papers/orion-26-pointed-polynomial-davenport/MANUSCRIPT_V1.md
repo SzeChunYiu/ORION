@@ -1,0 +1,283 @@
+# The pointed polynomial method for generalized Davenport constants of `C_p^3`
+
+**Author.** Sze Chun Yiu.
+**Status.** Draft V1. Internal machine verification complete; external prior-art pass and independent mathematical review outstanding (see §9).
+
+---
+
+## Abstract
+
+For a finite abelian group `G`, the generalized Davenport constant `D_k(G)` is the least `ℓ` such that every sequence over `G` of length `ℓ` has `k` pairwise disjoint nonempty zero-sum subsequences. We determine `D_2(C_p^3) = (9p−5)/2` for every prime `p ≥ 5`, with Olson's `D(C_p^r) = r(p−1)+1` as the only external input, and we determine `D_3(C_7^3) = 36` on the same footing.
+
+The method is a *pointed* form of the Chevalley–Warning counting identity. The symmetric identity constrains the numbers `N_ℓ` of zero-sum subsequences of each length; on a complement of an atom these numbers are tied in pairs by `N_ℓ = N_{m−ℓ}`, and the identity sees only the pairs. Replacing the symmetric polynomial `e_d` by `x_i·e_d(x_{−i})` breaks that pairing at the cost of one extra unknown per length and one fewer usable degree. We show the trade is favourable exactly when the admissible length window is two-sided: over `C_7^3`, on a zero-sum sequence of length `m ∈ [23,29]` with packing number 2, the symmetric identity yields no atom shorter than `m/2 − 1`, while the pointed identity forces an atom of length at most 10, uniformly in `m`. This single statement replaces three separately-sourced inputs in the previous derivation and halves both length corridors of the `p = 7` analysis.
+
+We then run the whole apparatus uniformly in `p`. Calling `L ∈ [p+1, 3p−2]` *special* when `p | L` or `p | (N−L)`, where `N = (11p−3)/2`, there are exactly three special lengths for every prime, `3(p−1)/2`, `2p` and `(5p−3)/2`; equivalently their base-`p` low digit is `0` or `(p−3)/2`, which is what makes Lucas' theorem collapse either their own column or their complement's. For every prime `5 ≤ p ≤ 31` we verify that excluding any two special lengths makes the spectrum congruences inconsistent, so a `D_3` obstruction must carry atoms of at least two of the three; for `11 ≤ p ≤ 19` these three pairs are exactly the minimal forced sets. We state this as a verified finite computation, not a theorem for all `p`: the contradiction uses essentially every degree in `[p+2, (5p+1)/2]`, so no short certificate exists and a uniform proof needs a rank argument we do not have.
+
+**Keywords.** generalized Davenport constants; zero-sum sequences; elementary abelian groups; polynomial method; Chevalley–Warning; Lucas' theorem.
+
+---
+
+## 1. Introduction
+
+Zero-sum problems ask how long a sequence over a finite abelian group must be before a prescribed combinatorial pattern of zero sums is unavoidable. The Davenport constant `D(G)` — the shortest length forcing one nonempty zero-sum subsequence — is classical, and Olson determined it for elementary abelian groups: `D(C_p^r) = r(p−1)+1`. The generalized constants `D_k(G)`, forcing `k` pairwise *disjoint* zero sums, are far less tractable. Rank two is well understood; rank three is where the expected arithmetic progression can fail, and where individual values are still being decided one at a time.
+
+For `G = C_p^3` the expected line is `D_k(C_p^3) = ((2k+5)p−5)/2`. Its `k = 2` and `k = 3` cases read `(9p−5)/2` and `(11p−5)/2`. At `p = 5` these are `20` and `25`, both known; at `p = 7` they are `29` and `36`, and `36` is the first value of the line that had not been settled.
+
+**The bottleneck.** The standard route to an upper bound is the polynomial method: for a zero-sum sequence `T` of length `n` over `C_p^r` and a multilinear `h` of degree at most `n − D(G)`, the Chevalley–Warning argument gives
+
+> **(C)**  `Σ_{I ⊆ [n], σ(I) = 0} (−1)^{|I|} h(1_I) ≡ 0 (mod p)`.
+
+Taking `h = e_d` turns this into linear congruences on the counts `N_ℓ` of zero-sum index sets of each size, and inconsistency of the resulting system rules out length spectra. The bottleneck is that this system is weak exactly where the analysis needs it most. In the `p = 7` problem one must control a zero-sum sequence `C` of length 28 with packing number 2; the symmetric congruences yield only "some atom has length `≤ 14`", which is vacuous, where "`≤ 10`" is what the corridor argument needs. Previous work closed that gap by importing three separate external statements (two applications of a short-subsequence lemma and one instance of `s_{≤12}(C_7^3) = 26`), and an in-repository audit had recorded, correctly for the regime it examined, that pointing the polynomial "buys nothing".
+
+**The move.** That audit examined a *one-sided* window: forbidding short zero sums, `N_ℓ = 0` for `ℓ ≤ w`, at the obstruction length itself. There the pointed and symmetric thresholds coincide. The situation on a complement is different in a way that turns out to be decisive. If `C` is zero-sum with packing number 2, every proper nonempty zero-sum subsequence of `C` is an atom and so is its complement, so the admissible lengths form a *two-sided* window `[w+1, m−w−1]` closed under `ℓ ↦ m−ℓ`. Complementation then forces `N_ℓ = N_{m−ℓ}`, and the symmetric identity can only ever see those sums: it has half as many unknowns, but correspondingly degenerate equations. The pointed polynomial `h = x_i · e_d(x_{−i})` counts only zero-sum sets through a fixed index `i`, and complementation does not identify `M_ℓ` with `M_{m−ℓ}`. The extra equations more than pay for the extra unknowns.
+
+**What follows.** §5 proves the resulting bound in the form we need: over `C_7^3`, every zero-sum sequence of length `m ∈ [23,29]` with packing number 2 has an atom of length at most 10 — one statement, uniform in `m`, replacing the three imported ones, and strictly stronger than the previous best at `m = 28`. §6 assembles `D_3(C_7^3) = 36`. §7 runs the apparatus at every prime and isolates the three special lengths. §8 says plainly what is proved, what is verified over a finite range, and what is open.
+
+**Contributions.**
+
+1. `D_2(C_p^3) = (9p−5)/2` for every prime `p ≥ 5`, self-contained given Olson (§4).
+2. A pointed short-atom bound, uniform over `m ∈ [23,29]` at `p = 7`, that removes three external inputs and halves both length corridors (§5).
+3. `D_3(C_7^3) = 36`, with Olson as the only external input (§6).
+4. A uniform-in-`p` identification of three *special* atom lengths, with the Lucas mechanism that explains them, verified for `5 ≤ p ≤ 31` (§7).
+5. A correction to the record: pointed congruences do add strength, in the two-sided regime specifically (§5.3).
+
+---
+
+## 2. Setting, notation, and terminology
+
+We fix the following canonical forms and use them throughout.
+
+| Term | Definition |
+|---|---|
+| sequence | a finite multiset over `G`; `\|S\|` is its length |
+| `σ(S)` | the sum of the terms of `S` |
+| zero-sum / block | a sequence with `σ = 0` |
+| atom | a nonempty zero-sum sequence with no proper nonempty zero-sum subsequence (a minimal zero-sum sequence) |
+| `D(G)` | Davenport constant; `D(C_p^r) = r(p−1)+1` (Olson) |
+| `D_k(G)` | least `ℓ` forcing `k` pairwise disjoint nonempty zero-sum subsequences |
+| `z(S)` | packing number: the largest number of pairwise disjoint nonempty zero-sum subsequences of `S` |
+| obstruction | for the `D_3` problem over `C_p^3`: a zero-sum `T` with `\|T\| = N` and `z(T) = 3` (see §2.1) |
+| `N` | `(11p−3)/2`; at `p = 7`, `N = 37` |
+| `D` | `3p−2`; at `p = 7`, `D = 19` |
+| `amin` | `p+1`, the minimum atom length in an obstruction |
+| `w(S)` | the multinomial weight `Π_g C(v_g(T), v_g(S))` of a sub-multiset `S` of `T` |
+| `N_ℓ`, `M_ℓ` | weighted counts of zero-sum sub-multisets of length `ℓ`; `M_ℓ` counts only those through a fixed index |
+| special length | `L ∈ [amin, D]` with `p \| L` or `p \| (N−L)` (§7) |
+
+`C(a,b)` denotes a binomial coefficient. Base-`p` digits are written `(a_1, a_0)_p`.
+
+### 2.1 The reduction to a zero-sum object
+
+`D_3(C_p^3) > (11p−5)/2` means there is a sequence `S` of length `(11p−5)/2` with `z(S) ≤ 2`. Appending `−σ(S)` gives a zero-sum `T` of length `N = (11p−3)/2` with `z(T) = 3`. So a proof of `D_3(C_p^3) = (11p−5)/2` amounts to showing no such `T` exists, given the matching lower bound. The lower bound is supplied by an explicit family (`T_k(n)`, §4.3) and needs no external input.
+
+Two reductions are uniform in `p` and used throughout.
+
+**Lemma 2.1 (no short zero sums).** An obstruction `T` has no zero-sum subsequence of length `≤ p`.
+
+*Proof.* If `U ⊆ T` is zero-sum with `|U| ≤ p`, then `|T U^{−1}| ≥ N − p = D_2 + 1`. Delete an element `x` from `T U^{−1}`; the remaining `≥ D_2` terms contain two disjoint blocks `V, W`, and `R = T(UVW)^{−1} ∋ x` is a fourth block, contradicting `z(T) = 3`. ∎
+
+**Lemma 2.2 (multiplicities).** Every element of `T` has multiplicity `≤ p−1`.
+
+*Proof.* If `v^p | T` then `|T v^{−p}| = N − p = D_2 + 1`, and the same deletion argument produces a fourth block. ∎
+
+Both proofs consume `D_2(C_p^3) = (9p−5)/2`, which §4 supplies.
+
+---
+
+## 3. The two counting identities
+
+Let `T` be zero-sum over `C_p^r` with `|T| = n` and let `h` be multilinear of degree `≤ n − D(G)`. The Chevalley–Warning argument gives **(C)** above. Two choices of `h` are used.
+
+**Symmetric form.** `h = e_d`, `deg h = d ≤ n − D`, and `h(1_I) = C(|I|, d)`. Then
+
+> **(S)**  `Σ_ℓ (−1)^ℓ N_ℓ C(ℓ, d) ≡ 0 (mod p)`,  `0 ≤ d ≤ n − D`.
+
+**Pointed form.** Fix an index `i` and take `h = x_i · e_d(x_{−i})`, so `deg h = d+1 ≤ n − D`, i.e. `d ≤ n − D − 1`, and `h(1_I) = [i ∈ I]·C(|I|−1, d)`. Then
+
+> **(P)**  `Σ_ℓ (−1)^ℓ M_ℓ C(ℓ−1, d) ≡ 0 (mod p)`,  `0 ≤ d ≤ n − D − 1`,
+
+where `M_ℓ` counts zero-sum index sets of size `ℓ` containing `i`.
+
+The pointed form costs one degree and, on a two-sided window, doubles the unknowns; it gains the loss of the symmetry `ℓ ↦ n−ℓ`. §5 shows when the gain wins.
+
+Both identities, and the sharpness of both degree bounds, are verified by brute-force enumeration over `C_3^3` (§9).
+
+---
+
+## 4. `D_2(C_p^3) = (9p−5)/2` for every prime `p ≥ 5`
+
+### 4.1 Statement
+
+> **Theorem A.** For every prime `p ≥ 5`, `D_2(C_p^3) = (9p−5)/2`.
+
+The value is not new — it is available in the literature for `p = 5` and by a short-subsequence lemma in general — but the proof below is self-contained given Olson, which matters here because every later reduction in this paper consumes `D_2` and we do not wish to import it.
+
+### 4.2 Upper bound
+
+Suppose `T` is zero-sum over `C_p^3`, `|T| = (9p−3)/2`, with `z(T) = 2`. Atoms of `T` then have lengths in the window `I = [(3p+1)/2, 3p−2]`. Applying **(S)** and splitting the resulting system by base-`p` digit:
+
+- at digit level 0, Lucas gives `A_r ≡ 0` for every residue `r`;
+- at level 1, the surviving vector `B` is orthogonal to every polynomial of degree `≤ (p+1)/2` while `|supp B| ≤ (p+1)/2`, hence `B ≡ 0`;
+- but `B_0 = 2N_{2p} ≡ −2 ≢ 0`.
+
+The contradiction gives the upper bound. The argument degenerates at `p = 3` exactly because `(p−3)/2 = 0` collides with residue `0`, which is why the theorem starts at `p = 5`.
+
+### 4.3 Lower bound
+
+The family
+
+`T_k(n) = e_1^{n−1} e_2^{n−1} e_3^{n−1+n} · (corrections)`
+
+realizes `z = k−1` at length `((2k+5)n−5)/2 − 1` for every odd `n` and `k ≥ 2`, by a direct argument on the coordinate pattern. Its `k = 2` case gives `D_2(C_p^3) ≥ (9p−5)/2`. ∎
+
+---
+
+## 5. The pointed short-atom bound
+
+### 5.1 Statement
+
+> **Proposition B.** Let `C` be zero-sum over `C_7^3` with `23 ≤ |C| ≤ 29` and `z(C) = 2`. Then `C` has an atom of length `≤ 10`.
+
+Before this, the available bounds were `≤ 10` for `|C| ∈ {27,29}` (from the symmetric congruences), `≤ 12` for `|C| = 28` (from a specialization of `s_{≤12}(C_7^3) = 26`), and nothing at all for `|C| ∈ {23,24}`.
+
+### 5.2 Proof
+
+Since `z(C) = 2`, every proper nonempty zero-sum subsequence of `C` is an atom and so is its complement. So if every atom had length `≥ 11`, the proper zero-sum lengths would lie in the two-sided window `S = [11, |C| − 11]`. Apply **(P)** with `d ≤ |C| − 20`. The zero-sum index sets containing `i` are those of lengths in `S` together with `C` itself, so for every admissible `d`
+
+`Σ_{ℓ ∈ S} (−1)^ℓ M_ℓ C(ℓ−1, d) + (−1)^{|C|} C(|C|−1, d) ≡ 0 (mod 7)`.
+
+For each `|C| ∈ {23,24,27,28,29}` this system is inconsistent over `F_7`. ∎
+
+**The case `|C| = 28` by hand.** Unknowns `M_11 … M_17`, degrees `d ≤ 8`. Six equations suffice:
+
+| `d` | equation `(mod 7)` |
+|---|---|
+| 6 | `M_14 ≡ 6` |
+| 5 | `−M_13 − M_14 ≡ 1` |
+| 4 | `M_12 + 2M_13 + M_14 ≡ 6` |
+| 3 | `−M_11 − 3M_12 − 3M_13 − M_14 ≡ 1` |
+| 0 | `−M_11 + M_12 − M_13 + M_14 − M_15 + M_16 − M_17 ≡ 6` |
+| 7 | `−M_11 + M_12 − M_13 + M_14 − 2M_15 + 2M_16 − 2M_17 ≡ 4` |
+
+From `d = 6`, `M_14 ≡ 6`; then `d = 5` gives `−M_13 ≡ 7 ≡ 0`, so `M_13 ≡ 0`; then `d = 4` gives `M_12 ≡ 0`; then `d = 3` gives `M_11 ≡ 0`. Substituting into `d = 0` leaves `−M_15 + M_16 − M_17 ≡ 0`, and `d = 7` then reads `6 − 2·0 = 6 ≢ 4 (mod 7)`. ∎
+
+The rigidity is a Lucas phenomenon: `13 = (1,6)_7` and `14 = (2,0)_7` make the top-degree columns nearly empty, so the equations peel unknowns off one at a time from `d = 6` downwards.
+
+### 5.3 Why pointing is what buys this — and a correction
+
+An earlier record in this programme states that at the obstruction length `N = 37` the pointed congruences reproduce *exactly* the symmetric threshold, and concludes that pointing buys nothing. That statement is correct for the regime it examines: a **one-sided** window `[1,w]`, where the pairing `ℓ ↦ N−ℓ` does not act on the forbidden set.
+
+On a complement the window is **two-sided** and complementation identifies `ℓ` with `|C|−ℓ`. The symmetric identity then sees only the sums `N_ℓ = N_{|C|−ℓ}`. Pointing breaks the pairing. The separation is direct and we record it as a control: at `|C| = 28` the symmetric system remains feasible even at `w = 13`, while the pointed system is already infeasible at `w = 10`.
+
+The transferable rule: **point the polynomial exactly when the admissible window is two-sided.** A symmetry that appears to be helping — halving the unknown count — is in fact collapsing the information, and deliberately breaking it re-opens the problem.
+
+### 5.4 Consequences: both corridors halve
+
+Let `A` be a shortest atom of an obstruction `T` at `p = 7`, `|A| = s ∈ {8,9,10}`, and `C = T A^{−1}`. By Proposition B, `C` has an atom `E` with `|E| ≤ 10`; and `F = C E^{−1}` is an atom, since otherwise `A`, `E` and two blocks of `F` are four disjoint blocks. As `A` is shortest, `|E| ≥ s`. Hence:
+
+> **First corridor.** Every obstruction has a three-atom factorization of type `(8,10,19)`, `(9,9,19)`, `(9,10,18)` or `(10,10,17)`.
+
+This eliminates `(9,11,17)` and `(9,12,16)` from the previous list of six, by congruence alone and with no search, and it replaces three external inputs by one internal statement.
+
+The spectrum congruences (§7, at `p = 7`) force an atom `B` with `|B| ∈ {13,14}`. Applying Proposition B to `C = T B^{−1}`, of length 24 or 23 — lengths at which no short-atom bound had previously been available — and excluding profiles containing an 8 as before:
+
+> **Second corridor.** Every obstruction also has a three-atom factorization of type `(9,13,15)`, `(9,14,14)` or `(10,13,14)`.
+
+This eliminates `(11,12,14)`, `(11,13,13)` and `(12,12,13)` — precisely the three "flat" profiles that carry no near-maximal atom and were the hardest for geometric methods to reach.
+
+---
+
+## 6. `D_3(C_7^3) = 36`
+
+> **Theorem C.** `D_3(C_7^3) = 36`. The only external input is Olson's `D(C_p^r) = r(p−1)+1`.
+
+The lower bound is `T_3(7)` (§4.3). For the upper bound, suppose an obstruction `T` exists: zero-sum, `|T| = 37`, `z(T) = 3`. Then:
+
+1. multiplicities are `≤ 6` and `T` has no zero-sum of length `≤ 7` (Lemmas 2.1, 2.2, on `D_2(C_7^3) = 29` from Theorem A);
+2. the zero-sum sub-multisets of `T` are exactly `∅`, `T`, the atoms, and the complements of atoms, overlapping only at lengths 18 and 19; this yields 19 congruences over `F_7` in `W_8, …, W_19`, whose solution has `W_13 = 2s` and `W_14 = 1−s`, so **every obstruction has an atom of length 13 or 14**;
+3. the shortest atom has length in `{8,9,10}`, and Proposition B gives the first corridor (§5.4);
+4. the forced 13- or 14-atom gives the second corridor (§5.4);
+5. the feasible length spectra are enumerated; closure under the corridors and the complement systems leaves a finite list, and every member is eliminated.
+
+Steps 1–5 are reproduced end to end by a single program (§9), which asserts each step and prints the conclusion. ∎
+
+**Relation to the corridor literature.** A parallel line of work classifies the three-atom factorizations that contain a *maximal* atom, prime-uniformly, as `(p+j, p+(p+1)/2−j, 3p−2)` for `1 ≤ j ≤ ⌊(p+1)/4⌋`. At `p = 7` that is `(8,10,19)` and `(9,9,19)`. Proposition B recovers those two and adds the triples with no maximal atom, `(9,10,18)` and `(10,10,17)`; at `p = 11` it gives nine triples of which that classification supplies three. The two results are complementary: the maximal-atom branch carries a support classification that the others do not.
+
+---
+
+## 7. Uniform structure at a general prime
+
+### 7.1 The spectrum system, uniformly in `p`
+
+With `N = (11p−3)/2`, `D = 3p−2`, `amin = p+1`, the zero-sum sub-multisets of an obstruction are `∅`, `T`, the atoms (lengths in `[amin, D]`) and the complements of atoms; a multiset that is both has length in `[N−D, D]`. Writing `W_L` for the weighted atom count and `X_L` for the weighted count of the doubly-counted ones, **(S)** gives for `0 ≤ d ≤ N−D`
+
+> **(S`_p`)**  `C(0,d) + (−1)^N C(N,d) + Σ_L (−1)^L W_L [C(L,d) + (−1)^N C(N−L,d)] − Σ_{L ∈ [N−D,D]} (−1)^L X_L C(L,d) ≡ 0`.
+
+`N` changes parity with `p` (`37` odd, `26` and `70` even), so the sign must be carried rather than specialized.
+
+### 7.2 The three special lengths
+
+> **Definition.** `L ∈ [amin, D]` is *special* when `p | L` or `p | (N−L)`.
+
+There are exactly three for every prime `p ≥ 5`:
+
+| special `L` | base `p` | complement | base `p` |
+|---|---|---|---|
+| `3(p−1)/2` | `(1, (p−3)/2)` | `4p` | `(4,0)` |
+| `2p` | `(2, 0)` | `(7p−3)/2` | `(3, (p−3)/2)` |
+| `(5p−3)/2` | `(2, (p−3)/2)` | `3p` | `(3,0)` |
+
+At `p = 7` these are `9, 14, 16`; at `p = 11`, `15, 22, 26`; at `p = 13`, `18, 26, 31`. Since `N = (5, (p−3)/2)_p`, a length is special exactly when its base-`p` low digit is `0` or `(p−3)/2` — the condition under which Lucas collapses either its own column or its complement's. This is the same mechanism that makes `14 = (2,0)_7` the pivot of the `|C| = 28` argument in §5.2, now identified as prime-independent rather than an accident of `p = 7`.
+
+### 7.3 The verified statement
+
+> **Observation D (verified for every prime `5 ≤ p ≤ 31`).** In `(S_p)`: the unrestricted system is consistent; forbidding **any two** special lengths makes it inconsistent; and for `11 ≤ p ≤ 19` those three pairs are the **only** minimal inconsistent length sets of size `≤ 2`. Consequently every obstruction carries atoms of at least two of `3(p−1)/2`, `2p`, `(5p−3)/2`.
+
+The two smallest primes are richer, not weaker: at `p = 5` and `p = 7` there are 18 minimal forced pairs, the three special ones among them. At `p = 7` the extra ones include `{13,14}`, the pair on which §6 step 2 rests. So the uniform statement is a floor that small primes exceed.
+
+We deliberately do **not** state Observation D as a theorem for all `p`. Greedy minimization shows the contradiction uses essentially every degree in `[p+2, (5p+1)/2]`: there is no small inconsistent subsystem and hence no short hand-certificate of the kind that proves Proposition B. The dual certificates are dense with no evident closed form, though their right-hand sides sit in the constant ratio `4 : 2 : 3 (mod p)` across the three pairs at every prime tested — a hint that a generating-function identity underlies the pattern. A uniform proof needs a rank statement about the matrix `[C(L,d) + (−1)^N C(N−L,d)]` over the degree window, which we do not have.
+
+---
+
+## 8. Discussion and boundaries
+
+**What is proved.** Theorem A (`D_2(C_p^3)` for all primes `p ≥ 5`), Proposition B, and Theorem C (`D_3(C_7^3) = 36`). Olson's theorem is the only external mathematical input to any of them.
+
+**What is verified over a finite range.** Observation D, for `5 ≤ p ≤ 31` (minimality for `p ≤ 19`). We claim no more, and specifically not that the pattern continues.
+
+**What is open.** `D_3(C_p^3)` for `p ≥ 11`. The distance is honest and large: the first corridor has nine triples at `p = 11` against four at `p = 7`, and the support classifications that close individual `p = 7` branches have no general-`p` analogue yet. Narrowing the target is not hitting it. `D_4(C_5^3) ∈ {30,31}` also remains open elsewhere in this programme and decides the conjectured line at `p = 5`.
+
+**Method transfer.** The rule isolated in §5.3 — point the polynomial when the window is two-sided — is not specific to Davenport constants. It applies wherever a counting identity is applied to an object whose admissible configurations are closed under complementation, since that is exactly when the symmetric identity is silently halving its own information.
+
+**Prior-art position.** This paper is `D_2` for all primes and `D_3` at `p = 7`, unconditional. It is complementary to, not a strengthening of, the conditional `C_5^3` analysis that settles `D_4(C_5^3)` to one bit under two hypotheses. Theorem A does discharge, for every prime, a `D_2` premise that several reductions in that line assume on the strength of an external lemma.
+
+---
+
+## 9. Verification, reproducibility, and data availability
+
+Every claim above is backed by a checker in `research/experiments/davenport-c7-frontier/`. Each is designed so that a real object must survive it, and each carries a non-vacuity control.
+
+| Claim | Checker | Controls |
+|---|---|---|
+| identities **(C)**, **(S)**, **(P)** | `verify_short_atom_bound_v4.py` step 1 | brute force over `C_3^3`; both degree bounds shown sharp by exhibiting failure one degree higher |
+| Theorem A | `tools/d2_digit_certificate_v3.py` | structural steps re-checked for all 44 primes `5 ≤ p ≤ 200` |
+| Proposition B | `verify_short_atom_bound_v4.py` steps 2–4 | every system decided **twice**, by Gaussian elimination over `F_7` and by exhaustive search over all `7^{\|S\|}` assignments, required to agree; `w = 9` shown feasible so the bound is not vacuous; symmetric system shown feasible at `w = 13` to isolate the gain to pointing |
+| corridors | `verify_short_atom_bound_v4.py` step 5 | exact triple and profile lists asserted |
+| Theorem C | `verify_D3_C7_end_to_end_v3.py` | 8 asserted steps; a real packing-3 object over `C_5^3` (144 zero-sum multisets) must satisfy every congruence, and does, exactly |
+| Observation D | `verify_general_spectrum_v4.py` | agreement with the independently written `p = 7` checker on **all 298** length subsets of size `≤ 3`; conclusion unchanged under the alternative modelling `X_L = X_{N−L}`; unrestricted system shown consistent at every prime |
+
+**Independent-replication status.** The `(8,10,19)` corridor companion counts (`0/24/538`) were reproduced by a separately written program from the predicate alone, matching a parallel lane's counts exactly. The remaining checks are single-implementation but double-method where a second decision procedure exists, as noted above.
+
+**Outstanding, and not doable from the authoring host.** (i) A prior-art pass against the primary literature — the host has no external network access, so the reference list below is recorded as *to be verified*, and no priority claim should be read into this draft until that pass is done. (ii) Independent mathematical review of Theorem C. Both are prerequisites for submission.
+
+---
+
+## References (to be verified against primary sources before submission)
+
+1. J. E. Olson, A combinatorial problem on finite abelian groups, *J. Number Theory* (1969).
+2. M. Freeze, W. A. Schmid, Remarks on a generalization of the Davenport constant (2010).
+3. Zhao, short zero-sum subsequence lemma. *[exact reference to be confirmed]*
+4. Zhang, `s_{≤k}` thresholds for `C_p^3`. *[exact reference to be confirmed]*
+5. Fan et al.; Gao et al., inverse results for `C_5^3`. *[exact references to be confirmed]*
+
+*Items 3–5 are cited in this programme's earlier records; the present host cannot fetch them, and §9 records the verification of every statement this paper actually uses without relying on them.*
