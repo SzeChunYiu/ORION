@@ -322,16 +322,18 @@ Every claim above is backed by a checker in `research/experiments/davenport-c7-f
 
 **Independent-replication status.** The `(8,10,19)` corridor companion counts (`0/24/538`) were reproduced by a separately written program from the predicate alone, matching a parallel lane's counts exactly. The remaining checks are single-implementation but double-method where a second decision procedure exists, as noted above.
 
-**Outstanding, and not doable from the authoring host.** (i) A prior-art pass against the primary literature — the host has no external network access, so the reference list below is recorded as *to be verified*, and no priority claim should be read into this draft until that pass is done. (ii) Independent mathematical review of Theorem C. Both are prerequisites for submission.
+**Outstanding.** (i) *Prior-art verification.* A literature **search** has been run (`EXTERNAL_PRIOR_ART_V5.md`): the references are identified, the nearest prior work is located and lies on a disjoint family of groups, and nothing found asserts our results. But the host blocks page fetching, so **no primary text has been read** and every attribution is unverified. A person with library access must confirm the reference list and answer two questions — is `D_3(C_7^3)` known, and is a short-atom bound near `D/2` for `C_p^3` known. No priority claim should be read into this draft until then. (ii) *Independent mathematical review* of Theorem C, in particular the step-5 enumeration (§6). (iii) *Independent re-implementation* of that enumeration. All three are prerequisites for submission.
 
 ---
 
-## References (to be verified against primary sources before submission)
+## References
 
-1. J. E. Olson, A combinatorial problem on finite abelian groups, *J. Number Theory* (1969).
-2. M. Freeze, W. A. Schmid, Remarks on a generalization of the Davenport constant (2010).
-3. Zhao, short zero-sum subsequence lemma. *[exact reference to be confirmed]*
-4. Zhang, `s_{≤k}` thresholds for `C_p^3`. *[exact reference to be confirmed]*
-5. Fan et al.; Gao et al., inverse results for `C_5^3`. *[exact references to be confirmed]*
+Identified by literature search; **none has been read**, because the authoring host permits search but blocks page fetching (`WebFetch` returns `EGRESS_BLOCKED` for every domain tried). Attributions are therefore unverified against the primary text — see §9 and `EXTERNAL_PRIOR_ART_V5.md`.
 
-*Items 3–5 are cited in this programme's earlier records; the present host cannot fetch them, and §9 records the verification of every statement this paper actually uses without relying on them.*
+1. J. E. Olson, *A combinatorial problem on finite abelian groups*, J. Number Theory (1969). — `D(C_p^r) = r(p−1)+1`, the only external input used here.
+2. M. Freeze, W. A. Schmid, *Remarks on a generalization of the Davenport constant*, arXiv:0905.4248. — `D_k(G) = D_0(G) + k·exp(G)` for large `k`.
+3. Y. Fan, W. Gao, G. Wang, Q. Zhong, J. Zhuang, *On short zero-sum subsequences of zero-sum sequences*, Electron. J. Combin. **19**(3) (2012) #P31; arXiv:1108.2866.
+4. B. Girard, W. A. Schmid, *Direct zero-sum problems for certain groups of rank three*, J. Number Theory **197** (2019) 297–316; arXiv:1806.07636.
+5. B. Girard, W. A. Schmid, *Inverse zero-sum problems for certain groups of rank three*, Acta Math. Hungar. (2019); arXiv:1809.03178.
+
+**Positioning.** Reference 4 is the nearest prior work: rank three, multiwise Davenport constants. It treats `G ≃ C_2 ⊕ C_{n_2} ⊕ C_{n_3}` with `2 | n_2 | n_3` — rank-three groups of even exponent containing a `C_2` factor — so `C_p^3` with `p` an odd prime is not of that form and the overlap is empty. Multiwise Davenport constants are otherwise reported as settled for elementary `p`-groups of rank at most two and for `C_3^3`; the frequently quoted "known for rank at most three" refers to elementary 2-groups.
