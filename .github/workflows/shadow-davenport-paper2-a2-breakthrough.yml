@@ -22,12 +22,12 @@ jobs:
       - name: Compile Python theorem replays
         run: |
           python3 -m py_compile \
-            research/experiments/davenport-c7-frontier/check_a2_exact_radial_excess_v1.py \
+            research/experiments/davenport-c7-frontier/verify_a2_radial_staircase_independent_v1.py \
             research/experiments/davenport-c7-frontier/check_a2_exact_depth_fiber_envelope_v1.py \
             research/experiments/davenport-c7-frontier/check_p7_a2_rank3_support4_exception_table_v1.py \
             research/experiments/davenport-c7-frontier/check_a2_maximal_overlap_standard_families_v1.py
-      - name: Replay exact a2 radial parity staircase
-        run: python3 research/experiments/davenport-c7-frontier/check_a2_exact_radial_excess_v1.py
+      - name: Replay independent a2 radial hostile audit
+        run: python3 research/experiments/davenport-c7-frontier/verify_a2_radial_staircase_independent_v1.py
       - name: Replay exact a2 depth fiber envelope
         run: python3 research/experiments/davenport-c7-frontier/check_a2_exact_depth_fiber_envelope_v1.py
       - name: Replay p7 rank-three exception table
