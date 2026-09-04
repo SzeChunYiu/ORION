@@ -282,23 +282,21 @@ There are exactly three for every prime `p ≥ 5`:
 
 At `p = 7` these are `9, 14, 16`; at `p = 11`, `15, 22, 26`; at `p = 13`, `18, 26, 31`. Since `N = (5, (p−3)/2)_p`, a length is special exactly when its base-`p` low digit is `0` or `(p−3)/2` — the condition under which Lucas collapses either its own column or its complement's. This is the same mechanism that makes `14 = (2,0)_7` the pivot of the `|C| = 28` argument in §5.2, now identified as prime-independent rather than an accident of `p = 7`.
 
-### 7.3 The verified statement
+### 7.3 The forcing theorem
 
-> **Observation D (verified for every prime `5 ≤ p ≤ 31`).** In `(S_p)`: the unrestricted system is consistent; forbidding **any two** special lengths makes it inconsistent; and for `11 ≤ p ≤ 19` those three pairs are the **only** minimal inconsistent length sets of size `≤ 2`. Consequently every obstruction carries atoms of at least two of `3(p−1)/2`, `2p`, `(5p−3)/2`.
+> **Theorem J.** For every prime `p ≥ 5` and each of the three pairs `Z` of special lengths, the system `(S_p)` with `Z` excluded is inconsistent. Consequently **every obstruction carries atoms of at least two of `3(p−1)/2`, `2p`, `(5p−3)/2`.**
 
-The two smallest primes are richer, not weaker: at `p = 5` and `p = 7` there are 18 minimal forced pairs, the three special ones among them. At `p = 7` the extra ones include `{13,14}`, the pair on which §6 step 2 rests. So the uniform statement is a floor that small primes exceed.
+Dualising `(S_p)` as in §5.5 gives: the pair `Z` is forced iff there is an integer-valued `P` of degree `≤ N−D` vanishing on the interval `[N−D,D]`, with `P(L) + (−1)^N P(N−L) = 0` for every atom length `L ∉ Z`, and `P(0) + (−1)^N P(N) ≠ 0`. Setting
 
-We deliberately do **not** state Observation D as a theorem for all `p`. The duality of §5.5 applies here too, and identifies the obstacle precisely: the spectrum system dualises to *find an integer-valued `P` vanishing on the interval `[N−D, D]`, satisfying `P(L) = −(−1)^N P(N−L)` for every `L ∈ [p+1, N−D−1]`, with `P(0) + (−1)^N P(N) ≠ 0`.* Unlike the pointed case, this is a functional equation and not a plain interval-vanishing condition, so the Newton step does not finish it. Greedy minimization is consistent with that: the contradiction uses essentially every degree in `[p+2, (5p+1)/2]`, so no short certificate exists. The dual certificates are dense, though their right-hand sides sit in the constant ratio `4 : 2 : 3 (mod p)` across the three pairs at every prime tested. That functional equation now has a name and a shape. Setting `Q(y) = P(y) + (−1)^N P(N−y)`, one checks (for every prime and special pair tested) that `P` vanishes on the whole **integer interval** `[N−D, D]` — of length `2D − N + 1 = (p−3)/2`, exactly the low base-`p` digit of `N = (5,(p−3)/2)_p`, so the Newton step of §5.5 applies to it — that `Q(N−y) = (−1)^N Q(y)`, and that `Q` vanishes on the entire atom range **except at the two excluded lengths, where it is nonzero at both**, and at `0`. So:
+`Q(y) = P(y) + (−1)^N P(N−y)`,
 
-> "the pair `Z` is forced" says exactly that the `(−1)^N`-antisymmetry of the spectrum can be broken at the two lengths of `Z` and at `0`, and nowhere else on the atom range.
+the conditions read: `Q` is `(−1)^N`-symmetric, vanishes on the atom range off `Z`, and `Q(0) ≠ 0`. So *"`Z` is forced" says exactly that the antisymmetry of the spectrum can be broken at the lengths of `Z` and at `0`, and nowhere else on the atom range.* Two facts then settle the matter: the dual lives on twelve points (Lemma H, Theorem I), and one can be written down (the proof of Theorem J below).
 
-That is the structural reason the special lengths are special — and the dual turns out to live on twelve points.
+The two smallest primes are richer, not weaker: at `p = 5` and `p = 7` there are 18 minimal forced pairs, the three special ones among them. At `p = 7` the extra ones include `{13,14}`, the pair on which §6 step 2 rests. So Theorem J is a floor that small primes exceed.
 
 > **Lemma H.** Write `h = (p−3)/2`, so `N = 5p + h = (5,h)_p`, and put `S = {jp : 0 ≤ j ≤ 5} ∪ {jp + h : 0 ≤ j ≤ 5}`, which `σ(y) = N − y` maps to itself, pairing `jp ↔ (5−j)p + h`. Then exactly three points of `S` lie in the atom range `[p+1, 3p−2]`, namely `p + h = 3(p−1)/2`, `2p` and `2p + h = (5p−3)/2` — the three special lengths.
 
 *Proof.* Four inequalities, each valid for every prime `p ≥ 5`. Among the `jp`: `p < p+1` excludes `j = 1`, `p+1 ≤ 2p ≤ 3p−2` keeps `j = 2`, `3p > 3p−2` excludes `j ≥ 3`. Among the `jp + h`: `h < p+1` excludes `j = 0`, `p + h ≥ p+1` (⟺ `p ≥ 5`) and `2p + h ≤ 3p−2` keep `j = 1, 2`, and `3p + h > 3p−2` excludes `j ≥ 3`. ∎
-
-We verify, for `p ∈ {11,13,17,19,23}` and every basis dual with `Q(0) ≠ 0`, that `Q` is supported inside `S` — and, when `Z` is a pair of special lengths, inside `S` minus the involution-pair of the *third* special length. At `p = 11` excluding `Z = {22,26}` the support is `{0,4,11,22,26,33,37,48,55,59} = S \ {15,44}`, and `{15,44} = {a, N−a}` for the omitted special length `a = 15`.
 
 Both of the theorems below parametrise `P` by its Newton coefficients about `N−D`, which builds in "`P` vanishes on the whole interval `[N−D, D]`". That is legitimate precisely because of:
 
@@ -319,7 +317,27 @@ That support statement is now a theorem.
 
 express `Q` on the two bottom intervals as a fixed combination of three brackets, each of which is `Q` at a single point. Using `Q(N−z) = s·Q(z)`, those points land in `[p+1, 2p−1] ∪ [2p+1, 2p+h−1]` — inside the atom range and distinct from `p+h`, `2p`, `2p+h` — so each is an imposed condition; the one edge case `u = p−1` is covered because that bracket equals `s·Q(2p+h+1)`. Hence `Q` vanishes on `[1,h−1] ∪ [h+1,p−1]`, which by Lemma H's interval count is exactly `supp Q ⊆ S`. Nothing beyond `p ≥ 5` is used. ∎
 
-So the **structural** half of Observation D is settled for every prime: any dual can break the antisymmetry only at the three special lengths and at `0`. What is still verified-only is the existence half (a dual does exist for each special pair, so the pair is forced) and minimality (no dual for any other pair or single length); Theorem I constrains what a dual looks like without constructing one or forbidding one for non-special `Z`. This also retires our earlier description of the certificates as dense: they are supported on twelve points, and the apparent density came from examining `P` instead of `Q`.
+So the dual can be nonzero only on twelve points, of which — by Lemma H — only the three special lengths are atom lengths. This also retires our earlier description of the certificates as dense: they are supported on twelve points, and the apparent density came from examining `P` instead of `Q`.
+
+It remains to produce a dual, which proves Theorem J.
+
+*Proof of Theorem J.* Take `F_2 = 0`, so `G_j = F_0 + jF_1` is **linear** in `j`, and support `F_0, F_1` on the two residues `{0,h}`; then `d ≤ p + (p−1) = 2p−1 ≤ A`, so the ansatz is admissible. For each pair the coefficients are integers in `s`, independent of `p`:
+
+| `Z` | `F_0` | `F_1` |
+|---|---|---|
+| `{b,c}` | `(−4−4s)(δ_0+δ_h)` | `(1+2s)δ_0 + 4s·δ_h` |
+| `{a,c}` | `(−4−4s)(δ_0+δ_h)` | `(−2+s)δ_0 + (2+4s)δ_h` |
+| `{a,b}` | `(−4−4s)(δ_0+δ_h)` | `2s·δ_0 + (1+4s)δ_h` |
+
+Since `F_0, F_1` vanish off `{0,h}`, a condition is nontrivial only when `t` or its involution partner lies in `{0,h}`. For `t ≤ h` that means `t ∈ {0,h}`; for `t > h` the partner `p+h−t` would have to be `0` or `h`, forcing `t = p` or `t = p+h`, neither a residue. So the only nontrivial conditions sit at `p` (outside the atom range) and at `a`, `b`, `c` — a fixed finite set, independent of `p`. And `P = 0` on `[N−D,D]` is automatic, that interval being `j = 2` with `t ∈ [h+2,p−2]`, which contains neither `0` nor `h`.
+
+Finally `Q(0) = F_0(0) + s[F_0(h) + 5F_1(h)]` evaluates to `4, 20`; `14, 10`; `9, 15` for `s = +1, −1` respectively. Several are divisible by 5 or 7, so this is where the argument could fail at the two smallest primes — and does not, because `N = (11p−3)/2` is even exactly when `p ≡ 1 (mod 4)`, i.e.
+
+`s = +1 ⟺ p ≡ 1 (mod 4)`.
+
+The value `20` is therefore only ever evaluated at `p ≡ 3 (mod 4)`, and `5 ≡ 1`; the value `14` only at `p ≡ 1 (mod 4)`, and `7 ≡ 3`. So `Q(0) ≠ 0` in every case, and the dual exists. ∎
+
+**Sharpness (not proved).** That these three pairs are the only minimal inconsistent sets of size `≤ 2` — in particular that no single length is forced — is verified for `p ∈ {11,13,17,19}` and left open; nothing downstream uses it. The natural dimension count does **not** work, and the reason is worth recording: the achievable values of `Q` on the six involution-pair representatives form a 3-dimensional space, but requiring "two of the three conditions force `Q(0) = 0`" for each choice of two forces `Q(0) ≡ 0`, contradicting Theorem J; and indeed `Q(a), Q(b), Q(c)` are independent functionals there, where such an argument would need a relation among them. The missing ingredient is that by Lemma K the ambient space is fixed only for special `Z` — a non-special length *can* lie in `[N−D,D]`, dropping an `X_L` column and enlarging it — so any correct argument must let the ambient space move with `Z`.
 
 ---
 
