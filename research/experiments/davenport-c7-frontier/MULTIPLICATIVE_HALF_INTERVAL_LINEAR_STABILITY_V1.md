@@ -59,7 +59,7 @@ Write `v=sin alpha`. Since `alpha<=pi/14<1/4`, one has `0<v<1/4`. The last diffe
 The function `(1-2x)/(3-4x)` is strictly decreasing on `[0,1/16]`, so this is greater than `7/(22v)`, and then greater than `7/(22 alpha)`. Using the elementary bound `pi<22/7`,
 
 \[
-\frac7{22\alpha}=rac{7p}{11\pi}
+\frac7{22\alpha}=\frac{7p}{11\pi}
 >\frac{49p}{242}>\frac p5.
 \]
 
