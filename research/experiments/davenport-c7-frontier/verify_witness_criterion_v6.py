@@ -14,7 +14,7 @@ sub-multisets, written from scratch.
   Step 7  M*(r,p) reproduces every known exact D_2 value
   Step 8  Theorem X  -- V is zero-sum-free or a single atom, so M* <= D(C_p^r)
   Step 9  Theorem X' -- |V| <= |A|(p-1)+1 for every A in an indicator family
-  Step 10 Corollary 4 -- no four members of V form a 4-petal sunflower
+  Step 10 Corollary 4/4' -- no (p+1)-petal sunflower; p petals is the sharp threshold
 """
 import random, itertools
 from itertools import product, combinations
@@ -273,9 +273,19 @@ def step10():
         if criterion(3, r, fam):
             n += 1
             assert not has_4sf(sets_of(fam))
+    # Corollary 4': sharp at p+1 petals, uniformly in p
+    def sunflower(npet):
+        r = npet + 1
+        return r, [(tuple(1 if i in (0, j) else 0 for i in range(r)), 1)
+                   for j in range(1, npet + 1)]
+    for q in (3, 5, 7):
+        for npet in (q - 1, q, q + 1, q + 2):
+            rr, fm = sunflower(npet)
+            assert criterion(q, rr, fm) == (npet <= q), (q, npet)
     assert n > 20
     print(f"10. Corollary 4 verified: an explicit 4-sunflower is inadmissible, and none of the "
-          f"p=3 optima nor {n} random admissible families contains one")
+          f"p=3 optima nor {n} random admissible families contains one; "
+          f"Corollary 4' sharp at p+1 petals for p = 3, 5, 7")
 
 if __name__ == "__main__":
     step1(); step2(); step3(); step4(); step5(); step6(); step7(); step8(); step9(); step10()

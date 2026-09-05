@@ -232,11 +232,27 @@ loads equal `2`, so the pair `(b,b′)` has no witness precisely when
 > particular an admissible family contains no **4-petal sunflower**: four sets with a common
 > core `K` and pairwise disjoint petals, for which both sides equal `K`.
 
+The `4` is `p+1`, and the statement is uniform in `p`:
+
+> **Corollary 4′.** An admissible indicator family contains no sunflower with `p+1` petals, and
+> `p` petals is the largest that can survive.
+
+*Proof.* Let `A_1,…,A_{p+1} ∈ V` have common core `K` and pairwise disjoint petals `A_j ∖ K`.
+Split them into groups of sizes `u` and `v` with `u + v = p+1` and `1 ≤ u, v ≤ p−1` (take
+`u = 2`, `v = p−1`), and let `b`, `b′` be the corresponding sums of `e_{A_j}`; they are disjoint.
+Since the petals are pairwise disjoint, a petal coordinate lies in exactly one group, so
+`supp c(b) ∩ supp c(b′) = K`, and there `⟨c(b)_i⟩ + ⟨c(b′)_i⟩ = u + v = p+1 > p`. No coordinate
+witnesses, so `z(S) ≥ 2` by Theorem W. Conversely with only `p` petals every split has
+`u + v ≤ p` with `u, v ≥ 1`, so any `i ∈ K` witnesses. ∎
+
+Verified computationally at `p = 3, 5, 7`: `p−1` and `p` petals are admissible, `p+1` and `p+2`
+never are — a sharp threshold, with `p = 3` recovering Corollary 4.
+
 This is a genuinely different constraint from intersectingness — it forbids the families that are
 *too* uniformly intersecting, those meeting in the same place every time. Combined with the
 Erdős–Rado sunflower lemma it bounds the number of distinct sets outright: if every set has size
-at most `s`, a family with more than `s!·3^s` distinct sets contains a 4-sunflower and is therefore
-inadmissible.
+at most `s`, a family with more than `s!·p^s` distinct sets contains a `(p+1)`-sunflower and is
+therefore inadmissible, so `M* ≤ p · s! · p^s`.
 
 So the two bounds squeeze from opposite directions. Theorem X′ says the sets must be **large**
 (`|V| ≤ a(p−1)+1` forces `a ≥ r/2` at the optimum); Corollary 4 says they must not be large in the
