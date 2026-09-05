@@ -26,6 +26,7 @@ has rank two and distinct new values, and `UV` has no nonempty zero-sum shorter 
 > \boxed{p=12L+1,\qquad
 > V=s^{6L-2}x^3y^{p-1}.}
 > \tag{1}
+> \]
 >
 > The known four-share elimination excludes `L=1`; hence any remaining row has prime `p>=37`.
 

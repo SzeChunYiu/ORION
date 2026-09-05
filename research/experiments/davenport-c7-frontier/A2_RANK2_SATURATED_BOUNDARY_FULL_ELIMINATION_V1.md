@@ -17,6 +17,7 @@ where `(e1,e2,g)` is a basis. There is no rank-two zero-sum companion
 \boxed{V=s^c x^r y^{p-1},\qquad c+r=H+1,
 \qquad c,r\ge1,}
 \tag{1}
+\]
 
 with distinct new values `x,y`, for which `UV` has no nonempty zero-sum shorter than `m`. By swapping the new values, this excludes saturation of either new multiplicity.
 

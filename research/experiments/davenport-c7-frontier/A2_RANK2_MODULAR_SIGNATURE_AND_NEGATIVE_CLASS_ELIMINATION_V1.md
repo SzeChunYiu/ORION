@@ -90,6 +90,7 @@ The last integer is odd, contradicting (1). No quotient atom can exist, although
 > \[
 > \boxed{2(H-c+1)\mid(p+1).}
 > \tag{5}
+> \]
 
 Equivalently, for arbitrary integers `a>=2,L>=2` with prime `p=2aL-1`, the complete overlap layer
 

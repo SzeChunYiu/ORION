@@ -59,6 +59,7 @@ and lift its factors to disjoint occurrence subsequences `Y_i|R`. Write their le
 > \boxed{\sum_{i=1}^k q_i=p-c=H+1+d,
 > \qquad \sum_{i=1}^k D_i=d+1.}
 > \tag{2}
+> \]
 >
 > In particular, `2<=k<=d+1`.
 
@@ -138,7 +139,7 @@ Formula (5) is not an existence assertion for all defects. Also, the least-resid
 
 ## 4. General first-crossing mechanism
 
-The proof of (2) is an instance of the following elementary principle. Suppose a zero-sum object is partitioned into atoms, a cyclic aggregate has modulus `n`, and the defect of a part is `b` times its canonical aggregate minus an additive integer size. Suppose every proper nonempty admissible part has defect in `[1,D]`, and the full object's canonical defect is `D+1`. If `2D<bn`, then every atomization has ordinary defect sum `D+1`, with no aggregate carry.
+The proof of (2) is an instance of the following elementary principle. Suppose a zero-sum object is partitioned into atoms, a cyclic aggregate has modulus `n`, and for a positive integer `b` the defect of a part is `b` times its canonical aggregate minus an additive integer size. Suppose every proper nonempty admissible part has defect in `[1,D]`, and the full object's canonical defect is `D+1`. If `2D<bn`, then every atomization has ordinary defect sum `D+1`, with no aggregate carry.
 
 Indeed, a first prefix crossing `D` has defect sum in `[D+1,2D]`. Canonical reduction changes this by a multiple of `bn`, so it cannot become a number in `[1,D]`. The crossing is therefore the whole object, and its total is the specified canonical defect. This formulation requires atoms themselves to be proper and the aggregate sum of a nonempty proper admissible part to have a valid canonical representative. Both hypotheses were checked above.
 
