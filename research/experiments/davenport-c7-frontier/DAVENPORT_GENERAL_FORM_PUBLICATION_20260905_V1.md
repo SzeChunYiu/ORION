@@ -27,7 +27,7 @@ Commit SHAs differ because publication through the authorized Git object API use
 | 15 | `c566332d4338877b5d7c338a0d3d4051669ca65d` | `9db0636462f63e865cf81b045e450678d81b82b5` | `21b96b72a880f8ec22b024757ab56d8f9fecd227` | Close the two- and three-share saturated rank-three layers including exact exceptions |
 | 16 | `d9e3f4beb727c8e2dc64ce182c670bed2804b8be` | `4793d9f42891de31ad0690de24b348b334948940` | `cdabec6b067bdfccd0566e7a2006e4a394f77911` | Assemble generalized inverse forms and complete saturated type-two boundary closure |
 
-The proof-packet tip before this manifest is `4793d9f42891de31ad0690de24b348b334948940`. One following documentation commit adds this manifest; that documentation commit is the intended final branch tip and is not falsely identified with the proof-packet tip.
+The proof-packet tip before this manifest is `4793d9f42891de31ad0690de24b348b334948940`. Following documentation commits add and normalize this manifest; the final branch tip includes them and is not falsely identified with the proof-packet tip.
 
 ## 2. Branch preconditions
 
@@ -42,4 +42,3 @@ The published content has independent internal mathematical review of all genera
 The Git formatting check passed for the entire additive proof packet against its base. Mathematical review is not an external referee report or a priority claim.
 
 The new complete result is the all-prime type-two rank-three **saturated-new-value boundary**, together with the exact type-one and type-two donor inverse forms and the additional rank-two results. The full first-corridor theorem, the unsaturated rank-three boundary, and the generalized Davenport equality, including `D_3(C_7^3)`, remain unproved by this packet.
-
