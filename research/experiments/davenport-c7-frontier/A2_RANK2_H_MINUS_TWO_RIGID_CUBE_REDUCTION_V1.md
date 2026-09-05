@@ -18,7 +18,7 @@ V=s^{H-2}x^r y^t,\qquad r+t=p+2,
 \qquad 1\le r,t\le p-1
 \]
 
-has rank two and distinct new values, and `UV` has no nonempty zero-sum shorter than `m`.
+is zero-sum, has rank two and distinct new values, and `UV` has no nonempty zero-sum shorter than `m`.
 
 > **Rigid cubic endpoint theorem.** Necessarily, after swapping the new values,
 >

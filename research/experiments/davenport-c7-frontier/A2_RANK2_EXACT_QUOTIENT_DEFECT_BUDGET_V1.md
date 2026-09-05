@@ -18,7 +18,7 @@ V=s^c x^r y^t,\qquad c+r+t=m,
 \qquad 1\le c<H,\quad 1\le r,t\le p-1,
 \]
 
-has rank two and distinct new values `x,y`, and `UV` has no nonempty zero-sum shorter than `m`. Thus `V` is an atom. Put
+is zero-sum, has rank two and distinct new values `x,y`, and `UV` has no nonempty zero-sum shorter than `m`. Thus `V` is an atom. Put
 
 \[
 d=H-c,\qquad R=x^r y^t,\qquad |R|=p+d.
