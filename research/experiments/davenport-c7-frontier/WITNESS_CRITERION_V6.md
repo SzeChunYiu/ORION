@@ -324,6 +324,36 @@ That is the strongest evidence available from this host that the algebraic const
 not merely a source of lower bounds but is **extremal** for `D_k(C_p^r)` — every known value is
 attained inside it.
 
+### 9a. The `k`-direction collapses to `k = 2`
+
+The computed optima satisfy
+
+    M*_k(r,p)  =  M*_2(r,p) + (k−2)p            observed at (r,p,k) = (3,5,3), (3,5,4), (3,7,3), (4,3,3)
+
+and the inequality `≥` is a theorem inside the class: given an admissible family for `k`, append a
+new set with multiplicity `p`. The extra part contributes the single block `v_A^p` (its load is
+`p·v_A = 0`, so its `e`-part is empty), which raises the packing number by at most one, so the
+family is admissible for `k+1` with `Σ m_A` larger by `p`. This is the classical
+`D_{k+1}(G) ≥ D_k(G) + exp(G)` induction, re-derived inside the criterion — and the `k = 4`
+optimum for `C_5^3` displays it literally, containing `e_2^5 = e_2^p`.
+
+So **all the content sits at `k = 2`**, and every `D_2` improvement propagates to every `k`:
+
+| group | `D_2 ≥` (this record) | consequence for all `k ≥ 2` |
+|---|---|---|
+| `C_3^5` | 17 | `D_k(C_3^5) ≥ 17 + 3(k−2)` |
+| `C_3^6` | 20 | `D_k(C_3^6) ≥ 20 + 3(k−2)` |
+| `C_5^4` | 26 | `D_k(C_5^4) ≥ 26 + 5(k−2)` |
+| `C_7^4` | 37 | `D_k(C_7^4) ≥ 37 + 7(k−2)` |
+| `C_5^5` | 31 | `D_k(C_5^5) ≥ 31 + 5(k−2)` |
+
+each one better by exactly `1` than what `D2_ALL_RANKS_V3.md` Theorem 2 gives, at every `k`.
+
+A caveat on the computation: `tools/witness_optimum_k_v6.c` caps `m_A ≤ p`. That cap is *forced*
+at `k = 2` (Corollary 2) but not for larger `k`, so the `k ≥ 3` numbers are conservative — they
+remain valid lower bounds, and they already meet the known exact values, so the cap is not binding
+in any tested case.
+
 ## Claim ceiling
 
 Theorems W, X and X′ and the three corollaries are proved above and hold for all `(p,r)`
