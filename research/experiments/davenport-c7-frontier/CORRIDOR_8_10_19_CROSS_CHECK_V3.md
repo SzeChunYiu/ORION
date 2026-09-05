@@ -75,11 +75,23 @@ already on record: `(8,10,19)` → 0 / 24 / 538 and `(9,9,19)` → 1,436 / 3,971
    538 pairs — about 1.24 s per pair. At 48,353 pairs that is ≈ **17 hours single-threaded**, and
    more here because `|U| = 9` against 8 there. The tool has no sharding, and this environment
    reclaims containers on idle, so the run does not complete.
-2. **The fourpack tool's `(9,9,19)` path is now partly validated.** After the bounds fix it
-   reproduces all three `(8,10,19)` branches exactly (0; 24/24/24/0; 538/2,772/2,772/0), and
-   `(9,9,19)` `a = 3` likewise reproduces the record exactly — **1,436 pairs, 6,394 candidates,
-   6,394 four-pack, 0 without** — so the `(9,9,19)` code path itself is sound on the fixed build.
-   `a = 2` (recorded 3,971 / 5,518) is the remaining check.
+2. ~~The fourpack tool's `(9,9,19)` path is unvalidated.~~ **It is now fully validated.** After
+   the bounds fix the tool reproduces **every** branch already on record, exactly:
+
+   | corridor | `a` | pairs | `T` cands | four-pack | none |
+   |---|---|---|---|---|---|
+   | `(8,10,19)` | 3 | 0 | 0 | — | — |
+   | `(8,10,19)` | 2 | 24 | 24 | 24 | 0 |
+   | `(8,10,19)` | 1 | 538 | 2,772 | 2,772 | 0 |
+   | `(9,9,19)` | 3 | 1,436 | 6,394 | 6,394 | 0 |
+   | `(9,9,19)` | 2 | 3,971 | 5,518 | 5,518 | 0 |
+
+   So the `(9,9,19)` code path is sound, not merely uncrashing — which is the distinction that
+   matters here, since the bounds bug manifested *only* on that path while the `(8,10,19)`
+   defaults passed clean.
+
+Only the cost obstacle remains. The branch is fully reproducible and its tooling is verified on
+both corridors; what is missing is one ~17-hour run.
 
 So the branch is now *finishable* — the committed tools could not previously even express the
 `(9,9,19)` case — but it is not finished. Anyone resuming it should validate the fourpack tool on
