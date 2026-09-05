@@ -9,12 +9,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAXR 12                      /* coordinate dimension bound, checked in main */
+#define MAXR 12   /* coordinate-dimension bound: sizes anything indexed by a coordinate i<r */
+#define MAXP 16   /* residue bound: msk's second index is a RESIDUE load%p, not a coordinate  */
 static int p, r, NV, ALL=0, CAP=24, MINSZ=0;
 static int (*vec)[MAXR];             /* sized to the actual vector count, not a fixed 2048 */
 static int chosen[16], mult[16], nc, best, bestc[16], bestm[16], bestn;
 static int boxb[100000][16], nbox;
-static unsigned int msk[100000][MAXR];       /* msk[b][v] = coords whose load residue is v */
+static unsigned int msk[100000][MAXP];      /* msk[b][v] = coords whose load residue is v */
 
 static void build_box(void){
     nbox=0;
@@ -22,7 +23,7 @@ static void build_box(void){
     while(1){
         int any=0; for(int i=0;i<nc;i++) if(b[i]) any=1;
         if(any){
-            int load[8]; for(int i=0;i<r;i++) load[i]=0;
+            int load[MAXR]; for(int i=0;i<r;i++) load[i]=0;
             for(int a=0;a<nc;a++) if(b[a]) for(int i=0;i<r;i++) load[i]+=b[a]*vec[chosen[a]][i];
             for(int v=0;v<p;v++) msk[nbox][v]=0;
             for(int i=0;i<r;i++) msk[nbox][load[i]%p] |= 1u<<i;
@@ -66,6 +67,7 @@ int main(int argc,char**argv){
     for(int i=3;i<argc;i++){ if(!strcmp(argv[i],"--all-vectors")) ALL=1;
         else if(!strcmp(argv[i],"--minsize")) MINSZ=atoi(argv[i+1]); }
     if(r<1||r>MAXR){ fprintf(stderr,"r must be in 1..%d\n",MAXR); return 2; }
+    if(p<2||p>MAXP){ fprintf(stderr,"p must be in 2..%d\n",MAXP); return 2; }
     long want=1; for(int i=0;i<r;i++){ want*= ALL?p:2; }   /* p^r or 2^r, minus the zero vector */
     vec=malloc(sizeof(*vec)*(size_t)want);
     if(!vec){ fprintf(stderr,"oom allocating %ld vectors\n",want); return 2; }
