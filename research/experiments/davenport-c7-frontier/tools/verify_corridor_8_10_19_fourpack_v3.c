@@ -20,6 +20,15 @@
 
 #define P 7
 #define N 343
+#ifndef KV
+#define KV 10         /* |V|; (8,10,19) default.  (9,9,19) uses -DKV=9 -DSV=8 -DKU=9 */
+#endif
+#ifndef SV
+#define SV 9          /* short-free bound on the pair V.W = |VW| - D - 1 */
+#endif
+#ifndef KU
+#define KU 8          /* |U| */
+#endif
 static int addt[N][N], neg[N];
 static int idx3(int x,int y,int z){ return x+P*y+P*P*z; }
 static void build(void){
@@ -85,35 +94,35 @@ int main(int argc,char**argv){
     Wel[3]=idx3(a%P,(P-a)%P,(P-1)%P); Wm[3]=P-1;
 
     /* ---- stage 1a: recompute the V companions (independent of pair.c, same predicate) ---- */
-    static unsigned char SW[10][N], F[10][N];
+    static unsigned char SW[SV+1][N], F[SV+1][N];
     memset(SW,0,sizeof(SW)); memset(F,0,sizeof(F));
     for(int c0=0;c0<=Wm[0];c0++)for(int c1=0;c1<=Wm[1];c1++)for(int c2=0;c2<=Wm[2];c2++)for(int c3=0;c3<=Wm[3];c3++){
-        int j=c0+c1+c2+c3; if(j>9) continue; int s=0;
+        int j=c0+c1+c2+c3; if(j>SV) continue; int s=0;
         for(int t=0;t<c0;t++) s=addt[s][Wel[0]];
         for(int t=0;t<c1;t++) s=addt[s][Wel[1]];
         for(int t=0;t<c2;t++) s=addt[s][Wel[2]];
         for(int t=0;t<c3;t++) s=addt[s][Wel[3]];
         SW[j][s]=1; }
-    for(int i=0;i<=9;i++) for(int j=0;j+i<=9;j++) for(int x=0;x<N;x++) if(SW[j][x]) F[i][neg[x]]=1;
+    for(int i=0;i<=SV;i++) for(int j=0;j+i<=SV;j++) for(int x=0;x<N;x++) if(SW[j][x]) F[i][neg[x]]=1;
 
     long long npairs=0, nT=0, four=0, notfour=0;
-    static unsigned char reach[11][10][N];
+    static unsigned char reach[KV+1][SV+1][N];
     memset(reach,0,sizeof(reach)); reach[0][0][0]=1;
-    int V[10]; int st[11]; int d=0; st[0]=1;
+    int V[KV]; int st[KV+1]; int d=0; st[0]=1;
     while(d>=0){
-        if(d==10){
-            int s=0; for(int i=0;i<10;i++) s=addt[s][V[i]];
+        if(d==KV){
+            int s=0; for(int i=0;i<KV;i++) s=addt[s][V[i]];
             if(s==0){
                 npairs++;
                 /* ---- stage 1b: enumerate 8-atoms U with T = U.V.W 7-short-free ---- */
-                static unsigned char SVW[8][N], FU[8][N];
+                static unsigned char SVW[KU][N], FU[KU][N];
                 memset(SVW,0,sizeof(SVW)); memset(FU,0,sizeof(FU));
                 /* sums by size <=7 of the multiset V.W */
-                static unsigned char cur[8][N], nxt[8][N];
+                static unsigned char cur[KU][N], nxt[KU][N];
                 memset(cur,0,sizeof(cur)); cur[0][0]=1;
                 int items[64], ni=0;
                 for(int i=0;i<4;i++) for(int q=0;q<Wm[i];q++) items[ni++]=Wel[i];
-                for(int i=0;i<10;i++) items[ni++]=V[i];
+                for(int i=0;i<KV;i++) items[ni++]=V[i];
                 for(int t=0;t<ni;t++){
                     memcpy(nxt,cur,sizeof(cur));
                     for(int i=7;i>=1;i--) for(int x=0;x<N;x++) if(cur[i-1][x]) nxt[i][addt[x][items[t]]]=1;
@@ -122,17 +131,17 @@ int main(int argc,char**argv){
                 memcpy(SVW,cur,sizeof(cur));
                 for(int i=0;i<=7;i++) for(int j=0;j+i<=7;j++) for(int x=0;x<N;x++) if(SVW[j][x]) FU[i][neg[x]]=1;
                 /* DFS over U */
-                static unsigned char ur[9][8][N];
+                static unsigned char ur[KU+1][KU][N];
                 memset(ur,0,sizeof(ur)); ur[0][0][0]=1;
-                int U[8], ust[9], e=0; ust[0]=1;
+                int U[KU], ust[KU+1], e=0; ust[0]=1;
                 while(e>=0){
-                    if(e==8){
-                        int su=0; for(int i=0;i<8;i++) su=addt[su][U[i]];
+                    if(e==KU){
+                        int su=0; for(int i=0;i<KU;i++) su=addt[su][U[i]];
                         if(su==0){
                             nT++;
                             ns=0; total=0;
                             for(int i=0;i<ni;i++){ add_elem(items[i]); total++; }
-                            for(int i=0;i<8;i++){ add_elem(U[i]); total++; }
+                            for(int i=0;i<KU;i++){ add_elem(U[i]); total++; }
                             for(int i=0;i<ns;i++) rem[i]=mul[i];
                             if(part(4)) four++; else { notfour++;
                                 printf("NO-FOUR-PACK a=%d T:",a);

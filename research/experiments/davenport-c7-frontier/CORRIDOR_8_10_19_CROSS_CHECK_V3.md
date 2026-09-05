@@ -51,9 +51,20 @@ The same pipeline runs on the other length-19 corridor with `|V| = 9`, pair **8*
 |---|---|---|---|---|
 | 3 | 1,436 | 6,394 | **6,394** | **0** |
 | 2 | 3,971 | 5,518 | **5,518** | **0** |
-| 1 | — | — | — | running |
+| 1 | **48,353** | — | — | stage 2 running (V6) |
 
 > **Theorem (partial).** No length-37 obstruction over `C_7^3` has a `(9,9,19)` factorization whose 19-atom is of canonical support-four type `a = 3` or `a = 2`.
+
+**V6 update — stage 1 of the `a = 1` branch is complete: 48,353 companions** (874,321,748 nodes).
+The branch had been left marked "running" by an earlier session, and the committed tool could not
+resume it: `|V|` and the pair short-free bound were hardcoded to the `(8,10,19)` values `K = 10`,
+`S = 9`, whereas `(9,9,19)` needs `K = 9`, `S = 8`. Both tools are now `#ifndef`-guarded so the
+corridor is selected at compile time (`-DKV= -DSV= -DKU=`), defaults unchanged, and the
+parameterisation was validated against **every** count already on record before being trusted for
+a new one — `(8,10,19)`: 0 / 24 / 538, and `(9,9,19)`: 1,436 / 3,971, all reproduced exactly.
+
+Stage 2 (the four-pack partition test on the extended candidates) is the remaining work; at 48,353
+pairs it is roughly twelve times the `a = 2` branch.
 
 Across both corridors that is **11,912 candidates with no obstruction**, on top of the 2,796 above.
 
