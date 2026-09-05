@@ -161,7 +161,61 @@ a jump that does **not** continue the decreasing increments `1 → 3/2 → 9/5 �
 breaks the pattern or `M*` is not exactly `⌊ν_r p⌋` at every rank. Both patterns are observed
 regularities over the ranges shown, **not theorems**.
 
-## 7. Negative: the extremal families have no uniform shape
+## 7. Two upper bounds on the construction optimum
+
+Theorem W is an equivalence, so it bounds `M*` from **above** as well as below. Write
+`V` for the multiset `{v_A^{m_A}}` of the extra part, so `|V| = Σ_A m_A` and `|S| = r(p−1) + |V|`.
+
+> **Theorem X.** If `S` as in `(†)` has `z(S) ≤ 1`, then `V` has no nonempty *proper*
+> zero-sum sub-multiset — that is, `V` is zero-sum-free, or `V` is a single atom. Hence
+>
+>     M*(r,p) ≤ D(C_p^r) = r(p−1) + 1.
+
+*Proof.* Suppose `0 < b < m` with `Mb = 0`. Then `c(b) = 0`, so `a_i(b) = ⟨0⟩ = 0` for every `i`
+and `B(b)` consists of `v`'s alone; it is nonempty since `b ≠ 0`. Put `b′ = m − b ≠ 0`. No
+coordinate witnesses `(b,b′)`, because a witness needs `⟨c(b)_i⟩ ≠ 0`. By Theorem W, `z(S) ≥ 2`. ∎
+
+Consequently `|S| ≤ (r(p−1)) + (r(p−1)+1) = 2D − 1`, so this construction class can never beat the
+trivial bound `D_2 ≤ 2D` — a consistency check, and an explanation of why it stops where it does.
+
+Theorem X is loose (at `p = 3` it gives `2r+1` against an observed `r+1`). Pairing `b` against a
+**single set** instead of against the complement sharpens it a great deal.
+
+> **Theorem X′.** Let the family be an indicator family (`v_A = 1_A`) satisfying Theorem W. Then for
+> every `A` with `m_A ≥ 1`, the projected multiset `{ 1_{A ∩ B} : B ∈ V ∖ {A} }` is zero-sum-free in
+> `Z_p^A`. Hence
+>
+>     |V| ≤ |A|(p−1) + 1     for every A,      so     M*(r,p) ≤ a(p−1) + 1,   a = min_{A} |A|.
+
+*Proof.* Take `b′ = e_A`, so `c(b′) = 1_A`. A coordinate `i` witnesses `(b, e_A)` iff `i ∈ A`,
+`⟨c(b)_i⟩ ≠ 0` and `⟨c(b)_i⟩ + 1 ≤ p` — and the last is automatic since `⟨c(b)_i⟩ ≤ p−1`. So
+Theorem W says exactly: for every nonempty `b ≤ m − e_A` there is an `i ∈ A` with `c(b)_i ≢ 0`.
+Restricting to the coordinates of `A` turns `c(b)` into `Σ_B b_B 1_{A∩B}`, so this says the
+multiset `{1_{A∩B}}` over `B ∈ V ∖ {A}` has no zero-sum sub-multiset at all: it is zero-sum-free
+in `Z_p^A`, hence of length at most `D(C_p^{|A|}) − 1 = |A|(p−1)`. Adding back the removed copy of
+`A` gives `|V| ≤ |A|(p−1) + 1`. ∎
+
+Against the computed optima, Theorem X′ is tight in half the cases:
+
+| group | `M*` | `a = min|A|` | `a(p−1)+1` | Theorem X (`D(G)`) | |
+|---|---|---|---|---|---|
+| `C_3^2` | 3 | 1 | **3** | 5 | tight |
+| `C_3^3` | 4 | 2 | 5 | 7 | |
+| `C_3^4` | 5 | 2 | **5** | 9 | tight |
+| `C_3^5` | 6 | 3 | 7 | 11 | |
+| `C_3^6` | 7 | 3 | **7** | 13 | tight |
+| `C_5^4` | 9 | 2 | **9** | 17 | tight |
+| `C_7^4` | 12 | 2 | 13 | 25 | |
+| `C_5^5` | 10 | 3 | 13 | 21 | |
+
+Theorem X′ also explains the shape of the extremal families. To reach `M* = r+1` at `p = 3` one
+needs `2a + 1 ≥ r + 1`, i.e. **every set must have size at least `r/2`** — and the computed optima
+sit exactly at that threshold (`a = 2` at `r = 3,4`; `a = 3` at `r = 5,6`). Small sets are cheap to
+intersect but cap `|V|`; large sets lift the cap but leave too few of them. What is still missing
+for a closed form is the opposing inequality — an upper bound on how many *large* pairwise
+intersecting sets can satisfy Theorem W — and that is exactly the content of §8.
+
+## 8. Negative: the extremal families have no uniform shape
 
 `M*(r,3) = r+1` is clean, but the families achieving it are not. Two natural uniform shapes
 suggested by the small cases were tested against the criterion and **both fail**:
@@ -187,7 +241,8 @@ matching number of an intersecting family) undershoots.
 
 ## Claim ceiling
 
-Theorem W and its three corollaries are proved above and hold for all `(p,r)`. `M*` values are
+Theorems W, X and X′ and the three corollaries are proved above and hold for all `(p,r)`
+(X′ for indicator families). `M*` values are
 exhaustive computations over 0/1-indicator families for the individual `(r,p)` listed and are
 **lower** bounds on what general `Z_p^r` families could give. The two patterns in §6 are
 observations over finite ranges. No novelty claim: whether Theorem W is known is CANNOT_CHECK

@@ -12,6 +12,8 @@ sub-multisets, written from scratch.
   Step 5  Corollary 3 -- the load-capped families of D2_ALL_RANKS_V3 Theorem 2 are admissible
   Step 6  the four improved lower-bound witnesses
   Step 7  M*(r,p) reproduces every known exact D_2 value
+  Step 8  Theorem X  -- V is zero-sum-free or a single atom, so M* <= D(C_p^r)
+  Step 9  Theorem X' -- |V| <= |A|(p-1)+1 for every A in an indicator family
 """
 import random, itertools
 from itertools import product, combinations
@@ -174,7 +176,76 @@ def step7():
     print(f"7. M* reproduces every known exact D_2 tested: "
           + ", ".join(f"D_2(C_{p}^{r})={v}" for (r, p), v in known.items()))
 
+OPT = [("C_3^2", 3, 2, [((1,0),1), ((1,1),2)]),
+       ("C_3^3", 3, 3, [((1,1,0),1), ((1,0,1),1), ((0,1,1),1), ((1,1,1),1)]),
+       ("C_3^4", 3, 4, [((1,1,0,0),1), ((1,0,1,0),1), ((0,1,1,0),1), ((1,1,0,1),1), ((1,0,1,1),1)]),
+       ("C_3^5", 3, 5, [((1,1,1,0,0),1), ((1,1,0,1,0),1), ((1,0,1,1,0),1),
+                        ((1,1,0,0,1),1), ((1,0,1,0,1),1), ((1,0,0,1,1),1)]),
+       ("C_3^6", 3, 6, [((1,1,1,0,0,0),1), ((1,1,0,1,0,0),1), ((1,1,0,0,1,0),1), ((0,0,1,1,1,0),1),
+                        ((1,0,1,0,0,1),1), ((1,0,0,1,0,1),1), ((1,0,0,0,1,1),1)]),
+       ("C_5^4", 5, 4, [((1,1,0,0),1), ((1,0,1,0),1), ((1,1,1,0),2),
+                        ((1,0,0,1),1), ((1,1,0,1),2), ((1,0,1,1),2)]),
+       ("C_7^4", 7, 4, [((1,1,0,0),1), ((1,0,1,0),1), ((0,1,1,0),2),
+                        ((1,1,1,0),1), ((1,1,0,1),4), ((0,1,1,1),3)]),
+       ("C_5^5", 5, 5, [((1,1,1,0,0),1), ((1,1,0,1,0),1), ((1,0,1,1,0),2), ((1,1,0,0,1),2),
+                        ((1,0,1,0,1),1), ((1,0,0,1,1),2), ((0,1,1,1,1),1)])]
+
+def step8():
+    """Theorem X: V has no PROPER nonempty zero-sum sub-multiset."""
+    def proper_zs(p, r, fam):
+        ms = [m for _, m in fam]; full = tuple(ms)
+        for b in product(*[range(m + 1) for m in ms]):
+            if any(b) and b != full and not any(loads(p, r, fam, b)): return True
+        return False
+    for name, p, r, fam in OPT:
+        assert criterion(p, r, fam), name
+        assert not proper_zs(p, r, fam), name
+        assert sum(m for _, m in fam) <= r * (p - 1) + 1, name
+    random.seed(5); n = 0
+    for _ in range(500):
+        p = random.choice([3, 5]); r = random.randint(2, 4); k = random.randint(1, 4)
+        fam = [(tuple(random.randrange(p) for _ in range(r)), random.randint(1, 3))
+               for _ in range(k)]
+        if sum(m for _, m in fam) > 6: continue
+        if criterion(p, r, fam):
+            n += 1
+            assert not proper_zs(p, r, fam)
+            assert sum(m for _, m in fam) <= r * (p - 1) + 1
+    assert n > 50
+    print(f"8. Theorem X verified on the 8 optima and {n} random admissible families: "
+          f"V is zero-sum-free or an atom, so M* <= D(C_p^r)")
+
+def step9():
+    """Theorem X': the projection of V\{A} to the coordinates of A is zero-sum-free."""
+    def proj_zsf(p, fam, j):
+        A = [i for i, x in enumerate(fam[j][0]) if x]
+        ms = [m - (1 if a == j else 0) for a, (_, m) in enumerate(fam)]
+        for b in product(*[range(m + 1) for m in ms]):
+            if not any(b): continue
+            if not any(sum(b[a] * fam[a][0][i] for a in range(len(fam))) % p for i in A):
+                return False
+        return True
+    tight = 0
+    for name, p, r, fam in OPT:
+        for j in range(len(fam)): assert proj_zsf(p, fam, j), (name, j)
+        M = sum(m for _, m in fam); a = min(sum(v) for v, _ in fam)
+        assert M <= a * (p - 1) + 1, (name, M, a)
+        tight += (M == a * (p - 1) + 1)
+    random.seed(9); n = 0
+    for _ in range(700):
+        p = random.choice([3, 5]); r = random.randint(2, 4)
+        ss = random.sample(range(1, 1 << r), min(random.randint(1, 4), (1 << r) - 1))
+        fam = [(tuple((s >> d) & 1 for d in range(r)), random.randint(1, 3)) for s in ss]
+        if sum(m for _, m in fam) > 6: continue
+        if criterion(p, r, fam):
+            n += 1
+            M = sum(m for _, m in fam); a = min(sum(v) for v, _ in fam)
+            assert M <= a * (p - 1) + 1, (p, r, fam)
+    assert n > 100
+    print(f"9. Theorem X' verified on the 8 optima ({tight} of 8 tight) and {n} random "
+          f"indicator families: |V| <= a(p-1)+1")
+
 if __name__ == "__main__":
-    step1(); step2(); step3(); step4(); step5(); step6(); step7()
+    step1(); step2(); step3(); step4(); step5(); step6(); step7(); step8(); step9()
     print()
-    print("THEOREM W verified.  Four lower bounds in D2_ALL_RANKS_V3.md are improved.")
+    print("THEOREMS W, X, X' verified.  Five lower bounds in D2_ALL_RANKS_V3.md are improved.")
