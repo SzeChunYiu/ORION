@@ -1,0 +1,31 @@
+name: shadow-davenport-paper2-a3
+
+on:
+  push:
+    branches:
+      - shadow/davenport-paper2-integration-20260904
+      - shadow/davenport-c7-frontier-20260903
+      - shadow/davenport-paper2-left-a3-final3-20260904
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-paper2-a3-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  a3-reduction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay a3 exact depth and two-parameter face
+        run: python3 research/experiments/davenport-c7-frontier/check_a3_light_two_parameter_face_v1.py
+      - name: Replay exact a3 radial staircase
+        run: python3 research/experiments/davenport-c7-frontier/check_a3_exact_radial_excess_v1.py
+      - name: Replay a3 right-half boundary theorem
+        run: python3 research/experiments/davenport-c7-frontier/check_a3_right_half_boundary_elimination_v1.py
+      - name: Replay a3 left-half boundary theorem
+        run: python3 research/experiments/davenport-c7-frontier/check_a3_left_half_boundary_elimination_v1.py

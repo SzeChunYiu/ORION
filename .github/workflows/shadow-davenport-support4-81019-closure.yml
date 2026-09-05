@@ -1,0 +1,29 @@
+name: shadow-davenport-support4-81019-closure
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-support4-81019-closure-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile primary support-four corridor search
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/search_support4_81019_v1.cpp -o /tmp/support4-primary
+      - name: Run primary exhaustive closure
+        run: /tmp/support4-primary
+      - name: Compile independent support-four corridor verifier
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/verify_support4_81019_independent_v1.cpp -o /tmp/support4-independent
+      - name: Run independent exhaustive closure
+        run: /tmp/support4-independent

@@ -1,0 +1,22 @@
+{
+  "schema": "ORION.DavenportC7.Support7AllResult.v1",
+  "group": "C_7^3",
+  "zero_sum_sequence_length": 37,
+  "packing_obstruction_ceiling": 3,
+  "projective_support_classes": 54,
+  "deficit_weight_profiles": 462,
+  "full_support_kernel_classes_total": 7400,
+  "candidate_weighted_lifts": 3418800,
+  "short_zero_free_candidates": 14860,
+  "four_pack_candidates": 14860,
+  "surviving_packing_at_most_three_candidates": 0,
+  "kernel_classes_by_projective_class": [140,139,138,138,139,138,138,138,137,137,138,138,138,137,138,139,138,138,138,137,137,137,138,137,137,137,137,137,136,137,136,137,137,137,137,137,137,136,136,136,137,136,137,136,136,136,136,137,136,136,136,135,135,134],
+  "short_zero_free_by_projective_class": [1000,989,4,0,580,599,588,229,470,229,0,4,12,4,594,606,573,4,434,8,212,219,636,225,0,240,5,228,219,558,456,2,625,229,618,1,10,242,445,471,220,2,214,0,216,0,426,690,4,2,6,236,234,42],
+  "conclusion": "Every length-37 total-zero sequence with packing number at most three has support size at least 8.",
+  "primary_search": "search_support7_all_v1.cpp",
+  "independent_verifier": "verify_support7_all_independent_v1.cpp",
+  "projective_cover_generator": "generate_support7_projective_arcs_v1.py",
+  "grants_D3_value": false,
+  "grants_novelty_authority": false,
+  "priority_status": "CANNOT_CHECK"
+}

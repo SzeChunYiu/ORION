@@ -1,0 +1,285 @@
+{
+  "schema": "ORION.PAPER2_ATOMIC_CLAIM_LEDGER_V1",
+  "as_of_date": "2026-09-04",
+  "reconciled_integration_parent": "9229d28be5a643ff7bf30ea6213aba717c48e309",
+  "scope": {
+    "group_family": "elementary abelian rank-three groups C_p^3",
+    "primary_bounded_group": "C_7^3",
+    "object": "first multiwise Davenport corridors with a support-four maximal atom",
+    "claim_ceiling": "exact representation-depth and support-growth theorems; no exact D_3(C_7^3) value"
+  },
+  "authority_flags": {
+    "exact_D3_C7_proved": false,
+    "all_prime_first_corridor_support7_proved": false,
+    "all_prime_Dk_formula_proved": false,
+    "complete_length37_obstruction_classification_proved": false,
+    "novelty_certified": false,
+    "priority_certified": false,
+    "top_generalist_submission_ready": false,
+    "top_specialist_development_track_ready": true,
+    "C7_two_corridor_support_growth_proved": true
+  },
+  "allowed_statuses": [
+    "PROVED_ANALYTIC",
+    "PROVED_ANALYTIC_DONOR_DEPENDENT",
+    "PROVED_ANALYTIC_REDUCTION",
+    "PROVED_CONDITIONAL_ANALYTIC",
+    "PROVED_EXACT_FINITE",
+    "PROVED_COMPOSITE",
+    "OPEN",
+    "CANNOT_CHECK",
+    "DEVELOPMENT_READY"
+  ],
+  "claims": [
+    {
+      "id": "P2.A2.EXACT_OVERLAP_AND_RADIAL",
+      "statement": "The type-a=2 light-overlap ceiling and every light-direction radial lifting cost have the stated closed formulas.",
+      "status": "PROVED_ANALYTIC",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/A2_EXACT_OVERLAP_AND_RADIAL_STAIRCASE_V1.md",
+        "research/experiments/davenport-c7-frontier/check_a2_exact_overlap_and_radial_staircase_v1.py",
+        "research/experiments/davenport-c7-frontier/A2_RADIAL_STAIRCASE_HOSTILE_AUDIT_V1.md",
+        "research/experiments/davenport-c7-frontier/verify_a2_radial_staircase_independent_v1.py"
+      ],
+      "limitations": "Does not eliminate the remaining type-a=2 companion geometry."
+    },
+    {
+      "id": "P2.A2.EXACT_DEPTH_FIBER_ENVELOPE",
+      "statement": "The maximum type-a=2 representation depth on every coordinate-sum fiber [P+Q]_p=w is the stated four-region piecewise function M_p(w,C).",
+      "status": "PROVED_ANALYTIC",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/A2_EXACT_DEPTH_FIBER_ENVELOPE_V1.md",
+        "research/experiments/davenport-c7-frontier/check_a2_exact_depth_fiber_envelope_v1.py"
+      ],
+      "limitations": "A fiber maximum is an upper envelope; a particular point can be shallower."
+    },
+    {
+      "id": "P2.RANK3.EXACT_OVERLAP_PLANE_COST",
+      "statement": "For arbitrary canonical type a, the exact cost of every overlap-plane target C s+D g is the stated two-variable minimization nu_a(C,D).",
+      "status": "PROVED_ANALYTIC",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/SUPPORT4_EXACT_OVERLAP_PLANE_LIFTING_COST_V1.md",
+        "research/experiments/davenport-c7-frontier/check_support4_overlap_plane_rank3_scalar_v1.py"
+      ],
+      "limitations": "This is a certificate interface, not a complete rank-three elimination."
+    },
+    {
+      "id": "P2.A3.RANK2_FACE_EMPTY",
+      "statement": "For every prime p>=7, the complete canonical type-a=3 support-three rank-two equality face is empty.",
+      "status": "PROVED_ANALYTIC_DONOR_DEPENDENT",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/A3_EXACT_RADIAL_EXCESS_V1.md",
+        "research/experiments/davenport-c7-frontier/A3_BOUNDARY_INDEX_ONE_DONOR_REDUCTION_V1.md",
+        "research/experiments/davenport-c7-frontier/A3_RIGHT_HALF_BOUNDARY_ELIMINATION_V1.md",
+        "research/experiments/davenport-c7-frontier/A3_LEFT_HALF_BOUNDARY_ELIMINATION_V1.md",
+        "research/experiments/davenport-c7-frontier/check_a3_right_half_boundary_elimination_v1.py",
+        "research/experiments/davenport-c7-frontier/check_a3_left_half_boundary_elimination_v1.py"
+      ],
+      "limitations": "The cyclic length-four index-one input is donor-owned; types a=1,2 remain separate."
+    },
+    {
+      "id": "P2.RANK3.A_GE4.SIMULTANEOUS_OVERLAP_BOUND",
+      "statement": "For canonical types a>=4 with both overlap directions available, c_light+c_heavy<=a-2.",
+      "status": "PROVED_ANALYTIC_REDUCTION",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/SUPPORT4_SIMULTANEOUS_OVERLAP_SUM_BOUND_V1.md",
+        "research/experiments/davenport-c7-frontier/check_support4_simultaneous_overlap_sum_bound_v1.py"
+      ],
+      "limitations": "Bounds the overlap box but does not eliminate all boxes."
+    },
+    {
+      "id": "P2.RANK3.A_GE4.DOUBLING_BOUNDARY",
+      "statement": "Doubling eliminates every a>=4 rank-three box with smaller new-value multiplicity greater than H and forces all survivors onto the stated thin boundary.",
+      "status": "PROVED_ANALYTIC_REDUCTION",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/SUPPORT4_RANK3_A_GE4_DOUBLING_BOUNDARY_REDUCTION_V1.md",
+        "research/experiments/davenport-c7-frontier/check_support4_rank3_a_ge4_doubling_boundary_reduction_v1.py"
+      ],
+      "limitations": "Thin-boundary edge regimes remain."
+    },
+    {
+      "id": "P2.RANK3.A_GE4.TRIPLE_CENTRAL_BOUNDARY",
+      "statement": "Scalar three eliminates the central portion of the a>=4 thin boundary and leaves only four explicit edge regimes.",
+      "status": "PROVED_ANALYTIC_REDUCTION",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/SUPPORT4_RANK3_A_GE4_TRIPLE_CENTRAL_BOUNDARY_V1.md",
+        "research/experiments/davenport-c7-frontier/check_support4_rank3_a_ge4_triple_central_boundary_v1.py"
+      ],
+      "limitations": "No claim is made that all four edge regimes are empty."
+    },
+    {
+      "id": "P2.A2.TOP_OVERLAP_STANDARD_FAMILIES_EMPTY",
+      "statement": "For prime p>=13 with p congruent to 1 modulo 4, both standard high-multiplicity families on the top type-a=2 overlap face are empty.",
+      "status": "PROVED_CONDITIONAL_ANALYTIC",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/A2_MAXIMAL_OVERLAP_STANDARD_FAMILIES_EMPTY_V1.md",
+        "research/experiments/davenport-c7-frontier/check_a2_maximal_overlap_standard_families_v1.py"
+      ],
+      "limitations": "The prime-uniform classification into the standard families is still open."
+    },
+    {
+      "id": "P7.A2.RANK3_SUPPORT4_EQUALITY_EMPTY",
+      "statement": "At p=7, the canonical type-a=2 rank-three support-four first-corridor equality face is empty.",
+      "status": "PROVED_EXACT_FINITE",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/P7_A2_RANK3_SUPPORT4_EQUALITY_EMPTY_V1.md",
+        "research/experiments/davenport-c7-frontier/check_p7_a2_rank3_support4_exception_table_v1.py"
+      ],
+      "limitations": "Specific to p=7, the first corridor, and exact total support six."
+    },
+    {
+      "id": "P7.FIRST_CORRIDOR.SUPPORT4_MAXIMAL_PAIR_SUPPORT_GE7",
+      "statement": "In the (8,10,19) corridor over C_7^3, a maximal pair containing a support-four length-19 atom has total support at least seven.",
+      "status": "PROVED_COMPOSITE",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/P7_A2_RANK3_SUPPORT4_EQUALITY_EMPTY_V1.md",
+        "research/experiments/davenport-c7-frontier/A1_LIGHT_SUPPORT3_ONE_SHARE_ELIMINATION_V1.md",
+        "research/experiments/davenport-c7-frontier/A1_LIGHT_SUPPORT3_TWO_SHARE_ELIMINATION_V1.md",
+        "research/experiments/davenport-c7-frontier/A1_LIGHT_SUPPORT3_THREE_SHARE_ELIMINATION_V1.md",
+        "research/experiments/davenport-c7-frontier/A1_LIGHT_SUPPORT3_FOUR_SHARE_ELIMINATION_V1.md",
+        "research/experiments/davenport-c7-frontier/A2_LIGHT_SUPPORT3_ONE_TWO_SHARE_ELIMINATION_V1.md",
+        "research/experiments/davenport-c7-frontier/A3_LEFT_HALF_BOUNDARY_ELIMINATION_V1.md"
+      ],
+      "limitations": "The statement is about the maximal pair before adjoining the third atom."
+    },
+    {
+      "id": "P7.SECOND_CORRIDOR.SUPPORT6_COMPLETIONS_PACK_FOUR",
+      "statement": "In the (9,9,19) corridor, all 1634 short-free completions of the 26 exact-support-six maximal-pair candidates admit four disjoint zero-sums.",
+      "status": "PROVED_EXACT_FINITE",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/SUPPORT6_9919_CLOSURE_V1.md",
+        "research/experiments/davenport-c7-frontier/search_support6_9919_closure_v1.cpp",
+        "research/experiments/davenport-c7-frontier/verify_support6_9919_independent_v1.cpp"
+      ],
+      "limitations": "This is a finite C_7^3 closure and not a prime-uniform theorem."
+    },
+    {
+      "id": "P7.TWO_CORRIDOR.SUPPORT6_MAXIMAL_PAIR_FACE_EXCLUDED",
+      "statement": "A hypothetical length-37 obstruction over C_7^3 containing a support-four length-19 atom cannot remain in the support-six maximal-pair face in either maximal corridor.",
+      "status": "PROVED_COMPOSITE",
+      "theorem_authority": true,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/P7_A2_RANK3_SUPPORT4_EQUALITY_EMPTY_V1.md",
+        "research/experiments/davenport-c7-frontier/SUPPORT6_9919_CLOSURE_V1.md",
+        "research/experiments/davenport-c7-frontier/PAPER2_TOP_SPECIALIST_THEOREM_SPINE_V1.md"
+      ],
+      "limitations": "Does not exclude maximal atoms of support at least five or prove D_3(C_7^3)=36."
+    },
+    {
+      "id": "P2.ALL_PRIME.FIRST_CORRIDOR_SUPPORT7",
+      "statement": "For every prime p>=7, every first-corridor maximal pair with a support-four maximal atom has support at least seven.",
+      "status": "OPEN",
+      "theorem_authority": false,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/FIRST_CORRIDOR_GENERALIZATION_CHECKPOINT_V8.md"
+      ],
+      "limitations": "Rank-two high-overlap and rank-three edge regimes remain."
+    },
+    {
+      "id": "P2.RANK2.A1.C_GE5_EMPTY",
+      "statement": "The light-share rank-two type-a=1 layers c>=5 are empty.",
+      "status": "OPEN",
+      "theorem_authority": false,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/FIRST_CORRIDOR_GENERALIZATION_CHECKPOINT_V8.md"
+      ],
+      "limitations": "No prime-uniform elimination is currently proved."
+    },
+    {
+      "id": "P2.RANK2.A2.C_GE5_EMPTY",
+      "statement": "The light-share rank-two type-a=2 layers c>=5 are empty.",
+      "status": "OPEN",
+      "theorem_authority": false,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/FIRST_CORRIDOR_GENERALIZATION_CHECKPOINT_V8.md",
+        "research/experiments/davenport-c7-frontier/A2_MAXIMAL_OVERLAP_STANDARD_FAMILIES_EMPTY_V1.md"
+      ],
+      "limitations": "Only the standard top-overlap families are eliminated."
+    },
+    {
+      "id": "P2.RANK3.A_GE4.EDGE_REGIMES_EMPTY",
+      "statement": "All four a>=4 rank-three edge regimes surviving scalar three are empty.",
+      "status": "OPEN",
+      "theorem_authority": false,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/FIRST_CORRIDOR_GENERALIZATION_CHECKPOINT_V8.md"
+      ],
+      "limitations": "The V8 theorem stops at the four edge regimes."
+    },
+    {
+      "id": "P2.RANK3.EXCEPTIONAL_A2_A3_EMPTY",
+      "statement": "The exceptional rank-three canonical types a=2,3 are empty for every prime.",
+      "status": "OPEN",
+      "theorem_authority": false,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/FIRST_CORRIDOR_GENERALIZATION_CHECKPOINT_V8.md",
+        "research/experiments/davenport-c7-frontier/P7_A2_RANK3_SUPPORT4_EQUALITY_EMPTY_V1.md"
+      ],
+      "limitations": "Only the p=7 type-a=2 face is closed."
+    },
+    {
+      "id": "P7.MAXIMAL_ATOM.SUPPORT_GE5_CLOSED",
+      "statement": "All length-37 obstruction faces with maximal-atom support at least five are empty.",
+      "status": "OPEN",
+      "theorem_authority": false,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/PROGRESS_LEDGER_V18.md"
+      ],
+      "limitations": "The present paper spine is support-four conditional."
+    },
+    {
+      "id": "P7.SUPPORT8.TYPE_A_EMPTY",
+      "statement": "The one-projective-collision support-eight Type-A face is empty.",
+      "status": "OPEN",
+      "theorem_authority": false,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/SUPPORT8_ONE_COLLISION_HOSTILE_AUDIT_V1.md"
+      ],
+      "limitations": "The existing support-eight theorem is not a full Type-A closure."
+    },
+    {
+      "id": "P7.D3_EXACT_36",
+      "statement": "D_3(C_7^3)=36.",
+      "status": "OPEN",
+      "theorem_authority": false,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/FRAME_V1.md",
+        "research/experiments/davenport-c7-frontier/PROGRESS_LEDGER_V18.md"
+      ],
+      "limitations": "Neither the upper bound nor a complete obstruction classification is established here."
+    },
+    {
+      "id": "P2.NOVELTY_AND_PRIORITY",
+      "statement": "The paper's main theorem suite is externally novel and has priority.",
+      "status": "CANNOT_CHECK",
+      "theorem_authority": false,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/PAPER2_NEAREST_WORK_AUDIT_V1.md"
+      ],
+      "limitations": "Requires external database, thesis, citation-network, and expert subtraction."
+    },
+    {
+      "id": "P2.TOP_SPECIALIST_SUBMISSION",
+      "statement": "The theorem stack is ready for top-specialist manuscript development.",
+      "status": "DEVELOPMENT_READY",
+      "theorem_authority": false,
+      "evidence": [
+        "research/experiments/davenport-c7-frontier/PAPER2_TOP_SPECIALIST_THEOREM_SPINE_V1.md",
+        "research/experiments/davenport-c7-frontier/PAPER2_NEAREST_WORK_AUDIT_V1.md",
+        ".github/workflows/shadow-davenport-paper2-a2-breakthrough.yml"
+      ],
+      "limitations": "External mathematical review, full prior-art subtraction, and a polished manuscript remain required."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+name: shadow-davenport-support4-maximal-atom
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-support4-maximal-atom-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  support4-classification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check Beatty-jump classification
+        run: python research/experiments/davenport-c7-frontier/check_support4_maximal_atom_weights_v1.py
+      - name: Independently scan primitive circuit weights
+        run: python research/experiments/davenport-c7-frontier/verify_support4_maximal_atom_weights_independent_v1.py

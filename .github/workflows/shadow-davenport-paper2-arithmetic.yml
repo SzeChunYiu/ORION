@@ -1,0 +1,32 @@
+name: shadow-davenport-paper2-arithmetic
+
+on:
+  push:
+    branches:
+      - shadow/davenport-paper2-integration-20260904
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-paper2-arithmetic-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  arithmetic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay exact a2 overlap and radial staircase
+        run: python3 research/experiments/davenport-c7-frontier/check_a2_exact_overlap_and_radial_staircase_v1.py
+      - name: Replay exact overlap-plane lifting and bounded rank3 scalar scan
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_overlap_plane_rank3_scalar_v1.py
+      - name: Replay simultaneous overlap sum theorem
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_simultaneous_overlap_sum_bound_v1.py
+      - name: Replay rank3 a>=4 doubling boundary reduction
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_rank3_a_ge4_doubling_boundary_reduction_v1.py
+      - name: Replay rank3 scalar-three central boundary theorem
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_rank3_a_ge4_triple_central_boundary_v1.py

@@ -1,0 +1,46 @@
+name: shadow-davenport-saturated-conic-uniqueness
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-saturated-conic-uniqueness-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  theorem-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check analytic arithmetic corollaries
+        run: |
+          python research/experiments/davenport-c7-frontier/check_saturated_conic_scalar_uniqueness_v1.py | tee /tmp/primary.json
+      - name: Independently replay saturated-center pairs
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_saturated_conic_scalar_uniqueness_independent_v1.py | tee /tmp/independent.json
+      - name: Check hostile threshold
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/primary.json'))
+          b=json.load(open('/tmp/independent.json'))
+          assert a['checked_primes']>0
+          assert a['q2_integral_family_count']>0
+          assert b['p5_hostile_control_compatible_pairs']==30
+          assert b['p_ge_7_compatible_pairs']==0
+          rows={r['p']:r for r in b['pair_replays']}
+          assert rows[7]['incompatible_distinct_pairs']==1176
+          assert rows[11]['incompatible_distinct_pairs']==7260
+          assert rows[13]['incompatible_distinct_pairs']==14196
+          print('SATURATED_CONIC_UNIQUENESS_RECEIPTS_GREEN')
+          PY
