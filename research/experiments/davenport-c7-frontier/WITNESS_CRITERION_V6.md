@@ -111,6 +111,10 @@ the admissible families (`tools/witness_optimum_v6.c`), and
 
     D_2(C_p^r)  ≥  r(p−1) + M*(r,p) + 1.
 
+Restricting to 0/1 indicator families costs nothing at the ranks where both can be searched:
+allowing **every** vector of `Z_3^r` gives the same optimum at `r = 2` (3) and `r = 3` (4). Since
+those two are exact values of `D_2`, the construction class is provably optimal there.
+
 **Validation — every previously known exact value is reproduced on the nose:**
 
 | `(r,p)` | `M*` | `r(p−1)+M*+1` | known `D_2` |
@@ -214,6 +218,30 @@ sit exactly at that threshold (`a = 2` at `r = 3,4`; `a = 3` at `r = 5,6`). Smal
 intersect but cap `|V|`; large sets lift the cap but leave too few of them. What is still missing
 for a closed form is the opposing inequality — an upper bound on how many *large* pairwise
 intersecting sets can satisfy Theorem W — and that is exactly the content of §8.
+
+### 7a. Corollary 4: admissible families are sunflower-free
+
+Theorem X′ came from pairing `b` against **one** set. Pairing *two against two* gives a
+condition of a completely different flavour. For `b = e_A + e_B` the load is `2` on `A ∩ B` and
+`1` on `A △ B`; likewise for `b′ = e_C + e_D`. At `p = 3` a witness fails only where **both**
+loads equal `2`, so the pair `(b,b′)` has no witness precisely when
+
+    (A ∪ B) ∩ (C ∪ D)  =  A ∩ B ∩ C ∩ D.
+
+> **Corollary 4.** No four members of `V` (repetitions allowed) satisfy that identity. In
+> particular an admissible family contains no **4-petal sunflower**: four sets with a common
+> core `K` and pairwise disjoint petals, for which both sides equal `K`.
+
+This is a genuinely different constraint from intersectingness — it forbids the families that are
+*too* uniformly intersecting, those meeting in the same place every time. Combined with the
+Erdős–Rado sunflower lemma it bounds the number of distinct sets outright: if every set has size
+at most `s`, a family with more than `s!·3^s` distinct sets contains a 4-sunflower and is therefore
+inadmissible.
+
+So the two bounds squeeze from opposite directions. Theorem X′ says the sets must be **large**
+(`|V| ≤ a(p−1)+1` forces `a ≥ r/2` at the optimum); Corollary 4 says they must not be large in the
+same way — they cannot share a common core. That tension is exactly why the extremal families in
+§8 are irregular, and why `M*` resists a closed form.
 
 ## 8. Negative: the extremal families have no uniform shape
 

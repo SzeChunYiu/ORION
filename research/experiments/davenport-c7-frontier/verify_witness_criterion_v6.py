@@ -14,6 +14,7 @@ sub-multisets, written from scratch.
   Step 7  M*(r,p) reproduces every known exact D_2 value
   Step 8  Theorem X  -- V is zero-sum-free or a single atom, so M* <= D(C_p^r)
   Step 9  Theorem X' -- |V| <= |A|(p-1)+1 for every A in an indicator family
+  Step 10 Corollary 4 -- no four members of V form a 4-petal sunflower
 """
 import random, itertools
 from itertools import product, combinations
@@ -245,7 +246,38 @@ def step9():
     print(f"9. Theorem X' verified on the 8 optima ({tight} of 8 tight) and {n} random "
           f"indicator families: |V| <= a(p-1)+1")
 
+def step10():
+    """Corollary 4: no 4-sunflower.  (A u B) n (C u D) = A n B n C n D kills the pair."""
+    def sets_of(fam):
+        out = []
+        for v, m in fam:
+            out += [frozenset(i for i, x in enumerate(v) if x)] * m
+        return out
+    def has_4sf(V):
+        for q in combinations(range(len(V)), 4):
+            A, B, C, D = [V[i] for i in q]
+            if (A | B) & (C | D) == A & B & C & D: return True
+        return False
+    # an explicit 4-sunflower is inadmissible
+    sf = [(tuple(1 if i in (0, j) else 0 for i in range(9)), 1) for j in (1, 2, 3, 4)]
+    assert not criterion(3, 9, sf), "a 4-sunflower was admitted"
+    for name, p, r, fam in OPT:
+        if p != 3: continue
+        assert not has_4sf(sets_of(fam)), name
+    random.seed(3); n = 0
+    for _ in range(600):
+        r = random.randint(4, 6)
+        ss = random.sample(range(1, 1 << r), min(random.randint(4, 6), (1 << r) - 1))
+        fam = [(tuple((s >> d) & 1 for d in range(r)), 1) for s in ss]
+        if sum(m for _, m in fam) > 6: continue
+        if criterion(3, r, fam):
+            n += 1
+            assert not has_4sf(sets_of(fam))
+    assert n > 20
+    print(f"10. Corollary 4 verified: an explicit 4-sunflower is inadmissible, and none of the "
+          f"p=3 optima nor {n} random admissible families contains one")
+
 if __name__ == "__main__":
-    step1(); step2(); step3(); step4(); step5(); step6(); step7(); step8(); step9()
+    step1(); step2(); step3(); step4(); step5(); step6(); step7(); step8(); step9(); step10()
     print()
     print("THEOREMS W, X, X' verified.  Five lower bounds in D2_ALL_RANKS_V3.md are improved.")

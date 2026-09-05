@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-static int p, r, NV, ALL=0, CAP=24;
+static int p, r, NV, ALL=0, CAP=24, MINSZ=0;
 static int vec[2048][8];
 static int chosen[16], mult[16], nc, best, bestc[16], bestm[16], bestn;
 static int boxb[100000][16], nbox;
@@ -62,15 +62,18 @@ static void dfs(int start,int tot){
 }
 int main(int argc,char**argv){
     p=atoi(argv[1]); r=atoi(argv[2]);
-    for(int i=3;i<argc;i++) if(!strcmp(argv[i],"--all-vectors")) ALL=1;
+    for(int i=3;i<argc;i++){ if(!strcmp(argv[i],"--all-vectors")) ALL=1;
+        else if(!strcmp(argv[i],"--minsize")) MINSZ=atoi(argv[i+1]); }
     NV=0;
     if(ALL){ int T=1; for(int i=0;i<r;i++) T*=p;
         for(int g=1;g<T;g++){ int t=g; for(int d=0;d<r;d++){ vec[NV][d]=t%p; t/=p; } NV++; } }
-    else for(int s=1;s<(1<<r);s++){ for(int d=0;d<r;d++) vec[NV][d]=(s>>d)&1; NV++; }
+    else for(int s=1;s<(1<<r);s++){ int pc=0; for(int d=0;d<r;d++) pc+=(s>>d)&1;
+        if(pc<MINSZ) continue;
+        for(int d=0;d<r;d++) vec[NV][d]=(s>>d)&1; NV++; }
     best=0; nc=0;
     dfs(0,0);
-    printf("p=%d r=%d %s: max sum m = %d  =>  |S| = r(p-1)+m = %d  =>  D_2(C_%d^%d) >= %d\n",
-           p,r, ALL?"[all vectors]":"[0/1 indicators]", best, r*(p-1)+best, p, r, r*(p-1)+best+1);
+    printf("p=%d r=%d %s minsize=%d: max sum m = %d  =>  |S| = r(p-1)+m = %d  =>  D_2(C_%d^%d) >= %d\n",
+           p,r, ALL?"[all vectors]":"[0/1 indicators]", MINSZ, best, r*(p-1)+best, p, r, r*(p-1)+best+1);
     printf("   optimal family:");
     for(int i=0;i<bestn;i++){ printf(" ("); for(int d=0;d<r;d++) printf("%d",vec[bestc[i]][d]);
         printf(")^%d",bestm[i]); }
