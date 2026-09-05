@@ -34,7 +34,7 @@ Assume `r>=2`, equivalently `c<H`. Put `d=H-c=r-1`, and project the support plan
 For `1<=j<=r-1`, put
 
 \[
-b_j=[-j r^{-1}]_p,qquad Y_j=x^j y^{b_j}.
+b_j=[-j r^{-1}]_p,\qquad Y_j=x^j y^{b_j}.
 \]
 
 Every `Y_j` is an actual nonempty proper projected-zero subsequence of `R=x^r y^(p-1)`. The exact quotient-window theorem gives a canonical light coefficient `q_j` and a defect
