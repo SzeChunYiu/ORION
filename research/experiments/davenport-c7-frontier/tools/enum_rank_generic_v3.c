@@ -8,6 +8,7 @@
 #include <stdint.h>
 static int p, r, L, s, N;
 static int *addtab;
+static int *negv;            /* negv[g] = -g, for the O(1) candidate test */
 static unsigned char *reach;
 static int *seq;
 static long long nodes=0, leaves=0, found=0;
@@ -37,20 +38,27 @@ static int two_disjoint(void){
 }
 static void dfs(int d,int lo){
     nodes++;
+    /* One pass per node: forb[y]=1 iff y is a subsum of <= s-1 chosen terms.  Then a candidate g
+     * is rejected iff forb[-g] -- O(1) each, instead of a memcpy + O(s*N) update to find out. */
+    unsigned char forb[4096];
+    if(d<L){
+        memcpy(forb,R(d,0),N);
+        for(int l=1;l<=s-1;l++){ unsigned char *src=R(d,l);
+            for(int x=0;x<N;x++) forb[x]|=src[x]; }
+    }
     if(progress && (nodes&0xFFFFF)==0) fprintf(stderr,"progress nodes=%lld leaves=%lld found=%lld d=%d\n",nodes,leaves,found,d);
     if(d==L){ leaves++;
         if(!two_disjoint()){ found++; printf("packing<=1:"); for(int i=0;i<L;i++) printf(" %d",seq[i]); printf("\n"); fflush(stdout);} return; }
     for(int g=lo; g<N; g++){
         if(g==0) continue;
         if(SHARD>=0 && d==r && g%NSHARD!=SHARD) continue;   /* shard on 1st free term */
+        if(forb[negv[g]]) continue;                        /* O(1) reject, was O(s*N) */
         unsigned char *dst=R(d+1,0); memcpy(dst,R(d,0),(size_t)(s+1)*N);
         int bad=0;
-        for(int l=s;l>=1 && !bad;l--){
+        for(int l=s;l>=1;l--){
             unsigned char *from=R(d,l-1), *to=R(d+1,l);
             for(int x=0;x<N;x++) if(from[x]) to[addtab[x*N+g]]=1;
-            if(to[0]) bad=1;
         }
-        if(bad) continue;
         seq[d]=g; dfs(d+1,g);
     }
 }
@@ -62,6 +70,9 @@ int main(int argc,char**argv){
     addtab=malloc(sizeof(int)*(size_t)N*N);
     for(int a=0;a<N;a++) for(int b=0;b<N;b++){ int x=0,pw=1,aa=a,bb=b;
         for(int i=0;i<r;i++){ x+=((aa%p+bb%p)%p)*pw; aa/=p; bb/=p; pw*=p; } addtab[a*N+b]=x; }
+    negv=malloc(sizeof(int)*N);
+    for(int g=0;g<N;g++){ int t=g,n=0,pw=1;
+        for(int i=0;i<r;i++){ n+=((p-(t%p))%p)*pw; t/=p; pw*=p; } negv[g]=n; }
     reach=calloc((size_t)(L+1)*(s+1)*N,1); seq=malloc(sizeof(int)*L);
     for(int i=0;i<4;i++){ lay[i]=malloc((size_t)N*N); nl[i]=malloc((size_t)N*N); }
     R(0,0)[0]=1;
