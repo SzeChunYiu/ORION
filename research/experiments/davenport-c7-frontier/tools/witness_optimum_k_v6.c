@@ -10,11 +10,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define MAXR 12                      /* coordinate dimension bound, checked in main */
 static int p,r,K,NV,MINSZ=0,CAP=24;
-static int vec[4096][10];
+static int (*vec)[MAXR];             /* sized to the actual set count, not a fixed 4096 */
 static int chosen[20],mult[20],nc,best,bestc[20],bestm[20],bestn;
 /* box of b-vectors */
-static int nbox; static int (*boxb)[20]; static unsigned char (*A)[10];
+static int nbox; static int (*boxb)[20]; static unsigned char (*A)[MAXR];
 static void build_box(void){
     nbox=0; int b[20]; memset(b,0,sizeof b);
     while(1){
@@ -31,7 +32,7 @@ static void build_box(void){
         if(i==nc) break;
     }
 }
-static int rem[20], acc[10];
+static int rem[20], acc[MAXR];
 static int find_tuple(int depth,int start){
     if(depth==K) return 1;                       /* K disjoint blocks, no carry */
     for(int x=start;x<nbox;x++){
@@ -73,12 +74,15 @@ int main(int argc,char**argv){
     p=atoi(argv[1]); r=atoi(argv[2]); K=atoi(argv[3]);
     for(int i=4;i<argc;i++){ if(!strcmp(argv[i],"--minsize")) MINSZ=atoi(argv[i+1]);
                              else if(!strcmp(argv[i],"--cap")) CAP=atoi(argv[i+1]); }
+    if(r<1||r>MAXR){ fprintf(stderr,"r must be in 1..%d\n",MAXR); return 2; }
+    vec=malloc(sizeof(*vec)*(size_t)(1<<r));
+    if(!vec){ fprintf(stderr,"oom\n"); return 2; }
     for(int s=1;s<(1<<r);s++){ int pc=0; for(int d=0;d<r;d++) pc+=(s>>d)&1;
         if(pc<MINSZ) continue;
         for(int d=0;d<r;d++) vec[NV][d]=(s>>d)&1; NV++; }
     long cap=1; for(int i=0;i<20 && cap<=400000;i++) cap*=(p+1);
     if(cap>400000) cap=400000;                       /* box is bounded by prod(m_A+1) */
-    boxb=malloc(sizeof(int)*20*cap); A=malloc(10L*cap);
+    boxb=malloc(sizeof(int)*20*cap); A=malloc((long)MAXR*cap);
     if(!boxb||!A){ fprintf(stderr,"oom\n"); return 2; }
     best=0; nc=0; dfs(0,0);
     printf("p=%d r=%d k=%d: M*_k = %d  =>  |S| = %d  =>  D_%d(C_%d^%d) >= %d\n",

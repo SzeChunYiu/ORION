@@ -6,9 +6,9 @@ maximal part, assume the atom lengths are exactly its parts, and ask whether the
 spectrum system is still consistent.  If not, T needs atoms beyond the profile --
 and we then ask whether D = 3p-2 is among the lengths it is forced to add.
 """
-import importlib.util
-spec=importlib.util.spec_from_file_location(
-    "vgs","/home/user/ORION/research/experiments/davenport-c7-frontier/verify_general_spectrum_v4.py")
+import importlib.util, pathlib
+spec=importlib.util.spec_from_file_location(          # resolve beside this file, not on the host
+    "vgs", pathlib.Path(__file__).resolve().parent / "verify_general_spectrum_v4.py")
 vgs=importlib.util.module_from_spec(spec); spec.loader.exec_module(vgs)
 
 def law(p,m):
