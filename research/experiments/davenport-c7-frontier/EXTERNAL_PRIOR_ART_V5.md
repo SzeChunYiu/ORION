@@ -105,3 +105,102 @@ That is an hour with library access, and it decides whether Theorem W is a contr
 restatement. Everything else in the packet stands on its own regardless of the answer.
 
 Priority remains CANNOT_CHECK from this host.
+
+---
+
+## V7 addendum: the gate paper, identified — and replaced (2026-09-05)
+
+The V6 addendum reduced the prior-art gate to a single target and called it "an hour with library
+access". That hour was spent, as far as this host permits. The result is not what was expected:
+**the gate was pointed at the wrong paper.** A different and much sharper target has taken its
+place.
+
+### What this host can and cannot do
+
+Recorded so the pass is reproducible and its ceiling is explicit. Direct fetch of scholarly hosts
+is refused by this session's egress policy, not by the remote services:
+
+| host | result |
+|---|---|
+| `arxiv.org` | CONNECT rejected, gateway 403 (policy denial, logged in the proxy's `recentRelayFailures`) |
+| `export.arxiv.org` | tunnel refused |
+| `www.sciencedirect.com` | tunnel refused |
+| `link.springer.com` | tunnel refused |
+| `www.semanticscholar.org` | tunnel refused |
+
+Per the proxy's own instructions a policy denial is reported, not routed around. So this remains a
+**snippet-level pass**: search results and search-engine summaries, never a primary text. Nothing
+below is a reading of a paper.
+
+### The gate paper is not about this invariant
+
+`arXiv:2410.22245` is **Sylwia Cichacz, *Disjoint zero-sum subsets in Abelian groups and its
+application — survey*** (math.CO, October 2024).
+
+The identification is solid: a search result paired that exact title with both
+`arxiv.org/pdf/2410.22245` and `arxiv.org/html/2410.22245`. The subject description that follows is
+snippet-level and weaker.
+
+Its subject is the **zero-sum partition** property — splitting a group's *elements* (each used once)
+into subsets that each sum to zero — applied to the Friedlander–Gordon–Tannenbaum conjecture on
+orthomorphisms, and onward to graph labelling. That is a *different invariant* from `D_k(G)`, which
+is an extremal function over **sequences** (repetition allowed) asking for `k` disjoint zero-sum
+**subsequences**. The two share the phrase "disjoint zero-sum" and little else: no extremal length
+function, no elementary `p`-group rank asymptotics, no packing number.
+
+So the V6 gate — "read this, and it decides whether Theorem W is a contribution or a restatement" —
+**was mis-aimed.** Theorem W cannot be in that survey, because that survey is not about `D_k`. The
+gate as posed is cleared, and clearing it establishes much less than V6 hoped it would.
+
+This is worth stating plainly as a method failure: V6 narrowed five candidates to one on the
+strength of a title, and the title matched on the wrong sense of "disjoint zero-sum". Narrowing a
+literature search by keyword resemblance, without a single primary text, produced a confident
+pointer to an irrelevant paper.
+
+### The gate that should have been there
+
+The same searches surfaced a target that *is* on this invariant, in this regime, using this
+packet's own bridge:
+
+> **L. E. Marchan, O. Ordaz, I. Santos, W. A. Schmid, *Multi-wise and constrained fully weighted
+> Davenport constants and interactions with coding theory*, [arXiv:1407.1966](https://arxiv.org/abs/1407.1966),
+> J. Combin. Theory Ser. A (2015).**
+
+Why this is the real risk, point by point:
+
+- Their **`m`-wise Davenport constant with weights `W`** is "the smallest `n` such that each
+  sequence over `G` of length `n` has at least `m` disjoint zero-subsums with weights `W`". At the
+  trivial weight set `W = {1}` that is **exactly `D_m(G)`** — this packet's invariant, not an
+  adjacent one.
+- They work **for elementary `p`-groups specifically**.
+- They link the constants to **linear-code parameters and cap sets in projective spaces** — the
+  identical bridge recorded in the V6 addendum, where a length-17 sequence over `C_3^5` with no
+  short zero-sum is a cap set in `AG(5,3)`.
+- The abstract summary says they "obtain **various explicit results on the values of these
+  constants**" for elementary `p`-groups. Explicit values, in the same regime, by a route this
+  packet also travels.
+
+That is the collision surface for the five improved `D_2` lower bounds (`C_3^5 ≥ 17`, `C_3^6 ≥ 20`,
+`C_5^4 ≥ 26`, `C_7^4 ≥ 37`, `C_5^5 ≥ 31`) and potentially for `D_2(C_3^5) = 17` itself. Schmid is a
+co-author here and of Freeze–Schmid, so this is the same line of work that owns the rank-4/5
+elementary **2**-group values; the natural question is how far the coding-theoretic route already
+carried odd `p`.
+
+**Unchanged by any of this:** Theorem W is a *criterion* (an exact biconditional characterising
+`z(S) ≤ 1`, and `W_t` for all `t`), not a value. A paper computing values by cap-set bounds could
+overlap the five bounds without containing the criterion. But that has to be checked, not assumed —
+which is precisely the mistake V6 made.
+
+### Gate, restated
+
+| # | target | question it decides |
+|---|---|---|
+| 1 | `arXiv:1407.1966` (Marchan–Ordaz–Santos–Schmid) | Are any of the five improved `D_2` bounds, or `D_2(C_3^5)`, already known via linear codes / cap sets? |
+| 2 | whatever §1 gives for `D_k(C_p^r)` at odd `p`, rank `≥ 4` | Is the criterion, or an equivalent, already in that chain? |
+| 3 | the Zhao preprint for `D_2(C_p^3) = (9p−5)/2` | Still unfetchable; still an unverified donor statement. |
+
+`arXiv:2410.22245` is **struck from the gate** — cite it if at all as adjacent background, never as
+the novelty test.
+
+Priority remains **CANNOT_CHECK** from this host, and the reason is now recorded as a policy denial
+with per-host evidence rather than a general statement that fetching does not work.

@@ -69,3 +69,17 @@ Machine-assisted throughout; every computational step has a checker, and the che
 CI. **Nothing here has been read by a mathematician, and novelty is `CANNOT_CHECK` from this
 host** — whether these results are already known has not been verified against the literature.
 Both remain necessary before any submission.
+
+### The prior-art gate, as of V7
+
+One target, not the one V6 named:
+
+> **`arXiv:1407.1966` — Marchan, Ordaz, Santos, Schmid, *Multi-wise and constrained fully weighted
+> Davenport constants and interactions with coding theory*, JCTA (2015).** Their `m`-wise constant
+> at trivial weights *is* `D_m`; they treat elementary `p`-groups via linear codes and cap sets and
+> report explicit values. That is the collision surface for the five improved `D_2` bounds.
+
+`arXiv:2410.22245`, the V6 gate, has been **struck**: it is a survey on zero-sum *partitions* of a
+group's elements (the Friedlander–Gordon–Tannenbaum conjecture), a different invariant from `D_k`.
+See `EXTERNAL_PRIOR_ART_V5.md` §V7 for the evidence, the per-host egress denials that cap this pass
+at snippet level, and why the V6 narrowing was a method failure worth recording.
