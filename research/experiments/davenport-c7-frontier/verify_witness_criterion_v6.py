@@ -17,6 +17,7 @@ sub-multisets, written from scratch.
   Step 10 Corollary 4/4' -- no (p+1)-petal sunflower; p petals is the sharp threshold
   Step 11 Theorem W_t -- the criterion for general packing number, and the three
           multiwise values D_3(C_5^3)=25, D_3(C_7^3)=36, D_4(C_5^3)=30
+  Step 12 Corollary 5/5a -- pairing against 2e_A; at p=3 at most one set may repeat
 """
 import random, itertools
 from itertools import product, combinations
@@ -359,9 +360,31 @@ def step11():
           f"({pos} with z<t, {n-pos} with z>=t); the k=3 and k=4 optima give "
           f"D_3(C_5^3)>=25, D_3(C_7^3)>=36, D_4(C_5^3)>=30 -- all three the known exact values")
 
+def step12():
+    """Corollary 5a: at p = 3 at most one set of an admissible family may repeat."""
+    # two sets both at multiplicity 2 is inadmissible at p=3, admissible at p=5
+    two = [((1,1,0), 2), ((1,0,1), 2)]
+    assert not criterion(3, 3, two), "p=3 admitted two repeated sets"
+    assert criterion(5, 3, two), "p=5 wrongly rejected two repeated sets"
+    for name, p, r, fam in OPT:
+        if p != 3: continue
+        assert sum(1 for _, m in fam if m >= 2) <= 1, name
+    random.seed(17); n = 0
+    for _ in range(1200):
+        r = random.randint(2, 5)
+        ss = random.sample(range(1, 1 << r), min(random.randint(2, 4), (1 << r) - 1))
+        fam = [(tuple((s >> d) & 1 for d in range(r)), random.randint(1, 3)) for s in ss]
+        if sum(m for _, m in fam) > 7: continue
+        if criterion(3, r, fam):
+            n += 1
+            assert sum(1 for _, m in fam if m >= 2) <= 1, fam
+    assert n > 30
+    print(f"12. Corollary 5a verified: two repeated sets are inadmissible at p=3 and fine at "
+          f"p=5; none of the C_3^r optima nor {n} random admissible families repeats two sets")
+
 if __name__ == "__main__":
     step1(); step2(); step3(); step4(); step5(); step6(); step7(); step8(); step9(); step10()
-    step11()
+    step11(); step12()
     print()
     print("THEOREMS W, W_t, X, X' verified.  Five D_2 lower bounds improved; the criterion\n"
           "reproduces all ten known exact D_k(C_p^r) values across k = 2, 3, 4.")

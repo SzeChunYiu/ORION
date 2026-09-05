@@ -15,7 +15,7 @@ permissions:
 jobs:
   bounded-checks-v2:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     defaults:
       run:
         working-directory: research/experiments/davenport-c7-frontier
@@ -46,3 +46,21 @@ jobs:
         run: python verify_hypothesis_Z_v3.py && python verify_pointed_identity_v3.py
       - name: V2 exhaustive analogues (compile enumerator, replay p = 3 and p = 5 D2 frames)
         run: bash run_exhaustive_analogs_v2.sh --ci
+      - name: V3 end-to-end D_3(C_7^3) = 36 (whole proof rebuilt in one program, 8 asserted steps)
+        run: python verify_D3_C7_end_to_end_v3.py
+      - name: V3 atom-length closure, second corridor, spectrum lattice
+        run: python verify_atom_length_closure_v3.py && python verify_second_corridor_v3.py && python verify_spectrum_lattice_v3.py
+      - name: V4 general spectrum, three special lengths (5 <= p <= 31)
+        run: python verify_general_spectrum_v4.py
+      - name: V4 short-atom bound, uniform (Prop 4.3')
+        run: python verify_short_atom_bound_v4.py
+      - name: V5 Theorem G (Lucas digit criterion) and the short-atom law
+        run: python verify_lucas_criterion_v5.py && python verify_short_atom_law_v5.py
+      - name: V5 Theorems I and J, support reduction, dual support, Observation D
+        run: python verify_supp_Q_proof_v5.py && python verify_existence_proved_v5.py && python verify_support_reduction_v5.py && python verify_dual_support_v5.py && python verify_observationD_reduction_v5.py
+      - name: V6 Theorem T -- D_4(C_5^3) = 30, end to end with the L=13 sweep re-run live
+        run: python verify_D4_C5_end_to_end_v6.py
+      - name: V6 D_4 corridor, special corridor, and the two recorded negatives
+        run: python verify_d4_c5_corridor_v4.py && python verify_special_corridor_v6.py && python verify_d3_bridge_negative_v6.py && python verify_d4_flat_bridge_v6.py
+      - name: V6 witness-coordinate criterion -- Theorems W, W_t, X, X' and Corollaries 1-5 (12 asserted steps)
+        run: python verify_witness_criterion_v6.py
