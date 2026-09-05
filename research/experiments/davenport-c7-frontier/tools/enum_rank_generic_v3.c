@@ -9,6 +9,7 @@
 static int p, r, L, s, N;
 static int *addtab;
 static int *negv;            /* negv[g] = -g, for the O(1) candidate test */
+static unsigned char *forbbuf;  /* (L+1) x N, one row per depth: sized to N, never fixed */
 static unsigned char *reach;
 static int *seq;
 static long long nodes=0, leaves=0, found=0;
@@ -40,7 +41,7 @@ static void dfs(int d,int lo){
     nodes++;
     /* One pass per node: forb[y]=1 iff y is a subsum of <= s-1 chosen terms.  Then a candidate g
      * is rejected iff forb[-g] -- O(1) each, instead of a memcpy + O(s*N) update to find out. */
-    unsigned char forb[4096];
+    unsigned char *forb = forbbuf + (size_t)d*N;
     if(d<L){
         memcpy(forb,R(d,0),N);
         for(int l=1;l<=s-1;l++){ unsigned char *src=R(d,l);
@@ -70,6 +71,7 @@ int main(int argc,char**argv){
     addtab=malloc(sizeof(int)*(size_t)N*N);
     for(int a=0;a<N;a++) for(int b=0;b<N;b++){ int x=0,pw=1,aa=a,bb=b;
         for(int i=0;i<r;i++){ x+=((aa%p+bb%p)%p)*pw; aa/=p; bb/=p; pw*=p; } addtab[a*N+b]=x; }
+    forbbuf=malloc((size_t)(L+1)*N);
     negv=malloc(sizeof(int)*N);
     for(int g=0;g<N;g++){ int t=g,n=0,pw=1;
         for(int i=0;i<r;i++){ n+=((p-(t%p))%p)*pw; t/=p; pw*=p; } negv[g]=n; }
