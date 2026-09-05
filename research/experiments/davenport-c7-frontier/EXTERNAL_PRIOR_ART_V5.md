@@ -53,3 +53,41 @@ No search result states `D_3(C_7^3) = 36`, or `D_2(C_p^3) = (9p−5)/2` for gene
 ## Claim ceiling
 
 Search-only pass. No priority claim follows. The negative findings in §3 are bounded by what a general-purpose web search surfaces and by the searcher's queries, both of which are recorded here so the pass can be repeated and criticised.
+
+---
+
+## V6 addendum: a web-search pass on the witness criterion (2026-09-05)
+
+`WebSearch` works from this host (`WebFetch` does not), so this is a snippet-level pass, not a
+literature read. It **narrows** the open novelty question; it does not close it.
+
+**Established, and it positions the packet favourably.**
+
+- The rank-two value `D_k(C_m ⊕ C_n) = m + kn − 1` is standard, and the literature states
+  explicitly that it **fails for elementary 2- and 3-groups of rank ≥ 3** — exactly the regime
+  this packet works in. It also records that computing `D_k(G)` is "quite more complicated than
+  for `D(G)`, in particular for (elementary) `p`-groups". The hard cases here are
+  acknowledged-hard, not overlooked.
+- For elementary `p`-groups, `D_k` is linked to **linear-code parameters and cap sets** in
+  projective spaces. That is a bridge this packet hit blind: a length-17 sequence over `C_3^5`
+  with no zero-sum of length `≤ 6` has in particular no three terms summing to zero, i.e. is a
+  cap set in `AG(5,3)`. Worth citing rather than rediscovering.
+
+**One false alarm cleared.** "The Davenport constant of a box" sounded like a direct collision,
+since the criterion has `b` ranging over a box `[0,m]`. It is a different notion — there the
+*ambient group* is a box. No overlap.
+
+**Not settled.** Whether Theorem W is known. Nothing in the snippets states it, but that is weak
+evidence either way. `D_2(C_p^3) = (9p−5)/2` also did not surface, though the packet attributes it
+to a Zhao preprint this host cannot fetch.
+
+**The gate is now one target, not five.**
+
+> `arXiv:2410.22245` — *Disjoint zero-sum subsets in Abelian groups and its application — survey*
+> (2024). Squarely on this subject and recent enough to cite the current state. Read it, plus
+> whichever reference it gives for the rank-three `D_2(C_p^3)` value.
+
+That is an hour with library access, and it decides whether Theorem W is a contribution or a
+restatement. Everything else in the packet stands on its own regardless of the answer.
+
+Priority remains CANNOT_CHECK from this host.

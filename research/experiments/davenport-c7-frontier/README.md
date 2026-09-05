@@ -54,8 +54,10 @@ Start here. For the algebraic families used for `D_k` lower bounds,
 
 ## Open
 
-1. A closed form for `M*(r,p)`. `M*(r,3) = r+1` for `r ≤ 6` and `M*(4,p) = ⌊9p/5⌋` for `p = 3,5,7`
-   are observations, not theorems; §7c shows the elementary route cannot reach them.
+1. A closed form for `M*(r,p)`. The `M*(r,3) = r+1` reading is **refuted**: it holds for `r ≤ 6`
+   but `M*(7,3) = 7`, not 8, so `D_2(C_3^r) = 3r+2` fails on the construction side at `r = 7`
+   (`D_2(C_3^7) ≥ 22`). `M*(4,p) = ⌊9p/5⌋` for `p = 3,5,7` still stands as an observation.
+   §7c shows the elementary route cannot reach a closed form.
 2. A uniform-in-`(p,r)` proof of the rank-`r` upper bound — still per-`(p,r)` certificates.
 3. `D_3(C_p^3)` for `p ≥ 11`, blocked on flat-triple elimination.
 4. Whether `D_2(C_3^5) = 17` exactly (an exhaustive sweep is the deciding computation).

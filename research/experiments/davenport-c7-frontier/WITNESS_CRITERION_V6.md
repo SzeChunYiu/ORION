@@ -145,14 +145,11 @@ The `C_3^5` family is the sharpest illustration of what Theorem 2 cannot see: al
 contain coordinate `1`, so its load there is `6 = 2p`, twice the cap. The family is nevertheless
 admissible, because every split is obstructed by a *carry* rather than by a small load.
 
-## 6. Two patterns
+## 6. One pattern holds, one is refuted
 
-    M*(r,3) = r + 1      for 2 ≤ r ≤ 6,     hence   D_2(C_3^r) ≥ 3r + 2
     M*(r,p) = ⌊ν_r · p⌋  with  ν_2 = 1,  ν_3 = 3/2,  ν_4 = 9/5,  ν_5 = 2
 
-`D_2(C_3^r) = 3r+2` holds at every rank where the value is known (`r = 2, 3, 4`: values `8, 11, 14`),
-so it is the natural conjecture; `r = 5` is being decided by exhaustive search separately. The
-second pattern fits every computed value at `r ≤ 5`:
+fits every computed value at `r ≤ 5`:
 
 | `r` | `ν_r` | `M*(r,3)` | `M*(r,5)` | `M*(r,7)` |
 |---|---|---|---|---|
@@ -161,10 +158,33 @@ second pattern fits every computed value at `r ≤ 5`:
 | 4 | `9/5` | 5 | 9 | 12 |
 | 5 | `2` | 6 | 10 | — |
 
-At `r = 6` only `M*(6,3) = 7` is computed, which forces `ν_6 ∈ [7/3, 8/3)` if the shape persists —
-a jump that does **not** continue the decreasing increments `1 → 3/2 → 9/5 → 2`, so either `ν_6`
-breaks the pattern or `M*` is not exactly `⌊ν_r p⌋` at every rank. Both patterns are observed
-regularities over the ranges shown, **not theorems**.
+**`M*(r,3) = r+1` is refuted.** It held for `2 ≤ r ≤ 6`, and the natural reading — that
+`D_2(C_3^r) = 3r+2` for all `r`, matching the three ranks where the value is known — is **false on
+the construction side at `r = 7`**:
+
+| `r` | 2 | 3 | 4 | 5 | 6 | 7 |
+|---|---|---|---|---|---|---|
+| `M*(r,3)` | 3 | 4 | 5 | 6 | 7 | **7** |
+| `r+1` | 3 | 4 | 5 | 6 | 7 | ~~8~~ |
+
+So the construction gives `D_2(C_3^7) ≥ 2·7 + 7 + 1 = 22`, not the `3r+2 = 23` the pattern
+predicted. The optimal family is
+
+    {1234}, {1235}, {1236}, {1456}, {12456}, {12467}, {12357}   (as subsets of [7], all m = 1)
+
+and its sequence `S = ∏ᵢ eᵢ² · ∏_A v_A`, of length 21, was confirmed `z(S) = 1` by the exact
+packing DP, independently of the criterion.
+
+**Theorem X′ is what made this decidable.** A blind search over families on `[7]` is hopeless, but
+X′ says any family with `Σ m_A ≥ 8` needs `2a + 1 ≥ 8`, i.e. minimum set size `a ≥ 4` — while
+families with `a ≤ 3` are capped at `2·3+1 = 7` outright. That reduces the question to the 64
+subsets of `[7]` of size `≥ 4`, which terminates. The search returned 7, so `M*(7,3) = 7` and the
+law is dead. This is the first place an upper-bound theorem from §7 has paid for itself
+computationally rather than only descriptively.
+
+What the corrected sequence `3, 4, 5, 6, 7, 7` is, no one here knows; `ν_6` and `ν_7` are not
+determined by a single prime. Both remaining patterns are observations over finite ranges, **not
+theorems**, and the refuted one is a standing warning about how far the small cases can be trusted.
 
 ## 7. Two upper bounds on the construction optimum
 
