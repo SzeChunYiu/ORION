@@ -15,8 +15,12 @@
 
 #define P 7
 #define N 343
-#define K 10          /* |V| */
-#define S 9           /* short-free bound on the pair */
+#ifndef K
+#define K 10          /* |V|; override with -DK= for other corridors */
+#endif
+#ifndef S
+#define S 9           /* short-free bound on the pair = |VW| - D - 1; -DS= to override */
+#endif
 
 static int addt[N][N], neg[N];
 static unsigned char SW[S+1][N];   /* SW[j][x] : x is a sum of some j-element sub-multiset of W */
