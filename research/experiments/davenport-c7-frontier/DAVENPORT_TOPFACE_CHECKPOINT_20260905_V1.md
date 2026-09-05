@@ -78,3 +78,15 @@ Each theorem advance has a separate local commit, beginning with the quantifier 
 The primary Bernoulli-pairing, two-value splitting, and strict long-atom index statements were reopened and their precise hypotheses checked where used. This continuation did not receive a separately tasked independent-agent audit or external referee approval. Earlier results retain their own recorded review status.
 
 Publication preserves each reviewed tree and commit order, checks the expected remote references immediately before nonforced updates, and records local-to-published identities in the companion publication receipt. Other sessions' branches and `main` are not publication targets.
+
+## 7. Continuation after the first publication
+
+The first 18-commit packet was published to both live and isolated branches at `c6847e681c388eff6e502f316a36b42954601bf3`; a full 29-head audit confirmed that only those intended references had changed. Work then continued on the generalized larger-deficit geometry.
+
+`A2_GENERALIZED_MIXED_CIRCLE_SELECTOR_V1.md` now proves an actual mixed certificate for every main-family deficit. Its sufficient overlap condition is
+
+`(c+1)(floor(c/b)+1)>p`.
+
+The existing inverse gate makes this unconditional for `b>=4,p>=10b`. Along with the minimal-endpoint theorem, every surviving row in that range has `c>=b` and `(c+1)(floor(c/b)+1)<=p`, hence `(c+1)^2<=bp`. For `b>=7`, the independent negative-even balanced-band result further forces `c>=2b-1`.
+
+These are new uniform exclusions and exact residual bounds. The intermediate range and primes below the inverse threshold remain open; the general auxiliary-rectangle existence gate in the preserved-routes note is not claimed solved. The theorem uses actual `y^(j-b)` counts and checks the adaptive parity endpoint, with local proof scrutiny and no search or separate external review.
