@@ -24,7 +24,7 @@ is the rank-two zero-sum companion with distinct new values and `UV` contains no
 
 Put `d=H-c`, `a=d+1`, so `2<=a<=H`. Project the support plane modulo `<s>`. The two projected values are nonzero and distinct, and the quotient `R=x^r y^t` has length `p+a-1` and zero total sum.
 
-For every nonempty proper quotient-zero occurrence part `Y=x^A y^B`, let its actual light sum be `q s`, with canonical `1<=q<=p-c-1`. The established original-donor proper-part window is
+For every nonempty proper quotient-zero occurrence part `Y=x^A y^B`, let its actual light sum be `q s`, with canonical `1<=q<=p-c-1`. The original-donor proper-part window from `A2_RANK2_EXACT_QUOTIENT_DEFECT_BUDGET_V1.md`, Section 1, is
 
 \[
 2-\epsilon(q)\le D(Y):=2q-A-B
