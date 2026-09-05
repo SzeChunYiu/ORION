@@ -81,6 +81,20 @@ since the criterion has `b` ranging over a box `[0,m]`. It is a different notion
 evidence either way. `D_2(C_p^3) = (9p−5)/2` also did not surface, though the packet attributes it
 to a Zhao preprint this host cannot fetch.
 
+**Freeze–Schmid, pinned (this sharpens the positioning materially).**
+*Remarks on a generalization of the Davenport constant*, Discrete Math. 310 (2010) 3373–3389
+([arXiv:0905.4248](https://arxiv.org/pdf/0905.4248)) — already a donor statement for this packet:
+
+- It determines `D_k(G)` exactly for elementary **2**-groups of **rank four and five**, noting
+  rank `≤ 3` was already known. So the detailed higher-rank work in the literature is at `p = 2`;
+  **odd `p` at rank `≥ 4` — `C_3^5`, `C_3^6`, `C_5^4`, `C_7^4`, `C_5^5` — is where this packet's
+  improved bounds sit.** That is a real gap, not an oversight, and it is the right way to position
+  those five results.
+- It proves `(D_k(G))_{k∈ℕ}` is **eventually an arithmetic progression with difference `exp(G)`**.
+  That is exactly the `M*_k = M*_2 + (k−2)p` relation recorded in `WITNESS_CRITERION_V6.md` §9a.
+  §9a has been corrected to attribute it: the relation is that theorem viewed from inside the
+  construction class, not a new observation. Presenting it as new would have been an error.
+
 **The gate is now one target, not five.**
 
 > `arXiv:2410.22245` — *Disjoint zero-sum subsets in Abelian groups and its application — survey*

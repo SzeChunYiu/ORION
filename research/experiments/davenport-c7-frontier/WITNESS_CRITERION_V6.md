@@ -410,7 +410,11 @@ The computed optima satisfy
 
     M*_k(r,p)  =  M*_2(r,p) + (k−2)p            observed at (r,p,k) = (3,5,3), (3,5,4), (3,7,3), (4,3,3)
 
-and the inequality `≥` is a theorem inside the class: given an admissible family for `k`, append a
+**This direction is not new, and should not be presented as such.** Freeze and Schmid
+(*Remarks on a generalization of the Davenport constant*, Discrete Math. 310 (2010) 3373–3389)
+proved that `(D_k(G))_{k∈ℕ}` is **eventually an arithmetic progression with difference `exp(G)`**.
+The relation observed here is that theorem seen from inside the construction class, and the
+`≥` half is its standard proof: given an admissible family for `k`, append a
 new set with multiplicity `p`. The extra part contributes the single block `v_A^p` (its load is
 `p·v_A = 0`, so its `e`-part is empty), which raises the packing number by at most one, so the
 family is admissible for `k+1` with `Σ m_A` larger by `p`. This is the classical
