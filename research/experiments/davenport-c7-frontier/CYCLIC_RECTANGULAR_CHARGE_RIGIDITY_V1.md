@@ -1,6 +1,6 @@
 # Exact cyclic rectangular charge rigidity — V1
 
-Status: **proved prime-uniform iff classification**. Elementary intersection counting and parity force an entire two-value zero-sum rectangle to be a rigid power.
+Status: **proved prime-uniform iff classification throughout the full feasible range `2<=a<=p-1`**. Elementary intersection counting and parity force an entire two-value zero-sum rectangle to be a rigid power.
 
 ## 1. Abstract prime-cyclic rectangular charge rigidity
 
@@ -9,7 +9,7 @@ Let `p` be an odd prime. Let `x,y` be distinct nonzero elements of `C_p`, and su
 \[
 R=x^r y^t,\qquad 1\le r,t\le p-1,\qquad
 r+t=p+a-1,
-\qquad 2\le a\le(p-1)/2
+\qquad 2\le a\le p-1
 \]
 
 is zero-sum.
@@ -85,10 +85,10 @@ D_1+D_2\equiv1\pmod p.
 But
 
 \[
-2\le D_1+D_2\le2a-2<p,
+2\le D_1+D_2\le2a-2\le2p-4.
 \]
 
-which is impossible. Hence `P` is an atom. This step uses only (1), not the earlier exact factorization budget.
+The only possible integer in this interval congruent to one modulo `p` is `p+1`. But parity in (1), applied to the two parts and their union, gives `D_1+D_2 == |P| == 1 (mod 2)`, whereas `p+1` is even. Hence `P` is an atom. This step uses only (1), not the earlier exact factorization budget. It also removes the smaller-range assumption in the initial version of this proof.
 
 ### 1.3. Parity synchronizes every modular wrap
 
@@ -140,7 +140,7 @@ The actual nonempty zero-sum sequence `Y_j` is therefore a proper divisor of the
 
 No wrap occurs for any `D<=a`. Equation (5) becomes the ordinary equality `(A_D,B_D)=D(A,B)`, proving (2) and (3).
 
-Finally, `a(A+B)=p+a-1` gives `(p-1)/a=A+B-1`, which is even. Thus `2a|(p-1)`.
+Finally, `a(A+B)=p+a-1` gives `(p-1)/a=A+B-1`, which is even. Thus `2a|(p-1)`. In particular, the conclusion itself excludes `a>(p-1)/2`; that restriction need not be assumed.
 
 ## 2. Exact normal form and converse
 
@@ -163,6 +163,6 @@ This is an exact classification of the abstract charge window and parity conditi
 
 ## 3. Review and proof boundary
 
-The coordinating researcher and quotient-structure researcher independently obtained the synchronized-wrap argument from the exact intersection count. The proof-audit researcher checked the full proof and the converse, including injectivity of the interval maps, charge-one atomicity without a factorization budget, parity at the full endpoint, and positivity of the first wrapped residues.
+The coordinating researcher and quotient-structure researcher independently obtained the synchronized-wrap argument from the exact intersection count. The proof-audit researcher checked the initial restricted-range proof and its converse, including injectivity of the interval maps, charge-one atomicity without a factorization budget, parity at the full endpoint, and positivity of the first wrapped residues. The coordinating researcher then derived the full-range parity argument in Section 1.2, which the quotient-structure researcher independently checked.
 
 Only count coordinates, not arbitrary proper-part lengths, are represented by least residues. No assumption `|Y_D|<p` occurs. No prime, vector, or subsequence enumeration is used. The result classifies an abstract two-value quotient condition; it is not a full first-corridor or generalized Davenport equality.
