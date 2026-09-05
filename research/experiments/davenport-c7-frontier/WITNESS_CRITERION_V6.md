@@ -1,8 +1,9 @@
 # The witness-coordinate criterion: an exact packing test for algebraic families — V6
 
-Status: **criterion proved (Theorem W) and machine-verified; four published lower bounds in
-`D2_ALL_RANKS_V3.md` improved.** The criterion contains that record's Theorem 2 as the
-special case of one-element pairs. Priority CANNOT_CHECK.
+Status: **criterion proved (Theorems W and W_t) and machine-verified; five published lower
+bounds in `D2_ALL_RANKS_V3.md` improved; two upper bounds on the construction optimum proved
+(Theorems X and X′).** The criterion contains that record's Theorem 2 as the special case of
+one-element pairs, and reproduces all ten exact `D_k(C_p^r)` values the packet owns. Priority CANNOT_CHECK.
 Checker: `verify_witness_criterion_v6.py`. Tools: `tools/pk1_check_v6.c`,
 `tools/witness_optimum_v6.c`.
 Branch: `claude/orion-research-frontier-3ck9yt`.
