@@ -340,6 +340,22 @@ Nothing in §2 used `t = 2`. A packing of size `t` is a set of `t` pairwise disj
 >
 > Theorem W is the case `t = 2`, where the condition rearranges into the witness form of §3.
 
+*Proof.* (⇐) Given such `b^{(1)},…,b^{(t)}`, form the blocks `B(b^{(j)})` of Lemma 1. Each is
+nonempty because `b^{(j)} ≠ 0`. They are pairwise disjoint as sub-multisets of `S`: the `v`-parts
+use `Σ_j b^{(j)} ≤ m` copies in total, and coordinate `i` of the `e`-part uses
+`Σ_j a_i(b^{(j)}) = Σ_j ⟨−(Mb^{(j)})_i⟩ ≤ p−1` copies of `e_i`, which is all that `(†)` supplies.
+So `S` has `t` pairwise disjoint nonempty zero-sum subsequences, i.e. `z(S) ≥ t`.
+
+(⇒) Conversely let `B_1,…,B_t` be pairwise disjoint nonempty zero-sum subsequences of `S`. By
+Lemma 1 each is `B(b^{(j)})` for a unique `b^{(j)} ≤ m`, and `b^{(j)} ≠ 0` since `B_j ≠ ∅`.
+Disjointness bounds the total use of each `v_A` by `m_A`, giving `Σ_j b^{(j)} ≤ m`, and the total
+use of each `e_i` by its multiplicity `p−1`, giving `Σ_j ⟨−(Mb^{(j)})_i⟩ ≤ p−1`. ∎
+
+The `t = 2` rearrangement is the four-case table of §3: `⟨−x⟩ + ⟨−y⟩ ≤ p−1` fails exactly when
+both residues are nonzero and sum to at most `p`. For `t ≥ 3` no such two-term rearrangement is
+available, so the `Σ_j ⟨−·⟩ ≤ p−1` form is the one to use; the "witness coordinate" language of
+§3 is a convenience special to pairs, not the substance.
+
 Writing `M*_k(r,p)` for the largest `Σ_A m_A` admitting no such `k`-tuple,
 
     D_k(C_p^r)  ≥  r(p−1) + M*_k(r,p) + 1.
