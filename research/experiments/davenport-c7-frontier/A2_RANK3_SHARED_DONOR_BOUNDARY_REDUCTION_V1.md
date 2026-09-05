@@ -184,3 +184,5 @@ The doubling theorem covers every allowed positive overlap `c`, independent of t
 The second theorem removes only the stated balanced moderate-overlap band. It does not remove the high-`k` half, overlaps below seven, or overlaps with `c+1>p/3`. The separately proved extreme-row packet `A2_RANK3_EXTREME_BOUNDARY_MIXED_PLANE_ELIMINATION_V1.md` treats coordinate rigidity on a different part of the surviving strip and preserves its exact scalar-route obstruction.
 
 All theorem authority here is the symbolic occurrence-level argument. No full exceptional-type closure, first-corridor theorem, or `D_3(C_7^3)` value is claimed.
+
+An independently tasked proof-audit agent read the complete note and checked the doubling occurrences, exact strip endpoint, selector parity, both new-value capacities, every donor capacity, coefficient identities, and the short-score inequality. This is internal mathematical review, not an external referee or a novelty certificate.
