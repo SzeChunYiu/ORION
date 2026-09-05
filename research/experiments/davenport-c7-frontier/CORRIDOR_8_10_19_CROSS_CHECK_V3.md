@@ -75,11 +75,11 @@ already on record: `(8,10,19)` → 0 / 24 / 538 and `(9,9,19)` → 1,436 / 3,971
    538 pairs — about 1.24 s per pair. At 48,353 pairs that is ≈ **17 hours single-threaded**, and
    more here because `|U| = 9` against 8 there. The tool has no sharding, and this environment
    reclaims containers on idle, so the run does not complete.
-2. **The fourpack tool's `(9,9,19)` path is itself unvalidated.** After the bounds fix it
-   reproduces all three `(8,10,19)` branches exactly (0; 24/24/24/0; 538/2,772/2,772/0), but the
-   `(9,9,19)` re-validation against the recorded 1,436 / 6,394 and 3,971 / 5,518 is a one-to-two
-   hour run that was repeatedly killed before finishing. **No `(9,9,19)` four-pack number in this
-   record has been reproduced on the fixed build.**
+2. **The fourpack tool's `(9,9,19)` path is now partly validated.** After the bounds fix it
+   reproduces all three `(8,10,19)` branches exactly (0; 24/24/24/0; 538/2,772/2,772/0), and
+   `(9,9,19)` `a = 3` likewise reproduces the record exactly — **1,436 pairs, 6,394 candidates,
+   6,394 four-pack, 0 without** — so the `(9,9,19)` code path itself is sound on the fixed build.
+   `a = 2` (recorded 3,971 / 5,518) is the remaining check.
 
 So the branch is now *finishable* — the committed tools could not previously even express the
 `(9,9,19)` case — but it is not finished. Anyone resuming it should validate the fourpack tool on
