@@ -38,3 +38,40 @@ This packet has twice recorded a limit that dissolved on measurement — the fla
 ## Claim ceiling
 
 A scale measurement on one host with one algorithm. It does not prove `D_2(C_5^4)` is undecidable by computer, and says nothing about `D_2(C_3^5)`, whose scale is unmeasured. It is evidence that the post-hoc-deduplication approach that worked at rank three does not extend to rank four.
+
+---
+
+## V6 addendum: re-measured after the 3.5× enumerator speedup (2026-09-05)
+
+The `D_2(C_3^5)` sweep finished (`D2_C3_5_DECIDED_V6.md`) partly because
+`tools/enum_rank_generic_v3.c` got 3.5× faster — the candidate test was hoisted out of the
+extension loop. That raised the obvious question of whether `D_2(C_5^4)` had also come into
+range. **It has not**, and this is the measurement rather than an assertion.
+
+Deciding `D_2(C_5^4) ∈ [26,27]` means ruling out `|S| = 26` with `z(S) ≤ 1` over `C_5^4`. Here
+`D(C_5^4) = 17`, so every block has length `≥ 26 − 16 = 10` and the prune is "no zero-sum of
+length `≤ 9`"; `N = 5^4 = 625`.
+
+    ./enumr 5 4 26 9 --shard 0 256 --progress
+
+One shard of **256**, on the post-speedup binary:
+
+| after | nodes | leaves | deepest depth |
+|---|---|---|---|
+| 155 s | 17,825,792 | 0 | **16** of 26 |
+
+115K nodes/s, and after 17.8 million nodes the search has only reached depth 16 — ten levels
+short of a leaf, in one two-hundred-and-fifty-sixth of the space. For contrast, the entire
+`C_3^5` decision took 2.73×10⁹ nodes.
+
+The shard did not finish, so this bounds the cost only from below; on the shape of the frontier a
+full run is plausibly two orders of magnitude beyond the `C_3^5` sweep, i.e. days of continuous
+four-core time. In an environment whose containers are reclaimed on idle, that is not a run that
+completes.
+
+So the earlier conclusion stands, now for a sharper reason: the obstacle is not deduplication
+overhead but the raw size of the `s = 9`, `N = 625`, `L = 26` tree. The speedup that decided
+`C_3^5` moves this by a constant, and a constant is not what is missing. What would change it is
+the same thing named before — orderly generation / canonical construction, which prunes by
+isomorphism rather than by re-deriving each branch — or an upper-bound theorem sharp enough to
+close `[26,27]` without enumeration at all.
