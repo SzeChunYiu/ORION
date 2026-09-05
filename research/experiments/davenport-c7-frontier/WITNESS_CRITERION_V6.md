@@ -132,7 +132,7 @@ those two are exact values of `D_2`, the construction class is provably optimal 
 
 | group | Thm 2 bound | **Theorem W bound** | optimal family (all `m_A = 1` unless shown) |
 |---|---|---|---|
-| `C_3^5` | `≥ 16` | **`≥ 17`** | the six triples through `1`: `{1,i,j}`, `2 ≤ i < j ≤ 5` |
+| `C_3^5` | `≥ 16` | **`= 17`** (exact, `D2_C3_5_DECIDED_V6.md`) | the six triples through `1`: `{1,i,j}`, `2 ≤ i < j ≤ 5` |
 | `C_3^6` | `≥ 19` | **`≥ 20`** | `123, 124, 125, 345, 136, 146, 156` |
 | `C_5^4` | `≥ 25` | **`≥ 26`** | `12, 13, 124^2, 14, 134^2, 234^2` |
 | `C_7^4` | `≥ 36` | **`≥ 37`** | `12, 13, 23^2, 123, 124^4, 234^3` |

@@ -27,6 +27,7 @@ least `ℓ` such that every sequence of length `ℓ` has `z ≥ k`.
 | Prop 4.3′ short-atom bound | proved | `SHORT_ATOM_BOUND_UNIFORM_V4.md` | `verify_short_atom_bound_v4.py` |
 | Two-sided `D_2(C_p^r)` framework, all ranks | per-`(p,r)` | `D2_ALL_RANKS_V3.md` *(superseded in part)* | `tools/d2_rank_bounds_v3.py` |
 | **Witness-coordinate criterion** — Theorems W, W_t, X, X′, Cor. 1–5 | proved | `WITNESS_CRITERION_V6.md` | `verify_witness_criterion_v6.py` |
+| **`D_2(C_3^5) = 17`** (2.7e9-node sweep, zero leaves) | proved | `D2_C3_5_DECIDED_V6.md` | witness in `verify_witness_criterion_v6.py` |
 
 ## The current frontier: `WITNESS_CRITERION_V6.md`
 
@@ -60,7 +61,7 @@ Start here. For the algebraic families used for `D_k` lower bounds,
    §7c shows the elementary route cannot reach a closed form.
 2. A uniform-in-`(p,r)` proof of the rank-`r` upper bound — still per-`(p,r)` certificates.
 3. `D_3(C_p^3)` for `p ≥ 11`, blocked on flat-triple elimination.
-4. Whether `D_2(C_3^5) = 17` exactly (an exhaustive sweep is the deciding computation).
+4. `D_2(C_5^4)`, bracketed `[26, 27]`. (`D_2(C_3^5) = 17` is now decided — `D2_C3_5_DECIDED_V6.md`.)
 
 ## Claim ceiling
 
