@@ -29,6 +29,7 @@
 #ifndef KU
 #define KU 8          /* |U| */
 #endif
+#define SU 7          /* T is 7-short-free: |T| = 37, D = 19, so blocks are >= 8.  Same both corridors. */
 static int addt[N][N], neg[N];
 static int idx3(int x,int y,int z){ return x+P*y+P*P*z; }
 static void build(void){
@@ -115,23 +116,23 @@ int main(int argc,char**argv){
             if(s==0){
                 npairs++;
                 /* ---- stage 1b: enumerate 8-atoms U with T = U.V.W 7-short-free ---- */
-                static unsigned char SVW[KU][N], FU[KU][N];
+                static unsigned char SVW[SU+1][N], FU[SU+1][N];
                 memset(SVW,0,sizeof(SVW)); memset(FU,0,sizeof(FU));
                 /* sums by size <=7 of the multiset V.W */
-                static unsigned char cur[KU][N], nxt[KU][N];
+                static unsigned char cur[SU+1][N], nxt[SU+1][N];
                 memset(cur,0,sizeof(cur)); cur[0][0]=1;
                 int items[64], ni=0;
                 for(int i=0;i<4;i++) for(int q=0;q<Wm[i];q++) items[ni++]=Wel[i];
                 for(int i=0;i<KV;i++) items[ni++]=V[i];
                 for(int t=0;t<ni;t++){
                     memcpy(nxt,cur,sizeof(cur));
-                    for(int i=7;i>=1;i--) for(int x=0;x<N;x++) if(cur[i-1][x]) nxt[i][addt[x][items[t]]]=1;
+                    for(int i=SU;i>=1;i--) for(int x=0;x<N;x++) if(cur[i-1][x]) nxt[i][addt[x][items[t]]]=1;
                     memcpy(cur,nxt,sizeof(cur));
                 }
                 memcpy(SVW,cur,sizeof(cur));
-                for(int i=0;i<=7;i++) for(int j=0;j+i<=7;j++) for(int x=0;x<N;x++) if(SVW[j][x]) FU[i][neg[x]]=1;
+                for(int i=0;i<=SU;i++) for(int j=0;j+i<=SU;j++) for(int x=0;x<N;x++) if(SVW[j][x]) FU[i][neg[x]]=1;
                 /* DFS over U */
-                static unsigned char ur[KU+1][KU][N];
+                static unsigned char ur[KU+1][SU+1][N];
                 memset(ur,0,sizeof(ur)); ur[0][0][0]=1;
                 int U[KU], ust[KU+1], e=0; ust[0]=1;
                 while(e>=0){
@@ -153,8 +154,8 @@ int main(int argc,char**argv){
                     int gg=ust[e];
                     if(gg>=N){ e--; if(e>=0) ust[e]++; continue; }
                     int ok=1;
-                    for(int i=0;i<=7;i++) memcpy(ur[e+1][i],ur[e][i],N);
-                    for(int i=7;i>=1&&ok;i--)
+                    for(int i=0;i<=SU;i++) memcpy(ur[e+1][i],ur[e][i],N);
+                    for(int i=SU;i>=1&&ok;i--)
                         for(int x=0;x<N;x++) if(ur[e][i-1][x]){ int y=addt[x][gg];
                             ur[e+1][i][y]=1; if(FU[i][y]) ok=0; }
                     if(ok){ U[e]=gg; e++; ust[e]=gg; } else ust[e]++;
@@ -165,8 +166,8 @@ int main(int argc,char**argv){
         int gg=st[d];
         if(gg>=N){ d--; if(d>=0) st[d]++; continue; }
         int ok=1;
-        for(int i=0;i<=9;i++) memcpy(reach[d+1][i],reach[d][i],N);
-        for(int i=9;i>=1&&ok;i--)
+        for(int i=0;i<=SV;i++) memcpy(reach[d+1][i],reach[d][i],N);
+        for(int i=SV;i>=1&&ok;i--)
             for(int x=0;x<N;x++) if(reach[d][i-1][x]){ int y=addt[x][gg];
                 reach[d+1][i][y]=1; if(F[i][y]) ok=0; }
         if(ok){ V[d]=gg; d++; st[d]=gg; } else st[d]++;
