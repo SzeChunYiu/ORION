@@ -259,6 +259,49 @@ So the two bounds squeeze from opposite directions. Theorem X′ says the sets m
 same way — they cannot share a common core. That tension is exactly why the extremal families in
 §8 are irregular, and why `M*` resists a closed form.
 
+### 7b. Corollary 5: multiplicity is almost never repeated at `p = 3`
+
+Pairing `b` against **two copies of one set**, `b′ = 2e_A` (available whenever `m_A ≥ 2`), needs a
+coordinate `i ∈ A` with `⟨c(b)_i⟩ ≠ 0` and `⟨c(b)_i⟩ + 2 ≤ p`:
+
+> **Corollary 5.** If `m_A ≥ 2` then every nonzero `b ≤ m − 2e_A` has a coordinate `i ∈ A` with
+> `1 ≤ ⟨c(b)_i⟩ ≤ p−2`.
+
+At `p = 3` the window `[1, p−2]` collapses to the single value `1`, and that is rigid enough to
+force a global structure. Take `b = 2e_C` for any other set with `m_C ≥ 2`: its load is `2` on `C`
+and `0` elsewhere, so it never takes the value `1` and no coordinate can witness. Hence
+
+> **Corollary 5a (`p = 3` only).** At most one set of an admissible family over `C_3^r` has
+> multiplicity `≥ 2` — so `Σ_A m_A ≤ |F| + 2`.
+
+For `p ≥ 5` the same `b = 2e_C` is harmless (`2 ≤ p−2`), and the contrast is visible in the data:
+every `C_3^r` optimum carries at most one repeated set, while the `C_5^4` and `C_7^4` optima each
+carry **three**. Verified directly — two sets at multiplicity 2 are inadmissible at `p = 3` and
+admissible at `p = 5` — and on 134 random admissible families over `C_3^r`, none had two.
+
+The same pairing with `b = e_C + e_D` gives a second `p = 3` consequence: if `m_A ≥ 2` then the
+traces `C ∩ A` over the other members of `V` are **pairwise distinct**, since `A ∩ (C Δ D) =
+(A∩C) Δ (A∩D)` must be nonempty.
+
+### 7c. Negative: the necessary conditions do not add up to the criterion
+
+Corollary 1 (intersecting) and Theorem X (no proper zero-sum in `V`) are both necessary and both
+purely combinatorial, so it is natural to hope they *characterise* admissibility. They do not.
+Let `B(r,p)` be the largest `|V|` over multisets of 0/1 vectors whose supports pairwise intersect
+and which have no proper nonempty zero-sum — a quantity defined without any reference to blocks or
+packing. Then `M* ≤ B`, but the gap is real and growing:
+
+| `r` | `M*(r,3)` | `B(r,3)` | `D(C_3^r) = 2r+1` |
+|---|---|---|---|
+| 2 | 3 | 4 | 5 |
+| 3 | 4 | 6 | 7 |
+| 4 | 5 | **9** | 9 |
+
+At `r = 4` the combinatorial ceiling has already risen to Theorem X's bound `2r+1` while the truth
+sits at `r+1`. So the carry structure of Theorem W is doing work that intersectingness and
+zero-sum-freeness cannot do between them, and a proof of `M*(r,3) = r+1` will have to use the
+criterion itself rather than these two shadows of it.
+
 ## 8. Negative: the extremal families have no uniform shape
 
 `M*(r,3) = r+1` is clean, but the families achieving it are not. Two natural uniform shapes
