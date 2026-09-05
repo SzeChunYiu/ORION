@@ -10,7 +10,7 @@ For a hypothetical zero-sum length-37 obstruction `B` with `z(B)<=3`:
 
 - `B` is 7-short-zero-free;
 - `|supp(B)|>=8` by the complete support-7 closure;
-- every three-atom factorization has one of six length triples:
+- a shortest-first three-atom factorization exists with one of six candidate length triples:
   `(8,10,19)`, `(9,9,19)`, `(9,10,18)`, `(9,11,17)`, `(9,12,16)`, `(10,10,17)`;
 - a length-19 atom has projectively separated support by the Gao--Geroldinger maximal zero-sumfree theorem;
 - the support-8 layer now has the projective deficit reduction in `SUPPORT8_PROJECTIVE_DEFICIT_REDUCTION_V1.md`.
@@ -45,7 +45,7 @@ Research discriminator: finish support 8 before attempting any global 343-elemen
 
 ## Scene 3: block monoids / factorization theory
 
-The six atom-length triples are sets-of-lengths constraints in the block monoid `B(C_7^3)`. A counterexample is a block with a length-3 factorization but no length-4 factorization. Products of two atoms inside the three-atom factorization must avoid any refactorization into three atoms.
+The six atom-length triples form a list containing an available shortest-first factorization in the block monoid `B(C_7^3)`; they are not proved to describe every factorization. See `CORRIDOR_FACTORIZATION_QUANTIFIER_AUDIT_V1.md` for this correction. A counterexample is a block with a length-3 factorization but no length-4 factorization. Products of two atoms inside the selected three-atom factorization must avoid any refactorization into three atoms.
 
 This is the natural home for:
 
