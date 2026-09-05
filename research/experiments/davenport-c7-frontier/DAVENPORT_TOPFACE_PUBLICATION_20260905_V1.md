@@ -55,5 +55,4 @@ After the first receipt was published, work continued from `c6847e681c388eff6e50
 
 The generalized-selector tree was verified as `98815c184e76dc96beaf13b4834b0666d656465b` before creating its published commit. The theorem proves an explicit mixed certificate and the necessary residual bound `(c+1)^2<=bp` when `p>=10b`; for `b>=7`, the prior balanced-band theorem additionally forces `c>=2b-1`. It does not eliminate the intermediate range or replace the inverse hypothesis below its threshold.
 
-This receipt addendum is published as the next child of that selector commit. Both branch updates require the fresh precondition `c6847e681c388eff6e502f316a36b42954601bf3` and remain nonforced. The complete continuation then contains 20 commits after the original base `776fb3c42`, counting the proof advances, quantifier correction, checkpoints, and publication receipts.
-
+This receipt addendum is published as the next child of that selector commit. Both branch updates require the fresh precondition `c6847e681c388eff6e502f316a36b42954601bf3` and remain nonforced. At checkpoint `8c8559f66`, the continuation contains 20 commits after the original base `776fb3c42`, counting the proof advances, quantifier correction, checkpoints, and publication receipts.
