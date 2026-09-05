@@ -51,7 +51,7 @@ The same pipeline runs on the other length-19 corridor with `|V| = 9`, pair **8*
 |---|---|---|---|---|
 | 3 | 1,436 | 6,394 | **6,394** | **0** |
 | 2 | 3,971 | 5,518 | **5,518** | **0** |
-| 1 | **48,353** | — | — | stage 2 running (V6) |
+| 1 | **48,353** | — | — | stage 2 NOT run — see V6 note |
 
 > **Theorem (partial).** No length-37 obstruction over `C_7^3` has a `(9,9,19)` factorization whose 19-atom is of canonical support-four type `a = 3` or `a = 2`.
 
@@ -63,8 +63,27 @@ corridor is selected at compile time (`-DKV= -DSV= -DKU=`), defaults unchanged, 
 parameterisation was validated against **every** count already on record before being trusted for
 a new one — `(8,10,19)`: 0 / 24 / 538, and `(9,9,19)`: 1,436 / 3,971, all reproduced exactly.
 
-Stage 2 (the four-pack partition test on the extended candidates) is the remaining work; at 48,353
-pairs it is roughly twelve times the `a = 2` branch.
+**Stage 2 was not run, and this is what is and is not established.**
+
+*Established.* The companion count 48,353 comes from `tools/verify_corridor_8_10_19_pairs_v3.c`
+compiled with `-DK=9 -DS=8`, and that tool's parameterisation is validated on **every** count
+already on record: `(8,10,19)` → 0 / 24 / 538 and `(9,9,19)` → 1,436 / 3,971, all exact.
+
+*Not established.* The four-pack stage for this branch. Two separate obstacles, both measured:
+
+1. **Cost.** `tools/verify_corridor_8_10_19_fourpack_v3.c` on `(8,10,19)` `a = 1` took 667 s for
+   538 pairs — about 1.24 s per pair. At 48,353 pairs that is ≈ **17 hours single-threaded**, and
+   more here because `|U| = 9` against 8 there. The tool has no sharding, and this environment
+   reclaims containers on idle, so the run does not complete.
+2. **The fourpack tool's `(9,9,19)` path is itself unvalidated.** After the bounds fix it
+   reproduces all three `(8,10,19)` branches exactly (0; 24/24/24/0; 538/2,772/2,772/0), but the
+   `(9,9,19)` re-validation against the recorded 1,436 / 6,394 and 3,971 / 5,518 is a one-to-two
+   hour run that was repeatedly killed before finishing. **No `(9,9,19)` four-pack number in this
+   record has been reproduced on the fixed build.**
+
+So the branch is now *finishable* — the committed tools could not previously even express the
+`(9,9,19)` case — but it is not finished. Anyone resuming it should validate the fourpack tool on
+`(9,9,19)` `a = 3` and `a = 2` first, then shard `a = 1` across cores.
 
 Across both corridors that is **11,912 candidates with no obstruction**, on top of the 2,796 above.
 
