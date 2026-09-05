@@ -43,4 +43,3 @@ The final document checks passed for all nine new notes: local proof-reference e
 The packet proves the complete rank-two type-two saturated boundary elimination, the whole positive `H-2` and `H-3` layers, the type-one quarter layer, and an infinite congruence family, together with generalized quotient and rigid-power structure. The earlier `H-1` closure now also has a shorter structural proof. Failed routes and intermediate reductions remain preserved.
 
 The full first corridor, `D_3(C_7^3)`, and the generalized Davenport formula remain unproved. See `DAVENPORT_QUOTIENT_BUDGET_CHECKPOINT_20260905_V1.md` for precise hypotheses, dependencies, and remaining gates.
-
