@@ -283,6 +283,47 @@ in which the constraint involves *fractional parts* of the loads, hence is not a
 programme, which is why the load-capped LP of Theorem 2 (whose optimum is the fractional
 matching number of an intersecting family) undershoots.
 
+## 9. All `k` at once: Theorem W_t
+
+Nothing in §2 used `t = 2`. A packing of size `t` is a set of `t` pairwise disjoint blocks
+`B(b^{(1)}),…,B(b^{(t)})`, which by Lemmas 1 and 2 means `Σ_j b^{(j)} ≤ m` together with
+`Σ_j a_i(b^{(j)}) ≤ p−1` for every `i` — the `t` `e`-parts must add with **no carry**. So:
+
+> **Theorem W_t.** For `S` as in `(†)`,
+>
+>     z(S) ≥ t   ⟺   there are b^{(1)},…,b^{(t)} ≠ 0 with Σ_j b^{(j)} ≤ m
+>                    and  Σ_j ⟨−(M b^{(j)})_i⟩ ≤ p−1  for every coordinate i.
+>
+> Theorem W is the case `t = 2`, where the condition rearranges into the witness form of §3.
+
+Writing `M*_k(r,p)` for the largest `Σ_A m_A` admitting no such `k`-tuple,
+
+    D_k(C_p^r)  ≥  r(p−1) + M*_k(r,p) + 1.
+
+**This reproduces every exact multiwise value the packet has, across three different `k`:**
+
+| value | source | `r(p−1)` | `M*_k` computed | bound obtained | known |
+|---|---|---|---|---|---|
+| `D_2(C_3^2)` | exhaustive (V6) | 2 | 5 | 8 | 8 |
+| `D_2(C_5^2)` | `3p−1` | 4 | 9 | 14 | 14 |
+| `D_2(C_7^2)` | `3p−1` | 6 | 13 | 20 | 20 |
+| `D_2(C_3^3)` | exhaustive (V6) | 6 | 4 | 11 | 11 |
+| `D_2(C_5^3)` | `(9p−5)/2` | 12 | 7 | 20 | 20 |
+| `D_2(C_7^3)` | `(9p−5)/2` | 18 | 10 | 29 | 29 |
+| `D_2(C_3^4)` | exhaustive | 8 | 5 | 14 | 14 |
+| `D_3(C_5^3)` | `D3_C5_*` | 12 | **12** | **25** | 25 |
+| `D_3(C_7^3)` | `HYPOTHESIS_Z_PROVED_V3` | 18 | **17** | **36** | 36 |
+| `D_4(C_5^3)` | Theorem T (`D4_C5_DECIDED_V6`) | 12 | **17** | **30** | 30 |
+
+Ten exact values, three ranks, three values of `k`, four primes — all recovered by one criterion,
+with no case fitted. The three bottom rows are the packet's hardest theorems (`D_3(C_7^3) = 36`
+took the corridor argument plus a proved Hypothesis `(Z)`; `D_4(C_5^3) = 30` took a
+5.9-billion-node sweep), and each drops out here as a small search over set families.
+
+That is the strongest evidence available from this host that the algebraic construction class is
+not merely a source of lower bounds but is **extremal** for `D_k(C_p^r)` — every known value is
+attained inside it.
+
 ## Claim ceiling
 
 Theorems W, X and X′ and the three corollaries are proved above and hold for all `(p,r)`
