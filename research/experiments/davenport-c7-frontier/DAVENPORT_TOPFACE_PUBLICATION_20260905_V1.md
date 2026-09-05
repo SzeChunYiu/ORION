@@ -44,3 +44,16 @@ Mathematical checks were local to this continuation: actual capacities, exact st
 
 The proved closures and precise residual gates are recorded in `DAVENPORT_TOPFACE_CHECKPOINT_20260905_V1.md`. Failed routes and the corrected corridor quantifier remain committed. In particular the full first corridor, `D_3(C_7^3)`, and the generalized Davenport numerical formula remain unproved.
 
+## Continued generalized selector
+
+After the first receipt was published, work continued from `c6847e681c388eff6e502f316a36b42954601bf3`. A fresh 29-head audit confirmed that live and isolated branches both held that commit, while every other Davenport branch was unchanged.
+
+| Follow-on object | Local commit | Published commit |
+|---|---|---|
+| First publication receipt and fraction markup repair | `5a0fbd212346af3d5f2698d41b89094c7a64e0b4` | `c6847e681c388eff6e502f316a36b42954601bf3` |
+| General type-two mixed circle selector and checkpoint extension | `80df3c4582db015cd225ba2881af6a536a17bc99` | `f8287ea15066d24081b32eeb45b14e5f6923bde4` |
+
+The generalized-selector tree was verified as `98815c184e76dc96beaf13b4834b0666d656465b` before creating its published commit. The theorem proves an explicit mixed certificate and the necessary residual bound `(c+1)^2<=bp` when `p>=10b`; for `b>=7`, the prior balanced-band theorem additionally forces `c>=2b-1`. It does not eliminate the intermediate range or replace the inverse hypothesis below its threshold.
+
+This receipt addendum is published as the next child of that selector commit. Both branch updates require the fresh precondition `c6847e681c388eff6e502f316a36b42954601bf3` and remain nonforced. The complete continuation then contains 20 commits after the original base `776fb3c42`, counting the proof advances, quantifier correction, checkpoints, and publication receipts.
+
