@@ -76,8 +76,9 @@ int main(int argc,char**argv){
     for(int s=1;s<(1<<r);s++){ int pc=0; for(int d=0;d<r;d++) pc+=(s>>d)&1;
         if(pc<MINSZ) continue;
         for(int d=0;d<r;d++) vec[NV][d]=(s>>d)&1; NV++; }
-    long cap=1; for(int i=0;i<20;i++){ cap*= (p+1); if(cap>4000000) break; }
-    boxb=malloc(sizeof(int)*20*4000000L); A=malloc(10L*4000000L);
+    long cap=1; for(int i=0;i<20 && cap<=400000;i++) cap*=(p+1);
+    if(cap>400000) cap=400000;                       /* box is bounded by prod(m_A+1) */
+    boxb=malloc(sizeof(int)*20*cap); A=malloc(10L*cap);
     if(!boxb||!A){ fprintf(stderr,"oom\n"); return 2; }
     best=0; nc=0; dfs(0,0);
     printf("p=%d r=%d k=%d: M*_k = %d  =>  |S| = %d  =>  D_%d(C_%d^%d) >= %d\n",
