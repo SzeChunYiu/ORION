@@ -14,8 +14,11 @@
 static int p, r, NV, ALL=0, CAP=24, MINSZ=0;
 static int (*vec)[MAXR];             /* sized to the actual vector count, not a fixed 2048 */
 static int chosen[16], mult[16], nc, best, bestc[16], bestm[16], bestn;
-static int boxb[100000][16], nbox;
-static unsigned int msk[100000][MAXP];      /* msk[b][v] = coords whose load residue is v */
+#ifndef BOXCAP
+#define BOXCAP 100000  /* max points in the multiplicity box; overflow is fatal, never silent */
+#endif
+static int boxb[BOXCAP][16], nbox;
+static unsigned int msk[BOXCAP][MAXP];      /* msk[b][v] = coords whose load residue is v */
 
 static void build_box(void){
     nbox=0;
@@ -28,7 +31,15 @@ static void build_box(void){
             for(int v=0;v<p;v++) msk[nbox][v]=0;
             for(int i=0;i<r;i++) msk[nbox][load[i]%p] |= 1u<<i;
             memcpy(boxb[nbox],b,sizeof(int)*nc);
-            if(++nbox>=100000) return;
+            /* The box must fit entirely: a truncated box makes feasible() test only some
+             * of the pairs, which can return a false FEASIBLE and silently OVERREPORT M*.
+             * Never truncate quietly -- abort so the caller sees it. */
+            if(++nbox>=BOXCAP){
+                fprintf(stderr,"FATAL: box exceeded BOXCAP=%d at nc=%d (sum m too large for "
+                        "this build); M* would be overreported.  Raise BOXCAP and rerun.\n",
+                        BOXCAP, nc);
+                exit(3);
+            }
         }
         int i=0; while(i<nc){ if(++b[i]<=mult[i]) break; b[i]=0; i++; }
         if(i==nc) break;
