@@ -28,6 +28,7 @@ least `ℓ` such that every sequence of length `ℓ` has `z ≥ k`.
 | Two-sided `D_2(C_p^r)` framework, all ranks | per-`(p,r)` | `D2_ALL_RANKS_V3.md` *(superseded in part)* | `tools/d2_rank_bounds_v3.py` |
 | **Witness-coordinate criterion** — Theorems W, W_t, X, X′, Cor. 1–5 | proved | `WITNESS_CRITERION_V6.md` | `verify_witness_criterion_v6.py` |
 | **`D_2(C_3^5) = 17`** (2.7e9-node sweep, zero leaves) | proved | `D2_C3_5_DECIDED_V6.md` | witness in `verify_witness_criterion_v6.py` |
+| Positional code dictionary; Theorem Y (star-free above `D`) | proved | `CODE_DICTIONARY_V7.md` | `verify_code_dictionary_v7.py` |
 
 ## The current frontier: `WITNESS_CRITERION_V6.md`
 
@@ -60,6 +61,10 @@ Start here. For the algebraic families used for `D_k` lower bounds,
    (`D_2(C_3^7) ≥ 22`). `M*(4,p) = ⌊9p/5⌋` for `p = 3,5,7` still stands as an observation.
    §7c shows the elementary route cannot reach a closed form.
 2. A uniform-in-`(p,r)` proof of the rank-`r` upper bound — still per-`(p,r)` certificates.
+   `CODE_DICTIONARY_V7.md` §4 restates this as a question about a named class of set systems:
+   how large can `n` be if the binary supports of `ker M` form an intersecting, star-free
+   antichain with all members of size in `[n − r(p−1), r(p−1)+1]`? The two size constraints alone
+   give only `D_2 ≤ 2D`, weak by 5 at `C_3^5`.
 3. `D_3(C_p^3)` for `p ≥ 11`, blocked on flat-triple elimination.
 4. `D_2(C_5^4)`, bracketed `[26, 27]`. (`D_2(C_3^5) = 17` is now decided — `D2_C3_5_DECIDED_V6.md`.)
 

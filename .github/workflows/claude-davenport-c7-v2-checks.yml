@@ -64,3 +64,5 @@ jobs:
         run: python verify_d4_c5_corridor_v4.py && python verify_special_corridor_v6.py && python verify_d3_bridge_negative_v6.py && python verify_d4_flat_bridge_v6.py
       - name: V6 witness-coordinate criterion -- Theorems W, W_t, X, X' and Corollaries 1-5 (12 asserted steps)
         run: python verify_witness_criterion_v6.py
+      - name: V7 positional code dictionary -- Theorem C, Lemma A, Corollary C1, Theorem Y (7 asserted steps)
+        run: python verify_code_dictionary_v7.py
