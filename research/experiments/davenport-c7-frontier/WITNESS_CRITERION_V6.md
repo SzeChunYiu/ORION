@@ -151,12 +151,24 @@ admissible, because every split is obstructed by a *carry* rather than by a smal
 
 fits every computed value at `r ≤ 5`:
 
-| `r` | `ν_r` | `M*(r,3)` | `M*(r,5)` | `M*(r,7)` |
-|---|---|---|---|---|
-| 2 | `1` | 3 | 5 | 7 |
-| 3 | `3/2` | 4 | 7 | 10 |
-| 4 | `9/5` | 5 | 9 | 12 |
-| 5 | `2` | 6 | 10 | — |
+| `r` | `ν_r` | `M*(r,3)` | `M*(r,5)` | `M*(r,7)` | `M*(r,11)` |
+|---|---|---|---|---|---|
+| 2 | `1` | 3 | 5 | 7 | — |
+| 3 | `3/2` | 4 | 7 | 10 | — |
+| 4 | `9/5` | 5 | 9 | 12 | **19** |
+| 5 | `2` | 6 | 10 | — | — |
+
+**V7: `M*(4,11) = 19`** (exhaustive; family `(1100)¹ (1010)¹ (1110)⁶ (1001)³ (1101)⁴ (1011)⁴`)
+confirms `ν_4 = 9/5` at a fourth prime — `⌊9·11/5⌋ = 19`.
+
+**V7: the four constants are one formula.** `ν_r = 3(r−1)/(r+1)` gives exactly `1, 3/2, 9/5, 2`
+for `r = 2, 3, 4, 5`, so
+
+    M*(r,p) = ⌊ 3(r−1)p / (r+1) ⌋
+
+reproduces **12 of the 14** computed optima — every one at `r ≤ 5`. It **fails at `(6,3)` and
+`(7,3)`**, predicting 6 where 7 is computed, so it is an observation with its failures attached
+rather than a pattern to lean on. See `CLOSED_FORM_CONJECTURE_V7.md` §3.
 
 **`M*(r,3) = r+1` is refuted.** It held for `2 ≤ r ≤ 6`, and the natural reading — that
 `D_2(C_3^r) = 3r+2` for all `r`, matching the three ranks where the value is known — is **false on

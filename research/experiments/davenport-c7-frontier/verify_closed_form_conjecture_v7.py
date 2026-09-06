@@ -44,7 +44,8 @@ def D(p, r):
 
 # recorded construction optima over 0/1-indicator families, WITNESS_CRITERION_V6.md sections 6, 6b
 MSTAR = {(2, 3): 3, (2, 5): 5, (2, 7): 7, (3, 3): 4, (3, 5): 7, (3, 7): 10,
-         (4, 3): 5, (4, 5): 9, (4, 7): 12, (5, 3): 6, (5, 5): 10, (6, 3): 7, (7, 3): 7}
+         (4, 3): 5, (4, 5): 9, (4, 7): 12, (4, 11): 19, (5, 3): 6, (5, 5): 10,
+         (6, 3): 7, (7, 3): 7}
 
 KNOWN = ([(p, 2, k, rank2(p, k), "rank-2 formula (literature)") for p in (3, 5, 7, 11)
           for k in (2, 3, 4, 5)]
@@ -107,14 +108,13 @@ def step4():
         d = conj(p, r, 2) - lb
         assert d >= 0, (r, p, d)
         (achieve if d == 0 else short).append((r, p, int(d)))
-    assert len(achieve) == 10 and len(short) == 3
-    assert all(d == 1 for _, _, d in short)
-    assert sorted((r, p) for r, p, _ in short) == [(4, 7), (5, 5), (7, 3)]
+    assert len(achieve) == 10 and len(short) == 4
+    assert sorted((r, p) for r, p, _ in short) == [(4, 7), (4, 11), (5, 5), (7, 3)]
+    assert dict(((r, p), d) for r, p, d in short)[(4, 11)] == 2, "the (4,11) gap is 2, not 1"
     print(f"4. the construction r(p-1)+M*+1 reaches the conjecture at {len(achieve)} of "
-          f"{len(MSTAR)} computed")
-    print("   (r,p) and falls short by exactly 1 at the other three: (7,3), (4,7), (5,5).")
-    print("   M* is an optimum over a family class, so a shortfall does not refute the")
-    print("   conjecture -- but three shortfalls of exactly one is the open tension")
+          f"{len(MSTAR)} computed (r,p)")
+    print("   and falls short at (7,3), (4,7), (5,5) by 1 and at (4,11) by 2.  M* is an")
+    print("   optimum over a family class, so a shortfall does not refute the conjecture")
 
 
 def step5():
@@ -210,8 +210,37 @@ def step8():
     print("   extremal families violate it, so it cannot be why q/2 is the critical scale")
 
 
+def step9():
+    """at rank 4 the shortfall grows with p, so it is not a near-miss."""
+    gaps = []
+    for p_ in (3, 5, 7, 11):
+        m = MSTAR[(4, p_)]
+        gaps.append(int(conj(p_, 4, 2) - (4 * (p_ - 1) + m + 1)))
+    assert gaps == [0, 0, 1, 2], gaps
+    # the two candidate patterns for M*(4,p) separate at p=7 and p=11
+    for p_ in (3, 5, 7, 11):
+        assert MSTAR[(4, p_)] == 9 * p_ // 5, p_
+    assert MSTAR[(4, 7)] != 4 * 6 // 2 + 1 and MSTAR[(4, 11)] != 4 * 10 // 2 + 1
+    print("9. the rank-4 shortfall runs 0, 0, 1, 2 across p = 3, 5, 7, 11 -- it GROWS, so the")
+    print("   'short by exactly one, so the class must be incomplete' reading is dead.")
+    print("   floor(9p/5) matches all four; the conjecture's implied M* fails at p = 7 and 11")
+
+
+def step10():
+    """nu_r = 3(r-1)/(r+1) explains the four recorded constants, and fails at r=6,7."""
+    for r_, num, den in [(2, 1, 1), (3, 3, 2), (4, 9, 5), (5, 2, 1)]:
+        assert F(3 * (r_ - 1), r_ + 1) == F(num, den), r_
+    miss = [(r_, p_) for (r_, p_), m in MSTAR.items()
+            if (3 * (r_ - 1) * p_) // (r_ + 1) != m]
+    assert sorted(miss) == [(6, 3), (7, 3)], miss
+    print(f"10. nu_r = 3(r-1)/(r+1) gives exactly 1, 3/2, 9/5, 2 for r = 2..5, so")
+    print(f"    M* = floor(3(r-1)p/(r+1)) fits {len(MSTAR)-len(miss)} of {len(MSTAR)} computed")
+    print("    optima -- every one at r <= 5 -- and fails at (6,3) and (7,3).  An observation")
+    print("    with its failures attached, not a pattern to lean on")
+
+
 if __name__ == "__main__":
-    step1(); step2(); step3(); step4(); step5(); step6(); step7(); step8()
+    step1(); step2(); step3(); step4(); step5(); step6(); step7(); step8(); step9(); step10()
     print()
     print("CONJECTURE ARITHMETIC VERIFIED.  D_k(C_p^r) = (3/2) r(p-1) + (k-2) p + 2 agrees")
     print("with all 25 known exact values.  It is a conjecture, not a theorem.")

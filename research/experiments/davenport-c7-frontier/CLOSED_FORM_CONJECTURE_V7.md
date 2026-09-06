@@ -58,85 +58,87 @@ so it is compatible with Olson and the complement lemma (`CODE_DICTIONARY_V7.md`
 
 ---
 
-## 3. The tension — stated plainly
+## 3. The tension — and it has got worse
 
 The conjecture is equivalent, through `D_2 = r(p−1) + M* + 1`, to `M*(r,p) = r(p−1)/2 + 1`. The
-packet's computed construction optima disagree at three points:
+computed construction optima disagree, and **the disagreement grows with `p`**:
 
-| `(r,p)` | computed `M*` | conjecture needs | construction gives | conjecture says |
-|---|---|---|---|---|
-| `(7,3)` | 7 | 8 | `D_2(C_3^7) ≥ 22` | 23 |
-| `(4,7)` | 12 | 13 | `D_2(C_7^4) ≥ 37` | 38 |
-| `(5,5)` | 10 | 11 | `D_2(C_5^5) ≥ 31` | 32 |
+| `(r,p)` | computed `M*` | conjecture needs | construction gives | conjecture says | shortfall |
+|---|---|---|---|---|---|
+| `(4,3)` | 5 | 5 | `D_2(C_3^4) = 14` | 14 | 0 |
+| `(4,5)` | 9 | 9 | `D_2(C_5^4) ≥ 26` | 26 | 0 |
+| `(4,7)` | 12 | 13 | `D_2(C_7^4) ≥ 37` | 38 | **1** |
+| `(4,11)` | **19** | 21 | `D_2(C_11^4) ≥ 60` | 62 | **2** |
+| `(7,3)` | 7 | 8 | `D_2(C_3^7) ≥ 22` | 23 | 1 |
+| `(5,5)` | 10 | 11 | `D_2(C_5^5) ≥ 31` | 32 | 1 |
 
-Short by **exactly one**, three times. Two readings, and this packet cannot choose between them:
+`M*(4,11) = 19` is the **exhaustive optimum**, not a search that stalled — the DFS ran to
+completion and returned `(1100)¹ (1010)¹ (1110)⁶ (1001)³ (1101)⁴ (1011)⁴`, summing to 19.
 
-- **(a) the conjecture is wrong** above rank 3 — `M*(4,p) = ⌊9p/5⌋` and `M*(5,p) = 2p`
-  (`WITNESS_CRITERION_V6.md` §6) fit the computed values exactly, and they diverge from
-  `r(p−1)/2 + 1` at precisely `p = 7`, `p = 5` and `r = 7`. Note each divergence rests on a
-  **single** computed point.
-- **(b) the family class is incomplete.** `M*` is an optimum over the Theorem-W families
-  `S = ∏ᵢ eᵢ^{p−1} · ∏_A v_A^{m_A}`, and the recorded values were computed over **0/1-indicator**
-  `v`. A witness of the conjectured length need not have that shape at all.
+**This kills the reading this record previously treated as live.** "Short by exactly one, three
+times" invited the explanation that the family class is incomplete by a hair. At rank 4 the
+shortfall runs **0, 0, 1, 2** across `p = 3, 5, 7, 11`: the construction's growth rate in `p` is
+genuinely below what the conjecture requires, not one witness away from it. Two competing patterns
+for `M*(4,p)` now separate cleanly:
 
-### What was done to separate them
-
-Theorem W never requires `v` to be a 0/1 vector — its proof only needs the `e`-part to correct
-each coordinate independently. So the optimisation was rerun over **all** `v ∈ F_p^r \ {0}` by
-randomised ascent. Before reading any of it, the searches were **calibrated**: can they recover a
-`p = 3` optimum the exhaustive tool already knows?
-
-| calibration point | recorded `M*` | search found | verdict |
+| `p` | computed | `⌊9p/5⌋` | `r(p−1)/2 + 1` |
 |---|---|---|---|
-| `(4,3)` | 5 | 5 | recovered |
-| `(5,3)` | 6 | 6 | recovered |
-| `(6,3)` | 7 | **6** | **too weak** |
+| 3 | 5 | 5 | 5 |
+| 5 | 9 | 9 | 9 |
+| 7 | 12 | **12** | ~~13~~ |
+| 11 | 19 | **19** | ~~21~~ |
 
-Two independently written searches — a generic hill-climb and a specialised incremental one — both
-fail at `(6,3)`. **So neither has any evidential weight at `r ≥ 6`, and the `(7,3)` result must be
-withdrawn as evidence.** For the record, both found 7 at `(7,3)` and neither found 8; that is
-consistent with the class being short *and* with the search being short, and it does not separate
-them. A claim that widening the class fails at `(7,3)` would have been an overclaim, and this table
-is why it is not made.
+`⌊9p/5⌋` is now confirmed at four primes; the conjecture's implied optimum is refuted at two.
 
-Where the calibration passes, the results do count:
+### A closed form for the whole `ν_r` sequence
 
-| test | result | weight |
-|---|---|---|
-| `(4,3)`, all 80 vectors of `F_3^4` | 5 — no gain over the indicator class | calibrated |
-| `(5,3)`, all 242 vectors of `F_3^5` | 6 — no gain | calibrated |
-| `(7,3)`, all 2186 vectors of `F_3^7` | 7 — did not reach 8 | **not calibrated; proves nothing** |
+`WITNESS_CRITERION_V6.md` §6 records `M*(r,p) = ⌊ν_r · p⌋` with `ν_2 = 1, ν_3 = 3/2, ν_4 = 9/5,
+ν_5 = 2` as four unexplained constants. They are one formula:
 
-The `(5,3)` line is the one that could have exposed an error and did not: `D_2(C_3^5) = 17` is
-*proved*, so any family there with `Σ m_A ≥ 7` would contradict the 2.73-billion-node sweep. None
-was found, in the widened class, by a search that demonstrably finds the optimum when it exists.
+    ν_r = 3(r−1)/(r+1)        →   1,  3/2,  9/5,  2   for r = 2,3,4,5.
 
-### The `M*` table itself, independently validated
+So `M*(r,p) = ⌊3(r−1)p/(r+1)⌋`, which reproduces **12 of the 14** computed optima — every one at
+`r ≤ 5`, including the new `(4,11) = 19`. It **fails at `(6,3)` and `(7,3)`**, predicting 6 where
+7 is computed. Recorded as an observation with its failures attached, not as a pattern to lean on:
+the last `p = 3` pattern that survived to `r = 6` (`M*(r,3) = r+1`) died at `r = 7`, and this one
+dies in the other direction at the same place.
 
-Everything above rests on the recorded `M*` values, so they were recomputed from scratch with the
-exhaustive DFS in `tools/witness_optimum_v6.c`, in a build instrumented to count box truncations:
+### Does this refute the conjecture?
 
-| `(r,p)` | recorded `M*` | exhaustive tool | box truncations |
+**No — and that distinction matters.** `M*` is the optimum over one construction class; it bounds
+`D_2` from below and says nothing about what `D_2` is. The conjecture survives every value that has
+actually been *decided*.
+
+But its support above rank 3 is now thin. The only exact rank-4 value is `D_2(C_3^4) = 14`, where
+both candidate formulas agree. At `p = 7` and `p = 11` the conjecture needs a witness that the
+exhaustively-searched Theorem-W construction cannot produce, and the alternative
+
+    D_2(C_p^4)  =  4(p−1) + ⌊9p/5⌋ + 1
+
+fits the construction exactly at all four primes while being achievable. The conjecture's real
+evidence is rank 2 and rank 3, where it matches known exact values for **all** `p`; rank 4 no
+longer supports it beyond the single point where the two agree.
+
+### General vectors do not rescue it
+
+Theorem W never requires `v` to be 0/1, so the class was widened to all of `F_p^r` and searched
+**exhaustively**, not heuristically:
+
+| `(r,p)` | indicator `M*` | all of `F_p^r` | verdict |
 |---|---|---|---|
-| `(4,3)` | 5 | 5 | 0 |
-| `(4,5)` | 9 | 9 | 0 |
-| `(4,7)` | 12 | 12 | 0 |
-| `(5,3)` | 6 | 6 | 0 |
-| `(5,5)` | 10 | 10 | 0 |
-| `(6,3)` | 7 | 7 | 0 |
+| `(3,3)` | 4 | 4 | no gain |
+| `(4,3)` | 5 | 5 | no gain |
+| `(5,3)` | 6 | **6** | no gain — and the optimum returned *is* the indicator family |
 
-Six for six, and at `(5,3)` the tool returns precisely the `{1,i,j}` family of the `C_3^5` witness.
+The `(5,3)` row is a falsification test of a proved result, not a convenience: `D_2(C_3^5) = 17`
+means no family there may reach `Σ m_A ≥ 7`, since that would give `D_2 ≥ 18`. The exhaustive
+general-vector search caps at 6 and returns exactly `{1,i,j}` — the witness family. Had it
+returned 7, either the sweep or the criterion would have been wrong.
 
-The truncation column is not decoration. `build_box()` used to stop filling the multiplicity box
-after 100000 points and **return silently**; `feasible()` would then test only part of the box, so
-a violating pair could go unexamined and a family be declared feasible when it is not — which
-overreports `M*`, which is what every `D_2` lower bound here is built from. It is reachable in
-principle (`nc ≤ 16` with `CAP = 24` permits a box of `3^12 = 531441`). The instrumented run shows
-it has **never fired** on any computed case, and the guard now aborts loudly instead of truncating.
-
-**What would settle `(7,3)`** is that same exhaustive DFS run with `--all-vectors` at
-`(p,r) = (3,7)`, not a randomised ascent. Whether its search space is tractable at 2186 vectors
-has not been established.
+Beyond rank 5 the exhaustive route does not run: `(3,5)` needed ~2 hours over 242 vectors, and
+`(3,7)` has 2186. Earlier randomised searches at `r ≥ 6` are **uncalibrated** — two independently
+written ones both fail to recover the known `M*(6,3) = 7` — so `(7,3)` remains genuinely undecided
+rather than negatively decided.
 
 ## 4. The questions this sharpens
 

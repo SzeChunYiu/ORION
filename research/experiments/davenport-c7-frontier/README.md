@@ -59,12 +59,15 @@ Start here. For the algebraic families used for `D_k` lower bounds,
 
 ## Open
 
-0. **Is `D_k(C_p^r) = (3/2)r(p−1) + (k−2)p + 2`?** It matches all 25 known exact values across ranks 2–5, its
+0. **Is `D_k(C_p^r) = (3/2)r(p−1) + (k−2)p + 2`?** *(V7: weakened above rank 3 — the rank-4
+   shortfall GROWS with `p`, running 0, 0, 1, 2 at `p = 3, 5, 7, 11`, so it is not a near-miss.)* It matches all 25 known exact values across ranks 2–5, its
    constants are forced by rank 2 alone, and it repairs the naive formula exactly where the
    literature records that one failing. But the construction falls one short at `(7,3)`, `(4,7)`,
    `(5,5)`. Three single numbers decide it: `D_2(C_3^7) ∈ {22,23}`, `D_2(C_7^4) ∈ {37,38}`,
    `D_2(C_5^5) ∈ {31,32}`. See `CLOSED_FORM_CONJECTURE_V7.md`.
-1. A closed form for `M*(r,p)`. The `M*(r,3) = r+1` reading is **refuted**: it holds for `r ≤ 6`
+1. A closed form for `M*(r,p)`. **V7:** `ν_r = 3(r−1)/(r+1)` gives all four recorded `ν` values,
+   so `M* = ⌊3(r−1)p/(r+1)⌋` fits 12 of 14 computed optima — every one at `r ≤ 5`, including the
+   new exhaustive `M*(4,11) = 19` — and fails at `(6,3)`, `(7,3)`. The `M*(r,3) = r+1` reading is **refuted**: it holds for `r ≤ 6`
    but `M*(7,3) = 7`, not 8, so `D_2(C_3^r) = 3r+2` fails on the construction side at `r = 7`
    (`D_2(C_3^7) ≥ 22`). `M*(4,p) = ⌊9p/5⌋` for `p = 3,5,7` still stands as an observation.
    §7c shows the elementary route cannot reach a closed form.
