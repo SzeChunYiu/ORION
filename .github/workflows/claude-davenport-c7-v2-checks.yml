@@ -66,3 +66,5 @@ jobs:
         run: python verify_witness_criterion_v6.py
       - name: V7 positional code dictionary -- Theorem C, Lemma A, Corollary C1, Theorem Y (7 asserted steps)
         run: python verify_code_dictionary_v7.py
+      - name: V7 closed-form conjecture -- arithmetic against all 24 known exact values (6 asserted steps)
+        run: python verify_closed_form_conjecture_v7.py
