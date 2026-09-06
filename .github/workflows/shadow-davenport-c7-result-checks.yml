@@ -1,0 +1,27 @@
+name: shadow-davenport-c7-result-checks
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+    paths:
+      - 'research/experiments/davenport-c7-frontier/**'
+      - '.github/workflows/shadow-davenport-c7-result-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check hand-derived orbit cover and certificates
+        run: python research/experiments/davenport-c7-frontier/check_support7_binary_cube_v1.py
+      - name: Independent direct packing recursion
+        run: python research/experiments/davenport-c7-frontier/verify_support7_binary_cube_independent_v1.py

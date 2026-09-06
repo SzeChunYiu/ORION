@@ -1,0 +1,165 @@
+{
+  "schema": "ORION.DavenportC7.ExhaustiveAnalogResults.v2",
+  "enumerator": "tools/enum_packing_v2.c",
+  "canonical_form": "tools/canon_gl3.py",
+  "replay": "run_exhaustive_analogs_v2.sh",
+  "C_3^3": {
+    "D_2": 11,
+    "D_3": 14,
+    "D_4": 17,
+    "frames": [
+      {
+        "L": 10,
+        "cap": 2,
+        "s": 3,
+        "kmax": 1,
+        "nodes": 8005,
+        "leaves": 1526,
+        "found": 529,
+        "orbits": 43
+      },
+      {
+        "L": 11,
+        "cap": 2,
+        "s": 4,
+        "kmax": 1,
+        "nodes": 255,
+        "leaves": 0,
+        "found": 0
+      },
+      {
+        "L": 13,
+        "cap": 2,
+        "s": 2,
+        "kmax": 2,
+        "nodes": 800233,
+        "leaves": 233728,
+        "found": 7317,
+        "orbits": 161
+      },
+      {
+        "L": 14,
+        "cap": 2,
+        "s": 3,
+        "kmax": 2,
+        "nodes": 7953,
+        "leaves": 476,
+        "found": 0
+      },
+      {
+        "L": 16,
+        "cap": 2,
+        "s": 2,
+        "kmax": 3,
+        "nodes": 4300388,
+        "leaves": 1123072,
+        "found": 8921,
+        "orbits": 69
+      },
+      {
+        "L": 17,
+        "cap": 2,
+        "s": 3,
+        "kmax": 3,
+        "nodes": 1780,
+        "leaves": 0,
+        "found": 0
+      }
+    ],
+    "orbit_profiles": {
+      "D2": {
+        "supp5": 1,
+        "supp6": 20,
+        "supp7": 22
+      },
+      "D3": {
+        "supp7": 22,
+        "supp8": 109,
+        "supp9": 30
+      },
+      "D4": {
+        "supp8": 1,
+        "supp9": 44,
+        "supp10": 24
+      }
+    },
+    "all_extremal_have_multiplicity_p_minus_1": true
+  },
+  "C_5^3": {
+    "D_2": 20,
+    "frames": [
+      {
+        "L": 19,
+        "cap": 4,
+        "s": 6,
+        "kmax": 1,
+        "planecap": 14,
+        "nodes": 98499683,
+        "leaves": 48396,
+        "found": 7847,
+        "orbits": 1405
+      },
+      {
+        "L": 20,
+        "cap": 4,
+        "s": 7,
+        "kmax": 1,
+        "planecap": 14,
+        "nodes": 33148115,
+        "leaves": 0,
+        "found": 0
+      }
+    ],
+    "D2_extremal_all_have_multiplicity_4": true,
+    "maximal_atoms_length13": {
+      "zero_sum_free_length12_raw": 181979,
+      "max_mult_distribution": {
+        "2": 753,
+        "3": 44277,
+        "4": 136949
+      },
+      "support_size_distribution": {
+        "4": 7,
+        "5": 246,
+        "6": 3785,
+        "7": 17654,
+        "8": 48426,
+        "9": 64620,
+        "10": 47241
+      }
+    },
+    "D_3_frames": {
+      "L25_bound": {
+        "L": 25,
+        "cap": 4,
+        "s": 5,
+        "kmax": 2,
+        "planecap": 18,
+        "nodes": 848752855,
+        "leaves": 7716438,
+        "found": 0,
+        "reverse_order_rerun": "RUNNING"
+      },
+      "L24_witnesses": "RUNNING"
+    },
+    "D2_extremal_orbits_by_support_size": {
+      "5": 2,
+      "6": 136,
+      "7": 582,
+      "8": 543,
+      "9": 133,
+      "10": 9
+    },
+    "D_3": 25
+  },
+  "C_7^3": {
+    "D2_inverse_length28": {
+      "m1_6": "RUNNING",
+      "m1_5": "RUNNING",
+      "m1_le4": "NOT_STARTED"
+    }
+  },
+  "grants_D3_closure": false,
+  "grants_novelty_authority": false,
+  "priority_status": "CANNOT_CHECK"
+}

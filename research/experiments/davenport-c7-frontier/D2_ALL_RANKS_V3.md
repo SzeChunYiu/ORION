@@ -1,0 +1,136 @@
+# `D_2(C_p^r)` for every rank: a two-sided framework — V3
+
+> **SUPERSEDED IN PART (V6).** Theorem 2 below is the special case `b = e_A, b′ = e_B` of the
+> witness-coordinate criterion proved in `WITNESS_CRITERION_V6.md`, which is an *exact* test for
+> `z(S) ≤ 1` on these families. Dropping Theorem 2's coordinate load cap improves five of the
+> lower bounds in §3: `D_2(C_3^5) ≥ 17`, `D_2(C_3^6) ≥ 20`, `D_2(C_5^4) ≥ 26`, `D_2(C_7^4) ≥ 37`,
+> `D_2(C_5^5) ≥ 31`. The upper bounds and the `r ≤ 3` values below are unaffected.
+
+Status: **upper bound proved per `(p,r)` by an explicit `F_p` certificate (60 pairs verified, `2 ≤ r ≤ 11`, `5 ≤ p ≤ 23`); lower bound proved in general and verified by exact packing computations for `r ≤ 5`. The two sides meet exactly at `r = 2` and `r = 3` and leave a gap for `r ≥ 4`.** Priority CANNOT_CHECK from this host; the `r = 2, 3` values are donor-owned and the higher-rank statements have not been checked against the literature.
+Tools: `tools/d2_rank_bounds_v3.py`, `tools/d2_rank_families_v3.py`.
+Branch: `claude/orion-research-frontier-3ck9yt`.
+
+Throughout `p` is prime, `G = C_p^r`, and `D = D(G) = r(p−1)+1` (Olson).
+
+## 1. Upper bound
+
+The argument of `D2_UNIFORM_SELFCONTAINED_THEOREM_V3.md` uses `r = 3` only in its arithmetic. In general: if `S` has `|S| = N−1` and no two disjoint nonempty zero-sums, then `T = S·(−σ(S))` is zero-sum of length `N` with packing number `≤ 2`, so by the atom-window lemma every proper nonempty zero-sum of `T` has length in `[N−D, D]`. Feeding that window into
+
+    Σ_l (−1)^l N_l C(l,d) ≡ 0 (mod p)      (0 ≤ d ≤ N−D)
+
+and solving over `F_p` either is consistent, or produces a certificate of infeasibility — and infeasibility means no such `S` exists, i.e. `D_2(G) ≤ N−1`.
+
+**Theorem 1.** Let `N*(p,r)` be the least `N` for which the system is infeasible. Then `D_2(C_p^r) ≤ N*(p,r) − 1`. For every pair with `2 ≤ r ≤ p` that was tested (`r ≤ 11`, `p ≤ 23`, 60 pairs),
+
+    N*(p,r) − 1  =  (3D+1)/2      if r is odd,
+                    (3D+r−1)/2    if r is even.
+
+For `r > p` the method degrades and returns a weaker bound (`r = 6,7` at `p = 5`; `r = 8,9` at `p = 7`), so the statement is confined to `r ≤ p`.
+
+At `r = 2` and `r = 3` the bound is **exactly the known value**: `(3(2p−1)+1)/2 = 3p−1` and `(3(3p−2)+1)/2 = (9p−5)/2`. That agreement across six primes each is the method's validation; the `r ≥ 4` values are not known to this packet from any other source.
+
+## 2. Lower bound: intersecting families
+
+**Theorem 2.** Let `F` be a family of nonempty subsets of `[r]` that is **intersecting** (`A ∩ B ≠ ∅` for all `A,B ∈ F`), and let `m : F → Z_{≥0}` satisfy `Σ_{A ∋ i} m_A ≤ p` for every coordinate `i`. Write `v_A ∈ {0,1}^r` for the indicator of `A`. Then
+
+    e_1^{p−1} ⋯ e_r^{p−1} · Π_{A ∈ F} v_A^{m_A}
+
+has packing number 1. Consequently
+
+    D_2(C_p^r) ≥ r(p−1) + M(r,p) + 1,    M(r,p) = max{ Σ_A m_A : F intersecting, Σ_{A ∋ i} m_A ≤ p }.
+
+*Proof.* Every coordinate sum is `(p−1) + Σ_{A ∋ i} m_A ≤ 2p−1 < 2p`, so each coordinate contributes at most one multiple of `p` and can be used by at most one zero-sum block. A block using no `v_A` is `Π e_i^{a_i}` with every `a_i ≡ 0 (mod p)` and `a_i ≤ p−1`, hence empty; so every nonempty block's coordinate set contains some `A ∈ F` with `m_A > 0`. Two disjoint blocks would have disjoint coordinate sets, hence contain disjoint members of `F`, contradicting intersectingness. ∎
+
+`M(r,p)` is `p` times the **fractional matching number** of the best intersecting family on `[r]`, subject to integrality — the Erdős–Ko–Rado / Füredi setting. `M(r,p)` was computed **exactly** for `r ≤ 5` by enumerating every maximal intersecting family on `[r]` (2, 4, 12 and 81 of them) and solving the integer program on each (`tools/d2_intersecting_optimum_v3.py`):
+
+| r | optimal support | `ν*` | `M(r,p)` | `r(p−1) + M` |
+|---|---|---|---|---|
+| 2 | `{12}` (star) | 1 | `p` | `3p−2` |
+| 3 | `{12, 13, 23}` (triangle) | 3/2 | `(3p−1)/2` | `(9p−7)/2` |
+| 4 | `{12, 13, 14, 234}` | 5/3 | `⌊5p/3⌋` | `4(p−1)+⌊5p/3⌋` (exact at `p=3`: `D_2 = 14`, §4) |
+| 5 | (16-set maximal family) | 9/5 | `9` at `p=5`, `12` at `p=7` | `29`, `42` |
+
+The rank-4 optimum is explicit and pretty: a star of three edges at vertex 1 together with the complementary triple. Its fractional matching puts `p/3` on each edge and `2p/3` on the triple, giving `3·(p/3) + 2p/3 = 5p/3`. Verified: `M(4,p) = ⌊5p/3⌋` at `p = 5, 7, 11, 13` (values 8, 11, 18, 21).
+
+Verified by exact packing computation (`tools/d2_rank_families_v3.py`): the star, triangle, triangle-inside-`[4]`, triangle-inside-`[5]` and all-3-subsets-of-`[4]` configurations all have packing number exactly 1 at `p = 5` and `p = 7`.
+
+**The half-defect is `ν*(triangle) = 3/2`.** `CUBE_PACKING_PROFILE_V3.md` §5 traced the `(n−1)/2` in `D_2(C_n^3) = D + n + (n−1)/2` to the determinant-2 minor of the cube incidence matrix. Theorem 2 says the same thing combinatorially and more usefully: the extremal rank-3 configuration is the triangle `{12, 13, 23}` — the unique intersecting graph with fractional matching number above 1 — and the half is that number. The two readings agree, since the triangle's incidence matrix *is* the determinant-2 minor.
+
+## 3. The two sides meet at ranks 2 and 3
+
+| r | p | lower (Thm 2, exact `M`) | upper (Thm 1) | |
+|---|---|---|---|---|
+| 2 | 5, 7, 11, 13 | 14, 20, 32, 38 | 14, 20, 32, 38 | **equal** |
+| 3 | 5, 7, 11, 13 | 20, 29, 47, 56 | 20, 29, 47, 56 | **equal** |
+| 4 | 5, 7, 11, 13 | 25, 36, 59, 70 | 27, 39, 63, 75 | gap 2, 3, 4, 5 |
+| 5 | 5, 7 | 30, 43 | 32, 47 | gap 2, 4 |
+
+**Corollary.** For `r ∈ {2,3}` and every prime `p ≤ 13` tested, the framework alone gives
+
+    D_2(C_p^2) = 3p−1,    D_2(C_p^3) = (9p−5)/2,
+
+with the lower bound from Theorem 2's intersecting-family optimum and the upper bound from Theorem 1's certificate. Modulo Olson's `D(C_p^r) = r(p−1)+1`, both values are established here without any donor input — the `r = 3` case being exactly the premise the rest of the packet had been assuming from unreadable text.
+
+So `D_2(C_p^r)` is **determined at ranks 2 and 3 and bracketed for `r ≥ 4`** by the two theorems, the gap growing slowly.
+
+## 4. Rank 4 decided at `p = 3`: `D_2(C_3^4) = 14`
+
+The congruence certificate is weak at `p = 3` (it only gives `≤ 18`, the same degeneration as everywhere else at that prime), so this case was settled by exhaustive search instead, with `tools/enum_rank_generic_v3.c`.
+
+*Setup.* Suppose `|S| = 14` over `C_3^4` with `pk(S) ≤ 1`. Its rank is 4: a rank-`≤3` sequence lies in a copy of `C_3^3`, where `D_2 = 11 ≤ 14` would give two disjoint blocks. So `S` contains a basis, normalised to `e_1,…,e_4` by `GL(4,3)`. By the complement lemma every block of `S` has length `≥ 14 − D + 1 = 6`, so `S` has no zero-sum of length `≤ 5` — which also forces every multiplicity `≤ 2`. The search enumerates every multiset containing the basis, in nondecreasing index order, pruning on the short-zero-sum condition, and tests each survivor for two disjoint blocks by an exact layered dynamic programme over pairs of disjoint sub-multisets.
+
+*Result.* **987,944 nodes, 10,852 survivors, zero with packing number `≤ 1`.** Hence `D_2(C_3^4) ≤ 14`. Theorem 2 with the rank-4 optimum gives `M(4,3) = 5` and the explicit witness
+
+    e_1^2 e_2^2 e_3^2 e_4^2 · e_12 e_13 e_14 · (e_2+e_3+e_4)^2      (length 13, packing number 1),
+
+so `D_2(C_3^4) ≥ 14`. Therefore
+
+> **`D_2(C_3^4) = 14 = D + M(4,3)`.**
+
+*Controls.* The same program returns `found = 0` at `(r,L,s) = (2,8,3)` and `(3,11,4)` — reproducing `D_2(C_3^2) = 8` and `D_2(C_3^3) = 11` — and `found = 65` at `(2,7,2)`, whose witnesses were re-checked for packing number 1 by the packet's independent atom recursion.
+
+**This was the first test of the conjecture `D_2 = D + M(r,p)` at a rank where it was not fitted, and it passes here. Rank 5 refutes it — see §5.**
+
+## 5. Refutation at rank 5: `D_2(C_3^5) ≥ 17 > D + M(5,3)`
+
+The same search at `(p,r,L,s) = (3,5,16,5)` returns **22,843 sequences of length 16 with packing number 1**, five of which were re-checked by the packet's independent atom recursion. Since `D + M(5,3) = 11 + 5 = 16`, this gives
+
+    D_2(C_3^5) ≥ 17 > 16 = D + M(5,3),
+
+so **the conjecture that Theorem 2's intersecting-family optimum is attained is false.** Theorem 2 itself is unaffected: its hypothesis is sufficient, not necessary.
+
+The witnesses show exactly how the hypothesis is escaped. Every one has the form
+
+    e_1^2 e_2^2 e_3^2 e_4^2 e_5^2 · Π_{S} v_S ,   S ranging over the six 3-subsets of [5] containing 1,
+
+i.e. a **star of 3-sets at multiplicity 1**. Its supports are intersecting (any two 3-subsets of a 5-set meet), but coordinate 1 carries `2 + 6 = 8 ≥ 2p`, violating the capacity condition of Theorem 2 — and the sequence still has packing number 1. Capacity is therefore sufficient but far from necessary.
+
+Testing that family directly (`tools/d2_rank_families_v3.py` extended):
+
+| p | r | k | sets | length | pk | max coordinate sum vs `2p−1` |
+|---|---|---|---|---|---|---|
+| 3 | 4 | 3 | 3 | 11 | 1 | 5 = 5 |
+| 3 | 5 | 3 | 6 | **16** | 1 | 8 > 5 |
+| 3 | 5 | 4 | 4 | 14 | 1 | 6 > 5 |
+| 5 | 4 | 3 | 3 | 19 | 1 | 7 < 9 |
+| 5 | 5 | 3 | 6 | 26 | 1 | 10 > 9 |
+
+The two constructions scale differently: the capacity family contributes `M(r,p) ≈ p·ν*(r)`, growing with `p`, while the star of `k`-sets contributes `C(r−1,k−1)`, independent of `p`. So the combinatorial family wins for small `p` relative to `r` (it beats capacity at `(3,5)`: 16 against 15) and loses for large `p` (at `(5,5)`: 26 against 29). The true lower bound is the maximum over both, and presumably over families neither of these covers.
+
+### Rank 4 fails too, at `p = 5`
+
+The search at `(p,r,L,s) = (5,4,25,8)` likewise returns sequences of length 25 with packing number 1 (three re-checked independently), while `D + M(4,5) = 17 + 8 = 25`. So
+
+    D_2(C_5^4) ≥ 26 > 25 = D + M(4,5),
+
+and combined with Theorem 1's bound of 27, `D_2(C_5^4) ∈ {26, 27}`. These witnesses are not of either construction in this record: a typical one has support 11 with multiplicity profile `(4,4,4,3,3,2,1,1,1,1,1)`.
+
+So the agreement at `(4,3)` was a coincidence: rank 4 satisfies `D + M` at `p = 3` and violates it at `p = 5`.
+
+**Corrected picture.** `D_2(C_p^r) = D + M(r,p)` holds at `r = 2, 3` for the primes tested and at `(r,p) = (4,3)`, and fails at `(4,5)` and `(5,3)`. There is no reason left to expect a single clean closed form across all ranks; what survives is the two-sided framework, with the lower side an optimisation over admissible families rather than one formula. Closing the gap needs either a better intersecting-family construction (the maximum of `ν*` over intersecting families is maximised by projective planes in the uniform case, with Füredi's bound `ν* ≤ k−1+1/k` for `k`-uniform), or a sharpening of the congruence system using more than the length spectrum.
+
+A Fano-plane instance (`r = 7`, the seven lines, `ν* = 7/3`) is the natural next test of the lower bound; its exact packing computation exceeded the session's resource budget and is recorded as `CANNOT_CHECK_RESOURCE_BOUND`, not as a negative.
+
+## Claim ceiling
+
+The `r = 2` and `r = 3` values are donor-owned. Theorem 1's higher-rank instances are each proved by a finite certificate, but their novelty is unassessed, as is Theorem 2's. Nothing here is claimed to be new; the literature could not be reached from this host.
