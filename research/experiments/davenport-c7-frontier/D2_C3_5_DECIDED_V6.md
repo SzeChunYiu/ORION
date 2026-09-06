@@ -30,8 +30,10 @@ Suppose `S` over `C_3^5` has `|S| = 17` and `z(S) ≤ 1`.
 1. **Every block is long.** If `A ⊆ S` is a nonempty zero-sum then `S·A^{-1}` is zero-sum-free
    (else two disjoint blocks), so `|S| − |A| ≤ D(C_3^5) − 1 = 10`, giving `|A| ≥ 7`. So `S` has
    **no zero-sum subsequence of length `≤ 6`**.
-2. **`S` spans.** Otherwise `S` lies in a subgroup `≅ C_3^s` with `s ≤ 4`, and
-   `|S| = 17 ≥ D_2(C_3^4) = 14` forces `z(S) ≥ 2`.
+2. **`S` spans.** Otherwise `S` lies in a subgroup `≅ C_3^s` with `s ≤ 4`. For `s ≤ 3` the
+   known `D_2(C_3^3) = 11` caps the length at 10 < 17. For `s = 4`, `D_2(C_3^4) = 14` caps it
+   at 13 < 17, so `z(S) ≥ 2`. **See the correction below — this step cited `D_2(C_3^4) = 14`
+   before that value was proved.**
 3. **Normal form.** By 2, `S` contains a basis, which `GL(5,3)` maps to `e_1,…,e_5`; the remaining
    12 terms are enumerated in nondecreasing index order.
 
@@ -74,3 +76,30 @@ length-16 witness — is verified in CI by `verify_witness_criterion_v6.py` step
 Machine-assisted. Depends on Olson's `D(C_3^5) = 11` (classical) and this packet's
 `D_2(C_3^4) = 14` (exhaustive, CI-verified). The sweep used the enumerator at `N = 243`, inside
 every buffer bound in that tool. Not reviewed by a mathematician; novelty CANNOT_CHECK.
+
+
+---
+
+## Correction (V7): step 2 cited an unproved value
+
+As first written, step 2 asserted `D_2(C_3^4) = 14`. **That value was not proved at the time.**
+The packet's own inventory of known exact `D_2` values ran `C_3^2, C_5^2, C_7^2, C_3^3, C_5^3` —
+rank 4 was not among them, and the literature records rank `≤ 3` as the known range. What was
+available for `C_3^4` was the construction's *lower* bound `D_2 ≥ 14`, which is the wrong
+direction for this argument, and the trivial *upper* bound
+
+    D_2(C_3^4) ≤ 2·D(C_3^4) = 18,
+
+which caps the length of a `z ≤ 1` sequence at **17** — exactly one short of excluding `|S| = 17`.
+So the `s = 4` case of step 2 was genuinely open, and the proof of `D_2(C_3^5) = 17` was
+incomplete on that branch.
+
+**It is now closed.** `D2_C3_4_DECIDED_V7.md` proves `D_2(C_3^4) = 14` — no length-14 sequence
+over `C_3^4` has `z ≤ 1`, by a sweep whose enumerator is calibrated in both directions. Length 17
+follows by monotonicity: if `|S| = 17` had `z(S) ≤ 1`, every 14-term subsequence would too, since
+blocks of a subsequence are blocks of `S`. None exists, so no length-17 sequence over `C_3^4` has
+`z ≤ 1` either.
+
+Nothing else in this record changes: the sweep, its shard table and its zero leaves stand as
+recorded, and the lower-bound witness is unaffected. What changes is that the upper-bound argument
+is now complete rather than resting on an assumed value.

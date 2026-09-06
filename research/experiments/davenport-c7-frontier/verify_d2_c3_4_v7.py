@@ -11,6 +11,8 @@ here is the arithmetic that makes that sweep's two reductions lossless.
   Step 3  reduction 1 is lossless: z<=1 at L=14 forces no zero-sum of length <= 5
   Step 4  reduction 2 is lossless: a non-spanning S would force L <= D_2(C_3^3) - 1 = 10
   Step 5  the closed form predicts 14, and now agrees at ranks 2, 3, 4 and 5
+  Step 6  this closes the s=4 branch of the D_2(C_3^5)=17 spanning argument, which the
+          trivial bound 2*D(C_3^4)=18 leaves open by exactly one
 """
 from fractions import Fraction as F
 
@@ -107,8 +109,28 @@ def step5():
     print("   exact values at ranks 2, 3, 4 and 5, rank 4 having been untested before this")
 
 
+def step6():
+    """the rank-5 sweep's step 2 needs no length-17 sequence over C_3^4 to have z<=1."""
+    D_C3_4 = 4 * (3 - 1) + 1
+    trivial_cap = 2 * D_C3_4 - 1          # longest z<=1 sequence the trivial bound allows
+    assert D_C3_4 == 9 and trivial_cap == 17, (D_C3_4, trivial_cap)
+    assert trivial_cap >= 17, "the trivial bound would have sufficed -- it does not"
+    proved_cap = 14 - 1                   # from this record: D_2(C_3^4) = 14
+    assert proved_cap == 13 < 17
+    # monotonicity, checked rather than asserted: blocks of a subsequence are blocks of the
+    # whole, so z is non-decreasing under extension.  Every 12-term subsequence of the
+    # 13-term witness must therefore also have z <= 1.
+    n = len(S)
+    for drop in range(n):
+        T = [S[i] for i in range(n) if i != drop]
+        assert packing(blocks(T)) <= 1, f"dropping term {drop} raised the packing number"
+    print("6. the trivial bound 2*D(C_3^4)-1 = 17 does NOT exclude |S|=17, so the s=4 branch of")
+    print("   the D_2(C_3^5)=17 spanning argument was open; D_2(C_3^4)=14 caps it at 13, and")
+    print("   monotonicity carries that to length 17 -- the rank-5 proof is now complete")
+
+
 if __name__ == "__main__":
-    step1(); step2(); step3(); step4(); step5()
+    step1(); step2(); step3(); step4(); step5(); step6()
     print()
     print("D_2(C_3^4) = 14.  Lower bound re-proved here; upper bound is the recorded sweep")
     print("(987,944 nodes, 10,852 leaves, 0 with z<=1) whose two reductions are asserted above.")

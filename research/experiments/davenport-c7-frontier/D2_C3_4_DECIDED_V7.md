@@ -62,7 +62,19 @@ A search that returns zero proves nothing unless it can return non-zero. At `C_3
 
 So the tool reproduces `D_2(C_3^3) = 11` exactly, from both sides.
 
-## 3. What it does and does not settle
+## 3. It closes a gap in `D_2(C_3^5) = 17`
+
+This is not only a test of the conjecture. `D2_C3_5_DECIDED_V6.md` step 2 — the reduction that
+lets the rank-5 sweep assume a spanning sequence — cited `D_2(C_3^4) = 14` **before that value was
+proved**. The bound actually available then was `D_2(C_3^4) ≤ 2·D(C_3^4) = 18`, capping a `z ≤ 1`
+sequence at length 17, one short of excluding `|S| = 17`. So the `s = 4` branch of that argument
+was open and the rank-5 result was incomplete there.
+
+The present computation closes it. No length-14 sequence over `C_3^4` has `z ≤ 1`; by monotonicity
+— blocks of a subsequence are blocks of the whole — no length-17 one does either, which is what
+step 2 needs. See the correction appended to `D2_C3_5_DECIDED_V6.md`.
+
+## 4. What it does and does not settle
 
 **Does.** `D_2(C_3^4) = 14`, a new exact value; and the closed form of
 `CLOSED_FORM_CONJECTURE_V7.md` now agrees with **25** known exact values across ranks 2, 3, 4
