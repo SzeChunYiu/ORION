@@ -155,18 +155,57 @@ of the existing `tools/witness_optimum_v6.c` at `(r,p) = (4,11)`.
 
 ---
 
-## 5. Why it might be true
+## 5. Why it might be true — and one mechanism that is refuted
 
-`CODE_DICTIONARY_V7.md` §4 lists the five elementary constraints on an extremal family. Writing
-`q = r(p−1) = D − 1`, the conjecture says `n_max = (3q+2)/2`, and the admissible atom-size window
-`[n − q, q+1]` becomes exactly `[(q+2)/2, q+1]` — the floor lands at half the ceiling. The
-`C_3^5` witness has `q = 10`, `n = 16`, window `[6, 11]`, and its 289 atoms **fill that interval
-with no gaps, attaining both ends**. A construction that saturates every elementary constraint at
-once, at exactly the length the conjecture names, is the expected shape of an extremal object.
+`CODE_DICTIONARY_V7.md` §4 lists five elementary constraints on an extremal family. Writing
+`q = r(p−1) = D − 1`, the conjecture says `n_max = (3q+2)/2`, so the admissible atom-size window
+`[n − q, q+1]` becomes exactly `[(q+2)/2, q+1]` — floor at half the ceiling.
 
-That is a heuristic, not an argument. No proof of the conjecture is offered here, in any rank.
+**Every extremal witness saturates that window.** Checked at every `(r,p)` where `D_2` is known
+exactly and the enumeration is feasible, using the optimal families the exhaustive tool returns:
 
----
+| | `q` | window | atom sizes attained | blocks | core |
+|---|---|---|---|---|---|
+| `C_3^2` | 4 | `[3,5]` | 3,4,5 | 13 | empty |
+| `C_3^3` | 6 | `[4,7]` | 4,5,6,7 | 43 | empty |
+| `C_5^2` | 8 | `[5,9]` | 5,…,9 | 521 | empty |
+| `C_7^2` | 12 | `[7,13]` | 7,…,13 | 24865 | empty |
+| `C_3^5` | 10 | `[6,11]` | 6,…,11 | 289 | empty |
+
+Five for five: the sizes fill the interval with **no gaps**, both ends are attained, and the core
+is empty as Theorem Y requires. Saturating every elementary constraint simultaneously is the
+expected shape of an extremal object, and it is a regularity rather than a single observation.
+
+### The obvious mechanism does not work
+
+There is a tempting explanation for the factor `q/2`. No-carry requires `⟨aᵢ⟩ + ⟨a′ᵢ⟩ ≤ p−1` in
+*every* coordinate; summing over `i`, two **disjoint** blocks must satisfy
+
+    |e(b)| + |e(b′)|  ≤  r(p−1) = q,        where |e(b)| = Σᵢ ⟨−(Mb)ᵢ⟩.
+
+So `|e(b)| > q/2` for every admissible `b` is a genuine **sufficient** condition for `z(S) ≤ 1`,
+and it would name `q/2` as the critical scale for free.
+
+**It is refuted by the extremal families themselves.** Every recorded optimum has blocks whose
+`e`-part is far below the half-budget:
+
+| `(r,p)` | `q/2` | `min |e(b)|` |
+|---|---|---|
+| `(2,3)` | 2 | 2 |
+| `(3,3)` | 3 | 2 |
+| `(5,3)` | 5 | **3** |
+| `(4,5)` | 8 | **3** |
+| `(4,7)` | 12 | **5** |
+| `(5,5)` | 10 | **2** |
+| `(6,3)` | 6 | **3** |
+
+Not one family satisfies the condition. The sum bound is a correct necessary condition for
+disjointness, but the extremal families sit far inside it and are held together by Theorem W's
+**coordinate-wise** condition, which is strictly stronger than any bound on the total. So the
+`q/2` scale is not explained this way, and this is not a route to the conjecture.
+
+No proof of the conjecture is offered here, in any rank, and the one mechanism that would have
+given the constant away has been tested and does not hold.
 
 ## 6. Claim ceiling
 

@@ -17,7 +17,10 @@ falls exactly one short at the other three.
   Step 4  the construction lower bound r(p-1) + M* + 1 against the conjecture
   Step 5  the conjecture respects the proved bracket D+1 <= D_2 <= 2D
   Step 6  k=1 behaves as Freeze-Schmid requires: exact at r=2, wrong for r>=3
+  Step 7  extremal witnesses saturate the atom-size window [n-q, q+1], core empty
+  Step 8  the half-budget mechanism |e(b)| > q/2 is REFUTED by those same families
 """
+from itertools import product
 from fractions import Fraction as F
 
 
@@ -129,8 +132,84 @@ def step6():
     print("   arithmetic progression is only eventual, as Freeze-Schmid's theorem requires")
 
 
+# optimal families as returned by the exhaustive DFS in tools/witness_optimum_v6.c
+FAMS = {(2, 3): [((1, 0), 1), ((1, 1), 2)],
+        (2, 5): [((1, 0), 1), ((1, 1), 4)],
+        (2, 7): [((1, 0), 1), ((1, 1), 6)],
+        (3, 3): [((1, 1, 0), 1), ((1, 0, 1), 1), ((0, 1, 1), 1), ((1, 1, 1), 1)],
+        (5, 3): [((1, 1, 1, 0, 0), 1), ((1, 1, 0, 1, 0), 1), ((1, 0, 1, 1, 0), 1),
+                 ((1, 1, 0, 0, 1), 1), ((1, 0, 1, 0, 1), 1), ((1, 0, 0, 1, 1), 1)],
+        (4, 5): [((1, 1, 0, 0), 1), ((1, 0, 1, 0), 1), ((1, 1, 1, 0), 2),
+                 ((1, 0, 0, 1), 1), ((1, 1, 0, 1), 2), ((1, 0, 1, 1), 2)],
+        (4, 7): [((1, 1, 0, 0), 1), ((1, 0, 1, 0), 1), ((0, 1, 1, 0), 2),
+                 ((1, 1, 1, 0), 1), ((1, 1, 0, 1), 4), ((0, 1, 1, 1), 3)],
+        (6, 3): [((1, 1, 1, 0, 0, 0), 1), ((1, 1, 0, 1, 0, 0), 1), ((1, 1, 0, 0, 1, 0), 1),
+                 ((0, 0, 1, 1, 1, 0), 1), ((1, 0, 1, 0, 0, 1), 1), ((1, 0, 0, 1, 0, 1), 1),
+                 ((1, 0, 0, 0, 1, 1), 1)]}
+
+
+def _seq(p, r, fam):
+    e = [tuple(1 if k == i else 0 for k in range(r)) for i in range(r)]
+    S = [e[i] for i in range(r) for _ in range(p - 1)]
+    for v, m in fam:
+        S += [tuple(v)] * m
+    return S
+
+
+def _blocks(S, p, r):
+    n = len(S)
+    sums = [None] * (1 << n)
+    sums[0] = (0,) * r
+    out = []
+    for m in range(1, 1 << n):
+        lb = m & -m
+        prev = sums[m ^ lb]
+        cur = tuple((prev[k] + S[lb.bit_length() - 1][k]) % p for k in range(r))
+        sums[m] = cur
+        if not any(cur):
+            out.append(m)
+    return out
+
+
+def step7():
+    """the window [n-q, q+1] is filled with no gaps, and the core is empty"""
+    rows = []
+    for (r, p) in [(2, 3), (3, 3), (2, 5)]:
+        S = _seq(p, r, FAMS[(r, p)])
+        n, q = len(S), r * (p - 1)
+        bl = _blocks(S, p, r)
+        sizes = sorted({bin(b).count("1") for b in bl})
+        assert sizes == list(range(n - q, q + 2)), (r, p, sizes, n - q, q + 1)
+        core = bl[0]
+        for b in bl:
+            core &= b
+        assert core == 0, (r, p)
+        rows.append(f"C_{p}^{r}[{n-q},{q+1}]")
+    print("7. extremal witnesses fill the atom-size window with no gaps and have an empty")
+    print("   core, at " + ", ".join(rows) + " -- both the complement-lemma floor and the")
+    print("   Olson ceiling attained in the same sequence (C_3^5 likewise, dictionary step 7)")
+
+
+def step8():
+    """|e(b)| > q/2 would force z<=1 -- but no extremal family satisfies it"""
+    fails = 0
+    for (r, p), fam in sorted(FAMS.items()):
+        q = r * (p - 1)
+        ms = [m for _, m in fam]
+        worst = min(sum((-sum(b[a] * fam[a][0][i] for a in range(len(fam)))) % p
+                        for i in range(r))
+                    for b in product(*[range(m + 1) for m in ms])
+                    if any(b) and not all(b[a] == ms[a] for a in range(len(fam))))
+        if worst * 2 <= q:
+            fails += 1
+    assert fails == len(FAMS), "some family DOES satisfy the half-budget condition"
+    print(f"8. the half-budget mechanism is refuted: no-carry does imply |e(b)|+|e(b')| <= q,")
+    print(f"   so |e(b)| > q/2 everywhere would force z<=1 -- but all {fails} of {len(FAMS)}")
+    print("   extremal families violate it, so it cannot be why q/2 is the critical scale")
+
+
 if __name__ == "__main__":
-    step1(); step2(); step3(); step4(); step5(); step6()
+    step1(); step2(); step3(); step4(); step5(); step6(); step7(); step8()
     print()
     print("CONJECTURE ARITHMETIC VERIFIED.  D_k(C_p^r) = (3/2) r(p-1) + (k-2) p + 2 agrees")
     print("with all 24 known exact values.  It is a conjecture, not a theorem.")

@@ -54,6 +54,7 @@ Start here. For the algebraic families used for `D_k` lower bounds,
 | The `p=5` bridge does not generalise to `p ≥ 11` | `D3_BRIDGE_NEGATIVE_V6.md` |
 | `D_2(C_5^4)` out of reach of post-hoc deduplication | `D2_RANK4_SCALE_MEASURED_V6.md` |
 | Minimality attempt | `MINIMALITY_ATTEMPT_V5.md` |
+| Half-budget criterion `|e(b)| > q/2` cannot explain the `q/2` scale | `CLOSED_FORM_CONJECTURE_V7.md` §5 |
 
 ## Open
 
