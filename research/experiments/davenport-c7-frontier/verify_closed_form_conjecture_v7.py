@@ -12,7 +12,7 @@ one is known to fail, and that the construction reaches it at 10 of 13 computed 
 falls exactly one short at the other three.
 
   Step 1  the constants (3/2, 1, 2) are the unique solution forced by rank two
-  Step 2  agreement with all 24 known exact values
+  Step 2  agreement with all 25 known exact values
   Step 3  the naive formula fails at exactly the points where this one is tested
   Step 4  the construction lower bound r(p-1) + M* + 1 against the conjecture
   Step 5  the conjecture respects the proved bracket D+1 <= D_2 <= 2D
@@ -49,7 +49,8 @@ MSTAR = {(2, 3): 3, (2, 5): 5, (2, 7): 7, (3, 3): 4, (3, 5): 7, (3, 7): 10,
 KNOWN = ([(p, 2, k, rank2(p, k), "rank-2 formula (literature)") for p in (3, 5, 7, 11)
           for k in (2, 3, 4, 5)]
          + [(p, 3, 2, (9 * p - 5) // 2, "packet theorem (9p-5)/2") for p in (3, 5, 7, 11)]
-         + [(5, 3, 3, 25, "packet, exhaustive L=25"),
+         + [(3, 4, 2, 14, "packet, L=14 sweep, D2_C3_4_DECIDED_V7"),
+            (5, 3, 3, 25, "packet, exhaustive L=25"),
             (7, 3, 3, 36, "packet, corridor + Hypothesis (Z)"),
             (5, 3, 4, 30, "packet, Theorem T, 5.9e9 nodes"),
             (3, 5, 2, 17, "packet, 2.7e9-node sweep")])
@@ -84,8 +85,9 @@ def step2():
     ranks = sorted({r for _, r, _, _, _ in KNOWN})
     ks = sorted({k for _, _, k, _, _ in KNOWN})
     print(f"2. all {len(KNOWN)} known exact values matched, ranks {ranks}, k in {ks} --")
-    print("   including the four hardest: D_3(C_5^3)=25, D_3(C_7^3)=36, D_4(C_5^3)=30,")
-    print("   D_2(C_3^5)=17, none of which could have been used to fix the constants")
+    print("   including the five hardest: D_3(C_5^3)=25, D_3(C_7^3)=36, D_4(C_5^3)=30,")
+    print("   D_2(C_3^5)=17 and the rank-4 point D_2(C_3^4)=14, none of which could have")
+    print("   been used to fix the constants -- rank 4 was untested when the form was written")
 
 
 def step3():
@@ -212,4 +214,4 @@ if __name__ == "__main__":
     step1(); step2(); step3(); step4(); step5(); step6(); step7(); step8()
     print()
     print("CONJECTURE ARITHMETIC VERIFIED.  D_k(C_p^r) = (3/2) r(p-1) + (k-2) p + 2 agrees")
-    print("with all 24 known exact values.  It is a conjecture, not a theorem.")
+    print("with all 25 known exact values.  It is a conjecture, not a theorem.")

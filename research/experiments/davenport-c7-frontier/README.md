@@ -28,8 +28,9 @@ least `ℓ` such that every sequence of length `ℓ` has `z ≥ k`.
 | Two-sided `D_2(C_p^r)` framework, all ranks | per-`(p,r)` | `D2_ALL_RANKS_V3.md` *(superseded in part)* | `tools/d2_rank_bounds_v3.py` |
 | **Witness-coordinate criterion** — Theorems W, W_t, X, X′, Cor. 1–5 | proved | `WITNESS_CRITERION_V6.md` | `verify_witness_criterion_v6.py` |
 | **`D_2(C_3^5) = 17`** (2.7e9-node sweep, zero leaves) | proved | `D2_C3_5_DECIDED_V6.md` | witness in `verify_witness_criterion_v6.py` |
+| **`D_2(C_3^4) = 14`** — the closed form's first rank-4 test | proved | `D2_C3_4_DECIDED_V7.md` | `verify_d2_c3_4_v7.py` + live sweep |
 | Positional code dictionary; Theorem Y (star-free above `D`) | proved | `CODE_DICTIONARY_V7.md` | `verify_code_dictionary_v7.py` |
-| `D_k(C_p^r) = (3/2)r(p−1) + (k−2)p + 2` — fits all 24 known values | **conjecture** | `CLOSED_FORM_CONJECTURE_V7.md` | `verify_closed_form_conjecture_v7.py` |
+| `D_k(C_p^r) = (3/2)r(p−1) + (k−2)p + 2` — fits all 25 known values | **conjecture** | `CLOSED_FORM_CONJECTURE_V7.md` | `verify_closed_form_conjecture_v7.py` |
 
 ## The current frontier: `WITNESS_CRITERION_V6.md`
 
@@ -58,7 +59,7 @@ Start here. For the algebraic families used for `D_k` lower bounds,
 
 ## Open
 
-0. **Is `D_k(C_p^r) = (3/2)r(p−1) + (k−2)p + 2`?** It matches all 24 known exact values, its
+0. **Is `D_k(C_p^r) = (3/2)r(p−1) + (k−2)p + 2`?** It matches all 25 known exact values across ranks 2–5, its
    constants are forced by rank 2 alone, and it repairs the naive formula exactly where the
    literature records that one failing. But the construction falls one short at `(7,3)`, `(4,7)`,
    `(5,5)`. Three single numbers decide it: `D_2(C_3^7) ∈ {22,23}`, `D_2(C_7^4) ∈ {37,38}`,

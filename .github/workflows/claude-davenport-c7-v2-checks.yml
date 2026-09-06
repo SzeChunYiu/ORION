@@ -66,5 +66,19 @@ jobs:
         run: python verify_witness_criterion_v6.py
       - name: V7 positional code dictionary -- Theorem C, Lemma A, Corollary C1, Theorem Y (7 asserted steps)
         run: python verify_code_dictionary_v7.py
-      - name: V7 closed-form conjecture -- arithmetic against all 24 known exact values (6 asserted steps)
+      - name: V7 closed-form conjecture -- arithmetic against all 25 known exact values (8 asserted steps)
         run: python verify_closed_form_conjecture_v7.py
+      - name: V7 D_2(C_3^4) = 14 -- witness re-proved, sweep and its calibration re-run live
+        run: |
+          python verify_d2_c3_4_v7.py
+          gcc -O2 -o /tmp/enumr tools/enum_rank_generic_v3.c
+          /tmp/enumr 3 3 10 3 > /tmp/cal_pos.txt
+          /tmp/enumr 3 3 11 4 > /tmp/cal_neg.txt
+          /tmp/enumr 3 4 14 5 > /tmp/sweep.txt
+          echo "--- calibration, C_3^3 where D_2 = 11 is known ---"
+          grep RESULT /tmp/cal_pos.txt /tmp/cal_neg.txt
+          echo "--- the C_3^4 upper bound ---"
+          grep RESULT /tmp/sweep.txt
+          grep -q "found=5006 leaves=15412 nodes=40218" /tmp/cal_pos.txt
+          grep -q "found=0 leaves=0 nodes=2032" /tmp/cal_neg.txt
+          grep -q "found=0 leaves=10852 nodes=987944" /tmp/sweep.txt
