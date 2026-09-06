@@ -111,11 +111,32 @@ The `(5,3)` line is the one that could have exposed an error and did not: `D_2(C
 *proved*, so any family there with `Σ m_A ≥ 7` would contradict the 2.73-billion-node sweep. None
 was found, in the widened class, by a search that demonstrably finds the optimum when it exists.
 
-**What would settle `(7,3)`** is the exhaustive DFS in `tools/witness_optimum_v6.c` run with
-`--all-vectors` at `(p,r) = (3,7)`, not a randomised ascent. That tool reproduces every recorded
-indicator optimum exactly — `(4,3)→5`, `(4,5)→9`, `(4,7)→12`, `(5,3)→6`, the last returning
-precisely the `{1,i,j}` family of the `C_3^5` witness — so it is the right instrument. Whether
-its search space is tractable at 2186 vectors has not been established.
+### The `M*` table itself, independently validated
+
+Everything above rests on the recorded `M*` values, so they were recomputed from scratch with the
+exhaustive DFS in `tools/witness_optimum_v6.c`, in a build instrumented to count box truncations:
+
+| `(r,p)` | recorded `M*` | exhaustive tool | box truncations |
+|---|---|---|---|
+| `(4,3)` | 5 | 5 | 0 |
+| `(4,5)` | 9 | 9 | 0 |
+| `(4,7)` | 12 | 12 | 0 |
+| `(5,3)` | 6 | 6 | 0 |
+| `(5,5)` | 10 | 10 | 0 |
+| `(6,3)` | 7 | 7 | 0 |
+
+Six for six, and at `(5,3)` the tool returns precisely the `{1,i,j}` family of the `C_3^5` witness.
+
+The truncation column is not decoration. `build_box()` used to stop filling the multiplicity box
+after 100000 points and **return silently**; `feasible()` would then test only part of the box, so
+a violating pair could go unexamined and a family be declared feasible when it is not — which
+overreports `M*`, which is what every `D_2` lower bound here is built from. It is reachable in
+principle (`nc ≤ 16` with `CAP = 24` permits a box of `3^12 = 531441`). The instrumented run shows
+it has **never fired** on any computed case, and the guard now aborts loudly instead of truncating.
+
+**What would settle `(7,3)`** is that same exhaustive DFS run with `--all-vectors` at
+`(p,r) = (3,7)`, not a randomised ascent. Whether its search space is tractable at 2186 vectors
+has not been established.
 
 ## 4. The questions this sharpens
 
