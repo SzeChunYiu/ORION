@@ -37,7 +37,24 @@ Status vocabulary: **proved** (mathematical proof, machine-checked) · **verifie
 
 ## Corrections
 
-- **V5 → V6 prior-art correction (this pass).** `MANUSCRIPT_V1.md` §9 previously reported that
+- **V6 → V7 prior-art correction — reference 6 read in the primary text (this pass).** The
+  correction immediately below called `arXiv:1407.1966` a live collision risk on elementary
+  `p`-groups. That was written from a search snippet. The paper has now been **read** (v2,
+  21 May 2015) and the risk **does not survive contact with the text**: its elementary-`p`-group
+  results are for the **fully weighted** constant `D_{A,m}` with `A = {1,…,exp(G)−1}`, which
+  coincides with the classical `D_m` **only at `p = 2`** (at `p = 3` it is the plus-minus weighted
+  problem instead). Its explicit values are `D_{A,m}(C_p) = 2m`, `D_{A,m}(C_p^2) = 3m` or
+  `2m+⌈p/3⌉`, and `D_{A,m}(C_3^3) = 4,7,9,12,4+2m` — rank at most two plus `C_3^3`, all weighted;
+  for the *classical* `C_3^3` values it refers the reader elsewhere. Its cap-set/linear-code link
+  is a link to the weighted problem. Its general eventual-arithmetic-progression theorem
+  specialises at `W = {1}` to reference 2, already cited.
+  **Consequence:** the overlap with claims 2, 7 and 26 is **empty**, and gate 1 is narrowed from
+  six unread references to five. The paper is still worth citing as nearest-by-method.
+  *Lesson recorded: two successive prior-art positions in this ledger were written from search
+  snippets and both were wrong — the first about which paper was nearest, the second about what
+  the nearest one contains. Neither survived the primary text.*
+
+- **V5 → V6 prior-art correction (superseded by the entry above; kept for the record).** `MANUSCRIPT_V1.md` §9 previously reported that
   "the nearest prior work is located and lies on a disjoint family of groups". That was correct
   about reference 4 (Girard–Schmid, `C_2 ⊕ C_{n_2} ⊕ C_{n_3}`) and **wrong as a summary of the
   prior-art position**. A later search pass identified **reference 6**, Marchan–Ordaz–Santos–Schmid,
@@ -68,11 +85,11 @@ Status vocabulary: **proved** (mathematical proof, machine-checked) · **verifie
 
 ## Pre-submission gates
 
-1. **Read reference 6 first** — Marchan–Ordaz–Santos–Schmid, arXiv:1407.1966. It is the nearest
-   prior work by subject (`m`-wise Davenport constants, elementary `p`-groups, linear codes and
-   cap sets) and the single reference whose reading could most change the novelty position. Then
-   the rest of the prior-art pass against primary sources. Network access required; every
-   scholarly host is refused by the authoring host's egress policy.
+1. Prior-art pass against primary sources for references **1–5**. Reference 6
+   (Marchan–Ordaz–Santos–Schmid, arXiv:1407.1966) is **done**: read in full, overlap established
+   as empty because its elementary-`p`-group results are fully weighted. The remaining five need
+   network access, which the authoring host does not have — every scholarly host is refused by
+   its egress policy.
 2. Independent mathematical review of Theorem C, in particular the step-5 enumeration. The
    existing double implementation shares an author and is **not** independent replication.
 3. Independent re-implementation of `verify_D3_C7_end_to_end_v3.py` step 8.

@@ -10,13 +10,14 @@ New paper opened on lane `claude/orion-research-frontier-3ck9yt`.
 
 **Not yet submittable.** Two gates remain and neither can be cleared from the authoring host.
 
-1. **Prior art.** The nearest prior work is now identified as **arXiv:1407.1966**
-   (Marchan–Ordaz–Santos–Schmid, JCTA 2015) — `m`-wise Davenport constants for **elementary
-   `p`-groups**, via linear codes and cap sets. Rank-three elementary `p`-groups are inside its
-   scope. An earlier revision of the manuscript described the nearest prior work as lying on a
-   disjoint family of groups; that was true of Girard–Schmid and **wrong as a summary**, and is
-   corrected in `CLAIM_LEDGER.md`. No primary text has been read: every scholarly host is refused
-   by this host's egress policy.
+1. **Prior art — narrowed to five references.** **arXiv:1407.1966**
+   (Marchan–Ordaz–Santos–Schmid, JCTA 2015) was the highest-risk candidate and has now been
+   **read in full**. It does *not* overlap: its elementary-`p`-group results are for the **fully
+   weighted** constant `D_{A,m}`, `A = {1,…,exp(G)−1}`, which equals the classical `D_m` only at
+   `p = 2`; its explicit values cover rank at most two plus `C_3^3`; and its cap-set link is to
+   the weighted problem. Two earlier readings of the prior-art position — both written from
+   search snippets, both wrong — are logged in `CLAIM_LEDGER.md`. References 1–5 remain unread:
+   every scholarly host is refused by this host's egress policy.
 2. **Independent mathematical review** of the `D_3(C_7^3)` argument. The step-5 enumeration is
    double-implemented but by the same author, which is not independent replication.
 

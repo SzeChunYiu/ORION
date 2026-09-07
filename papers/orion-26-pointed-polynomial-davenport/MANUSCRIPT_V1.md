@@ -368,9 +368,11 @@ The value `20` is therefore only ever evaluated at `p ≡ 3 (mod 4)`, and `5 ≡
 
 **Method transfer.** The rule isolated in §5.3 — point the polynomial when the window is two-sided — is not specific to Davenport constants. It applies wherever a counting identity is applied to an object whose admissible configurations are closed under complementation, since that is exactly when the symmetric identity is silently halving its own information.
 
-**Prior-art position.** *Read this together with §9(i): the nearest prior work is reference 6, on
-elementary `p`-groups by a coding-theoretic route, and it has not been read. Everything in this
-paragraph is a statement about what this paper does, not a novelty claim against that reference.*
+**Prior-art position.** *Read this together with §9(i). Reference 6 — the coding-theoretic route
+to these constants over elementary `p`-groups — has now been read in the primary text and does
+**not** overlap: it treats the fully weighted constant, which equals the classical one only at
+`p = 2`. References 1–5 remain unread, so this paragraph is still a statement about what this
+paper does, not a novelty claim against them.*
 
 This paper is `D_2` for all primes and `D_3` at `p = 7`, unconditional. It **decides** `D_4(C_5^3)`, which the prior conditional `C_5^3` analysis could bound only to one bit under two hypotheses. Theorem A does discharge, for every prime, a `D_2` premise that several reductions in that line assume on the strength of an external lemma, and Theorem F adds atom-length structure to the branch that analysis develops.
 
@@ -396,21 +398,27 @@ Every claim above is backed by a checker in `research/experiments/davenport-c7-f
 
 **Outstanding.** Two prerequisites remain, and neither can be cleared from the authoring host.
 
-**(i) Prior-art verification — and a correction to how this draft previously described it.** A
-literature **search** has been run (`EXTERNAL_PRIOR_ART_V5.md`), but the host blocks page fetching,
-so **no primary text has been read** and every attribution is unverified.
+**(i) Prior-art verification — narrowed, and one reference now actually read.** A literature
+**search** has been run (`EXTERNAL_PRIOR_ART_V5.md`), and the host blocks page fetching, so with
+one exception **no primary text has been read** and those attributions remain unverified.
 
-An earlier version of this section reported that "the nearest prior work is located and lies on a
-disjoint family of groups". That was **wrong as a summary of the prior-art position**, though
-correct about the paper it was describing (reference 4). A later search pass identified
-reference 6 — Marchan–Ordaz–Santos–Schmid — whose `m`-wise Davenport constant at trivial weights
-*is* `D_m`, which treats **elementary `p`-groups** specifically, and which links these constants to
-linear codes and cap sets. Elementary `p`-groups of rank three are inside its scope, so the
-disjointness that reference 4 enjoys does not transfer, and the earlier sentence should not be
-relied on. A person with library access must read reference 6 first and answer three questions:
-are any of `D_2(C_p^3)`, `D_3(C_7^3)`, `D_4(C_5^3)` obtainable from or recorded by the
-coding-theoretic route; is a short-atom bound near `D/2` for `C_p^3` known; and is the pointed
-identity of §5 already in the literature. **No priority claim should be read into this draft.**
+The exception is reference 6, supplied directly and read in full (v2, 21 May 2015). It was the
+highest-risk candidate, and reading it **removes** the risk rather than confirming it: its
+elementary-`p`-group results are for the **fully weighted** constant `D_{A,m}`,
+`A = {1,…,exp(G)−1}`, which equals the classical `D_m` only at `p = 2`; its explicit values cover
+rank at most two plus `C_3^3`; and for the classical `C_3^3` values it refers the reader
+elsewhere. See the Positioning note in the references.
+
+Two earlier descriptions of the prior-art position in this section were wrong and are corrected:
+"the nearest prior work lies on a disjoint family of groups" (true of reference 4 only, and used
+to stand in for the whole position), and the subsequent claim that reference 6 was a live
+collision risk on elementary `p`-groups (made from a search snippet, before the text was
+available).
+
+**What remains.** References 1–5 are still unread. The open questions are unchanged in kind but
+smaller in number: is `D_3(C_7^3)` known, is a short-atom bound near `D/2` for `C_p^3` known, and
+is the pointed identity of §5 already in the literature. **No priority claim should be read into
+this draft** until a person with library access has checked them.
 
 **(ii) Independent mathematical review of Theorem C**, in particular the step-5 enumeration (§6).
 That enumeration is now double-implemented (`D3_STEP5_SECOND_IMPLEMENTATION_V5.md`) — two programs
@@ -432,23 +440,40 @@ Identified by literature search; **none has been read**, because the authoring h
 5. B. Girard, W. A. Schmid, *Inverse zero-sum problems for certain groups of rank three*, Acta Math. Hungar. (2019); arXiv:1809.03178.
 6. L. E. Marchan, O. Ordaz, I. Santos, W. A. Schmid, *Multi-wise and constrained fully weighted Davenport constants and interactions with coding theory*, J. Combin. Theory Ser. A (2015); arXiv:1407.1966.
 
-**Positioning.** *This paragraph was materially revised; the earlier version named the wrong
-nearest neighbour and is retained in the ledger's correction log.*
+**Positioning.** *Revised twice. The first version named reference 4 as nearest neighbour; the
+second named reference 6 and called it a live collision risk on the strength of a search snippet.
+Reference 6 has since been **read in the primary text** (v2, 21 May 2015), and the finding below
+supersedes both. The superseded readings are kept in the ledger's correction log.*
 
-Reference **6** is the nearest prior work, and it is closer than this draft previously claimed.
-Its `m`-wise Davenport constant with weight set `W` is, at the trivial weights `W = {1}`, exactly
-the `D_m` studied here; it works **for elementary `p`-groups specifically**; and it links these
-constants to linear-code parameters and to cap sets in projective spaces, reporting explicit
-values by that route. Elementary `p`-groups of rank three are inside its stated scope. Whether any
-value proved here — `D_2(C_p^3) = (9p−5)/2`, `D_3(C_7^3) = 36`, `D_4(C_5^3) = 30` — or a
-short-atom bound near `D/2` is obtainable from, or already recorded by, that coding-theoretic
-route is **not known to us**: the authoring host cannot fetch it (§9). It is the single reference
-whose reading could most change this paper's novelty claim.
+**Reference 6 does not overlap this paper, and the reason is exact.** Its subject is the
+**fully weighted** constant `D_{A,m}`, where `A = {1, …, exp(G)−1}` is the *largest non-trivial*
+weight set, not the trivial `W = {1}` that gives the classical `D_m`. The two coincide **only at
+`p = 2`**, where `A = {1}` — which is precisely why the elementary-2-group literature it builds on
+(Cohen–Zémor, Freeze–Schmid, Plagne–Schmid) is about the classical constants. For `p = 3` the
+fully weighted problem coincides instead with the **plus-minus** weighted problem `W = {+1,−1}`,
+and for `p ≥ 5` it is a third thing again. `C_p^3` at an odd prime, unweighted, is none of these.
 
-Reference 4 remains relevant but is *not* nearest: it treats `G ≃ C_2 ⊕ C_{n_2} ⊕ C_{n_3}` with
-`2 | n_2 | n_3`, rank-three groups of even exponent containing a `C_2` factor, so `C_p^3` with `p`
-an odd prime is not of that form. The earlier claim that "the overlap is empty" was correct about
-reference 4 and was wrongly used to stand in for the whole prior-art position.
+Its explicit values bear this out: `D_{A,m}(C_p) = 2m`; `D_{A,m}(C_p^2) = 3m` for `m ≤ ⌈p/3⌉` and
+`2m + ⌈p/3⌉` beyond; and `D_{A,m}(C_3^3) = 4, 7, 9, 12` for `m = 1,…,4` with `4 + 2m` for `m ≥ 5`.
+Elementary `p`-groups of **rank at most two**, plus `C_3^3` — all fully weighted. For the
+*classical* multiwise constants of `C_3^3` that paper explicitly refers the reader elsewhere,
+which is the clearest possible indication that it does not compute them.
+
+The cap-set and linear-code link is likewise a link to the **weighted** problem: for elementary
+3-groups fully weighted equals plus-minus weighted, and it is there that lines in `AG(r,3)` become
+the relevant obstruction. That mechanism is not the one used here.
+
+Its general theorem — that `(D_{W,m})_m` is eventually an arithmetic progression — specialises at
+`W = {1}` to the classical statement, which is reference 2 (Freeze–Schmid) and is cited as such
+throughout this paper.
+
+**So the overlap is empty**, for the same kind of reason reference 4's is: a different family of
+problems, not a different corner of the same one. Reference 6 remains worth citing as the nearest
+work by *method* — it is where the coding-theoretic route to these constants is developed — and it
+is no longer a live threat to the novelty of anything claimed here.
+
+Reference 4 treats `G ≃ C_2 ⊕ C_{n_2} ⊕ C_{n_3}` with `2 | n_2 | n_3`, rank-three groups of even
+exponent containing a `C_2` factor, so `C_p^3` with `p` an odd prime is not of that form either.
 
 Multiwise Davenport constants are otherwise reported as settled for elementary `p`-groups of rank
 at most two and for `C_3^3`; the frequently quoted "known for rank at most three" refers to
