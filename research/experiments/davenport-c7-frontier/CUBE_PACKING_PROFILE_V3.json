@@ -1,0 +1,147 @@
+{
+  "schema": "ORION.DavenportC7.CubePackingProfile.v3",
+  "group": "C_n^3",
+  "support": "nonzero binary cube Q = {e1,e2,e3,e12,e13,e23,e123}",
+  "multiplicity_cap": "n-1",
+  "definitions": {
+    "c_j": "max |m| over the box with packing number <= j",
+    "z_j": "max |m| over zero-sum m in the box with packing number <= j"
+  },
+  "exact_values": {
+    "3": {
+      "c": [
+        6,
+        10,
+        13,
+        14,
+        14
+      ],
+      "z": [
+        null,
+        7,
+        11,
+        12,
+        12
+      ],
+      "pk_full_cube": 3
+    },
+    "5": {
+      "c": [
+        12,
+        19,
+        24,
+        26,
+        28
+      ],
+      "z": [
+        null,
+        13,
+        20,
+        22,
+        27
+      ],
+      "pk_full_cube": 4
+    },
+    "7": {
+      "c": [
+        18,
+        28,
+        35,
+        38,
+        42
+      ],
+      "z": [
+        null,
+        19,
+        29,
+        32,
+        39
+      ],
+      "pk_full_cube": 4
+    },
+    "9": {
+      "c": [
+        24,
+        37,
+        46,
+        50,
+        56
+      ],
+      "z": [
+        null,
+        25,
+        38,
+        42,
+        51
+      ],
+      "pk_full_cube": 4
+    },
+    "11": {
+      "c": [
+        30,
+        46,
+        57,
+        62,
+        70
+      ],
+      "z": [
+        null,
+        31,
+        47,
+        52,
+        63
+      ],
+      "pk_full_cube": 4
+    },
+    "13": {
+      "c": [
+        36,
+        55,
+        68,
+        74,
+        84
+      ],
+      "z": [
+        null,
+        37,
+        56,
+        62,
+        75
+      ],
+      "pk_full_cube": 4
+    }
+  },
+  "closed_forms": {
+    "c_0": "3n-3",
+    "c_1": "(9n-7)/2",
+    "c_2": "(11n-7)/2",
+    "c_3": "6n-4",
+    "c_4": "7n-7",
+    "z_1": "3n-2",
+    "z_2": "(9n-5)/2",
+    "z_3": "5n-3",
+    "z_4": "6n-3",
+    "exceptions": "n=3 only: c_3=c_4=7n-7=14 and z_4=12 (cube too small)"
+  },
+  "d3_obstruction_test": {
+    "needed_z3": "(11n-3)/2",
+    "actual_z3": "5n-3",
+    "shortfall": "(n+3)/2",
+    "reading": "the binary cube cannot host a D_3 obstruction for any computed n, and the margin grows linearly"
+  },
+  "families": {
+    "S_2": "e1^{n-1} e2^{n-1} e3^{n-1} e12^{(n+1)/2} e13^{(n-1)/2} e23^{(n-1)/2}, pk=1, len (9n-7)/2 [proved all odd n]",
+    "S_3": "e1^{n-1} e2^{n-1} e3^{n-1} e12^{n-1} e13^{(n+1)/2} e23^{(n-1)/2} e123^{(n+1)/2}, pk=2, len (11n-7)/2 [proved all odd n]",
+    "S_4": "S_3 with e123 raised to n-1 plus (e1+e2+2e3)^{(n+3)/2}, pk=3, len (13n-7)/2 [verified n=3,5,7,9]"
+  },
+  "conjecture": "D_k(C_n^3) = ((2k+5)n-5)/2 = D(C_n^3) + (k-1)n + (n-1)/2 for all odd n and k >= 2",
+  "mechanism": "half-integrality of the cube incidence polytope; det of the (e12,e13,e23) minor is -2, so <e12,e13,e23> has index 2 in <e1,e2,e3>",
+  "verifiers": [
+    "cube_packing_profile_v3.py",
+    "tools/cube_profile_v3.c",
+    "tools/famcheck_v3.py"
+  ],
+  "grants_D3_closure": false,
+  "grants_novelty_authority": false,
+  "priority_status": "CANNOT_CHECK"
+}

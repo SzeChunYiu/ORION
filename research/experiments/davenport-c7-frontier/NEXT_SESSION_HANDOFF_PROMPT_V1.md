@@ -1,0 +1,7 @@
+# Next-session handoff prompt — C7^3 / general multiwise Davenport
+
+Continue the ORION LLM-assisted research lane on branch `shadow/davenport-c7-frontier-20260903`. First read the latest files under `research/experiments/davenport-c7-frontier/`, especially `GENERAL_CP3_MULTIWISE_MASTER_REDUCTION_V1.md`, `SUPPORT7_ALL_THEOREM_V1.md`, `ATOM_LENGTH_CORRIDOR_V1.md`, `MAXIMAL_ATOM_PROJECTIVE_SEPARATION_V1.md`, `SUPPORT8_PROJECTIVE_DEFICIT_REDUCTION_V1.md`, and `CROSS_CONTEXT_FRONTIER_CHECKPOINT_V1.md`.
+
+Goal: push toward a mechanism for `D_k(C_p^3)` for primes `p>=5`, using `D_3(C_7^3)=36?` as the immediate frontier. Do not merely explain prior work. Saturate donor literature and borrow structure from affine semigroups/Graver bases, coding/projective geometry, block-monoid factorization, restricted subset-sum/additive-basis diameter, and hypergraph matching. Override mechanical ORION scheduling when useful, but preserve receipts/claim ceilings.
+
+Immediate priorities: (1) close support-8, first the one-projective-collision branch over the existing 54 `(7,3)`-arc classes, then the eight-distinct-direction `(8,4)`-arc branch; (2) search/prove a restricted subset-sum radius theorem for maximal zero-sumfree length-18 sequences to attack the `(8,10,19)` and `(9,9,19)` atom corridors; (3) look for an integer-decomposition/Graver-basis theorem that forces four conformal zero-sum factors in the relevant bounded fibers. Commit every verified reduction/check to the shadow branch; mark unverified ideas and priority as `CANNOT_CHECK` rather than overstating them.

@@ -1,0 +1,141 @@
+name: shadow-davenport-c7-frontier-v2
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-c7-frontier-v2-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analytic-cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check atom corridor
+        run: python research/experiments/davenport-c7-frontier/check_atom_length_corridor_v1.py
+      - name: Check prime-uniform short-free support barrier
+        run: python research/experiments/davenport-c7-frontier/check_general_shortfree_support_barrier_v1.py
+      - name: Check corridor projective line fibers
+        run: python research/experiments/davenport-c7-frontier/check_corridor_line_fiber_avoidance_v1.py
+      - name: Independently verify corridor projective line fibers
+        run: python research/experiments/davenport-c7-frontier/verify_corridor_line_fiber_independent_v1.py
+      - name: Check packing-defect core formalism
+        run: |
+          python research/experiments/davenport-c7-frontier/check_packing_defect_core_formalism_v1.py | tee /tmp/defect-primary.json
+      - name: Independently verify packing-defect core formalism
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_packing_defect_core_independent_v1.py | tee /tmp/defect-independent.json
+      - name: Compare independent packing-defect receipts
+        run: |
+          python - <<'PY2'
+          import json
+          a=json.load(open('/tmp/defect-primary.json'))
+          b=json.load(open('/tmp/defect-independent.json'))
+          assert a['canonical_sha256']==b['canonical_sha256']
+          assert a['p7_q1_total_signatures']==b['p7_q1_total_signatures']==219
+          assert a['p7_m3_raw_signatures']==b['p7_m3_raw_signatures']==19
+          assert a['p7_m3_donor_corridors']==b['p7_m3_donor_corridors']==6
+          print('PACKING_DEFECT_RECEIPTS_AGREE',a['canonical_sha256'])
+          PY2
+      - name: Check Zhao 4p resonance controls
+        run: python research/experiments/davenport-c7-frontier/check_zhao_4p_resonance_v1.py
+      - name: Check Fan length-37 hostile-control witness
+        run: python research/experiments/davenport-c7-frontier/check_fan_length37_witness_v1.py
+      - name: Regenerate projective support-7 cover
+        run: |
+          python research/experiments/davenport-c7-frontier/generate_support7_projective_arcs_v1.py \
+            --write-reps /tmp/support7-reps.txt --json
+          cmp /tmp/support7-reps.txt research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt
+      - name: Check support-8 deficit arithmetic
+        run: python research/experiments/davenport-c7-frontier/check_support8_deficit_v1.py
+      - name: Regenerate projective support-8 cover
+        run: |
+          python research/experiments/davenport-c7-frontier/generate_support8_projective_sets_v1.py \
+            --write-reps /tmp/support8-reps.txt --json | tee /tmp/support8-cover.json
+          echo '1b5a96c1ba457ddd3b18378230658f592926a5b1d471c2e288c8c553497e2a78  /tmp/support8-reps.txt' | sha256sum -c -
+          python - <<'PY2'
+          import json
+          d=json.load(open('/tmp/support8-cover.json'))
+          assert d['projective_equivalence_classes']==350
+          assert d['classes_maxline_2']==1
+          assert d['classes_maxline_3']==180
+          assert d['classes_maxline_4']==169
+          assert d['classes_with_2_disjoint_four_secants']==3
+          assert d['classes_with_2_intersecting_four_secants']==20
+          PY2
+      - name: Check bound result record
+        run: python research/experiments/davenport-c7-frontier/check_support7_all_result_v1.py
+
+  primary-support7:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile primary exact search
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/search_support7_all_v1.cpp -o /tmp/search-support7
+      - name: Replay all support-7 candidates
+        run: |
+          /tmp/search-support7 research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt | tee /tmp/primary.log
+          grep -E '^total=3418800 shortfree=14860 pack4=14860 bad=0 ' /tmp/primary.log
+
+  independent-support7:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ['0 9','9 18','18 27','27 36','36 45','45 54']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile independent verifier
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/verify_support7_all_independent_v1.cpp -o /tmp/verify-support7
+      - name: Verify projective-class shard
+        run: |
+          set -- ${{ matrix.shard }}
+          /tmp/verify-support7 research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt "$1" "$2" | tee /tmp/independent.log
+          grep -E ' bad=0 ' /tmp/independent.log
+
+  primary-support8-one-collision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ['0 9','9 18','18 27','27 36','36 45','45 54']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile primary one-collision search
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/search_support8_one_collision_v1.cpp -o /tmp/search-support8b
+      - name: Replay one-collision shard
+        run: |
+          set -- ${{ matrix.shard }}
+          /tmp/search-support8b research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt "$1" "$2" | tee /tmp/support8b-primary.log
+          grep -E ' bad=0 ' /tmp/support8b-primary.log
+
+  independent-support8-one-collision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ['0 9','9 18','18 27','27 36','36 45','45 54']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile independent one-collision verifier
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/verify_support8_one_collision_independent_v1.cpp -o /tmp/verify-support8b
+      - name: Independently verify one-collision shard
+        run: |
+          set -- ${{ matrix.shard }}
+          /tmp/verify-support8b research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt "$1" "$2" | tee /tmp/support8b-independent.log
+          grep -E ' bad=0 ' /tmp/support8b-independent.log

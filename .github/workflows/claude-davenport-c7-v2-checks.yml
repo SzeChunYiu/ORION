@@ -1,0 +1,84 @@
+name: claude-davenport-c7-v2-checks
+
+on:
+  push:
+    branches:
+      - claude/orion-research-frontier-3ck9yt
+    paths:
+      - 'research/experiments/davenport-c7-frontier/**'
+      - '.github/workflows/claude-davenport-c7-v2-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-checks-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: research/experiments/davenport-c7-frontier
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: V1 hand-derived orbit cover and certificates (binary cube, length 37)
+        run: python check_support7_binary_cube_v1.py
+      - name: V2 spectrum congruence suite (D2 gate, D3 short-zero-sum lemma, certificates)
+        run: python spectrum_congruences_v2.py
+      - name: V2 cube families S_2(p), S_3(p) for p = 3, 5, 7 (independent packing recursion)
+        run: python verify_cube_family_v2.py --fast
+      - name: V3 binary-cube packing profile (independent Python recomputation, n = 3 and 5)
+        run: python cube_packing_profile_v3.py
+      - name: V3 extremal families S_2, S_3, S_4 for n = 5, 7, 9, 11
+        run: python tools/famcheck_v3.py 5 7 9
+      - name: V3 general family T_k(n) for n = 3, 5, 7 and k <= 6
+        run: python verify_tk_family_v3.py
+      - name: V3 uniform D_2 digit certificate (all primes 5 <= p <= 200)
+        run: python tools/d2_digit_certificate_v3.py
+      - name: V3 rank-r D_2 bounds (certificates for r <= 5, p <= 13)
+        run: python -c "import sys; sys.path.insert(0,'tools'); from d2_rank_bounds_v3 import threshold; known={2:lambda p:3*p-1,3:lambda p:(9*p-5)//2}; ok=all(threshold(p,r)-1==known[r](p) for r in (2,3) for p in (5,7,11,13)); print('rank bounds reproduce known D_2 at r=2,3:', ok); assert ok"
+      - name: V3 atom-spectrum congruence (identity brute force, real-object validation, forced atom lengths)
+        run: python verify_atom_spectrum_v3.py
+      - name: V3 hypothesis (Z) and the pointed identity
+        run: python verify_hypothesis_Z_v3.py && python verify_pointed_identity_v3.py
+      - name: V2 exhaustive analogues (compile enumerator, replay p = 3 and p = 5 D2 frames)
+        run: bash run_exhaustive_analogs_v2.sh --ci
+      - name: V3 end-to-end D_3(C_7^3) = 36 (whole proof rebuilt in one program, 8 asserted steps)
+        run: python verify_D3_C7_end_to_end_v3.py
+      - name: V3 atom-length closure, second corridor, spectrum lattice
+        run: python verify_atom_length_closure_v3.py && python verify_second_corridor_v3.py && python verify_spectrum_lattice_v3.py
+      - name: V4 general spectrum, three special lengths (5 <= p <= 31)
+        run: python verify_general_spectrum_v4.py
+      - name: V4 short-atom bound, uniform (Prop 4.3')
+        run: python verify_short_atom_bound_v4.py
+      - name: V5 Theorem G (Lucas digit criterion) and the short-atom law
+        run: python verify_lucas_criterion_v5.py && python verify_short_atom_law_v5.py
+      - name: V5 Theorems I and J, support reduction, dual support, Observation D
+        run: python verify_supp_Q_proof_v5.py && python verify_existence_proved_v5.py && python verify_support_reduction_v5.py && python verify_dual_support_v5.py && python verify_observationD_reduction_v5.py
+      - name: V6 Theorem T -- D_4(C_5^3) = 30, end to end with the L=13 sweep re-run live
+        run: python verify_D4_C5_end_to_end_v6.py
+      - name: V6 D_4 corridor, special corridor, and the two recorded negatives
+        run: python verify_d4_c5_corridor_v4.py && python verify_special_corridor_v6.py && python verify_d3_bridge_negative_v6.py && python verify_d4_flat_bridge_v6.py
+      - name: V6 witness-coordinate criterion -- Theorems W, W_t, X, X' and Corollaries 1-5 (12 asserted steps)
+        run: python verify_witness_criterion_v6.py
+      - name: V7 positional code dictionary -- Theorem C, Lemma A, Corollary C1, Theorem Y (7 asserted steps)
+        run: python verify_code_dictionary_v7.py
+      - name: V7 closed-form conjecture -- arithmetic against all 25 known exact values (8 asserted steps)
+        run: python verify_closed_form_conjecture_v7.py
+      - name: V7 D_2(C_3^4) = 14 -- witness re-proved, sweep and its calibration re-run live
+        run: |
+          python verify_d2_c3_4_v7.py
+          gcc -O2 -o /tmp/enumr tools/enum_rank_generic_v3.c
+          /tmp/enumr 3 3 10 3 > /tmp/cal_pos.txt
+          /tmp/enumr 3 3 11 4 > /tmp/cal_neg.txt
+          /tmp/enumr 3 4 14 5 > /tmp/sweep.txt
+          echo "--- calibration, C_3^3 where D_2 = 11 is known ---"
+          grep RESULT /tmp/cal_pos.txt /tmp/cal_neg.txt
+          echo "--- the C_3^4 upper bound ---"
+          grep RESULT /tmp/sweep.txt
+          grep -q "found=5006 leaves=15412 nodes=40218" /tmp/cal_pos.txt
+          grep -q "found=0 leaves=0 nodes=2032" /tmp/cal_neg.txt
+          grep -q "found=0 leaves=10852 nodes=987944" /tmp/sweep.txt

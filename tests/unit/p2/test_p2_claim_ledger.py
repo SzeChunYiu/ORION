@@ -41,7 +41,12 @@ def run(paper_root: Path, *extra: str) -> subprocess.CompletedProcess[str]:
 def pristine(tmp_path_factory: pytest.TempPathFactory) -> Path:
     """One clean copy of the paper tree, shared read-only across tests."""
     target = tmp_path_factory.mktemp("p2-paper-pristine") / "paper"
-    shutil.copytree(PAPER, target)
+    # Skip __pycache__: it is build output, not part of the paper tree, and copying it
+    # races with concurrent bytecode writes.  CPython writes a .pyc atomically as
+    # "<name>.pyc.<id>" then renames, so under xdist another worker importing from this
+    # same tree can make copytree list a temp name that is gone before it is copied,
+    # failing the whole fixture with ENOENT.
+    shutil.copytree(PAPER, target, ignore=shutil.ignore_patterns("__pycache__"))
     return target
 
 
@@ -49,7 +54,7 @@ def pristine(tmp_path_factory: pytest.TempPathFactory) -> Path:
 def paper(pristine: Path, tmp_path: Path) -> Path:
     """A per-test mutable copy.  Tests may vandalise this freely."""
     target = tmp_path / "paper"
-    shutil.copytree(pristine, target)
+    shutil.copytree(pristine, target, ignore=shutil.ignore_patterns("__pycache__"))
     return target
 
 

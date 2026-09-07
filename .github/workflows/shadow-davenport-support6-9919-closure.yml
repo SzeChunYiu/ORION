@@ -1,0 +1,29 @@
+name: shadow-davenport-support6-9919-closure
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-support6-9919-closure-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile primary support-six second-corridor closure
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/search_support6_9919_closure_v1.cpp -o /tmp/support6-9919-primary
+      - name: Run primary exhaustive closure
+        run: /tmp/support6-9919-primary
+      - name: Compile independent support-six second-corridor verifier
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/verify_support6_9919_independent_v1.cpp -o /tmp/support6-9919-independent
+      - name: Run independent exhaustive closure
+        run: /tmp/support6-9919-independent

@@ -1,0 +1,30 @@
+{
+  "schema": "ORION.DavenportC7.BinaryCubeSupportResult.v1",
+  "group": "C_7^3",
+  "sequence_length": 37,
+  "support": ["e1", "e2", "e3", "e1+e2", "e1+e3", "e2+e3", "e1+e2+e3"],
+  "multiplicity_cap": 6,
+  "total_zero_profiles": 10,
+  "coordinate_permutation_orbits": 4,
+  "profiles": [
+    [4,6,6,6,6,4,5],
+    [5,5,5,6,6,6,4],
+    [5,5,6,6,5,5,5],
+    [5,6,5,5,6,5,5],
+    [5,6,6,5,5,4,6],
+    [6,4,6,6,4,6,5],
+    [6,5,5,5,5,6,5],
+    [6,5,6,5,4,5,6],
+    [6,6,4,4,6,6,5],
+    [6,6,5,4,5,5,6]
+  ],
+  "packing_number_each_profile": 4,
+  "four_pack_exists": true,
+  "five_pack_exists": false,
+  "primary_argument": "SUPPORT7_BINARY_CUBE_THEOREM_V1.md",
+  "cover_checker": "check_support7_binary_cube_v1.py",
+  "independent_packing_checker": "verify_support7_binary_cube_independent_v1.py",
+  "grants_global_D3_closure": false,
+  "grants_novelty_authority": false,
+  "priority_status": "CANNOT_CHECK"
+}
