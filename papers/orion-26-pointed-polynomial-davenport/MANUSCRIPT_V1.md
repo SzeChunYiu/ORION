@@ -39,12 +39,12 @@ Taking `h = e_d` turns this into linear congruences on the counts `N_ℓ` of zer
 
 1. `D_2(C_p^3) = (9p−5)/2` for every prime `p ≥ 5`, self-contained given Olson (§4).
 2. An exact digit criterion for the pointed system (Theorem G, §5.5): inconsistency holds iff some `d ∈ [m−2w−1, m−3p+1]` is base-`p` digit-dominated by `m−1−w`. This removes linear algebra from the method and makes the short-atom bound a theorem at every prime rather than a per-prime computation.
-2b. The resulting short-atom bound in closed form — generic value `(3p−1)/2`, about half the Davenport constant — which at `p = 7` removes three external inputs and halves both length corridors (§5).
-3. `D_3(C_7^3) = 36`, with Olson as the only external input (§6).
-3c. **Theorem J** (§7.3): every `D_3(C_p^3)` obstruction carries atoms of at least two of the three special lengths, for every prime — proved by an explicit dual, with a parity fact (`s = +1 ⟺ p ≡ 1 mod 4`) that is what keeps the construction alive at `p = 5, 7`.
-3b. **`D_4(C_5^3) = 30`** (§6.5), deciding a question previously bounded only to `{30,31}`, and closing the conjectured line at `p = 5` for every `k`.
-4. A uniform-in-`p` identification of three *special* atom lengths, with the Lucas mechanism that explains them, verified for `5 ≤ p ≤ 31` (§7).
-5. A correction to the record: pointed congruences do add strength, in the two-sided regime specifically (§5.3).
+3. The resulting short-atom bound in closed form — generic value `(3p−1)/2`, about half the Davenport constant — which at `p = 7` removes three external inputs and halves both length corridors (§5).
+4. `D_3(C_7^3) = 36`, with Olson as the only external input (§6).
+5. **`D_4(C_5^3) = 30`** (§6.5), deciding a question previously bounded only to `{30,31}`, and closing the conjectured line at `p = 5` for every `k`.
+6. A uniform-in-`p` identification of the three *special* atom lengths `3(p−1)/2`, `2p`, `(5p−3)/2`, with the Lucas mechanism that explains them — **proved for every prime `p ≥ 5`**, not merely computed over a range (§7).
+7. **Theorem J** (§7.3): every `D_3(C_p^3)` obstruction carries atoms of at least two of those three lengths, for every prime — proved by an explicit dual, with a parity fact (`s = +1 ⟺ p ≡ 1 mod 4`) that is what keeps the construction alive at `p = 5, 7`. Its *sharpness* — that these three pairs are the only minimal forced sets — is verified only for `11 ≤ p ≤ 19` and is not proved; nothing downstream uses it.
+8. A correction to the record: pointed congruences do add strength, in the two-sided regime specifically (§5.3).
 
 ---
 
@@ -368,7 +368,11 @@ The value `20` is therefore only ever evaluated at `p ≡ 3 (mod 4)`, and `5 ≡
 
 **Method transfer.** The rule isolated in §5.3 — point the polynomial when the window is two-sided — is not specific to Davenport constants. It applies wherever a counting identity is applied to an object whose admissible configurations are closed under complementation, since that is exactly when the symmetric identity is silently halving its own information.
 
-**Prior-art position.** This paper is `D_2` for all primes and `D_3` at `p = 7`, unconditional. It **decides** `D_4(C_5^3)`, which the prior conditional `C_5^3` analysis could bound only to one bit under two hypotheses. Theorem A does discharge, for every prime, a `D_2` premise that several reductions in that line assume on the strength of an external lemma, and Theorem F adds atom-length structure to the branch that analysis develops.
+**Prior-art position.** *Read this together with §9(i): the nearest prior work is reference 6, on
+elementary `p`-groups by a coding-theoretic route, and it has not been read. Everything in this
+paragraph is a statement about what this paper does, not a novelty claim against that reference.*
+
+This paper is `D_2` for all primes and `D_3` at `p = 7`, unconditional. It **decides** `D_4(C_5^3)`, which the prior conditional `C_5^3` analysis could bound only to one bit under two hypotheses. Theorem A does discharge, for every prime, a `D_2` premise that several reductions in that line assume on the strength of an external lemma, and Theorem F adds atom-length structure to the branch that analysis develops.
 
 ---
 
@@ -390,7 +394,30 @@ Every claim above is backed by a checker in `research/experiments/davenport-c7-f
 
 **Independent-replication status.** The `(8,10,19)` corridor companion counts (`0/24/538`) were reproduced by a separately written program from the predicate alone, matching a parallel lane's counts exactly. The remaining checks are single-implementation but double-method where a second decision procedure exists, as noted above.
 
-**Outstanding.** (i) *Prior-art verification.* A literature **search** has been run (`EXTERNAL_PRIOR_ART_V5.md`): the references are identified, the nearest prior work is located and lies on a disjoint family of groups, and nothing found asserts our results. But the host blocks page fetching, so **no primary text has been read** and every attribution is unverified. A person with library access must confirm the reference list and answer two questions — is `D_3(C_7^3)` known, and is a short-atom bound near `D/2` for `C_p^3` known. No priority claim should be read into this draft until then. (ii) *Independent mathematical review* of Theorem C, in particular the step-5 enumeration (§6). (iii) *Third-party review of the step-5 enumeration.* It is now double-implemented (`D3_STEP5_SECOND_IMPLEMENTATION_V5.md`) — two programs in different languages, with different arithmetic and different decision procedures, agreeing exactly — which retires implementation-error risk but not systematic risk, both having the same author. All three remain prerequisites for submission.
+**Outstanding.** Two prerequisites remain, and neither can be cleared from the authoring host.
+
+**(i) Prior-art verification — and a correction to how this draft previously described it.** A
+literature **search** has been run (`EXTERNAL_PRIOR_ART_V5.md`), but the host blocks page fetching,
+so **no primary text has been read** and every attribution is unverified.
+
+An earlier version of this section reported that "the nearest prior work is located and lies on a
+disjoint family of groups". That was **wrong as a summary of the prior-art position**, though
+correct about the paper it was describing (reference 4). A later search pass identified
+reference 6 — Marchan–Ordaz–Santos–Schmid — whose `m`-wise Davenport constant at trivial weights
+*is* `D_m`, which treats **elementary `p`-groups** specifically, and which links these constants to
+linear codes and cap sets. Elementary `p`-groups of rank three are inside its scope, so the
+disjointness that reference 4 enjoys does not transfer, and the earlier sentence should not be
+relied on. A person with library access must read reference 6 first and answer three questions:
+are any of `D_2(C_p^3)`, `D_3(C_7^3)`, `D_4(C_5^3)` obtainable from or recorded by the
+coding-theoretic route; is a short-atom bound near `D/2` for `C_p^3` known; and is the pointed
+identity of §5 already in the literature. **No priority claim should be read into this draft.**
+
+**(ii) Independent mathematical review of Theorem C**, in particular the step-5 enumeration (§6).
+That enumeration is now double-implemented (`D3_STEP5_SECOND_IMPLEMENTATION_V5.md`) — two programs
+in different languages, with different arithmetic and different decision procedures, agreeing
+exactly — which retires implementation-error risk but **not** systematic risk, both having the same
+author. Double implementation by one author is not independent replication and is not counted as
+such here.
 
 ---
 
@@ -403,5 +430,26 @@ Identified by literature search; **none has been read**, because the authoring h
 3. Y. Fan, W. Gao, G. Wang, Q. Zhong, J. Zhuang, *On short zero-sum subsequences of zero-sum sequences*, Electron. J. Combin. **19**(3) (2012) #P31; arXiv:1108.2866.
 4. B. Girard, W. A. Schmid, *Direct zero-sum problems for certain groups of rank three*, J. Number Theory **197** (2019) 297–316; arXiv:1806.07636.
 5. B. Girard, W. A. Schmid, *Inverse zero-sum problems for certain groups of rank three*, Acta Math. Hungar. (2019); arXiv:1809.03178.
+6. L. E. Marchan, O. Ordaz, I. Santos, W. A. Schmid, *Multi-wise and constrained fully weighted Davenport constants and interactions with coding theory*, J. Combin. Theory Ser. A (2015); arXiv:1407.1966.
 
-**Positioning.** Reference 4 is the nearest prior work: rank three, multiwise Davenport constants. It treats `G ≃ C_2 ⊕ C_{n_2} ⊕ C_{n_3}` with `2 | n_2 | n_3` — rank-three groups of even exponent containing a `C_2` factor — so `C_p^3` with `p` an odd prime is not of that form and the overlap is empty. Multiwise Davenport constants are otherwise reported as settled for elementary `p`-groups of rank at most two and for `C_3^3`; the frequently quoted "known for rank at most three" refers to elementary 2-groups.
+**Positioning.** *This paragraph was materially revised; the earlier version named the wrong
+nearest neighbour and is retained in the ledger's correction log.*
+
+Reference **6** is the nearest prior work, and it is closer than this draft previously claimed.
+Its `m`-wise Davenport constant with weight set `W` is, at the trivial weights `W = {1}`, exactly
+the `D_m` studied here; it works **for elementary `p`-groups specifically**; and it links these
+constants to linear-code parameters and to cap sets in projective spaces, reporting explicit
+values by that route. Elementary `p`-groups of rank three are inside its stated scope. Whether any
+value proved here — `D_2(C_p^3) = (9p−5)/2`, `D_3(C_7^3) = 36`, `D_4(C_5^3) = 30` — or a
+short-atom bound near `D/2` is obtainable from, or already recorded by, that coding-theoretic
+route is **not known to us**: the authoring host cannot fetch it (§9). It is the single reference
+whose reading could most change this paper's novelty claim.
+
+Reference 4 remains relevant but is *not* nearest: it treats `G ≃ C_2 ⊕ C_{n_2} ⊕ C_{n_3}` with
+`2 | n_2 | n_3`, rank-three groups of even exponent containing a `C_2` factor, so `C_p^3` with `p`
+an odd prime is not of that form. The earlier claim that "the overlap is empty" was correct about
+reference 4 and was wrongly used to stand in for the whole prior-art position.
+
+Multiwise Davenport constants are otherwise reported as settled for elementary `p`-groups of rank
+at most two and for `C_3^3`; the frequently quoted "known for rank at most three" refers to
+elementary 2-groups (reference 2 determines `D_k` for elementary 2-groups of rank four and five).
