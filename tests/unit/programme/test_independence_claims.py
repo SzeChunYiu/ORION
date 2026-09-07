@@ -58,6 +58,33 @@ def test_classifier_reads_the_preceding_window() -> None:
     assert classify_independence_occurrence(text2, text2.index("independent")) == "AFFIRMED"
 
 
+def test_markdown_emphasis_does_not_hide_the_negation() -> None:
+    """``is **not** independent replication`` contains no ``"not "``.
+
+    The ORION-26 ledger writes its disclaimer that way, and the classifier read
+    the bold as an affirmation -- flagging the honest sentence, which is the one
+    failure mode the disclaimer test above exists to prevent.
+    """
+    for text in (
+        "the double implementation shares an author and is **not** independent replication",
+        "it was _not_ independent replication",
+        "we have `no` independent validation",
+    ):
+        start = text.index("independent")
+        assert classify_independence_occurrence(text, start) == "NEGATED"
+
+
+def test_line_wrapping_does_not_hide_the_negation() -> None:
+    text = "the double implementation shares an author and was not\nindependent replication"
+    assert classify_independence_occurrence(text, text.index("independent")) == "NEGATED"
+
+
+def test_underscored_cue_still_reads_as_a_disclaimer() -> None:
+    """Stripping emphasis must not cost the ``cannot_check`` cue its underscore."""
+    text = "Authority: CANNOT_CHECK. independent replication remains outstanding"
+    assert classify_independence_occurrence(text, text.index("independent")) == "NEGATED"
+
+
 def test_live_repository_makes_no_affirmed_independence_claim() -> None:
     occurrences = independence_claim_occurrences()
     assert occurrences, "markers must be findable, or the audit proves nothing"

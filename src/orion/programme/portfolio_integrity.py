@@ -383,10 +383,35 @@ READER_FACING_PATTERNS: tuple[str, ...] = (
 )
 
 
+#: Markdown emphasis and code delimiters, which carry no meaning for a cue but
+#: split one apart: ``is **not** independent replication`` contains no ``"not "``.
+_MARKUP_CHARS = "*_`~"
+
+
+def _cue_windows(text: str) -> tuple[str, str]:
+    """The preceding text, read twice: as written, and as prose.
+
+    The second reading drops Markdown emphasis and undoes line wrapping, so a
+    cue survives the ways Markdown source breaks a sentence up -- ``is **not**``
+    carries no ``"not "``, and neither does a ``not`` at end of line. The first
+    reading is kept because stripping ``_`` would destroy the ``cannot_check``
+    cue. A cue matching *either* reading negates, so this can only add matches,
+    never remove one, and that is the safe direction: a checker that flags a
+    disclaimer is worse than no checker at all.
+
+    Both readings end in a space. The window ends where the marker begins, and
+    cues such as ``"not "`` are written with that boundary in them.
+    """
+    literal = text.lower() + " "
+    stripped = text.translate({ord(c): None for c in _MARKUP_CHARS})
+    return literal, " ".join(stripped.split()).lower() + " "
+
+
 def classify_independence_occurrence(text: str, start: int) -> str:
     """``NEGATED`` when the marker sits inside a disclaimer, else ``AFFIRMED``."""
-    window = text[max(0, start - NEGATION_WINDOW) : start].lower()
-    return "NEGATED" if any(cue in window for cue in NEGATION_CUES) else "AFFIRMED"
+    windows = _cue_windows(text[max(0, start - NEGATION_WINDOW) : start])
+    negated = any(cue in window for window in windows for cue in NEGATION_CUES)
+    return "NEGATED" if negated else "AFFIRMED"
 
 
 def independence_claim_occurrences(root: "Path | None" = None) -> list[dict[str, str]]:
