@@ -44,3 +44,15 @@ papers/**/paper/main.toc
 # job (see #989). Removed from the index in the #1078-fallout repair; ignored
 # here so a worktree checkout can never be re-committed.
 .claude/worktrees/
+
+# Housekeeping 2026-09-08
+.venv/
+venv/
+.DS_Store
+.idea/
+.vscode/
+*.egg-info/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
