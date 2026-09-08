@@ -134,7 +134,7 @@ those two are exact values of `D_2`, the construction class is provably optimal 
 |---|---|---|---|
 | `C_3^5` | `≥ 16` | **`= 17`** (exact, `D2_C3_5_DECIDED_V6.md`) | the six triples through `1`: `{1,i,j}`, `2 ≤ i < j ≤ 5` |
 | `C_3^6` | `≥ 19` | **`≥ 20`** | `123, 124, 125, 345, 136, 146, 156` |
-| `C_5^4` | `≥ 25` | **`≥ 26`** | `12, 13, 124^2, 14, 134^2, 234^2` |
+| `C_5^4` | `≥ 25` | **`≥ 26`** | `12, 13, 14, 123^2, 124^2, 134^2` |
 | `C_7^4` | `≥ 36` | **`≥ 37`** | `12, 13, 23^2, 123, 124^4, 234^3` |
 | `C_5^5` | `≥ 30` | **`≥ 31`** | `123, 124, 134^2, 125^2, 135, 145^2, 2345` |
 
@@ -186,6 +186,24 @@ predicted. The optimal family is
 
 and its sequence `S = ∏ᵢ eᵢ² · ∏_A v_A`, of length 21, was confirmed `z(S) = 1` by the exact
 packing DP, independently of the criterion.
+
+> **V7 CORRECTION — the family printed just above is NOT admissible, and `M*(7,3) = 7` is
+> withdrawn as an established value.** Re-tested against Theorem W by an implementation written
+> from the statement alone (ORION-27 drafting pass, 2026-09-08), that family has **28 obstructed
+> pairs**. One of them: `b = e_{12456} + e_{12467} + e_{12357}` has load `(0,0,1,2,2,2,2)` and
+> `b′ = e_{1234} + e_{1235} + e_{1236} + e_{1456}` has load `(1,0,0,2,2,2,0)`; no coordinate has
+> both entries nonzero with sum `≤ 3`, so by Theorem W `z(S) ≥ 2`. Whatever the search returned,
+> it is not what is printed here, so this row cannot support the refutation of `M*(r,3) = r+1`.
+>
+> **What survives.** `M*(7,3) ≥ 7` needs no rank-seven search at all: `M*(·,p)` is non-decreasing
+> in the rank, because a family on `[r]` read as a family on `[r+1]` has zero load in the new
+> coordinate — which therefore never witnesses — while every old witness still witnesses. Lifting
+> the `r = 6` optimum gives `M*(7,3) ≥ M*(6,3) = 7`, verified directly at `[7]` and `[8]`. So
+> `D_2(C_3^7) ≥ 22` stands. Theorem X′ still bounds the other side: `Σ m_A ≥ 8` forces minimum set
+> size `a ≥ 4`. The open question is therefore `M*(7,3) ∈ {7, 8}`, and the §6 refutation of
+> `M*(r,3) = r+1` is **downgraded to undecided** until the minimum-set-size-4 search is rerun to
+> completion. The `ν_r` observation's failure at `(6,3)` is unaffected; its failure at `(7,3)`
+> depends on the same rerun.
 
 **Theorem X′ is what made this decidable.** A blind search over families on `[7]` is hopeless, but
 X′ says any family with `Σ m_A ≥ 8` needs `2a + 1 ≥ 8`, i.e. minimum set size `a ≥ 4` — while

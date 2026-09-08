@@ -1,7 +1,7 @@
 # A closed form for `D_k(C_p^r)` — conjecture, evidence, and the tension against it
 
 **Status: CONJECTURE.** Not proved, and not fully consistent with this packet's own
-constructions. Checker: `verify_closed_form_conjecture_v7.py` (6 asserted steps) verifies the
+constructions. Checker: `verify_closed_form_conjecture_v7.py` (10 asserted steps) verifies the
 *arithmetic* — that the constants are forced, that the fit is exact, and that the shortfalls are
 exactly what is claimed. It does not verify the conjecture, which is not a thing a checker can do.
 
@@ -25,7 +25,7 @@ out-of-sample prediction**, not a degree of freedom.
 
 ---
 
-## 2. Evidence: 24 of 24 known exact values
+## 2. Evidence: 25 of 25 known exact values
 
 | family | values | source | agrees |
 |---|---|---|---|
@@ -35,6 +35,7 @@ out-of-sample prediction**, not a degree of freedom.
 | `D_3(C_7^3) = 36` | | packet, corridor + Hypothesis (Z) | ✅ **prediction** |
 | `D_4(C_5^3) = 30` | | packet, Theorem T, 5.9e9 nodes | ✅ **prediction** |
 | `D_2(C_3^5) = 17` | | packet, 2.73e9-node sweep | ✅ **prediction** |
+| `D_2(C_3^4) = 14` | | packet, `L=14` sweep (`D2_C3_4_DECIDED_V7.md`) | ✅ **prediction** |
 
 The rank-3 row is a whole one-parameter family, not a point: the conjecture reproduces
 `(9p−5)/2` identically in `p`. And the four hardest single values this packet owns — the two
@@ -44,7 +45,7 @@ all predicted correctly by a formula whose constants were fixed at rank 2.
 **It repairs a known failure.** The naive guess `D_k = Σ(nᵢ−1) + (k−1)·exp + 1 = r(p−1)+(k−1)p+1`
 is what the rank-2 formula suggests, and the literature records that it **fails for elementary
 2- and 3-groups of rank ≥ 3**. Step 3 makes that precise on this data: the naive formula agrees at
-all 16 rank-2 points and fails at **all 8** points of rank ≥ 3. The conjecture agrees at all 24.
+all 16 rank-2 points and fails at **all 9** points of rank ≥ 3. The conjecture agrees at all 25.
 It is a candidate replacement for the shape that is known to break, and it breaks nowhere the
 truth is known.
 
