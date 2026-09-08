@@ -29,6 +29,8 @@ ORION deliberately absorbs knowledge from any relevant discipline. External disc
 
 Live work is concentrated in `research/extensions/` (ORION-Q/QG, P6–P10, Davenport), `research/experiments/`, `research/novelty/`, and `research/flagships/`. The ~221 MB census dump `research/orion-epistemic-state-v1/` is frozen evidence, not a working directory.
 
+One-shot GitHub Actions campaigns (391 YAML files) are packed under [`.github/archived-workflows/`](.github/archived-workflows/). Seven live workflows remain under `.github/workflows/`. Dated `development/` packets stay at their original paths: they are hash-bound by tests and freeze-linked extension runners.
+
 ---
 
 ## Research dashboard
