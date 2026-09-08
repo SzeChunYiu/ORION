@@ -21,6 +21,16 @@ ORION deliberately absorbs knowledge from any relevant discipline. External disc
 
 ---
 
+## Research tree
+
+`research/` has fifty top-level folders. Most are **frozen V1 evidence** and must stay at their current paths (digest-bound). They are catalogued as archived in place, not moved.
+
+**Map:** [`research/README.md`](research/README.md) · **catalog:** [`research/archive/LAYOUT_V1.json`](research/archive/LAYOUT_V1.json)
+
+Live work is concentrated in `research/extensions/` (ORION-Q/QG, P6–P10, Davenport), `research/experiments/`, `research/novelty/`, and `research/flagships/`. The ~221 MB census dump `research/orion-epistemic-state-v1/` is frozen evidence, not a working directory.
+
+---
+
 ## Research dashboard
 
 **Research status snapshot: 2026-08-22.**

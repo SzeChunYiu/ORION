@@ -1,0 +1,23 @@
+# Live-only sparse-checkout patterns (git sparse-checkout --no-cone).
+# Omits frozen-in-place research trees, including the 221 MB DES census.
+#
+#   git sparse-checkout init --no-cone
+#   git sparse-checkout set --no-cone $(grep -v '^#' research/archive/SPARSE_CHECKOUT | grep -v '^$' | tr '\n' ' ')
+
+/*
+!research
+research/README.md
+research/archive/
+research/extensions/
+research/experiments/
+research/novelty/
+research/flagships/
+research/orion-v1-freeze/
+research/orion-rg/
+research/orion-01-05-convergence-v1/
+research/orion-01-05-convergence-ci-successor-v1/
+research/p3-matched-polarity-necessity-v2/
+research/self-orion-v4/
+research/paper-programme-v1/
+research/paper-programme-v2/
+research/cross-domain-mechanic-transfer-v1/
