@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from orion.programme.workflow_locations import workflow_path
 
 ROOT = Path(__file__).resolve().parents[3]
 P4 = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 BINDINGS = P4 / "protocol" / "PROTECTED_RUN_BINDINGS_V2.json"
-WORKFLOW = ROOT / ".github" / "workflows" / "p4_protected_campaign_v2.yml"
+WORKFLOW = workflow_path("p4_protected_campaign_v2.yml")
 TRIGGER = P4 / "host" / "CAMPAIGN_TRIGGER_V2.txt"
 CONFIG = P4 / "host" / "BASELINE_CONFIGS_V2.json"
 

@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 from pathlib import Path
+from orion.programme.workflow_locations import workflow_path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-WORKFLOW = ROOT / ".github" / "workflows" / "p5_phase2_live_execution.yml"
+WORKFLOW = workflow_path("p5_phase2_live_execution.yml")
 TRIGGER = (
     ROOT
     / "papers"

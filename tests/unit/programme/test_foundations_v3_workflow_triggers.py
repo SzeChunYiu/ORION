@@ -20,9 +20,10 @@ installs only `.[dev,candidates]`, which ships no parser).
 from __future__ import annotations
 
 from pathlib import Path
+from orion.programme.workflow_locations import workflow_path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-WORKFLOW = REPO_ROOT / ".github" / "workflows" / "orion-foundations-v3.yml"
+WORKFLOW = workflow_path("orion-foundations-v3.yml")
 ZERO_SHA = "0000000000000000000000000000000000000000"
 
 

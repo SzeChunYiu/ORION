@@ -1,10 +1,11 @@
 """P3 CI must inspect the current render without promoting its historical PDF."""
 
 from pathlib import Path
+from orion.programme.workflow_locations import workflow_path
 
 
 ROOT = Path(__file__).resolve().parents[3]
-WORKFLOW = ROOT / ".github/workflows/p3-manuscript-audit.yml"
+WORKFLOW = workflow_path("p3-manuscript-audit.yml")
 
 
 def test_p3_workflow_enforces_superseded_package_authority() -> None:

@@ -3,11 +3,12 @@ from __future__ import annotations
 import importlib.util
 import json
 from pathlib import Path
+from orion.programme.workflow_locations import workflow_path
 
 
 ROOT = Path(__file__).resolve().parents[3]
 SCRIPT = ROOT / "scripts/mirror_orion_papers_13_24.py"
-WORKFLOW = ROOT / ".github/workflows/orion-paper-mirror-13-24-20260831.yml"
+WORKFLOW = workflow_path("orion-paper-mirror-13-24-20260831.yml")
 EXTERNAL_RECEIPT = (
     ROOT
     / "papers/publication_closure/orion_13_24_final/EXTERNAL_MIRROR_RECEIPT.json"
