@@ -57,28 +57,36 @@ Resubmitting is safe and cheap: a shard with a `RESULT` line is skipped, so a re
 
 ## Sizing
 
-Measured here, on one core, with the negative cases — which are what the sweeps are:
+Measured here, on one core, on the negative cases — which are what the sweeps are:
 
-| case | parent search | with orbit prune | speedup | ceiling `r!` |
-|---|---|---|---|---|
-| rank 3, length 11 | 2,032 nodes | 600 | 3.4× | 6 |
-| rank 4, length 14 | 987,944 nodes | 59,497 | **16.6×** | 24 |
+| case | parent search | with orbit prune | speedup | ceiling `r!` | capture |
+|---|---|---|---|---|---|
+| rank 3, length 11 | 2,032 | 600 | 3.4× | 6 | 57% |
+| rank 4, length 14 | 987,944 | 59,497 | 16.6× | 24 | 69% |
+| rank 5, length 17 | 2,730,591,587 | 33,758,915 | **80.8×** | 120 | 67% |
 
-So the prune captures roughly 60–70% of its theoretical ceiling, and the ceiling grows as `r!`.
-The parent search grew **2764×** from rank 4 to rank 5 (987,944 → 2,730,591,635 nodes).
+Capture sits at about two thirds of `r!` and is not drifting across three ranks, so the
+extrapolation has a basis: expect roughly **480×** at rank 6 and **3,400×** at rank 7.
 
-Extrapolating both trends at a conservative 63% capture gave ~44 core-hours for rank 6 and
-~19,000 for rank 7. **The rank-6 figure is already known to be wrong.** Timing complete
-single-element shards with a 240 s cap, *every* shard hit the cap without finishing:
+**The rank-5 row also reproduces the recorded sweep exactly.** `D2_C3_5_DECIDED_V6.md` reports
+2,730,591,635 nodes summed over 49 shards; the unsharded run here gives 2,730,591,587. The
+difference is 48, which is 49 − 1: a sharded run enters the root of the free-term loop once per
+shard and counts that node each time. So the two agree to the node, and the recorded 2.73-billion
+sweep is independently confirmed.
 
-| target | shards | measured floor | earlier extrapolation |
+Note what the pruned tree does that the parent tree does not: the parent grows **2,764×** per rank
+step, the pruned tree only **567×**, because the prune strengthens as `r!` does. Extrapolate the
+pruned tree, not the parent one:
+
+| target | shards | measured floor | pruned-tree estimate |
 |---|---|---|---|
-| rank 6, length 20 | 728 | **≥ 49 core-hours** | ~44 — contradicted |
-| rank 7, length 22 | 2186 | **≥ 146 core-hours** | ~19,000 — untested |
+| rank 6, length 20 | 728 | ≥ 49 core-hours | **~51 core-hours** — two routes agree |
+| rank 7, length 22 | 2186 | ≥ 146 core-hours | **unknown, plausibly 10⁴–10⁵** |
 
-These are lower bounds, not estimates: nothing finished, so the true cost is somewhere above them
-and the ceiling is unmeasured. The rank-7 number is not contradicted, but it comes from the same
-extrapolation that just failed one rank lower, so do not size an allocation on it.
+Rank 6 is solid: an independent extrapolation and a measured floor land within 5% of each other.
+Rank 7 is not — length rises by only 2 there rather than 3, so the growth factor is smaller than
+567 by an unknown amount, and the honest range spans an order of magnitude. Sample it before
+asking for time.
 
 **Measure before you queue.** `--maxnodes` makes that exact and bounded:
 
