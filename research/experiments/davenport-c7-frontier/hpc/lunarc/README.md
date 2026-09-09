@@ -67,23 +67,28 @@ Measured here, on one core, with the negative cases — which are what the sweep
 So the prune captures roughly 60–70% of its theoretical ceiling, and the ceiling grows as `r!`.
 The parent search grew **2764×** from rank 4 to rank 5 (987,944 → 2,730,591,635 nodes).
 
-Extrapolating both trends, at a conservative 63% capture:
+Extrapolating both trends at a conservative 63% capture gave ~44 core-hours for rank 6 and
+~19,000 for rank 7. **The rank-6 figure is already known to be wrong.** Timing complete
+single-element shards with a 240 s cap, *every* shard hit the cap without finishing:
 
-| target | parent-search nodes | prune | effective nodes | core-hours |
-|---|---|---|---|---|
-| rank 6, length 20 | ~7.5 × 10¹² | ~450× | ~1.7 × 10¹⁰ | **~44** |
-| rank 7, length 22 | ~7.5 × 10¹⁵ | ~3,200× | ~2.4 × 10¹² | **~19,000** |
+| target | shards | measured floor | earlier extrapolation |
+|---|---|---|---|
+| rank 6, length 20 | 728 | **≥ 49 core-hours** | ~44 — contradicted |
+| rank 7, length 22 | 2186 | **≥ 146 core-hours** | ~19,000 — untested |
 
-Rank 6 is an afternoon. Rank 7 is one ordinary allocation — a thousand cores for a day — where
-without the orbit prune it would have been ten million core-hours and not worth proposing.
+These are lower bounds, not estimates: nothing finished, so the true cost is somewhere above them
+and the ceiling is unmeasured. The rank-7 number is not contradicted, but it comes from the same
+extrapolation that just failed one rank lower, so do not size an allocation on it.
 
-**These are extrapolations from two anchors, not measurements.** Before committing an allocation,
-time one shard and rescale:
+**Measure before you queue.** `--maxnodes` makes that exact and bounded:
 
 ```bash
-./bin/enum_sym 3 6 20 7 --shard 0 728 --progress     # rank 6, one of 728
-./bin/enum_sym 3 7 22 7 --shard 0 2186 --progress    # rank 7, one of 2186
+./bin/enum_sym 3 6 20 7 --shard 17 728 --maxnodes 5000000   # time this, then scale by nodes
 ```
+
+Sample several shards, not one — they split on the first free term and subtree sizes vary by
+orders of magnitude. A run stopped by `--maxnodes` prints `TRUNCATED` on the RESULT line and warns
+on stderr; `collect.py` refuses to take a verdict from one.
 
 Shards are unbalanced — they split on the first free term, and subtree sizes vary a lot — so time
 several, not one, and size the walltime off the worst. If a shard threatens the 24 h limit, raise
