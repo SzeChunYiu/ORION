@@ -44,7 +44,9 @@ static unsigned char *forbbuf;
 static unsigned char *reach;
 static int *seq;
 static long long nodes=0, leaves=0, found=0, pruned_sym=0;
-static int progress=0, SHARD=-1, NSHARD=1, nosym=0;
+static int progress=0, SHARD=-1, NSHARD=1, nosym=0, colmajor=0;
+static long long maxnodes=0;   /* 0 = unlimited; otherwise stop and mark the run truncated */
+static int truncated=0;
 static inline unsigned char *R(int d,int l){ return reach + ((size_t)d*(s+1)+l)*N; }
 
 /* ---- basis stabiliser: the C(r,2) coordinate transpositions, as tables on element indices ---- */
@@ -115,7 +117,9 @@ static int two_disjoint(void){
 }
 
 static void dfs(int d,int lo){
+    if(truncated) return;
     nodes++;
+    if(maxnodes && nodes>=maxnodes){ truncated=1; return; }
     if(!nosym && d>r && not_canonical(d)){ pruned_sym++; return; }
     unsigned char *forb = forbbuf + (size_t)d*N;
     if(d<L){
@@ -138,7 +142,8 @@ static void dfs(int d,int lo){
         const int *rowg = addtab + (size_t)g*N;   /* addtab is symmetric: row g == column g */
         for(int l=s;l>=1;l--){
             unsigned char *from=R(d,l-1), *to=R(d+1,l);
-            for(int x=0;x<N;x++) if(from[x]) to[rowg[x]]=1;
+            if(colmajor){ for(int x=0;x<N;x++) if(from[x]) to[addtab[(size_t)x*N+g]]=1; }
+            else        { for(int x=0;x<N;x++) if(from[x]) to[rowg[x]]=1; }
         }
         seq[d]=g; dfs(d+1,g);
     }
@@ -149,7 +154,9 @@ int main(int argc,char**argv){
     p=atoi(argv[1]); r=atoi(argv[2]); L=atoi(argv[3]); s=atoi(argv[4]);
     for(int i=5;i<argc;i++){ if(!strcmp(argv[i],"--progress")) progress=1;
         else if(!strcmp(argv[i],"--shard")){ SHARD=atoi(argv[i+1]); NSHARD=atoi(argv[i+2]); }
-        else if(!strcmp(argv[i],"--nosym")) nosym=1; }
+        else if(!strcmp(argv[i],"--nosym")) nosym=1;
+        else if(!strcmp(argv[i],"--colmajor")) colmajor=1;
+        else if(!strcmp(argv[i],"--maxnodes")) maxnodes=atoll(argv[++i]); }
     if(r>16){ fprintf(stderr,"FATAL: r>16 exceeds the digit buffer\n"); return 3; }
     if(L-r>64){ fprintf(stderr,"FATAL: tail longer than the canonicity buffer\n"); return 3; }
     N=1; for(int i=0;i<r;i++) N*=p;
@@ -174,7 +181,9 @@ int main(int argc,char**argv){
     printf("p=%d r=%d L=%d s=%d N=%d sym=%s transpositions=%d\n",p,r,L,s,N,nosym?"off":"on",NTR);
     dfs(r,1);
     printf("DONE nodes=%lld leaves=%lld found=%lld sympruned=%lld\n",nodes,leaves,found,pruned_sym);
-    printf("RESULT p=%d r=%d L=%d s=%d shard=%d/%d sym=%d found=%lld leaves=%lld nodes=%lld\n",
-           p,r,L,s,SHARD,NSHARD,!nosym,found,leaves,nodes);
+    printf("RESULT p=%d r=%d L=%d s=%d shard=%d/%d sym=%d found=%lld leaves=%lld nodes=%lld%s\n",
+           p,r,L,s,SHARD,NSHARD,!nosym,found,leaves,nodes, truncated?" TRUNCATED":"");
+    if(truncated) fprintf(stderr,"WARNING: stopped at the --maxnodes cap. This run proves NOTHING;\n"
+                                 "it is a timing sample only, and collect.py rejects it.\n");
     return 0;
 }
