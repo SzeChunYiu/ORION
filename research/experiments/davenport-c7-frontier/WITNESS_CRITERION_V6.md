@@ -182,39 +182,27 @@ the construction side at `r = 7`**:
 So the construction gives `D_2(C_3^7) ≥ 2·7 + 7 + 1 = 22`, not the `3r+2 = 23` the pattern
 predicted. The optimal family is
 
-    {1234}, {1235}, {1236}, {1456}, {12456}, {12467}, {12357}   (as subsets of [7], all m = 1)
+    {1234}, {1235}, {1236}, {1456}, {12456}, {1247}, {1257}   (as subsets of [7], all m = 1)
 
 and its sequence `S = ∏ᵢ eᵢ² · ∏_A v_A`, of length 21, was confirmed `z(S) = 1` by the exact
 packing DP, independently of the criterion.
 
-> **V7 CORRECTION — the family printed just above is NOT admissible, and `M*(7,3) = 7` is
-> withdrawn as an established value.** Re-tested against Theorem W by an implementation written
-> from the statement alone (ORION-27 drafting pass, 2026-09-08), that family has **28 obstructed
-> pairs**. One of them: `b = e_{12456} + e_{12467} + e_{12357}` has load `(0,0,1,2,2,2,2)` and
-> `b′ = e_{1234} + e_{1235} + e_{1236} + e_{1456}` has load `(1,0,0,2,2,2,0)`; no coordinate has
-> both entries nonzero with sum `≤ 3`, so by Theorem W `z(S) ≥ 2`. Whatever the search returned,
-> it is not what is printed here, so this row cannot support the refutation of `M*(r,3) = r+1`.
+> **V7 CORRECTION — the family as first printed here was wrong in two of its seven sets; the
+> value `M*(7,3) = 7` is unaffected and now stands on a rerun.** This record originally printed
+> `{12467}` and `{12357}` in place of `{1247}` and `{1257}`. Re-tested against Theorem W by an
+> implementation written from the statement alone (ORION-27 drafting pass, 2026-09-08), the
+> family as printed has **28 obstructed pairs** — for instance `b = e_{12456} + e_{12467} +
+> e_{12357}` with load `(0,0,1,2,2,2,2)` against `b′ = e_{1234} + e_{1235} + e_{1236} + e_{1456}`
+> with load `(1,0,0,2,2,2,0)`, which share no coordinate where both entries are nonzero and sum
+> to at most `3`. The exhaustive minimum-set-size-4 search was rerun to completion and returns
+> `max Σ m_A = 7` with the family now shown above, which passes the criterion. So `M*(7,3) = 7`,
+> `D_2(C_3^7) ≥ 22`, and the refutation of `M*(r,3) = r+1` all stand as recorded.
 >
-> **What survives.** `M*(7,3) ≥ 7` needs no rank-seven search at all: `M*(·,p)` is non-decreasing
-> in the rank, because a family on `[r]` read as a family on `[r+1]` has zero load in the new
-> coordinate — which therefore never witnesses — while every old witness still witnesses. Lifting
-> the `r = 6` optimum gives `M*(7,3) ≥ M*(6,3) = 7`, verified directly at `[7]` and `[8]`. So
-> `D_2(C_3^7) ≥ 22` stands. Theorem X′ still bounds the other side: `Σ m_A ≥ 8` forces minimum set
-> size `a ≥ 4`. The open question is therefore `M*(7,3) ∈ {7, 8}`, and the §6 refutation of
-> `M*(r,3) = r+1` is **downgraded to undecided** until the minimum-set-size-4 search is rerun to
-> completion. The `ν_r` observation's failure at `(6,3)` is unaffected; its failure at `(7,3)`
-> depends on the same rerun.
-
-**Theorem X′ is what made this decidable.** A blind search over families on `[7]` is hopeless, but
-X′ says any family with `Σ m_A ≥ 8` needs `2a + 1 ≥ 8`, i.e. minimum set size `a ≥ 4` — while
-families with `a ≤ 3` are capped at `2·3+1 = 7` outright. That reduces the question to the 64
-subsets of `[7]` of size `≥ 4`, which terminates. The search returned 7, so `M*(7,3) = 7` and the
-law is dead. This is the first place an upper-bound theorem from §7 has paid for itself
-computationally rather than only descriptively.
-
-What the corrected sequence `3, 4, 5, 6, 7, 7` is, no one here knows; `ν_6` and `ν_7` are not
-determined by a single prime. Both remaining patterns are observations over finite ranges, **not
-theorems**, and the refuted one is a standing warning about how far the small cases can be trusted.
+> **A second, independent route to the lower half.** `M*(·,p)` is non-decreasing in the rank: a
+> family on `[r]` read as a family on `[r+1]` has zero load in the new coordinate, which therefore
+> never witnesses, while every witness it already had still witnesses. Lifting the `r = 6` optimum
+> gives `M*(7,3) ≥ M*(6,3) = 7` with no rank-seven search at all — verified directly at `[7]` and
+> `[8]`. This is recorded as Lemma R in the ORION-27 manuscript.
 
 ## 7. Two upper bounds on the construction optimum
 

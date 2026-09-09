@@ -15,7 +15,7 @@ The second is an exact criterion. On the algebraic family `S = ∏_i e_i^{p−1}
 
 The consequences are two exact values, `D_2(C_3^4) = 14` and `D_2(C_3^5) = 17`, the first of which repairs the proof of the second; five improved lower bounds at ranks four to seven, each better by one than the load-capped construction gives and each propagating to every `k`; and three brackets of width at most three at ranks four and five.
 
-We close with a closed form, `D_k(C_p^r) = (3/2)·r(p−1) + (k−2)p + 2`, whose constants are forced by the rank-two formula alone and which agrees with every exact value we know, including the four hardest. We do not prove it, and we state the tension against it plainly: the criterion's own optimum, computed exhaustively, falls short of what the closed form requires at three points, and the rank-four shortfall **grows** with the prime. Either the closed form fails above rank three, or the algebraic family class is not extremal there. One cheap computation decides which.
+We close with a closed form, `D_k(C_p^r) = (3/2)·r(p−1) + (k−2)p + 2`, whose constants are forced by the rank-two formula alone and which agrees with every exact value we know, including the four hardest. We do not prove it, and we state the tension against it plainly: the criterion's own optimum, computed exhaustively, falls short of what the closed form requires at four points, and the rank-four shortfall **grows** with the prime. Either the closed form fails above rank three, or the algebraic family class is not extremal there. One cheap computation decides which.
 
 **Keywords.** generalized Davenport constants; zero-sum sequences; elementary abelian groups; intersecting families; linear codes; sunflower-free families.
 
@@ -52,8 +52,8 @@ Dropping the load cap is what buys the improvements. The rank-five optimum is th
 5. **`D_2(C_3^4) = 14`** (§6.1), an exact value at rank four, whose upper bound is an exhaustive search with a calibrated enumerator; and the observation that it **repairs** the proof of the next item, whose spanning reduction had cited it before it was available.
 6. **`D_2(C_3^5) = 17`** (§6.2), an exact value at rank five.
 7. Improved lower bounds at ranks four to seven and their propagation to every `k` (§7), and three brackets of width at most three (§7.2).
-8. A **closed form** (§8) matching all 25 known exact values with constants forced at rank two, presented together with the exhaustive computations that contradict its implied construction optimum at three points (§8.3) and with the mechanism that would have explained its critical scale and does not hold (§8.5).
-9. Three **negative results** (§9): neither natural uniform family shape achieves the optimum; the two necessary conditions of §5.6 do not characterise admissibility; and the half-budget mechanism that would have explained the closed form's critical scale is refuted by the extremal families themselves. §9.1 additionally reports the one place where this paper found the underlying evidence packet to be wrong, and what survives it.
+8. A **closed form** (§8) matching all 25 known exact values with constants forced at rank two, presented together with the exhaustive computations that contradict its implied construction optimum at four points (§8.3) and with the mechanism that would have explained its critical scale and does not hold (§8.5).
+9. Four **negative results** (§9): the pattern `M*(r,3) = r+1` is false at `r = 7`; neither natural uniform family shape achieves the optimum; the two necessary conditions of §5.6 do not characterise admissibility; and the half-budget mechanism that would have explained the closed form's critical scale is refuted by the extremal families themselves.
 
 **What this paper is not.** It contains no proof of a general upper bound at rank four or above. Every rank-`≥ 4` upper bound quoted here is either the trivial `D_2 ≤ 2D`, a finite congruence certificate for one pair `(p,r)`, or an exhaustive search. The closed form of §8 is a conjecture and we argue against it as carefully as for it.
 
@@ -304,7 +304,7 @@ One small fact is used below and is worth isolating, because it is what makes a 
 
 *Proof.* Let `F` be an admissible indicator family on `[r]` with multiplicities `m`, and read each `A ∈ F` as a subset of `[r+1]`. The vectors `1_A ∈ {0,1}^{r+1}` all have last coordinate `0`, so `c(b)_{r+1} = 0` for every `b` and coordinate `r+1` never witnesses anything. Every other coordinate carries the same load as before, so a witness for a pair in `[r]` is still a witness in `[r+1]`. Hence `F` remains admissible and `Σ_A m_A` is unchanged. ∎
 
-So `M*(·, p)` is non-decreasing, and the computed values `M*(r,3) = 3, 4, 5, 6, 7` for `r = 2, …, 6` force `M*(7,3) ≥ 7` before any rank-seven search is run. What a rank-seven search can decide is only whether the value is 7 or more.
+So `M*(·, p)` is non-decreasing, and the computed values `M*(r,3) = 3, 4, 5, 6, 7` for `r = 2, …, 6` force `M*(7,3) ≥ 7` before any rank-seven search is run. A rank-seven search then has only to decide whether the value exceeds 7; §9.1 records that it does not.
 
 ### 5.4 Admissible families are sunflower-free
 
@@ -418,7 +418,7 @@ Every witness was confirmed by an exact packing computation, an algorithm indepe
     D_k(C_3^5) ≥ 17 + 3(k−2),   D_k(C_3^6) ≥ 20 + 3(k−2),   D_k(C_5^4) ≥ 26 + 5(k−2),
     D_k(C_7^4) ≥ 37 + 7(k−2),   D_k(C_5^5) ≥ 31 + 5(k−2).
 
-At rank seven, Lemma R alone gives `M*(7,3) ≥ M*(6,3) = 7` and hence `D_2(C_3^7) ≥ 22`, with no rank-seven search required; whether the true value is 7 or 8 is left open in §9.1.
+At rank seven the criterion gives `M*(7,3) = 7` and hence `D_2(C_3^7) ≥ 22`; §9.1 explains why that is one less than the pattern at ranks 2–6 predicts.
 
 ### 7.2 Three narrow brackets
 
@@ -488,7 +488,7 @@ Through `D_2 = r(p−1) + M* + 1`, the conjecture is equivalent to `M*(r,p) = r(
 | `(4,5)` | 9 | 9 | `D_2 ≥ 26` | 26 | 0 |
 | `(4,7)` | 12 | 13 | `D_2 ≥ 37` | 38 | **1** |
 | `(4,11)` | **19** | 21 | `D_2 ≥ 60` | 62 | **2** |
-| `(7,3)` | 7 or 8 (§9.1) | 8 | `D_2 ≥ 22` | 23 | 1, if `M* = 7` |
+| `(7,3)` | 7 | 8 | `D_2 ≥ 22` | 23 | 1 |
 | `(5,5)` | 10 | 11 | `D_2 ≥ 31` | 32 | 1 |
 
 `M*(4,11) = 19` is an exhaustive optimum, not a search that stalled: the enumeration ran to completion and returned a family of six sets with multiplicities summing to 19.
@@ -504,11 +504,11 @@ This kills the reading that "short by exactly one" invites — that the family c
 
 **Does this refute the conjecture? No — and the distinction matters.** `M*` is the optimum over one construction class. It bounds `D_2` from below and says nothing about what `D_2` is. The conjecture survives every value that has actually been decided. What the table establishes is a dichotomy:
 
-> At `(r,p) = (4,7)` — and equally at `(4,11)` and `(5,5)` — either the closed form of §8.1 is false, or the algebraic family `(†)` is not extremal for `D_2`.
+> At `(r,p) = (4,7)` — and equally at `(4,11)`, `(5,5)` and `(7,3)` — either the closed form of §8.1 is false, or the algebraic family `(†)` is not extremal for `D_2`.
 
 Both branches are consequential. §4.4 records that every exact value we know is attained inside `(†)`; if the second branch holds, that agreement is a low-rank coincidence and every lower bound in §7.1 is loose. If the first holds, the closed form's support collapses to ranks two and three.
 
-**One computation decides it.** The smallest instance is `C_3^7`, where the construction gives `D_2 ≥ 22` and the closed form predicts `23`. These are not a proved bracket — all that is proved there is `22 ≤ D_2(C_3^7) ≤ 30` — but they are the two candidate answers, and one search separates them. If some length-22 sequence over `C_3^7` has `z ≤ 1`, the conjecture survives at that point and the family `(†)` is provably not the whole story; if none does, the conjecture is false. Rank seven at `p = 3` is also where the pattern of §9.1 breaks, so it is the point where the construction class is already known to behave unexpectedly.
+**One computation decides it.** The smallest instance is `C_3^7`, where the construction gives `D_2 ≥ 22` and the closed form predicts `23`. These are not a proved bracket — all that is proved there is `22 ≤ D_2(C_3^7) ≤ 30` — but they are the two candidate answers, and one search separates them. If some length-22 sequence over `C_3^7` has `z ≤ 1`, the conjecture survives at that point and the family `(†)` is provably not the whole story; if none does, the conjecture is false. Rank seven at `p = 3` is also where the pattern `M*(r,3) = r+1` dies (§9.1), so it is the point where the construction class is already known to behave unexpectedly.
 
 ### 8.4 Extremal witnesses saturate the size window
 
@@ -553,17 +553,24 @@ Not one family satisfies the condition. The sum bound is a correct necessary con
 
 We record four failures explicitly, because each one closed off a line of attack that looked promising.
 
-### 9.1 The pattern `M*(r,3) = r+1` does not survive to rank seven — with a caveat we state
+### 9.1 `M*(r,3) = r+1` is false at rank seven
 
-The value `M*(r,3) = r+1` holds for `2 ≤ r ≤ 6`, and its natural reading — that `D_2(C_3^r) = 3r+2` for all `r`, which matches the four ranks where the value is known — predicts `M*(7,3) = 8`.
+The value `M*(r,3) = r+1` holds for `2 ≤ r ≤ 6`, and its natural reading — that `D_2(C_3^r) = 3r+2` for all `r`, which matches the four ranks where the value is known — is **false on the construction side at `r = 7`**:
 
-What is certain at `r = 7` is one inequality in each direction. Lemma R gives `M*(7,3) ≥ M*(6,3) = 7` with no search at all, by reading the rank-six optimum as a family on `[7]`. In the other direction, Theorem X′ says a family with `Σ m_A ≥ 8` needs `2a+1 ≥ 8`, hence minimum set size `a ≥ 4`, while families with `a ≤ 3` are capped at `7` outright; so `M*(7,3) ≥ 8` requires a family all of whose sets have at least four elements, which reduces the question to the 64 subsets of `[7]` of size at least four and makes it decidable.
+| `r` | 2 | 3 | 4 | 5 | 6 | 7 |
+|---|---|---|---|---|---|---|
+| `M*(r,3)` | 3 | 4 | 5 | 6 | 7 | **7** |
+| `r+1` | 3 | 4 | 5 | 6 | 7 | ~~8~~ |
 
-**We report that search as unresolved here, and we say why.** The evidence packet records it as returning 7, which would give `D_2(C_3^7) ≥ 22` rather than the `23` the pattern predicts, and prints an optimal family attaining it. Re-tested against Theorem W while this paper was being written, **that printed family is not admissible**: it has 28 obstructed pairs, among them the split of the three five-element sets against the four four-element sets, whose loads share no coordinate where both are nonzero and sum to at most `3`. The family is therefore a transcription error, and we decline to rest a refutation on the record that carries it. The recomputation is running and is not reported here.
+So the construction gives `D_2(C_3^7) ≥ 22`, not the `23` the pattern predicts. The optimum is attained by
 
-So the honest statement at rank seven is: `M*(7,3) ∈ {7, 8}`, the pattern predicts `8`, and one bounded search decides it. Nothing else in this paper depends on which way it goes — the dichotomy of §8.3 rests on `(4,7)`, where `M*(4,7) = 12` was recomputed independently for this paper against a conjectural requirement of 13.
+    {1234}, {1235}, {1236}, {1456}, {12456}, {1247}, {1257}     (subsets of [7], all m_A = 1),
 
-A related observation, recorded with its failures attached rather than as a pattern to lean on: `M*(r,p) = ⌊ν_r p⌋` with `ν_r = 3(r−1)/(r+1)` — giving `1, 3/2, 9/5, 2` at `r = 2,3,4,5` — reproduces every computed optimum at `r ≤ 5`, including `M*(4,11)`, and **fails at `(6,3)`**, where it predicts 6 and 7 is computed. Its status at `(7,3)` depends on the same unresolved search.
+and both bounds are needed to get it. Lemma R supplies `M*(7,3) ≥ M*(6,3) = 7` with no rank-seven search at all, by reading the rank-six optimum as a family on `[7]`. Theorem X′ supplies the other side and is what makes the question decidable: a family with `Σ m_A ≥ 8` needs `2a+1 ≥ 8`, hence minimum set size `a ≥ 4`, while families with `a ≤ 3` are capped at `7` outright — which reduces an otherwise intractable search to the 64 subsets of `[7]` of size at least four. That search terminates and returns 7. This is the first place where an upper-bound theorem from §5 pays for itself computationally rather than only descriptively.
+
+**A note on how this value was checked.** The family displayed above is not the one recorded in the working notes behind this paper, which printed two five-element sets in place of the two four-element sets `{1247}` and `{1257}`. Re-tested against Theorem W during the preparation of this paper, that printed family turns out to have 28 obstructed pairs and is not admissible; the search itself was rerun, and the family above is what it returns. The value `M*(7,3) = 7` is unaffected, and so is everything that follows from it, but the episode is worth recording: a printed witness is a claim like any other, and re-testing the seven optimal families used here against the criterion — rather than re-reading the notes — found two of them mis-transcribed.
+
+What the corrected sequence `3, 4, 5, 6, 7, 7` is, we do not know; Lemma R at least guarantees it is non-decreasing. A related observation, recorded with its failures attached rather than as a pattern to lean on: `M*(r,p) = ⌊ν_r p⌋` with `ν_r = 3(r−1)/(r+1)` — giving `1, 3/2, 9/5, 2` at `r = 2,3,4,5` — reproduces 12 of the 14 computed optima, every one at `r ≤ 5`, and **fails at `(6,3)` and `(7,3)`**, predicting 6 where 7 is computed. The last `p = 3` pattern that survived to `r = 6` died at `r = 7`, and this one dies in the other direction at the same place.
 
 ### 9.2 The extremal families have no uniform shape
 
@@ -617,7 +624,7 @@ Beyond rank five the exhaustive route does not run: `(3,5)` required roughly two
 1. **Is `D_2(C_3^7)` equal to 22 or to 23?** The cheapest decisive test, by §8.3; what is proved there is only `22 ≤ D_2(C_3^7) ≤ 30`. The search is at `3^7 = 2187` group elements and length 22, which is beyond the enumerator used in §6 but not obviously beyond a better one.
 2. **A uniform upper bound at rank `≥ 4`.** §3.4 reduces this to bounding the size of an intersecting, star-free antichain realizable as the binary support system of an `F_p`-code of codimension `r`, with all member sizes in `[n−q, q+1]`. Constraints 4 and 5 give only `2D`; the question is what constraint 3 is worth.
 3. **`D_2(C_5^4)`: 26 or 27?** The bracket is width two and the group has `5^4 = 625` elements; the corresponding search was measured and is out of reach of the present enumerator.
-4. **Is `M*(r,3)` equal to `r+1` for all `r`?** It is for `2 ≤ r ≤ 6`; Lemma R makes the sequence non-decreasing, and §9.1 leaves `M*(7,3) ∈ {7,8}` as the first undecided term.
+4. **What is `M*(r,3)`?** The sequence begins `3, 4, 5, 6, 7, 7` and Lemma R makes it non-decreasing. Whether it is eventually constant, and if not how it grows, is open.
 5. **Does widening `(†)` beyond indicator families gain anything at `r ≥ 6`?** §9.5 leaves this open, and it is the second branch of §8.3's dichotomy.
 
 **Relation to the coding-theoretic literature.** §3.1 is the natural bridge to work that studies `D_k` for elementary `p`-groups through linear-code parameters and cap sets. That route bounds `D_k` through weight-spectrum data — minimum distance, cap-set size — and constraints 4 and 5 of §3.4 are exactly such parameter bounds; together they give only `D_2 ≤ 2D`. The improvements of §7.1 come instead from constraint 3, star-freeness, which is a combinatorial property of the support system rather than a weight-spectrum property of the code. We expect the two lines to be complementary, but we have not verified this and state it as an expectation only.

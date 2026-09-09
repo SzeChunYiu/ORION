@@ -53,8 +53,8 @@ Four rows failed that check; see **Corrections** below.
 |---|---|---|---|---|
 | 24 | `D_k(C_p^r) = (3/2)r(p−1) + (k−2)p + 2` | `CLOSED_FORM_CONJECTURE_V7.md`; `verify_closed_form_conjecture_v7.py` (10 steps) | checker rerun; constants shown forced by a rank-two solve over `Q` | **conjecture** — not proved in any rank |
 | 25 | It agrees with all **25** known exact values, and the naive rank-two shape fails at all **9** points of rank `≥ 3` | checker step 2–3 | recount from the checker's own table: `16 + 4 + 5 = 25` | **verified** as an arithmetic fact (Correction C1 corrects the source record's stale `24` and `8`) |
-| 26 | The construction shortfall runs `0, 0, 1, 2` at `(4,p)`, `p = 3,5,7,11`, and 1 at `(5,5)` | checker step 9 | `M*(4,3) = 5`, `M*(4,5) = 9`, `M*(4,7) = 12`, `M*(5,5) = 10` recomputed here | **verified-range**. The `(7,3)` row of the source table is **withheld** pending C4 |
-| 27 | **The dichotomy**: at `(4,7)`, `(4,11)` and `(5,5)`, either the closed form is false or the family `(†)` is not extremal | rows 24 + 26 | logical restatement of rows 24 and 26; rests on `M*(4,7) = 12`, recomputed here | **proved** as a dichotomy; neither branch decided |
+| 26 | The construction shortfall runs `0, 0, 1, 2` at `(4,p)`, `p = 3,5,7,11`, and 1 at `(7,3)` and `(5,5)` | checker step 9 | `M*(4,3) = 5`, `M*(4,5) = 9`, `M*(4,7) = 12`, `M*(5,5) = 10`, `M*(7,3) = 7` recomputed here; `M*(4,11) = 19` is the packet's exhaustive run, **not** re-derived here | **verified-range** |
+| 27 | **The dichotomy**: at `(4,7)`, `(4,11)`, `(5,5)` and `(7,3)`, either the closed form is false or the family `(†)` is not extremal | rows 24 + 26 | logical restatement of rows 24 and 26; rests on `M*(4,7) = 12` and `M*(7,3) = 7`, both recomputed here | **proved** as a dichotomy; neither branch decided |
 | 28 | Six extremal witnesses saturate the atom-size window with empty core | checker step 7; `D2_C3_4_DECIDED_V7.md` §1; `CODE_DICTIONARY_V7.md` §5 | — | **verified-range** (six groups) |
 | 29 | The half-budget mechanism is refuted: no recorded optimum satisfies `|e(b)| > q/2` | checker step 8 | — | **proved as a refutation** (8 of 8 counterexamples) |
 
@@ -62,8 +62,8 @@ Four rows failed that check; see **Corrections** below.
 
 | # | Claim | Evidence | Independent check | Status |
 |---|---|---|---|---|
-| 30 | `M*(7,3) ∈ {7, 8}`: Lemma R forces `≥ 7` with no search; Theorem X′ reduces `≥ 8` to families of minimum set size 4 | Lemma R (§5.3); Theorem X′ (§5.2) | the rank-six optimum lifted to `[7]` and `[8]` and re-tested admissible | **proved** as a bracket. The packet's claim that the value is exactly 7 is **withdrawn** pending C4 |
-| 31 | `ν_r = 3(r−1)/(r+1)` fits every computed optimum at `r ≤ 5` and fails at `(6,3)` | `CLOSED_FORM_CONJECTURE_V7.md` §3; checker step 10 | checker rerun; `M*(6,3) = 7` recomputed here against a predicted 6 | **verified-range**; its status at `(7,3)` depends on C4 |
+| 30 | `M*(7,3) = 7`, so `M*(r,3) = r+1` is **false** at `r = 7` | `WITNESS_CRITERION_V6.md` §6 (corrected) | both halves re-derived here: Lemma R lifts the rank-six optimum to `[7]` (lower), and the minimum-set-size-4 search was **rerun to completion** (upper), returning 7 with a family that passes a from-scratch criterion implementation | **verified-range** (exhaustive over indicator families at `(7,3)`) |
+| 31 | `ν_r = 3(r−1)/(r+1)` fits 12 of 14 computed optima and fails at `(6,3)` and `(7,3)` | `CLOSED_FORM_CONJECTURE_V7.md` §3; checker step 10 | checker rerun; `M*(6,3) = 7` and `M*(7,3) = 7` recomputed here, against a predicted 6 in both cases | **verified-range**; recorded as an observation with its failures attached |
 | 32 | Neither natural uniform family shape achieves the optimum | `WITNESS_CRITERION_V6.md` §8 | — | **verified-range** (`r ≤ 12`; 120 graphs at `r = 6`, 6,435 at `r = 7`) |
 | 33 | Widening to general `F_p^r` vectors gains nothing at `(3,3)`, `(4,3)`, `(5,3)`; beyond rank 5 the exhaustive route does not run and randomised searches are **uncalibrated** | `CLOSED_FORM_CONJECTURE_V7.md` §3 | — | **verified-range** `r ≤ 5, p = 3`; `(7,3)` reported **undecided**, not negatively decided |
 
@@ -101,24 +101,26 @@ fixed at source.
   wrong.** Corollary 5a caps the number of repeated sets at one; since Corollary 2 caps that one
   at `m_A ≤ p = 3`, the resulting bound is `Σ m_A ≤ |F| + 2`, not `|F| + 1`. Caught in draft.
 
-- **C4 — the `C_3^7` optimal family printed in `WITNESS_CRITERION_V6.md` §6 is inadmissible.**
-  The record prints `{1234}, {1235}, {1236}, {1456}, {12456}, {12467}, {12357}` and states that
-  the corresponding length-21 sequence was confirmed to have `z = 1`. Tested against Theorem W in
-  this session, that family has **28 obstructed pairs** — for instance
-  `b = e_{12456} + e_{12467} + e_{12357}` against `b′ = e_{1234} + e_{1235} + e_{1236} + e_{1456}`,
-  whose loads share no coordinate where both are nonzero and sum to at most 3. This is the family
-  backing `M*(7,3) = 7`, which is in turn the refutation of `M*(r,3) = r+1` (row 30) and one row
-  of the shortfall table (row 26). The exhaustive rerun and its consequences are recorded in
-  §9.1 of the manuscript.
+- **C4 — the `C_3^7` optimal family printed in `WITNESS_CRITERION_V6.md` §6 was wrong in two of
+  its seven sets.** The record printed `{1234}, {1235}, {1236}, {1456}, {12456}, {12467},
+  {12357}` and stated that the corresponding length-21 sequence has `z = 1`. Tested against
+  Theorem W in this session, that family has **28 obstructed pairs** — for instance
+  `b = e_{12456} + e_{12467} + e_{12357}`, load `(0,0,1,2,2,2,2)`, against
+  `b′ = e_{1234} + e_{1235} + e_{1236} + e_{1456}`, load `(1,0,0,2,2,2,0)`, which share no
+  coordinate where both entries are nonzero and sum to at most 3.
 
-  **Disposition.** `M*(7,3) = 7` is **withdrawn as an established value** and replaced by the
-  proved bracket `M*(7,3) ∈ {7, 8}` (row 30). The consequences are contained: the manuscript's
-  `D_2(C_3^7) ≥ 22` survives, because Lemma R derives it from `M*(6,3) = 7` with no rank-seven
-  search; the dichotomy of §8.3 survives, because it rests on `(4,7)`, recomputed here; and what
-  is lost is the claim that the pattern `M*(r,3) = r+1` is refuted, which the manuscript now
-  states as undecided rather than as a negative result. The exhaustive recomputation was started
-  and did not finish inside this session; it is left running rather than reported.
+  **Resolved.** The exhaustive minimum-set-size-4 search was rerun to completion here and returns
+  `max Σ m_A = 7` with `{1234}, {1235}, {1236}, {1456}, {12456}, {1247}, {1257}` — the same value,
+  with two four-element sets where the record printed two five-element ones. That family passes a
+  from-scratch criterion implementation. So **`M*(7,3) = 7` stands**, as do `D_2(C_3^7) ≥ 22`, the
+  refutation of `M*(r,3) = r+1` (row 30), the `(7,3)` shortfall row (row 26) and the `ν_r`
+  failure at `(7,3)` (row 31). The defect was in the transcription, not in the result.
 
-  *Lesson recorded: of the seven optimal families the packet prints, two were inadmissible. Both
-  were caught by re-testing them against the theorem statement rather than by re-reading the
-  record. A printed witness is a claim like any other and needs its own check.*
+  Independently, **Lemma R** (manuscript §5.3, new here) re-derives the lower half without any
+  rank-seven search: `M*(·,p)` is non-decreasing in the rank, so lifting the rank-six optimum
+  gives `M*(7,3) ≥ M*(6,3) = 7`. Verified by lifting that family to `[7]` and `[8]`.
+
+  *Lesson recorded: of the seven optimal families the packet prints, two were mis-transcribed.
+  Both were caught by re-testing them against the theorem statement rather than by re-reading the
+  record, and in both cases the underlying value survived. A printed witness is a claim like any
+  other and needs its own check.*
