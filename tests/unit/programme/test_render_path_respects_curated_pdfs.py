@@ -20,9 +20,9 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
+from orion.programme.workflow_locations import workflow_files
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-WORKFLOWS = REPO_ROOT / ".github" / "workflows"
 TESTS = REPO_ROOT / "tests"
 PAPERS = REPO_ROOT / "papers"
 
@@ -78,7 +78,7 @@ def _papers_asserted_by_tests() -> set[str]:
 def _papers_in_render_workflows() -> set[str]:
     rendered: set[str] = set()
     names = _paper_dirs()
-    for wf in WORKFLOWS.glob("*.yml"):
+    for wf in workflow_files():
         try:
             text = wf.read_text(errors="replace")
         except OSError:

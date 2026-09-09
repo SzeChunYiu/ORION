@@ -23,6 +23,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from orion.programme.workflow_locations import workflow_path
 from orion.self_orion.phase2_preflight import (
     DEEP_TARGET_TASK,
     WIDE_LITERATURE_TASK,
@@ -33,7 +34,7 @@ from orion.self_orion.phase2_preflight import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "p5_phase2_live_execution.yml"
+WORKFLOW_PATH = workflow_path("p5_phase2_live_execution.yml")
 
 # Well-formed and mutually distinct, so nothing here fails for being hash-shaped
 # wrong. The point is that shape is not enough.

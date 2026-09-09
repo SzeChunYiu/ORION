@@ -15,6 +15,7 @@ from pathlib import Path
 
 from orion.self_orion.live_packet import PROTOCOL_PATH, load_packet_document
 from orion.self_orion.phase2_preflight import DEEP_TARGET_TASK, WIDE_LITERATURE_TASK
+from orion.programme.workflow_locations import workflow_path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 RECEIPT_PATH = (
@@ -24,7 +25,7 @@ RECEIPT_PATH = (
     / "evidence"
     / "ISSUE8_PACKET_EXECUTION_BINDING_RECEIPT.json"
 )
-WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "p5_phase2_live_execution.yml"
+WORKFLOW_PATH = workflow_path("p5_phase2_live_execution.yml")
 RUNBOOK_PATH = (
     REPO_ROOT
     / "papers"

@@ -6,6 +6,7 @@ import subprocess
 from pathlib import Path
 
 import pytest
+from orion.programme.workflow_locations import workflow_path
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -133,7 +134,7 @@ def test_pr1498_archive_strict_mode_rejects_wrong_tag_target(
 
 
 def test_pr1498_dedicated_workflow_requires_fetched_donor_objects() -> None:
-    workflow = (ROOT / ".github/workflows/orion05-pr1498-historical-custody.yml").read_text(
+    workflow = workflow_path("orion05-pr1498-historical-custody.yml").read_text(
         encoding="utf-8"
     )
 

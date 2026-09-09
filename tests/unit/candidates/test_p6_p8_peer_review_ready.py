@@ -4,6 +4,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from orion.programme.workflow_locations import workflow_path
+
 ROOT = Path(__file__).resolve().parents[3]
 SUBMISSION = ROOT / "papers" / "candidates" / "submission"
 sys.path.insert(0, str(SUBMISSION))
@@ -59,7 +61,7 @@ def test_p6_p8_candidate_ci_runs_exact_source_binding_gate() -> None:
     """
 
     root = Path(__file__).resolve().parents[3]
-    workflow = (root / ".github" / "workflows" / "p6-p8-candidate-ci.yml").read_text(
+    workflow = workflow_path("p6-p8-candidate-ci.yml", root=root).read_text(
         encoding="utf-8"
     )
     assert "Candidate exact-source binding gate" in workflow

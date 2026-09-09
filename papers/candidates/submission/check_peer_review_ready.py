@@ -38,6 +38,25 @@ def text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
+def workflow(name: str) -> Path:
+    """A workflow by file name, whether it is live or archived.
+
+    Workflows live in `.github/workflows/` while GitHub still runs them and move
+    to `.github/archived-workflows/` when they are kept only for the record. This
+    gate reads a workflow to check what it wires up, which is the same question
+    in either directory, so it resolves by name rather than by location. A name
+    in neither directory is still a hard failure.
+
+    Resolved with the standard library only, as the rest of this checker is.
+    """
+    for directory in ("workflows", "archived-workflows"):
+        candidate = ROOT / ".github" / directory / name
+        if candidate.is_file():
+            return candidate
+    require(False, f"missing required workflow in .github: {name}")
+    raise AssertionError("unreachable")  # pragma: no cover
+
+
 def visible_words(s: str) -> list[str]:
     s = re.sub(r"\\[A-Za-z]+(?:\[[^\]]*\])?(?:\{[^{}]*\})?", " ", s)
     s = re.sub(r"[$\\{}_^~]", " ", s)
@@ -168,10 +187,10 @@ def main() -> None:
     require("empirical superiority over ideal donor product: `CANNOT_CHECK / NOT CLAIMED`" in claims,
             "empirical-superiority nonclaim missing")
 
-    workflow = text(ROOT / ".github" / "workflows" / "p6-p8-candidate-ci.yml")
-    require("Build and audit submission PDFs" in workflow,
+    candidate_ci = text(workflow("p6-p8-candidate-ci.yml"))
+    require("Build and audit submission PDFs" in candidate_ci,
             "submission PDF build/audit is not wired into candidate CI")
-    require("Archive audited submission PDFs" in workflow,
+    require("Archive audited submission PDFs" in candidate_ci,
             "audited submission PDFs are not retained as an exact-head artifact")
 
     print("P6-P8 peer-review-ready structural gate: PASS")

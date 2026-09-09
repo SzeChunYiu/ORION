@@ -6,6 +6,8 @@ from pathlib import Path
 
 import pytest
 
+from orion.programme.workflow_locations import workflow_path
+
 from papers.orion_05_r12_production_benchmark import (
     adjudicate_rows,
     attempt_schedule,
@@ -250,7 +252,7 @@ def test_attempt1_and_attempt2_have_identical_scientific_outcomes() -> None:
 
 
 def test_round2_status_changes_trigger_the_dedicated_workflow() -> None:
-    workflow = Path(".github/workflows/orion05-r12-production-benchmark.yml").read_text()
+    workflow = workflow_path("orion05-r12-production-benchmark.yml").read_text()
     status_path = (
         '"papers/orion-05-tare-expressivity/ORION05_R12_ROUND2_STATUS.json"'
     )

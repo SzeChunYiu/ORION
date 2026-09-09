@@ -7,6 +7,7 @@ import subprocess
 import sys
 
 import pytest
+from orion.programme.workflow_locations import workflow_path
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -24,7 +25,7 @@ def _takeover_api():
 
 
 def test_v3_workflow_installs_project_dependencies_before_hostile_suite() -> None:
-    workflow = (ROOT / ".github/workflows/orion-discovery-v3.yml").read_text()
+    workflow = workflow_path("orion-discovery-v3.yml").read_text()
 
     install_at = workflow.find("python -m pip install -e .")
     hostile_at = workflow.find("python -m pytest -q tests/unit/discovery/test_frontier_dominance.py")
