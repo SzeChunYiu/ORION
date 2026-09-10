@@ -21,6 +21,8 @@ RESULT = re.compile(
     r"RESULT p=(\d+) r=(\d+) L=(\d+) s=(\d+) shard=(-?\d+)/(\d+) sym=(\d+) "
     r"found=(\d+) leaves=(\d+) nodes=(\d+)"
 )
+# Appended by newer builds; absent in older recorded runs, hence a separate optional match.
+SPLIT = re.compile(r"\bsplit=(\d+)")
 
 
 def main(directory: Path) -> int:
@@ -46,25 +48,37 @@ def main(directory: Path) -> int:
                   f" verdict.")
             return 3
         p, r, L, s, shard, n, sym, found, leaves, nodes = (int(x) for x in m.groups())
+        ms = SPLIT.search(text)
+        split = int(ms.group(1)) if ms else 0
         if nshard is None:
-            nshard, params = n, (p, r, L, s, sym)
-        elif (n, (p, r, L, s, sym)) != (nshard, params):
-            print(f"FATAL: {path.name} ran a different configuration: {m.group(0)}")
+            nshard, params = n, (p, r, L, s, sym, split)
+        elif (n, (p, r, L, s, sym, split)) != (nshard, params):
+            print(f"FATAL: {path.name} ran a different configuration: {m.group(0)} split={split}")
             return 3
         if shard in seen:
             print(f"FATAL: shard {shard} recorded twice")
             return 3
         seen[shard] = {"found": found, "leaves": leaves, "nodes": nodes}
 
-    p, r, L, s, sym = params
+    p, r, L, s, sym, split = params
     missing = sorted(set(range(nshard)) - set(seen))
     total_nodes = sum(v["nodes"] for v in seen.values())
     total_leaves = sum(v["leaves"] for v in seen.values())
     total_found = sum(v["found"] for v in seen.values())
 
-    print(f"configuration  p={p} rank={r} length={L} prune=<={s} orbit-prune={'on' if sym else 'OFF'}")
-    print(f"shards         {len(seen)} complete of {nshard}")
-    print(f"totals         nodes={total_nodes:,}  leaves={total_leaves:,}  witnesses={total_found}")
+    split_desc = f"split-depth={split}" if split else "split=first-free-term (legacy)"
+    print(f"configuration  p={p} rank={r} length={L} prune=<={s} "
+          f"orbit-prune={'on' if sym else 'OFF'} {split_desc}")
+    print(f"units          {len(seen)} complete of {nshard}")
+    if split:
+        # Every unit re-walks the tree above the split depth, so those nodes are counted once per
+        # unit.  Leaves and witnesses live strictly below it and do sum exactly.
+        print(f"totals         leaves={total_leaves:,}  witnesses={total_found}")
+        print(f"               nodes={total_nodes:,} (inflated: the prefix above depth {split} is "
+              f"re-walked by each unit)")
+    else:
+        print(f"totals         nodes={total_nodes:,}  leaves={total_leaves:,}  "
+              f"witnesses={total_found}")
 
     if s != L - r * (p - 1) - 1:
         print(f"FATAL: prune depth {s} is not L-q-1={L - r * (p - 1) - 1}; the runs solved another problem")
@@ -83,13 +97,13 @@ def main(directory: Path) -> int:
 
     if missing:
         print()
-        print(f"INCOMPLETE -- {len(missing)} shard(s) never wrote a RESULT line: "
+        print(f"INCOMPLETE -- {len(missing)} unit(s) never wrote a RESULT line: "
               f"{missing[:20]}{' ...' if len(missing) > 20 else ''}")
         print("No verdict. Resubmit; completed shards are skipped, so only these will run.")
         return 1
 
     print()
-    print(f"COMPLETE AND EMPTY -- every one of the {nshard} shards finished and none found a")
+    print(f"COMPLETE AND EMPTY -- every one of the {nshard} units finished and none found a")
     print(f"length-{L} sequence over C_{p}^{r} with packing number <= 1.")
     print(f"Hence D_2(C_{p}^{r}) <= {L}.")
     if r == 7 and L == 22:

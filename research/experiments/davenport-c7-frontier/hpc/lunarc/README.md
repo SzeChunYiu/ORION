@@ -19,8 +19,8 @@ The two outcomes cost very different amounts. A witness can turn up in any shard
 ```bash
 ./00_build.sh                 # compile the enumerators, and self-check the sampling caps
 sbatch 01_calibrate.sbatch    # THE GATE. writes CALIBRATED.ok. nothing runs before it passes
-./submit.sh 6                 # D_2(C_3^6) at length 20, 728 shards
-./submit.sh 7                 # D_2(C_3^7) at length 22, 2186 shards
+./submit.sh 6                 # D_2(C_3^6) at length 20, 728 units, one per array task
+./submit.sh 7                 # D_2(C_3^7) at length 22, 5000 units over 1000 array tasks
 ./collect.py results/r6_L20   # verdict, with a coverage proof
 ./collect.py results/r7_L22
 ```
@@ -35,7 +35,7 @@ submit -- that one is still unverified. Nothing else needs editing: `submit.sh` 
 
 The sweeps answer by *not finding* something. That is worth exactly as much as the search's ability to find something when it is there — and this package adds a new prune that could, if wrong, produce a clean, fast, entirely false zero.
 
-`01_calibrate.sbatch` re-decides every `D_2(C_3^r)` value already known, from both directions, with the new prune on: length 10 and 11 at rank 3, 13 and 14 at rank 4, 16 and 17 at rank 5. Witnesses must appear where they must exist and must not appear where they cannot. It writes `CALIBRATED.ok` only on a clean pass, and `02_sweep.sbatch` refuses to start without that file.
+`01_calibrate.sbatch` re-decides every `D_2(C_3^r)` value already known, from both directions, with the new prune on: length 10 and 11 at rank 3, 13 and 14 at rank 4, 16 and 17 at rank 5. Witnesses must appear where they must exist and must not appear where they cannot. It then checks that splitting the walk into many units partitions it exactly. It writes `CALIBRATED.ok` only on a clean pass, and `02_sweep.sbatch` refuses to start without that file.
 
 If calibration fails, run the same case with `--nosym`. That flag disables the orbit prune and recovers the previously-validated parent search exactly, which isolates whether the fault is in the new code or somewhere older.
 
@@ -55,7 +55,8 @@ Soundness, in one line: if some permutation `b` makes `sort(b(T_d)) < T_d` at de
 
 A killed shard, an array sized differently from `NSHARD`, a half-written scratch file — each leaves a gap that reads exactly like a clean negative. Three guards:
 
-- `02_sweep.sbatch` aborts if `SLURM_ARRAY_TASK_COUNT != NSHARD`, and if the prune depth is not `L − r(p−1) − 1`.
+- `02_sweep.sbatch` aborts if `SLURM_ARRAY_TASK_COUNT != NTASK`, if the prune depth is not `L − r(p−1) − 1`, if `NSHARD < NTASK`, or if a legacy split is asked for more than `N − 1` units.
+- `01_calibrate.sbatch` also proves the *split* loses nothing: for three cases it checks that leaves and witnesses summed over many units equal the undivided walk exactly. A split that drops a subtree gives a fast, clean, false zero — the same failure as an unsound prune, from the other direction.
 - Each shard writes to scratch and is moved into place atomically, so a partial file never looks finished.
 - `collect.py` reports **no verdict at all** until it has seen one `RESULT` line per shard index, taken from the runs' own recorded shard ids rather than from file names.
 
@@ -129,17 +130,41 @@ About a fifth are heavy and the rest are trivial. Note that 137, 733, 1500 and 2
 under a second: sampling those four and extrapolating gives an answer that is wrong by orders of
 magnitude. Sample the heavy shards (4, 5, 13, 17, 40 are known heavy) and size off those.
 
-**Two consequences for rank 7 that the sizing above does not cover.**
+## Why rank 7 is split at depth 10
 
-1. `NSHARD` is already at its ceiling and cannot be raised. Sharding happens only at `d == r`, on
-   the first free term, so there are at most `N - 1` non-empty shards — exactly the `3^r - 1` that
-   `submit.sh` computes. Asking for more yields shards with no first free term at all (1 node,
-   nothing to do). So "raise `NSHARD` rather than the time limit" is not available here;
-   subdividing a heavy shard would mean sharding at a deeper level, which is a code change.
-2. A heavy shard may not finish in any single job. At ~2.4 leaves/s, a 24 h job covers ~207,000
-   leaves. Resubmission is idempotent only for shards that wrote a `RESULT` line, so a shard
-   killed at walltime restarts from scratch every time and never completes — and `collect.py`
-   will keep reporting `INCOMPLETE` forever, which is the correct behaviour and not a bug.
-   Establish the cost of the heavy shards before committing to the array. Note that the `hep`
-   partition has allowed at least 4 days (`--time=4-00:00:00`, job 3550016), so the 24 h in
-   `02_sweep.sbatch` is a choice rather than a limit.
+Splitting on the first free term has a hard ceiling of `N - 1 = 3^r - 1` units, and those units are
+wildly unbalanced. Both facts are measured, not assumed, and together they made the rank-7 sweep
+unable to finish at all:
+
+- The ceiling is a ceiling, not a default. Asking for more than `N - 1` units yields units with no
+  first free term to work on (1 node, nothing to do), so "raise `NSHARD` rather than the time
+  limit" was not available. The enumerator now refuses such a request outright instead of silently
+  handing out empty units.
+- At ~2.4 leaves/s a 24 h job covers ~207,000 leaves, and resubmission only skips units that wrote
+  a `RESULT` line. A unit too big for one job therefore restarts from scratch every time and never
+  completes, and `collect.py` reports `INCOMPLETE` forever — correct behaviour reporting an
+  unfinishable plan.
+
+So `--splitdepth D` splits on the subtrees rooted at depth `D` instead. Measured unit counts at
+rank 7, `L = 22`:
+
+| split depth | work units | prefix walk per unit |
+|---|---|---|
+| 8 (`r+1`) | 2,060 | 0.3 s |
+| 9 | 2,837 | 24 s |
+| **10** | **662,129** | **55 s** |
+| 11 and deeper | >10⁶ | exceeds 120 s — the walk alone |
+
+`submit.sh 7` uses depth 10 and deals those 662,129 subtrees round-robin across 5000 units, so each
+unit holds roughly `1/5000` of the total work drawn from all over the tree rather than one
+monolithic subtree. `NSHARD` (work units, what coverage is proved against) is decoupled from
+`NTASK` (array tasks, 1000 of them), so the unit count can exceed the cluster's `MaxArraySize`.
+Rank 6 keeps the legacy split: 728 units at ~4 min each need none of this.
+
+The price is that every unit re-walks the tree above depth 10 first — ~55 s, about 76 core-hours
+across the sweep, a few percent of the total, and the reason depth 11 is not used. Node counts are
+inflated by that replicated prefix and `collect.py` labels them so; leaves and witnesses live
+strictly below the split depth and still sum exactly.
+
+Walltime for rank 7 is `4-00:00:00`. The `hep` partition has allowed that (job 3550016), so the
+24 h default in `02_sweep.sbatch` was a choice rather than a limit.

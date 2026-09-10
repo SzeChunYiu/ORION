@@ -47,9 +47,42 @@ check 3 4 14 5 none
 check 3 5 16 5 witness      # D_2(C_3^5) = 17
 check 3 5 17 6 none
 
+# ---------------------------------------------------------------------------------------------
+# Coverage, not just soundness.  The prune decides what a single walk may skip; the SPLIT decides
+# how the walk is divided.  A split that loses a subtree produces a fast, clean, entirely false
+# zero -- the same failure mode as an unsound prune, from the other direction.  So verify that
+# splitting reproduces the unsharded walk EXACTLY: leaves and witnesses live strictly below the
+# split depth, so they must sum to the unsharded totals.  (Node counts must not: every unit
+# re-walks the prefix above the split depth, so they are inflated by design.)
+partition () {  # p r L s splitdepth nshard
+    local P=$1 R=$2 LL=$3 S=$4 D=$5 NS=$6
+    local ref rl rf sl=0 sf=0 o
+    ref=$("$BIN" "$P" "$R" "$LL" "$S" | grep RESULT)
+    rl=$(echo "$ref" | grep -o 'leaves=[0-9]*' | cut -d= -f2)
+    rf=$(echo "$ref" | grep -o 'found=[0-9]*'  | cut -d= -f2)
+    for ((i=0;i<NS;i++)); do
+        o=$("$BIN" "$P" "$R" "$LL" "$S" --splitdepth "$D" --shard "$i" "$NS" | grep RESULT)
+        sl=$(( sl + $(echo "$o" | grep -o 'leaves=[0-9]*' | cut -d= -f2) ))
+        sf=$(( sf + $(echo "$o" | grep -o 'found=[0-9]*'  | cut -d= -f2) ))
+    done
+    if [ "$rl" -eq "$sl" ] && [ "$rf" -eq "$sf" ]; then
+        echo "PASS $P^$R L=$LL split=$D x$NS: leaves=$sl found=$sf match the unsharded walk"
+    else
+        echo "FAIL $P^$R L=$LL split=$D x$NS: summed leaves=$sl found=$sf but unsharded gives leaves=$rl found=$rf"
+        fail=1
+    fi
+}
+
+echo
+echo "== coverage: splitting the walk must partition it exactly, with nothing lost =="
+partition 3 3 10 3 5 200      # witnesses present, and 200 >> the legacy ceiling N-1=26
+partition 3 3 11 4 6 150      # clean negative
+partition 3 4 14 5 6 250      # clean negative, 250 >> N-1=80
+
 if [ "$fail" -ne 0 ]; then
-    echo; echo "CALIBRATION FAILED.  Do not run any sweep.  The orbit prune is unsound or the"
-    echo "build is wrong; bisect with --nosym, which recovers the parent search exactly."
+    echo; echo "CALIBRATION FAILED.  Do not run any sweep.  The orbit prune is unsound, the"
+    echo "split loses coverage, or the build is wrong; bisect with --nosym, which recovers the"
+    echo "parent search exactly, and with --splitdepth 0, which recovers the undivided walk."
     exit 1
 fi
 date -u +"calibrated %Y-%m-%dT%H:%M:%SZ" > CALIBRATED.ok

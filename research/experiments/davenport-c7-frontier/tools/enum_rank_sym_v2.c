@@ -45,7 +45,7 @@
 #include <stdint.h>
 #include <time.h>
 #define USAGE "usage: %s p r L s [--progress] [--shard i n] [--nosym] [--colmajor]" \
-              " [--maxnodes N] [--maxsecs S]\n"
+              " [--maxnodes N] [--maxsecs S] [--splitdepth D]\n"
 static int p, r, L, s, N;
 static int *addtab;
 static int *negv;
@@ -56,6 +56,10 @@ static long long nodes=0, leaves=0, found=0, pruned_sym=0;
 static int progress=0, SHARD=-1, NSHARD=1, nosym=0, colmajor=0;
 static long long maxnodes=0;   /* 0 = unlimited; otherwise stop and mark the run truncated */
 static double maxsecs=0;       /* 0 = unlimited; a WALL-CLOCK cap, which --maxnodes is not */
+static int splitdepth=0;       /* 0 = legacy: split on the first free term at d==r.
+                                * >r = split on subtrees rooted at this depth, which lifts
+                                * the hard ceiling of N-1 work units. */
+static long long splitctr=0;   /* DFS-order index of the current depth-splitdepth node */
 static int truncated=0;
 static const char *trunc_why="";
 static struct timespec t_start;
@@ -141,6 +145,16 @@ static void dfs(int d,int lo){
     if(maxsecs && (nodes & 0x3F)==0 && elapsed() >= maxsecs){
         truncated=1; trunc_why="--maxsecs"; return; }
     if(!nosym && d>r && not_canonical(d)){ pruned_sym++; return; }
+    /* Work splitting.  Every shard walks the tree ABOVE splitdepth identically -- the
+     * canonicity prune and the forbidden-set test are pure functions of the prefix, so the
+     * counter takes the same value for the same node in every shard.  Each depth-splitdepth
+     * subtree is therefore claimed by exactly one shard: a partition, no gap and no overlap.
+     * Leaves live strictly below splitdepth, so leaf and witness counts sum exactly across
+     * shards; node counts do not, because the prefix is re-walked by every shard. */
+    if(SHARD>=0 && splitdepth>r && d==splitdepth){
+        long long id = splitctr++;
+        if(id % NSHARD != SHARD) return;
+    }
     unsigned char *forb = forbbuf + (size_t)d*N;
     if(d<L){
         memcpy(forb,R(d,0),N);
@@ -158,7 +172,7 @@ static void dfs(int d,int lo){
         return; }
     for(int g=lo; g<N; g++){
         if(g==0) continue;
-        if(SHARD>=0 && d==r && g%NSHARD!=SHARD) continue;
+        if(SHARD>=0 && splitdepth<=r && d==r && g%NSHARD!=SHARD) continue;
         if(forb[negv[g]]) continue;
         unsigned char *dst=R(d+1,0); memcpy(dst,R(d,0),(size_t)(s+1)*N);
         const int *rowg = addtab + (size_t)g*N;   /* addtab is symmetric: row g == column g */
@@ -187,6 +201,9 @@ int main(int argc,char**argv){
             if(i+1>=argc){ fprintf(stderr,"FATAL: --maxnodes needs a value\n"); return 2; }
             maxnodes=atoll(argv[++i]);
             if(maxnodes<=0){ fprintf(stderr,"FATAL: --maxnodes must be positive\n"); return 2; } }
+        else if(!strcmp(argv[i],"--splitdepth")){
+            if(i+1>=argc){ fprintf(stderr,"FATAL: --splitdepth needs a value\n"); return 2; }
+            splitdepth=atoi(argv[++i]); }
         else if(!strcmp(argv[i],"--maxsecs")){
             if(i+1>=argc){ fprintf(stderr,"FATAL: --maxsecs needs a value\n"); return 2; }
             maxsecs=atof(argv[++i]);
@@ -196,9 +213,17 @@ int main(int argc,char**argv){
     }
     if(SHARD>=0 && (NSHARD<=0 || SHARD>=NSHARD)){
         fprintf(stderr,"FATAL: --shard %d %d is out of range\n",SHARD,NSHARD); return 2; }
+    if(splitdepth!=0 && (splitdepth<=r || splitdepth>=L)){
+        fprintf(stderr,"FATAL: --splitdepth %d must satisfy r < d < L (r=%d, L=%d)\n",
+                splitdepth,r,L); return 2; }
     if(r>16){ fprintf(stderr,"FATAL: r>16 exceeds the digit buffer\n"); return 3; }
     if(L-r>64){ fprintf(stderr,"FATAL: tail longer than the canonicity buffer\n"); return 3; }
     N=1; for(int i=0;i<r;i++) N*=p;
+    if(splitdepth<=r && SHARD>=0 && NSHARD>N-1){
+        fprintf(stderr,"FATAL: legacy sharding splits on the first free term, so it admits at\n"
+                       "most N-1 = %d non-empty shards, but NSHARD=%d was requested. Pass\n"
+                       "--splitdepth D (r < D < L) to split deeper and lift that ceiling.\n",
+                N-1,NSHARD); return 2; }
     addtab=malloc(sizeof(int)*(size_t)N*N);
     for(int a=0;a<N;a++) for(int b=0;b<N;b++){ int x=0,pw=1,aa=a,bb=b;
         for(int i=0;i<r;i++){ x+=((aa%p+bb%p)%p)*pw; aa/=p; bb/=p; pw*=p; } addtab[a*N+b]=x; }
@@ -217,12 +242,19 @@ int main(int argc,char**argv){
         for(int l=s;l>=1;l--){ unsigned char*from=R(d,l-1),*to=R(d+1,l);
             for(int x=0;x<N;x++) if(from[x]) to[rowg[x]]=1; }
         seq[d]=g; d++; }
-    printf("p=%d r=%d L=%d s=%d N=%d sym=%s transpositions=%d\n",p,r,L,s,N,nosym?"off":"on",NTR);
+    printf("p=%d r=%d L=%d s=%d N=%d sym=%s transpositions=%d splitdepth=%d\n",
+           p,r,L,s,N,nosym?"off":"on",NTR,splitdepth);
     clock_gettime(CLOCK_MONOTONIC,&t_start);
     dfs(r,1);
-    printf("DONE nodes=%lld leaves=%lld found=%lld sympruned=%lld\n",nodes,leaves,found,pruned_sym);
-    printf("RESULT p=%d r=%d L=%d s=%d shard=%d/%d sym=%d found=%lld leaves=%lld nodes=%lld%s\n",
-           p,r,L,s,SHARD,NSHARD,!nosym,found,leaves,nodes, truncated?" TRUNCATED":"");
+    printf("DONE nodes=%lld leaves=%lld found=%lld sympruned=%lld units=%lld\n",
+           nodes,leaves,found,pruned_sym,splitctr);
+    /* split= and units= are appended, so RESULT stays parseable by readers that predate them.
+     * units is the number of depth-splitdepth subtrees seen, i.e. the work units available at
+     * this split depth -- which is how you size NSHARD before committing to an array. */
+    printf("RESULT p=%d r=%d L=%d s=%d shard=%d/%d sym=%d found=%lld leaves=%lld nodes=%lld%s"
+           " split=%d units=%lld\n",
+           p,r,L,s,SHARD,NSHARD,!nosym,found,leaves,nodes, truncated?" TRUNCATED":"",
+           splitdepth,splitctr);
     if(truncated) fprintf(stderr,"WARNING: stopped at the %s cap. This run proves NOTHING;\n"
                                  "it is a timing sample only, and collect.py rejects it.\n",trunc_why);
     return 0;
