@@ -29,7 +29,13 @@
  * than the tallies.  A build of this file that fails to reproduce D_2(C_3^3) = 11,
  * D_2(C_3^4) = 14 and D_2(C_3^5) = 17 from BOTH sides must not be used for anything.
  *
- * Usage: enum_rank_sym p r L s [--progress] [--shard i n] [--nosym]
+ * Usage: enum_rank_sym p r L s [--progress] [--shard i n] [--nosym] [--colmajor]
+ *                             [--maxnodes N] [--maxsecs S]
+ *
+ *   --maxnodes caps NODES.  It does not bound runtime: at rank 7 a single leaf costs
+ *   O(L*N^2) ~ 1e9 byte-ops, so a 5000-node cap can still run for minutes.  Use
+ *   --maxsecs to bound a timing sample by the clock.  Either cap marks the RESULT line
+ *   TRUNCATED, and collect.py refuses a verdict from a truncated run.
  *   --nosym disables the orbit prune, recovering the parent search exactly.  Keep it: it is how
  *   the speedup is measured and how a suspected soundness bug is bisected.
  */
@@ -37,6 +43,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
+#include <time.h>
+#define USAGE "usage: %s p r L s [--progress] [--shard i n] [--nosym] [--colmajor]" \
+              " [--maxnodes N] [--maxsecs S]\n"
 static int p, r, L, s, N;
 static int *addtab;
 static int *negv;
@@ -46,7 +55,14 @@ static int *seq;
 static long long nodes=0, leaves=0, found=0, pruned_sym=0;
 static int progress=0, SHARD=-1, NSHARD=1, nosym=0, colmajor=0;
 static long long maxnodes=0;   /* 0 = unlimited; otherwise stop and mark the run truncated */
+static double maxsecs=0;       /* 0 = unlimited; a WALL-CLOCK cap, which --maxnodes is not */
 static int truncated=0;
+static const char *trunc_why="";
+static struct timespec t_start;
+static inline double elapsed(void){
+    struct timespec now; clock_gettime(CLOCK_MONOTONIC,&now);
+    return (double)(now.tv_sec-t_start.tv_sec) + 1e-9*(double)(now.tv_nsec-t_start.tv_nsec);
+}
 static inline unsigned char *R(int d,int l){ return reach + ((size_t)d*(s+1)+l)*N; }
 
 /* ---- basis stabiliser: the C(r,2) coordinate transpositions, as tables on element indices ---- */
@@ -119,7 +135,11 @@ static int two_disjoint(void){
 static void dfs(int d,int lo){
     if(truncated) return;
     nodes++;
-    if(maxnodes && nodes>=maxnodes){ truncated=1; return; }
+    if(maxnodes && nodes>=maxnodes){ truncated=1; trunc_why="--maxnodes"; return; }
+    /* A node cap does NOT bound runtime: cost is dominated by two_disjoint() at the
+     * leaves, which is O(L*N^2) each.  Check the clock every 256 nodes as well. */
+    if(maxsecs && (nodes & 0x3F)==0 && elapsed() >= maxsecs){
+        truncated=1; trunc_why="--maxsecs"; return; }
     if(!nosym && d>r && not_canonical(d)){ pruned_sym++; return; }
     unsigned char *forb = forbbuf + (size_t)d*N;
     if(d<L){
@@ -130,7 +150,9 @@ static void dfs(int d,int lo){
     if(progress && (nodes&0xFFFFF)==0)
         fprintf(stderr,"progress nodes=%lld leaves=%lld found=%lld sympruned=%lld d=%d\n",
                 nodes,leaves,found,pruned_sym,d);
-    if(d==L){ leaves++;
+    if(d==L){
+        if(maxsecs && elapsed() >= maxsecs){ truncated=1; trunc_why="--maxsecs"; return; }
+        leaves++;
         if(!two_disjoint()){ found++; printf("packing<=1:");
             for(int i=0;i<L;i++) printf(" %d",seq[i]); printf("\n"); fflush(stdout); }
         return; }
@@ -150,13 +172,30 @@ static void dfs(int d,int lo){
 }
 
 int main(int argc,char**argv){
-    if(argc<5){ fprintf(stderr,"usage: %s p r L s [--progress] [--shard i n] [--nosym]\n",argv[0]); return 2; }
+    if(argc<5){ fprintf(stderr,USAGE,argv[0]); return 2; }
     p=atoi(argv[1]); r=atoi(argv[2]); L=atoi(argv[3]); s=atoi(argv[4]);
-    for(int i=5;i<argc;i++){ if(!strcmp(argv[i],"--progress")) progress=1;
-        else if(!strcmp(argv[i],"--shard")){ SHARD=atoi(argv[i+1]); NSHARD=atoi(argv[i+2]); }
+    /* An unrecognised flag is a hard error.  It used to fall through this chain unnoticed, so
+     * `--maxnodes` against a build without it ran the FULL tree while looking capped. */
+    for(int i=5;i<argc;i++){
+        if(!strcmp(argv[i],"--progress")) progress=1;
         else if(!strcmp(argv[i],"--nosym")) nosym=1;
         else if(!strcmp(argv[i],"--colmajor")) colmajor=1;
-        else if(!strcmp(argv[i],"--maxnodes")) maxnodes=atoll(argv[++i]); }
+        else if(!strcmp(argv[i],"--shard")){
+            if(i+2>=argc){ fprintf(stderr,"FATAL: --shard needs two values: i n\n"); return 2; }
+            SHARD=atoi(argv[i+1]); NSHARD=atoi(argv[i+2]); i+=2; }
+        else if(!strcmp(argv[i],"--maxnodes")){
+            if(i+1>=argc){ fprintf(stderr,"FATAL: --maxnodes needs a value\n"); return 2; }
+            maxnodes=atoll(argv[++i]);
+            if(maxnodes<=0){ fprintf(stderr,"FATAL: --maxnodes must be positive\n"); return 2; } }
+        else if(!strcmp(argv[i],"--maxsecs")){
+            if(i+1>=argc){ fprintf(stderr,"FATAL: --maxsecs needs a value\n"); return 2; }
+            maxsecs=atof(argv[++i]);
+            if(maxsecs<=0){ fprintf(stderr,"FATAL: --maxsecs must be positive\n"); return 2; } }
+        else { fprintf(stderr,"FATAL: unrecognised argument \"%s\"\n",argv[i]);
+               fprintf(stderr,USAGE,argv[0]); return 2; }
+    }
+    if(SHARD>=0 && (NSHARD<=0 || SHARD>=NSHARD)){
+        fprintf(stderr,"FATAL: --shard %d %d is out of range\n",SHARD,NSHARD); return 2; }
     if(r>16){ fprintf(stderr,"FATAL: r>16 exceeds the digit buffer\n"); return 3; }
     if(L-r>64){ fprintf(stderr,"FATAL: tail longer than the canonicity buffer\n"); return 3; }
     N=1; for(int i=0;i<r;i++) N*=p;
@@ -179,11 +218,12 @@ int main(int argc,char**argv){
             for(int x=0;x<N;x++) if(from[x]) to[rowg[x]]=1; }
         seq[d]=g; d++; }
     printf("p=%d r=%d L=%d s=%d N=%d sym=%s transpositions=%d\n",p,r,L,s,N,nosym?"off":"on",NTR);
+    clock_gettime(CLOCK_MONOTONIC,&t_start);
     dfs(r,1);
     printf("DONE nodes=%lld leaves=%lld found=%lld sympruned=%lld\n",nodes,leaves,found,pruned_sym);
     printf("RESULT p=%d r=%d L=%d s=%d shard=%d/%d sym=%d found=%lld leaves=%lld nodes=%lld%s\n",
            p,r,L,s,SHARD,NSHARD,!nosym,found,leaves,nodes, truncated?" TRUNCATED":"");
-    if(truncated) fprintf(stderr,"WARNING: stopped at the --maxnodes cap. This run proves NOTHING;\n"
-                                 "it is a timing sample only, and collect.py rejects it.\n");
+    if(truncated) fprintf(stderr,"WARNING: stopped at the %s cap. This run proves NOTHING;\n"
+                                 "it is a timing sample only, and collect.py rejects it.\n",trunc_why);
     return 0;
 }

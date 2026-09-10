@@ -41,8 +41,9 @@ def main(directory: Path) -> int:
         if m is None:
             continue  # incomplete; counted as missing below
         if "TRUNCATED" in text:
-            print(f"FATAL: {path.name} was stopped by --maxnodes. That flag is a timing instrument;"
-                  f" a truncated run proves nothing and must not enter a verdict.")
+            print(f"FATAL: {path.name} was stopped by a --maxnodes/--maxsecs cap. Those flags are"
+                  f" timing instruments; a truncated run proves nothing and must not enter a"
+                  f" verdict.")
             return 3
         p, r, L, s, shard, n, sym, found, leaves, nodes = (int(x) for x in m.groups())
         if nshard is None:

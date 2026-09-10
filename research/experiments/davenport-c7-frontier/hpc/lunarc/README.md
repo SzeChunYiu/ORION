@@ -17,7 +17,7 @@ The two outcomes cost very different amounts. A witness can turn up in any shard
 ## Order of operations
 
 ```bash
-./00_build.sh                 # compile both enumerators
+./00_build.sh                 # compile the enumerators, and self-check the sampling caps
 sbatch 01_calibrate.sbatch    # THE GATE. writes CALIBRATED.ok. nothing runs before it passes
 ./submit.sh 6                 # D_2(C_3^6) at length 20, 728 shards
 ./submit.sh 7                 # D_2(C_3^7) at length 22, 2186 shards
@@ -25,7 +25,11 @@ sbatch 01_calibrate.sbatch    # THE GATE. writes CALIBRATED.ok. nothing runs bef
 ./collect.py results/r7_L22
 ```
 
-Fill in `-A YOUR_PROJECT_HERE` and check `-p cosmos` and the `module load` line against `module avail` before the first submit. Nothing else needs editing: `submit.sh` derives the length, the prune depth and the array size from the rank, so they cannot drift apart.
+`-A hep2023-1-3` and `-p hep` are filled in, matching every ORION job this repo has actually
+submitted to LUNARC (most recently array job 3550016, 2026-08-28, which ran to `exit 0:0`).
+The earlier `-p cosmos` was a placeholder that no submitted job here ever used: COSMOS is the
+cluster, not a partition. Check the `module load` line against `module avail` before the first
+submit -- that one is still unverified. Nothing else needs editing: `submit.sh` derives the length, the prune depth and the array size from the rank, so they cannot drift apart.
 
 ## Why calibration is not optional
 
@@ -39,7 +43,9 @@ If calibration fails, run the same case with `--nosym`. That flag disables the o
 
 The search fixes the first `r` terms as the basis `e_1 … e_r` and enumerates the tail in nondecreasing order. The subgroup of `GL(r,3)` fixing the basis as a set is the symmetric group `S_r`, permuting coordinates — a monomial matrix with any other diagonal entry sends some `e_i` outside the basis. The parent search does not quotient by `S_r` at all, so it walks up to `r!` isomorphic copies of every tail: **720 at rank 6, 5040 at rank 7.**
 
-`enum_rank_sym_v1.c` prunes any node whose tail is not lexicographically least in its `S_r` orbit, tested against the `C(r,2)` transpositions rather than all `r!` permutations — testing a subgroup generating set is still sound and costs `O(r²m)` instead of `O(r! m)` per node.
+`enum_rank_sym_v2.c` — the source `bin/enum_sym` is built from, and the only one implementing
+`--maxnodes`/`--maxsecs`; `bin/enum_sym_v1` is kept alongside it for bisection, and the two agree
+to the node on every calibration case — prunes any node whose tail is not lexicographically least in its `S_r` orbit, tested against the `C(r,2)` transpositions rather than all `r!` permutations — testing a subgroup generating set is still sound and costs `O(r²m)` instead of `O(r! m)` per node.
 
 Soundness, in one line: if some permutation `b` makes `sort(b(T_d)) < T_d` at depth `d`, then `sort(b(T_L)) < T_L` for every completion, because the `d` smallest entries of `b(T_L)` are entrywise at most `sort(b(T_d))`. So a prefix of an orbit's lex-least tail is never pruned, every orbit still reaches a leaf, and `found = 0` here means `found = 0` in the parent search. That is the only direction the upper bound uses.
 
@@ -88,17 +94,52 @@ Rank 7 is not — length rises by only 2 there rather than 3, so the growth fact
 567 by an unknown amount, and the honest range spans an order of magnitude. Sample it before
 asking for time.
 
-**Measure before you queue.** `--maxnodes` makes that exact and bounded:
+**Measure before you queue — but bound the sample by the clock, not by nodes.**
 
 ```bash
-./bin/enum_sym 3 6 20 7 --shard 17 728 --maxnodes 5000000   # time this, then scale by nodes
+./bin/enum_sym 3 7 22 7 --shard 4 2186 --maxsecs 600     # a bound that actually holds
 ```
 
-Sample several shards, not one — they split on the first free term and subtree sizes vary by
-orders of magnitude. A run stopped by `--maxnodes` prints `TRUNCATED` on the RESULT line and warns
-on stderr; `collect.py` refuses to take a verdict from one.
+`--maxnodes` caps nodes and does **not** bound runtime. Cost is dominated by `two_disjoint()` at
+the leaves, which is `O(L*N^2)` per leaf; at rank 7 (`N = 2187`) that is ~1e9 byte-ops, so a leaf
+takes on the order of half a second. Measured on one core, rank 7, shard 1:
 
-Shards are unbalanced — they split on the first free term, and subtree sizes vary a lot — so time
-several, not one, and size the walltime off the worst. If a shard threatens the 24 h limit, raise
-`NSHARD` rather than the time limit: more, smaller shards schedule better and lose less to a kill,
-and `submit.sh` keeps the array bound consistent with it.
+| cap | wall | reached |
+|---|---|---|
+| `--maxsecs 10` | 10.8 s | 39 nodes, 23 leaves |
+| `--maxsecs 30` | 30.7 s | 90 nodes, 74 leaves |
+
+That is ~2.4 leaves/s and ~3 nodes/s. A `--maxnodes 5000000` sample on this shard would therefore
+run for about **19 days** before the cap ever fired. Scale a sample by *leaves*, never by nodes.
+
+Either cap prints `TRUNCATED` on the RESULT line and warns on stderr, and `collect.py` refuses a
+verdict from a truncated run.
+
+**Shard cost is decided by the digit structure of the first free term, not by the shard index.**
+Shard `i` selects exactly one first free term (`g % NSHARD == i`), so a uniform spread across the
+index range is not a sample of the cost distribution. Measured at rank 7, 24 shards, 300 s limit:
+
+| shards | outcome |
+|---|---|
+| 4, 5, 13, 17, 40 | exceed 300 s, no upper bound established |
+| 2, 6, 8, 2000 | 1 node, 0.3 s |
+| 3, 10, 22, 30, 55, 75, 100, 137, 200, 300, 500, 800, 1200, 1600, 2185 | 542–2004 nodes, 0.3 s |
+
+About a fifth are heavy and the rest are trivial. Note that 137, 733, 1500 and 2185 all finish in
+under a second: sampling those four and extrapolating gives an answer that is wrong by orders of
+magnitude. Sample the heavy shards (4, 5, 13, 17, 40 are known heavy) and size off those.
+
+**Two consequences for rank 7 that the sizing above does not cover.**
+
+1. `NSHARD` is already at its ceiling and cannot be raised. Sharding happens only at `d == r`, on
+   the first free term, so there are at most `N - 1` non-empty shards — exactly the `3^r - 1` that
+   `submit.sh` computes. Asking for more yields shards with no first free term at all (1 node,
+   nothing to do). So "raise `NSHARD` rather than the time limit" is not available here;
+   subdividing a heavy shard would mean sharding at a deeper level, which is a code change.
+2. A heavy shard may not finish in any single job. At ~2.4 leaves/s, a 24 h job covers ~207,000
+   leaves. Resubmission is idempotent only for shards that wrote a `RESULT` line, so a shard
+   killed at walltime restarts from scratch every time and never completes — and `collect.py`
+   will keep reporting `INCOMPLETE` forever, which is the correct behaviour and not a bug.
+   Establish the cost of the heavy shards before committing to the array. Note that the `hep`
+   partition has allowed at least 4 days (`--time=4-00:00:00`, job 3550016), so the 24 h in
+   `02_sweep.sbatch` is a choice rather than a limit.

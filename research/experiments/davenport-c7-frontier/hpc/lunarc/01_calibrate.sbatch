@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-#SBATCH -A YOUR_PROJECT_HERE
-#SBATCH -p cosmos
+#SBATCH -A hep2023-1-3
+#SBATCH -p hep
 #SBATCH -J dav-calib
 #SBATCH -n 1
 #SBATCH -c 1

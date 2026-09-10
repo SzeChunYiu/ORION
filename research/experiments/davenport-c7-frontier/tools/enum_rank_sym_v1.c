@@ -143,9 +143,22 @@ static void dfs(int d,int lo){
 int main(int argc,char**argv){
     if(argc<5){ fprintf(stderr,"usage: %s p r L s [--progress] [--shard i n] [--nosym]\n",argv[0]); return 2; }
     p=atoi(argv[1]); r=atoi(argv[2]); L=atoi(argv[3]); s=atoi(argv[4]);
-    for(int i=5;i<argc;i++){ if(!strcmp(argv[i],"--progress")) progress=1;
-        else if(!strcmp(argv[i],"--shard")){ SHARD=atoi(argv[i+1]); NSHARD=atoi(argv[i+2]); }
-        else if(!strcmp(argv[i],"--nosym")) nosym=1; }
+    /* Search behaviour is unchanged from the validated build; this only makes an unrecognised
+     * flag a hard error.  This file has no --maxnodes/--maxsecs, and silently ignoring them
+     * made a capped-looking run enumerate the FULL tree.  Use v2 for capped timing samples. */
+    for(int i=5;i<argc;i++){
+        if(!strcmp(argv[i],"--progress")) progress=1;
+        else if(!strcmp(argv[i],"--nosym")) nosym=1;
+        else if(!strcmp(argv[i],"--shard")){
+            if(i+2>=argc){ fprintf(stderr,"FATAL: --shard needs two values: i n\n"); return 2; }
+            SHARD=atoi(argv[i+1]); NSHARD=atoi(argv[i+2]); i+=2; }
+        else { fprintf(stderr,"FATAL: unrecognised argument \"%s\"\n",argv[i]);
+               fprintf(stderr,"This build has no --maxnodes/--maxsecs; use enum_rank_sym_v2.\n");
+               fprintf(stderr,"usage: %s p r L s [--progress] [--shard i n] [--nosym]\n",argv[0]);
+               return 2; }
+    }
+    if(SHARD>=0 && (NSHARD<=0 || SHARD>=NSHARD)){
+        fprintf(stderr,"FATAL: --shard %d %d is out of range\n",SHARD,NSHARD); return 2; }
     if(r>16){ fprintf(stderr,"FATAL: r>16 exceeds the digit buffer\n"); return 3; }
     if(L-r>64){ fprintf(stderr,"FATAL: tail longer than the canonicity buffer\n"); return 3; }
     N=1; for(int i=0;i<r;i++) N*=p;
