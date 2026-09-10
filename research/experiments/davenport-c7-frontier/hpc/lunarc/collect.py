@@ -43,9 +43,10 @@ def main(directory: Path) -> int:
         if m is None:
             continue  # incomplete; counted as missing below
         if "TRUNCATED" in text:
-            print(f"FATAL: {path.name} was stopped by a --maxnodes/--maxsecs cap. Those flags are"
-                  f" timing instruments; a truncated run proves nothing and must not enter a"
-                  f" verdict.")
+            print(f"FATAL: {path.name} stopped early (--maxnodes, --maxsecs or --stopfirst), so"
+                  f" its tallies are partial and it must not enter a verdict. The first two are"
+                  f" timing instruments and prove nothing at all; --stopfirst does establish"
+                  f" found>0, but a witness is reported from the run itself, not from here.")
             return 3
         p, r, L, s, shard, n, sym, found, leaves, nodes = (int(x) for x in m.groups())
         ms = SPLIT.search(text)

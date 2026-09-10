@@ -45,7 +45,7 @@
 #include <stdint.h>
 #include <time.h>
 #define USAGE "usage: %s p r L s [--progress] [--shard i n] [--nosym] [--colmajor]" \
-              " [--maxnodes N] [--maxsecs S] [--splitdepth D]\n"
+              " [--maxnodes N] [--maxsecs S] [--splitdepth D] [--stopfirst]\n"
 static int p, r, L, s, N;
 static int *addtab;
 static int *negv;
@@ -60,6 +60,7 @@ static int splitdepth=0;       /* 0 = legacy: split on the first free term at d=
                                 * >r = split on subtrees rooted at this depth, which lifts
                                 * the hard ceiling of N-1 work units. */
 static long long splitctr=0;   /* DFS-order index of the current depth-splitdepth node */
+static int stopfirst=0;        /* halt at the first witness: enough to decide "found>0" */
 static int truncated=0;
 static const char *trunc_why="";
 static struct timespec t_start;
@@ -168,7 +169,11 @@ static void dfs(int d,int lo){
         if(maxsecs && elapsed() >= maxsecs){ truncated=1; trunc_why="--maxsecs"; return; }
         leaves++;
         if(!two_disjoint()){ found++; printf("packing<=1:");
-            for(int i=0;i<L;i++) printf(" %d",seq[i]); printf("\n"); fflush(stdout); }
+            for(int i=0;i<L;i++) printf(" %d",seq[i]); printf("\n"); fflush(stdout);
+            /* One witness settles a "witness must exist" check.  Counting the rest costs
+             * O(L*N^2) per remaining leaf and decides nothing.  The run is partial, so it is
+             * marked TRUNCATED and can never be mistaken for an exhaustive sweep. */
+            if(stopfirst){ truncated=1; trunc_why="--stopfirst"; return; } }
         return; }
     for(int g=lo; g<N; g++){
         if(g==0) continue;
@@ -201,6 +206,7 @@ int main(int argc,char**argv){
             if(i+1>=argc){ fprintf(stderr,"FATAL: --maxnodes needs a value\n"); return 2; }
             maxnodes=atoll(argv[++i]);
             if(maxnodes<=0){ fprintf(stderr,"FATAL: --maxnodes must be positive\n"); return 2; } }
+        else if(!strcmp(argv[i],"--stopfirst")) stopfirst=1;
         else if(!strcmp(argv[i],"--splitdepth")){
             if(i+1>=argc){ fprintf(stderr,"FATAL: --splitdepth needs a value\n"); return 2; }
             splitdepth=atoi(argv[++i]); }
@@ -255,7 +261,16 @@ int main(int argc,char**argv){
            " split=%d units=%lld\n",
            p,r,L,s,SHARD,NSHARD,!nosym,found,leaves,nodes, truncated?" TRUNCATED":"",
            splitdepth,splitctr);
-    if(truncated) fprintf(stderr,"WARNING: stopped at the %s cap. This run proves NOTHING;\n"
-                                 "it is a timing sample only, and collect.py rejects it.\n",trunc_why);
+    if(truncated){
+        if(stopfirst && found>0)
+            /* Not a timing sample: a witness was found, which is a complete proof on its own.
+             * The tallies are partial, so it still must not enter a negative verdict. */
+            fprintf(stderr,"NOTE: stopped at the first witness (--stopfirst). found>0 is\n"
+                           "established and needs no coverage argument, but the node, leaf and\n"
+                           "witness counts are partial, so collect.py rejects this run.\n");
+        else
+            fprintf(stderr,"WARNING: stopped at the %s cap. This run proves NOTHING;\n"
+                           "it is a timing sample only, and collect.py rejects it.\n",trunc_why);
+    }
     return 0;
 }

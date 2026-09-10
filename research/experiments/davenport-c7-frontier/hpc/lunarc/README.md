@@ -37,7 +37,24 @@ The sweeps answer by *not finding* something. That is worth exactly as much as t
 
 `01_calibrate.sbatch` re-decides every `D_2(C_3^r)` value already known, from both directions, with the new prune on: length 10 and 11 at rank 3, 13 and 14 at rank 4, 16 and 17 at rank 5. Witnesses must appear where they must exist and must not appear where they cannot. It then checks that splitting the walk into many units partitions it exactly. It writes `CALIBRATED.ok` only on a clean pass, and `02_sweep.sbatch` refuses to start without that file.
 
-If calibration fails, run the same case with `--nosym`. That flag disables the orbit prune and recovers the previously-validated parent search exactly, which isolates whether the fault is in the new code or somewhere older.
+If calibration fails, run the same case with `--nosym`. That flag disables the orbit prune and recovers the previously-validated parent search exactly, which isolates whether the fault is in the new code or somewhere older. `--splitdepth 0` recovers the undivided walk the same way, for a suspected coverage fault rather than a soundness one.
+
+### The two directions cost wildly different amounts
+
+This is worth knowing before you size anything, because the sizing table below is measured **on the negative cases only** and does not transfer:
+
+| case | direction | leaves | wall |
+|---|---|---|---|
+| `3^4 L=13` | witness | 771,978 | 168 s |
+| `3^4 L=14` | none | 624 | 0.2 s |
+| `3^5 L=17` | none | **0** | ~80 s (33.7M nodes) |
+| `3^5 L=16` | witness | millions | **>11 h, unfinished** |
+
+A "none can exist" check is cheap *because it reaches no leaves at all* — the complement prune kills every branch before depth `L`, so the `O(L·N²)` packing test never runs. A "witness exists" check does reach leaves and pays that test at every one of them.
+
+So the witness half of the gate was never sized, and a 4 h walltime could not pass it. The fix is `--stopfirst`: a witness check needs `found > 0` and nothing else, and the first witness turns up almost immediately — at rank 5 `L=16` it is found at **node 12**, in 0.01 s, versus over half a day to count them all. The gate now runs start to finish in about 80 s. The "none" direction stays exhaustive, which costs nothing extra. Drop `--stopfirst` from `check()` if you ever want the full witness tallies back.
+
+A `--stopfirst` run is marked `TRUNCATED`, because its tallies are partial; `found > 0` still stands on its own and needs no coverage argument, but `collect.py` refuses to build a verdict from such a run.
 
 ## What the new prune does
 

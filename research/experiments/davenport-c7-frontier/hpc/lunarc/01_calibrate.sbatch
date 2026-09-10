@@ -4,17 +4,21 @@
 #SBATCH -J dav-calib
 #SBATCH -n 1
 #SBATCH -c 1
-#SBATCH -t 2-00:00:00
+#SBATCH -t 12:00:00
 #SBATCH -o logs/calib.out
 #SBATCH -e logs/calib.err
 #
 # THE GATE.  A search that returns zero proves nothing unless it can return non-zero, and a
 #
-# WALLTIME.  This was -t 04:00:00, which is not enough.  The rank-5 L=16 witness case alone
-# ran past 11 h on one core of a 2.80GHz Xeon without finishing: it enumerates the whole
-# tree (there is no early exit once a witness is found, because the check counts them all).
-# A gate killed at walltime never writes CALIBRATED.ok and blocks every sweep behind it, so
-# the limit is now 2 days.  hep has allowed 4 (job 3550016) if even that proves short.
+# WALLTIME.  The two directions of this gate have wildly different costs, and the original
+# -t 04:00:00 was set from the wrong one.  The "none can exist" checks reach no leaves at all
+# (rank 5 L=17: 33.7M nodes, ZERO leaves, ~80 s), so they are cheap.  The "witness exists"
+# checks do reach leaves, and every leaf pays an O(L*N^2) packing test: rank 4 L=13 took 168 s
+# against 0.2 s for its negative sibling, and rank 5 L=16 ran past 11 h without finishing.
+# The sizing table in the README is explicitly "on the negative cases", so the witness half of
+# the gate was never measured -- that, not the cluster, is why 4 h could not pass it.
+# --stopfirst fixes it properly (see check() below) and the whole gate now runs in minutes;
+# 12 h is headroom, because a gate killed at walltime blocks every sweep behind it.
 # symmetry-reduced search that is unsound returns zero for the wrong reason.  This job re-decides
 # every D_2(C_3^r) value we already know, from BOTH sides, with the orbit prune ON.  Nothing else
 # in this directory may run until it writes CALIBRATED.ok.
@@ -34,8 +38,14 @@ check () {  # p r L s expectation
     if [ "$s" -ne $(( L - q - 1 )) ]; then
         echo "FATAL: s=$s is not L-q-1=$(( L - q - 1 )) for p=$p r=$r L=$L"; exit 3
     fi
-    local out found
-    out=$("$BIN" "$p" "$r" "$L" "$s" | grep RESULT)
+    local out found extra=()
+    # A "witness must exist" check needs found>0 and nothing more, so stop at the first one.
+    # Counting the rest costs O(L*N^2) per remaining leaf and decides nothing: at rank 5 L=16 the
+    # first witness turns up at node 12, while counting them all runs for over half a day.  The
+    # "none can exist" direction must stay exhaustive, and is cheap precisely because it reaches
+    # no leaves at all.  Drop --stopfirst here if you ever want the full witness tallies back.
+    [ "$exp" = witness ] && extra=(--stopfirst)
+    out=$("$BIN" "$p" "$r" "$L" "$s" "${extra[@]}" | grep RESULT)
     found=$(echo "$out" | grep -o 'found=[0-9]*' | cut -d= -f2)
     case "$exp" in
         witness) [ "$found" -gt 0 ] && echo "PASS $p^$r L=$L: found=$found (witness expected)" \
