@@ -4,11 +4,17 @@
 #SBATCH -J dav-calib
 #SBATCH -n 1
 #SBATCH -c 1
-#SBATCH -t 04:00:00
+#SBATCH -t 2-00:00:00
 #SBATCH -o logs/calib.out
 #SBATCH -e logs/calib.err
 #
 # THE GATE.  A search that returns zero proves nothing unless it can return non-zero, and a
+#
+# WALLTIME.  This was -t 04:00:00, which is not enough.  The rank-5 L=16 witness case alone
+# ran past 11 h on one core of a 2.80GHz Xeon without finishing: it enumerates the whole
+# tree (there is no early exit once a witness is found, because the check counts them all).
+# A gate killed at walltime never writes CALIBRATED.ok and blocks every sweep behind it, so
+# the limit is now 2 days.  hep has allowed 4 (job 3550016) if even that proves short.
 # symmetry-reduced search that is unsound returns zero for the wrong reason.  This job re-decides
 # every D_2(C_3^r) value we already know, from BOTH sides, with the orbit prune ON.  Nothing else
 # in this directory may run until it writes CALIBRATED.ok.
