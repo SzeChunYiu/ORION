@@ -16,8 +16,13 @@ The two outcomes cost very different amounts. A witness can turn up in any shard
 
 ## Order of operations
 
+Run it from project space, not from `$HOME`. A rank-7 sweep writes 5000 unit files plus about
+6000 SLURM logs, which is a lot of inodes against a home quota, and `results/` has to survive for
+`collect.py` to prove coverage. Past ORION jobs here have used `/projects/hep/fs9/scratch/scyiu-orion-ci/`
+(which already holds an `ORION` clone) and `/projects/hep/fs9/users/scyiu/`; either is fine.
+
 ```bash
-./00_build.sh                 # compile the enumerators, and self-check the sampling caps
+./00_build.sh                 # compile the enumerators, create logs/ and results/, self-check the caps
 sbatch 01_calibrate.sbatch    # THE GATE. writes CALIBRATED.ok. nothing runs before it passes
 ./submit.sh 6                 # D_2(C_3^6) at length 20, 728 units, one per array task
 ./submit.sh 7                 # D_2(C_3^7) at length 22, 5000 units over 1000 array tasks

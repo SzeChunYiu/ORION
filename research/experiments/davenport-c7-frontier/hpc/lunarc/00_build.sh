@@ -3,7 +3,13 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 ROOT=$(cd ../.. && pwd)          # .../research/experiments/davenport-c7-frontier
-mkdir -p bin
+# bin/, logs/ and results/ are all gitignored, so a fresh clone has none of them.  logs/ must
+# exist BEFORE the first sbatch: the #SBATCH -o/-e paths are relative to the submit directory and
+# SLURM opens those files before the job script runs, so a `mkdir -p logs` inside the script is
+# too late to save its own stdout.  Without this the very first submit after a clone dies with
+# "Unable to open file" and no log to say why.  Every fs9 job in this repo that ran used absolute
+# paths into an already-created logs dir, which is the same lesson learned the hard way.
+mkdir -p bin logs results
 
 # LUNARC uses Lmod. Adjust the toolchain to whatever `module avail GCC` offers.
 module load GCC/12.3.0 2>/dev/null || echo "note: no module system, using system gcc"
