@@ -1,0 +1,47 @@
+{
+  "hierarchy": "chi_act <= chi_plan <= N_dyn",
+  "strict_action_to_plan": {
+    "N_dyn": 3,
+    "action_coloring": {
+      "x": 0,
+      "y": 0,
+      "z": 1
+    },
+    "chi_act": 2,
+    "chi_plan": 3,
+    "closed_cover": [
+      ["x"],
+      ["z"],
+      ["y"]
+    ],
+    "closed_cover_actions": [0, 1, 0],
+    "plan_coloring": {
+      "x": 0,
+      "y": 1,
+      "z": 2
+    }
+  },
+  "strict_plan_to_dynamic": {
+    "N_dyn": 3,
+    "action_coloring": {
+      "0": 0,
+      "1": 0,
+      "2": 1,
+      "3": 0
+    },
+    "chi_act": 2,
+    "chi_plan": 2,
+    "closed_cover": [
+      [0],
+      [1],
+      [2, 3]
+    ],
+    "closed_cover_actions": [0, 0, 1],
+    "plan_coloring": {
+      "0": 0,
+      "1": 0,
+      "2": 1,
+      "3": 1
+    }
+  }
+}
