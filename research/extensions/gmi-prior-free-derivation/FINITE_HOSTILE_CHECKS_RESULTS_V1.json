@@ -1,0 +1,56 @@
+{
+  "control_nontransitivity": {
+    "minimum_valid_state_colors": 2,
+    "one_coloring": {
+      "h1": 0,
+      "h2": 0,
+      "h3": 1
+    },
+    "pair_intersections": {
+      "h1,h2": [
+        "b"
+      ],
+      "h1,h3": [
+        "a"
+      ],
+      "h2,h3": [
+        "c"
+      ]
+    },
+    "pairwise_mergeable": true,
+    "triple_intersection": [],
+    "triple_jointly_controllable": false
+  },
+  "development_frontier": {
+    "best_reachable_frontier": [
+      "b"
+    ],
+    "global_frontier": [
+      "c"
+    ],
+    "reachable_global_frontier": [],
+    "reachable_set": [
+      "a",
+      "b"
+    ]
+  },
+  "null_prior_scalarization": {
+    "bayes_risk_M": 0.0,
+    "bayes_risk_N": 0.0,
+    "pointwise_dominance": true
+  },
+  "stochastic_cut_counterexample": {
+    "distinct_exact_action_distributions": 5,
+    "message_alphabet_size": 2,
+    "num_histories": 5
+  },
+  "zero_error_clique": {
+    "chromatic_number": 3,
+    "clique_size": 3,
+    "one_coloring": {
+      "u1": 0,
+      "u2": 1,
+      "u3": 2
+    }
+  }
+}
