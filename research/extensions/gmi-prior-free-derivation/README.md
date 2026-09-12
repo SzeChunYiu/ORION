@@ -2,18 +2,25 @@
 
 ## Authority and status
 
-This directory contains the current prior-free GMI formalization programme. The authoritative theorem package is `FORMAL_CORE_V3.md` together with the explicitly cited companion notes and executable hostile witnesses below.
+This directory contains the current prior-free GMI formalization programme. The authoritative theorem package is:
 
-`FORMAL_CORE_V1.md` and `FORMAL_CORE_V2.md` are retained as provenance. They are superseded wherever v3 or a later companion note changes a definition, theorem, proof obligation, or claim boundary. They must not be cited as current authority without checking the v3 status.
+1. `FORMAL_CORE_V3.md`;
+2. `FORMAL_CORE_V3_ERRATA_V1.md` for deterministic/randomized control typing;
+3. `CLAIM_LEDGER_V1.md` for current claim status;
+4. the explicitly cited companion notes and executable hostile witnesses below.
 
-The programme currently claims **formal framework closure at the declared classical causal-computable level for the stated theorems**, plus architecture-form representation coverage. It does **not** claim full empirical GMI closure, unique named-architecture derivation, prospective unknown-form prediction, complete physical phase-diagram closure, or quantum-interface closure.
+`FORMAL_CORE_V1.md` and `FORMAL_CORE_V2.md` are retained as provenance. They are superseded wherever v3, the v3 errata, or a later normative companion note changes a definition, theorem, proof obligation, or claim boundary. They must not be cited as current authority without checking this index and the claim ledger.
+
+The programme currently claims **formal framework closure at the declared classical causal-computable level for the stated theorems**, plus broad architecture-form representation coverage. It does **not** claim full empirical GMI closure, unique named-architecture derivation, prospective unknown-form prediction, complete physical phase-diagram closure, general randomized-controller closure, or quantum-interface closure.
 
 ## Current theorem stack
 
 ### 1. Formal core
 
-- `FORMAL_CORE_V3.md` — authoritative definitions and theorem package.
+- `FORMAL_CORE_V3.md` — main definitions and theorem package.
+- `FORMAL_CORE_V3_ERRATA_V1.md` — normative repair: the finite control hierarchy and closed-cover specialization are deterministic unless a controller-class generalization is explicitly stated.
 - `HOSTILE_AUDIT_V1.md` — counterexamples that broke overstrong v1 statements and the repairs required before v2/v3.
+- `CLAIM_LEDGER_V1.md` — live theorem/status matrix with domains and reopen triggers.
 
 The v3 core separates:
 
@@ -30,18 +37,23 @@ No theorem may silently promote closure at one layer into closure at the next.
 ### 2. Control and information
 
 - `CONTROL_INFORMATION_PROFILE_V2.md` — distinct tolerance-indexed information profiles for repeated action disclosure and one-time rooted-plan selection.
-- `DYNAMIC_CONTROLLER_CLOSED_COVER_V2.md` — finite autonomous-controller realization via compatible closed covers; donor-aligned with incompletely specified FSM minimization.
-- `ROOTED_STRATEGY_COMPLEXITY_V1.md` — prefix-blind rooted-strategy semantics and the hierarchy
-  \[
-  \chi_{\mathrm{act}}(\varepsilon)
-  \le
-  \chi_{\mathrm{plan}}(\varepsilon)
-  \le
-  N^*_{\mathrm{dyn}}(\varepsilon).
-  \]
-- `CONTROL_COMPLEXITY_HIERARCHY_RESULTS_V1.json` — frozen finite witnesses showing both inequalities can be strict.
+- `DYNAMIC_CONTROLLER_CLOSED_COVER_V2.md` — finite deterministic autonomous-controller realization via compatible closed covers; donor-aligned with incompletely specified FSM minimization.
+- `ROOTED_STRATEGY_COMPLEXITY_V1.md` — prefix-blind rooted-strategy semantics and the original hierarchy statement; its deterministic/randomized typing is superseded by `FORMAL_CORE_V3_ERRATA_V1.md`.
+- `CONTROL_COMPLEXITY_HIERARCHY_RESULTS_V1.json` — frozen finite deterministic witnesses showing both hierarchy inequalities can be strict.
 
-The machine boundary is part of the theorem statement. Moving memory or computation into an external encoder, clock, retrieval service, tool, or environment channel changes the resource model rather than reducing intrinsic demand for free.
+The currently proved finite hierarchy is
+
+\[
+\chi^{\mathrm{det}}_{\mathrm{act}}(\varepsilon)
+\le
+\chi^{\mathrm{det}}_{\mathrm{plan}}(\varepsilon)
+\le
+N^{*,\mathrm{det}}_{\mathrm{dyn}}(\varepsilon).
+\]
+
+The unrestricted randomized analogue is OPEN.
+
+The machine boundary is part of the theorem statement. Moving memory, computation, randomness, timing, or side information into an external encoder, clock, retrieval service, tool, or environment channel changes the resource model rather than reducing intrinsic demand for free.
 
 ### 3. Channel laws
 
@@ -53,9 +65,10 @@ These are architecture-free conditional capability laws, not claims that every e
 
 - `REDUCTION_VOCABULARY_V1.md` — frozen architecture-neutral R0–R8 reduction vocabulary.
 - `KNOWN_FORM_REDUCTION_V1.md` — reduction of 26 known machine-intelligence form families using that vocabulary.
+- `RECOVERY_AND_PROSPECTIVE_TEST_PROTOCOL_V1.md` — evidence gates separating coverage, retrospective recovery, time-held-out recovery, and prospective empty-region prediction.
 - `FORMAL_CORE_V3.md` — necessity/construction sandwich for morphology closure and the distinction between profile-frontier closure and morphology-fiber identification.
 
-Coverage means a form maps into the vocabulary. Recovery means its region is derived without using its label. Prospective prediction means an unoccupied region is frozen before a realization is known. Only the latter two are strong architecture-prediction evidence.
+Coverage means a form maps into the vocabulary. Recovery means its region is derived without using its label or implementation details as derivation inputs. Prospective prediction means an unoccupied region is frozen before a realization is known. The current 26-family table is **R0 coverage**, not prospective recovery, because the major families were historically visible during vocabulary construction.
 
 ### 5. Executable hostile witnesses
 
@@ -70,7 +83,7 @@ The finite hostile checks cover at least the following failure classes:
 - predictive equivalence being confused with control mergeability;
 - reachable/global frontier intersection being confused with the best reachable frontier;
 - zero-error conflict coloring;
-- strict separation between repeated action information, rooted-plan information, and autonomous state complexity.
+- strict separation between repeated action information, rooted-plan information, and autonomous deterministic state complexity.
 
 ## The formal target
 
@@ -89,6 +102,8 @@ For declared causal structure `C`, obligation `Omega`, ecology `E`, physical/res
 \]
 
 A prior over `E` is not required to define the pointwise dominance order or the robust residual/control objects. Priors may be introduced later as optional scalarizers or selectors, with their support assumptions stated explicitly.
+
+Every control-complexity result must also declare the controller class: deterministic versus randomized, clocked versus clock-free, local versus externally assisted, and the location of private randomness or persistent memory.
 
 ## Closure rule
 
@@ -127,6 +142,7 @@ The programme remains open on:
 - held-out architecture recovery under a frozen reduction vocabulary;
 - a preregistered prospective morphology prediction;
 - substrate-specific necessity/construction equality for nontrivial morphology regions;
+- randomized-controller analogues of the finite deterministic hierarchy/closed-cover results;
 - a complete characterization of dynamic controller complexity beyond finite closed-cover specializations;
 - developmental/search-law neutrality and reachability bounds;
 - quantum-input/output generalization using instruments/channels rather than classical histories alone.
@@ -137,10 +153,11 @@ When modifying this lane:
 
 1. state quantifiers before theorem prose;
 2. state the machine/composition boundary;
-3. distinguish structural environment parameters from a probability measure over environments;
-4. identify donor-owned special cases;
-5. construct a hostile countermodel for every removed assumption where possible;
-6. preserve negative results;
-7. do not convert representation coverage into recovery or prediction;
-8. do not convert an outer-bound definition into a closed phase law;
-9. prefer additive successor notes or a new numbered core over silently rewriting historical evidence.
+3. type the controller/strategy class consistently across every inequality;
+4. distinguish structural environment parameters from a probability measure over environments;
+5. identify donor-owned special cases;
+6. construct a hostile countermodel for every removed assumption where possible;
+7. preserve negative results;
+8. do not convert representation coverage into recovery or prediction;
+9. do not convert an outer-bound definition into a closed phase law;
+10. prefer additive successor notes or a new numbered core over silently rewriting historical evidence.
