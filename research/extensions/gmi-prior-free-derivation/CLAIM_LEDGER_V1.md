@@ -10,7 +10,7 @@
 - **OPEN** — a named proof, construction, recovery, or empirical obligation remains.
 - **REFUTED / REPAIRED** — an earlier stronger statement has a registered counterexample and must not be revived without new assumptions.
 
-This ledger controls claim strength for the files in this directory. Historical notes may contain stronger language; the rows below are authoritative unless superseded by a later ledger.
+This ledger controls claim strength for the files in this directory. Historical notes may contain stronger language; the rows below are authoritative unless superseded by a later ledger or an explicitly normative erratum.
 
 ---
 
@@ -41,12 +41,13 @@ This ledger controls claim strength for the files in this directory. Historical 
 | ID | Claim | Status | Domain / assumptions | Evidence / authority | Reopen trigger |
 |---|---|---|---|---|---|
 | C1 | Immediate-action compatibility need not form an equivalence relation and therefore need not define a canonical quotient. | THEOREM / finite witnesses | Incompletely specified control: multiple actions may be admissible. | `FORMAL_CORE_V3.md`, `DYNAMIC_CONTROLLER_CLOSED_COVER_V2.md`. | Domain restricted to complete deterministic outputs. |
-| C2 | A plan-compatible class must share one rooted prefix-blind continuation strategy; a policy that can inspect the forgotten root leaks state and invalidates the compression claim. | THEOREM / semantic repair | Root identity absent from downstream side information. | `ROOTED_STRATEGY_COMPLEXITY_V1.md`. | Root identity is explicitly included in machine boundary/side information. |
-| C3 | For aligned finite residual semantics, \(\chi_{act}(\varepsilon) \le \chi_{plan}(\varepsilon) \le N^*_{dyn}(\varepsilon)\). | THEOREM | Finite residual specification; aligned tolerance and machine boundary. | `ROOTED_STRATEGY_COMPLEXITY_V1.md`. | Stochastic controllers or variable-length coding require separately stated generalization. |
+| C2 | A plan-compatible class must share one rooted prefix-blind continuation strategy; a policy that can inspect the forgotten root leaks state and invalidates the compression claim. | THEOREM / semantic repair | Root identity absent from downstream side information. Strategy class must be declared when deterministic/randomized feasibility can differ. | `ROOTED_STRATEGY_COMPLEXITY_V1.md`, `FORMAL_CORE_V3_ERRATA_V1.md`. | Root identity is explicitly included in machine boundary/side information. |
+| C3 | For aligned finite residual **deterministic** semantics, \(\chi^{det}_{act}(\varepsilon) \le \chi^{det}_{plan}(\varepsilon) \le N^{*,det}_{dyn}(\varepsilon)\). | THEOREM | Finite residual specification; deterministic rooted plans/actions/controllers; aligned tolerance, observations, side information, and machine boundary. | `FORMAL_CORE_V3_ERRATA_V1.md`; strict witnesses remain in `CONTROL_COMPLEXITY_HIERARCHY_RESULTS_V1.json`. | Randomized controllers, action kernels, or variable-length coding require separately stated generalizations. |
 | C4 | Both inequalities in C3 can be strict. | FINITE EXACT | Registered finite deterministic examples. | `CONTROL_COMPLEXITY_HIERARCHY_RESULTS_V1.json`. | Stronger restrictions collapse the hierarchy. |
-| C5 | Minimum autonomous deterministic controller state for a finite incompletely specified residual machine is a compatible closed-cover problem, not merely a coloring problem. | DONOR SPECIALIZATION + theorem | Finite residual machine; local admissibility Markovized; clock/side information declared. | `DYNAMIC_CONTROLLER_CLOSED_COVER_V2.md`; classical ISFSM minimization donor. | Generalization beyond finite deterministic controllers. |
+| C5 | Minimum autonomous deterministic controller state for a finite incompletely specified residual machine is a compatible closed-cover problem, not merely a coloring problem. | DONOR SPECIALIZATION + theorem | Finite residual machine; local admissibility Markovized; deterministic witness actions/controllers; clock/side information declared. | `DYNAMIC_CONTROLLER_CLOSED_COVER_V2.md`; classical ISFSM minimization donor; typed by `FORMAL_CORE_V3_ERRATA_V1.md`. | Generalization beyond finite deterministic controllers. |
 | C6 | A finite signal alphabet of size \(|Y|\) does not by itself limit stochastic-channel information to \(\log_2|Y|\) in the naive deterministic pigeonhole sense used by v1. | REFUTED / REPAIRED | Stochastic encoders/channels allowed. | `HOSTILE_AUDIT_V1.md`, finite witness. | A theorem adds zero-error/deterministic support-separation conditions. |
-| C7 | Zero-error control conflict induces a valid coloring lower bound on required distinguishable messages/states under the declared communication model. | THEOREM / FINITE EXACT witness | Zero-error, declared machine boundary, conflict relation defined on residual control demands. | `FORMAL_CORE_V3.md`, finite hostile checks. | Approximate-error claims require separate coding bounds. |
+| C7 | Zero-error control conflict induces a valid coloring lower bound on required distinguishable messages/states under the declared communication model. | THEOREM / FINITE EXACT witness | Zero-error, declared machine boundary, conflict relation defined on residual control demands, strategy class typed consistently. | `FORMAL_CORE_V3.md`, `FORMAL_CORE_V3_ERRATA_V1.md`, finite hostile checks. | Approximate-error claims require separate coding bounds. |
+| C8 | The general hierarchy for randomized autonomous controllers has not been closed by this lane. Randomization must be charged and typed consistently across plan feasibility, immediate controls, retained private randomness, and state accounting. | OPEN | Randomized control class. | `FORMAL_CORE_V3_ERRATA_V1.md`. | A valid randomized compatibility/realization theorem and hostile checks. |
 
 ---
 
@@ -116,6 +117,7 @@ The strongest justified summary is:
 \begin{array}{l}
 \text{prior-free formal core: substantially hardened within declared domain;}\\
 \text{predictive/control/resource layers: separated and theorem-gated;}\\
+\text{finite deterministic control hierarchy: theorem; randomized analogue OPEN;}\\
 \text{known-form representation coverage: broad but retrospective;}\\
 \text{prospective architecture prediction: OPEN;}\\
 \text{nontrivial physical morphology phase closure: OPEN;}\\
