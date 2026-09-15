@@ -41,15 +41,52 @@ jobs:
   fast:
     name: fast (all but p2)
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # Run 32915463499 exhausted the 25-minute job budget while this unchanged
+    # full-coverage command was still running; the same suite passes locally in
+    # 19m51s.  Keep the complete suite and give slower hosted runners measured
+    # headroom rather than dropping or skipping tests.
+    timeout-minutes: 40
     steps:
+      # The fast suite audits immutable historical subjects with `git show`,
+      # parent lookups and content-bound V2 successor commits.  A depth-one
+      # checkout turns available history into PARTIAL/CANNOT_CHECK and is not
+      # the repository state this gate is intended to measure.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          # P9's D1 replay has an explicitly recorded execution environment.
+          # A moving 3.12 alias changes the replay verdict before the scientific
+          # result is assessed, so this lane recreates that recorded runtime.
+          python-version: '3.12.13'
           cache: pip
-          cache-dependency-path: pyproject.toml
-      - run: python -m pip install -e '.[dev,candidates]'
+          cache-dependency-path: |
+            pyproject.toml
+            .github/ci-fast-replay-constraints.txt
+      # Publication-closure tests inspect page counts and extracted PDF text.
+      # Keep their system dependency explicit in the lane that runs them.
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends poppler-utils
+      - run: >-
+          python -m pip install -e '.[dev,candidates]'
+          --constraint .github/ci-fast-replay-constraints.txt
+      # `scripts/check_publication_closure.py` shells out to pdfinfo and
+      # pdftotext to read the packaged manuscripts.  Without poppler the run
+      # aborted with FileNotFoundError and the suite reported a failed
+      # verification for six packages that in fact verify clean.  No version
+      # pin here: this lane compares whitespace-normalised text, so it needs
+      # the tools to exist rather than to match an exact build.
+      # `manuscript-clipping-audit.yml` pins its poppler because it measures
+      # page geometry, where the build does change the answer.
+      - name: Install the PDF text toolchain the closure verifier needs
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends poppler-utils
+          command -v pdfinfo
+          command -v pdftotext
       - run: pytest -q --ignore=tests/unit/p2 --durations=10
 
   # The 14 expensive cases, spread across six runners.
