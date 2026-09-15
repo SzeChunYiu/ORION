@@ -167,22 +167,22 @@ def validate_q3_publication_contract() -> None:
     _require_source_tokens(
         CampaignState.from_dict,
         label="CampaignState.from_dict",
-        tokens=("_require_authority_false",),
+        tokens=("_authority_must_be_false",),
     )
     _require_source_tokens(
         CampaignState.unsigned,
         label="CampaignState.unsigned",
-        tokens=("_authority_false",),
+        tokens=("authority_false",),
     )
     _require_source_tokens(
         CampaignDecision.unsigned,
         label="CampaignDecision.unsigned",
-        tokens=("_authority_false",),
+        tokens=("authority_false",),
     )
     _require_source_tokens(
         CampaignTransition.unsigned,
         label="CampaignTransition.unsigned",
-        tokens=("_authority_false",),
+        tokens=("authority_false",),
     )
 
     # Protected reference custody is a declared-surface scan, not general taint

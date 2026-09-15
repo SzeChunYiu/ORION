@@ -25,6 +25,7 @@ from .mechanics_bridge import (
     saturation_surface,
     special_surface_catalog,
 )
+from .p15_q3_instrument import receipt_from_mapping
 from .recursive_runner import RecursiveRunLimits, run_problem_recursive
 from .runner import run_problem
 from .workspace import ResearchWorkspace
@@ -191,6 +192,8 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("atom-calculus")
     sub.add_parser("saturation-surface")
     sub.add_parser("method-fibre-surface")
+    instrument = sub.add_parser("instrument-receipt")
+    instrument.add_argument("payload", help="JSON file containing execution/item/decisions/scores")
 
     fibre = sub.add_parser("fibre")
     fibre.add_argument("workspace")
@@ -254,6 +257,10 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "method-fibre-surface":
         _print(method_fibre_surface())
+        return 0
+    if args.command == "instrument-receipt":
+        payload = json.loads(Path(args.payload).read_text())
+        _print(receipt_from_mapping(payload).as_dict())
         return 0
     if args.command == "campaign-builtins":
         _print({"campaigns": list(builtin_campaign_ids())})

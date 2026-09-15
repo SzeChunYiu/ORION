@@ -11,6 +11,36 @@ python -m pip install -e '.[dev]'
 python -m pip install -e 'packages/orion-research-harness[dev]'
 ```
 
+The package metadata declares the Apache-2.0 expression; see `LICENSE` and
+`NOTICE`. This repository-local increment does not establish rights-holder
+authorization to relicense pre-existing files, so relicensing authority remains
+`CANNOT_CHECK`. Release identity and clean-build instructions are in `RELEASE.md`,
+and retained changes are listed in `CHANGELOG.md`. Upstream benchmark corpora and
+repositories are not redistributed by this package and retain their own licenses.
+
+## Shared P15+Q3 instrument receipt
+
+The installable package exposes P15's scientific-execution-integrity separation
+and Q3's two-instrument frontier record as one content-bound, fail-closed receipt:
+
+```bash
+orion-harness instrument-receipt frozen-p15-q3-input.json
+```
+
+The JSON object must contain exactly `execution`, `item`, `decisions`, and
+`scores`. The execution object uses the frozen P15 integrity/science/authority
+coordinates; the item, two distinct decisions and optional deferred scores use
+the Q3 typed record fields and their existing digests. Any schema, identity,
+evidence, scorer or digest mismatch fails rather than being coerced.
+
+Every output explicitly sets `grants_scientific_authority=false`,
+`grants_independent_authority=false`, `independent_authority=CANNOT_CHECK`, and
+`public_data_confers_custody=false`. A `DECLARED_AUTHORIZED_SCIENCE` disposition
+only reports the caller-supplied contract booleans; it is deliberately not the
+unqualified `AUTHORIZED_SCIENCE` label and does not verify or create those
+contracts. The receipt also binds the complete execution-record content digest,
+not only its identifier and declared disposition.
+
 ## Ordinary research problems
 
 ```bash

@@ -5,6 +5,7 @@ import hashlib
 import re
 from dataclasses import dataclass, replace
 from enum import Enum
+from collections.abc import Iterable
 from typing import Any, Mapping
 from uuid import uuid4
 
@@ -32,6 +33,7 @@ from .broker import (
     HostCapabilityFailed,
     HostCapabilityRequired,
 )
+from .operator_coverage import require_operators_exercised, run_operator_coverage
 from .protocol import utc_now
 from .workspace import ResearchWorkspace
 
@@ -757,6 +759,7 @@ def run_problem_recursive(
     max_iterations: int = 3,
     require_verified_answer: bool = True,
     limits: RecursiveRunLimits | None = None,
+    require_operators: Iterable[str] | None = None,
 ) -> dict[str, Any]:
     """Run canonical ORION with recursive problem/residual control.
 
@@ -764,6 +767,12 @@ def run_problem_recursive(
     then recursively treated as child problems. Host capability interruptions stay
     replayable because immutable request/result receipts are reused on the next
     invocation. Recursive planning is proposal-only and cannot mint authority.
+
+    ``require_operators`` names cycle operators the caller's experiment depends on.
+    A completed run that never reached one raises ``OperatorNotExercised`` naming
+    it. This is the path whose trace shape --- ``FRAME SEARCH ABSORB RECONSTRUCT
+    DETECT RECURSE SATURATE_BOUNDED``, no ``DIAGNOSE`` --- the P1-U R6 campaign
+    scored 48 times without noticing.
     """
 
     limits = limits or RecursiveRunLimits()
@@ -935,7 +944,8 @@ def run_problem_recursive(
 
     assert result is not None
     recursive_status = "RESIDUALS_OPEN" if material else "RESIDUAL_TREE_CLOSED"
-    return {
+    operator_sequence = [item.value for item in result.trace.operator_sequence]
+    outcome = {
         "schema": "ORION.HarnessRecursiveSolveOutcome.v3",
         "status": "COMPLETE",
         "problem_id": problem.problem_id,
@@ -951,4 +961,14 @@ def run_problem_recursive(
         "max_depth_reached": session.max_depth_reached,
         "pruned_atom_count": len(session.pruned_atoms),
         "stop_records": session.stop_records,
+        "operator_sequence": operator_sequence,
+        # Which operators this run actually reached, not which ones have an owner.
+        "operator_coverage": run_operator_coverage(operator_sequence),
     }
+    if require_operators is not None:
+        require_operators_exercised(
+            outcome,
+            require_operators,
+            label=f"run_problem_recursive:{problem.problem_id}",
+        )
+    return outcome

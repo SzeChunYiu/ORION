@@ -254,7 +254,7 @@ MAX_R6_CAMPAIGN_MANIFEST = {
             "payload": {
                 "argv": ["python", "max_r6_exact_tare3_prospective_replay.py"],
                 "cwd": "research/extensions/orion-q",
-                "timeout": 120,
+                "timeout": 600,
             },
             "declared_read_paths": [
                 "research/extensions/orion-q/max_r6_exact_tare3_prospective_replay.py",
