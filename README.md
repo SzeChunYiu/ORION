@@ -21,6 +21,18 @@ ORION deliberately absorbs knowledge from any relevant discipline. External disc
 
 ---
 
+## Research tree
+
+`research/` has fifty top-level folders. Most are **frozen V1 evidence** and must stay at their current paths (digest-bound). They are catalogued as archived in place, not moved.
+
+**Map:** [`research/README.md`](research/README.md) · **catalog:** [`research/archive/LAYOUT_V1.json`](research/archive/LAYOUT_V1.json)
+
+Live work is concentrated in `research/extensions/` (ORION-Q/QG, P6–P10, Davenport), `research/experiments/`, `research/novelty/`, and `research/flagships/`. The ~221 MB census dump `research/orion-epistemic-state-v1/` is frozen evidence, not a working directory.
+
+One-shot GitHub Actions campaigns (391 YAML files) are packed under [`.github/archived-workflows/`](.github/archived-workflows/). Seven live workflows remain under `.github/workflows/`. Dated `development/` packets stay at their original paths: they are hash-bound by tests and freeze-linked extension runners.
+
+---
+
 ## Research dashboard
 
 **Research status snapshot: 2026-08-22.**
@@ -35,7 +47,7 @@ A core rule across all programmes is that **claim strength follows evidence stre
 |---|---|---|---|
 | **ORION-Q — quantum compilation** | Can structured Pauli/block-encoding representations be characterized and improved without hiding implementation cost? | **Core registered programme closed with receipted terminals; strong mathematical results, but no general quantum-advantage or R6 novelty claim.** | [`research/extensions/orion-q/`](research/extensions/orion-q/) · [`development/orion-q-max-r0/`](development/orion-q-max-r0/) |
 | **ORION-QG — quantum regime geometry** | When is a restricted quantum compiler exactly optimal, what mechanisms create the trade regimes, and can membership be forecast without full optimization? | **Active extension programme.** Several all-`n` theorems are closed; classification and objective-boundary questions continue. | [`research/extensions/orion-qg/`](research/extensions/orion-qg/) · [`development/orion-qg-regime-geometry/`](development/orion-qg-regime-geometry/) |
-| **Recursive negative-result recovery** | Can failed/negative scientific results be recursively diagnosed, donor-compared, repaired or formally saturated instead of discarded? | **Substantial closed quantum case study plus reusable harness/receipt machinery.** | [`papers/Q-paper-02-recursive-recovery/`](papers/Q-paper-02-recursive-recovery/) · [`packages/orion-research-harness/`](packages/orion-research-harness/) |
+| **Recursive negative-result recovery** | Can failed/negative scientific results be recursively diagnosed, donor-compared, repaired or formally saturated instead of discarded? | **Substantial closed quantum case study plus reusable harness/receipt machinery.** | [`papers/orion-06-recursive-recovery/`](papers/orion-06-recursive-recovery/) · [`packages/orion-research-harness/`](packages/orion-research-harness/) |
 | **Typed partial knowledge / epistemic state** | Which typed uncertainty, failure and evidence states are load-bearing for research decisions under incomplete knowledge? | **Multiple synthetic mechanism-isolation families completed; broader real-domain transfer remains open.** | [`research/extensions/p6-higher-order-epistemic-mechanics/`](research/extensions/p6-higher-order-epistemic-mechanics/) · related N-lane records |
 | **Method-space and method-authority research** | How should ORION discover, compare, transport and authorize methods without laundering evidence or stronger oracles? | **Ongoing extension research with absorbed/negative/positive lanes.** | [`research/extensions/p7-method-space/`](research/extensions/p7-method-space/) · [`research/extensions/p8-method-authority/`](research/extensions/p8-method-authority/) |
 | **Structured reasoning / neural methods** | Which structures actually improve problem solving, and which apparent gains disappear under stronger controls? | **Ongoing programme family.** | [`research/extensions/p9-structured-neural/`](research/extensions/p9-structured-neural/) · [`research/extensions/p10-structured-reasoning/`](research/extensions/p10-structured-reasoning/) |
@@ -239,7 +251,7 @@ The repo is organizing the quantum work into distinct publication stories rather
 - **Research instruments:** host-capability receipts, typed campaign control and controller/host agreement.
 - **Typed partial knowledge:** mechanism-isolation studies of epistemic state under incomplete information.
 
-See [`papers/`](papers/) and the quantum publication plan in [`papers/Q-paper-02-recursive-recovery/PUBLICATION_PLAN.md`](papers/Q-paper-02-recursive-recovery/PUBLICATION_PLAN.md).
+See [`papers/`](papers/) and the quantum publication plan in [`papers/orion-06-recursive-recovery/PUBLICATION_PLAN.md`](papers/orion-06-recursive-recovery/PUBLICATION_PLAN.md).
 
 ---
 
