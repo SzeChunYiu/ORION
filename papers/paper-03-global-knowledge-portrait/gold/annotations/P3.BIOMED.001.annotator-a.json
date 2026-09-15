@@ -1,0 +1,65 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "sample_id": "P3.BIOMED.001",
+  "case_family": null,
+  "discipline": "biomed",
+  "annotator": "adjudicated-v1",
+  "annotated_at": "2026-08-16T18:43:22+00:00",
+  "source_a": {
+    "document_id": "pmc:SEED-BIOMED001A",
+    "document_version": "v1",
+    "span_start": 4120,
+    "span_end": 4488,
+    "text_hash": "seed:sha256:abc123def456",
+    "discipline": "biomed",
+    "retrieval_hint": ""
+  },
+  "source_b": {
+    "document_id": "pmc:SEED-BIOMED001B",
+    "document_version": "v1",
+    "span_start": 9012,
+    "span_end": 9355,
+    "text_hash": "seed:sha256:789abc012def",
+    "discipline": "biomed",
+    "retrieval_hint": ""
+  },
+  "coordinates": {
+    "referent_relation": "DIFFERENT",
+    "construct_relation": "DIFFERENT",
+    "measurement_relation": "NOT_APPLICABLE",
+    "context_relation": "DIFFERENT_STATE_OR_TIME",
+    "polarity_relation": "NOT_COMPARABLE",
+    "modality_relation": "NOT_COMPARABLE",
+    "attribution_relation": "NOT_APPLICABLE",
+    "discourse_relation": "NOT_COMPARABLE",
+    "mapping_relation": "NO_LICENSED_MAPPING",
+    "contradiction_verdict": "NO_CONTRADICTION",
+    "integration_verdict": "OBSTRUCTION"
+  },
+  "source_span": {
+    "source_a_span": {
+      "document_id": "pmc:SEED-BIOMED001A",
+      "document_version": "v1",
+      "span_start": 4120,
+      "span_end": 4488,
+      "text_hash": "seed:sha256:abc123def456"
+    },
+    "source_b_span": {
+      "document_id": "pmc:SEED-BIOMED001B",
+      "document_version": "v1",
+      "span_start": 9012,
+      "span_end": 9355,
+      "text_hash": "seed:sha256:789abc012def"
+    }
+  },
+  "contradiction_details": null,
+  "obstruction_type": null,
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "referent_relation:DIFFERENT",
+    "mapping_relation:NO_LICENSED_MAPPING"
+  ],
+  "preservation_conditions": [],
+  "annotator_notes": "Regenerated from adjudicated gold. Matches combined_gold.json."
+}

@@ -1,0 +1,1470 @@
+{
+  "audit_completed_at": "2026-08-23T18:23:47.034212+00:00",
+  "audit_started_at": "2026-08-23T18:23:46.486293+00:00",
+  "boundary": {
+    "payload_bodies_emitted": false,
+    "pytest_or_repo_ci_run": false,
+    "raw_data_imported": false,
+    "record_promoted": false,
+    "source_checkout_edited_outside_owned_audit_directory": false
+  },
+  "branch": "claude/orion-rg-d2-decomposition-criterion-20260823",
+  "commits_after_parent_observed_head": 1,
+  "head_at_audit_end": "8d6d5992a9f0e2b93254ed441b88ea0b5e61644b",
+  "head_at_audit_start": "8d6d5992a9f0e2b93254ed441b88ea0b5e61644b",
+  "head_stable_during_audit": true,
+  "parent_observed_head": "b55f553b7b16b488cf4c515ba286578783a5fd83",
+  "parent_observed_head_is_ancestor": true,
+  "repository": "/Users/billy/Desktop/projects/ORION-claude",
+  "schema_version": "orion.cross-session-empirical-provenance.source-checkout-receipt.v1",
+  "selected_file_count": 121,
+  "selected_files": [
+    {
+      "bytes": 3719,
+      "git_tracked": true,
+      "mtime_utc": "2026-08-22T15:58:45.889888+00:00",
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/README.md",
+      "sha256": "f95cb5e8596442e20fc5e0fd63429f5fbcb28ac298a69c3e45084f6c0fdbf665"
+    },
+    {
+      "bytes": 12773,
+      "git_tracked": true,
+      "mtime_utc": "2026-08-22T15:58:45.901219+00:00",
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/protocol/EXECUTION_MANIFEST_V1.md",
+      "sha256": "8cd94b16fb0074fd427c462c2793afc6d5ecb237c0e948017b2da2894956a8b9"
+    },
+    {
+      "bytes": 7195,
+      "git_tracked": true,
+      "mtime_utc": "2026-08-22T15:58:45.901869+00:00",
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json",
+      "sha256": "91d5dca84d927ccb5cc5a54fece12502f23c8cba22f8eb8e5a48377539eca0b7"
+    },
+    {
+      "bytes": 936573,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.759043+00:00",
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/pilot_runs.jsonl",
+      "sha256": "84ae5ea1fc9dea014b2fa804ad60dc4d2e8fdb396738d925971f92c697438e19"
+    },
+    {
+      "bytes": 1410255,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.760363+00:00",
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/pilot_scored.jsonl",
+      "sha256": "a11ac3a910d2257325cf351dc6fdb00fa28db9a3d29f581faadab14f1a1cd208"
+    },
+    {
+      "bytes": 2683508,
+      "git_tracked": true,
+      "mtime_utc": "2026-08-22T15:58:45.915062+00:00",
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_runs.jsonl",
+      "sha256": "83cc652ce8a6dbeab6cb664af42ca36dee2704ef58ee7e6ea32cd060ea9fc17e"
+    },
+    {
+      "bytes": 4083262,
+      "git_tracked": true,
+      "mtime_utc": "2026-08-22T15:58:45.926754+00:00",
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl",
+      "sha256": "f37db6247dd1f5883e443b6d7b454e099759cb26baa3e09f74e7fd275e4d7f7b"
+    },
+    {
+      "bytes": 2,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.760784+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/analysis/aggregates.json",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "bytes": 5657,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.761086+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/analysis/metrics_by_system_seed.json",
+      "sha256": "704525c3a34dd0ae432dd4c875b2fcd4a6213c605eb78753905e441df44e9a46"
+    },
+    {
+      "bytes": 11276,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.761974+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/analyze_run.py",
+      "sha256": "433f58cf5614a2e6b18be66f344ea18d5186987cc99fd5014a463c54496c322c"
+    },
+    {
+      "bytes": 910,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.762210+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/MANIFEST.json",
+      "sha256": "3eb4a36e2e12c798354772d42926e500cd572f7caf1f9c73d5df18b9cbb3747d"
+    },
+    {
+      "bytes": 150109,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.762555+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/aggregates.json",
+      "sha256": "700e5f20e7b9c38c08b9126d08f2306ec18fbbd8f060858186485e8c5a8f6dce"
+    },
+    {
+      "bytes": 401,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.762881+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_cdr1.log",
+      "sha256": "bb7005b6617af7718497e66266d0a3dbc809a8c9565f84b13b8bbfd58a505a65"
+    },
+    {
+      "bytes": 400,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.763155+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_cdr2.log",
+      "sha256": "926ae0d479b5bd6465b6b836ad718f76813da5d787bfc3f7766b8cd7ddbc0593"
+    },
+    {
+      "bytes": 401,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.763968+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_cdr3.log",
+      "sha256": "76f5110b3540d1ecbc0cd2789c668c024f87b63bb99372e8f5b304dc23b68ad5"
+    },
+    {
+      "bytes": 400,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.764086+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_cdr4.log",
+      "sha256": "5136b22cc97924c67b8fee062174a8eb483268c7c09446f2cf84ab03bb9e7f9e"
+    },
+    {
+      "bytes": 374,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.764195+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_fus0.log",
+      "sha256": "090df99906f1be759eec7c91eb61a5b5ce9ca3229ecb27ec774b4c1d15587589"
+    },
+    {
+      "bytes": 436,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.764311+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_fus1.log",
+      "sha256": "fce4b99d0f4786d7693161ce71a3708576521ac2ce2e6464a04ce612b89a0c42"
+    },
+    {
+      "bytes": 436,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.764420+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_fus2.log",
+      "sha256": "375f192ba96a8140a7f6cfa14d00bc0af30d68efa7e101e31acb6867b76fb90d"
+    },
+    {
+      "bytes": 436,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.764533+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_fus3.log",
+      "sha256": "1058a6f7844bb6d24c0650840606d0a8c5182ef90367b08c7294b760ec981194"
+    },
+    {
+      "bytes": 435,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.764647+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_fus4.log",
+      "sha256": "2cb028a18c4ebe65406f1c2b4eb813478db471729177fe7e4fb6082ef5b33c97"
+    },
+    {
+      "bytes": 429,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.764966+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nocon0.log",
+      "sha256": "56b8e8e508d203125568819f08d860373703341f8aeabde756c4bf5db7c1de0e"
+    },
+    {
+      "bytes": 428,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.765080+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nocon1.log",
+      "sha256": "b04e64e086d7d3cdf5e954ee09598a397cd0240954b1e2d01563e43a80bda3f2"
+    },
+    {
+      "bytes": 427,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.765193+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nocon2.log",
+      "sha256": "0a42d11bccff1499e41191bc2d33469779482b54b1b4b0f27f7d9fb4a0e3ce8e"
+    },
+    {
+      "bytes": 426,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.765660+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nocon3.log",
+      "sha256": "5b15d5b72b359fd8d7036eaab73fd239dc99b58ea0ed2c21eac8887f1b6a9ca3"
+    },
+    {
+      "bytes": 426,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.765902+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nocon4.log",
+      "sha256": "d1de85d5d78b44c1a91af39fd9475e25796299939c236e122f6f3fcfc71d013e"
+    },
+    {
+      "bytes": 414,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.766833+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noctx0.log",
+      "sha256": "349808a076ee5f7652f895a94ef7fdbdd6d8a46b7d4ab544bc5736dc32c1b7e4"
+    },
+    {
+      "bytes": 413,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.767108+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noctx1.log",
+      "sha256": "d4c6ec0b013ca9c9c49f4636c49e535a7978783d4c2689979b80f40009c35f0c"
+    },
+    {
+      "bytes": 412,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.768160+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noctx2.log",
+      "sha256": "52e2a95dff83055c2e313a4706f676ca5c1c980ae4723367a27b0975a49422ee"
+    },
+    {
+      "bytes": 414,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.768338+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noctx3.log",
+      "sha256": "f291af8f29472d9921fdfc98b977a6905997e01256239da5cb57579c5e21d051"
+    },
+    {
+      "bytes": 409,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.769011+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noctx4.log",
+      "sha256": "348a2f908ab5169fc87e9b41ae8c4e53e926b5a1bfa6b1aa1a0490ced05a3f2f"
+    },
+    {
+      "bytes": 443,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.769148+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nomeas0.log",
+      "sha256": "c04d44ab61e9fc2e389f6afb11c931e1b071307a3719dcf5e2f3cc3f1e6a59ba"
+    },
+    {
+      "bytes": 442,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.769300+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nomeas1.log",
+      "sha256": "127305eee154fc94b5019ec94bdfb2e4db1fa769232fe4d68a347be243c1cfc5"
+    },
+    {
+      "bytes": 442,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.769482+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nomeas2.log",
+      "sha256": "82c9b6f93219792e656ec762aa4bb95728a92651b9a08a1faf94364d13a14380"
+    },
+    {
+      "bytes": 440,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.769599+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nomeas3.log",
+      "sha256": "81be03609c77211275cc3f9756c816aba3a51a7071efb3f01013327317d86cf2"
+    },
+    {
+      "bytes": 442,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.769712+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nomeas4.log",
+      "sha256": "863b7e87c10143d1d59ebca05bed45e0893b8946651d7c578b86c487153d7c0f"
+    },
+    {
+      "bytes": 638,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.769825+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nompd0.log",
+      "sha256": "83cfdd3020a30bff997537eb4c6d18c3e54c6f550c8c8f331ca2a759f9766497"
+    },
+    {
+      "bytes": 633,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.769982+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nompd1.log",
+      "sha256": "5edcc0861c06f9042a1563c6664792c889ddf0f2abe0c385260330a5e3c48e87"
+    },
+    {
+      "bytes": 633,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.770166+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nompd2.log",
+      "sha256": "c7af8732ae9b3b307ecbd23117901148ae27993ae640f2ac9fb6defd25dbd693"
+    },
+    {
+      "bytes": 633,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.770285+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nompd3.log",
+      "sha256": "dad21845897f5657ff0e24b51ea4c43dce78586c9bfbe824d29f7e62ba996409"
+    },
+    {
+      "bytes": 633,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.770396+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_nompd4.log",
+      "sha256": "00389097c08c953a90e31b854f9edf5287ee751762d214222301f3e2917ae88d"
+    },
+    {
+      "bytes": 442,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.770511+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noobs0.log",
+      "sha256": "d6d0d64159509bb8cbce1e4e6fd25a78ad84527bdf364a3c2dcf8d8190684859"
+    },
+    {
+      "bytes": 437,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.770623+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noobs1.log",
+      "sha256": "3990dbbe73883e67c551058819849255ff47d420e576cca558b6ffebcbeee206"
+    },
+    {
+      "bytes": 462,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.770731+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_norec0.log",
+      "sha256": "05144535c4900ad73f3773ede0da47b17a66824ea4caed2c2853d8c0112a65e1"
+    },
+    {
+      "bytes": 422,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.770836+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noref0.log",
+      "sha256": "0de7685be7b6964334575a452f3e34d26b8b71547035a2bf874a846868fb087b"
+    },
+    {
+      "bytes": 421,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.770951+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noref1.log",
+      "sha256": "0ec04883bfc4f596b1a36f6abd35e3cb6407db12d9937d2f87020d084f597adb"
+    },
+    {
+      "bytes": 419,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.771072+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noref2.log",
+      "sha256": "564d42e5d45c109d2b6bd81ac27aada852998eef6b088eaf93f130b6d1d6e19f"
+    },
+    {
+      "bytes": 419,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.771181+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noref3.log",
+      "sha256": "90009d64a050c7b5fecb842990b041ba200a360c266fe81d4ab7fb96c0cbc5f0"
+    },
+    {
+      "bytes": 421,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.771300+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_noref4.log",
+      "sha256": "738df4d04dc8542ceabc0ea2cea0581f70ac08e1e8c21c04653a5adff4e4459e"
+    },
+    {
+      "bytes": 441,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.771467+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_now0.log",
+      "sha256": "b44a3852b46794de6ad4a983d43a1c969df3f100012cdd070bf932cb285004c7"
+    },
+    {
+      "bytes": 373,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.771669+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_of1.log",
+      "sha256": "820da8bc7500053144530c109895c300ad4678d8d9af482b85805a122a5627e9"
+    },
+    {
+      "bytes": 373,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.772308+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_of2.log",
+      "sha256": "19ffd18573b379bfe72c6a893218f845072651878b1dcf1be7cd5f9ab4f3f68a"
+    },
+    {
+      "bytes": 373,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.772439+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_of3.log",
+      "sha256": "2ed40acc8c1eae0edbc04f7450580c1c43214b5e3e1c72d7f86eab89e1236a06"
+    },
+    {
+      "bytes": 373,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.772555+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_of4.log",
+      "sha256": "7ee03a84521199f33d8481743da9b93b4dba590e8dbf208f483a6fab393356ed"
+    },
+    {
+      "bytes": 290,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.772679+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_prov0.log",
+      "sha256": "cf6abe0b34c517f490e4f4a3d5384e3aa7648d8465386f3c98ed0588e7f0173a"
+    },
+    {
+      "bytes": 415,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.772799+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_prov1.log",
+      "sha256": "bdefec35fa95845a072ddc6165c9835ee5a6c560133c402414afdb6c4ab4a2ee"
+    },
+    {
+      "bytes": 414,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.772910+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_prov2.log",
+      "sha256": "0942097fbd337321cd252630175e0f87418939cf29b724ebc74bf8a560e0ebd4"
+    },
+    {
+      "bytes": 414,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.773022+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_prov3.log",
+      "sha256": "ec35aa58a009c30403121ca7959916644f5b37a702c465ac26487cf7653afae6"
+    },
+    {
+      "bytes": 414,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.773148+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_prov4.log",
+      "sha256": "44a73676faec74b75f6a9d3628e4d10ecc7760117cb73fb2249d18237c68fe61"
+    },
+    {
+      "bytes": 415,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.773308+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_scope0.log",
+      "sha256": "a0b80068a283e19e39f1ffec014bcf4a03aec390522a824ba677e518c675acb5"
+    },
+    {
+      "bytes": 415,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.773429+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_scope1.log",
+      "sha256": "121e9c5aeba73ca14c9e0b963a01caa05e047d399266cf0eb964b43aee445bca"
+    },
+    {
+      "bytes": 415,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.773557+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_scope2.log",
+      "sha256": "3f58b8cbb29e16e10f17e0001d5375487a78c877fa2168f8cec4ffbafc13bad6"
+    },
+    {
+      "bytes": 415,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.773697+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_scope3.log",
+      "sha256": "97bf44359cf97408732e118af06b9ce4640d12c8f955feea64156a97ecd0e50a"
+    },
+    {
+      "bytes": 415,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.773835+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_scope4.log",
+      "sha256": "48bcb3b65c118e0f1d73451c866633f8b8d0c0c277017dfd07f62b8b546812ff"
+    },
+    {
+      "bytes": 394,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.773969+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_srag1.log",
+      "sha256": "ef0e2290ffced3c876ca14135cf46b6641deba7df2790988a0277eb93b24c1b4"
+    },
+    {
+      "bytes": 396,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.774107+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_srag2.log",
+      "sha256": "2fce405ca8fc37105dc8274df407da43a50f4c5cef1363ad9599e0db7e6010e1"
+    },
+    {
+      "bytes": 394,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.774237+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_srag3.log",
+      "sha256": "3494ee0f0d30151217967c519b3e961f844360a9153471d776f1c4d1c33710b3"
+    },
+    {
+      "bytes": 394,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.774359+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_srag4.log",
+      "sha256": "0d5db8295fcb616f442e4f707e641fa3d4f86e3a61ad20ea208eb237919ff580"
+    },
+    {
+      "bytes": 429,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.774480+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_vlc1.log",
+      "sha256": "47d6ec6dfb3ee7841620059477d8f27f59b98ed82e5e20529e4776fa4fa2d7cc"
+    },
+    {
+      "bytes": 428,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.774600+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_vlc2.log",
+      "sha256": "c038025b9e63f8537478328b358716ade55ff565eee3aaf992d94d586c5669c8"
+    },
+    {
+      "bytes": 429,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.774710+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_vlc3.log",
+      "sha256": "730f5345fe31cc8715a5c3b19eab4f5875d773e77feb0e41b32d0fac7001632b"
+    },
+    {
+      "bytes": 428,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.774819+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/batch_vlc4.log",
+      "sha256": "ac825a8a27378ce347de5fd39d81b84a3877fb8f7dd658fb05de19a01481e69c"
+    },
+    {
+      "bytes": 3879279,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.780375+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/checkpoint.jsonl",
+      "sha256": "1c44c6626d49b497bbedcfa36ac88906f97d4e0b6b8b29dd7bb73b15c82fb2d9"
+    },
+    {
+      "bytes": 3169819,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.785617+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/checkpoint_pre_retry.jsonl",
+      "sha256": "24d6093fa1ae36558c17bdd10551158623d18a6b9f3d35ad4fd1c952b8724f63"
+    },
+    {
+      "bytes": 1091,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.785978+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/eval.log",
+      "sha256": "ecb0207d0c20ed6c485c79b7574e949261b55b28568303b1f8b775241cbfd761"
+    },
+    {
+      "bytes": 203582,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.786357+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/results.jsonl",
+      "sha256": "c0489f58a060de693cd5446b73bd6baaa9b429c9c31e5ddba752749431e2977e"
+    },
+    {
+      "bytes": 202,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.786677+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/retry_full1.log",
+      "sha256": "8c13c916b5d2c79151a49c5e3a56bd27ed7a6cc3d20a3f1d78ed8642bee6b00e"
+    },
+    {
+      "bytes": 202,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.786765+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/retry_full3.log",
+      "sha256": "8c13c916b5d2c79151a49c5e3a56bd27ed7a6cc3d20a3f1d78ed8642bee6b00e"
+    },
+    {
+      "bytes": 202,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.786852+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/retry_srag2.log",
+      "sha256": "8c13c916b5d2c79151a49c5e3a56bd27ed7a6cc3d20a3f1d78ed8642bee6b00e"
+    },
+    {
+      "bytes": 202,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.786935+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/retry_vlc4.log",
+      "sha256": "8c13c916b5d2c79151a49c5e3a56bd27ed7a6cc3d20a3f1d78ed8642bee6b00e"
+    },
+    {
+      "bytes": 309,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.787267+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/runner.log",
+      "sha256": "b50f291689cb85b169345f09cf488c47eea5b8f296c2330d87b078856f66de0b"
+    },
+    {
+      "bytes": 882,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.787807+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-smoke/MANIFEST.json",
+      "sha256": "0b666b002b4973129f77ac99c20b046dbc5f264bae51584187260961e8ba6f00"
+    },
+    {
+      "bytes": 31152,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.787955+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-smoke/aggregates.json",
+      "sha256": "4025371a062d5486eb7603bf89f67ed3d23d1db922153952cbb284dc26d5017c"
+    },
+    {
+      "bytes": 8339,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.788116+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-smoke/results.jsonl",
+      "sha256": "ee4e2ed07ebb1574979d3fd4011e34ea1b0deac7158d0c6325db46574ef4a519"
+    },
+    {
+      "bytes": 1988,
+      "git_tracked": true,
+      "mtime_utc": "2026-08-22T15:58:46.235728+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/GOLD_ATLAS_FREEZE_V1.json",
+      "sha256": "f5234a22d17c972ed8c0d965d0450641a78c60bdf3205cee0b9a6a543b05c35d"
+    },
+    {
+      "bytes": 1970,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.788296+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.BIOMED.001.annotator-a.json",
+      "sha256": "d0399d292b1ff7fa05b09954b8da5a513588439540d6ff7a078c991e1ab68e29"
+    },
+    {
+      "bytes": 2035,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.788426+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.BIOMED.002.annotator-a.json",
+      "sha256": "10e4e6ce5894e0f1217af26f07a4aa890747bb069e2325103f8be08cd9293d2b"
+    },
+    {
+      "bytes": 2136,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.788803+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.BIOMED.003.annotator-a.json",
+      "sha256": "b2cbc16ea5c110fba88df64638103f1ef78aad41e944bcf96c62092f6b06ff1b"
+    },
+    {
+      "bytes": 2189,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.788945+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.BIOMED.004.annotator-a.json",
+      "sha256": "72b1e3bbcd9ce86d9cad81614d43b62eec7e42b942668dcc1983309f307198dc"
+    },
+    {
+      "bytes": 2112,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.789084+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.BIOMED.005.annotator-a.json",
+      "sha256": "8f266419a153f5020e815e1cf60b08dce651fd31c6baada28ccaf3efc915290a"
+    },
+    {
+      "bytes": 2177,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.789219+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.BIOMED.006.annotator-a.json",
+      "sha256": "6b24fc8b542742bee551326812c7d86db6c3c8635ba9c6727d64794340b46f6f"
+    },
+    {
+      "bytes": 2207,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.789342+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.BIOMED.007.annotator-a.json",
+      "sha256": "b3831029e192bb999267e6484606d738f6a7d345bc2aea84c8b5f49abb3439c1"
+    },
+    {
+      "bytes": 1984,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.789472+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.BIOMED.008.annotator-a.json",
+      "sha256": "1f1ff6be4a69cf0ccdadf1f357807d78bda4e984a666e17e63997b4d7edd6a7d"
+    },
+    {
+      "bytes": 1966,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.789612+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.CLIMATE.001.annotator-a.json",
+      "sha256": "9f585ae9c4604f67ee448fca4459f2d76564666f3387a53daf2f69c18226c975"
+    },
+    {
+      "bytes": 2031,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.789737+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.CLIMATE.002.annotator-a.json",
+      "sha256": "41088c53bbf4529defeaf012ad0811a25cfe03fd01e43b882d9eb4921dfe5a2f"
+    },
+    {
+      "bytes": 2136,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.789865+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.CLIMATE.003.annotator-a.json",
+      "sha256": "a447a2c098a7c7d7370c624c4e438bf16e3591ab7d65af224359ae073cef12bd"
+    },
+    {
+      "bytes": 2189,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.789997+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.CLIMATE.004.annotator-a.json",
+      "sha256": "adf0b9029c2201f0051ad924d0185ce656d251df508548f1ac76c57641c84f0a"
+    },
+    {
+      "bytes": 2112,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.790126+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.CLIMATE.005.annotator-a.json",
+      "sha256": "dfbc2273162fcf57c5861f08f2825ca617e2fa70e656fc78da9b242fff0ebb6f"
+    },
+    {
+      "bytes": 2177,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.790256+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.CLIMATE.006.annotator-a.json",
+      "sha256": "d6773e8edf634eb18b5d595270e217312ec2c21e6e8ba8785e3fcd150b36817d"
+    },
+    {
+      "bytes": 2203,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.790374+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.CLIMATE.007.annotator-a.json",
+      "sha256": "fa50508b728507233529a9133940d677067817e808ffd50a04aca8b881bd5dde"
+    },
+    {
+      "bytes": 1984,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.790492+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.CLIMATE.008.annotator-a.json",
+      "sha256": "0830b6b6c4860e0f4b4c587a40778ab2d85df568e7ebed92453c5061c7ee4d06"
+    },
+    {
+      "bytes": 1964,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.790611+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.PHYS.001.annotator-a.json",
+      "sha256": "4486ba220b8c3f460fb69328fa8dfaf0b728ea2ed359f4b43ac9a705e0a793c4"
+    },
+    {
+      "bytes": 2029,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.790748+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.PHYS.002.annotator-a.json",
+      "sha256": "54cfbac573813d2464e90fcd20dd0268125aed75ac5fd1e189a815a28c19af0f"
+    },
+    {
+      "bytes": 2134,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.790880+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.PHYS.003.annotator-a.json",
+      "sha256": "0671479345f573f99af60249a6a4928060963abfe5846e3cc89b6854878573c0"
+    },
+    {
+      "bytes": 2187,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.791003+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.PHYS.004.annotator-a.json",
+      "sha256": "ac28b40cc9376d40bc1a268d464ad8aec2ec7077cf9088c684f82d0e91a31fe5"
+    },
+    {
+      "bytes": 2110,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.791167+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.PHYS.005.annotator-a.json",
+      "sha256": "7172ecfe831ad5cd52a0ddc19b40225b194807ee6dbb57fa46cfd070dcc33ddc"
+    },
+    {
+      "bytes": 2175,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.791322+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.PHYS.006.annotator-a.json",
+      "sha256": "5d7200c936999b8e3b530b2594a70e401bea169450d264494e505606480da7f3"
+    },
+    {
+      "bytes": 2201,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.791459+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.PHYS.007.annotator-a.json",
+      "sha256": "a323937312b4cd59ffd09711a5fd06e2a57d108a9b3ee4533e22da5eb972f244"
+    },
+    {
+      "bytes": 1982,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.791602+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.PHYS.008.annotator-a.json",
+      "sha256": "93735b95b6bb5580ff93e1c9f98264ae5087d22e7a2e23cf7590c6243337f6e7"
+    },
+    {
+      "bytes": 1974,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.791745+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.SOCIAL.001.annotator-a.json",
+      "sha256": "1bb274b808b5ad25b4d5f7cd7eb02e518464ce52819df81682582603d4873791"
+    },
+    {
+      "bytes": 2039,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.791865+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.SOCIAL.002.annotator-a.json",
+      "sha256": "19575ae705f4cb14c104070fe4766a4b970a6fdf3b7e9deb388895c433e4bf12"
+    },
+    {
+      "bytes": 2144,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.791992+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.SOCIAL.003.annotator-a.json",
+      "sha256": "b3350edd3cfad3b02b7964ae9e710a093f658815c217f708965c4ced0323752e"
+    },
+    {
+      "bytes": 2197,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.792120+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.SOCIAL.004.annotator-a.json",
+      "sha256": "f7fb214abc75c684f8ef078d712a19cc3bc20a1a9bb1336f7eead036024370cf"
+    },
+    {
+      "bytes": 2120,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.792244+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.SOCIAL.005.annotator-a.json",
+      "sha256": "2186e95777945bf18c0967ea3548d751657865d6f16115b82cf233973628f82f"
+    },
+    {
+      "bytes": 2181,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.792373+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.SOCIAL.006.annotator-a.json",
+      "sha256": "0563cfbd575786e3699c9dd51adfffb8f103bd01aa7554e8700bfa6c88d52064"
+    },
+    {
+      "bytes": 2211,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.792495+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.SOCIAL.007.annotator-a.json",
+      "sha256": "b96535c8d18674653705b7b69738a8070055113699f1a47bc5b86c3f146a45fc"
+    },
+    {
+      "bytes": 1992,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.792623+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/P3.SOCIAL.008.annotator-a.json",
+      "sha256": "9e5a1aadcce01fa04851b26538834ff0532a5a7ec4af178886d714385001f3db"
+    },
+    {
+      "bytes": 75039,
+      "git_tracked": true,
+      "mtime_utc": "2026-08-22T15:58:45.772473+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/combined_gold.json",
+      "sha256": "778168a5c05da95464f76b877762c1f9da19f41a8ee5dcc28ac65aca58471e7e"
+    },
+    {
+      "bytes": 4467,
+      "git_tracked": false,
+      "mtime_utc": "2026-08-22T16:56:52.792769+00:00",
+      "path": "papers/paper-03-global-knowledge-portrait/gold/generate_source_texts.py",
+      "sha256": "984de3586022173b97e71e6011d8edee9ee732628adc613e82f46d91bdc6a5ca"
+    },
+    {
+      "bytes": 14420,
+      "git_tracked": true,
+      "mtime_utc": "2026-08-22T15:58:45.778795+00:00",
+      "path": "src/orion/study/evaluate.py",
+      "sha256": "6cd17b685e910f0e7481dd51cce8528162f927ea2fb22da7f492a810c43e1c4c"
+    },
+    {
+      "bytes": 21299,
+      "git_tracked": true,
+      "mtime_utc": "2026-08-16T18:29:44.034613+00:00",
+      "path": "src/orion/study/metrics.py",
+      "sha256": "a5863fba514b78894240e166cda50dfeecfdc08b81679258e3c8240de5d9a79e"
+    }
+  ],
+  "selected_git_tracked_file_count": 9,
+  "selected_inventory_sha256": "098e405d9f8177320f6a07961947de55137bca79760a2ec94b6bd12e4d600cae",
+  "selected_tracked_files_different_parent_observed_to_audit_head": 0,
+  "selected_tracked_files_identical_parent_observed_to_audit_head": 9,
+  "selected_tracked_files_missing_at_parent_observed_head": 0,
+  "source_status_at_end_excluding_audit_path": {
+    "entries": [
+      {
+        "code": "??",
+        "path": "artifacts/"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/pilot_runs.jsonl"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/pilot_scored.jsonl"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/analysis/"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/analyze_run.py"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-smoke/"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/gold/generate_source_texts.py"
+      },
+      {
+        "code": "??",
+        "path": "retry_CrossDomainRAG_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_CrossDomainRAG_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_CrossDomainRAG_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_CrossDomainRAG_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_FlatUniversalSchema_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_FlatUniversalSchema_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_FlatUniversalSchema_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_FlatUniversalSchema_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_W_expansion_0.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_W_expansion_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_W_expansion_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_W_expansion_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_W_expansion_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_construct_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_construct_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_construct_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_construct_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_context_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_context_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_context_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_context_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_measurement_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_measurement_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_measurement_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_measurement_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_modality_polarity_attribution_discourse_0.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_modality_polarity_attribution_discourse_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_modality_polarity_attribution_discourse_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_modality_polarity_attribution_discourse_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_modality_polarity_attribution_discourse_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_obstruction_0.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_obstruction_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_obstruction_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_obstruction_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_obstruction_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_recoverability_0.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_recoverability_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_recoverability_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_recoverability_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_recoverability_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_referent_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_referent_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_referent_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_referent_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ProvenanceSchema_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ProvenanceSchema_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ProvenanceSchema_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ProvenanceSchema_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_SCOPE_SCION_Like_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_SCOPE_SCION_Like_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_SCOPE_SCION_Like_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_SCOPE_SCION_Like_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_full1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_full3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_full4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_srag1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_srag2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_vlc1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_vlc3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_vlc4.log"
+      },
+      {
+        "code": "??",
+        "path": "src/orion/providers/llm/anthropic_messages.py"
+      },
+      {
+        "code": "??",
+        "path": "src/orion/self_orion/live_packet/"
+      },
+      {
+        "code": "??",
+        "path": "src/orion/study/_model.py"
+      }
+    ],
+    "entry_count": 72,
+    "porcelain_v1_z_sha256": "b0054941fff801fd283bb59201ff4efd87e415281824c5bcbe799d665fc545c2",
+    "status_code_counts": {
+      "??": 72
+    }
+  },
+  "source_status_at_start_excluding_audit_path": {
+    "entries": [
+      {
+        "code": "??",
+        "path": "artifacts/"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/pilot_runs.jsonl"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/pilot_scored.jsonl"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/analysis/"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/analyze_run.py"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-smoke/"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/gold/annotations/"
+      },
+      {
+        "code": "??",
+        "path": "papers/paper-03-global-knowledge-portrait/gold/generate_source_texts.py"
+      },
+      {
+        "code": "??",
+        "path": "retry_CrossDomainRAG_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_CrossDomainRAG_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_CrossDomainRAG_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_CrossDomainRAG_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_FlatUniversalSchema_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_FlatUniversalSchema_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_FlatUniversalSchema_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_FlatUniversalSchema_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_W_expansion_0.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_W_expansion_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_W_expansion_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_W_expansion_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_W_expansion_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_construct_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_construct_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_construct_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_construct_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_context_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_context_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_context_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_context_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_measurement_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_measurement_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_measurement_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_measurement_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_modality_polarity_attribution_discourse_0.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_modality_polarity_attribution_discourse_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_modality_polarity_attribution_discourse_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_modality_polarity_attribution_discourse_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_modality_polarity_attribution_discourse_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_obstruction_0.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_obstruction_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_obstruction_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_obstruction_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_obstruction_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_recoverability_0.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_recoverability_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_recoverability_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_recoverability_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_recoverability_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_referent_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_referent_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_referent_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ORION_no_referent_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ProvenanceSchema_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ProvenanceSchema_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ProvenanceSchema_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_ProvenanceSchema_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_SCOPE_SCION_Like_1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_SCOPE_SCION_Like_2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_SCOPE_SCION_Like_3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_SCOPE_SCION_Like_4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_full1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_full3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_full4.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_srag1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_srag2.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_vlc1.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_vlc3.log"
+      },
+      {
+        "code": "??",
+        "path": "retry_vlc4.log"
+      },
+      {
+        "code": "??",
+        "path": "src/orion/providers/llm/anthropic_messages.py"
+      },
+      {
+        "code": "??",
+        "path": "src/orion/self_orion/live_packet/"
+      },
+      {
+        "code": "??",
+        "path": "src/orion/study/_model.py"
+      }
+    ],
+    "entry_count": 72,
+    "porcelain_v1_z_sha256": "b0054941fff801fd283bb59201ff4efd87e415281824c5bcbe799d665fc545c2",
+    "status_code_counts": {
+      "??": 72
+    }
+  },
+  "source_status_stable_during_audit": true
+}

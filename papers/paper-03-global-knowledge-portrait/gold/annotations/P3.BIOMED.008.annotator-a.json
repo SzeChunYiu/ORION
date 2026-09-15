@@ -1,0 +1,66 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "sample_id": "P3.BIOMED.008",
+  "case_family": null,
+  "discipline": "biomed",
+  "annotator": "adjudicated-v1",
+  "annotated_at": "2026-08-16T18:43:22+00:00",
+  "source_a": {
+    "document_id": "pmc:SEED-BIOMED008A",
+    "document_version": "v1",
+    "span_start": 7788,
+    "span_end": 8150,
+    "text_hash": "seed:sha256:6162636a767",
+    "discipline": "biomed",
+    "retrieval_hint": ""
+  },
+  "source_b": {
+    "document_id": "pmc:SEED-BIOMED008B",
+    "document_version": "v1",
+    "span_start": 4501,
+    "span_end": 4870,
+    "text_hash": "seed:sha256:6667686a970",
+    "discipline": "biomed",
+    "retrieval_hint": ""
+  },
+  "coordinates": {
+    "referent_relation": "SAME",
+    "construct_relation": "DIFFERENT",
+    "measurement_relation": "NOT_APPLICABLE",
+    "context_relation": "ALIGNED",
+    "polarity_relation": "NOT_COMPARABLE",
+    "modality_relation": "SAME",
+    "attribution_relation": "DIFFERENT_ATTRIBUTION",
+    "discourse_relation": "ALIGNED",
+    "mapping_relation": "NO_LICENSED_MAPPING",
+    "contradiction_verdict": "NO_CONTRADICTION",
+    "integration_verdict": "PLURAL_VIEW"
+  },
+  "source_span": {
+    "source_a_span": {
+      "document_id": "pmc:SEED-BIOMED008A",
+      "document_version": "v1",
+      "span_start": 7788,
+      "span_end": 8150,
+      "text_hash": "seed:sha256:6162636a767"
+    },
+    "source_b_span": {
+      "document_id": "pmc:SEED-BIOMED008B",
+      "document_version": "v1",
+      "span_start": 4501,
+      "span_end": 4870,
+      "text_hash": "seed:sha256:6667686a970"
+    }
+  },
+  "contradiction_details": null,
+  "obstruction_type": "PLURAL_VIEW",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "integration_verdict:PLURAL_VIEW",
+    "construct_relation:DIFFERENT",
+    "mapping_relation:NO_LICENSED_MAPPING"
+  ],
+  "preservation_conditions": [],
+  "annotator_notes": "Regenerated from adjudicated gold. Matches combined_gold.json."
+}

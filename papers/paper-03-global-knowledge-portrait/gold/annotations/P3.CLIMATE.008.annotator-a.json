@@ -1,0 +1,66 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "sample_id": "P3.CLIMATE.008",
+  "case_family": null,
+  "discipline": "climate",
+  "annotator": "adjudicated-v1",
+  "annotated_at": "2026-08-16T18:43:22+00:00",
+  "source_a": {
+    "document_id": "essd:SEED-CLIM008A",
+    "document_version": "v1",
+    "span_start": 9210,
+    "span_end": 9540,
+    "text_hash": "seed:sha256:8182838a9c9",
+    "discipline": "climate",
+    "retrieval_hint": ""
+  },
+  "source_b": {
+    "document_id": "essd:SEED-CLIM008B",
+    "document_version": "v1",
+    "span_start": 1250,
+    "span_end": 1570,
+    "text_hash": "seed:sha256:8182838a9ca",
+    "discipline": "climate",
+    "retrieval_hint": ""
+  },
+  "coordinates": {
+    "referent_relation": "SAME",
+    "construct_relation": "DIFFERENT",
+    "measurement_relation": "NOT_APPLICABLE",
+    "context_relation": "ALIGNED",
+    "polarity_relation": "NOT_COMPARABLE",
+    "modality_relation": "SAME",
+    "attribution_relation": "DIFFERENT_ATTRIBUTION",
+    "discourse_relation": "ALIGNED",
+    "mapping_relation": "NO_LICENSED_MAPPING",
+    "contradiction_verdict": "NO_CONTRADICTION",
+    "integration_verdict": "PLURAL_VIEW"
+  },
+  "source_span": {
+    "source_a_span": {
+      "document_id": "essd:SEED-CLIM008A",
+      "document_version": "v1",
+      "span_start": 9210,
+      "span_end": 9540,
+      "text_hash": "seed:sha256:8182838a9c9"
+    },
+    "source_b_span": {
+      "document_id": "essd:SEED-CLIM008B",
+      "document_version": "v1",
+      "span_start": 1250,
+      "span_end": 1570,
+      "text_hash": "seed:sha256:8182838a9ca"
+    }
+  },
+  "contradiction_details": null,
+  "obstruction_type": "PLURAL_VIEW",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "integration_verdict:PLURAL_VIEW",
+    "construct_relation:DIFFERENT",
+    "mapping_relation:NO_LICENSED_MAPPING"
+  ],
+  "preservation_conditions": [],
+  "annotator_notes": "Regenerated from adjudicated gold. Matches combined_gold.json."
+}

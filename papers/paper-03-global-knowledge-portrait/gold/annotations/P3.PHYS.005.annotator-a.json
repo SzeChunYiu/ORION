@@ -1,0 +1,69 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "sample_id": "P3.PHYS.005",
+  "case_family": null,
+  "discipline": "phys",
+  "annotator": "adjudicated-v1",
+  "annotated_at": "2026-08-16T18:43:22+00:00",
+  "source_a": {
+    "document_id": "arxiv:SEED-PHYS005A",
+    "document_version": "v1",
+    "span_start": 6010,
+    "span_end": 6340,
+    "text_hash": "seed:sha256:8182838a993",
+    "discipline": "physics",
+    "retrieval_hint": ""
+  },
+  "source_b": {
+    "document_id": "arxiv:SEED-PHYS005B",
+    "document_version": "v1",
+    "span_start": 2210,
+    "span_end": 2520,
+    "text_hash": "seed:sha256:8182838a994",
+    "discipline": "physics",
+    "retrieval_hint": ""
+  },
+  "coordinates": {
+    "referent_relation": "SAME",
+    "construct_relation": "SAME",
+    "measurement_relation": "EQUIVALENT",
+    "context_relation": "ALIGNED",
+    "polarity_relation": "SAME",
+    "modality_relation": "DIFFERENT_STRENGTH",
+    "attribution_relation": "DIFFERENT_ATTRIBUTION",
+    "discourse_relation": "ALIGNED",
+    "mapping_relation": "SUBSUMPTION",
+    "contradiction_verdict": "NO_CONTRADICTION",
+    "integration_verdict": "GLUE_ALLOWED"
+  },
+  "source_span": {
+    "source_a_span": {
+      "document_id": "arxiv:SEED-PHYS005A",
+      "document_version": "v1",
+      "span_start": 6010,
+      "span_end": 6340,
+      "text_hash": "seed:sha256:8182838a993"
+    },
+    "source_b_span": {
+      "document_id": "arxiv:SEED-PHYS005B",
+      "document_version": "v1",
+      "span_start": 2210,
+      "span_end": 2520,
+      "text_hash": "seed:sha256:8182838a994"
+    }
+  },
+  "contradiction_details": null,
+  "obstruction_type": null,
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "modality_relation:DIFFERENT_STRENGTH",
+    "attribution_relation:DIFFERENT_ATTRIBUTION",
+    "contradiction_verdict:NO_CONTRADICTION"
+  ],
+  "preservation_conditions": [
+    "Modality and attribution differences are carried forward as metadata",
+    "Asserted claim subsumes the hedged version"
+  ],
+  "annotator_notes": "Regenerated from adjudicated gold. Matches combined_gold.json."
+}

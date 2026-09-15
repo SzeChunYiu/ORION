@@ -1,0 +1,73 @@
+{
+  "artifacts": {
+    "admission_matrix_sha256": "93e2efc65f67e931622c17a43a949de7169bfdf834b8b828eaac8849cf6176b2",
+    "negative_result_ledger_sha256": "02daf7da76a46819d8812707c2ac67f21841d5ead868eb203638f9dd8bdd65eb",
+    "provenance_audit_evidence_sha256": "221c8cd698f9c7115bab2fbe85e02dc6d828c97c241d8963123b1eaa504f4cdb",
+    "source_checkout_receipt_sha256": "92c4ee709ca5be6bd310c2ca2bc237d22c6332c17c022fb0751ac49bb13c5295"
+  },
+  "boundary": {
+    "model_or_comparator_executed": false,
+    "payload_bodies_retained": false,
+    "raw_data_imported": false,
+    "record_promoted": false,
+    "source_checkout_mutated_outside_audit_directory": false
+  },
+  "claude_checkout": {
+    "audited_head": "8d6d5992a9f0e2b93254ed441b88ea0b5e61644b",
+    "branch": "claude/orion-rg-d2-decomposition-criterion-20260823",
+    "commits_after_observed": 1,
+    "head_stable": true,
+    "parent_observed_head": "b55f553b7b16b488cf4c515ba286578783a5fd83",
+    "selected_git_tracked_files": 9,
+    "selected_tracked_files_identical_across_heads": 9,
+    "status_sha256": "b0054941fff801fd283bb59201ff4efd87e415281824c5bcbe799d665fc545c2",
+    "untracked_status_entries_excluding_audit_path": 72
+  },
+  "decisive_result": "0 of 46 primary candidate evidence files is admissible for naturalistic or real-source top-tier empirical claims. Two tracked P1 test files remain admissible only for their historical hidden-formulation harness scope. No P3 record is promoted.",
+  "file_admission": {
+    "audit_fact_admissible_files": 46,
+    "exact_narrow_empirical_claim_admissible_files": 2,
+    "file_count": 46,
+    "naturalistic_or_real_source_claim_admissible_files": 0,
+    "top_tier_empirical_promotion_rejected_or_cannot_check_files": 46
+  },
+  "generated_at": "2026-08-23T18:25:57.769143+00:00",
+  "next_discriminators": {
+    "p1": "Clean, source-bound prospective naturalistic action study with owner-separated gold and rights-valid public cases.",
+    "p3": "Verified OA sources and hashes; two independent annotators; exact gold/source revision; real backend/raw outputs; measured costs; duplicate-free checkpoint with prospective retry rule; complete derivation receipt."
+  },
+  "p1": {
+    "admissible_claim": "Historical hidden-formulation harness only",
+    "naturalistic_v2_v3_action_admissible": false,
+    "pilot_rows": 990,
+    "pilot_subject_revision": "55f0bc766f2242ca6fffd729f3f44c01168f663d+dirty",
+    "terminal": "P1_CROSS_SESSION_RAW_EVIDENCE_IS_HIDDEN_FORMULATION_HARNESS_ONLY__NATURALISTIC_V2_V3_ACTION_EVIDENCE_CANNOT_CHECK",
+    "test_live_provider_model_tokens": 289261,
+    "test_live_provider_rows": 240,
+    "test_rows": 2880,
+    "test_subject_revision": "0cf4e8d82771252de94be8c696a3f39fd3191019"
+  },
+  "p3": {
+    "annotation_files": 32,
+    "annotator_b_files": 0,
+    "checkpoint_duplicate_excess": 940,
+    "checkpoint_rows": 3340,
+    "checkpoint_unique_keys": 2400,
+    "complete_analysis_systems": 0,
+    "conflicting_duplicate_keys": 683,
+    "cost_error_rows": 75,
+    "empirical_promotion_allowed": false,
+    "independent_labels_exist": false,
+    "placeholder_document_ids": 64,
+    "placeholder_text_hashes": 64,
+    "run_full_results": 75,
+    "source_references": 64,
+    "synthetic_raw_hash_rows": 75,
+    "terminal": "P3_CROSS_SESSION_STRUCTURAL_OUTPUTS_PRESENT__REAL_SOURCE_PROVENANCE_ANNOTATOR_INDEPENDENCE_COST_AND_DEDUPLICATED_EMPIRICAL_BINDING_CANNOT_CHECK",
+    "valid_source_text_sha256": 0,
+    "zero_cost_rows": 75
+  },
+  "positive_bounded_result": "The audit establishes exact structural inventories: P1 has complete hidden-formulation pilot/test grids (990 and 2,880 unique rows); P3 has a complete 75-record system-seed grid and a final 2,400-key checkpoint grid. These are harness/inventory facts only.",
+  "schema_version": "orion.cross-session-empirical-provenance.result.v1",
+  "terminal": "CROSS_SESSION_EMPIRICAL_PROVENANCE_AUDIT_P1_P3_COMPLETE__NO_RECORD_PROMOTED__TOP_TIER_EMPIRICAL_CLAIMS_CANNOT_CHECK"
+}

@@ -1,0 +1,106 @@
+{
+  "entries": [
+    {
+      "admissible_residual": "Tracked source interpretation is stable across the two heads.",
+      "hazard": "Untracked artifacts are not bound by either commit and can change independently of the source tree.",
+      "issue_id": "XPA01_SOURCE_HEAD_AND_UNTRACKED_BINDING",
+      "next_discriminator": "Freeze the exact evidence files in a content-addressed archive with clean source commit/tree, generator/runner hashes, and immutable manifest.",
+      "observed": "Parent observed b55f553b7b16b488cf4c515ba286578783a5fd83; audit ran stably at 8d6d5992a9f0e2b93254ed441b88ea0b5e61644b, one descendant commit later. All 9 selected tracked files are identical between those heads, but the candidate empirical files are untracked.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "admissible_residual": "Grid completeness and hidden-suite fingerprint are exact audit facts.",
+      "hazard": "The exact dirty source state and any unstaged implementation differences cannot be reconstructed.",
+      "issue_id": "XPA02_P1_PILOT_DIRTY_UNTRACKED",
+      "next_discriminator": "Rerun the pilot from a clean immutable revision, bind diff=empty, runner hash, suite fingerprint, raw archive hash, and resource receipt.",
+      "observed": "pilot_runs.jsonl and pilot_scored.jsonl contain 990 unique case-system-seed rows each, are untracked, and declare subject_revision 55f0bc766f2242ca6fffd729f3f44c01168f663d+dirty; 0/990 pilot raw rows report nonzero model tokens.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "admissible_residual": "The two tracked test files remain admissible only for their historical hidden-formulation harness claim.",
+      "hazard": "Hidden-formulation performance cannot be relabeled as naturalistic P1 V2/V3 postpublication-action semantics, action gold, transport, or owner authority.",
+      "issue_id": "XPA03_P1_CONSTRUCT_SCOPE",
+      "next_discriminator": "Prospectively freeze and execute a rights-valid naturalistic P1 study with owner-separated action adjudication and independently held outcome/gold.",
+      "observed": "All four P1 files are P1.hidden-formulation.v1 hidden-shift/control harness outputs: 990 pilot rows and 2,880 test rows. The test contains 240 live-provider rows and 289,261 model tokens, but they remain hidden-formulation cases.",
+      "status": "CANNOT_CHECK_NATURALISTIC_ACTION"
+    },
+    {
+      "admissible_residual": "The 32 synthetic coordinate templates match tracked combined_gold structurally.",
+      "hazard": "No real open-access document identity, exact source span, text integrity, retrieval provenance, or rights binding exists.",
+      "issue_id": "XPA04_P3_PLACEHOLDER_SOURCES",
+      "next_discriminator": "Replace all 64 placeholders with verified public document/version/span records, exact SHA-256 of retained licensed text, retrieval receipts, and rights evidence.",
+      "observed": "All 64 source references have SEED document IDs and seed:sha256 placeholders; 0 are valid 64-hex content hashes. There are 63 unique placeholders with 1 duplicate excess. Tracked combined-gold source text matches its declared hash in 0/64 references.",
+      "status": "CANNOT_CHECK_REAL_SOURCE_VALIDITY"
+    },
+    {
+      "admissible_residual": "One adjudicated synthetic template exists per sample.",
+      "hazard": "System-gold agreement cannot substitute for independent human inter-annotator agreement or blind adjudication.",
+      "issue_id": "XPA05_P3_ANNOTATOR_INDEPENDENCE",
+      "next_discriminator": "Obtain two independent blind labels on a preregistered substantial shared subset, compute coordinate-wise agreement with uncertainty, then adjudicate disagreements.",
+      "observed": "32 files are annotator-a only, 0 annotator-b files exist, and all declare adjudicated-v1. The tracked freeze explicitly says independent_labels_exist=false and coordinate_agreement_computable=false.",
+      "status": "CANNOT_CHECK_INDEPENDENT_AGREEMENT"
+    },
+    {
+      "admissible_residual": "The manifest and current gold are each content-addressed separately.",
+      "hazard": "The exact gold file used for the run is not the tracked gold now available, so scores cannot be independently reconstructed from the declared input.",
+      "issue_id": "XPA06_P3_GOLD_HASH_MISMATCH",
+      "next_discriminator": "Retain the exact gold bytes matching the manifest hash or rerun against the tracked gold and bind the new byte hash.",
+      "observed": "run-full MANIFEST gold_hash is 667be9620944abba078dca442c1283baec59a14989fbdf5761137a7cd11e5c8a, but the current and parent-observed tracked combined_gold byte SHA-256 is 778168a5c05da95464f76b877762c1f9da19f41a8ee5dcc28ac65aca58471e7e; match=false.",
+      "status": "CANNOT_CHECK_EXACT_GOLD"
+    },
+    {
+      "admissible_residual": "The 15-system x 5-seed result-record grid is structurally complete.",
+      "hazard": "PASS and raw hash fields do not prove that a model/backend ran or that model outputs were retained.",
+      "issue_id": "XPA07_P3_SYNTHETIC_RAW_HASH_AND_STUB_PASS",
+      "next_discriminator": "Bind an actual ORION backend, retain immutable raw outputs, hash those bytes, record provider/model/revision, and fail closed if the backend is unbound.",
+      "observed": "All 75 raw_artifact_hash values are valid hex but all 75/75 equal SHA256(system_id|seed), not a retained raw output. ORION_FULL has 5 PASS rows while the bound tracked evaluator contains ORION_FULL_NOT_YET_BOUND.",
+      "status": "CANNOT_CHECK_RAW_EXECUTION"
+    },
+    {
+      "admissible_residual": "The exact failure is localized to a reproducible signature mismatch and hard-coded zero metadata path.",
+      "hazard": "The run cannot support cost, efficiency, latency, or resource-normalized claims; -1 is an error sentinel, not a favorable cost.",
+      "issue_id": "XPA08_P3_COST_INVALID",
+      "next_discriminator": "Repair the cost metric interface, capture measured resources per case/run, require error absence and nonnegative receipts, then rerun.",
+      "observed": "All 75 result rows report zero wallclock, model tokens, tool calls, and currency cost; all 75 have cost_metrics_error=-1. AST audit finds cost_metrics declares one positional parameter while the dispatcher calls every metric with two.",
+      "status": "CANNOT_CHECK_COST"
+    },
+    {
+      "admissible_residual": "The final key set covers exactly 15 systems x 32 cases x 5 seeds = 2,400 keys.",
+      "hazard": "The analyzer silently uses a dictionary keyed by case_id, so later conflicting retry rows overwrite earlier predictions without a frozen attempt-selection rule.",
+      "issue_id": "XPA09_P3_CHECKPOINT_DUPLICATE_EXCESS",
+      "next_discriminator": "Freeze attempt IDs and a prospective winner rule, retain one selected row/key plus a rejection receipt for every discarded attempt, then recompute from a duplicate-free checkpoint.",
+      "observed": "Final checkpoint has 3340 rows for 2400 unique keys: 940 excess rows across 683 duplicate keys; all 683 duplicate keys conflict, exact duplicate excess is 0, and max multiplicity is 7. Pre-retry has 2720 rows, 2328 unique keys, and 392 excess; final adds 72 previously missing keys.",
+      "status": "CANNOT_CHECK_DEDUPLICATED_METRICS"
+    },
+    {
+      "admissible_residual": "Partial files are hashable diagnostics only.",
+      "hazard": "The analysis directory does not represent the 15-system x 5-seed full checkpoint and cannot support registered hypotheses.",
+      "issue_id": "XPA10_P3_PARTIAL_ANALYSIS",
+      "next_discriminator": "After duplicate repair, regenerate all per-system/seed metrics, aggregates, hypotheses, and report tables from the frozen checkpoint in one content-addressed derivation.",
+      "observed": "analysis/aggregates.json has 0 systems; metrics_by_system_seed.json contains only ['ORION_FULL', 'VanillaLongContext'] with seed counts {'ORION_FULL': 1, 'VanillaLongContext': 1}.",
+      "status": "CANNOT_CHECK_COMPLETE_ANALYSIS"
+    },
+    {
+      "admissible_residual": "Both layers have exact independent hashes and counts.",
+      "hazard": "No immutable mapping proves which selected checkpoint row produced each metric in results.jsonl or aggregates.json.",
+      "issue_id": "XPA11_P3_RESULT_CHECKPOINT_DISCONNECTION",
+      "next_discriminator": "Emit a derivation manifest binding gold hash, duplicate-free checkpoint hash, selected row hashes, analyzer hash, metric configuration, and every result/aggregate hash.",
+      "observed": "run-full results contain 75 system-seed records, while checkpoint contains 3340 prediction rows. Result raw hashes bind only system_id|seed and the partial analyzer has not emitted a complete derivation receipt.",
+      "status": "CANNOT_CHECK_DERIVATION"
+    },
+    {
+      "admissible_residual": "The system and seed lists are explicit.",
+      "hazard": "Matched resource budgets, retrieval access, and implementation identity cannot be checked across systems.",
+      "issue_id": "XPA12_P3_RESOURCE_POLICY_UNBOUND",
+      "next_discriminator": "Freeze numeric context/retrieval/tool budgets, provider/model versions, source commit/tree, and enforce them with per-run receipts.",
+      "observed": "run-full resource_policy freezes model family=deepseek-v4-pro but leaves context_budget_per_case=TBD and retrieval_allowance=TBD; no source revision is bound.",
+      "status": "CANNOT_CHECK_MATCHED_RESOURCES"
+    }
+  ],
+  "generated_at": "2026-08-23T18:25:57.769143+00:00",
+  "provenance_evidence_sha256": "221c8cd698f9c7115bab2fbe85e02dc6d828c97c241d8963123b1eaa504f4cdb",
+  "rule": "Every hazard is an explicit research problem. No PASS label, zero value, placeholder, untracked file, or last-write-wins retry may be promoted without its next discriminator.",
+  "schema_version": "orion.cross-session-empirical-provenance.negative-result-ledger.v1",
+  "source_checkout_receipt_sha256": "92c4ee709ca5be6bd310c2ca2bc237d22c6332c17c022fb0751ac49bb13c5295",
+  "terminal": "CROSS_SESSION_EMPIRICAL_PROVENANCE_AUDIT_P1_P3_COMPLETE__NO_RECORD_PROMOTED__TOP_TIER_EMPIRICAL_CLAIMS_CANNOT_CHECK"
+}
