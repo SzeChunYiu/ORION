@@ -1,0 +1,127 @@
+name: ORION A5 S1d Zenodo M5 top-up v1
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a5-s1d-zenodo-m5-topup-v1.yml"
+      - "development/a5-s1-source-repair-2026-09-03/topup_zenodo_m5_s1d_v1.py"
+      - "development/a5-s1-source-repair-2026-09-03/s1d-topup/**"
+      - "development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CENSUS_PROTOCOL_V2.json"
+      - "development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CANDIDATES_V2.jsonl"
+      - "development/p4-scientific-ascent-2026-08-23/P4_ZENODO_V2_PREFREEZE_PROBE_DISCLOSURE.json"
+      - "development/p4-source-universe-successor-v3-2026-08-23/CELL_COUNTS_V1.json"
+permissions:
+  contents: read
+jobs:
+  s1d-zenodo-m5-topup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pin lane script, frozen inputs and artifacts by sha256
+        run: |
+          set -e
+          check() { got=$(sha256sum "$1" | cut -d' ' -f1); if [ "$got" != "$2" ]; then echo "SHA MISMATCH $1"; exit 1; fi; }
+          check development/a5-s1-source-repair-2026-09-03/topup_zenodo_m5_s1d_v1.py 9ae3cea9e0ef6fb6af9e18ac17deef2f282c79f6b0d8c5ee4c876c571072aa81
+          check development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CENSUS_PROTOCOL_V2.json 01c1bb250accfaee4103a162565cd2107515cd306adf690713a5c1372e953d1f
+          check development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CANDIDATES_V2.jsonl d6f767e88cdc401dd1f7643ed76e4460645fcc3dff9744dc504fed01351c1247
+          check development/p4-scientific-ascent-2026-08-23/P4_ZENODO_V2_PREFREEZE_PROBE_DISCLOSURE.json 76eab6d8d7c1f32df141d16dbbe57d3007ba183a8d3e9a44818626f6a2644178
+          check development/p4-source-universe-successor-v3-2026-08-23/CELL_COUNTS_V1.json 3abb1ef76ecb97f84494b08d13f3b2553661a514e7aae8f56c26bfe12b767b0b
+          check development/a5-s1-source-repair-2026-09-03/s1d-topup/A5_S1D_ZENODO_M5_TOPUP_CANDIDATES_V1.jsonl b62a64bc97dc2ba2338945048e58b77dd822e79239c5916f6e6d981044c5f971
+          check development/a5-s1-source-repair-2026-09-03/s1d-topup/A5_S1D_ZENODO_M5_TOPUP_RESULT_V1.json d88f10649d9decd681ac670747a73c1f2a0ea8d34e0d625e68d00370b9b6d9f3
+          check development/a5-s1-source-repair-2026-09-03/s1d-topup/ACCESS_LOG_S1D.jsonl f554197a164757f9fe3d92bb7fd2e584541efd013e425a5d97bc24d780884b02
+      - name: Compile and self-test the top-up script (tamper assertions)
+        run: |
+          python -m py_compile development/a5-s1-source-repair-2026-09-03/topup_zenodo_m5_s1d_v1.py
+          python development/a5-s1-source-repair-2026-09-03/topup_zenodo_m5_s1d_v1.py --self-test
+      - name: Internal-consistency gate (network lane: verify committed result against its own candidates and the frozen V2/V3 inputs)
+        run: |
+          cat > /tmp/s1d_verify.py <<'PY'
+          import hashlib, json, sys
+          from collections import Counter
+          from pathlib import Path
+          candidates_path, result_path = Path(sys.argv[1]), Path(sys.argv[2])
+          res = json.loads(result_path.read_text())
+          rows = [json.loads(l) for l in candidates_path.read_text().splitlines() if l.strip()]
+          assert res['schema_version'] == 'ORION.A5.S1d.ZenodoM5TopUp.v1'
+          h = hashlib.sha256(candidates_path.read_bytes()).hexdigest()
+          assert res['candidate_jsonl_sha256'] == h, 'candidate jsonl sha mismatch'
+          assert res['candidate_rows'] == len(rows)
+          per = Counter(r['source_query_id'] for r in rows)
+          v2 = [json.loads(l) for l in Path('development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CANDIDATES_V2.jsonl').read_text().splitlines() if l.strip()]
+          v2c = Counter(r['query_id'] for r in v2)
+          v3 = json.loads(Path('development/p4-source-universe-successor-v3-2026-08-23/CELL_COUNTS_V1.json').read_text())
+          v3u = {k.split('__')[0]: int(c['unique_candidate_units_after_concept_and_publication_dedup'])
+                 for k, c in v3['cells'].items() if 'M5_ARTICLE_TO_DATA_DOCUMENTATION' in k}
+          protocol = json.loads(Path('development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CENSUS_PROTOCOL_V2.json').read_text())
+          accepted_licenses = set(protocol['candidate_filter']['record_license_ids'])
+          accepted_schemes = set(protocol['candidate_filter']['accepted_relation_schemes'])
+          accepted_relations = set(protocol['candidate_filter']['accepted_relations'])
+          for qid, cell in res['per_cell'].items():
+              dom = cell['domain_id']
+              assert cell['v2_candidates'] == v2c[qid], (qid, 'v2')
+              assert cell['s1d_topup_new'] == per[qid], (qid, 'topup')
+              assert cell['zenodo_route_combined'] == v2c[qid] + per[qid], (qid, 'combined')
+              assert cell['v3_route_units'] == v3u[dom], (qid, 'v3')
+              assert cell['projected_census_bound_zenodo_plus_v3'] == cell['zenodo_route_combined'] + cell['v3_route_units']
+              assert cell['quota_48_passed'] == (cell['projected_census_bound_zenodo_plus_v3'] >= 48)
+          disc = set(json.loads(Path('development/p4-scientific-ascent-2026-08-23/P4_ZENODO_V2_PREFREEZE_PROBE_DISCLOSURE.json').read_text())['all_disclosed_record_ids'])
+          known = {str(r['record_id']) for r in v2} | disc
+          ids = [str(r['record_id']) for r in rows]
+          assert len(ids) == len(set(ids)), 'duplicate record_id within run'
+          assert not (set(ids) & known), 'record_id overlap with V2 candidates or prefreeze disclosure'
+          for r in rows:
+              assert r['license_id'] in accepted_licenses, r['record_id']
+              assert r['public_file_count'] >= 1, r['record_id']
+              assert r['publication_related_identifiers'], r['record_id']
+              for rel in r['publication_related_identifiers']:
+                  rt = str(rel.get('resource_type', '')).lower()
+                  assert rt == 'publication' or rt.startswith('publication-'), (r['record_id'], rt)
+                  assert rel.get('scheme') in accepted_schemes and rel.get('relation') in accepted_relations and rel.get('identifier')
+          assert res['provider_conventions']['files_downloaded'] is False
+          assert res['authority_boundary']['grants_scientific_authority'] is False
+          assert res['authority_boundary']['protected_outcomes_accessed'] is False
+          assert res['authority_boundary']['domain_or_mechanism_reassignment_performed'] is False
+          print('S1D_INTERNAL_CONSISTENCY_GREEN rows=', len(rows))
+          PY
+          python /tmp/s1d_verify.py development/a5-s1-source-repair-2026-09-03/s1d-topup/A5_S1D_ZENODO_M5_TOPUP_CANDIDATES_V1.jsonl development/a5-s1-source-repair-2026-09-03/s1d-topup/A5_S1D_ZENODO_M5_TOPUP_RESULT_V1.json
+      - name: Hostile mutation gate (forged per-cell count must fail the verifier)
+        run: |
+          set +e
+          python - <<'PY'
+          import json, pathlib
+          d = json.loads(pathlib.Path('development/a5-s1-source-repair-2026-09-03/s1d-topup/A5_S1D_ZENODO_M5_TOPUP_RESULT_V1.json').read_text())
+          d['per_cell']['EARTH_DATA']['s1d_topup_new'] = 60
+          pathlib.Path('/tmp/s1d_result_tampered.json').write_text(json.dumps(d, indent=2, sort_keys=True) + "\n")
+          PY
+          python /tmp/s1d_verify.py development/a5-s1-source-repair-2026-09-03/s1d-topup/A5_S1D_ZENODO_M5_TOPUP_CANDIDATES_V1.jsonl /tmp/s1d_result_tampered.json > /tmp/s1d_tamper_stdout.txt 2>&1
+          rc=$?
+          if [ "$rc" -eq 0 ]; then echo "TAMPER NOT DETECTED"; cat /tmp/s1d_tamper_stdout.txt; exit 1; fi
+          echo "S1D_TAMPER_DETECTED rc=$rc"
+      - name: Access log gate (append-only request receipts cover the committed page receipts)
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          lane = Path('development/a5-s1-source-repair-2026-09-03/s1d-topup')
+          log = [json.loads(l) for l in (lane/'ACCESS_LOG_S1D.jsonl').read_text().splitlines() if l.strip()]
+          res = json.loads((lane/'A5_S1D_ZENODO_M5_TOPUP_RESULT_V1.json').read_text())
+          pages = [p for q in res['query_receipts'] for p in q['pages']]
+          assert len(log) >= len(pages), (len(log), len(pages))
+          assert all(r['http_status'] == 200 for r in log)
+          assert all(r['body_bytes'] > 0 for r in log)
+          print('S1D_ACCESS_LOG_GREEN requests=', len(log), 'page_receipts=', len(pages))
+          PY
+      - name: Verify SHA256SUMS covers every S1d lane artifact
+        run: |
+          cd development/a5-s1-source-repair-2026-09-03/s1d-topup
+          sha256sum --check SHA256SUMS
+          listed=$(wc -l < SHA256SUMS | tr -d ' ')
+          files=$(find . -type f ! -name SHA256SUMS | wc -l | tr -d ' ')
+          if [ "$listed" -ne "$files" ]; then echo "SHA256SUMS incomplete: listed=$listed files=$files"; exit 1; fi
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
