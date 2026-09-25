@@ -1,0 +1,102 @@
+name: ORION A5 S1e Zenodo M6 dedup audit v1
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a5-s1e-zenodo-m6-dedup-audit-v1.yml"
+      - "development/a5-s1-source-repair-2026-09-03/audit_zenodo_m6_dedup_s1e_v1.py"
+      - "development/a5-s1-source-repair-2026-09-03/s1e-dedup-audit/**"
+      - "development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CANDIDATES_V2.jsonl"
+      - "development/p4-m6-source-provider-successor-v4-2026-08-23/CANDIDATES_V4.jsonl"
+      - "development/p4-m6-joss-bridge-repair-v6-2026-08-23/BRIDGE_REPAIR_ROWS_V6.jsonl"
+      - "development/p4-unresolved-identity-v7-2026-08-23/IDENTITY_RESOLUTION_ROWS_V7.jsonl"
+      - "development/p4-unresolved-identity-v8-2026-08-23/FINAL_IDENTITY_RESOLUTION_V8.json"
+permissions:
+  contents: read
+jobs:
+  s1e-zenodo-m6-dedup-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pin lane script, frozen inputs and artifacts by sha256
+        run: |
+          set -e
+          check() { got=$(sha256sum "$1" | cut -d' ' -f1); if [ "$got" != "$2" ]; then echo "SHA MISMATCH $1"; exit 1; fi; }
+          check development/a5-s1-source-repair-2026-09-03/audit_zenodo_m6_dedup_s1e_v1.py 5fe25ceae52e0115981e315253a6b008ac2e7eba4e9bb63da83637e7cac114d6
+          check development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CANDIDATES_V2.jsonl d6f767e88cdc401dd1f7643ed76e4460645fcc3dff9744dc504fed01351c1247
+          check development/p4-m6-source-provider-successor-v4-2026-08-23/CANDIDATES_V4.jsonl be7e654f09291ccf1e3da14401faf1ba33b65b397d9998aa21c7437978d366d6
+          check development/p4-m6-joss-bridge-repair-v6-2026-08-23/BRIDGE_REPAIR_ROWS_V6.jsonl 5d8bdf4bceb4e87762f246b3f76568e2670a0736e2b3290f9e0418ae9d959db9
+          check development/p4-unresolved-identity-v7-2026-08-23/IDENTITY_RESOLUTION_ROWS_V7.jsonl fbea1d7e601785f6e591ff6bcd18e67ce243d6437c7b89a32e35bbe226529a01
+          check development/p4-unresolved-identity-v8-2026-08-23/FINAL_IDENTITY_RESOLUTION_V8.json 558f2fba8fb52c7ce94d21c12cc4e087986cca8175a21a9fccb4c05809b53504
+          check development/a5-s1-source-repair-2026-09-03/s1e-dedup-audit/A5_S1E_ZENODO_M6_DEDUP_AUDIT_ROWS_V1.jsonl f3255a765d1a01b2df895d2ef6a9fac70d8348b864a50095ed5b24cb34f07aec
+          check development/a5-s1-source-repair-2026-09-03/s1e-dedup-audit/A5_S1E_ZENODO_M6_DEDUP_AUDIT_RESULT_V1.json d41d74086ea76d411c415822c3ffe7276ab9a47a73f404271a06edff751b5449
+      - name: Compile and self-test the audit script (tamper assertions on all four overlap classes)
+        run: |
+          python -m py_compile development/a5-s1-source-repair-2026-09-03/audit_zenodo_m6_dedup_s1e_v1.py
+          python development/a5-s1-source-repair-2026-09-03/audit_zenodo_m6_dedup_s1e_v1.py --self-test
+      - name: Determinism gate (offline recompute must be byte-identical to committed rows and result)
+        run: |
+          set -e
+          python development/a5-s1-source-repair-2026-09-03/audit_zenodo_m6_dedup_s1e_v1.py \
+            --rows /tmp/s1e_rows_recomputed.jsonl --result /tmp/s1e_result_recomputed.json > /tmp/s1e_stdout.json
+          cmp development/a5-s1-source-repair-2026-09-03/s1e-dedup-audit/A5_S1E_ZENODO_M6_DEDUP_AUDIT_ROWS_V1.jsonl /tmp/s1e_rows_recomputed.jsonl
+          cmp development/a5-s1-source-repair-2026-09-03/s1e-dedup-audit/A5_S1E_ZENODO_M6_DEDUP_AUDIT_RESULT_V1.json /tmp/s1e_result_recomputed.json
+          echo "S1E_RECOMPUTE_BYTE_IDENTICAL"
+      - name: Hostile mutation gate (forged admissible count must diverge from canonical recompute)
+        run: |
+          set +e
+          python - <<'PY'
+          import json, pathlib
+          d = json.loads(pathlib.Path('development/a5-s1-source-repair-2026-09-03/s1e-dedup-audit/A5_S1E_ZENODO_M6_DEDUP_AUDIT_RESULT_V1.json').read_text())
+          d['per_domain']['LIFE_BIOMEDICAL']['admissible_non_overlapping'] = 48
+          d['admissible_total'] = 71
+          pathlib.Path('/tmp/s1e_result_tampered.json').write_text(json.dumps(d, indent=2, sort_keys=True) + "\n")
+          PY
+          cmp /tmp/s1e_result_tampered.json /tmp/s1e_result_recomputed.json
+          rc=$?
+          if [ "$rc" -eq 0 ]; then echo "TAMPER NOT DETECTED"; exit 1; fi
+          echo "S1E_TAMPER_DETECTED rc=$rc"
+      - name: Cross-verify result aggregates against committed rows and the audit-of-the-audit invariants
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from collections import Counter
+          from pathlib import Path
+          lane = Path('development/a5-s1-source-repair-2026-09-03/s1e-dedup-audit')
+          rows = [json.loads(l) for l in (lane/'A5_S1E_ZENODO_M6_DEDUP_AUDIT_ROWS_V1.jsonl').read_text().splitlines() if l.strip()]
+          result = json.loads((lane/'A5_S1E_ZENODO_M6_DEDUP_AUDIT_RESULT_V1.json').read_text())
+          assert result['schema_version'] == 'ORION.A5.S1e.ZenodoM6DedupAudit.v1'
+          digest = hashlib.sha256((lane/'A5_S1E_ZENODO_M6_DEDUP_AUDIT_ROWS_V1.jsonl').read_bytes()).hexdigest()
+          assert digest == result['rows_jsonl_sha256']
+          assert len(rows) == 33
+          assert result['audit_validation']['injected_control_overlap_fired'] is True
+          per = Counter(r['domain_id'] for r in rows)
+          adm = Counter(r['domain_id'] for r in rows if r['admissible_non_overlapping'])
+          for dom, cell in result['per_domain'].items():
+              assert cell['zenodo_m6_candidates'] == per[dom], (dom, per[dom])
+              assert cell['admissible_non_overlapping'] == adm[dom]
+              assert cell['excluded_overlapping'] == per[dom] - adm[dom]
+          assert result['admissible_total'] == sum(adm.values())
+          assert result['excluded_total'] == sum(per.values()) - sum(adm.values())
+          # every row's admissible flag must agree with its own overlap_classes list
+          for r in rows:
+              assert r['admissible_non_overlapping'] == (not r['overlap_classes'])
+          assert result['authority_boundary']['grants_scientific_authority'] is False
+          assert result['authority_boundary']['adjudication_performed'] is False
+          assert result['authority_boundary']['protected_outcomes_accessed'] is False
+          print('S1E_RESULT_AGGREGATES_CROSS_VERIFIED admissible=', result['admissible_total'])
+          PY
+      - name: Verify SHA256SUMS covers every S1e lane artifact
+        run: |
+          cd development/a5-s1-source-repair-2026-09-03/s1e-dedup-audit
+          sha256sum --check SHA256SUMS
+          listed=$(wc -l < SHA256SUMS | tr -d ' ')
+          files=$(find . -type f ! -name SHA256SUMS | wc -l | tr -d ' ')
+          if [ "$listed" -ne "$files" ]; then echo "SHA256SUMS incomplete: listed=$listed files=$files"; exit 1; fi
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
