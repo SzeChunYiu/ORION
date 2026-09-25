@@ -1,0 +1,54 @@
+name: shadow-davenport-paper2-a2-breakthrough
+
+on:
+  push:
+    branches:
+      - shadow/davenport-paper2-breakthrough-a2-20260904
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-paper2-a2-breakthrough-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  full-reproduction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate frozen JSON surfaces
+        run: |
+          python3 -m json.tool \
+            research/experiments/davenport-c7-frontier/PAPER2_ATOMIC_CLAIM_LEDGER_V1.json \
+            >/dev/null
+          python3 -m json.tool \
+            research/experiments/davenport-c7-frontier/PAPER2_REPRODUCIBILITY_MANIFEST_V1.json \
+            >/dev/null
+
+      - name: Compile reproduction and governance entry points
+        env:
+          PYTHONPYCACHEPREFIX: /tmp/orion-paper2-pycache
+        run: |
+          python3 -m py_compile \
+            research/experiments/davenport-c7-frontier/run_paper2_reproduction_v1.py \
+            research/experiments/davenport-c7-frontier/check_paper2_atomic_claim_ledger_v1.py
+
+      - name: Run full assertion-enabled Paper 2 reproduction
+        run: |
+          python3 research/experiments/davenport-c7-frontier/run_paper2_reproduction_v1.py \
+            --write-receipt /tmp/PAPER2_FULL_REPRODUCTION_RECEIPT_V1.json
+
+      - name: Upload full reproduction receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper2-full-reproduction-receipt-v1
+          path: /tmp/PAPER2_FULL_REPRODUCTION_RECEIPT_V1.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Require clean replay tree
+        run: test -z "$(git status --porcelain)"

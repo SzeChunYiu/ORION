@@ -1,0 +1,60 @@
+{
+  "claim_ceiling": {
+    "D3_C7": "not claimed",
+    "all_prime_support7": "not claimed",
+    "novelty_priority": "not certified",
+    "rank3_a2_a3": "not settled by this argument",
+    "rank3_a_ge4": "proved in accompanying note"
+  },
+  "counts": {
+    "antipodal_plane_points": 132492,
+    "directed_chain_rows": 2124,
+    "exception_multiplicity_rows": 36,
+    "full_block_modulus_rows": 1472,
+    "occurrence_dp_plane_points": 802,
+    "positive_control_proper_subsequences": 34,
+    "rotation_type_rows": 18866,
+    "scalar_interval_rows": 5646,
+    "small_prime_tables": 12
+  },
+  "explicit_exception_certificates": 4,
+  "hostile_mutations_rejected": 6,
+  "mutation_controls": {
+    "corrupt_exception_occurrence": true,
+    "erase_antipodal_minus_one": true,
+    "erase_cyclic_wrap_gap": true,
+    "erase_nonzero_overlap_hypothesis": true,
+    "extend_full_block_cover_to_a3": true,
+    "weaken_strict_gap_threshold": true
+  },
+  "positive_control": {
+    "a": 2,
+    "c": 2,
+    "d": 0,
+    "minimum_allowed_zero_sum_length": 7,
+    "p": 5,
+    "r": 2,
+    "t": 3,
+    "x": [
+      1,
+      3,
+      0
+    ],
+    "y": [
+      4,
+      1,
+      1
+    ]
+  },
+  "proof_authority": "symbolic proof plus displayed finite-prime arithmetic and four explicit certificates",
+  "regression_only": true,
+  "small_cover_exceptions": [
+    [
+      17,
+      7
+    ]
+  ],
+  "source_sha256": "129a638e32f0a8d8c8a7e99d2c8da785e91c24b34618f7f806297d7beefad094",
+  "status": "RANK3_CIRCULAR_GAP_V1_GREEN",
+  "transcript_sha256": "c3c787f6e2d6b32cfff96f6c3c764661980a10ab57750663345a4268621b20ef"
+}

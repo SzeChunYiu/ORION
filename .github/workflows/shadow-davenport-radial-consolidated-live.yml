@@ -1,0 +1,35 @@
+name: shadow-davenport-radial-consolidated-live
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-radial-consolidated-live-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run uniform radial doubling regression
+        run: python research/experiments/davenport-c7-frontier/check_radial_doubling_interior_reduction_v1.py
+      - name: Run a2 light c1-c2 primary replay
+        run: python research/experiments/davenport-c7-frontier/check_a2_light_support3_one_two_share_elimination_v1.py
+      - name: Compile and run a2 light c1-c2 independent replay
+        run: |
+          g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/verify_a2_light_support3_one_two_share_independent_v1.cpp -o /tmp/a2-c12
+          /tmp/a2-c12
+      - name: Run a2 light c3 primary replay
+        run: python research/experiments/davenport-c7-frontier/check_a2_light_support3_three_share_elimination_v1.py
+      - name: Compile and run a2 light c3 independent replay
+        run: |
+          g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/verify_a2_light_support3_three_share_independent_v1.cpp -o /tmp/a2-c3
+          /tmp/a2-c3

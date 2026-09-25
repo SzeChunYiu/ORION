@@ -1,0 +1,155 @@
+{
+  "schema": "ORION.PAPER2_REPRODUCIBILITY_MANIFEST_V1",
+  "as_of_date": "2026-09-04",
+  "cpp_compile_contract": {
+    "compiler": "g++",
+    "flags": ["-std=c++17", "-O3", "-Wall", "-Wextra"],
+    "assertions": "ENABLED",
+    "forbidden_flags": ["-DNDEBUG"]
+  },
+  "python_executables": [
+    {
+      "id": "canonical_a2_radial",
+      "path": "research/experiments/davenport-c7-frontier/check_a2_exact_overlap_and_radial_staircase_v1.py",
+      "status_suffix": "_GREEN"
+    },
+    {
+      "id": "independent_a2_radial_audit",
+      "path": "research/experiments/davenport-c7-frontier/verify_a2_radial_staircase_independent_v1.py",
+      "expected_status": "A2_RADIAL_STAIRCASE_INDEPENDENT_AUDIT_GREEN",
+      "expected": {
+        "broad_symbolic_replay.primes_through_1009": 167,
+        "broad_symbolic_replay.parity_checks": 76964,
+        "broad_symbolic_replay.feasibility_checks": 25066528,
+        "full_capacity_oracle_replay.rows": 73672,
+        "doubled_target_checks": 38396
+      }
+    },
+    {
+      "id": "a2_depth_fiber_envelope",
+      "path": "research/experiments/davenport-c7-frontier/check_a2_exact_depth_fiber_envelope_v1.py",
+      "expected_status": "A2_EXACT_DEPTH_FIBER_ENVELOPE_GREEN",
+      "expected": {
+        "full_depth_points": 5726716,
+        "broad_pair_sum_fibers": 14283,
+        "explicit_witness_pairs_checked": 192577
+      }
+    },
+    {
+      "id": "rank3_overlap_plane",
+      "path": "research/experiments/davenport-c7-frontier/check_support4_overlap_plane_rank3_scalar_v1.py",
+      "status_suffix": "_GREEN"
+    },
+    {
+      "id": "rank3_simultaneous_overlap",
+      "path": "research/experiments/davenport-c7-frontier/check_support4_simultaneous_overlap_sum_bound_v1.py",
+      "status_suffix": "_GREEN"
+    },
+    {
+      "id": "rank3_doubling_boundary",
+      "path": "research/experiments/davenport-c7-frontier/check_support4_rank3_a_ge4_doubling_boundary_reduction_v1.py",
+      "status_suffix": "_GREEN"
+    },
+    {
+      "id": "rank3_scalar_three_boundary",
+      "path": "research/experiments/davenport-c7-frontier/check_support4_rank3_a_ge4_triple_central_boundary_v1.py",
+      "status_suffix": "_GREEN"
+    },
+    {
+      "id": "a2_standard_families",
+      "path": "research/experiments/davenport-c7-frontier/check_a2_maximal_overlap_standard_families_v1.py",
+      "expected_status": "A2_MAXIMAL_OVERLAP_STANDARD_FAMILIES_GREEN",
+      "expected": {
+        "prime_selector.rows": 9308,
+        "broad_coprime_selector.rows": 632434,
+        "exact_standard_family_replay.standard_parameters": 1977484,
+        "exact_standard_family_replay.minimum_score_margin": 1
+      }
+    },
+    {
+      "id": "p7_rank3_exception_table",
+      "path": "research/experiments/davenport-c7-frontier/check_p7_a2_rank3_support4_exception_table_v1.py",
+      "expected_status": "P7_A2_RANK3_SUPPORT4_EXCEPTION_TABLE_GREEN",
+      "expected": {
+        "depth_states": 343,
+        "structural_candidates_total": 1740,
+        "power_survivors_total": 14,
+        "mixed_certificates": 14,
+        "max_certificate_length": 8
+      }
+    },
+    {
+      "id": "paper2_claim_ledger",
+      "path": "research/experiments/davenport-c7-frontier/check_paper2_atomic_claim_ledger_v1.py",
+      "expected_status": "PAPER2_ATOMIC_CLAIM_LEDGER_GREEN",
+      "expected": {
+        "counts.proved": 12,
+        "counts.open": 8,
+        "counts.cannot_check": 1,
+        "counts.development_ready": 1,
+        "counts.evidence_paths": 52,
+        "hostile_mutations_rejected": 12
+      }
+    },
+    {
+      "id": "paper2_surface_references",
+      "path": "research/experiments/davenport-c7-frontier/check_paper2_surface_references_v1.py",
+      "expected_status": "PAPER2_SURFACE_REFERENCES_GREEN",
+      "expected": {
+        "surfaces_checked": 4,
+        "missing_references": 0,
+        "forbidden_reference_hits": 0,
+        "forbidden_length_snippet_hits": 0
+      }
+    },
+    {
+      "id": "paper2_reproduction_manifest",
+      "path": "research/experiments/davenport-c7-frontier/check_paper2_reproduction_manifest_v1.py",
+      "expected_status": "PAPER2_REPRODUCTION_MANIFEST_GREEN",
+      "expected": {
+        "counts.python_executables": 12,
+        "counts.cpp_executables": 2,
+        "counts.authority_files": 4,
+        "counts.unique_executable_ids": 14,
+        "hostile_mutations_rejected": 8,
+        "assertions_enabled": true
+      }
+    }
+  ],
+  "cpp_executables": [
+    {
+      "id": "support6_9919_primary",
+      "source": "research/experiments/davenport-c7-frontier/search_support6_9919_closure_v1.cpp",
+      "expected_status": "SUPPORT6_9919_CLOSURE_PRIMARY_GREEN",
+      "expected": {
+        "pair_candidates": 26,
+        "completions": 1634,
+        "distinct_sequences": 1634,
+        "four_pack": 1634
+      }
+    },
+    {
+      "id": "support6_9919_independent",
+      "source": "research/experiments/davenport-c7-frontier/verify_support6_9919_independent_v1.cpp",
+      "expected_status": "SUPPORT6_9919_CLOSURE_INDEPENDENT_GREEN",
+      "expected": {
+        "pair_candidates": 26,
+        "completions": 1634,
+        "distinct_sequences": 1634,
+        "four_pack": 1634
+      }
+    }
+  ],
+  "authority_files": [
+    "research/experiments/davenport-c7-frontier/PAPER2_ATOMIC_CLAIM_LEDGER_V1.json",
+    "research/experiments/davenport-c7-frontier/PAPER2_TOP_SPECIALIST_THEOREM_SPINE_V1.md",
+    "research/experiments/davenport-c7-frontier/PAPER2_MANUSCRIPT_DRAFT_V1.md",
+    "research/experiments/davenport-c7-frontier/PAPER2_NEAREST_WORK_AUDIT_V1.md"
+  ],
+  "claim_boundary": {
+    "exact_D3_C7": "OPEN",
+    "all_prime_first_corridor_support7": "OPEN",
+    "novelty_priority": "CANNOT_CHECK",
+    "top_specialist_state": "DEVELOPMENT_READY"
+  }
+}

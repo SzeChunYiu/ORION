@@ -1,0 +1,29 @@
+name: shadow-davenport-exact-radial-cost-live
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-exact-radial-cost-live-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run exact light radial lifting cost regression
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_exact_radial_lifting_cost_v1.py
+      - name: Run exact heavy radial lifting cost regression
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_exact_heavy_radial_lifting_cost_v1.py
+      - name: Run all-type light-share interior regression
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_alltype_light_interior_elimination_v1.py
+      - name: Run all-type heavy-share interior regression
+        run: python3 research/experiments/davenport-c7-frontier/check_support4_alltype_heavy_interior_elimination_v1.py
