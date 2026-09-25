@@ -1,0 +1,223 @@
+{
+  "next_descending_cursor": 14,
+  "paper_order": [
+    19,
+    18,
+    17,
+    16,
+    15
+  ],
+  "papers": [
+    {
+      "bounded_disposition": "V3_SUPPORTED_WITH_STABLE_ABSTENTION__TOP_TIER_SUCCESSOR_NOT_INDICATED",
+      "coverage_gate": {
+        "dev_orbit_coverage": 1.0,
+        "model_accuracy": 0.75,
+        "model_correct": 96,
+        "orbit_majority_ceiling": 0.875,
+        "protected_cases": 128,
+        "protected_orbit_coverage": 0.0,
+        "representation_only_successor_indicated": false
+      },
+      "integration_terminal": "RECOVERY_READY_FOR_PATHWISE_INTEGRATION",
+      "new_threshold_retuning": false,
+      "packet_authority_delta": "NONE",
+      "paper": 19,
+      "qwen_scaling_frontier_supported": false,
+      "ut3": {
+        "cell_runner_present": false,
+        "cells_executed": 0,
+        "declared_cells": 1344,
+        "item_generator_and_verifier_present": false,
+        "seven_representations_implemented": false
+      },
+      "v3": {
+        "d_a_converted_to_pass": false,
+        "d_a_decision": "CANNOT_CHECK",
+        "diagnosis_accuracy": 1.0,
+        "digits_accuracy": 1.0,
+        "executable_accuracy": 1.0,
+        "false_compute_escalation": 0,
+        "generic_accuracy": 0.2,
+        "generic_false_compute_escalation": 4,
+        "half_draw_stability_all_digits": true,
+        "mean_registered_cost_regret": 0.0,
+        "probe_protected_agreement_all_cells": true,
+        "task_count": 5,
+        "terminal": "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V3_SUPPORTED",
+        "v2_terminal_retained": "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_GATE_NOT_MET"
+      }
+    },
+    {
+      "bounded_disposition": "BOUNDED_FORMAL_RESULT_REVERIFIED__EXTERNAL_ADJUDICATION_CANNOT_CHECK",
+      "correct_by_design_gold_cannot_check_count": 7,
+      "external_validation": "CANNOT_CHECK__REQUIRES_EXTERNAL_SCIENTIFIC_ADJUDICATION",
+      "integration_terminal": "RECOVERY_READY_FOR_PATHWISE_INTEGRATION",
+      "packet_authority_delta": "NONE",
+      "paper": 18,
+      "reverification": {
+        "binding_checker_errors": [],
+        "binding_checker_status": "PASS",
+        "case_count": 20,
+        "domain_counts": {
+          "empirical": 5,
+          "formal": 5,
+          "multiple_support": 5,
+          "systems": 5
+        },
+        "independent_terminal": "P8_REAL_EVIDENCE_DISCHARGE_SECOND_INDEPENDENT_CHECKER_GREEN",
+        "native_output_simulated": false,
+        "native_system_executed": false,
+        "source_token_audit": "GREEN"
+      }
+    },
+    {
+      "chronology": {
+        "graph_only_time_utc": "2026-08-28T19:20:17Z",
+        "outcome_time_utc": "2026-08-28T19:23:30Z",
+        "prediction_commit": "1db5eaa46",
+        "prediction_commit_time_utc": "2026-08-28T19:22:36Z",
+        "threshold": 1.5
+      },
+      "filing_ready": false,
+      "filing_terminal": "BLOCKED__NO_STANDALONE_MANUSCRIPT",
+      "governance": {
+        "arbitrary_chain_duplicate_retraction_retained": true,
+        "governance_adjudicated_by_this_packet": false,
+        "issue_1649_reconciliation_required": true,
+        "top_tier_authority_granted_by_this_packet": false
+      },
+      "held_out": {
+        "donor_false_retentions": {
+          "django": 63398,
+          "networkx": 91507,
+          "requests": 0,
+          "sympy": 344352,
+          "tornado": 12773
+        },
+        "exact_false_retentions": {
+          "django": 0,
+          "networkx": 0,
+          "requests": 0,
+          "sympy": 0,
+          "tornado": 0
+        },
+        "organizations": [
+          "psf",
+          "networkx",
+          "django",
+          "tornadoweb",
+          "sympy"
+        ],
+        "packages": [
+          "requests",
+          "networkx",
+          "django",
+          "tornado",
+          "sympy"
+        ],
+        "prediction_count": 5,
+        "predictions_correct": 5,
+        "tornado_donor_false_retentions": 12773,
+        "tornado_edges_per_module": 5.57,
+        "tornado_load_bearing": true,
+        "tornado_modules": 74
+      },
+      "integration_terminal": "RECOVERY_READY_FOR_PATHWISE_INTEGRATION",
+      "packet_authority_delta": "NONE",
+      "paper": 17,
+      "science_evidence_terminal": "PROSPECTIVE_PREDICTION_CONFIRMED__5_OF_5_INCLUDING_THE_DISAMBIGUATOR"
+    },
+    {
+      "bounded_disposition": "REAL_SYSTEM_RESULT_PRESERVED__EXTERNAL_INDEPENDENT_VALIDATION_CANNOT_CHECK",
+      "canonical_acquisition": {
+        "authoritative_system_floor": 2,
+        "duplicate_protocol_created": false,
+        "head": "8a04e08020ab27ca19afe2a05959bc9900570cc8",
+        "outcome_claimed_by_this_packet": false,
+        "pull_request": 1695
+      },
+      "integration_terminal": "ACTIVE_CANONICAL_ACQUISITION__NO_COMPETING_PROTOCOL",
+      "packet_authority_delta": "NONE",
+      "paper": 16,
+      "pr1692_result": {
+        "classification": "BOUNDED_SECOND_TIER_EVIDENCE",
+        "external_independent_validation": "CANNOT_CHECK",
+        "gene_ontology": {
+          "affected_closure_median_cost": 12171.5,
+          "change_sets": 4,
+          "edges": 68311,
+          "nodes": 39907
+        },
+        "mathlib4": {
+          "affected_closure_median_cost": 345,
+          "change_sets": 191,
+          "conservative_1pct_median_cost": 8372.0,
+          "edges": 26305,
+          "full_median_cost": 8409,
+          "incomplete_1pct_stranded_total": 8801,
+          "nodes": 8409,
+          "resolution_fidelity": 0.9999
+        },
+        "nf_core_rnaseq": {
+          "affected_closure_median_cost": 2,
+          "change_sets": 41,
+          "direct_neighbours_median_cost": 2,
+          "direct_neighbours_stranded_total": 0,
+          "edges": 135,
+          "nodes": 138,
+          "null_retained": true,
+          "resolution_fidelity": 0.9579
+        },
+        "systems_evaluable": 3,
+        "top_tier_authority": false
+      }
+    },
+    {
+      "bounded_disposition": "V4_BOUNDED_VERIFIED__EXTERNAL_REPLICATION_REQUIRED",
+      "canonical_longitudinal_lane": {
+        "duplicate_lane_created": false,
+        "empirical_campaign_run": false,
+        "formal_conformance_only": true,
+        "head": "173b1b0c5818b9d9ecd7aa3b46058e28aa473920",
+        "pull_request": 1698
+      },
+      "glm53_harvest": {
+        "control_correct": 22,
+        "control_macro_f1": 0.9143,
+        "denominator": 24,
+        "external_investigator_replication": false,
+        "former_perfect_treatment_ceiling_reproduced": false,
+        "treatment_beats_control": true,
+        "treatment_correct": 23,
+        "treatment_macro_f1": 0.9571
+      },
+      "independent_verification": {
+        "external_real_world_validity": false,
+        "live_provider_authority": false,
+        "post_outcome_in_place_repair_permitted": false,
+        "rule_defect_controlling": false,
+        "rule_defect_detected": true,
+        "terminal": "ORION_15_V4_BOUNDED_VERIFIED_WITH_RULE_DEFECT_RETAINED"
+      },
+      "integration_terminal": "RECOVERY_READY_FOR_PATHWISE_INTEGRATION",
+      "packet_authority_delta": "NONE",
+      "paper": 15,
+      "v4": {
+        "authority_violations": 0,
+        "case_count": 180,
+        "cost": 170.0,
+        "false_broad": 0,
+        "fresh_transfer": 0.8888888888888888,
+        "harm": 0,
+        "parent_accuracy": 0.8888888888888888,
+        "parent_authority_violations": 20,
+        "preservation_refusal": 1.0,
+        "subject_accuracy": 1.0,
+        "terminal": "REVISION_LEVEL_DISCRIMINATION_SUPPORTED",
+        "v3_negative_retained": "NO_TERMINAL_UNDER_FROZEN_RULES"
+      }
+    }
+  ],
+  "schema": "ORION.Issue1701.DescendingPaperStatus.19_15.v1"
+}

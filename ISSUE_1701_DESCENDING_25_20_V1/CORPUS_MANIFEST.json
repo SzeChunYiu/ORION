@@ -1,0 +1,67 @@
+{
+  "base_commit": "b8fd5d2ca8eb1f6547592893591ba3aa93bf96c8",
+  "control_plane_references": [
+    {
+      "paper": 24,
+      "pull_request": 1698,
+      "purpose": "canonical reusable sealed longitudinal control plane",
+      "state_at_audit": "open"
+    },
+    {
+      "paper": 23,
+      "pull_request": 1691,
+      "purpose": "canonical live-Git acquisition V2",
+      "state_at_audit": "open"
+    }
+  ],
+  "entries": [
+    {
+      "git_blob_sha1": "6aa60f71ad9be748212e5de6afb3107d5e4e3b97",
+      "paper": 25,
+      "path": "papers/orion-25-orion-research-harness/experiments/trust-domain-law-v1/RESULT_V1.json",
+      "role": "current bounded law result"
+    },
+    {
+      "git_blob_sha1": "112a11559d3d9658d1352cc0c0137fa3444cd712",
+      "paper": 24,
+      "path": "papers/orion-24-orion-rse/PEER_REVIEW_READINESS.md",
+      "role": "controlled-conformance readiness boundary"
+    },
+    {
+      "git_blob_sha1": "734bdbe7b63dd69c7beea2f8891821011998da18",
+      "paper": 23,
+      "path": "papers/orion-23-responsibility-carrying-state/transport-law-v1/RESULT_V1.json",
+      "role": "bounded transport theorem result"
+    },
+    {
+      "git_blob_sha1": "50187439b4b27195aa2eb9a3ea1b4d740fd5ba06",
+      "paper": 22,
+      "path": "papers/orion-22-adaptive-state-reasoning/experiments/observation-regret-law-v1/RESULT_V1.json",
+      "role": "bounded exact regret-law result"
+    },
+    {
+      "git_blob_sha1": "c55d6f1696f6eecb6da6c93b753e505026c90722",
+      "paper": 21,
+      "path": "papers/orion-21-state-as-computation/experiments/tie-robust-phase-v1/ENGINEERING_READINESS.md",
+      "role": "runner/checker readiness, not scientific result"
+    },
+    {
+      "git_blob_sha1": "51a5f1a3d610328f11696cbc7e3b93af3b967093",
+      "paper": 20,
+      "path": "papers/orion-20-structured-problem-solving/top_tier/primitive-minimality-v1/RESULT_V1.json",
+      "role": "failed-promotion exact result"
+    },
+    {
+      "git_blob_sha1": "3e79399ad26b471f25178b766f1bac709a679753",
+      "paper": 20,
+      "path": "papers/orion-20-structured-problem-solving/top_tier/primitive-minimality-v1/CLAIM_DISPOSITION.md",
+      "role": "order-versus-indispensability interpretation"
+    }
+  ],
+  "non_authoritative_reference": {
+    "number": 1722,
+    "resolution_at_audit": "NOT_RESOLVABLE_AS_PULL_REQUEST",
+    "use": "none"
+  },
+  "schema": "ORION.Issue1701.DescendingClosure.CorpusManifest.v1"
+}

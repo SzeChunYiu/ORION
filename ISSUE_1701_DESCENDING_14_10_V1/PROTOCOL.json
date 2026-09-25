@@ -1,0 +1,45 @@
+{
+  "base_chain": {
+    "direct_main_commit": false,
+    "live_main_commit": "b8fd5d2ca8eb1f6547592893591ba3aa93bf96c8",
+    "live_main_tree": "e4a89bd9a1679e15bc4d4989438597909013813c",
+    "parent_commit": "7ed14b2ef7463e9f41b1372fc9d1bdbb382aa978",
+    "parent_tree": "ba24d731ac1a5d10577b8f003ffb96a38cbf016d",
+    "prepared_branch": "shadow/issue1701-descending-closure-20260829"
+  },
+  "identity": "ORION.ISSUE1701.DESCENDING_RECOVERY.14_10.v1",
+  "issue": 1701,
+  "next_descending_cursor": 9,
+  "packet_authority": {
+    "external_investigator_authority": false,
+    "scientific_authority_delta": "NONE",
+    "submission_authority": false,
+    "top_tier_authority": false
+  },
+  "paper_order": [
+    14,
+    13,
+    12,
+    11,
+    10
+  ],
+  "recovery_rules": {
+    "adverse_history_must_remain_visible": true,
+    "cannot_check_may_not_be_converted_without_native_authority": true,
+    "manuscript_edits_in_this_packet": false,
+    "package_bytes_may_not_cross_source_tree": true,
+    "path_by_path_only": true,
+    "post_outcome_rescue_forbidden": true,
+    "same_research_team_is_external_investigator": false,
+    "status_only_closeout_artifacts_may_not_be_filed": true,
+    "whole_branch_merge_forbidden": true
+  },
+  "required_review_roles": [
+    "evidence_auditor",
+    "formal_claim_reviewer",
+    "runtime_and_systems_reviewer",
+    "reproducibility_checker",
+    "integration_custodian"
+  ],
+  "schema": "ORION.Issue1701.DescendingRecoveryProtocol.14_10.v1"
+}

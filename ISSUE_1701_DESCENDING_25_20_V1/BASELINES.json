@@ -1,0 +1,50 @@
+{
+  "descending_integration": [
+    {
+      "description": "leave issue #1701 statuses ambiguous",
+      "id": "I0_NO_ACTION"
+    },
+    {
+      "description": "treat readiness or synthetic evidence as external success",
+      "id": "I1_CLAIM_INFLATION",
+      "must_fail": true
+    },
+    {
+      "description": "start parallel ORION-24/23 programmes despite canonical PRs",
+      "id": "I2_DUPLICATE_ACTIVE_LANE",
+      "must_fail": true
+    },
+    {
+      "description": "this packet's explicit status, blocker and next-action mapping",
+      "id": "I3_FAIL_CLOSED_LEDGER"
+    }
+  ],
+  "orion25_external_successor": [
+    {
+      "authority": "objective system-native comparator",
+      "description": "each system's native verifier and native role/identity policy",
+      "id": "B0_NATIVE_POLICY"
+    },
+    {
+      "authority": "registered weak baseline",
+      "description": "single-key or flat signature acceptance without threshold/domain semantics",
+      "id": "B1_FLAT_SIGNATURE"
+    },
+    {
+      "authority": "registered provenance-blind baseline",
+      "description": "all supplied status fields merged without trust-domain provenance",
+      "id": "B2_KEY_VALUE_MERGE"
+    },
+    {
+      "authority": "diagnostic upper bound, not a deployable external system",
+      "description": "frozen case specification evaluated directly",
+      "id": "B3_FAIL_CLOSED_ORACLE"
+    },
+    {
+      "authority": "not fresh external confirmation",
+      "description": "historical bounded result used only as a prior prediction",
+      "id": "B4_ORION25_SYNTHETIC_LAW"
+    }
+  ],
+  "schema": "ORION.Issue1701.DescendingClosure.Baselines.v1"
+}
