@@ -1,0 +1,201 @@
+{
+  "authority_boundary": {
+    "authority": "COMMITTED_PUBLIC_METADATA_DOMAIN_ASSIGNMENT_ONLY",
+    "comparator_outputs_accessed": false,
+    "counts_are_not_eligible_pair_counts": true,
+    "domain_assignment_only": true,
+    "grants_scientific_authority": false,
+    "interpretation": "A domain-assigned unit is a rights-clear (both-sides CC BY 4.0) harvested pair/record whose bytes receipts are present in the committed harvest and whose assigned domain is the unique frozen-lexicon winner on BOTH sides (M3/M4) or the article side (M8).  Natural-pair eligibility, target-claim adjudication and external screening remain open and can only reduce counts.",
+    "mechanism_reassignment_performed": false,
+    "protected_outcomes_accessed": false,
+    "terminal_gold_accessed": false
+  },
+  "date": "2026-09-03",
+  "determinism": {
+    "input_sha256_pinned": true,
+    "no_network": true,
+    "no_rng": true
+  },
+  "domain_lexicon": {
+    "adaptation_disclosure": "PMC candidate rows carry title and journal but no abstract; the frozen lexicon and the frozen unique-max-distinct-token decision procedure are applied verbatim over the concatenation of plain_text(title) and plain_text(journal).  No other text source was used and no token was added, removed, or reweighted.",
+    "decision_procedure": "verbatim harvest_v4.classify_domain over plain-text-concatenated candidate fields",
+    "domain_text_fields_used": [
+      "title",
+      "journal"
+    ],
+    "lexicon_terms": {
+      "EARTH_ENVIRONMENT": [
+        "climate",
+        "ocean",
+        "marine",
+        "atmospher",
+        "weather",
+        "earth",
+        "geolog",
+        "geophys",
+        "hydrolog",
+        "soil",
+        "environment",
+        "planet"
+      ],
+      "LIFE_BIOMEDICAL": [
+        "biolog",
+        "biomed",
+        "genom",
+        "gene",
+        "protein",
+        "cell",
+        "ecolog",
+        "species",
+        "neuro",
+        "clinical",
+        "health",
+        "disease"
+      ],
+      "PHYSICAL_ENGINEERING": [
+        "physics",
+        "physical",
+        "material",
+        "engineer",
+        "mechanic",
+        "electr",
+        "photon",
+        "quantum",
+        "energy",
+        "chemical",
+        "chemistry",
+        "device"
+      ],
+      "SCIENTIFIC_SOFTWARE": [
+        "software",
+        "code",
+        "package",
+        "library",
+        "workflow",
+        "algorithm",
+        "simulation",
+        "model",
+        "computational",
+        "reproducib"
+      ]
+    },
+    "rule_text_frozen_v4": "case-insensitive substring matches over JOSS title/abstract plus GitHub description/topics; assign the unique domain with the greatest number of distinct matched tokens",
+    "source_path": "development/p4-m6-source-provider-successor-v4-2026-08-23/PROTOCOL_V4.json",
+    "source_sha256": "902d2d7e0efac569f9b4c87d087b560e4039666d5ee13be075fd3adba4bc27f4"
+  },
+  "execution_boundary": {
+    "committed_artifacts": "rows jsonl + this result json only",
+    "host": "billy-old",
+    "raw_harvest_bytes": "already committed upstream in pmc-oa-linked-harvest-v1"
+  },
+  "forbidden_claims": [
+    "natural-pair eligibility",
+    "mechanism reassignment",
+    "domain authority beyond the frozen lexicon",
+    "case resolution",
+    "scientific performance",
+    "confirmation",
+    "ORION superiority"
+  ],
+  "identity": "A5_S1A_PMC_DOMAIN_ASSIGNMENT_V1",
+  "inputs": {
+    "domain_protocol": {
+      "path": "development/p4-m6-source-provider-successor-v4-2026-08-23/PROTOCOL_V4.json",
+      "sha256": "902d2d7e0efac569f9b4c87d087b560e4039666d5ee13be075fd3adba4bc27f4"
+    },
+    "m3_candidates": {
+      "path": "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M3_PROTOCOL_TO_RESULTS.jsonl",
+      "sha256": "2703b131c791cad8e547ef6f25d885f7e0c216ff0cff01cc477779b081b1f4fe"
+    },
+    "m4_candidates": {
+      "path": "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M4_ARTICLE_TO_CORRECTION.jsonl",
+      "sha256": "18022f30e84e8f8810166e68fafdad81635a2b22712d148dc4742f32306b286b"
+    },
+    "m8_candidates": {
+      "path": "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M8_ARTICLE_TO_LICENSED_SUPPLEMENT.jsonl",
+      "sha256": "2d8404d49898b29ace9d2d33db647cb4ed83a7eaad37952e258f998408f2ebfa"
+    }
+  },
+  "per_mechanism": {
+    "M3_PROTOCOL_TO_RESULTS": {
+      "domain_assigned_units": {
+        "EARTH_ENVIRONMENT": 0,
+        "LIFE_BIOMEDICAL": 1,
+        "PHYSICAL_ENGINEERING": 0,
+        "SCIENTIFIC_SOFTWARE": 0
+      },
+      "domain_assigned_units_total": 1,
+      "input": {
+        "path": "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M3_PROTOCOL_TO_RESULTS.jsonl",
+        "sha256": "2703b131c791cad8e547ef6f25d885f7e0c216ff0cff01cc477779b081b1f4fe"
+      },
+      "input_rows": 250,
+      "reservoir_breakdown": {
+        "RESERVOIR_ARTICLE_CANNOT_CHECK_DOMAIN_UNCLASSIFIED": 2,
+        "RESERVOIR_NO_PARTNER_OBJECT": 244,
+        "RESERVOIR_RIGHTS_OR_BYTES_NOT_CLEAR": 3
+      },
+      "reservoir_total": 249
+    },
+    "M4_ARTICLE_TO_CORRECTION": {
+      "domain_assigned_units": {
+        "EARTH_ENVIRONMENT": 0,
+        "LIFE_BIOMEDICAL": 84,
+        "PHYSICAL_ENGINEERING": 4,
+        "SCIENTIFIC_SOFTWARE": 11
+      },
+      "domain_assigned_units_total": 99,
+      "input": {
+        "path": "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M4_ARTICLE_TO_CORRECTION.jsonl",
+        "sha256": "18022f30e84e8f8810166e68fafdad81635a2b22712d148dc4742f32306b286b"
+      },
+      "input_rows": 300,
+      "reservoir_breakdown": {
+        "RESERVOIR_ARTICLE_CANNOT_CHECK_DOMAIN_AMBIGUOUS": 20,
+        "RESERVOIR_ARTICLE_CANNOT_CHECK_DOMAIN_UNCLASSIFIED": 83,
+        "RESERVOIR_NO_PARTNER_OBJECT": 41,
+        "RESERVOIR_PAIR_DOMAIN_DISAGREEMENT": 1,
+        "RESERVOIR_RIGHTS_OR_BYTES_NOT_CLEAR": 56
+      },
+      "reservoir_total": 201
+    },
+    "M8_ARTICLE_TO_LICENSED_SUPPLEMENT": {
+      "domain_assigned_units": {
+        "EARTH_ENVIRONMENT": 2,
+        "LIFE_BIOMEDICAL": 9,
+        "PHYSICAL_ENGINEERING": 0,
+        "SCIENTIFIC_SOFTWARE": 1
+      },
+      "domain_assigned_units_total": 12,
+      "input": {
+        "path": "development/p4-scientific-ascent-2026-08-23/source_binding/pmc-oa-linked-harvest-v1/CANDIDATES_M8_ARTICLE_TO_LICENSED_SUPPLEMENT.jsonl",
+        "sha256": "2d8404d49898b29ace9d2d33db647cb4ed83a7eaad37952e258f998408f2ebfa"
+      },
+      "input_rows": 26,
+      "reservoir_breakdown": {
+        "RESERVOIR_ARTICLE_CANNOT_CHECK_DOMAIN_UNCLASSIFIED": 2,
+        "RESERVOIR_NO_HASHED_SUPPLEMENT_FILE": 12
+      },
+      "reservoir_total": 14
+    }
+  },
+  "rows": 576,
+  "rows_jsonl_sha256": "509339a7e726140438c46797c05a49cd35a5c1fb468c5b1e456783c58fcbf065",
+  "schema_version": "ORION.A5.S1a.PMCDomainAssignment.v1",
+  "scientific_authority_delta": "NONE__DOMAIN_LABELLING_OF_COMMITTED_HARVEST_ROWS_ONLY",
+  "total_domain_assigned_units": 112,
+  "units_by_cell": {
+    "EARTH_ENVIRONMENT__M3_PROTOCOL_TO_RESULTS": 0,
+    "EARTH_ENVIRONMENT__M4_ARTICLE_TO_CORRECTION": 0,
+    "EARTH_ENVIRONMENT__M8_ARTICLE_TO_LICENSED_SUPPLEMENT": 2,
+    "LIFE_BIOMEDICAL__M3_PROTOCOL_TO_RESULTS": 1,
+    "LIFE_BIOMEDICAL__M4_ARTICLE_TO_CORRECTION": 84,
+    "LIFE_BIOMEDICAL__M8_ARTICLE_TO_LICENSED_SUPPLEMENT": 9,
+    "PHYSICAL_ENGINEERING__M3_PROTOCOL_TO_RESULTS": 0,
+    "PHYSICAL_ENGINEERING__M4_ARTICLE_TO_CORRECTION": 4,
+    "PHYSICAL_ENGINEERING__M8_ARTICLE_TO_LICENSED_SUPPLEMENT": 0,
+    "SCIENTIFIC_SOFTWARE__M3_PROTOCOL_TO_RESULTS": 0,
+    "SCIENTIFIC_SOFTWARE__M4_ARTICLE_TO_CORRECTION": 11,
+    "SCIENTIFIC_SOFTWARE__M8_ARTICLE_TO_LICENSED_SUPPLEMENT": 1
+  }
+}
