@@ -1,0 +1,42 @@
+name: ORION-15 Wave 3 governance paper
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-15-wave3-governance-paper.yml"
+      - "papers/orion-15-self-orion/WAVE3_PUBLICATION_DECISION_V1.md"
+      - "papers/orion-15-self-orion/wave3_governance_closeout_v1/**"
+      - "tests/research/test_orion15_wave3_governance_paper.py"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/orion-15-wave3-governance-paper.yml"
+      - "papers/orion-15-self-orion/WAVE3_PUBLICATION_DECISION_V1.md"
+      - "papers/orion-15-self-orion/wave3_governance_closeout_v1/**"
+      - "tests/research/test_orion15_wave3_governance_paper.py"
+
+permissions:
+  contents: read
+
+jobs:
+  governance-paper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install pytest==8.4.2 ruff==0.15.10
+      - name: Verify publication package
+        run: python papers/orion-15-self-orion/wave3_governance_closeout_v1/verify_closeout.py
+      - name: Run focused tests
+        run: python -m pytest -q tests/research/test_orion15_wave3_governance_paper.py
+      - name: Static checks
+        run: |
+          ruff check \
+            papers/orion-15-self-orion/wave3_governance_closeout_v1/verify_closeout.py \
+            tests/research/test_orion15_wave3_governance_paper.py
+          git diff --check
+          git diff --exit-code
