@@ -1,0 +1,65 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "sample_id": "P3.PHYS.001",
+  "case_family": null,
+  "discipline": "phys",
+  "annotator": "adjudicated-v1",
+  "annotated_at": "2026-08-16T18:43:22+00:00",
+  "source_a": {
+    "document_id": "arxiv:SEED-PHYS001A",
+    "document_version": "v1",
+    "span_start": 3010,
+    "span_end": 3360,
+    "text_hash": "seed:sha256:7172737a878",
+    "discipline": "physics",
+    "retrieval_hint": ""
+  },
+  "source_b": {
+    "document_id": "arxiv:SEED-PHYS001B",
+    "document_version": "v1",
+    "span_start": 8540,
+    "span_end": 8890,
+    "text_hash": "seed:sha256:7677787a980",
+    "discipline": "physics",
+    "retrieval_hint": ""
+  },
+  "coordinates": {
+    "referent_relation": "DIFFERENT",
+    "construct_relation": "DIFFERENT",
+    "measurement_relation": "NOT_APPLICABLE",
+    "context_relation": "DIFFERENT_STATE_OR_TIME",
+    "polarity_relation": "NOT_COMPARABLE",
+    "modality_relation": "NOT_COMPARABLE",
+    "attribution_relation": "NOT_APPLICABLE",
+    "discourse_relation": "NOT_COMPARABLE",
+    "mapping_relation": "NO_LICENSED_MAPPING",
+    "contradiction_verdict": "NO_CONTRADICTION",
+    "integration_verdict": "OBSTRUCTION"
+  },
+  "source_span": {
+    "source_a_span": {
+      "document_id": "arxiv:SEED-PHYS001A",
+      "document_version": "v1",
+      "span_start": 3010,
+      "span_end": 3360,
+      "text_hash": "seed:sha256:7172737a878"
+    },
+    "source_b_span": {
+      "document_id": "arxiv:SEED-PHYS001B",
+      "document_version": "v1",
+      "span_start": 8540,
+      "span_end": 8890,
+      "text_hash": "seed:sha256:7677787a980"
+    }
+  },
+  "contradiction_details": null,
+  "obstruction_type": null,
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "referent_relation:DIFFERENT",
+    "mapping_relation:NO_LICENSED_MAPPING"
+  ],
+  "preservation_conditions": [],
+  "annotator_notes": "Regenerated from adjudicated gold. Matches combined_gold.json."
+}

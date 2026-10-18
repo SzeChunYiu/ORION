@@ -1,0 +1,36 @@
+{
+  "schema_version": "orion.run-manifest.v1",
+  "paper_id": "P3",
+  "protocol_id": "P3.cross-domain-atlas.v1",
+  "systems": [
+    "VanillaLongContext",
+    "ScientificRAG",
+    "CrossDomainRAG",
+    "FlatUniversalSchema",
+    "SCOPE_SCION_Like",
+    "ProvenanceSchema",
+    "ORION_no_referent",
+    "ORION_no_construct",
+    "ORION_no_measurement",
+    "ORION_no_context",
+    "ORION_no_modality_polarity_attribution_discourse",
+    "ORION_no_obstruction",
+    "ORION_no_recoverability",
+    "ORION_no_W_expansion",
+    "ORION_FULL"
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "gold_hash": "667be9620944abba078dca442c1283baec59a14989fbdf5761137a7cd11e5c8a",
+  "resource_policy": {
+    "frozen_model_family": "deepseek-v4-pro",
+    "context_budget_per_case": "TBD",
+    "retrieval_allowance": "TBD"
+  },
+  "run_manifest_hash": "2418037639d15ff819b8e50631e6b4d822d3a4970b8dc293951e4f5b022e068c"
+}

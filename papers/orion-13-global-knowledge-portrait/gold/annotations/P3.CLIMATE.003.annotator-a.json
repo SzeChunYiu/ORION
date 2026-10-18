@@ -1,0 +1,69 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "sample_id": "P3.CLIMATE.003",
+  "case_family": null,
+  "discipline": "climate",
+  "annotator": "adjudicated-v1",
+  "annotated_at": "2026-08-16T18:43:22+00:00",
+  "source_a": {
+    "document_id": "essd:SEED-CLIM003A",
+    "document_version": "v1",
+    "span_start": 8730,
+    "span_end": 9060,
+    "text_hash": "seed:sha256:8182838a9bf",
+    "discipline": "climate",
+    "retrieval_hint": ""
+  },
+  "source_b": {
+    "document_id": "essd:SEED-CLIM003B",
+    "document_version": "v1",
+    "span_start": 1010,
+    "span_end": 1330,
+    "text_hash": "seed:sha256:8182838a9c0",
+    "discipline": "climate",
+    "retrieval_hint": ""
+  },
+  "coordinates": {
+    "referent_relation": "SAME",
+    "construct_relation": "SAME",
+    "measurement_relation": "NON_EQUIVALENT",
+    "context_relation": "CONDITIONED_COMPATIBLE",
+    "polarity_relation": "SAME",
+    "modality_relation": "SAME",
+    "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+    "discourse_relation": "ALIGNED",
+    "mapping_relation": "CONDITIONAL_TRANSFORM",
+    "contradiction_verdict": "NO_CONTRADICTION",
+    "integration_verdict": "GLUE_ALLOWED"
+  },
+  "source_span": {
+    "source_a_span": {
+      "document_id": "essd:SEED-CLIM003A",
+      "document_version": "v1",
+      "span_start": 8730,
+      "span_end": 9060,
+      "text_hash": "seed:sha256:8182838a9bf"
+    },
+    "source_b_span": {
+      "document_id": "essd:SEED-CLIM003B",
+      "document_version": "v1",
+      "span_start": 1010,
+      "span_end": 1330,
+      "text_hash": "seed:sha256:8182838a9c0"
+    }
+  },
+  "contradiction_details": null,
+  "obstruction_type": null,
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "construct_relation:SAME",
+    "measurement_relation:NON_EQUIVALENT",
+    "preservation_conditions:calibration_required"
+  ],
+  "preservation_conditions": [
+    "Calibration curve or bridging study required between measurement instruments",
+    "Direct numeric comparison without calibration is invalid"
+  ],
+  "annotator_notes": "Regenerated from adjudicated gold. Matches combined_gold.json."
+}

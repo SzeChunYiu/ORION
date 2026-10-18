@@ -1,0 +1,68 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "sample_id": "P3.PHYS.002",
+  "case_family": null,
+  "discipline": "phys",
+  "annotator": "adjudicated-v1",
+  "annotated_at": "2026-08-16T18:43:22+00:00",
+  "source_a": {
+    "document_id": "arxiv:SEED-PHYS002A",
+    "document_version": "v1",
+    "span_start": 1020,
+    "span_end": 1340,
+    "text_hash": "seed:sha256:8182838a989",
+    "discipline": "physics",
+    "retrieval_hint": ""
+  },
+  "source_b": {
+    "document_id": "arxiv:SEED-PHYS002B",
+    "document_version": "v1",
+    "span_start": 6930,
+    "span_end": 7260,
+    "text_hash": "seed:sha256:8687888a990",
+    "discipline": "physics",
+    "retrieval_hint": ""
+  },
+  "coordinates": {
+    "referent_relation": "SAME",
+    "construct_relation": "SAME",
+    "measurement_relation": "EQUIVALENT",
+    "context_relation": "ALIGNED",
+    "polarity_relation": "SAME",
+    "modality_relation": "SAME",
+    "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+    "discourse_relation": "ALIGNED",
+    "mapping_relation": "IDENTITY",
+    "contradiction_verdict": "NO_CONTRADICTION",
+    "integration_verdict": "GLUE_ALLOWED"
+  },
+  "source_span": {
+    "source_a_span": {
+      "document_id": "arxiv:SEED-PHYS002A",
+      "document_version": "v1",
+      "span_start": 1020,
+      "span_end": 1340,
+      "text_hash": "seed:sha256:8182838a989"
+    },
+    "source_b_span": {
+      "document_id": "arxiv:SEED-PHYS002B",
+      "document_version": "v1",
+      "span_start": 6930,
+      "span_end": 7260,
+      "text_hash": "seed:sha256:8687888a990"
+    }
+  },
+  "contradiction_details": null,
+  "obstruction_type": null,
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "referent_relation:SAME",
+    "mapping_relation:IDENTITY",
+    "preservation_conditions:canonical_mapping"
+  ],
+  "preservation_conditions": [
+    "Canonical identifier mapping (e.g. gene ontology / synonym dictionary) is applied"
+  ],
+  "annotator_notes": "Regenerated from adjudicated gold. Matches combined_gold.json."
+}
